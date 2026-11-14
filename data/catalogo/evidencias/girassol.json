@@ -1,0 +1,269 @@
+{
+  "id": "girassol",
+  "valores": {
+    "tipos": "comercial|tolerante_seca",
+    "perene": "false",
+    "ciclo_dias_min": "90",
+    "ciclo_dias_max": "130",
+    "temp_base_c": "4",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "25",
+    "tmax_critica_c": "35",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "400",
+    "agua_ciclo_mm_max": "700",
+    "kc_inicial": "0.35",
+    "kc_medio": "1.0",
+    "kc_final": "0.35",
+    "profundidade_raiz_m": "1.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "medio",
+    "fontes": "Embrapa Soja, Circular Técnica 13 A cultura do girassol (Castro et al.), 1997 (ciclo 90-130 dias, temperaturas, água 500-700 mm, tolerância à seca, raiz sensível à compactação)|Castro & Farias, Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005 (temp. base 4-8,5 °C, ótimo 20-25 °C, <35 °C na floração, água 400-500 mm, raiz até 2 m e sensível à compactação, matéria seca 9,5 t/ha)|Ungaro, Castro, Farias et al., Girassol, cap. 12 de Agrometeorologia dos cultivos, INMET, 2009 (temp. base 4 °C de Barni et al. 1993, geada, dano por calor na antese, água)|Gonçalves et al., Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005 (valor forrageiro)|Amabile & Duarte, Girassol como alternativa para o sistema de produção do Cerrado, Embrapa Cerrados (silagem similar à de milho, tolerância à seca)|FAO ECOCROP Helianthus annuus id 1191 (ótimo 17-34 °C, absoluto 5-45 °C, morte a 0 °C no início do ciclo)|FAO Irrigation Water Management Training Manual 3, Tab.5 (água 600-1000 mm, referência internacional)|FAO-56 Tab.12 (Kc; ini do grupo Oil crops 0.35; mid 1.0 = limite inferior, para sequeiro, nota 9)|FAO-56 Tab.22 (raiz 0.8-1.5 m, limite superior = sequeiro)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "tipos",
+      "antes": "comercial|tolerante_seca|raiz_profunda",
+      "depois": "comercial|tolerante_seca",
+      "motivo": "No BRIEF, raiz_profunda quer dizer 'rompe camada compactada'. A Embrapa diz o contrário para o girassol: a raiz é profunda em solo sem impedimento (até 2 m), mas é 'sensível a solos compactados, apresentando baixa capacidade de penetração' (CT 13) e 'muito sensível a impedimentos físicos, como a compactação do solo' (cap. 9). Mantive tolerante_seca, que tem fonte."
+    },
+    {
+      "coluna": "raiz_profunda",
+      "antes": "true",
+      "depois": "false",
+      "motivo": "Mesmo motivo de tipos: a Embrapa afirma que a raiz do girassol não rompe camada compactada."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "6",
+      "depois": "4",
+      "motivo": "Barni et al. (1993a) determinaram a temperatura base de 4 °C para todo o ciclo, com 9 cultivares em 80 ambientes do RS. Sentelhas et al. usaram 4,2 °C. Os dois estudos foram feitos no Brasil e estão citados no capítulo do INMET de 2009. A literatura internacional dá 4 a 8,5 °C, e o 6 do rascunho era só um valor do meio dessa faixa, sem estudo que o determinasse."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "600",
+      "depois": "400",
+      "motivo": "Embrapa (Castro & Farias, 2005): 'na maioria dos casos, 400 a 500 mm de água, bem distribuídos ao longo do ciclo, resultam em rendimentos próximos ao potencial máximo'. Em Lavras (MG), Dias (1995) mediu consumo de 508,8 mm. Os 600-1000 mm são de Doorenbos & Kassam, para ciclos de 125-130 dias e climas de alta demanda."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "1000",
+      "depois": "700",
+      "motivo": "Na Embrapa CT 13 (1997), 500 a 700 mm resultam em rendimentos próximos ao máximo. Como teto, usei o maior valor publicado pela Embrapa, que cobre as cultivares tardias. O 1000 da FAO fica como referência internacional."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "baixo",
+      "depois": "medio",
+      "motivo": "A Embrapa recomenda a silagem de girassol como opção forrageira de safrinha. O teor de proteína e de óleo é maior que o do milho, mas a fibra é mais lignificada e menos digestível (cap. 7, Girassol no Brasil). A Embrapa Cerrados considera essa silagem 'similar à silagem de milho e superior à de sorgo'. Por isso fica médio, e não alto, já que a digestibilidade restringe o uso para as categorias de animais mais exigentes."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "rascunho com referências genéricas",
+      "depois": "referências exatas (ver valores.fontes)",
+      "motivo": "Troquei as referências genéricas pelos documentos que li de fato."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 13, A cultura do girassol, 1997",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/445832/1/ID2434.pdf",
+      "trecho": "O ciclo vegetativo do girassol varia entre 90 a 130 dias, dependendo da cultivar, da data de semeadura e das condições ambientais"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 13, 1997 (colheita)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/445832/1/ID2434.pdf",
+      "trecho": "Nas cultivares precoces e tardias, ocorre ao redor de 90 a 130 dias, respectivamente, após a emergência das plantas"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Ungaro, Castro, Farias, Barni, Ramos, Sentelhas, Girassol, in Monteiro (org.), Agrometeorologia dos cultivos, INMET, 2009, p.205-221",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "BARNI et aI. (1993a), estudando nove cultivares (híbridos e populações), em 80 ambientes, no Estado do Rio Grande do Sul, determinaram uma temperatura base de 4°C, para todo o ciclo do girassol"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, in Girassol no Brasil, Embrapa Soja, 2005",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "Vários autores citam como temperatura base para o girassol valores entre 4ºC a 8,5 oC"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, Embrapa Soja, 2005",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "O girassol desenvolve-se bem em temperaturas variando entre 20oC e 25oC, embora estudos em condições controladas indicam que 27oC a 28oC parecem ser as temperaturas ótimas"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "sensivel_geada"
+      ],
+      "fonte": "FAO ECOCROP, data sheet Helianthus annuus (id 1191)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=1191",
+      "trecho": "Temperat. requir. 17 34 5 45 ... Killing temp. early growth 0 ... Crop cycle 70 200"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, Embrapa Soja, 2005 (Fig. 13 e texto)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "Floração ... Duração: 10 a 15 dias ... Temp. <35oC; Com 35oC de temperatura, ou acima dessa, a coleta de pólen ou néctar tende a ser progressivamente reduzida"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Ungaro et al., Girassol, Agrometeorologia dos cultivos, INMET, 2009",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "tem sido observado quando a temperatura do ar se aproxima dos 40°C ... Um único dia de alta temperatura pode danificar entre dois e quatro círculos florais"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Ungaro et al., Girassol, Agrometeorologia dos cultivos, INMET, 2009, item 3.4 Geada",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "O girassol é considerado sensível à geada no momento da emergência das plantas e, posteriormente, durante a floração. No entanto, é muito resistente logo depois dos 20 primeiros dias da emergência"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Ungaro et al., Girassol, Agrometeorologia dos cultivos, INMET, 2009, item 3.4 Geada",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "Um problema que pode ocorrer, nos plantios de safrinha, em regiões sujeitas a geada, é sua ocorrência durante a diferenciação floral ... A geada também pode ocorrer durante o florescimento, o que leva à infertilidade total das flores"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min"
+      ],
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, Embrapa Soja, 2005",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "Entretanto, na maioria dos casos, 400 a 500 mm de água, bem distribuídos ao longo do ciclo, resultam em rendimentos próximos ao potencial máximo"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 13, 1997",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/445832/1/ID2434.pdf",
+      "trecho": "Entretanto, na maioria dos casos, 500 a 700 mm de água, bem distribuídos ao longo do ciclo, resultam em rendimentos próximos ao máximo"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Ungaro et al., Girassol, Agrometeorologia dos cultivos, INMET, 2009",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "Segundo DOORENBOS & KASSAM (1979), a quantidade total de água requerida pelo girassol varia entre 600 a 1000mm ... DIAS (1995) ... na região de Lavras ... registrou um consumo de 508,8 mm"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "FAO, Irrigation Water Management Training Manual 3, Table 5",
+      "url": "https://www.fao.org/4/s2022e/s2022e02.htm",
+      "trecho": "APPROXIMATE VALUES OF SEASONAL CROP WATER NEEDS ... Sunflower 600-1000"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Table 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "h. Oil Crops 0.35 1.15 0.35 ... Sunflower 1.0-1.15 9 0.35 2.0; 9 The lower values are for rainfed crops having less dense plant populations."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Table 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Sunflower 0.8-1.5 0.45"
+    },
+    {
+      "colunas": [
+        "raiz_profunda",
+        "tipos"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 13, 1997",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/445832/1/ID2434.pdf",
+      "trecho": "não havendo impedimentos químicos ou físicos, explora grande profundidade de solo ... Entretanto, é sensível a solos compactados, apresentando baixa capacidade de penetração, o que pode inibir seu crescimento em profundidade"
+    },
+    {
+      "colunas": [
+        "raiz_profunda",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, Embrapa Soja, 2005",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "podem alcançar até dois metros de profundidade ... o aprofundamento será tão limitado quanto maior for a resistência das camadas de impedimento, uma vez que é muito sensível a impedimentos físicos, como a compactação do solo"
+    },
+    {
+      "colunas": [
+        "tipos"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 13, 1997",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/445832/1/ID2434.pdf",
+      "trecho": "Seu sistema radicular profundo e bem desenvolvido lateralmente e sua capacidade de manutenção da fotossíntese, mesmo em condições adversas, permitem tolerar curtos períodos de seca, assegurando algum rendimento em condições onde outras espécies nada produzem"
+    },
+    {
+      "colunas": [
+        "aporte_biomassa"
+      ],
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, Embrapa Soja, 2005",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "foram estimadas as produtividades de MS total e de aquênios, na colheita, em 9.507 kg ha-1 e 3.176 kg ha-1, respectivamente"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Gonçalves, Pereira, Tomich & Rodrigues, Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/792184/1/Silagem-de-girassol-como-opcao-forrageira-capitulo-7.pdf",
+      "trecho": "Geralmente, a silagem de girassol contém alto teor protéico ... Contudo, a fração fibrosa geralmente apresenta maior proporção de lignina e menor digestibilidade, quando comparada às silagens de milho e de sorgo"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro",
+        "tipos"
+      ],
+      "fonte": "Amabile & Duarte, Girassol como alternativa para o sistema de produção do Cerrado, Embrapa Cerrados",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/571940/1/art032.pdf",
+      "trecho": "a de girassol é similar a silagem de milho e superior a de sorgo ... A espécie apresenta boa adaptabilidade, tolerância à seca"
+    }
+  ],
+  "pendencias": [
+    "cobertura_solo = baixa ficou sem fonte primária. A palhada do girassol é de caule e capítulo e parece decompor rápido, mas só achei um resumo de graduação da Unijuí, que classifica a decomposição como girassol > soja > capim-sudão > arroz. Esse resumo serve só de pista. Não achei documento da Embrapa que quantifique a cobertura do solo nem a persistência da palhada do girassol.",
+    "aporte_biomassa = medio: a Embrapa Soja mediu 9,5 t/ha de MS total na colheita em Londrina, contando os grãos (3,2 t/ha), o que deixa uns 6 t/ha de resíduo. Com 'medio' fica coerente com trigo e arroz, mas o limiar da classe é decisão da equipe, sem número na fonte.",
+    "sensivel_geada = true é simplificação de um campo booleano. A Embrapa/INMET diz que o girassol é sensível na emergência e na floração e 'muito resistente' depois dos 20 primeiros dias, além de ser 'mais resistente que o milho'. Mantive true porque, na safrinha, a floração e a diferenciação floral caem no outono/inverno e uma geada nessa fase causa infertilidade total dos círculos florais.",
+    "raiz_profunda e tipos: mudei para false/sem raiz_profunda seguindo a definição do BRIEF (rompe camada compactada). O girassol tem raiz pivotante profunda (até 2 m, segundo o INMET 2009: 'pode absorver água de uma profundidade de 2 metros ou mais') e recicla nutrientes de camadas profundas, mas a Embrapa diz explicitamente que ele é sensível à compactação. Se o app usar raiz_profunda também para 'explora camadas profundas', a equipe deve rever.",
+    "ciclo 90-130 dias da CT 13 conta da emergência à colheita e vem de 1997. O cap. 9 (2005) dá 65 a 155 dias como faixa genotípica geral e cita cerca de 76 dias em Roraima. Não conferi a lista atual de cultivares do ZARC do girassol, que tem grupos de ciclo.",
+    "temp_otima_max_c = 25 segue a afirmação de campo da Embrapa ('desenvolve-se bem entre 20 e 25 °C'). A CT 13 e estudos em ambiente controlado dão 27-28 °C como ótimo, e o ECOCROP dá 17-34 °C. Se a equipe preferir o ótimo fisiológico, usar 28."
+  ]
+}

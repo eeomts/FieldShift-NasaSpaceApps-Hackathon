@@ -1,0 +1,157 @@
+{
+  "id": "feijao_caupi",
+  "valores": {
+    "tipos": "comercial|fixadora_n|tolerante_seca",
+    "perene": "false",
+    "ciclo_dias_min": "60",
+    "ciclo_dias_max": "90",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "18",
+    "temp_otima_max_c": "34",
+    "tmax_critica_c": "35",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "300",
+    "agua_ciclo_mm_max": "450",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.05",
+    "kc_final": "0.35",
+    "profundidade_raiz_m": "1.0",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "baixo",
+    "valor_forrageiro": "medio",
+    "fontes": "Allen et al. FAO-56 1998 Tab.12 (Kc; linha Green Gram and Cowpeas; Kc ini do grupo Legumes; Kc end 0.35 = colhido seco)|Allen et al. FAO-56 1998 Tab.22 (raiz 0.6-1.0 m; limite superior = sequeiro)|MAPA Portaria SPA/MAPA 128/2026 ZARC feijão caupi MT 2026/2027 (temperatura ótima 18-34 °C; água mínima 300 mm; Tmin decendial >18 °C; raiz efetiva superficial 45 cm; grupos de ciclo)|Ribeiro (ed.) Embrapa Meio-Norte Sistemas de Produção 2 Cultivo do Feijão-caupi 2002 (ciclo por cultivar 60-90 d; temperatura base 8-11 °C; água 300-450 mm/ciclo; fixação de N; usos forrageiro e adubação verde)|Andrade Júnior, Bastos & Cardoso Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Clima (florescimento prejudicado acima de 35 °C; 300 mm de chuva)|Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Irrigação (consumo 250-400 mm/ciclo; Kc medidos no Brasil)|FAO ECOCROP Vigna unguiculata ssp. unguiculata (temperatura ótima 20-35 °C e absoluta 10-40 °C; apoio a temp_base e sensibilidade ao frio)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "20",
+      "depois": "18",
+      "motivo": "ZARC MAPA (2026) e Embrapa Meio-Norte dão faixa ótima/de bom desenvolvimento de 18 a 34 °C. ECOCROP dá 20 °C (alternativa)."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "28",
+      "depois": "34",
+      "motivo": "28 °C não tem fonte. ZARC e Embrapa: 18-34 °C. ECOCROP: ótimo até 35 °C."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|...",
+      "depois": "referências conferidas (ver valores.fontes)",
+      "motivo": "Fontes lidas e trechos registrados; retirado o marcador de rascunho."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "Allen et al., FAO-56, Tabela 12, 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "e. Legumes (Leguminosae) 0.4 1.15 0.55 [...] Green Gram and Cowpeas 1.05 0.60-0.35 (6) [...] 6 The first Kc end is for harvested fresh. The second value is for harvested dry."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Allen et al., FAO-56, Tabela 22, 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Green Gram and Cowpeas 0.6-1.0 0.45 [...] the larger values for modeling soil water stress or for rainfed conditions"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "agua_ciclo_mm_min",
+        "raiz_profunda",
+        "ciclo_dias_max",
+        "sensivel_geada"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 128/2026, ZARC feijão caupi Mato Grosso, ano-safra 2026/2027 (anexo técnico)",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/mato-grosso/PORTN128FEIJOCAUPIMT.pdf",
+      "trecho": "As temperaturas ótimas para o bom desenvolvimento da cultura estão na faixa de 18oC a 34oC. [...] exige um mínimo de 300 mm de precipitação ao longo do ciclo. [...] temperatura mínima média decendial superior a 18°C [...] profundidade efetiva do sistema radicular da cultura que é superficial [...] Grupo I (n ≤ 75 dias)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Ribeiro (ed.), Embrapa Meio-Norte, Sistemas de Produção 2: Cultivo do Feijão-caupi, 2002, p. 27-29 (Tabelas 2 e 3)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/66591/1/sistemaproducao2.PDF",
+      "trecho": "Ciclo (superprecoce: maturação em até 60 dias; precoce: 61-70 dias; médio: 71-90 dias [...] e tardio: maturação acima de 90 dias) [...] Manaus ER 60 [...] EMEPA – 1 PR 80-90 [...] BR 13 - Caicó SPR 80-90"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Ribeiro (ed.), Embrapa Meio-Norte, Sistemas de Produção 2, 2002 (Temperatura)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/66591/1/sistemaproducao2.PDF",
+      "trecho": "O bom desenvolvimento da cultura ocorre na faixa de temperatura de 18 a 34°C. A temperatura base [...] Para a germinação, varia de 8 a 11°C, enquanto para o estádio de floração inicial, de 8 a 10 °C (Craufurd et al., 1996a, 1996b). [...] Temperaturas baixas (<19°C) influenciam negativamente a produtividade"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Ribeiro (ed.), Embrapa Meio-Norte, Sistemas de Produção 2, 2002 (Demanda hídrica)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/66591/1/sistemaproducao2.PDF",
+      "trecho": "O consumo de água do feijão-caupi pode variar de 300 a 450 mm/ciclo, dependendo da cultivar, do solo e das condições climáticas locais."
+    },
+    {
+      "colunas": [
+        "tipos",
+        "fixa_nitrogenio",
+        "valor_forrageiro"
+      ],
+      "fonte": "Ribeiro (ed.), Embrapa Meio-Norte, Sistemas de Produção 2, 2002 (Importância econômica)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/66591/1/sistemaproducao2.PDF",
+      "trecho": "Apresenta ciclo curto, baixa exigência hídrica e rusticidade [...] por meio da simbiose com bactérias do gênero Rhizobium tem a habilidade para fixar nitrogênio do ar. [...] também é utilizado como forragem verde, feno, ensilagem, farinha para alimentação animal e, ainda, como adubação verde e proteção do solo."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c",
+        "agua_ciclo_mm_min"
+      ],
+      "fonte": "Andrade Júnior, Bastos & Cardoso, Embrapa Meio-Norte, Sistema de Produção Cultivo de Feijão-Caupi, 2ª ed., 2017, capítulo Clima",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1071686/1/SistemaProducaoCaupiCapituloClima.pdf",
+      "trecho": "limitações térmicas para o feijão-caupi podem existir em locais onde o florescimento coincida com períodos de temperatura acima de 35 °C [...] exige, aproximadamente, 300 mm de precipitação para que produza satisfatoriamente"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "kc_medio"
+      ],
+      "fonte": "Embrapa Meio-Norte, Sistema de Produção Cultivo de Feijão-Caupi, 2ª ed., 2017, capítulo Irrigação, Tabela 1",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1071725/1/SistemaProducaoCaupiCapituloIrrigacao.pdf",
+      "trecho": "O consumo de água do feijão-caupi pode variar de 250 mm a 400 mm por ciclo [...] Teresina 0,5 / 0,8 / 1,05 / 0,75 [...] Lâmina total (mm) 430,9 415,8 288 382"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "sensivel_geada"
+      ],
+      "fonte": "FAO ECOCROP, Vigna unguiculata ssp. unguiculata, data sheet id 10835",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=10835",
+      "trecho": "Temperat. requir. | 20 | 35 | 10 | 40 (Optimal Min/Max, Absolute Min/Max) [...] Crop cycle | 60 | 240"
+    }
+  ],
+  "pendencias": [
+    "sensivel_geada=true sem frase explícita sobre geada em fonte primária: inferido do ZARC (exige Tmin média decendial >18 °C) e do ECOCROP (mínimo absoluto 10 °C). Killing temp no ECOCROP está 'no input'.",
+    "agua_ciclo_mm: mantido 300-450 (Embrapa 2002; ZARC 2026 dá mínimo de 300 mm). A 2ª ed. do Sistema de Produção (2017) diz 250-400 mm/ciclo, e lâminas medidas no Brasil foram 288-431 mm. Alternativa: 250-400.",
+    "ciclo_dias_min: o mesmo documento de 2002 cita também 'ciclo superprecoce (55 a 60 dias)'; mantido 60 (limite da classe superprecoce e menor ciclo nas Tabelas 2-3). Tardios (>90 d) existem, mas nenhuma cultivar das tabelas passa de 90 d.",
+    "temp_otima: ECOCROP dá 20-35 °C como ótimo; adotado 18-34 °C do ZARC/Embrapa (fonte brasileira). Embrapa também diz que <19 °C reduz produtividade.",
+    "Kc alternativo brasileiro (Embrapa Meio-Norte 2017, Tab.1, Teresina): 0.5 / 1.05 / 0.75 (Kc final alto porque inclui colheita antes da secagem); Apodi-RN: 0.52 / 0.57 / 1.16. Mantido FAO-56 (0.4/1.05/0.35, colhido seco).",
+    "profundidade_raiz_m=1.0 segue a regra do limite superior da FAO-56, mas o ZARC usa profundidade efetiva de 45 cm e chama a raiz de superficial. Isso confirma raiz_profunda=false.",
+    "cobertura_solo=media, aporte_biomassa=baixo e valor_forrageiro=medio: qualitativos sem número em fonte primária. A Embrapa cita uso como forragem, adubação verde e proteção do solo, e porte prostrado a semi-ereto, mas não dá produção de matéria seca. Pode-se considerar 'cobertura' em tipos (cultivares de grão preto usadas como adubo verde no RS/SC)."
+  ]
+}

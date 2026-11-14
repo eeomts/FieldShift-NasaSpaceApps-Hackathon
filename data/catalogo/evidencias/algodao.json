@@ -1,0 +1,202 @@
+{
+  "id": "algodao",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "140",
+    "ciclo_dias_max": "190",
+    "temp_base_c": "15",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "30",
+    "tmax_critica_c": "38",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "700",
+    "agua_ciclo_mm_max": "1300",
+    "kc_inicial": "0.35",
+    "kc_medio": "1.15",
+    "kc_final": "0.5",
+    "profundidade_raiz_m": "1.7",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "baixo",
+    "valor_forrageiro": "nenhum",
+    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc ini grupo Fibre Crops 0.35; Kc mid 1.15-1.20; Kc end 0.70-0.50) e cap.6 (criterio Kc end para cultura que seca no campo)|FAO-56 Tab.22 (raiz 1.0-1.7 m; limite superior)|FAO Irrigation Water Management Training Manual 3, Brouwer & Heibloem 1986, Tab. crop water needs (agua 700-1300 mm; sensibilidade a seca baixa)|MAPA Portaria SPA/MAPA n.285/2025 ZARC algodao herbaceo BA 2025/2026, nota tecnica (agua 700-1300 mm; >38 C prejudicial; grupos de ciclo; semeadura-emergencia 5-10 dias)|Embrapa Algodao Boletim de Pesquisa 39, Amorim Neto et al. 1999, Zoneamento algodao herbaceo no Nordeste (otima 20-30 C; >38 C reduz rendimento)|Beltrao N.E.M. (Embrapa Algodao), Clima regula producao e qualidade da fibra do algodoeiro, Visao Agricola n.6 ESALQ 2006 (inativo <15 C; nao suporta geada; shedding >38 C; resistencia a seca; sensivel a compactacao; anual)|Antonini et al., Eng. Agric. (Embrapa Cerrados) Modelagem espacotemporal da duracao do ciclo do algodoeiro em GO (graus-dia com Tb 15 C)|Embrapa Algodao Circular Tecnica 93, Morello et al. 2006, Cultivares do algodoeiro para o Cerrado (classes de ciclo 100-180 dias emergencia-colheita)|Embrapa Agropecuaria Oeste Documentos 148, Lamas et al. 2022, Panorama do algodoeiro em MT (1a safra nov-dez, 2a safra jan-fev; solo com pouca cobertura; destruicao de restos culturais)|Embrapa Algodao Comunicado Tecnico 377, Ferreira et al. 2016 (restos culturais com baixa MS residual)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "tipos",
+      "antes": "comercial",
+      "depois": "comercial|tolerante_seca",
+      "motivo": "FAO Manual 3 classifica a sensibilidade do algodao a seca como 'low' e Beltrao (Embrapa) fala em 'elevada capacidade de resistencia a seca'. Ha ressalva: ZARC e Doc 148 apontam sensibilidade a deficit hidrico entre 60 e 100 DAE. O consolidador pode reverter."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "180",
+      "depois": "190",
+      "motivo": "CT 93 (Embrapa) classifica as cultivares do Cerrado como medianas (131-160) ou tardias (161-180 dias da emergencia a colheita). Somando 5 a 10 dias da semeadura a emergencia (ZARC), a faixa fica em ~140-190 dias da semeadura a colheita. As cultivares precoces (100-130 dias) sao raras no Cerrado e o Grupo I do ZARC BA traz so cultivares coloridas do Nordeste, por isso o minimo de 140 foi mantido."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "35",
+      "depois": "38",
+      "motivo": "Tres fontes concordam: ZARC BA 2025 ('acima de 38 oC sao prejudiciais'), Embrapa BP 39 ('acima de 38oC, os rendimentos sao reduzidos') e Beltrao 2006 (shedding de botoes e macas acima de 38 C). Nenhuma fonte primaria lida cita 35 C."
+    },
+    {
+      "coluna": "kc_final",
+      "antes": "0.6",
+      "depois": "0.5",
+      "motivo": "Usado o limite inferior da faixa FAO 0.70-0.50. Algodao no Brasil e de sequeiro e a colheita cai na estacao seca (Doc 148: colheita 'quando a umidade do solo e do ar e baixa'). Para esse caso, o FAO-56 cap.6 diz que culturas que 'senesce and dry out in the field' sem irrigacao tem Kc end 'relatively small'."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|FAO Irrigation Water Management Manual 3 (agua)|FAO ECOCROP (temperatura)|Embrapa Algodao (ciclo)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Retiradas a marca RASCUNHO e a ECOCROP, cuja pagina nao abriu e nao foi lida. Entraram as referencias Embrapa e MAPA realmente lidas."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Allen et al. 1998, Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "g. Fibre Crops 0.35 Cotton 1.15-1.20 0.70-0.50 1.2-1.5"
+    },
+    {
+      "colunas": [
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Allen et al. 1998, cap. 6 (Kc end)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "crops that are allowed to senesce and dry out in the field before harvest receive less frequent irrigation or no irrigation at all ... the value for K c end will be relatively small"
+    },
+    {
+      "colunas": [
+        "kc_final",
+        "cobertura_solo"
+      ],
+      "fonte": "Lamas et al., Panorama atual e perspectivas da cultura do algodoeiro em Mato Grosso, Embrapa Agropecuaria Oeste Documentos 148, 2022",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1151103/1/DOC-148-2022-CPAO.pdf",
+      "trecho": "A maioria dos agricultores roça as plantas imediatamente após a colheita, quando a umidade do solo e do ar é baixa, devido à estação do ano"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Allen et al. 1998, Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "g. Fibre Crops Cotton 1.0-1.7 0.65"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "tipos"
+      ],
+      "fonte": "Brouwer & Heibloem, FAO Irrigation Water Management Training Manual 3: Irrigation Water Needs, 1986, cap. 3",
+      "url": "https://www.fao.org/4/s2022e/s2022e07.htm",
+      "trecho": "Crop water need (mm/total growing period) Sensitivity to drought ... Cotton 700-1300 low"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "tmax_critica_c"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA n.285 de 04/06/2025, ZARC algodao herbaceo BA 2025/2026, nota tecnica",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2025-2026/bahia-ba/PORTN285ALGODAOHERBACEOBA.pdf",
+      "trecho": "o algodoeiro necessita de 700 mm a 1300 mm de precipitação pluvial ... Temperaturas elevadas (acima de 38 oC) são prejudiciais à cultura, reduzindo sua produtividade."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA n.285/2025, ZARC algodao herbaceo BA",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2025-2026/bahia-ba/PORTN285ALGODAOHERBACEOBA.pdf",
+      "trecho": "Grupo I (n < 131 dias); Grupo II (131 dias ≤ n ≤ 150 dias); e Grupo III (n > 150 dias); onde n expressa o número de dias da emergência à maturação ... considera um intervalo médio entre 5 e 10 dias para ocorrência da emergência [obs.: os sinais <, ≤ e > se perderam na extração do PDF e foram reconstruídos]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Morello et al., Cultivares do algodoeiro para o Cerrado, Embrapa Algodao Circular Tecnica 93, 2006",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/276778/1/CIRTEC93.pdf",
+      "trecho": "P: Precoce (100 a 130 dias da emergência à colheita); M: mediano (131 a 160 dias da emergência à colheita); T : Tardio (161 a 180 dias da emergência à colheita)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Lamas et al., Embrapa Agropecuaria Oeste Documentos 148, 2022",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1151103/1/DOC-148-2022-CPAO.pdf",
+      "trecho": "O algodão safra, que é semeado na segunda quinzena de novembro até o final da primeira quinzena de dezembro ... O algodão segunda safra, mais importante para o estado, é semeado entre janeiro e fevereiro"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "Amorim Neto et al., Zoneamento para a cultura do algodao no Nordeste: II. Algodao herbaceo, Embrapa Algodao Boletim de Pesquisa 39, 1999",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/271627/1/CNPADOCUMENTO39ZONEAMENTOPARAACULTURADOALGODAONONORDESTE.pdf",
+      "trecho": "sendo a ótima para producão entre 20 e 30°C (Reddy et al., 1991) ... porém acima de 38°C, os rendimentos são reduzidos (Doorenbos & Kassan, 1994)"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "sensivel_geada",
+        "tmax_critica_c",
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Beltrao N.E.M. (Embrapa Algodao), Clima regula producao e qualidade da fibra do algodoeiro, Visao Agricola n.6, ESALQ/USP, 2006",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/274917/1/Clima-regula-producao.pdf",
+      "trecho": "Não suporta geada ... Fica inativo quando a temperatura do ambiente cai abaixo de 15 ºC ... acima de 38 ºC, ocorre elevada queda dos botões florais e de frutos jovens"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Antonini, Silva, Griebeler, Sano, Spatio-temporal modelling of the duration of the cotton cycle in the State of Goias, Brazil, Engenharia Agricola",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/899346/1/CRI7900Antonini.pdf",
+      "trecho": "observed GD accumulated with air temperature in the range of 15°C to 40°C"
+    },
+    {
+      "colunas": [
+        "tipos",
+        "raiz_profunda",
+        "perene"
+      ],
+      "fonte": "Beltrao 2006, Visao Agricola n.6",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/274917/1/Clima-regula-producao.pdf",
+      "trecho": "considerada uma planta de sol, com elevada capacidade de resistência à seca ... muito sensível à ausência ou mesmo à baixa presença de oxigênio no solo ... como ocorre quando na presença de compactação"
+    },
+    {
+      "colunas": [
+        "aporte_biomassa",
+        "cobertura_solo"
+      ],
+      "fonte": "Ferreira, Bogiani, Sofiatti, Lamas, Sistemas de cultivo de plantas de cobertura para a semeadura direta do algodoeiro, Embrapa Algodao Comunicado Tecnico 377, 2016",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1066067/1/Sistemasdecultivodeplantasdecobertura.pdf",
+      "trecho": "os restos culturais do algodoeiro disponibilizam baixa quantidade de MS residual no solo"
+    }
+  ],
+  "pendencias": [
+    "temp_base_c = 15: a fonte Beltrão diz que a planta 'fica inativa' abaixo de 15 C e Antonini usa 15 C como Tb. O mesmo texto cita Bolonhezi (2000), que achou 13 C em SP (da emergência à floração). Para graus-dia, 13 a 15 C é aceitável.",
+    "tipos/tolerante_seca: as fontes divergem. FAO e Beltrão falam em resistência à seca. O ZARC e o Doc 148 citam queda de estruturas com déficit entre 60 e 100 DAE e sensibilidade ao estresse hídrico na 2ª safra. Fica a decisão do consolidador.",
+    "ciclo_dias_min: cultivares precoces (100 a 130 dias da emergência) existem, mas a CT 93 de 2006 lista poucas para o Cerrado. Não achei uma tabela atual (2020+) com dias por cultivar. O ZARC BA põe quase todas as cultivares comerciais no Grupo III (>150 dias da emergência à maturação), o que sustenta 140-190. Faltou ler a portaria ZARC de MT: o gov.br devolveu JSON em vez de PDF.",
+    "valor_forrageiro = nenhum: nenhuma fonte primária lida trata do uso da planta como forragem. O caroço e a torta de algodão viram ração, mas são subprodutos, não forragem da lavoura.",
+    "cobertura_solo = baixa: a evidência é indireta (pouca MS residual, restos culturais destruídos à força pelo vazio sanitário, solo com pouca cobertura no sistema soja-algodão). Não li dado de cobertura do dossel.",
+    "fixa_nitrogenio = false: vem da família botânica (Malvaceae, não leguminosa), sem citação específica.",
+    "FAO ECOCROP saiu das fontes porque a página é um app JS e não pôde ser lida. As temperaturas vêm de fontes Embrapa e MAPA.",
+    "DECISÃO NA JUNÇÃO: tolerante_seca não entrou em tipos, porque o ZARC aponta sensibilidade ao déficit hídrico de 60 a 100 DAE e o motor não deve sugerir algodão como alternativa para seca."
+  ]
+}

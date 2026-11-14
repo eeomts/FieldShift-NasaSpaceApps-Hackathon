@@ -1,0 +1,296 @@
+{
+  "id": "sorgo",
+  "valores": {
+    "tipos": "comercial|tolerante_seca|raiz_profunda",
+    "perene": "false",
+    "ciclo_dias_min": "90",
+    "ciclo_dias_max": "130",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "22",
+    "temp_otima_max_c": "34",
+    "tmax_critica_c": "36",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "380",
+    "agua_ciclo_mm_max": "600",
+    "kc_inicial": "0.3",
+    "kc_medio": "1.10",
+    "kc_final": "0.55",
+    "profundidade_raiz_m": "2.0",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "true",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "alto",
+    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Ecofisiologia (Magalhães et al.) (temp. ótima; frio; tolerância à seca; fenologia ~95 DAE)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Plantio (Mantovani & Ribas) (florescimento 60-70 DAE; maturação ~90 DAE; ponto de colheita)|Landau & Sans, Embrapa Milho e Sorgo, Cultivo do Sorgo 4ª ed. 2008, Clima (água 380-600 mm; limites 16 e 38 °C)|Landau & Guimarães, Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (grupos ZARC de ciclo; médias >21 °C)|Albuquerque & Andrade, Irrigação, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (água 380-600 mm; Kc 1,10 na fase III)|Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (geada; classes de ciclo pelo florescimento)|Sans & Guiscem, Estimativa do florescimento e maturidade do sorgo por graus-dia, XXIV CNMS, Embrapa 2002 (temp. base; 100 dias até a maturação)|FAO ECOCROP, Sorghum bicolor, data sheet id 48747 (temp. ótima 22-35 °C)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al. 2006a e 2008 (tmax crítica na antese)|Alvarenga, Cruz & Novotny, Manejo do solo para o cultivo do sorgo, Embrapa Milho e Sorgo Comunicado Técnico 89, 2003 (raiz profunda; recuperação de solo compactado; palhada persistente)|Coelho, Extração, exportação e ciclagem de nutrientes por híbridos de sorgo granífero, Embrapa Milho e Sorgo Comunicado Técnico 258, 2023 (biomassa: palhada 5,1-7,3 t/ha)|Rodrigues, Híbridos de sorgo forrageiro: onde estamos? para onde vamos?, Embrapa Milho e Sorgo, anais do VII Simpósio sobre Manejo Estratégico da Pastagem (valor forrageiro)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "25",
+      "depois": "22",
+      "motivo": "O ECOCROP da FAO dá 22 °C como mínimo da faixa ótima. A Embrapa concorda: a maioria das cultivares precisa de mais de 21 °C para crescer bem, e o zoneamento pede média acima de 21 °C. Não achei fonte para 25."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "31",
+      "depois": "34",
+      "motivo": "Segundo a Embrapa (Ecofisiologia, 2015), a temperatura ótima de crescimento fica entre 33 e 34 °C. O ECOCROP vai até 35 °C. Usei 34, da fonte brasileira."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "38",
+      "depois": "36",
+      "motivo": "A coluna mede o calor que prejudica a floração. Prasad et al. (2006, 2008), citados por Nguyen et al. (2013), mostram que acima de 32/22 °C (dia/noite) na antese já caem a viabilidade do pólen e o pegamento de grãos, sobretudo acima de 36/26 °C. Os 38 °C da Embrapa são o limite geral de produtividade, não o da floração. Assim fica igual ao critério do milho (33 °C na polinização)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "450",
+      "depois": "380",
+      "motivo": "A Embrapa dá literalmente 380 a 600 mm de consumo no ciclo, tanto no Sistema de Produção de 2008 quanto no capítulo Irrigação de 2015."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "650",
+      "depois": "600",
+      "motivo": "Mesma fonte: 380 a 600 mm."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "1.05",
+      "depois": "1.10",
+      "motivo": "A FAO-56 Tab.12 dá 1,00 a 1,10 para o sorgo granífero. A Embrapa (Albuquerque & Andrade, 2015) adota 1,10 na fase III. No Brasil o sorgo vai na safrinha, em outono e inverno secos, com umidade mínima abaixo de 45%, e a correção climática da FAO puxa o valor para cima. Por isso o limite superior."
+    },
+    {
+      "coluna": "raiz_profunda",
+      "antes": "false",
+      "depois": "true",
+      "motivo": "O Comunicado Técnico 89 da Embrapa diz que o sorgo tem grande potencial como cultura recuperadora de solo. A raiz é profunda, abundante e fina, e consegue penetrar solo com maior resistência. É o mesmo critério do milheto, que está como true."
+    },
+    {
+      "coluna": "tipos",
+      "antes": "comercial|tolerante_seca",
+      "depois": "comercial|tolerante_seca|raiz_profunda",
+      "motivo": "Entrou raiz_profunda, para ficar coerente com a coluna. Não incluí 'forrageira': a linha é do sorgo granífero, e na safrinha a Embrapa não recomenda as cultivares de duplo propósito nem a retirada da palhada. O uso forrageiro vem de cultivares próprias (forrageiras e de pastejo)."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "medio",
+      "depois": "alto",
+      "motivo": "Fica coerente com o milho (alto). Segundo a Embrapa, a silagem de sorgo vale 90 a 95% da de milho como volumoso único, ou 85 a 90% numa dieta. O sorgo ocupa 600 a 800 mil ha de ensilagem no Brasil, e o grão é largamente usado em rações. A rebrota do granífero também pode virar forragem."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|FAO Irrigation Water Management Manual 3 (água)|FAO ECOCROP (temperatura)|Embrapa Milho e Sorgo (ciclo)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "As referências agora são exatas. Saiu o FAO IWM Manual 3, que não consultei; a água veio da Embrapa."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Landau, E. C.; Sans, L. M. A., Clima, em Cultivo do Sorgo, Embrapa Milho e Sorgo Sistemas de Produção 2, 4ª ed., 2008",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/491906/4/clima.pdf",
+      "trecho": "O uso consuntivo (consumo) de água pelo sorgo varia entre 380 e 600 mm durante o ciclo da cultura, dependendo principalmente das condições climáticas dominantes (Sans et al., 2003)."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Albuquerque, P. E. P.; Andrade, C. L. T., Irrigação, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa, 2015",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015596/1/Irrigacao.pdf",
+      "trecho": "De uma forma geral, o requerimento de água do sorgo varia de 380 mm a 600 mm."
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_final",
+        "kc_inicial"
+      ],
+      "fonte": "Albuquerque & Andrade, Irrigação, em Sorgo: o produtor pergunta, a Embrapa responde, 2015",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015596/1/Irrigacao.pdf",
+      "trecho": "os valores de Kc para o sorgo numa condição padrão de clima sub-úmido [...] é de 0,35 a 0,45 na fase I; de 1,10 na fase III e de 0,55 no final da fase IV"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "i. Cereals 0.3 1.15 0.4 [...] Sorghum - grain 1.00-1.10 0.55 (sem Kc ini próprio: herda 0.3 do grupo)"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Sorghum, grain 1.0-2.0 [m]; p 0.55"
+    },
+    {
+      "colunas": [
+        "temp_otima_max_c",
+        "tmax_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "Magalhães, P. C. et al., Ecofisiologia, em Cultivo do Sorgo, Embrapa Milho e Sorgo Sistemas de Produção 2, 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "o sorgo é um dos cultivos agrícolas mais sensíveis a baixas temperaturas noturnas. A temperatura ótima para crescimento está por volta de 33 ºC-34 ºC. Acima de 38 ºC e abaixo de 16 ºC, a produtividade decresce"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c"
+      ],
+      "fonte": "Magalhães et al., Ecofisiologia, Cultivo do Sorgo 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "A grande maioria dos materiais genéticos comerciais de sorgo requerem temperaturas superiores a 21 0C para um bom crescimento e desenvolvimento (Paul 1990)."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, Sorghum bicolor (id 48747)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=48747",
+      "trecho": "Temperat. requir. [Optimal Min Max] 22 35 [Absolute] 8 40"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c"
+      ],
+      "fonte": "Landau, E. C.; Guimarães, D. P., Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, 2015",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015590/1/Climaplantiozoneamento.pdf",
+      "trecho": "a espécie é sensível às baixas temperaturas, e as áreas recomendáveis para plantio devem apresentar temperaturas médias superiores a 21°C"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Nguyen, C. T. et al., Genetic variability in high temperature effects on seed-set in sorghum, Functional Plant Biology 40:439-448, 2013",
+      "url": "https://era.dpi.qld.gov.au/id/eprint/3843/1/FP12264.pdf",
+      "trecho": "In vitro pollen germination, pollen viability and seed-set were significantly reduced by temperatures above 32 : 22°C (day : night) around anthesis in sorghum, particularly by temperatures above 36 : 26°C (Prasad et al. 2006a, 2008)."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Menezes, C. B.; Silva, A. F.; Tardin, F. D., Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, 2015",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015647/1/Sorgosafrinha.pdf",
+      "trecho": "quanto mais ao sul do Brasil maior o risco de perdas por baixas temperaturas e/ou geadas a partir do final de maio, principalmente em regiões de maior altitude."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Sans, L. M. A.; Guiscem, J. M., Estimativa do período do florescimento e maturidade fisiológica da cultura do sorgo por meio de graus-dia calculado com diferentes valores de temperatura base, XXIV Congresso Nacional de Milho e Sorgo, 2002",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/485711/1/Estimativaperiodo.pdf",
+      "trecho": "Foram desenvolvidos quatro diferentes modelos utilizando diferentes valores de temperatura base (Tb), ou seja, 7oC, 8oC, 9oC e 10oC [...] O período em dias para o florescimento e/ou maturidade fisiológica foi de 73 e 100 [...] a Tb7 foi a que estimou melhor"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Magalhães et al., Ecofisiologia, Cultivo do Sorgo 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "Baixas temperaturas (< 10 ºC) causam redução na área foliar, perfilhamento, altura, acumulação de matéria seca, atraso na data de floração e aumento de doenças."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Landau & Guimarães, Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, 2015",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015590/1/Climaplantiozoneamento.pdf",
+      "trecho": "No Grupo I, são incluídas cultivares mais precoces, que demandam menos do que 110 dias entre a emergência e a maturação fisiológica. No Grupo II [...] de 110 a 120 dias. No Grupo III [...] maior do que 120 dias. (OCR: 'tOO a 12,0')"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Mantovani, E. C.; Ribas, P. M., Plantio, em Cultivo do Sorgo, Embrapa Milho e Sorgo Sistemas de Produção 2, 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748792/1/Sorgo-Plantio.pdf",
+      "trecho": "o florescimento se dá entre 60 a 70 dias após a emergência da planta para a maioria das cultivares comerciais [...] Próximo da idade de 90 dias após emergência, a planta está fisiologicamente madura, mas não está pronta para colher sem secagem artificial."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, 2015",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015647/1/Sorgosafrinha.pdf",
+      "trecho": "O sorgo que floresce com menos de 50 dias é considerado superprecoce; de 51 a 60 dias, precoce; de 61 a 70, de ciclo médio; de 71 a 80, tardio; e acima de 80 dias, é considerado muito tardio."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Magalhães et al., Ecofisiologia, Cultivo do Sorgo 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "Estádio 9 (Maturação fisiológica) – Os grãos estão com 22 a 23% de umidade (cerca de 95 dias após a emergência)."
+    },
+    {
+      "colunas": [
+        "raiz_profunda",
+        "tipos",
+        "cobertura_solo",
+        "aporte_biomassa"
+      ],
+      "fonte": "Alvarenga, R. C.; Cruz, J. C.; Novotny, E. H., Manejo do solo para o cultivo do sorgo, Embrapa Milho e Sorgo Comunicado Técnico 89, 2003",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487531/1/Com89.pdf",
+      "trecho": "incluindo plantas de sistema radicular mais vigoroso, capaz de penetrar em solos que ofereçam maior resistência à penetração. Nesse aspecto, o sorgo apresenta grande potencial como cultura recuperadora de solo [...] Espécies como o sorgo devem ser incluídas nessa fase, devido à palhada mais persistente."
+    },
+    {
+      "colunas": [
+        "tipos"
+      ],
+      "fonte": "Magalhães et al., Ecofisiologia, Cultivo do Sorgo 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "Devido a sua resistência à seca, é considerado como um cultivo mais apto para as regiões áridas com chuvas escassas"
+    },
+    {
+      "colunas": [
+        "aporte_biomassa"
+      ],
+      "fonte": "Coelho, A. M., Extração, exportação e ciclagem de nutrientes por híbridos de sorgo granífero, Embrapa Milho e Sorgo Comunicado Técnico 258, 2023",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1157340/1/Extracao-exportacao-e-ciclagem-de-nutrientes-por-hibridos-de-sorgo-granifero.pdf",
+      "trecho": "Tabela 1 [...] massa seca total 11,11 a 12,94 Mg ha-1; massa seca de palhada 5,10 a 7,26 Mg ha-1 (1G100, BRS 330, DKB540, BRS 373)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Rodrigues, J. A. S., Híbridos de sorgo forrageiro: onde estamos? para onde vamos?, Embrapa Milho e Sorgo (VII Simpósio sobre Manejo Estratégico da Pastagem / V Simpósio Internacional sobre Produção Animal em Pastejo)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1000424/1/Hibridossorgo.pdf",
+      "trecho": "O sorgo é uma cultura que produz silagens com boas características fermentativas, variando em torno de 90 a 95% do valor nutritivo do milho quando fornecido como único volumoso, ou 85 a 90% quando ingrediente de uma dieta. [...] Os grãos de sorgo são largamente consumidos em rações balanceadas"
+    },
+    {
+      "colunas": [
+        "tipos",
+        "valor_forrageiro"
+      ],
+      "fonte": "Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, 2015",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015647/1/Sorgosafrinha.pdf",
+      "trecho": "No sistema de safrinha, não é recomendado plantar variedades de duplo propósito [...] A retirada da palhada do sorgo, após a colheita do grão prejudica o sistema plantio direto"
+    }
+  ],
+  "pendencias": [
+    "temp_base_c = 10 ficou sem trecho literal que dê 'Tb = 10 °C' para o sorgo. A única fonte brasileira lida (Sans & Guiscem, 2002, resumo de congresso) testou só 7 a 10 °C e achou 7 °C o melhor, mas 7 é o menor valor testado, então o ótimo pode ser ainda mais baixo. A Ecofisiologia diz apenas que abaixo de 10 °C o crescimento é prejudicado. Mantive 10 para ficar coerente com o milho e com o uso internacional (que conheço de memória, sem fonte lida). Se o coordenador preferir só a fonte brasileira, use 7.",
+    "ciclo_dias 90-130 mantido. Nenhuma fonte diz literalmente 'X a Y dias da semeadura à colheita'. A faixa vem de: grupos ZARC em dias da emergência à maturação (<110, 110-120, >120); maturação por volta de 90-95 DAE nas cultivares comerciais; 100 dias da semeadura até a maturação em Sete Lagoas (Sans & Guiscem); e mais 4 a 10 dias de emergência e a secagem no campo até a colheita. O mínimo de 90 vale para os superprecoces (florescimento antes de 50 dias). As cultivares do Grupo III podem passar de 130.",
+    "Faixas de temperatura ótima de fontes diferentes: o mínimo de 22 é do ECOCROP (a Embrapa diz '>21 °C'); o máximo de 34 é da Embrapa (o ECOCROP dá 35). O 33-34 °C da Embrapa é um 'ótimo para crescimento' pontual, não uma faixa.",
+    "tmax_critica_c = 36 vem de Prasad et al. (2006, 2008) via Nguyen et al. (2013), em câmara controlada com regime dia/noite de 36/26 °C. Não li o artigo original de Prasad. Ressalva da Embrapa: com umidade no solo, a fertilização pode ocorrer até 40-43 °C.",
+    "valor_forrageiro = alto e a ausência de 'forrageira' em tipos são decisões de coerência com o milho, que tem alto e tipos só 'comercial'. A linha representa o sorgo granífero. O alto valor de silagem e de pastejo é das cultivares forrageiras e de pastejo. Do granífero, só o grão (ração) e a rebrota servem à alimentação animal. Se o app quiser marcar 'forrageira', convém fazer o mesmo no milho ou criar uma linha 'sorgo forrageiro'.",
+    "aporte_biomassa = alto mantido, com ressalva. A palhada após a colheita dos grãos medida pela Embrapa foi de 5,1 a 7,3 t/ha (11 a 13 t/ha de biomassa total), abaixo dos ~14,5 t/ha citados para o milho. O que pesa a favor é a palhada persistente, de alta relação C/N. Daria para defender 'medio'.",
+    "cobertura_solo = media mantido, sem número de cobertura (%) para o sorgo. A palhada é 'mais persistente' (Com. Téc. 89), mas a lavoura é em linhas, como o milho, que está como media.",
+    "fixa_nitrogenio = false e perene = false vêm da botânica (Poaceae anual; o ECOCROP diz 'Life span annual'), sem outra fonte. kc_inicial = 0.3 é o valor do grupo cereais da FAO-56; a Embrapa cita 0,35-0,45 na fase I, e mantive o critério do brief."
+  ]
+}
