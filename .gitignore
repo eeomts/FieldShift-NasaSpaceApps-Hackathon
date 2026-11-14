@@ -1,6 +1,9 @@
 .claude/settings.local.json
 .obsidian/
 
+# Arquivos de revisão gerados pela skill /revisar (.claude/skills/revisar)
+reviews/
+
 # Downloads grandes de dados (ver data/brutos/README.md)
 data/brutos/*
 !data/brutos/README.md
