@@ -2,7 +2,7 @@
 
 > Projeto: Field Shift (NASA Space Apps Challenge 2026)
 > Documento compilado em 14/11/2026
-> Documentos relacionados: `nasa-power-api-daily.md` e `harvest-portal-api.md`
+> Documentos relacionados: `NASA_POWER.md` e `NASA_HARVEST_PORTAL_API.md`
 
 ---
 

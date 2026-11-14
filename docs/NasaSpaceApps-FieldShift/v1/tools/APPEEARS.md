@@ -17,7 +17,7 @@ Funciona pelo navegador e por uma API. Usa o mesmo Earthdata Login do resto do p
 
 **1. Feito para o tamanho de um talhão.** O projeto precisa de séries por talhão e por região de demonstração, não de cenas inteiras. O AppEEARS entrega exatamente isso, o que economiza download e processamento.
 
-**2. Vários produtos no mesmo pedido.** MODIS (NDVI do MOD13Q1), HLS, SMAP, SMAP L4 e ECOSTRESS podem sair juntos, para os mesmos pontos e datas. A comparação entre fontes, base do nível de confiança, fica mais simples.
+**2. Vários produtos no mesmo pedido.** MODIS (NDVI do MOD13Q1), HLS e SMAP L4 podem sair juntos, para os mesmos pontos e datas. A comparação entre fontes, base do nível de confiança, fica mais simples.
 
 **3. Qualidade já traduzida.** Junto com os valores vêm as camadas de qualidade (nuvem, sombra, confiabilidade do pixel) e tabelas que explicam cada código. Filtrar valores ruins vira uma regra simples.
 
@@ -28,7 +28,7 @@ Funciona pelo navegador e por uma API. Usa o mesmo Earthdata Login do resto do p
 ### Acesso
 
 - **Navegador:** `appeears.earthdatacloud.nasa.gov`, com Earthdata Login.
-- **API:** base `https://appeears.earthdatacloud.nasa.gov/api/`. O fluxo completo (login com token, campos do pedido, formato de datas) está descrito na seção 6 do `SMAP.md`; aqui fica só o resumo.
+- **API:** base `https://appeears.earthdatacloud.nasa.gov/api/`. O resumo do fluxo (login com token, campos do pedido, formato de datas) está na tabela abaixo.
 
 | Endpoint / campo | O que é | Uso no projeto |
 | --- | --- | --- |
@@ -45,7 +45,7 @@ Funciona pelo navegador e por uma API. Usa o mesmo Earthdata Login do resto do p
 
 ### O que produz para o projeto
 
-- **Séries por talhão:** NDVI (MODIS 250 m e HLS 30 m), umidade do solo (SMAP e SMAP L4) e evapotranspiração (ECOSTRESS), na mesma tabela.
+- **Séries por talhão:** NDVI (MODIS 250 m e HLS 30 m), umidade do solo (SMAP L4), na mesma tabela.
 - **Rasters das regiões de demonstração:** recortes do HLS para mapas de solo descoberto e de vigor.
 - **Insumo para o calendário de cobertura:** a série de NDVI por talhão vira os meses de solo descoberto, os picos por safra e as datas de emergência e colheita.
 
@@ -55,7 +55,7 @@ A saída de ponto traz, para cada data, a qualidade do pixel. A ferramenta conta
 
 ### Escala: o AppEEARS não é o caminho para o Brasil inteiro
 
-O panorama nacional é pré-calculado numa grade comum (D-008). Para isso, rasters grandes vêm por `earthaccess` ou Harmony. O AppEEARS fica com os **pontos e polígonos**: o talhão do produtor e as regiões de demonstração.
+O panorama nacional é pré-calculado numa grade comum (D-008). Para isso, rasters grandes vêm por `earthaccess`. O AppEEARS fica com os **pontos e polígonos**: o talhão do produtor e as regiões de demonstração.
 
 ## Onde o produtor vê isso
 
@@ -80,7 +80,7 @@ O Sr. Adão planta grãos perto de **Paragominas (PA)**, na borda da Amazônia, 
 
 ### O que a equipe faz no AppEEARS
 
-1. **Pedido de ponto** com três pontos no talhão e um ponto de controle na mata vizinha, de 2016 a 2025, com MOD13Q1 (NDVI), HLSL30 e HLSS30, SMAP L4 e ECOSTRESS.
+1. **Pedido de ponto** com três pontos no talhão e um ponto de controle na mata vizinha, de 2016 a 2025, com MOD13Q1 (NDVI), HLSL30 e HLSS30 e SMAP L4.
 2. **Pedido de área** com o polígono do talhão, só HLS, para gerar o mapa de solo descoberto.
 3. **Filtro de qualidade:** mantém só valores sem nuvem e sem sombra, segundo as tabelas de qualidade que vêm junto.
 4. **Contagem de observações boas** por mês e por fonte, salva ao lado de cada indicador.
@@ -92,8 +92,7 @@ O Sr. Adão planta grãos perto de **Paragominas (PA)**, na borda da Amazônia, 
 | HLS | De janeiro a abril, de 0 a 1 imagem limpa por mês. De junho a outubro, várias por mês, com NDVI abaixo de 0,3 na parte em pousio. |
 | MODIS (MOD13Q1) | Composições de 16 dias preenchem melhor a estação chuvosa, mas em 250 m o pixel mistura talhão e mata. |
 | SMAP L4 | Zona das raízes seca a partir de julho, com recuperação só em dezembro. |
-| ECOSTRESS | Poucas passagens úteis; quando há, mostra a área em pousio bem mais quente que a mata. |
-| Sentinel-1 (fora do AppEEARS) | Necessário para fechar a estação chuvosa. Vem de outra fonte. |
+| Sentinel-1 (fora do AppEEARS) | Opcional (`extras/`), acionado aqui porque a região é muito nublada: fecha a estação chuvosa. Vem de outra fonte. |
 | GPM IMERG (fora do AppEEARS) | Estação seca bem marcada de julho a novembro. |
 
 ### Onde o AppEEARS fez diferença
@@ -102,7 +101,7 @@ O Sr. Adão planta grãos perto de **Paragominas (PA)**, na borda da Amazônia, 
 
 **O ponto de controle ajudou a ler o MODIS.** O NDVI do MODIS no talhão ficou mais alto que o do HLS na seca. O ponto na mata mostrou por quê: o pixel de 250 m inclui parte da mata vizinha. Para este talhão, o calendário de cobertura usa o HLS, e o MODIS só entra na comparação regional.
 
-**O pousio é longo e quente.** HLS, ECOSTRESS e SMAP L4 apontam a mesma coisa: a parte sem safrinha fica descoberta e seca de julho a novembro. Essa evidência reforça, no comparador, as estratégias com cobertura do solo, como milho com braquiária ou milheto depois da soja.
+**O pousio é longo e seco.** HLS e SMAP L4 apontam a mesma coisa: a parte sem safrinha fica descoberta e seca de julho a novembro. Essa evidência reforça, no comparador, as estratégias com cobertura do solo, como milho com braquiária ou milheto depois da soja.
 
 ### O que vai para o cartão
 
@@ -112,7 +111,7 @@ O Sr. Adão planta grãos perto de **Paragominas (PA)**, na borda da Amazônia, 
 
 ## Conclusão
 
-O AppEEARS é a forma mais direta de levar os produtos da NASA até o talhão. Ele entrega séries prontas, com a qualidade de cada valor, para vários datasets ao mesmo tempo. Isso alimenta o calendário de cobertura e a comparação entre fontes. Para o Brasil inteiro, ele cede lugar ao `earthaccess` e ao Harmony; para o talhão, é a ferramenta principal.
+O AppEEARS é a forma mais direta de levar os produtos da NASA até o talhão. Ele entrega séries prontas, com a qualidade de cada valor, para vários datasets ao mesmo tempo. Isso alimenta o calendário de cobertura e a comparação entre fontes. Para o Brasil inteiro, ele cede lugar ao `earthaccess`; para o talhão, é a ferramenta principal.
 
 ## Limitações
 

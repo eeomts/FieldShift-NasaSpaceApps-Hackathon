@@ -37,7 +37,7 @@
 
 **O que foi verificado.** Especificações, variáveis, cálculo diário, latências e formas de acesso foram conferidos nas páginas oficiais em 14/11/2026. **Nenhum download foi executado ao vivo**: o acesso exige Earthdata Login e o domínio não estava liberado no ambiente usado. Itens com ⚠️ precisam de confirmação antes de virar código.
 
-**O que vem do contexto e o que foi acrescentado.** O escopo nacional (D-008, que substituiu o foco inicial em Minas Gerais), a classificação do IMERG como dataset obrigatório e o papel de validar a chuva do NASA POWER vêm do repositório da equipe [15][16]. As explicações técnicas, o tratamento dos dados e o caso hipotético foram acrescentados neste documento.
+**O que vem do contexto e o que foi acrescentado.** O escopo nacional (D-008, que substituiu o foco inicial em Minas Gerais), a classificação do IMERG como dataset obrigatório e o papel de validar a chuva do NASA POWER vêm do repositório da equipe [14][15]. As explicações técnicas, o tratamento dos dados e o caso hipotético foram acrescentados neste documento.
 
 ---
 
@@ -52,7 +52,7 @@
 | Resolução temporal | 30 minutos (base); diário e mensal derivados | [1][3] |
 | Período | Desde junho de 2000 | [6] |
 | Versão atual | **V07** (anteriores substituídas) | [1][6] |
-| Login | NASA Earthdata Login (gratuito) | [2][11] |
+| Login | NASA Earthdata Login (gratuito) | [2][10] |
 
 ---
 
@@ -69,8 +69,8 @@ A cadeia completa, do sensor até a ferramenta:
 | 5. Morphing + filtro de Kalman | Áreas de chuva são movidas entre passagens usando vetores de vento do **MERRA-2** (Final) ou **GEOS FP** (Early/Late); o filtro de Kalman decide o peso do infravermelho, que ganha importância após ~90 min da passagem de micro-ondas | Equipe GPM | [6] |
 | 6. Pluviômetros (só Final) | O acumulado mensal é ajustado com a análise mensal de pluviômetros; as meias-horas são reescaladas para somar o total mensal | Equipe GPM (análise GPCC) | [3][6] |
 | 7. Produto diário | Média das meias-horas válidas × 24 = mm/dia | GES DISC | [1] |
-| 8. Distribuição | Arquivos no **GES DISC** (NASA Goddard), com cópia no Earthdata Cloud e na AWS | GES DISC | [1][2][9] |
-| 9. Acesso | Giovanni, OPeNDAP, earthaccess, Earthdata Search | Usuário | [1][7][13] |
+| 8. Distribuição | Arquivos no **GES DISC** (NASA Goddard), com cópia no Earthdata Cloud e na AWS | GES DISC | [1][2][8] |
+| 9. Acesso | earthaccess, Earthdata Search | Usuário | [1][12] |
 | 10. Field Shift | Extração da célula do talhão, tratamento (seção 8) e indicadores | Equipe | — |
 
 > **Resumo para o agricultor:** "Satélites medem a chuva várias vezes por dia; a NASA junta essas medições e corrige com pluviômetros. O resultado é a chuva estimada para quadrados de ~10 km."
@@ -102,16 +102,14 @@ Fonte: [3][6].
 
 | Ferramenta | Endereço | O que faz | Fonte |
 |---|---|---|---|
-| **Giovanni** | `giovanni.gsfc.nasa.gov` | Mapas e séries **sem baixar arquivos**; sem login, há limite de passos de tempo | [7][10] |
 | **GES DISC** | `disc.gsfc.nasa.gov/datacollection/GPM_3IMERGDF_07.html` | Página oficial, download e subconjunto | [2] |
-| **Earthdata Search** | `search.earthdata.nasa.gov` (coleção `C2723754864-GES_DISC`) | Busca visual | [8] |
-| **CMR Search API** | `cmr.earthdata.nasa.gov/search/granules` | Lista os arquivos por coleção, período e área | [12] |
+| **Earthdata Search** | `search.earthdata.nasa.gov` (coleção `C2723754864-GES_DISC`) | Busca visual | [7] |
+| **CMR Search API** | `cmr.earthdata.nasa.gov/search/granules` | Lista os arquivos por coleção, período e área | [11] |
 | **Diretório virtual CMR** | `cmr.earthdata.nasa.gov/virtual-directory/collections/C2723754864-GES_DISC/temporal` | Navegar pelos arquivos por data | [1] |
-| **earthaccess** | biblioteca Python | Login, busca, download e leitura | [13] |
-| **AWS Open Data** | `registry.opendata.aws/nasa-gpm3imergdf/` | Cópia na nuvem | [9] |
-| **NASA Worldview** | `worldview.earthdata.nasa.gov` | Camadas IMERG como imagem | enunciado do desafio |
+| **earthaccess** | biblioteca Python | Login, busca, download e leitura | [12] |
+| **AWS Open Data** | `registry.opendata.aws/nasa-gpm3imergdf/` | Cópia na nuvem | [8] |
 
-> O IMERG **não está no AppEEARS**. Para um ponto, o caminho mais simples é o **Giovanni** (exploração) ou **earthaccess + xarray** (código).
+> O IMERG **não está no AppEEARS**. Para um ponto, o caminho mais simples é **earthaccess + xarray** (código).
 
 ---
 
@@ -121,40 +119,29 @@ Fonte: [3][6].
 
 | Parâmetro | Obrigatório | Formato | Explicação | Fonte |
 |---|---|---|---|---|
-| `short_name` | Sim* | Texto | Nome curto da coleção: `GPM_3IMERGDF` | [12] |
-| `version` | Recomendado | Texto | Versão da coleção: `07` | [12] |
-| `collection_concept_id` | Sim* | Texto | Alternativa a `short_name`: `C2723754864-GES_DISC` | [8][12] |
-| `temporal` | Não | `AAAA-MM-DDTHH:MM:SSZ,AAAA-MM-DDTHH:MM:SSZ` | Período; limites inclusivos | [12] |
-| `bounding_box` | Não | `oeste,sul,leste,norte` | Retângulo de busca | [12] |
-| `point` | Não | `longitude,latitude` | Ponto (longitude primeiro) | [12] |
-| `page_size` | Não | 1 a 2000 (padrão 10) | Itens por página | [12] |
-| `sort_key[]` | Não | `-start_date` | Mais recentes primeiro | [12] |
+| `short_name` | Sim* | Texto | Nome curto da coleção: `GPM_3IMERGDF` | [11] |
+| `version` | Recomendado | Texto | Versão da coleção: `07` | [11] |
+| `collection_concept_id` | Sim* | Texto | Alternativa a `short_name`: `C2723754864-GES_DISC` | [7][11] |
+| `temporal` | Não | `AAAA-MM-DDTHH:MM:SSZ,AAAA-MM-DDTHH:MM:SSZ` | Período; limites inclusivos | [11] |
+| `bounding_box` | Não | `oeste,sul,leste,norte` | Retângulo de busca | [11] |
+| `point` | Não | `longitude,latitude` | Ponto (longitude primeiro) | [11] |
+| `page_size` | Não | 1 a 2000 (padrão 10) | Itens por página | [11] |
+| `sort_key[]` | Não | `-start_date` | Mais recentes primeiro | [11] |
 
-\* A CMR **exige** que a busca de arquivos seja limitada a uma coleção (por `short_name`, `collection_concept_id` etc.) [12].
+\* A CMR **exige** que a busca de arquivos seja limitada a uma coleção (por `short_name`, `collection_concept_id` etc.) [11].
 
-**Paginação:** cada resposta traz o cabeçalho `CMR-Search-After`; envie-o de volta para obter a próxima página. `CMR-Hits` informa o total [12].
+**Paginação:** cada resposta traz o cabeçalho `CMR-Search-After`; envie-o de volta para obter a próxima página. `CMR-Hits` informa o total [11].
 
 ### 6.2 Busca pelo earthaccess (`earthaccess.search_data`)
 
 | Argumento | Exemplo | Explicação | Fonte |
 |---|---|---|---|
-| `short_name` | `"GPM_3IMERGDF"` | Coleção | [13] |
-| `version` | `"07"` | Versão | [13] |
-| `temporal` | `("2024-01-01", "2024-03-31")` | Período | [13] |
-| `bounding_box` | `(lon_min, lat_min, lon_max, lat_max)` | Área | [13] |
+| `short_name` | `"GPM_3IMERGDF"` | Coleção | [12] |
+| `version` | `"07"` | Versão | [12] |
+| `temporal` | `("2024-01-01", "2024-03-31")` | Período | [12] |
+| `bounding_box` | `(lon_min, lat_min, lon_max, lat_max)` | Área | [12] |
 
-O `earthaccess.login()` procura credenciais no `~/.netrc` ou nas variáveis `EARTHDATA_USERNAME` e `EARTHDATA_PASSWORD` [13].
-
-### 6.3 Opções do Giovanni
-
-| Opção | Escolha para o Field Shift |
-|---|---|
-| Variável | `IMERGDF` (precipitação diária Final) [7] |
-| Tipo de gráfico | *Time Series, Area-Averaged* (série) ou *Time Averaged Map* (mapa) |
-| Área | Caixa pequena em volta do talhão |
-| Período | Até ~4 meses antes de hoje |
-
-Sem login, o Giovanni limita o número de passos de tempo; logado, o limite some [10].
+O `earthaccess.login()` procura credenciais no `~/.netrc` ou nas variáveis `EARTHDATA_USERNAME` e `EARTHDATA_PASSWORD` [12].
 
 ---
 
@@ -187,7 +174,7 @@ No produto de meia-hora há ainda: erro aleatório, peso relativo dos pluviômet
 | Passo | O que é feito | Por quê |
 |---|---|---|
 | 1. Busca | CMR/earthaccess lista os arquivos de `GPM_3IMERGDF` V07 no período | Saber o que existe antes de baixar |
-| 2. Recorte | Via **OPeNDAP** ou subconjunto da GES DISC, só a célula do talhão (e vizinhas para mapas) | Cada arquivo global tem dezenas de MB; ~9.000 dias seriam inviáveis |
+| 2. Recorte | Via **earthaccess** (leitura remota) ou subconjunto da GES DISC, só a célula do talhão (e vizinhas para mapas) | Cada arquivo global tem dezenas de MB; ~9.000 dias seriam inviáveis |
 | 3. Seleção da célula | Célula de 0,1° que contém a coordenada (`method="nearest"`) | Não interpolar: o dado representa a célula inteira |
 | 4. Valores ausentes | Converter o valor de preenchimento em nulo | Uma falha não pode virar "0 mm" |
 | 5. Confiança diária | Marcar dias com `precipitation_cnt` < 48 ou `randomError` alto | Pesar menos esses dias e sinalizar na interface |
@@ -212,7 +199,7 @@ df["baixa_confianca"] = df["precipitation_cnt"] < 48          # passo 5
 mensal = df["precipitation"].resample("MS").sum()            # passo 7
 clim = mensal.groupby(mensal.index.month).mean()
 ```
-⚠️ Confirme os nomes das dimensões (`lat`/`lon`/`time`) no arquivo. Para séries muito longas, prefira recortar no servidor (OPeNDAP) em vez de `open_mfdataset` com milhares de arquivos.
+⚠️ Confirme os nomes das dimensões (`lat`/`lon`/`time`) no arquivo. Para séries muito longas, prefira recortar no servidor (subconjunto da GES DISC) em vez de `open_mfdataset` com milhares de arquivos.
 
 ---
 
@@ -223,13 +210,11 @@ clim = mensal.groupby(mensal.index.month).mean()
 | 1 | `earthaccess.login()` | Autenticação sem erro |
 | 2 | Busca de 1 dia | 1 arquivo |
 | 3 | Busca dos últimos 3 meses | 0 arquivos (latência do Final) |
-| 4 | CMR sem `short_name` nem coleção | Erro (busca precisa de escopo) [12] |
+| 4 | CMR sem `short_name` nem coleção | Erro (busca precisa de escopo) [11] |
 | 5 | `precipitation` em um ponto | Valor ≥ 0 em mm/dia |
 | 6 | Soma mensal × `GPM_3IMERGM` | Valores próximos |
 | 7 | Comparar com `PRECTOTCORR` do POWER | Mesma sazonalidade; picos maiores no IMERG |
 | 8 | Comparar com estação do INMET | Boa correlação mensal; pior no diário |
-| 9 | Série no Giovanni × série do código | Mesmos valores |
-| 10 | Giovanni sem login, período longo | Erro de limite de passos [10] |
 
 ---
 
@@ -237,14 +222,13 @@ clim = mensal.groupby(mensal.index.month).mean()
 
 | Situação | Causa | Solução | Fonte |
 |---|---|---|---|
-| HTTP 401 ao baixar | Sem Earthdata Login ou aplicativo da GES DISC não autorizado no perfil | Registrar-se e autorizar o aplicativo no Earthdata Login | [10][11] |
-| "Too many redirects" | Cookies antigos ou corrompidos | Apagar o arquivo de cookies | [11] |
-| "Concurrent connection limit reached" | Muitas conexões simultâneas | Limitar downloads em paralelo | [10] |
-| Dados recentes ausentes | Latência do produto | Usar Late para os meses recentes | [1][10] |
-| Giovanni: "all filled values" | Área só com preenchimento | Mudar a área | [10] |
-| CMR HTTP 413 | URL longa demais | Usar POST | [12] |
-| CMR HTTP 429 | Limite de taxa | Esperar o tempo do cabeçalho `retry-after` | [12] |
-| CMR `CMR-Time-Out: true` | Consulta passou de 170 s; resultado parcial | Refinar a busca | [12] |
+| HTTP 401 ao baixar | Sem Earthdata Login ou aplicativo da GES DISC não autorizado no perfil | Registrar-se e autorizar o aplicativo no Earthdata Login | [9][10] |
+| "Too many redirects" | Cookies antigos ou corrompidos | Apagar o arquivo de cookies | [10] |
+| "Concurrent connection limit reached" | Muitas conexões simultâneas | Limitar downloads em paralelo | [9] |
+| Dados recentes ausentes | Latência do produto | Usar Late para os meses recentes | [1][9] |
+| CMR HTTP 413 | URL longa demais | Usar POST | [11] |
+| CMR HTTP 429 | Limite de taxa | Esperar o tempo do cabeçalho `retry-after` | [11] |
+| CMR `CMR-Time-Out: true` | Consulta passou de 170 s; resultado parcial | Refinar a busca | [11] |
 
 ---
 
@@ -254,7 +238,7 @@ clim = mensal.groupby(mensal.index.month).mean()
 2. **Chuva convectiva localizada** (pancadas de verão) é suavizada numa célula de 10 km.
 3. **É estimativa, não medição no chão**; longe das passagens de micro-ondas, depende mais do infravermelho, que é menos preciso [5][6].
 4. **A correção com pluviômetros depende da densidade de estações**, baixa em partes do interior.
-5. **Relevo complexo** reduz o acerto (registrado no repositório para as serras do Sudeste e do Sul e a Serra do Mar) [16].
+5. **Relevo complexo** reduz o acerto (registrado no repositório para as serras do Sudeste e do Sul e a Serra do Mar) [15].
 6. **Arquivos globais**: baixar arquivo por arquivo para um ponto é ineficiente.
 
 ---
@@ -262,18 +246,18 @@ clim = mensal.groupby(mensal.index.month).mean()
 ## 12. Boas práticas
 
 1. **Final** para histórico; **Late** só para meses recentes, sempre sinalizado.
-2. **Recorte no servidor** (OPeNDAP ou subconjunto) antes de baixar.
+2. **Recorte no servidor** (subconjunto da GES DISC) antes de baixar.
 3. Use `precipitation_cnt` e `randomError` para **marcar dias de baixa confiança**.
 4. **Agregue** em decêndios e meses antes de comparar fontes.
-5. **Valide** com estações do INMET/CEMADEN (equivalentes do CoCoRaHS, conforme D-003) [15].
-6. **Limite conexões simultâneas** ao baixar [10].
+5. **Valide** com estações do INMET/CEMADEN (equivalentes do CoCoRaHS, conforme D-003) [14].
+6. **Limite conexões simultâneas** ao baixar [9].
 7. Registre a **versão (V07)** e a data do download.
 
 ---
 
 ## 13. Como e por que usar o IMERG no Field Shift
 
-> Contexto: IMERG está entre os **6 obrigatórios** (D-002, proposto) [15]. O pipeline do `CONTEXTO-DESAFIO.md` usa a dispersão "chuva POWER vs. GPM" para calcular a incerteza [16].
+> Contexto: IMERG está entre os **6 obrigatórios** (D-002, proposto) [14]. O pipeline do `CONTEXTO-DESAFIO.md` usa a dispersão "chuva POWER vs. GPM" para calcular a incerteza [15].
 
 ### 13.1 Por que o IMERG
 
@@ -287,7 +271,7 @@ clim = mensal.groupby(mensal.index.month).mean()
 
 ### 13.2 Onde entra no produto
 
-| Etapa do pipeline [16] | Papel |
+| Etapa do pipeline [15] | Papel |
 |---|---|
 | Indicadores | Veranicos, chuva extrema, SPI |
 | Diagnóstico | Chuvas fortes caindo em solo descoberto |
@@ -297,7 +281,7 @@ clim = mensal.groupby(mensal.index.month).mean()
 
 ### 13.3 O que não resolve
 
-- Água que fica no solo → SMAP.
+- Água que fica no solo → SMAP L4.
 - Quanto escorre → SRTM + solo.
 - Chuva dentro do talhão → pluviômetro local.
 
@@ -307,11 +291,11 @@ clim = mensal.groupby(mensal.index.month).mean()
 
 | Indicador | Cálculo | Uso |
 |---|---|---|
-| Chuva mensal e climatologia | Soma mensal; média por mês 2001–2025 (a NASA também publica climatologias prontas do IMERG [14]) | Calendário agrícola |
+| Chuva mensal e climatologia | Soma mensal; média por mês 2001–2025 (a NASA também publica climatologias prontas do IMERG [13]) | Calendário agrícola |
 | Veranico | Sequência de 10+ dias com < 1 mm dentro da estação chuvosa | Risco para a safrinha |
 | Chuva extrema | Dias acima do percentil 95 da série | Risco de erosão |
 | Início e fim da estação chuvosa | Primeiro/último decêndio acima de um limiar | Janelas de plantio |
-| SPI 3 meses | Índice padronizado de precipitação (listado no repositório [16]) | Frequência de seca |
+| SPI 3 meses | Índice padronizado de precipitação (listado no repositório [15]) | Frequência de seca |
 | Concordância POWER × IMERG | Diferença relativa por mês | Selo de confiança |
 
 ---
@@ -346,18 +330,17 @@ clim = mensal.groupby(mensal.index.month).mean()
 4. NASA GPM. IMERG V07 ATBD. <https://gpm.nasa.gov/resources/documents/imerg-v07-atbd>
 5. NASA GPM. FAQ: diferenças entre TMPA e IMERG (morphing e filtro de Kalman). <https://gpm.nasa.gov/resources/faq/how-are-tmpa-and-imerg-algorithm-designs-same-and-different>
 6. NASA Earthdata. GPM_3IMERGHH V07: descrição detalhada do algoritmo. <https://www.earthdata.nasa.gov/es/data/catalog/ges-disc-gpm-3imerghh-07>
-7. NASA Giovanni. <https://giovanni.gsfc.nasa.gov/#dataKeyword=IMERGDF>
-8. NASA Earthdata Search. Coleção C2723754864-GES_DISC. <https://search.earthdata.nasa.gov/search/granules?p=C2723754864-GES_DISC>
-9. Registry of Open Data on AWS. GPM_3IMERGDF. <https://registry.opendata.aws/nasa-gpm3imergdf/>
-10. Earthdata Forum. Problemas comuns de acesso a dados na GES DISC. <https://forum.earthdata.nasa.gov/viewtopic.php?p=12284>
-11. Earthdata Login. Acesso a dados com curl e wget (.netrc, cookies, redirecionamento). <https://urs.earthdata.nasa.gov/documentation/for_users/data_access/curl_and_wget>
-12. NASA CMR. Search API Documentation. <https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html>
-13. earthaccess. Documentação. <https://earthaccess.readthedocs.io/en/latest/quick-start/>
-14. NASA GPM. IMERG V07 Daily and Grand Climatology Products Documentation. <https://gpm.nasa.gov/resources/documents/imerg-v07-daily-and-grand-climatology-products-documentation>
+7. NASA Earthdata Search. Coleção C2723754864-GES_DISC. <https://search.earthdata.nasa.gov/search/granules?p=C2723754864-GES_DISC>
+8. Registry of Open Data on AWS. GPM_3IMERGDF. <https://registry.opendata.aws/nasa-gpm3imergdf/>
+9. Earthdata Forum. Problemas comuns de acesso a dados na GES DISC. <https://forum.earthdata.nasa.gov/viewtopic.php?p=12284>
+10. Earthdata Login. Acesso a dados com curl e wget (.netrc, cookies, redirecionamento). <https://urs.earthdata.nasa.gov/documentation/for_users/data_access/curl_and_wget>
+11. NASA CMR. Search API Documentation. <https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html>
+12. earthaccess. Documentação. <https://earthaccess.readthedocs.io/en/latest/quick-start/>
+13. NASA GPM. IMERG V07 Daily and Grand Climatology Products Documentation. <https://gpm.nasa.gov/resources/documents/imerg-v07-daily-and-grand-climatology-products-documentation>
 
 ### 16.2 Base do projeto
 
-15. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002, D-003).
-16. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§7 indicadores, §9.2 pipeline) e `docs/NasaSpaceApps-FieldShift/v1/.md/bancos-de-dados-field-shift-brasil.md`.
+14. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002, D-003).
+15. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§7 indicadores, §9.2 pipeline) e `docs/NasaSpaceApps-FieldShift/v1/.md/bancos-de-dados-field-shift-brasil.md`.
 
 *Consulta das fontes: 14 de novembro de 2026. Versões, latências e endereços devem ser conferidos novamente no momento da implementação.*

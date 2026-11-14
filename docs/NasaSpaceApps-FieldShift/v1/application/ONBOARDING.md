@@ -164,7 +164,7 @@ Respostas: **Sim / Não / Não sei**.
 | 24a | Já perdeu safra por **geada**? | Cruza com Tmin (POWER) |
 | 24b | Já perdeu safra por **chuva forte**? | Cruza com chuva extrema (POWER/IMERG) |
 | 24c | Já perdeu safra por **calor intenso**? | Cruza com Tmax e dias de calor (POWER) |
-| 24d | Já perdeu safra por **falta de chuva**? | Cruza com déficit hídrico e seca (POWER, SMAP) |
+| 24d | Já perdeu safra por **falta de chuva**? | Cruza com déficit hídrico e seca (POWER, SMAP L4) |
 
 **Opcional em cada "sim":** "Lembra mais ou menos o ano?" → seletor de ano ou "não lembro".
 

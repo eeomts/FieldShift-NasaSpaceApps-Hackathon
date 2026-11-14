@@ -676,7 +676,7 @@ Status em tempo real: `https://power.larc.nasa.gov/status/api/`
 3. **Chuva é a variável mais fraca.** Chuva convectiva localizada (comum no verão do Cerrado) é mal representada numa grade de 50 km. Para chuva, compare com o IMERG (0,1°).
 4. **Dados recentes são provisórios.** Os últimos 2–3 meses são substituídos por versões de qualidade climática. Não trate esses dados como definitivos.
 5. **Altitude da célula ≠ altitude da fazenda.** Afeta temperatura e pressão. Use `site-elevation` para corrigir a pressão; a temperatura não é corrigida.
-6. **A umidade do solo (`GWETTOP`, `GWETROOT`) é de modelo** e expressa fração de saturação (0 a 1), não umidade volumétrica como o SMAP.
+6. **A umidade do solo (`GWETTOP`, `GWETROOT`) é de modelo** e expressa fração de saturação (0 a 1), não umidade volumétrica como o SMAP L4.
 7. **O arquivo muda com o tempo.** Correções de viés e atualizações de modelo podem alterar dados antigos. Registre a data de download.
 
 ### 12.3 Limitações operacionais
@@ -719,7 +719,7 @@ Status em tempo real: `https://power.larc.nasa.gov/status/api/`
 | `ALLSKY_SFC_SW_DWN` | Radiação solar na superfície | Evapotranspiração, produtividade potencial |
 | `WS2M` | Vento a 2 m | Evapotranspiração (Penman-Monteith) |
 | `PS` | Pressão na superfície | Evapotranspiração |
-| `GWETTOP` | Umidade do solo superficial (modelo) | Comparar com SMAP |
+| `GWETTOP` | Umidade do solo superficial (modelo) | Comparar com SMAP L4 |
 | `GWETROOT` | Umidade da zona radicular (modelo) | Estresse hídrico de culturas de raiz profunda |
 | `EVPTRNS` | Evapotranspiração (modelo) | Demanda hídrica |
 
@@ -748,7 +748,7 @@ Com `T2M_MAX`, `T2M_MIN`, `RH2M`, `ALLSKY_SFC_SW_DWN`, `WS2M` e `PS`, é possív
 |---|---|
 | **Cobre o Brasil** | Com o escopo nacional (D-008), 12 datasets do desafio ficam de fora por serem só dos EUA (D-003), inclusive o PRISM, que seria a fonte de clima local. O POWER é global e preenche essa lacuna |
 | **Sem login e com API simples** | Uma URL devolve JSON ou CSV. Não exige Earthdata Login, fila de pedidos nem manipulação de imagens. Em 48 horas, isso é decisivo |
-| **Série longa (desde 1981)** | Mais de 40 anos permitem calcular **normais climáticas, tendências e frequência de eventos** ("em quantos anos de cada 10 faltou chuva em abril?"). SMAP (desde 2015) e ECOSTRESS (desde 2018) não têm histórico suficiente para isso |
+| **Série longa (desde 1981)** | Mais de 40 anos permitem calcular **normais climáticas, tendências e frequência de eventos** ("em quantos anos de cada 10 faltou chuva em abril?"). O SMAP L4 (desde 2015) não tem histórico suficiente para isso |
 | **Feito para agricultura** | A comunidade `AG` entrega os parâmetros nas unidades usadas por modelos de cultura e até no formato ICASA, do DSSAT |
 | **Alimenta quase todos os indicadores do MVP** | Dos indicadores listados no `CONTEXTO-DESAFIO.md` §7, a maioria depende só do POWER: normal climática, tendência, graus-dia, risco de geada, dias de calor, ET₀, demanda da cultura, balanço hídrico e índice de seca |
 | **Ecossistema completo** | Além dos dados históricos, o POWER tem **Climate Projection** (cenários até 2100, para os sliders de cenário) e **PRUVE** (validação contra estações, para mostrar a incerteza). Tudo no mesmo padrão de API |
@@ -795,8 +795,8 @@ Ele é a base climática, mas não substitui as outras fontes obrigatórias (D-0
 | Qual é o solo do talhão? | Não tem dados de solo | **GAEZ v5** / SoilGrids / Embrapa Solos (Q-07) |
 | O talhão é inclinado? Há baixadas frias? | Não tem relevo fino | **SRTM** |
 | Choveu forte num talhão específico? | Grade de ~55 km suaviza chuvas locais | **GPM IMERG** (~10 km) |
-| O solo está seco agora? | Sua umidade do solo é de modelo e grosseira | **SMAP** |
-| Há mercado para a cultura? Pragas locais? | Não é dado climático | Agricultor, técnico, CONAB/CEPEA |
+| O solo está seco agora? | Sua umidade do solo é de modelo e grosseira | **SMAP L4** |
+| Há mercado para a cultura? Pragas locais? | Não é dado climático | Agricultor, técnico, IBGE PAM (valor da produção) |
 
 ### 15.5 Recomendações de implementação
 

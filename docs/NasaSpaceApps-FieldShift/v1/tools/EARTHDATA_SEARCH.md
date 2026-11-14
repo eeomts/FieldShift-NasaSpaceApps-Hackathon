@@ -6,19 +6,19 @@ Complemento à *Documentação do Projeto* e ao *Banco de Dados NASA*. Explica p
 
 O **Earthdata Search** é o buscador oficial dos dados de Ciências da Terra da NASA. Pelo navegador, ele procura no catálogo central da NASA (o CMR, Common Metadata Repository) e mostra, para cada coleção, o período coberto, a resolução, o centro de dados que a distribui e os arquivos (chamados de *granules*) que caem na área e nas datas escolhidas.
 
-O **Earthdata Login** (EDL) é a conta gratuita da NASA que libera o download. É o mesmo usuário e senha para quase tudo neste projeto: Earthdata Search, AppEEARS, Giovanni, `earthaccess`, Harmony e OPeNDAP.
+O **Earthdata Login** (EDL) é a conta gratuita da NASA que libera o download. É o mesmo usuário e senha para quase tudo neste projeto: Earthdata Search, AppEEARS e `earthaccess`.
 
 Em resumo: o Earthdata Search é o **mapa do catálogo**, e o Earthdata Login é a **chave** das portas.
 
 ## Por que usar
 
-**1. Um lugar só para achar quase todos os datasets.** SMAP, SMAP L4, GPM IMERG, GLDAS, HLS, MODIS, ECOSTRESS e MERRA-2 estão no mesmo catálogo. A equipe não precisa visitar o site de cada centro de dados (GES DISC, LP DAAC, NSIDC) para descobrir o que existe.
+**1. Um lugar só para achar quase todos os datasets.** SMAP L4, GPM IMERG, GLDAS, HLS e MODIS estão no mesmo catálogo. A equipe não precisa visitar o site de cada centro de dados (GES DISC, LP DAAC, NSIDC) para descobrir o que existe.
 
 **2. Confere a cobertura antes de escrever código.** Em poucos cliques dá para ver se um produto cobre o Brasil, desde quando existe e se há falhas. Isso evita descobrir no meio do hackathon que um dataset começa em 2015 ou que não tem dados para um mês.
 
-**3. Mostra o nome exato do produto.** O `short_name` e a versão que aparecem no Earthdata Search são os mesmos usados no `earthaccess`, no AppEEARS e no Harmony. Copiar daqui evita erro de digitação e versão antiga.
+**3. Mostra o nome exato do produto.** O `short_name` e a versão que aparecem no Earthdata Search são os mesmos usados no `earthaccess` e no AppEEARS. Copiar daqui evita erro de digitação e versão antiga.
 
-**4. Recorte já no pedido.** Para várias coleções, a opção de personalizar o download (subconjunto por área, variável e formato) usa o Harmony por trás. Para o Brasil inteiro isso faz muita diferença no volume.
+**4. Recorte já no pedido.** Para várias coleções, dá para personalizar o download (subconjunto por área, variável e formato). Para o Brasil inteiro isso faz muita diferença no volume.
 
 ## Como entra no projeto
 
@@ -115,9 +115,9 @@ O Earthdata Search é o primeiro passo de qualquer dado da NASA no projeto. Ele 
 
 ## Limitações
 
-- **Interface manual:** bom para explorar e conferir, ruim para repetir em 27 estados. A automação vem com `earthaccess` e Harmony.
+- **Interface manual:** bom para explorar e conferir, ruim para repetir em 27 estados. A automação vem com `earthaccess`.
 - **Nem toda coleção aceita recorte:** algumas só oferecem o arquivo inteiro.
 - **Volume:** para o Brasil inteiro, alguns produtos somam milhares de arquivos; o pedido precisa ser recortado.
 - **Mudanças de endereço:** a migração de serviços para o Earthdata Cloud pode mudar links e caminhos.
 - **Autorizações por centro de dados:** o primeiro download de cada centro pode falhar até a autorização ser aceita no perfil.
-- **Tratamento:** usar o Earthdata Search para descobrir e conferir, registrar `short_name`, versão e período no inventário, e automatizar o download com `earthaccess` ou Harmony.
+- **Tratamento:** usar o Earthdata Search para descobrir e conferir, registrar `short_name`, versão e período no inventário, e automatizar o download com `earthaccess`.

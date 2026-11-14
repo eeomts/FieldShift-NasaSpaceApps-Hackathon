@@ -5,7 +5,7 @@
 > Projeto: Field Shift (NASA Space Apps Challenge 2026)
 > Documento compilado em 14/11/2026
 > Estrutura baseada no *API Guide* oficial do CKAN, adaptada ao Harvest Portal
-> Documentos relacionados: `harvest-portal-api.md` (análise e parâmetros), `fluxo-aplicativo-power-harvest-mcp.md`, `arquitetura-completa-field-shift.md`
+> Documentos relacionados: `NASA_HARVEST_PORTAL_API.md` (análise e parâmetros), `fluxo-aplicativo-power-harvest-mcp.md`, `ARQUITETURA-COMPLETA.md`
 
 ---
 
@@ -664,7 +664,7 @@ cols = ckan("datastore_search", resource_id="<id>", limit=0)["fields"]
 print([c["id"] for c in cols])
 ```
 
-Com os nomes reais das colunas e os códigos das culturas, preencha o campo `codigo_mercado` da ficha de cada cultura (ver `relacao-nasa-power-harvest-portal.md`).
+Com os nomes reais das colunas e os códigos das culturas, preencha o campo `codigo_mercado` da ficha de cada cultura (ver `NASA_POWER_X_HARVEST_PORTAL.md`).
 
 ### 12.4 Nota de mercado de uma cultura
 
@@ -898,7 +898,7 @@ def nota_final(clima, mercado, peso_clima, peso_mercado):
 - Cliente Python `ckanapi`: https://github.com/ckan/ckanapi
 
 **Documentos do projeto**
-- `harvest-portal-api.md`: análise detalhada, conteúdo do portal e caso hipotético
-- `relacao-nasa-power-harvest-portal.md`: como o mercado se combina com o clima
+- `NASA_HARVEST_PORTAL_API.md`: análise detalhada, conteúdo do portal e caso hipotético
+- `NASA_POWER_X_HARVEST_PORTAL.md`: como o mercado se combina com o clima
 - `fluxo-aplicativo-power-harvest-mcp.md`: quando usar API e quando usar MCP
-- `arquitetura-completa-field-shift.md`: o sistema inteiro, passo a passo
+- `ARQUITETURA-COMPLETA.md`: o sistema inteiro, passo a passo

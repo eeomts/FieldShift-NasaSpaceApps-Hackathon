@@ -23,7 +23,7 @@ A PAM não é medição de satélite nem de balança. É uma estimativa feita pe
 
 **3. Mostra a variação da produtividade.** Com décadas de dados, dá para ver quanto o rendimento cai nos anos ruins. Essa variação é uma medida de risco que o produtor entende.
 
-**4. Ajuda a calibrar a renda.** Produtividade e valor da produção por município dão uma base realista para a nota de "renda", junto com os preços da CONAB e do CEPEA.
+**4. Ajuda a calibrar a renda.** Produtividade e valor da produção por município dão uma base realista para a nota de "renda".
 
 **5. Confere os mapas.** A área de soja do MapBiomas num município pode ser comparada com a área da PAM.
 
@@ -57,7 +57,7 @@ A PAM não é medição de satélite nem de balança. É uma estimativa feita pe
 
 ### Nível de confiança
 
-O valor é do **município**, não do talhão. Um município grande pode misturar várzea e chapada. A queda de rendimento num ano é cruzada com a chuva (GPM IMERG, INMET) e com a água no solo (GLDAS, SMAP L4) para saber se veio do clima. A CONAB também estima safras, e as duas pesquisas consultam informantes parecidos. Por isso **não contam como confirmações independentes** entre si.
+O valor é do **município**, não do talhão. Um município grande pode misturar várzea e chapada. A queda de rendimento num ano é cruzada com a chuva (GPM IMERG, INMET) e com a água no solo (GLDAS, SMAP L4) para saber se veio do clima.
 
 ## Onde o produtor vê isso
 
@@ -91,7 +91,7 @@ A Sra. Helena planta grãos perto de Itapeva, no sudoeste de São Paulo, região
 | NASA POWER | Geada em julho em 4 de 10 anos. |
 | MapBiomas | Soja todo ano no talhão desde 2008. |
 | HLS | No inverno, trigo em 4 dos últimos 8 anos; nos outros, solo com pouca palha. |
-| CONAB / CEPEA | Preço do trigo e do milho com mercado regional ativo. |
+| IBGE PAM (valor da produção) | Valor da produção por hectare do trigo e do milho mostra mercado regional ativo. |
 
 ### Onde os dados se completam
 
@@ -145,5 +145,4 @@ A PAM traz a voz da **região**: o que se planta, quanto rende e quantas vezes d
 - **Atraso:** cada ano sai só no segundo semestre do ano seguinte (os dados de 2025 foram atualizados em outubro de 2026).
 - **Safras misturadas:** fora do milho, a PAM nem sempre separa safra e safrinha.
 - **Mudanças de município:** municípios criados depois de 1974 quebram a série.
-- **Não é independente da CONAB:** as duas pesquisas usam fontes locais parecidas.
 - **Tratamento:** usar mediana e frequência de anos ruins, cruzar quedas com dados de clima e avisar que é média do município.

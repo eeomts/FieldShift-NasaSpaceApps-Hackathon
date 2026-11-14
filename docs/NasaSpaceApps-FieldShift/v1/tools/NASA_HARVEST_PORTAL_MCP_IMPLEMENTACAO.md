@@ -5,7 +5,7 @@
 > Projeto: Field Shift (NASA Space Apps Challenge 2026)
 > Documento compilado em 14/11/2026
 > Código: pasta `mcp-harvest-exemplo/`
-> Documentos relacionados: `harvest-portal-mcp.md` (conceito e caso de uso UC-02), `fluxo-aplicativo-power-harvest-mcp.md`
+> Documentos relacionados: `NASA_HARVEST_PORTAL_MCP.md` (conceito e caso de uso UC-02), `fluxo-aplicativo-power-harvest-mcp.md`
 
 ---
 
@@ -120,7 +120,7 @@ asyncio.run(main())
 python 00_descobrir_ferramentas.py
 ```
 
-**Depois:** copie a saída para a seção 4 do `harvest-portal-mcp.md` e ajuste os nomes nos passos 1 e 9.
+**Depois:** copie a saída para a seção 4 do `NASA_HARVEST_PORTAL_MCP.md` e ajuste os nomes nos passos 1 e 9.
 
 **Detalhe do SDK v2:** o esquema de parâmetros está em `tool.input_schema` (no v1 era `tool.inputSchema`).
 

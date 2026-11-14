@@ -1020,4 +1020,4 @@ Agora ele tem duas informações. **A ferramenta** mostrou que o mercado de sorg
 - Cliente R `ckanr` (`organization_show`, `ds_search`): https://docs.ropensci.org/ckanr/
 
 **Documento relacionado do projeto**
-- `nasa-power-api-daily.md` (mesmo padrão de documentação, para o NASA POWER)
+- `NASA_POWER.md` (mesmo padrão de documentação, para o NASA POWER)

@@ -122,7 +122,7 @@ Uma explicação clara ao produtor seria: "O ambiente favorecia maior uso de ág
 
 Umidade do solo é a quantidade de água contida no solo. Em conteúdo volumétrico, costuma ser expressa em m³/m³. Um valor de 0,20 m³/m³ corresponde a um volume de água equivalente a 20% do volume de solo considerado. Isso não significa que a planta tenha "20% da água de que precisa", porque quantidade presente e disponibilidade para absorção são conceitos diferentes. [5, 6]
 
-A profundidade é parte indispensável da descrição. A superfície pode secar após alguns dias sem chuva enquanto camadas mais profundas ainda conservam água. O SMAP observa a umidade superficial; produtos que estimam a zona das raízes podem combinar observações com modelos. É necessário identificar o produto, e não atribuir a todos os dados SMAP a mesma profundidade. [5, 6]
+A profundidade é parte indispensável da descrição. A superfície pode secar após alguns dias sem chuva enquanto camadas mais profundas ainda conservam água. O SMAP observa a umidade superficial; o SMAP L4, usado no projeto, estima também a zona das raízes combinando essas observações com modelos. É necessário identificar o produto e a camada, e não atribuir a todos os dados SMAP a mesma profundidade. [5, 6]
 
 ### 4.2 Um exemplo de conversão em armazenamento
 
@@ -302,7 +302,7 @@ No Field Shift, uma sugestão é apresentar "necessidade hídrica estimada não 
 
 ### 10.2 Estresse hídrico
 
-Estresse hídrico é a resposta da planta à limitação de água. A restrição pode alterar a transpiração e o desenvolvimento. Indicadores térmicos e de evapotranspiração, como os associados ao ECOSTRESS, ajudam a investigar a condição. [2, 19]
+Estresse hídrico é a resposta da planta à limitação de água. A restrição pode alterar a transpiração e o desenvolvimento. Indicadores térmicos e de evapotranspiração ajudam a investigar a condição. [2]
 
 Exemplo interpretativo: a chuva ficou abaixo da referência, mas o solo ainda tinha reserva suficiente e a cultura permaneceu em desenvolvimento normal. Há um sinal climático desfavorável, mas não necessariamente estresse já instalado. Em outro caso, a chuva mensal pode parecer adequada e, ainda assim, um intervalo longo sem chuva coincidir com uma fase sensível da cultura.
 
@@ -314,9 +314,9 @@ Uma narrativa possível é: "A umidade ficou abaixo da referência histórica; o
 
 ### 10.4 Água armazenada em escala regional
 
-GRACE e GRACE-FO permitem investigar mudanças de armazenamento de água em grandes áreas a partir de variações do campo gravitacional. A separação de componentes, como água subterrânea, exige informações adicionais. Esses produtos não medem diretamente o nível de um poço específico. [20]
+O armazenamento de água em grandes áreas inclui a água do solo, a subterrânea e a superficial. Modelos de superfície terrestre, como o GLDAS, estimam parte desses componentes; a separação de outros, como a água subterrânea, exige informações adicionais. Esses produtos não medem diretamente o nível de um poço específico.
 
-No projeto, seu uso é de contexto regional e de longo prazo. Uma tendência de redução regional pode justificar atenção à dependência de irrigação, mas não determina a vazão disponível em uma propriedade. Essa distinção precisa aparecer no mapa e na explicação do indicador.
+No projeto, esse uso é de contexto regional e de longo prazo. Uma tendência de redução regional pode justificar atenção à dependência de irrigação, mas não determina a vazão disponível em uma propriedade. Essa distinção precisa aparecer no mapa e na explicação do indicador.
 
 ---
 
@@ -324,7 +324,7 @@ No projeto, seu uso é de contexto regional e de longo prazo. Uma tendência de 
 
 ### 11.1 Acumulado e intensidade
 
-Precipitação acumulada é a quantidade que caiu durante um intervalo. Intensidade é uma taxa, como mm/h. Para converter uma taxa em acumulado, é preciso considerar sua duração. Uma taxa constante de 12 mm/h durante meia hora representa 6 mm, e não 12 mm. Produtos como IMERG fornecem estimativas de precipitação a partir da combinação de informações de satélites e de outros componentes do processamento. [21, 22]
+Precipitação acumulada é a quantidade que caiu durante um intervalo. Intensidade é uma taxa, como mm/h. Para converter uma taxa em acumulado, é preciso considerar sua duração. Uma taxa constante de 12 mm/h durante meia hora representa 6 mm, e não 12 mm. Produtos como IMERG fornecem estimativas de precipitação a partir da combinação de informações de satélites e de outros componentes do processamento. [19, 20]
 
 No protótipo, a variável deve ser verificada antes de somar valores. Somar taxas sem multiplicar pelos intervalos correspondentes produz um acumulado incorreto. Outro erro é considerar um dado ausente como zero: "não foi possível observar" e "não choveu" são situações diferentes.
 
@@ -352,7 +352,7 @@ Um critério de chuva extrema precisa informar a duração e a referência. Um a
 
 ### 12.1 Temperatura do ar e temperatura da superfície
 
-Temperatura do ar descreve o estado térmico do ar na condição e altura de medição. Temperatura da superfície, frequentemente abreviada como LST, refere-se à superfície observada pelo sensor. Ela pode refletir folhas, solo, palhada ou uma mistura desses elementos. O ECOSTRESS utiliza observações térmicas para produzir informações relacionadas à temperatura superficial e à água. [19]
+Temperatura do ar descreve o estado térmico do ar na condição e altura de medição. Temperatura da superfície, frequentemente abreviada como LST, refere-se à superfície observada pelo sensor. Ela pode refletir folhas, solo, palhada ou uma mistura desses elementos.
 
 **Exemplo hipotético:** um mapa apresenta 39 °C na superfície, enquanto uma referência meteorológica indica 30 °C no ar. Isso não comprova que uma das fontes esteja errada. Elas podem representar alvos, horários e escalas diferentes. A primeira pergunta deve ser "o que cada produto mede ou estima?" antes de comparar os valores.
 
@@ -388,7 +388,7 @@ Um exemplo de erro seria interpretar infiltração como sinônimo de armazenamen
 
 ### 13.3 Cobertura, matéria orgânica e estrutura
 
-A cobertura com resíduos ou plantas integra práticas de conservação. Ela pode proteger a superfície e alterar as condições de infiltração e evaporação. A escolha da cobertura deve considerar a cultura seguinte e a disponibilidade de recursos, em vez de supor um benefício idêntico em qualquer situação. [13, 23]
+A cobertura com resíduos ou plantas integra práticas de conservação. Ela pode proteger a superfície e alterar as condições de infiltração e evaporação. A escolha da cobertura deve considerar a cultura seguinte e a disponibilidade de recursos, em vez de supor um benefício idêntico em qualquer situação. [13, 21]
 
 Para o Field Shift, "melhoria do solo" precisa ser desdobrada em critérios observáveis ou hipóteses explícitas. Uma nota genérica de solo pode esconder objetivos diferentes: cobertura durante chuvas fortes, produção de resíduos, diversificação de raízes ou contribuição de nutrientes. Não é possível afirmar que a matéria orgânica aumentou apenas porque o NDVI ficou maior em um mês.
 
@@ -404,19 +404,19 @@ A mensagem adequada seria: "Esta área reúne fatores que justificam atenção �
 
 ### 14.1 Rotação e comparação de estratégias
 
-Rotação de culturas é uma sequência planejada de espécies ou grupos de culturas ao longo do tempo em uma área. No contexto da agricultura de conservação, a diversificação se combina com proteção do solo e manejo adequado. Seus resultados dependem da sequência escolhida e das condições locais. [23, 24]
+Rotação de culturas é uma sequência planejada de espécies ou grupos de culturas ao longo do tempo em uma área. No contexto da agricultura de conservação, a diversificação se combina com proteção do solo e manejo adequado. Seus resultados dependem da sequência escolhida e das condições locais. [21, 22]
 
 Para o Field Shift, a unidade de comparação deve ser uma **estratégia completa**. Não basta comparar "milho" com "leguminosa" sem explicitar época, duração, cobertura e relação com a cultura seguinte. Uma estratégia pode ter excelente desempenho em um critério e ser inadequada por falta de mercado ou incompatibilidade com o calendário do produtor.
 
 ### 14.2 Culturas de cobertura e palhada
 
-Culturas de cobertura são estabelecidas para funções como proteção do solo, produção de biomassa e manejo de nutrientes. Depois do manejo, parte de seus resíduos pode permanecer como palhada. Plantas vivas utilizam água; resíduos mortos não transpiram. Por isso, manter uma cobertura viva e manter palhada não são decisões equivalentes em um período de restrição hídrica. [13, 25]
+Culturas de cobertura são estabelecidas para funções como proteção do solo, produção de biomassa e manejo de nutrientes. Depois do manejo, parte de seus resíduos pode permanecer como palhada. Plantas vivas utilizam água; resíduos mortos não transpiram. Por isso, manter uma cobertura viva e manter palhada não são decisões equivalentes em um período de restrição hídrica. [13, 23]
 
 No projeto, uma proposta de cobertura deve informar o objetivo e o que falta validar: data de implantação, momento de manejo, compatibilidade com a cultura principal e efeito esperado sobre a água. A palavra "cobertura" sozinha não explica essas escolhas.
 
 ### 14.3 Leguminosas e fixação de nitrogênio
 
-Muitas leguminosas podem estabelecer associação com bactérias capazes de fixar nitrogênio atmosférico. O benefício depende de condições biológicas e de manejo. A presença de uma leguminosa não garante uma quantidade fixa de nitrogênio para a cultura seguinte. [26]
+Muitas leguminosas podem estabelecer associação com bactérias capazes de fixar nitrogênio atmosférico. O benefício depende de condições biológicas e de manejo. A presença de uma leguminosa não garante uma quantidade fixa de nitrogênio para a cultura seguinte. [24]
 
 O aplicativo pode apresentar "potencial de contribuição de nitrogênio", desde que a regra esteja documentada. Não deve afirmar uma economia exata de fertilizante sem os dados e cálculos correspondentes. Parte do nutriente pode ser removida com a colheita, e a disponibilidade depende do destino e da decomposição dos resíduos.
 
@@ -438,23 +438,20 @@ A documentação do Field Shift reúne missões, sensores, produtos, sistemas de
 |---|---|---|
 | NASA POWER | Como variam as condições meteorológicas de referência? | Dado em grade não é estação instalada na propriedade. |
 | GPM / IMERG | Como a chuva se distribui no espaço e no tempo? | Estimativa de precipitação exige avaliação de qualidade e versão. |
-| SMAP | Como varia a umidade superficial? | Superfície não equivale automaticamente à zona das raízes. |
-| ECOSTRESS | Como variam temperatura superficial e fluxos ligados à água? | Produto e horário de observação influenciam a leitura. |
-| Landsat / Sentinel-2 | Como muda a cobertura e a vegetação observável? | Nuvens, mistura de alvos e escala do talhão interferem. |
+| SMAP L4 | Como varia a umidade na superfície e na zona das raízes? | A zona das raízes é estimada com modelo, em escala regional. |
+| HLS | Como muda a cobertura e a vegetação observável? | Nuvens, mistura de alvos e escala do talhão interferem. |
 | MODIS / VIIRS | Como evoluem padrões de vegetação em séries e áreas maiores? | Um pixel pode incluir diferentes usos da terra. |
-| GRACE / GRACE-FO | Como muda o armazenamento regional de água? | Não descreve diretamente um poço ou pequeno talhão. |
 | SRTM | Como é o relevo e a inclinação do terreno? | Relevo sozinho não mede erosão nem geada. |
 | GLDAS / ERA5 | Como reconstruir condições ambientais em séries contínuas? | Resultados incluem modelagem e assimilação de observações. |
 | FAO GAEZ | Qual a aptidão sob condições e hipóteses definidas? | Aptidão e rendimento potencial não garantem resultado real. |
-| GEDI | Qual o contexto estrutural da vegetação amostrada? | Seu uso no projeto é contextual, não diagnóstico geral de lavouras. |
 
 ### 15.2 Reanálise
 
-Reanálise combina observações e modelos para reconstruir condições ambientais de maneira consistente. ERA5 é um exemplo. O NASA POWER também utiliza fontes de modelagem e assimilação para seus parâmetros meteorológicos. Isso significa que "veio da NASA" não implica que cada número seja uma leitura direta de satélite sobre a fazenda. [27, 28]
+Reanálise combina observações e modelos para reconstruir condições ambientais de maneira consistente. ERA5 é um exemplo. O NASA POWER também utiliza fontes de modelagem e assimilação para seus parâmetros meteorológicos. Isso significa que "veio da NASA" não implica que cada número seja uma leitura direta de satélite sobre a fazenda. [25, 26]
 
 ### 15.3 Aptidão não é promessa de produtividade
 
-GAEZ oferece informações de aptidão e potencial produtivo sob hipóteses de clima, solo e manejo. [29] No Field Shift, essas informações podem filtrar alternativas para investigação. Elas não devem ser convertidas automaticamente em previsão de lucro ou produtividade da propriedade. O contexto do projeto já reconhece a necessidade de informações sobre mercado, histórico e restrições locais.
+GAEZ oferece informações de aptidão e potencial produtivo sob hipóteses de clima, solo e manejo. [27] No Field Shift, essas informações podem filtrar alternativas para investigação. Elas não devem ser convertidas automaticamente em previsão de lucro ou produtividade da propriedade. O contexto do projeto já reconhece a necessidade de informações sobre mercado, histórico e restrições locais.
 
 Antes de implementar, registre o identificador do produto, versão, unidade, cobertura temporal e geográfica. Este guia não fixa uma resolução única para cada missão porque produtos diferentes podem ter características diferentes.
 
@@ -697,7 +694,7 @@ Permitir que cada evidência seja compreendida dentro de seus limites, para que 
 
 ### 23.1 Base do projeto
 
-Documentos fornecidos pelo usuário: "Field Shift Minas - Documentação do Projeto.md" e "Texto colado(20261114-132558).txt", que contém o contexto do desafio e a descrição de recursos. Eles fundamentam o recorte em Minas Gerais, os objetivos, as fontes candidatas e a proposta de comparação de estratégias.
+Documentos fornecidos pelo usuário: "Field Shift Minas - Documentação do Projeto.md" e "Texto colado(20261114-132558).txt", que contém o contexto do desafio e a descrição de recursos. Eles fundamentaram o recorte inicial em Minas Gerais (depois ampliado para o Brasil inteiro pela D-008), os objetivos, as fontes candidatas e a proposta de comparação de estratégias.
 
 As explicações são sínteses em português, acompanhadas de exemplos próprios. Não são transcrições dos documentos científicos. Os números dos exercícios e os cenários são didáticos. As sugestões para a interface e a metodologia constituem propostas de aplicação, não especificações oficialmente aprovadas pela NASA.
 
@@ -721,16 +718,14 @@ As explicações são sínteses em português, acompanhadas de exemplos próprio
 16. FAO. Multiple uses of water services in large irrigation systems: limites e componentes do balanço. <https://www.fao.org/4/i3414e/i3414e.pdf>
 17. FAO. Paper 56, capítulo 8: disponibilidade de água, estresse e balanço na zona radicular. <https://www.fao.org/4/x0490e/x0490e0e.htm>
 18. FAO. Irrigation Water Needs: precipitação efetiva e necessidade de irrigação. <https://www.fao.org/4/s2022e/s2022e08.htm>
-19. NASA/JPL. ECOSTRESS Applications: observação térmica e aplicações agrícolas. <https://ecostress.jpl.nasa.gov/apps>
-20. NASA/JPL. GRACE Tellus: Groundwater. <https://grace.jpl.nasa.gov/applications/groundwater/>
-21. NASA GPM. IMERG: descrição do produto de precipitação. <https://gpm.nasa.gov/data/imerg>
-22. NASA GPM. Precipitation Data Directory: produtos e integração de estimativas. <https://gpm.nasa.gov/data/directory>
-23. FAO. Conservation Agriculture: princípios gerais. <https://www.fao.org/conservation-agriculture>
-24. FAO. Crop rotation in conservation agriculture. <https://www.fao.org/family-farming/detail/en/c/1619114/>
-25. FAO. Cover crop species, with a special focus on legumes. <https://www.fao.org/family-farming/detail/en/c/1619115/>
-26. USDA NRCS. National Agronomy Manual: culturas e fixação biológica de nitrogênio. <https://www.nrcs.usda.gov/sites/default/files/2022-10/National-Agronomy-Manual.pdf>
-27. ECMWF. Complete ERA5 global atmospheric reanalysis. <https://www.ecmwf.int/en/forecasts/datasets/complete-era5-global-atmospheric-reanalysis>
-28. NASA POWER. Meteorological data sources. <https://power.larc.nasa.gov/docs/methodology/data/sources_meteorology/>
-29. FAO. Global Agro-Ecological Zones: recursos e potencial agrícola. <https://www.fao.org/land-water/resources/tools/databases/gaez/en>
+19. NASA GPM. IMERG: descrição do produto de precipitação. <https://gpm.nasa.gov/data/imerg>
+20. NASA GPM. Precipitation Data Directory: produtos e integração de estimativas. <https://gpm.nasa.gov/data/directory>
+21. FAO. Conservation Agriculture: princípios gerais. <https://www.fao.org/conservation-agriculture>
+22. FAO. Crop rotation in conservation agriculture. <https://www.fao.org/family-farming/detail/en/c/1619114/>
+23. FAO. Cover crop species, with a special focus on legumes. <https://www.fao.org/family-farming/detail/en/c/1619115/>
+24. USDA NRCS. National Agronomy Manual: culturas e fixação biológica de nitrogênio. <https://www.nrcs.usda.gov/sites/default/files/2022-10/National-Agronomy-Manual.pdf>
+25. ECMWF. Complete ERA5 global atmospheric reanalysis. <https://www.ecmwf.int/en/forecasts/datasets/complete-era5-global-atmospheric-reanalysis>
+26. NASA POWER. Meteorological data sources. <https://power.larc.nasa.gov/docs/methodology/data/sources_meteorology/>
+27. FAO. Global Agro-Ecological Zones: recursos e potencial agrícola. <https://www.fao.org/land-water/resources/tools/databases/gaez/en>
 
-*Consulta das fontes: 14 de novembro de 2026. Características operacionais e versões de produtos devem ser conferidas novamente no momento da implementação. As fontes foram usadas para conceitos e limites de interpretação, não para produzir um diagnóstico atual de Minas Gerais.*
+*Consulta das fontes: 14 de novembro de 2026. Características operacionais e versões de produtos devem ser conferidas novamente no momento da implementação. As fontes foram usadas para conceitos e limites de interpretação, não para produzir um diagnóstico atual de qualquer região do Brasil.*

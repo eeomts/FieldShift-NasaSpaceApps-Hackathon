@@ -4,7 +4,7 @@ Complemento à *Documentação do Projeto* e ao *Banco de Dados NASA*. Explica p
 
 ## O que é o SMAP L4
 
-O SMAP comum mede a umidade só nos primeiros ~5 cm do solo. O **SMAP L4** (produto SPL4SMGP) combina essas medições com um modelo de superfície da NASA (Catchment, do sistema GEOS) e estima a umidade também na **zona das raízes, até cerca de 1 m**, de forma contínua, sem os buracos entre as passagens do satélite.
+O satélite SMAP mede a umidade só nos primeiros ~5 cm do solo. O **SMAP L4** (produto SPL4SMGP) combina essas medições com um modelo de superfície da NASA (Catchment, do sistema GEOS) e estima a umidade também na **zona das raízes, até cerca de 1 m**, de forma contínua, sem os buracos entre as passagens do satélite.
 
 Em termos simples: é o SMAP observado, "esticado" para baixo e no tempo por um modelo que é corrigido pelas próprias medições do satélite.
 
@@ -26,11 +26,11 @@ A divisão de papéis fica assim: o **GLDAS** dá a climatologia longa (desde 20
 
 - **Produto:** SPL4SMGP, grade EASE-Grid 2.0 de 9 km, passos de 3 horas, desde março de 2015.
 - **Acesso:** NSIDC DAAC, pelo Earthdata Search, `earthaccess` ou AppEEARS (séries por ponto ou polígono).
-- **Processamento:** recortar o Brasil, agregar os passos de 3 horas para médias diárias e mensais e reamostrar para a grade comum. Para o país inteiro, vale baixar só as variáveis necessárias (com Harmony ou OPeNDAP), porque a série de 3 horas é pesada.
+- **Processamento:** recortar o Brasil, agregar os passos de 3 horas para médias diárias e mensais e reamostrar para a grade comum. Para o país inteiro, vale baixar só as variáveis necessárias, porque a série de 3 horas é pesada.
 
 | Variável | O que é | Uso |
 | --- | --- | --- |
-| `sm_surface` | Umidade de 0–5 cm | Comparação com o SMAP L3 e o GLDAS 0–10 cm |
+| `sm_surface` | Umidade de 0–5 cm | Comparação com o GLDAS 0–10 cm |
 | `sm_rootzone` | Umidade de 0–100 cm | Indicador principal de estresse hídrico |
 | `sm_profile` | Umidade do perfil inteiro | Reserva total de água |
 | `sm_rootzone_wetness` | Umidade da zona das raízes em escala relativa (0 a 1) | Comparar locais com solos diferentes |
@@ -72,11 +72,10 @@ O Sr. Antônio planta em sequeiro perto de Irecê, no sertão da Bahia, região 
 
 | Dataset | O que encontra (hipotético) |
 | --- | --- |
-| GPM IMERG / CHIRPS | Chuva concentrada de dezembro a março, com veranicos de 10 a 20 dias em 7 de cada 10 anos. |
+| GPM IMERG | Chuva concentrada de dezembro a março, com veranicos de 10 a 20 dias em 7 de cada 10 anos. |
 | NASA POWER | Evapotranspiração de referência acima de 5,5 mm/dia em quase todo o ciclo. |
 | GLDAS | Zona das raízes abaixo do normal em fevereiro e março em mais da metade dos anos desde 2000. |
 | **SMAP L4** | Em média, 8 dias sem chuva derrubam a zona das raízes abaixo do percentil 20. Na safra 2025/26, fevereiro ficou 45% abaixo do normal. |
-| ECOSTRESS | Queda da evapotranspiração do milho em fevereiro, sinal de estresse. |
 | HLS | O NDVI do milho para de subir antes do pendoamento nos anos de veranico; o do feijão-caupi segue subindo. |
 | FAO GAEZ | Aptidão boa para sorgo, milheto e feijão-caupi; baixa para milho. |
 | ZARC | Risco alto para milho de sequeiro em quase todas as datas de plantio do município. |
@@ -85,7 +84,7 @@ O Sr. Antônio planta em sequeiro perto de Irecê, no sertão da Bahia, região 
 
 **O problema é o veranico, não só a chuva total.** O GPM mostra que o total do ano é baixo e concentrado, com veranicos frequentes. O SMAP L4 mostra quanto tempo o solo aguenta: cerca de 8 dias. Como os veranicos duram de 10 a 20 dias, a raiz do milho fica sem água na fase mais sensível.
 
-**A série longa confirma.** O GLDAS mostra que isso acontece desde 2000, não só nos últimos anos. O ECOSTRESS e o HLS mostram o efeito na planta. Quatro fontes apontam o mesmo problema: confiança **alta**.
+**A série longa confirma.** O GLDAS mostra que isso acontece desde 2000, não só nos últimos anos. O HLS mostra o efeito na planta. Quatro fontes apontam o mesmo problema: confiança **alta**.
 
 **Onde a confiança cai.** O L4 trabalha com 9 km e com o solo médio da célula. Se o talhão tem solo mais raso ou arenoso que a média, seca ainda mais rápido. A ferramenta marca essa lacuna e pede a análise de solo.
 
@@ -114,7 +113,7 @@ Com os pesos do Sr. Antônio (água e forragem altas), a **estratégia B** fica 
 >
 > **Por que foi sugerida:** na sua região, cerca de 8 dias sem chuva já secam o solo na profundidade das raízes, e os veranicos costumam durar mais que isso.
 >
-> **Evidências:** veranicos frequentes (GPM e CHIRPS, confiança alta); solo seca rápido na zona das raízes (SMAP L4, GLDAS e ERA5 concordam, confiança alta); estresse visível na lavoura (ECOSTRESS e HLS, confiança média).
+> **Evidências:** veranicos frequentes (GPM IMERG, confiança média); solo seca rápido na zona das raízes (SMAP L4, GLDAS e ERA5 concordam, confiança alta); estresse visível na lavoura (HLS, confiança média).
 >
 > **Benefícios:** sorgo e feijão-caupi toleram melhor a falta de água, o caupi fixa nitrogênio e o sorgo garante forragem para o rebanho mesmo em ano ruim.
 >

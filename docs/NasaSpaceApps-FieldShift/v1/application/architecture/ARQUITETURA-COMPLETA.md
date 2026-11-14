@@ -4,7 +4,7 @@
 
 > Projeto: Field Shift (NASA Space Apps Challenge 2026)
 > Documento compilado em 14/11/2026
-> Documentos relacionados: `nasa-power-api-daily.md`, `harvest-portal-api.md`, `relacao-nasa-power-harvest-portal.md`, `fluxo-aplicativo-power-harvest-mcp.md` e os documentos de cada fonte em `fontes/`
+> Documentos relacionados: `NASA_POWER.md`, `NASA_HARVEST_PORTAL_API.md`, `NASA_POWER_X_HARVEST_PORTAL.md`, `fluxo-aplicativo-power-harvest-mcp.md` e os documentos de cada fonte em `tools/`
 
 ---
 
@@ -466,11 +466,11 @@ Cadastro → coleta (NASA) → harmonização → diagnóstico → filtro → me
 ## 17. Referências
 
 **Documentos do projeto**
-- `nasa-power-api-daily.md`: API do NASA POWER
-- `harvest-portal-api.md`: API do Harvest Portal
-- `relacao-nasa-power-harvest-portal.md`: integração clima + mercado
+- `NASA_POWER.md`: API do NASA POWER
+- `NASA_HARVEST_PORTAL_API.md`: API do Harvest Portal
+- `NASA_POWER_X_HARVEST_PORTAL.md`: integração clima + mercado
 - `fluxo-aplicativo-power-harvest-mcp.md`: fluxos A (API) e B (MCP)
-- `fontes/gpm-imerg.md`, `fontes/smap.md`, `fontes/ecostress.md`, `fontes/landsat.md`, `fontes/modis-viirs.md`, `fontes/grace-grace-fo.md`, `fontes/srtm.md`, `fontes/comunicacao-entre-apis.md`
+- `GPM_IMERG.md`, `SMAP_L4.md`, `HLS.md`, `MODIS_VIIRS.md`, `SRTM.md`, `comunicacao-entre-apis.md`
 
 **Fontes externas**
 - NASA POWER Daily API: https://power.larc.nasa.gov/docs/services/api/temporal/daily/
