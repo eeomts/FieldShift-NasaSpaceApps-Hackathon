@@ -2,7 +2,7 @@
 
 ## Umidade do solo por satélite
 
-*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Minas) · 14 de novembro de 2026*
+*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Brasil) · 14 de novembro de 2026*
 
 > ⚠️ Todos os números do caso hipotético (seção 15) são fictícios. As aplicações descrevem possibilidades para o projeto, não funcionalidades já implementadas.
 
@@ -31,7 +31,7 @@
 
 ## 1. Como ler este documento
 
-**Estrutura.** Mesmo formato do `nasa-power-api-daily.md`. Autenticação, AppEEARS e orquestração entre APIs estão detalhados em `comunicacao-entre-apis.md`.
+**Estrutura.** Mesmo formato do `NASA_POWER.md`. Autenticação, AppEEARS e orquestração entre APIs estão detalhados em `comunicacao-entre-apis.md`.
 
 **Referências.** Números entre colchetes apontam para a seção 16.
 
@@ -292,7 +292,7 @@ z = (m - m.index.month.map(clim["mean"])) / m.index.month.map(clim["std"])  # pa
 
 ## 15. Caso hipotético: o Sr. José
 
-> ⚠️ **Fictício**. Continuação do caso do `nasa-power-api-daily.md` (seção 16).
+> ⚠️ **Fictício**. Continuação do caso do `NASA_POWER.md` (seção 16).
 
 **Dados usados:** SPL3SMP_E v6 (AM, qualidade recomendada) e SPL4SMGP v8 (zona radicular), 2015–2025, via AppEEARS, tratados conforme a seção 8.
 
@@ -328,7 +328,7 @@ z = (m - m.index.month.map(clim["mean"])) / m.index.month.map(clim["std"])  # pa
 
 ### 16.2 Base do projeto
 
-13. Repositório da equipe, `docs/v1/.md/context/DECISOES.md` (D-002).
-14. Repositório da equipe, `docs/v1/.md/context/CONTEXTO-DESAFIO.md` (§7 indicadores, §9.2 pipeline).
+13. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002).
+14. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§7 indicadores, §9.2 pipeline).
 
 *Consulta das fontes: 14 de novembro de 2026. Versões e endereços devem ser conferidos novamente no momento da implementação.*

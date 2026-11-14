@@ -2,7 +2,7 @@
 
 ## Índices de vegetação em séries longas (250–1000 m)
 
-*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Minas) · 14 de novembro de 2026*
+*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Brasil) · 14 de novembro de 2026*
 
 > ⚠️ Todos os números do caso hipotético (seção 15) são fictícios. As aplicações descrevem possibilidades para o projeto, não funcionalidades já implementadas.
 
@@ -31,7 +31,7 @@
 
 ## 1. Como ler este documento
 
-**Estrutura.** Mesmo formato do `nasa-power-api-daily.md`. Autenticação e AppEEARS em `comunicacao-entre-apis.md`.
+**Estrutura.** Mesmo formato do `NASA_POWER.md`. Autenticação e AppEEARS em `comunicacao-entre-apis.md`.
 
 **Referências.** Números entre colchetes apontam para a seção 16.
 
@@ -102,7 +102,7 @@ A versão 6 do MOD13A1 foi descontinuada; use a **6.1 (061)** [7].
 
 ### 6.1 Pedido no AppEEARS
 
-Campos do `POST /task` iguais aos de `smap.md` (seção 6.2). Específico:
+Campos do `POST /task` iguais aos de `SMAP.md` (seção 6.2). Específico:
 
 | Campo | Valor | Observação |
 |---|---|---|
@@ -296,7 +296,7 @@ print(exposto.groupby(exposto.index.month).size())                    # meses de
 
 ## 15. Caso hipotético: o Sr. José
 
-> ⚠️ **Fictício**. Continuação do caso do `nasa-power-api-daily.md` (seção 16).
+> ⚠️ **Fictício**. Continuação do caso do `NASA_POWER.md` (seção 16).
 
 **Dados usados:** MOD13Q1 v061 (2001–2025) e VJ113A1 v002 (2018–2025), pixel reliability 0–1, tratados conforme a seção 8.
 
@@ -332,7 +332,7 @@ print(exposto.groupby(exposto.index.month).size())                    # meses de
 
 ### 16.2 Base do projeto
 
-10. Repositório da equipe, `docs/v1/.md/context/DECISOES.md` (D-002).
-11. Repositório da equipe, `docs/v1/.md/context/CONTEXTO-DESAFIO.md` (§14) e `bancos-de-dados-field-shift-minas.md`.
+10. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002).
+11. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§14) e `bancos-de-dados-field-shift-brasil.md`.
 
 *Consulta das fontes: 14 de novembro de 2026. A situação das missões muda rapidamente; confira o alerta [4] antes da implementação.*

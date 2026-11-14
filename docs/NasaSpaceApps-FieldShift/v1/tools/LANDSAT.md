@@ -2,7 +2,7 @@
 
 ## Refletância e índices de vegetação a 30 m
 
-*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Minas) · 14 de novembro de 2026*
+*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Brasil) · 14 de novembro de 2026*
 
 > ⚠️ Todos os números do caso hipotético (seção 15) são fictícios. As aplicações descrevem possibilidades para o projeto, não funcionalidades já implementadas.
 
@@ -31,7 +31,7 @@
 
 ## 1. Como ler este documento
 
-**Estrutura.** Mesmo formato do `nasa-power-api-daily.md`. Autenticação e AppEEARS em `comunicacao-entre-apis.md`.
+**Estrutura.** Mesmo formato do `NASA_POWER.md`. Autenticação e AppEEARS em `comunicacao-entre-apis.md`.
 
 **Referências.** Números entre colchetes apontam para a seção 16.
 
@@ -100,7 +100,7 @@
 
 ### 6.1 AppEEARS (HLS por ponto)
 
-Campos do `POST /task` iguais aos de `smap.md` (seção 6.2). Específico:
+Campos do `POST /task` iguais aos de `SMAP.md` (seção 6.2). Específico:
 
 | Campo | Valor | Observação |
 |---|---|---|
@@ -298,7 +298,7 @@ ndvi = ((nir - red) / (nir + red)).where(ruim == 0)                    # passo 5
 
 ## 15. Caso hipotético: o Sr. José
 
-> ⚠️ **Fictício**. Continuação do caso do `nasa-power-api-daily.md` (seção 16).
+> ⚠️ **Fictício**. Continuação do caso do `NASA_POWER.md` (seção 16).
 
 **Dados usados:** HLS v2.0 (L30 + S30) de 2019 a 2025, tratados conforme a seção 8.
 
@@ -332,7 +332,7 @@ ndvi = ((nir - red) / (nir + red)).where(ruim == 0)                    # passo 5
 10. earthaccess. Documentação. <https://earthaccess.readthedocs.io/en/latest/quick-start/>
 ### 16.2 Base do projeto
 
-11. Repositório da equipe, `docs/v1/.md/bancos-de-dados-field-shift-minas.md` (revisita de 8 dias com Landsat 8 e 9).
-12. Repositório da equipe, `docs/v1/.md/context/DECISOES.md` (D-002, D-003, I-2).
+11. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/.md/bancos-de-dados-field-shift-brasil.md` (revisita de 8 dias com Landsat 8 e 9).
+12. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002, D-003, I-2).
 
 *Consulta das fontes: 14 de novembro de 2026. Confira versões e endereços no momento da implementação.*

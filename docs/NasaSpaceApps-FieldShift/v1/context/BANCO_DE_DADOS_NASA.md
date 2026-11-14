@@ -1,6 +1,6 @@
-# Banco de Dados NASA — Field Shift Minas
+# Banco de Dados NASA — Field Shift Brasil
 
-Referência dos dados e ferramentas da NASA que podem ser usados no desafio **Field Shift: Adapting Farms with NASA Data** (NASA Space Apps Challenge 2026), com foco em Minas Gerais.
+Referência dos dados e ferramentas da NASA que podem ser usados no desafio **Field Shift: Adapting Farms with NASA Data** (NASA Space Apps Challenge 2026), com escopo no Brasil inteiro.
 
 > **Atenção:** resoluções, cobertura e links devem ser confirmados nas páginas oficiais antes do uso.
 
@@ -16,7 +16,7 @@ Referência dos dados e ferramentas da NASA que podem ser usados no desafio **Fi
 | ECOSTRESS | Temperatura de superfície e evapotranspiração em alta resolução | Pontos de calor e de estresse hídrico, demanda de água da cultura |
 | Landsat (30 m, NASA/USGS) | Reflectância, NDVI, índices de vegetação | Vigor da cultura, solo descoberto, transições de estação |
 | MODIS/VIIRS (250–1000 m) | NDVI e índices de vegetação | Séries longas de vegetação em escala regional |
-| GRACE e GRACE-FO | Tendência de água armazenada | Contexto de longo prazo da disponibilidade hídrica no estado |
+| GRACE e GRACE-FO | Tendência de água armazenada | Contexto de longo prazo da disponibilidade hídrica nas grandes bacias e regiões do país |
 | SRTM | Elevação | Declividade, escoamento, risco de erosão, baixadas sujeitas a geada |
 | GLDAS | Temperatura, chuva, umidade do solo e radiação em séries contínuas | Início de secas, déficits de umidade, transições de estação |
 | GEDI | Biomassa e estrutura da vegetação | Contexto da paisagem ao redor das lavouras |
@@ -29,7 +29,7 @@ Referência dos dados e ferramentas da NASA que podem ser usados no desafio **Fi
 | HLS (Harmonized Landsat Sentinel-2) | Landsat e Sentinel-2 já harmonizados em 30 m, com revisita de 2 a 3 dias. Resolve parte da harmonização e aumenta as chances de imagem sem nuvem. |
 | MERRA-2 | Reanálise climática da própria NASA. Serve de alternativa ou comparação ao ERA5 no nível de confiança. |
 | MODIS Land Cover (MCD12Q1) | Cobertura do solo anual, global. |
-| FIRMS (focos de fogo, MODIS/VIIRS) | Queimadas na seca são comuns no Cerrado e indicam risco e degradação do solo. |
+| FIRMS (focos de fogo, MODIS/VIIRS) | Queimadas na seca são comuns no Cerrado, no Pantanal e na borda da Amazônia e indicam risco e degradação do solo. |
 
 ## 3. Ferramentas da NASA
 
@@ -71,7 +71,7 @@ Não são da NASA, mas são abertas e reforçam os dados acima.
 | Histórico de culturas (CDL) | MapBiomas | Uso do solo anual desde 1985, em 30 m, separando soja, café, pastagem, cana e outras culturas. Mostra a rotação real de uma área. |
 | Estatísticas agrícolas (NASS) | IBGE PAM (via SIDRA) | Área, produção, produtividade e valor por cultura e município, todo ano. |
 | Preços e mercado (AMS) | CONAB e CEPEA/ESALQ | Preços, custos de produção e acompanhamento de safra. |
-| Solo detalhado (SSURGO) | Embrapa Solos / mapa de solos de MG | Classes de solo (latossolos, argissolos etc.), mais fiéis à realidade local. |
+| Solo detalhado (SSURGO) | Embrapa Solos (mapa de solos do Brasil, PronaSolos) | Classes de solo (latossolos, argissolos etc.), mais fiéis à realidade local. |
 | Chuva medida em campo (CoCoRaHS) | INMET e CEMADEN | Estações meteorológicas e pluviômetros. Validam IMERG, POWER e CHIRPS. |
 | Rios e poços (NWIS) | ANA HidroWeb | Séries de chuva e vazão. Contexto de disponibilidade de água e outorga. |
 | Calendário e risco por cultura | ZARC (MAPA/Embrapa) | Janelas de plantio de menor risco por município. Serve para validar as estratégias sugeridas. |

@@ -322,7 +322,7 @@ https://power.larc.nasa.gov/api/system/manager/parameters?community=ag&temporal=
 | `UTC` | Tempo Universal Coordenado: o mesmo relógio no mundo todo |
 | `LST` | Hora Solar Local: o planeta é dividido em faixas de 15° de longitude, e o meio-dia solar fica no centro da faixa |
 
-**Por que importa:** "um dia" em UTC não começa no mesmo instante que um dia no horário local. Em Minas Gerais (UTC-3), o dia UTC vai das 21h de um dia às 21h do dia seguinte, no horário local. Isso pode jogar a chuva de uma tempestade noturna no "dia errado" e mudar a temperatura mínima registrada.
+**Por que importa:** "um dia" em UTC não começa no mesmo instante que um dia no horário local. No horário de Brasília (UTC-3), o dia UTC vai das 21h de um dia às 21h do dia seguinte, no horário local. Com o escopo nacional, isso varia: o Brasil tem quatro fusos (UTC-2 em Fernando de Noronha, UTC-3 na maior parte do país, UTC-4 em MT, MS, RO, RR e boa parte do AM, e UTC-5 no Acre e no oeste do AM). Isso pode jogar a chuva de uma tempestade noturna no "dia errado" e mudar a temperatura mínima registrada.
 
 **Recomendação:** use **LST** para análises agrícolas, porque o dia acompanha o ciclo do sol que a planta vive. No nível diário, os dois padrões estão disponíveis desde 1981.
 
@@ -740,13 +740,13 @@ Com `T2M_MAX`, `T2M_MIN`, `RH2M`, `ALLSKY_SFC_SW_DWN`, `WS2M` e `PS`, é possív
 
 ## 15. Como e por que usar o NASA POWER no Field Shift
 
-> Esta seção parte do contexto atual do projeto, registrado no repositório da equipe (`docs/v1/.md/context/DECISOES.md` e `CONTEXTO-DESAFIO.md`): foco em **Minas Gerais** (D-001, a confirmar), NASA POWER entre os **6 datasets obrigatórios** (D-002, proposto), a ferramenta **apoia e não decide** (D-006) e **explicável antes de preciso** (D-007, a confirmar).
+> Esta seção parte do contexto atual do projeto, registrado no repositório da equipe (`docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` e `CONTEXTO-DESAFIO.md`): escopo no **Brasil inteiro** (D-008, que substituiu o foco inicial em Minas Gerais da D-001), NASA POWER entre os **6 datasets obrigatórios** (D-002, proposto), a ferramenta **apoia e não decide** (D-006) e **explicável antes de preciso** (D-007, a confirmar).
 
 ### 15.1 Por que o NASA POWER
 
 | Motivo | Por que importa para o projeto |
 |---|---|
-| **Cobre o Brasil** | Com o foco em Minas (D-001), 12 datasets do desafio ficam de fora por serem só dos EUA (D-003), inclusive o PRISM, que seria a fonte de clima local. O POWER é global e preenche essa lacuna |
+| **Cobre o Brasil** | Com o escopo nacional (D-008), 12 datasets do desafio ficam de fora por serem só dos EUA (D-003), inclusive o PRISM, que seria a fonte de clima local. O POWER é global e preenche essa lacuna |
 | **Sem login e com API simples** | Uma URL devolve JSON ou CSV. Não exige Earthdata Login, fila de pedidos nem manipulação de imagens. Em 48 horas, isso é decisivo |
 | **Série longa (desde 1981)** | Mais de 40 anos permitem calcular **normais climáticas, tendências e frequência de eventos** ("em quantos anos de cada 10 faltou chuva em abril?"). SMAP (desde 2015) e ECOSTRESS (desde 2018) não têm histórico suficiente para isso |
 | **Feito para agricultura** | A comunidade `AG` entrega os parâmetros nas unidades usadas por modelos de cultura e até no formato ICASA, do DSSAT |
@@ -1003,5 +1003,5 @@ O que **não** veio do POWER: solo exposto (MODIS NDVI), declividade (SRTM), sol
 - Pacote R `nasapower` (limites e estrutura das requisições): https://rdrr.io/cran/nasapower/src/R/get_power.R
 
 **Contexto do projeto (repositório da equipe, `eeomts/FieldShift-NasaSpaceApps-Hackatnon`)**
-- Registro de decisões: `docs/v1/.md/context/DECISOES.md`
-- Contexto do desafio (indicadores, pipeline, telas, MVP): `docs/v1/.md/context/CONTEXTO-DESAFIO.md`
+- Registro de decisões: `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md`
+- Contexto do desafio (indicadores, pipeline, telas, MVP): `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md`

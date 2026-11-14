@@ -2,7 +2,7 @@
 
 ## Precipitação global por satélite
 
-*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Minas) · 14 de novembro de 2026*
+*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Brasil) · 14 de novembro de 2026*
 
 > ⚠️ Todos os números do caso hipotético (seção 15) são fictícios. As aplicações descrevem possibilidades para o projeto, não funcionalidades já implementadas.
 
@@ -31,13 +31,13 @@
 
 ## 1. Como ler este documento
 
-**Estrutura.** Segue o mesmo formato do `nasa-power-api-daily.md`. A comunicação entre esta e as outras APIs (autenticação, padrões de requisição, orquestração) está no documento separado `comunicacao-entre-apis.md`.
+**Estrutura.** Segue o mesmo formato do `NASA_POWER.md`. A comunicação entre esta e as outras APIs (autenticação, padrões de requisição, orquestração) está no documento separado `comunicacao-entre-apis.md`.
 
 **Referências.** Os números entre colchetes, como [1], apontam para a lista da seção 16. Para cada afirmação foi escolhida a fonte oficial mais completa.
 
 **O que foi verificado.** Especificações, variáveis, cálculo diário, latências e formas de acesso foram conferidos nas páginas oficiais em 14/11/2026. **Nenhum download foi executado ao vivo**: o acesso exige Earthdata Login e o domínio não estava liberado no ambiente usado. Itens com ⚠️ precisam de confirmação antes de virar código.
 
-**O que vem do contexto e o que foi acrescentado.** O foco em Minas Gerais, a classificação do IMERG como dataset obrigatório e o papel de validar a chuva do NASA POWER vêm do repositório da equipe [15][16]. As explicações técnicas, o tratamento dos dados e o caso hipotético foram acrescentados neste documento.
+**O que vem do contexto e o que foi acrescentado.** O escopo nacional (D-008, que substituiu o foco inicial em Minas Gerais), a classificação do IMERG como dataset obrigatório e o papel de validar a chuva do NASA POWER vêm do repositório da equipe [15][16]. As explicações técnicas, o tratamento dos dados e o caso hipotético foram acrescentados neste documento.
 
 ---
 
@@ -254,7 +254,7 @@ clim = mensal.groupby(mensal.index.month).mean()
 2. **Chuva convectiva localizada** (pancadas de verão) é suavizada numa célula de 10 km.
 3. **É estimativa, não medição no chão**; longe das passagens de micro-ondas, depende mais do infravermelho, que é menos preciso [5][6].
 4. **A correção com pluviômetros depende da densidade de estações**, baixa em partes do interior.
-5. **Relevo complexo** reduz o acerto (registrado no repositório para a Zona da Mata e serras do Sul de Minas) [16].
+5. **Relevo complexo** reduz o acerto (registrado no repositório para as serras do Sudeste e do Sul e a Serra do Mar) [16].
 6. **Arquivos globais**: baixar arquivo por arquivo para um ponto é ineficiente.
 
 ---
@@ -283,7 +283,7 @@ clim = mensal.groupby(mensal.index.month).mean()
 | **Observação de satélite + pluviômetros** | O POWER usa modelo (MERRA-2); o IMERG observa e, no Final, é corrigido em campo [3] |
 | **Meia-hora** | Permite medir **intensidade**, base da erosividade |
 | **Campos de erro** | `randomError` e `_cnt` alimentam o selo de confiança [1] |
-| **Global, desde 2000** | Funciona em Minas, com 25 anos de série |
+| **Global, desde 2000** | Funciona no Brasil inteiro, com 25 anos de série |
 
 ### 13.2 Onde entra no produto
 
@@ -318,7 +318,7 @@ clim = mensal.groupby(mensal.index.month).mean()
 
 ## 15. Caso hipotético: o Sr. José
 
-> ⚠️ **Fictício**. Continuação do caso do `nasa-power-api-daily.md` (seção 16): produtor de sequeiro no Alto Paranaíba (MG), rotação soja → milho safrinha → pousio.
+> ⚠️ **Fictício**. Continuação do caso do `NASA_POWER.md` (seção 16): produtor de sequeiro no Alto Paranaíba (MG), rotação soja → milho safrinha → pousio.
 
 **Dados usados:** `GPM_3IMERGDF` V07, célula de 0,1° do talhão, 2001–2025, tratados conforme a seção 8.
 
@@ -357,7 +357,7 @@ clim = mensal.groupby(mensal.index.month).mean()
 
 ### 16.2 Base do projeto
 
-15. Repositório da equipe, `docs/v1/.md/context/DECISOES.md` (D-002, D-003).
-16. Repositório da equipe, `docs/v1/.md/context/CONTEXTO-DESAFIO.md` (§7 indicadores, §9.2 pipeline) e `docs/v1/.md/bancos-de-dados-field-shift-minas.md`.
+15. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002, D-003).
+16. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§7 indicadores, §9.2 pipeline) e `docs/NasaSpaceApps-FieldShift/v1/.md/bancos-de-dados-field-shift-brasil.md`.
 
 *Consulta das fontes: 14 de novembro de 2026. Versões, latências e endereços devem ser conferidos novamente no momento da implementação.*

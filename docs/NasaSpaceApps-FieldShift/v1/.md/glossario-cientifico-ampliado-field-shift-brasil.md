@@ -1,4 +1,4 @@
-# Field Shift Minas — Glossário científico ampliado
+# Field Shift Brasil — Glossário científico ampliado
 
 **Água, vegetação, clima, solo e observação da Terra**
 
@@ -29,7 +29,7 @@ Explicações aprofundadas, cálculos comentados e aplicações para uma ferrame
 15. [De onde vêm os dados e o que cada fonte pode responder](#15-de-onde-vêm-os-dados-e-o-que-cada-fonte-pode-responder)
 16. [Escala espacial, tempo e harmonização](#16-escala-espacial-tempo-e-harmonização)
 17. [Incerteza, qualidade e validação local](#17-incerteza-qualidade-e-validação-local)
-18. [Quatro cenários didáticos para Minas Gerais](#18-quatro-cenários-didáticos-para-minas-gerais)
+18. [Quatro cenários didáticos para o Brasil](#18-quatro-cenários-didáticos-para-o-brasil)
 19. [Exercícios numéricos comentados](#19-exercícios-numéricos-comentados)
 20. [Como escrever os cartões da ferramenta](#20-como-escrever-os-cartões-da-ferramenta)
 21. [Erros frequentes e como corrigi-los](#21-erros-frequentes-e-como-corrigi-los)
@@ -42,7 +42,7 @@ Explicações aprofundadas, cálculos comentados e aplicações para uma ferrame
 
 ### 1.1 O problema que o glossário ajuda a resolver
 
-O Field Shift Minas foi pensado como uma ferramenta de apoio à decisão. O produtor informa seu contexto, a ferramenta organiza evidências ambientais e apresenta a estratégia atual junto de alternativas. Para que essa comparação seja útil, não basta mostrar mapas coloridos: é preciso explicar o que cada número representa, como foi obtido e qual pergunta ele consegue responder.
+O Field Shift Brasil foi pensado como uma ferramenta de apoio à decisão. O produtor informa seu contexto, a ferramenta organiza evidências ambientais e apresenta a estratégia atual junto de alternativas. Para que essa comparação seja útil, não basta mostrar mapas coloridos: é preciso explicar o que cada número representa, como foi obtido e qual pergunta ele consegue responder.
 
 Considere uma tela que apresenta NDVI de 0,35, umidade do solo de 0,18 m³/m³ e evapotranspiração de 2 mm/dia. Sem contexto, o usuário pode interpretar todos os valores como baixos e concluir que a lavoura está perdida. Essa conclusão não se sustenta apenas com esses números. Pode ser uma área recém-colhida, uma cultura no início do desenvolvimento, um solo com características específicas ou uma observação afetada por limitações de qualidade. O glossário serve para transformar números em perguntas bem formuladas.
 
@@ -54,7 +54,7 @@ No projeto, a cadeia pode ser descrita assim: o sensor registra um sinal; um pro
 
 ### 1.3 O que vem do contexto e o que foi acrescentado
 
-O recorte em Minas Gerais, a comparação de pelo menos três estratégias, o uso de regras transparentes, as prioridades do produtor e a distinção entre rotação de culturas anuais e cobertura nas entrelinhas do café vêm da documentação fornecida. As fórmulas, explicações de unidades e distinções técnicas aprofundam o glossário anterior com fontes oficiais listadas ao final.
+O recorte no Brasil inteiro (decisão D-008, que substituiu o foco inicial em Minas Gerais), a comparação de pelo menos três estratégias, o uso de regras transparentes, as prioridades do produtor e a distinção entre rotação de culturas anuais e cobertura nas entrelinhas do café vêm da documentação fornecida. As fórmulas, explicações de unidades e distinções técnicas aprofundam o glossário anterior com fontes oficiais listadas ao final.
 
 Os cenários regionais deste guia são exercícios de raciocínio. Eles não demonstram que toda a região tem o mesmo clima, solo ou problema. Uma propriedade deve ser analisada no seu próprio contexto. Também não se considera que todos os conjuntos de dados citados já tenham sido integrados ao protótipo.
 
@@ -516,7 +516,7 @@ A recomendação final deve indicar o que precisa ser confirmado. "Verificar pro
 
 ---
 
-## 18. Quatro cenários didáticos para Minas Gerais
+## 18. Quatro cenários didáticos para o Brasil
 
 ### 18.1 Grãos e intervalo entre safras
 
@@ -544,7 +544,7 @@ Uma recomendação explicável diria: "Esta alternativa foi incluída porque aum
 
 ### 18.5 O que os cenários demonstram
 
-Triângulo e Alto Paranaíba, Norte de Minas, Sul de Minas e Zona da Mata são regiões candidatas mencionadas no contexto do projeto. As histórias acima ilustram perguntas associadas a esses recortes; não são diagnósticos regionais. O valor da demonstração será mostrar como dados locais alteram a comparação, e não apenas repetir estereótipos sobre cada região.
+Grãos no Cerrado, sequeiro no Semiárido, café no Sudeste serrano e áreas inclinadas com chuva concentrada são recortes candidatos para a demonstração (ver Q-01 em `DECISOES.md`). O Sul, com geada e culturas de inverno, e a borda da Amazônia, com muitas nuvens na safra, são outros contrastes possíveis. As histórias acima ilustram perguntas associadas a esses recortes; não são diagnósticos regionais. O valor da demonstração será mostrar como dados locais alteram a comparação, e não apenas repetir estereótipos sobre cada região.
 
 ---
 

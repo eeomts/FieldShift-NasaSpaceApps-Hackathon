@@ -2,7 +2,7 @@
 
 ## Temperatura da superfície e evapotranspiração em alta resolução
 
-*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Minas) · 14 de novembro de 2026*
+*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Brasil) · 14 de novembro de 2026*
 
 > ⚠️ Todos os números do caso hipotético (seção 15) são fictícios. As aplicações descrevem possibilidades para o projeto, não funcionalidades já implementadas.
 
@@ -31,7 +31,7 @@
 
 ## 1. Como ler este documento
 
-**Estrutura.** Mesmo formato do `nasa-power-api-daily.md`. Autenticação e AppEEARS estão detalhados em `comunicacao-entre-apis.md`.
+**Estrutura.** Mesmo formato do `NASA_POWER.md`. Autenticação e AppEEARS estão detalhados em `comunicacao-entre-apis.md`.
 
 **Referências.** Números entre colchetes apontam para a seção 16.
 
@@ -105,7 +105,7 @@ O "T" (`L2T`, `L3T`, `L4T`) indica a versão em **tiles**. As versões tiled de 
 
 ### 6.1 Pedido no AppEEARS
 
-Os campos do `POST /task` são os mesmos descritos em `smap.md` (seção 6.2) e em `comunicacao-entre-apis.md`. Específico do ECOSTRESS:
+Os campos do `POST /task` são os mesmos descritos em `SMAP.md` (seção 6.2) e em `comunicacao-entre-apis.md`. Específico do ECOSTRESS:
 
 | Campo | Valor | Observação |
 |---|---|---|
@@ -214,7 +214,7 @@ for g in res:
 
 ## 10. Códigos de erro e problemas conhecidos
 
-**Erros de acesso:** os mesmos do AppEEARS e do Earthdata Login (401 credenciais, 403 token expirado, 429 limite de taxa) — ver `smap.md` seção 10 e `comunicacao-entre-apis.md`.
+**Erros de acesso:** os mesmos do AppEEARS e do Earthdata Login (401 credenciais, 403 token expirado, 429 limite de taxa) — ver `SMAP.md` seção 10 e `comunicacao-entre-apis.md`.
 
 **Problemas registrados nas páginas oficiais [1][2]:**
 
@@ -288,7 +288,7 @@ for g in res:
 
 ## 15. Caso hipotético: o Sr. José
 
-> ⚠️ **Fictício**. Continuação do caso do `nasa-power-api-daily.md` (seção 16).
+> ⚠️ **Fictício**. Continuação do caso do `NASA_POWER.md` (seção 16).
 
 **Dados usados:** cenas ECO_L2T_LSTE e ECO_L3T_JET da safrinha (abr–jun) de 2019 a 2025, passagens entre 11h e 15h, sem nuvem e com qualidade aceitável, tratadas conforme a seção 8.
 
@@ -320,7 +320,7 @@ for g in res:
 
 ### 16.2 Base do projeto
 
-10. Repositório da equipe, `docs/v1/.md/context/DECISOES.md` (D-002).
-11. Repositório da equipe, `docs/v1/.md/context/CONTEXTO-DESAFIO.md` (§13 MVP) e `bancos-de-dados-field-shift-minas.md`.
+10. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002).
+11. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§13 MVP) e `bancos-de-dados-field-shift-brasil.md`.
 
 *Consulta das fontes: 14 de novembro de 2026. Versões e problemas conhecidos mudam; confira novamente no momento da implementação.*

@@ -2,7 +2,7 @@
 
 ## Elevação e relevo (30 m)
 
-*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Minas) · 14 de novembro de 2026*
+*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Brasil) · 14 de novembro de 2026*
 
 > ⚠️ Todos os números do caso hipotético (seção 15) são fictícios. As aplicações descrevem possibilidades para o projeto, não funcionalidades já implementadas.
 
@@ -31,7 +31,7 @@
 
 ## 1. Como ler este documento
 
-**Estrutura.** Mesmo formato do `nasa-power-api-daily.md`. Autenticação e AppEEARS em `comunicacao-entre-apis.md`.
+**Estrutura.** Mesmo formato do `NASA_POWER.md`. Autenticação e AppEEARS em `comunicacao-entre-apis.md`.
 
 **Referências.** Números entre colchetes apontam para a seção 16.
 
@@ -103,7 +103,7 @@
 
 ### 6.1 Pedido de área no AppEEARS
 
-Campos gerais em `smap.md` (seção 6.2). Específico:
+Campos gerais em `SMAP.md` (seção 6.2). Específico:
 
 | Campo | Valor | Observação |
 |---|---|---|
@@ -257,7 +257,7 @@ Classificação de relevo amplamente usada no Brasil (Sistema Brasileiro de Clas
 
 ## 15. Caso hipotético: o Sr. José
 
-> ⚠️ **Fictício**. Continuação do caso do `nasa-power-api-daily.md` (seção 16).
+> ⚠️ **Fictício**. Continuação do caso do `NASA_POWER.md` (seção 16).
 
 **Dados usados:** SRTMGL1 v003 recortado pelo AppEEARS, tratado conforme a seção 8.
 
@@ -292,7 +292,7 @@ Classificação de relevo amplamente usada no Brasil (Sistema Brasileiro de Clas
 
 ### 16.2 Base do projeto
 
-8. Repositório da equipe, `docs/v1/.md/context/DECISOES.md` (D-002, D-003: TOPODATA).
-9. Repositório da equipe, `docs/v1/.md/context/CONTEXTO-DESAFIO.md` (§7 geada com relevo, §13 MVP).
+8. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002, D-003: TOPODATA).
+9. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§7 geada com relevo, §13 MVP).
 
 *Consulta das fontes: 14 de novembro de 2026.*

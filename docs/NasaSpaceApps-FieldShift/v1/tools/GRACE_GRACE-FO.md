@@ -2,7 +2,7 @@
 
 ## Tendência de água armazenada (contexto regional)
 
-*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Minas) · 14 de novembro de 2026*
+*Preparado para Guilherme Moura de Melo · Projeto NASA SPACE APP (Field Shift Brasil) · 14 de novembro de 2026*
 
 > ⚠️ Todos os números do caso hipotético (seção 15) são fictícios. As aplicações descrevem possibilidades para o projeto, não funcionalidades já implementadas.
 
@@ -31,7 +31,7 @@
 
 ## 1. Como ler este documento
 
-**Estrutura.** Mesmo formato do `nasa-power-api-daily.md`. Autenticação e orquestração em `comunicacao-entre-apis.md`.
+**Estrutura.** Mesmo formato do `NASA_POWER.md`. Autenticação e orquestração em `comunicacao-entre-apis.md`.
 
 **Referências.** Números entre colchetes apontam para a seção 16.
 
@@ -84,7 +84,7 @@
 | **JPL Mascon RL06.3 com filtro CRI** | Com correção de linha de costa | **Indicado para os demais usuários**, com os fatores de ganho de hidrologia | [1][2] |
 | CSR / GFZ TELLUS Level-3 Land RL06.3 v04 | Grades de anomalia sobre o continente, de outros centros | Comparar soluções | [4] |
 
-**Para o Field Shift:** JPL Mascon com **filtro CRI** + **fatores de ganho** (Minas não tem costa, mas o CRI é a versão para a qual os ganhos foram feitos [2]).
+**Para o Field Shift:** JPL Mascon com **filtro CRI** + **fatores de ganho** (o Brasil tem um litoral extenso, e o CRI corrige o vazamento de sinal entre oceano e continente nas bacias costeiras; também é a versão para a qual os ganhos foram feitos [2]).
 
 ---
 
@@ -188,7 +188,7 @@ print(f"Tendência: {np.polyfit(t, anom.values, 1)[0]:.2f} cm/ano")   # passo 7 
 |---|---|---|
 | 1 | Buscar o dataset | 1 arquivo NetCDF |
 | 2 | Listar variáveis | `lwe_thickness`, `uncertainty`, `time` |
-| 3 | Série em Minas | Valores em cm, positivos e negativos |
+| 3 | Série numa região do Brasil (ex.: bacia do São Francisco) | Valores em cm, positivos e negativos |
 | 4 | Ciclo anual | Máximo no fim da estação chuvosa, mínimo no fim da seca |
 | 5 | Média de 2004–2009 | Próxima de zero (é a referência [2]) |
 | 6 | Meses faltantes | Intervalo entre as missões e meses isolados |
@@ -264,7 +264,7 @@ print(f"Tendência: {np.polyfit(t, anom.values, 1)[0]:.2f} cm/ano")   # passo 7 
 
 ## 15. Caso hipotético: o Sr. José
 
-> ⚠️ **Fictício**. Continuação do caso do `nasa-power-api-daily.md` (seção 16).
+> ⚠️ **Fictício**. Continuação do caso do `NASA_POWER.md` (seção 16).
 
 **Dados usados:** JPL Mascon RL06.3 com filtro CRI, bloco de 3° × 3°, 2002–2025, tratado conforme a seção 8.
 
@@ -295,7 +295,7 @@ print(f"Tendência: {np.polyfit(t, anom.values, 1)[0]:.2f} cm/ano")   # passo 7 
 
 ### 16.2 Base do projeto
 
-9. Repositório da equipe, `docs/v1/.md/context/DECISOES.md` (D-002, D-003, D-005).
-10. Repositório da equipe, `docs/v1/.md/context/CONTEXTO-DESAFIO.md` (§7 tendência Mann-Kendall + Sen) e `bancos-de-dados-field-shift-minas.md`.
+9. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002, D-003, D-005).
+10. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§7 tendência Mann-Kendall + Sen) e `bancos-de-dados-field-shift-brasil.md`.
 
 *Consulta das fontes: 14 de novembro de 2026. Releases do GRACE mudam; confira a versão vigente no PO.DAAC.*
