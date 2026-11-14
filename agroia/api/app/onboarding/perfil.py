@@ -7,6 +7,14 @@ _OBSERVACAO = ["q13_textura", "q14_encharca", "q15_casca", "q16_erosao", "q17_du
                "q18_minhocas", "q20_partes_piores"]
 # 8 observações possíveis (as 7 acima + a pergunta 19, que vale uma quando tem cor e jeito)
 MIN_OBSERVACOES_B = 5
+# C pede números de verdade: ter o laudo em mãos não basta se nenhum valor foi informado
+MIN_VALORES_LAUDO_C = 2
+
+
+def tem_laudo(r: Respostas) -> bool:
+    """Fez análise, tem o resultado e informou pelo menos MIN_VALORES_LAUDO_C valores."""
+    return (r.q12_analise == "sim" and r.q12_tem_resultado == "sim"
+            and r.q12_laudo is not None and r.q12_laudo.valores_preenchidos() >= MIN_VALORES_LAUDO_C)
 
 
 def _respondida(valor) -> bool:
@@ -20,7 +28,7 @@ def calcula_papel(r: Respostas) -> str:
 
 def calcula_perfil(r: Respostas) -> str:
     """Nível de dado sobre o solo (ONBOARDING.md): A experiência, B observador, C com laudo."""
-    if r.q12_analise == "sim" and r.q12_tem_resultado == "sim":
+    if tem_laudo(r):
         return "C"
     observacoes = sum(_respondida(getattr(r, k)) for k in _OBSERVACAO)
     observacoes += _respondida(r.q19_cor) and _respondida(r.q19_jeito)
@@ -107,9 +115,45 @@ _TEXTURA = {"arenosa": "Mais arenosa", "media": "Meio-termo", "argilosa": "Mais 
 
 
 def _indicador(atributo: str, valor: str, origem: str, confianca: str, texto: str | None = None,
-               fonte: str = "produtor") -> dict:
+               fonte: str = "produtor", numero: float | None = None) -> dict:
     return {"atributo": atributo, "valor": valor, "texto": texto, "fonte": fonte, "origem": origem,
-            "confianca": confianca}
+            "confianca": confianca, "numero": numero}
+
+
+def _classe(numero: float, faixas: list[tuple[float, str]], acima: str) -> str:
+    """Primeira faixa cujo limite superior é maior que o número; senão, `acima`."""
+    for limite, classe in faixas:
+        if numero < limite:
+            return classe
+    return acima
+
+
+# Laudo: (atributo, faixas de classe ou None, rótulo e unidade para a tela).
+# Faixas PRELIMINARES (Embrapa / CFSEMG), [verificar com agronomia].
+# Fósforo e potássio não têm classe aqui: a interpretação depende da textura e do extrator.
+_LAUDO = {
+    "argila_pct": ("textura", ([(15, "arenosa"), (35, "media")], "argilosa"), "Argila", "%"),
+    "ph_agua": ("acidez", ([(5.0, "alta"), (6.0, "media"), (7.0, "adequada")], "alcalino"), "pH em água", ""),
+    "materia_organica_g_dm3": ("materia_organica", ([(20, "baixa"), (40, "media")], "alta"), "Matéria orgânica", "g/dm³"),
+    "saturacao_bases_pct": ("saturacao_bases", ([(50, "baixa"), (70, "media")], "alta"), "Saturação por bases (V%)", "%"),
+    "fosforo_mg_dm3": ("fosforo", None, "Fósforo", "mg/dm³"),
+    "potassio_mg_dm3": ("potassio", None, "Potássio", "mg/dm³"),
+    "ctc_cmolc_dm3": ("ctc", None, "CTC", "cmolc/dm³"),
+}
+
+
+def _indicadores_do_laudo(r: Respostas) -> list[dict]:
+    if not tem_laudo(r):
+        return []
+    itens = []
+    for campo, numero in r.q12_laudo.model_dump().items():
+        if numero is None:
+            continue
+        atributo, faixas, rotulo, unidade = _LAUDO[campo]
+        valor = _classe(numero, *faixas) if faixas else "informado"
+        texto = f"{rotulo}: {numero:g} {unidade}".strip() + " (laudo)"
+        itens.append(_indicador(atributo, valor, f"q12_laudo.{campo}", "alta", texto, fonte="laudo", numero=numero))
+    return itens
 
 
 def retrato_solo(r: Respostas) -> dict:
@@ -117,8 +161,9 @@ def retrato_solo(r: Respostas) -> dict:
 
     - indicadores: o que o produtor respondeu (sim/não e textura), com valor padronizado e texto de tela;
     - figuras: a leitura da pergunta 19 e os atributos padronizados que ela indica (confiança baixa).
+    Os valores do laudo (perfil C) entram primeiro, com fonte "laudo" e confiança alta.
     """
-    indicadores = []
+    indicadores = _indicadores_do_laudo(r)
     if _respondida(r.q13_textura):
         indicadores.append(_indicador("textura", r.q13_textura, "q13_textura", "media", _TEXTURA[r.q13_textura]))
     for chave, (atributo, v_sim, v_nao, t_sim, t_nao) in _SNS_SOLO.items():
@@ -145,7 +190,11 @@ def retrato_solo(r: Respostas) -> dict:
 def proximos_passos(r: Respostas) -> list[dict]:
     """Sugestões simples a partir dos 'não sei' (no máximo 3)."""
     passos = []
-    if r.q13_textura in (None, "nao_sei"):
+    if r.q12_analise == "sim" and r.q12_tem_resultado == "sim" and not tem_laudo(r):
+        passos.append({"id": "valores_laudo", "titulo": "Digite os valores do seu laudo",
+                       "texto": "Com pelo menos dois valores (como pH e argila), a análise usa o seu laudo no lugar dos mapas globais."})
+    argila_do_laudo = tem_laudo(r) and r.q12_laudo.argila_pct is not None
+    if r.q13_textura in (None, "nao_sei") and not argila_do_laudo:
         passos.append({"id": "teste_tato", "titulo": "Teste do tato (2 minutos)",
                        "texto": "Molhe um punhado de terra e aperte. Se esfarela, é arenosa; se molda e gruda, é argilosa."})
     if r.q12_analise in ("nao", "nao_sei"):

@@ -16,7 +16,7 @@ As perguntas não têm peso fixo. Cada resposta vira uma evidência sobre um atr
 
 O perfil é o **nível de dado sobre o solo** (A, B ou C). Quem respondeu fica num campo separado, o **papel** (`produtor` ou `tecnico`, pela pergunta 1), que só muda o nível de detalhe da tela.
 
-- **C** se a pergunta 12 = "sim" **e** tem o resultado em mãos.
+- **C** se a pergunta 12 = "sim", tem o resultado em mãos **e** informou pelo menos 2 valores do laudo.
 - **B** se respondeu a textura (13) **ou** pelo menos 5 das 8 perguntas de **observação** do solo sem "não sei" (13 a 18, 20 e a 19, que vale uma quando tem cor e jeito). As perguntas de manejo (12, 21 e 22) não contam.
 - **A** nos demais casos.
 

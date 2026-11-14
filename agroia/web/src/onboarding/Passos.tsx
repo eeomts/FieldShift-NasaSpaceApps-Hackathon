@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type {
-  CulturaBase, CulturaExcluida, EquipamentoBase, ItemCalendario, Perda, Prioridade, Respostas, SNS,
+  CulturaBase, CulturaExcluida, EquipamentoBase, ItemCalendario, Laudo, Perda, Prioridade, Respostas, SNS,
 } from "../api/tipos";
 import { Check, Mais, Xis } from "../components/icones";
 import { Cartao, cx, Opcoes, Selo, SIM_NAO_NAOSEI, Texto, Titulo } from "../components/ui";
@@ -280,16 +280,51 @@ const PERGUNTAS_SOLO: { k: keyof Respostas; p: string }[] = [
   { k: "q18_minhocas", p: "Encontra minhocas quando cava?" },
 ];
 
+const CAMPOS_LAUDO: { k: keyof Laudo; rotulo: string; unidade: string }[] = [
+  { k: "ph_agua", rotulo: "pH em água", unidade: "" },
+  { k: "argila_pct", rotulo: "Argila", unidade: "%" },
+  { k: "materia_organica_g_dm3", rotulo: "Matéria orgânica", unidade: "g/dm³" },
+  { k: "fosforo_mg_dm3", rotulo: "Fósforo (P)", unidade: "mg/dm³" },
+  { k: "potassio_mg_dm3", rotulo: "Potássio (K)", unidade: "mg/dm³" },
+  { k: "ctc_cmolc_dm3", rotulo: "CTC", unidade: "cmolc/dm³" },
+  { k: "saturacao_bases_pct", rotulo: "Saturação por bases (V%)", unidade: "%" },
+];
+
+function CamposLaudo({ laudo, onChange }: { laudo: Laudo; onChange: (l: Laudo) => void }) {
+  return (
+    <div className="flex flex-col gap-2 px-1">
+      <span className="text-[13px] font-bold">Valores do laudo (preencha os que tiver)</span>
+      <span className="text-xs text-suave">
+        Com pelo menos dois valores, a análise usa o seu laudo no lugar dos mapas globais.
+        Se a matéria orgânica vier em %, multiplique por 10.
+      </span>
+      <div className="grid grid-cols-2 gap-2">
+        {CAMPOS_LAUDO.map(({ k, rotulo, unidade }) => (
+          <label key={k} className="flex flex-col gap-1 text-xs font-bold">
+            {rotulo}{unidade && <span className="font-normal text-suave"> ({unidade})</span>}
+            <input type="number" inputMode="decimal" step="any" min={0} value={laudo[k] ?? ""}
+              onChange={(e) => onChange({ ...laudo, [k]: e.target.value === "" ? null : Number(e.target.value) })}
+              className="h-11 rounded-xl border-2 border-borda bg-white px-3 text-[15px] font-bold" />
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function PassoSolo1({ r, set }: PassoProps) {
   const anoAtual = new Date().getFullYear();
   return (
     <Bloco titulo="O que você sabe do seu solo?" texto={`"Não sei" também ajuda: mostra onde precisamos ter mais cuidado.`}>
       <Opcoes pergunta="Já fez análise de solo em laboratório?" valor={r.q12_analise}
-        onChange={(v) => set({ q12_analise: v, ...(v !== "sim" && { q12_tem_resultado: null, q12_ano: null }) })} opcoes={SIM_NAO_NAOSEI} />
+        onChange={(v) => set({ q12_analise: v, ...(v !== "sim" && { q12_tem_resultado: null, q12_ano: null, q12_laudo: null }) })} opcoes={SIM_NAO_NAOSEI} />
       {r.q12_analise === "sim" && (
         <Cartao>
           <Opcoes pergunta="Tem o resultado em mãos?" valor={r.q12_tem_resultado}
-            onChange={(v) => set({ q12_tem_resultado: v })} opcoes={SIM_NAO_NAOSEI} />
+            onChange={(v) => set({ q12_tem_resultado: v, ...(v !== "sim" && { q12_laudo: null }) })} opcoes={SIM_NAO_NAOSEI} />
+          {r.q12_tem_resultado === "sim" && (
+            <CamposLaudo laudo={r.q12_laudo ?? {}} onChange={(l) => set({ q12_laudo: l })} />
+          )}
           <label className="flex flex-col gap-1.5 px-1 text-[13px] font-bold">
             De que ano?
             <select value={r.q12_ano ?? ""} onChange={(e) => set({ q12_ano: e.target.value ? Number(e.target.value) : null })}
