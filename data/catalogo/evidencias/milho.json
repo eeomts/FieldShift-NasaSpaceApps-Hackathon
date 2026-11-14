@@ -1,0 +1,176 @@
+{
+  "id": "milho",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "110",
+    "ciclo_dias_max": "145",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "24",
+    "temp_otima_max_c": "30",
+    "tmax_critica_c": "33",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "500",
+    "agua_ciclo_mm_max": "800",
+    "kc_inicial": "0.3",
+    "kc_medio": "1.2",
+    "kc_final": "0.35",
+    "profundidade_raiz_m": "1.7",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "alto",
+    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Clima e solo (água; tmax crítica; geada)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Cultivares (classes de ciclo)|Cruz & Magalhães, Embrapa Milho e Sorgo, Cultivares superprecoces surpreendem produtores, Campo & Negócios jan/2010 (grupos de ciclo MAPA/ZARC em dias; geada)|Borghi, Magalhães & Pereira Filho, Embrapa Milho e Sorgo Documentos 273, 2023 (ciclo em dias após emergência)|Magalhães & Durães, Embrapa Milho e Sorgo Circular Técnica 76, 2006 (fenologia: floração 65 DAE, R6 50-60 dias após polinização; água ~600 mm)|Avelar, Embrapa CNPMS, Manual técnico Cultura do Milho, cap. 1 Fatores climáticos (temp base; temp ótima)|Oliveira & Kluthcouski, Embrapa Arroz e Feijão, Fundamentos para uma agricultura sustentável, cap. 8 Palhada de cobertura do solo no SPD, 2009 (biomassa; persistência da palhada)|Resende et al., Embrapa Gado de Leite Circular Técnica 114, 2017 (valor forrageiro)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "35",
+      "depois": "33",
+      "motivo": "A coluna é o calor que prejudica a floração. A Embrapa diz que acima de 33 °C na polinização a germinação do pólen cai muito. Os 35 °C da mesma fonte se referem a rendimento e proteína do grão, não à floração."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "140",
+      "depois": "145",
+      "motivo": "O MAPA/ZARC classifica o milho em Grupo I (<110 dias), Grupo II (110 a 145 dias) e Grupo III (>145 dias), contados da emergência à maturação fisiológica. A faixa 110-145 cobre o Grupo II, onde ficam as cultivares precoces (cerca de 65-68% do mercado). Um ensaio da Embrapa em Sete Lagoas mediu ciclos de 114 a 134 dias após a emergência. Não havia fonte literal para 140."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "medio",
+      "depois": "alto",
+      "motivo": "Segundo a Embrapa Gado de Leite, o milho é a planta forrageira mais usada para silagem no Brasil e no mundo, por causa da alta produtividade de matéria seca e da boa fermentação. Ressalva: quando colhido para grão, só a palhada sobra, e o valor forrageiro dela é menor."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|FAO Irrigation Water Management Manual 3 (água)|FAO ECOCROP (temperatura)|Embrapa Milho e Sorgo",
+      "depois": "(ver valores.fontes)",
+      "motivo": "As fontes agora são exatas. Saíram o FAO IWM Manual 3 e o ECOCROP, que não consultei; a Embrapa cobre água e temperatura."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed., Clima e solo, 2007",
+      "url": "https://ainfo.cnptia.embrapa.br/digital/bitstream/item/69840/1/Clima-solo.pdf",
+      "trecho": "as máximas produtividades ocorrem quando o consumo de água durante todo o ciclo está entre 500 e 800mm"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milho 3ª ed., Clima e solo, 2007",
+      "url": "https://ainfo.cnptia.embrapa.br/digital/bitstream/item/69840/1/Clima-solo.pdf",
+      "trecho": "Temperaturas acima de 33 o C durante a polinização reduzem sensivelmente a germinação do grão de pólen."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Avelar, B. C., Embrapa CNPMS, Manual técnico Cultura do Milho, cap. 1 Fatores climáticos",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/472569/1/Fatoresclimaticos.pdf",
+      "trecho": "o ótimo de germinação se dá entre 24 e 30°C [...] desenvolvimento mínimo entre 8-10°C, ótimo a 30°C e máximo a 40°C [...] o milho tem uma temperatura base de 10°C"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Cruz, J. C.; Magalhães, P. C. (Embrapa Milho e Sorgo), Cultivares superprecoces surpreendem produtores, Campo & Negócios, jan. 2010",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/854950/1/Cultivaressuperprecoces.pdf",
+      "trecho": "Grupo I (n < 110 dias); Grupo II (n maior ou igual a 110 dias e menor ou igual a 145 dias); e Grupo III (n > 145 dias), onde n expressa o número de dias da emergência à maturação fisiológica."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Borghi, E.; Magalhães, P. C.; Pereira Filho, I. A., Ecofisiologia do milho segunda safra para alta produtividade, Embrapa Milho e Sorgo Documentos 273, 2023",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1156268/1/Ecofisiologia-do-milho-segunda-safra-para-alta-produtividade.pdf",
+      "trecho": "Tabela 2 [...] Duração do ciclo (DAE): 114 a 134 dias (AS1596 PRO2, AG7098 PRO2, AG 8088 PRO2; semeaduras de 7/11/2016 a 19/1/2017, Sete Lagoas-MG)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Magalhães, P. C.; Durães, F. O. M., Fisiologia da produção de milho, Embrapa Milho e Sorgo Circular Técnica 76, 2006",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/490408/1/Circ76.pdf",
+      "trecho": "material de ciclo normal, cuja floração acontece aos 65 dias após a emergência [...] Estádio R6 (Maturidade Fisiológica) [...] ocorre cerca de 50 a 60 dias após a polinização"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Cruz, J. C.; Pereira Filho, I. A., Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed., Cultivares, 2007",
+      "url": "https://ainfo.cnptia.embrapa.br/digital/bitstream/item/69869/1/Cultivares-1.pdf",
+      "trecho": "As cultivares normais apresentam exigências térmicas maior do que 890 graus-dias (G.D.), as precoces, de 830 a 890 G.D., e as superprecoces, menor do que 830 G.D. [...] A diferença entre as cultivares mais tardias e as mais superprecoces pode não chegar a 10 dias."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Cruz & Magalhães (Embrapa Milho e Sorgo), Cultivares superprecoces surpreendem produtores, 2010",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/854950/1/Cultivaressuperprecoces.pdf",
+      "trecho": "apenas em Campo Mourão e Santa Helena, em que houve ocorrência de geada no estádio de enchimento de grãos, se verificou maior produtividade nas cultivares superprecoces"
+    },
+    {
+      "colunas": [
+        "aporte_biomassa",
+        "cobertura_solo"
+      ],
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 em Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "dentre as principais culturas anuais, no que se refere à quantidade, apenas os restos culturais do milho foram suficientes para a formação de cobertura morta [...] Milho 14,49 t ha-1 [antes da semeadura do feijão]"
+    },
+    {
+      "colunas": [
+        "cobertura_solo"
+      ],
+      "fonte": "Oliveira & Kluthcouski, Embrapa Arroz e Feijão, 2009 (citando Seguy et al., 1992)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "no período de 90 dias após a primeira chuva, as palhadas de milho, arroz e soja foram reduzidas em 63%, 65% e 86% [...] resultaram em cobertura do solo de 30%, 38% e 7%"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Resende, H. et al., Tecnologia e custo da silagem de milho, Embrapa Gado de Leite Circular Técnica 114, 2017",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1078472/1/CT114Tecnologiaecustosilagemdemilho.pdf",
+      "trecho": "No Brasil, e no mundo, a planta forrageira mais utilizada para ensilagem é o milho. Isso se deve à sua alta produtividade de matéria seca, facilidade de cultivo"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "i. Cereals 0.3 [...] Maize, Field (grain) (field corn) 1.20 0.60-0.35"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Maize 1.0-1.7 (já conferido pelo coordenador)"
+    }
+  ],
+  "pendencias": [
+    "ciclo_dias: nenhuma fonte Embrapa traz literalmente 'X a Y dias da semeadura à colheita' por classe (superprecoce/precoce/normal). A faixa 110-145 vem dos grupos MAPA/ZARC em dias (emergência à maturação fisiológica), do ensaio com 114-134 DAE e da conta da Circ. 76 (65 + 50-60 ≈ 115-125 DAE). Da semeadura à colheita somam-se cerca de 4-5 dias de emergência e mais a secagem no campo. Superprecoces de safrinha (Grupo I, <110) e tardias do Sul (Grupo III, >145) ficam fora da faixa.",
+    "temp_otima_min_c/max: a única faixa da Embrapa é a ótima de germinação (24-30 °C); para o desenvolvimento a Embrapa só dá 'ótimo a 30 °C'. O trecho '25-28 °C' do Avelar é temperatura do SOLO na Nigéria (Samaru), não do ar, então não serve para mudar o mínimo para 25. Por isso mantive 24-30. O ECOCROP não foi consultado (a página de busca não devolveu dados).",
+    "fixa_nitrogenio=false e raiz_profunda=false vêm da botânica (Poaceae, raiz fasciculada), sem trecho citado. FAO-56 Tab.22 (raiz 1.7) e Kc médio/final reaproveitados do rascunho, conferidos no t12.txt.",
+    "valor_forrageiro=alto vale para milho silagem. Se o app tratar o milho só como grão, o valor da palhada é menor. Convém alinhar com o sorgo (hoje 'medio'), que também é forrageira de silagem. Opcional: incluir 'forrageira' em tipos.",
+    "cobertura_solo=media mantido (coluna = efeito no fator C da erosão). A palhada do milho persiste bem (30% de cobertura após 90 dias contra 7% da soja), mas durante o ciclo a lavoura em linhas cobre menos que as plantas de cobertura, que estão como 'alta'."
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "id": "crotalaria",
+  "valores": {
+    "tipos": "cobertura|fixadora_n|raiz_profunda",
+    "perene": "false",
+    "ciclo_dias_min": "56",
+    "ciclo_dias_max": "160",
+    "temp_base_c": "",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "30",
+    "tmax_critica_c": "40",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "226",
+    "agua_ciclo_mm_max": "",
+    "kc_inicial": "0.34",
+    "kc_medio": "1.41",
+    "kc_final": "",
+    "profundidade_raiz_m": "0.6",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "true",
+    "cobertura_solo": "alta",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "baixo",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (dias a 50% do florescimento por época de semeadura: 118/88/67; fotoperíodo de dias curtos)|Carvalho et al., Embrapa Cerrados, Circular Técnica 4 Manejo de adubos verdes no Cerrado, 1999 (florescimento ~90 dias no período chuvoso e 60 dias no fim das chuvas; 17,6 t/ha MS; 443,5 kg/ha N na parte aérea; corte pode anteceder a floração)|Pereira, A.J., tese UFRRJ/Embrapa Agrobiologia, Caracterização agronômica de espécies de Crotalaria L., 2007 (50% de flores aos 57-163 DAS conforme época/local; 50% de cobertura aos 15 DAS; 17,6 Mg/ha MS; 418,7 kg/ha N da FBN)|Araújo et al., Embrapa Agrobiologia, Boletim de P&D 66, 2010 (espécie herbácea anual; FBN 67%; 105,9 kg/ha N via FBN; pleno florescimento 114 dias após semeadura de 08/12)|FAO ECOCROP Crotalaria juncea id 801 (temperatura ótima 20-30, absoluta 4-40; temp. letal -1 °C no início do crescimento e -2 °C em repouso; ciclo 60-160 d; anual; sementes tóxicas a mamíferos)|Sampaio et al., Irriga 21(2):211-225, 2016, DOI 10.15809/irriga.2016v21n2p211-225 (Kc medido em lisímetro de pesagem: 0,34 inicial e 1,41 floração; ETc 225,89 mm até o pleno florescimento aos 56 DAS; Mossoró-RN)|Silva et al., Embrapa Semi-Árido, Caracterização de sistemas radiculares de leguminosas sob irrigação no Vale do São Francisco, 2002 (raízes até ~0,6 m aos 60 dias; 80% das raízes até 0,4 m)|Medina et al., Semina Ciênc. Agrár. 34(2):675-682, 2013 (profundidade efetiva 0,40 m, a maior entre as coberturas, amostragem até 1,0 m)|Foloni, Lima & Büll, RBCS 30:49-57, 2006 (raízes de C. juncea formam bioporos na camada compactada)|Cook et al., Tropical Forages (tropicalforages.info), Crotalaria juncea (raiz pivotante longa; alcaloides pirrolizidínicos tóxicos; animais não comem verde; tolera geadas leves)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "tipos",
+      "antes": "cobertura|fixadora_n",
+      "depois": "cobertura|fixadora_n|raiz_profunda",
+      "motivo": "raiz_profunda=true (raiz pivotante, bioporos em camada compactada, maior profundidade efetiva entre as coberturas em Medina et al. 2013). Mantida a convenção do CSV de repetir raiz_profunda em tipos (como sorgo, milheto, girassol)."
+    },
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "70",
+      "depois": "56",
+      "motivo": "Ciclo = dias da semeadura ao manejo (corte/rolagem) no pleno florescimento (~50% de flores). Semeaduras de outono/fim das chuvas florescem cedo: 56 DAS (Sampaio 2016, semeadura em junho, Mossoró), 57 DAS (Pereira 2007, semeadura em 30/03, Seropédica), 60 d (Embrapa Cerrados CT 4, Goiânia) e 67 d (Amabile 2000, semeadura em março)."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "120",
+      "depois": "160",
+      "motivo": "Planta de dias curtos: semeaduras de primavera/verão alongam a fase vegetativa. 118 d (Amabile 2000, semeadura em 12/11 em GO), 114 d (Embrapa Agrobiologia BPD 66, semeadura em 08/12), 138 d (Paty do Alferes) e 163 d (Seropédica, semeadura em 22/11) em Pereira 2007. ECOCROP: ciclo de 60 a 160 d. O corte pode ser antecipado (CT 4: 'o corte pode anteceder à floração')."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "",
+      "depois": "40",
+      "motivo": "ECOCROP: temperatura absoluta máxima de 40 °C. Não é um limiar específico de floração (ver pendências)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "",
+      "depois": "226",
+      "motivo": "ETc medida em lisímetro de pesagem até o pleno florescimento (56 DAS), 225,89 mm no tratamento de menor salinidade (Sampaio et al. 2016)."
+    },
+    {
+      "coluna": "kc_inicial",
+      "antes": "",
+      "depois": "0.34",
+      "motivo": "Medido em lisímetro de pesagem (Sampaio et al. 2016), fase inicial de 18 d, IC95% 0,22-0,46. Coincide com o grupo Legumes do FAO-56 (0,4), mas aqui é medido, não proxy."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "",
+      "depois": "1.41",
+      "motivo": "Medido em lisímetro (Sampaio et al. 2016) na fase de floração, IC95% 1,27-1,55. Estudo único, semiárido irrigado, 3 lisímetros de 1,5 x 1,5 m: provavelmente superestima para clima úmido. A alternativa seria PROXY do grupo Legumes do FAO-56 (Kc mid 1,15), ver pendências."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "antes": "",
+      "depois": "0.6",
+      "motivo": "Sem valor no FAO-56. Medido: raízes chegaram a ~0,6 m aos 60 dias (Embrapa Semi-Árido, com lençol freático a 0,9 m); profundidade efetiva (80% das raízes) de 0,4 m (Embrapa Semi-Árido e Medina et al. 2013). Usado o máximo medido para ficar comparável ao limite superior do FAO-56 nas demais culturas."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|Embrapa (adubação verde com crotalária)|sem Kc nem raiz no FAO-56",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Fontes primárias conferidas e citadas uma a uma."
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "baixa",
+      "depois": "media",
+      "motivo": "Os campos preenchidos têm fonte primária lida. Ficaram vazios temp_base_c, agua_ciclo_mm_max e kc_final, e o Kc vem de um único estudo."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Amabile, Fancelli & Carvalho, Comportamento de espécies de adubos verdes em diferentes épocas de semeadura e espaçamentos na região dos Cerrados, Pesq. agropec. bras. 35(1):47-54, 2000",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/5695/2799/20586",
+      "trecho": "TABELA 3. Número de dias para atingir 50% do florescimento ... C. juncea 118Ba 88Cb 67Dc (semeadura em 12 de novembro, 7 de janeiro, 4 de março)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Pereira, A.J., Caracterização agronômica de espécies de Crotalaria L. em diferentes condições edafoclimáticas..., tese UFRRJ, 2007",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/630008/1/CaracterizacaoagronomicadeespeciesdeCrotalariaL.emdiferentescondicoesedafoclimaticas.pdf",
+      "trecho": "no período de primavera-verão foram de 101, 134, 163, 169, 179 dias, para C. breviflora, C. spectabilis, C. juncea ... No período de outono-inverno foram de 71, 57, 82 e 93 dias, para C. spectabilis, C. juncea"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "aporte_biomassa",
+        "fixa_nitrogenio"
+      ],
+      "fonte": "Carvalho, Burle, Pereira & Silva, Manejo de adubos verdes no Cerrado, Embrapa Cerrados, Circular Técnica 4, 1999",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/546470/1/cirtec04.pdf",
+      "trecho": "A crotalária juncea, que apresenta ciclo mais curto, (floresce aproximadamente aos 90 dias) ... o corte pode anteceder à floração; Tabela 1: Crotalária juncea 77,3 [MV] 17,6 [MS t/ha]; Tabela 2: Crotalaria juncea 443,5 [kg/ha de N]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "perene",
+        "fixa_nitrogenio"
+      ],
+      "fonte": "Araújo et al., Balanço de nitrogênio em área de produção de sementes de crotalária-juncea nas condições da Baixada Fluminense, Embrapa Agrobiologia, Boletim de P&D 66, 2010",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/884716/1/bot06610.pdf",
+      "trecho": "A crotalária-juncea é uma espécie herbácea anual ... A semeadura ... foi realizada no dia 08 de dezembro de 2008 ... florescimento pleno da crotalária-juncea (1 abril de 2009) ... N-total aportado via FBN (pleno florescimento) 105,9 ± 5,8 [kg/ha]; taxa média de FBN igual a 67%"
+    },
+    {
+      "colunas": [
+        "fixa_nitrogenio",
+        "aporte_biomassa",
+        "cobertura_solo"
+      ],
+      "fonte": "Pereira, A.J., tese UFRRJ, 2007",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/630008/1/CaracterizacaoagronomicadeespeciesdeCrotalariaL.emdiferentescondicoesedafoclimaticas.pdf",
+      "trecho": "Aos 15 dias após semeadura, C. juncea alcançou 50 % de cobertura do solo ... alcançando 17,6 Mg.ha-1 e 13,3 Mg.ha-1 ... alcançando 418,7 kg.ha-1 e 304,7 kg.ha-1 de N derivado da atmosfera"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c",
+        "sensivel_geada",
+        "ciclo_dias_max",
+        "perene",
+        "valor_forrageiro"
+      ],
+      "fonte": "FAO ECOCROP, Crotalaria juncea (id 801)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=801",
+      "trecho": "Temperat. requir. 20 30 4 40 ... Killing temp. during rest -2 Killing temp. early growth -1 ... Crop cycle 60 160 ... Life span annual ... poison mammals seeds"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "agua_ciclo_mm_min",
+        "ciclo_dias_min"
+      ],
+      "fonte": "Sampaio, Miranda, Medeiros, Lima & Santos, Necessidade hídrica da Crotalaria juncea L. em resposta à salinidade residual do solo, Irriga 21(2):211-225, 2016",
+      "url": "https://doi.org/10.15809/irriga.2016v21n2p211-225",
+      "trecho": "Tabela 2 ... Inicial 18 [d] 0,34 ... Desenvolvimento 18 0,82/0,89 ... Floração 14 1,41; A ETc da crotalária até atingir o florescimento pleno, aos 56 DAS, foi de 225,89 e 183,93 mm; Floração P(1,27 ≤ µ ≥ 1,55) = 0,95"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Silva, Gomes, Soares, Sá, Silva & Faria, Caracterização de sistemas radiculares de leguminosas cultivadas sob irrigação no Vale do São Francisco: 1. Padrão de distribuição, Embrapa Semi-Árido (Alice OPB1540), 2002",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/131805/1/OPB1540.pdf",
+      "trecho": "As raízes de Crotalaria juncea atingiram cerca de 0,6 m de profundidade ... a profundidade efetiva, onde são encontradas cerca de 80% do sistema radicular, pode ser considerado 0,4 m para a Crotalaria juncea"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "raiz_profunda"
+      ],
+      "fonte": "Medina, Neves, Aita, Bordin et al., Semina: Ciências Agrárias 34(2):675-682, 2013",
+      "url": "https://www.redalyc.org/pdf/4457/445744120040.pdf",
+      "trecho": "A profundidade efetiva (até onde se encontra 80% do sistema radicular) ficou entre 0,26 para a mucuna cinza ... e 0,39-0,40 para milheto e C. juncea ... o sistema radicular da C. juncea possui a maior profundidade de raízes"
+    },
+    {
+      "colunas": [
+        "raiz_profunda"
+      ],
+      "fonte": "Foloni, Lima & Büll, Crescimento aéreo e radicular da soja e de plantas de cobertura em camadas compactadas de solo, RBCS 30:49-57, 2006",
+      "url": "https://www.redalyc.org/pdf/1802/180214052006.pdf",
+      "trecho": "O sistema radicular da crotalária juncea apresentou potencial de formação de 'bioporos' compatível ao da mucuna preta, apesar de ter sido relativamente mais sensível à compactação do solo"
+    },
+    {
+      "colunas": [
+        "raiz_profunda"
+      ],
+      "fonte": "Pacheco et al., Influência da densidade do solo em atributos da parte aérea e sistema radicular de crotalária, Pesq. Agropec. Trop. 45(4):464-472, 2015",
+      "url": "https://www.redalyc.org/pdf/2530/253042635014.pdf",
+      "trecho": "Crotalaria juncea apresentou os melhores resultados, quanto à produção de fitomassa aérea e de raízes, em níveis de compactação do solo de até 1,4 Mg m-3"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro",
+        "sensivel_geada",
+        "raiz_profunda"
+      ],
+      "fonte": "Cook et al., Tropical Forages: an interactive selection tool, Crotalaria juncea (CIAT/ACIAR)",
+      "url": "https://tropicalforages.info/text/entities/crotalaria_juncea.htm",
+      "trecho": "Vigorous lateral roots and long taproot that can exploit deeply stored soil moisture ... can tolerate light frosts ... Animals are reported not to eat C. juncea when it is green ... contains poisonous glucosides (pyrrolizidine alkaloids)"
+    }
+  ],
+  "pendencias": [
+    "temp_base_c: sem valor medido para a C. juncea. O resumo de Qi et al. (Exp. Agric. 35:327-344, 1999) dá Tb comum de 10 °C (aparecimento de folhas) e 9 °C (emergência) para as leguminosas de cobertura de dias curtos. Não consegui confirmar no texto completo (acesso restrito) que a C. juncea estava entre as espécies. Um artigo da Agronomy (MDPI) de 2024 sobre sunn hemp usa GDD com base de 10 °C, mas não consegui abri-lo (403). Candidato: 10 °C, com baixa confiança.",
+    "kc_medio 1,41: vem de um único estudo (3 lisímetros de 1,5 x 1,5 m, semiárido irrigado em Mossoró, plantio em fileiras duplas espaçadas de 1,8 m). Está acima do teto usual do FAO-56 e pode superestimar a ETc em regiões úmidas. Se o grupo preferir conservador: PROXY do grupo Legumes do FAO-56, Kc mid 1,15.",
+    "kc_final: vazio. Como cobertura, a crotalária é manejada no pleno florescimento e não tem fase final de senescência. O estudo de Kc também parou na floração. Se o modelo exigir valor, pode-se repetir o kc_medio (corte na floração) ou usar o PROXY do grupo Legumes do FAO-56 (0,55), declarando isso.",
+    "agua_ciclo_mm_max: sem fonte de exigência hídrica para ciclos longos. Os 226 mm do mínimo são a ETc medida em 56 dias. Para ciclos de 120-160 dias o consumo será maior. O ECOCROP só dá chuva ANUAL ótima de 500-1500 mm (absoluta 200-4300), que não é água do ciclo.",
+    "tmax_critica_c 40: é o máximo absoluto do ECOCROP, não um limiar de calor medido na floração.",
+    "profundidade_raiz_m 0,6: máximo medido aos 60 dias com lençol freático a 0,9 m, o que pode ter limitado a raiz. O real em sequeiro e em ciclo completo pode ser maior. A profundidade efetiva (80% das raízes) é 0,4 m. Não há valor no FAO-56.",
+    "ciclo: a amplitude (56-160) reflete a época de semeadura e a latitude (planta de dias curtos), mais do que diferenças entre cultivares. Na semeadura típica de primavera no Cerrado (novembro) o florescimento ocorre aos ~90-120 dias.",
+    "tolerante_seca: não incluída. O Tropical Forages diz 'Drought tolerant, adapted to hot, semi-arid and arid areas', mas não achei fonte Embrapa específica para a C. juncea: a frase 'resistente à seca' em Amabile 2000 refere-se ao guandu.",
+    "sensivel_geada=true: o ECOCROP dá temperatura letal de -1 °C no início do crescimento. O Tropical Forages diz que 'can tolerate light frosts'. É sensível a geadas moderadas e fortes."
+  ]
+}

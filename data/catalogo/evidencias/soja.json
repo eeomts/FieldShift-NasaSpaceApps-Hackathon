@@ -1,0 +1,125 @@
+{
+  "id": "soja",
+  "valores": {
+    "tipos": "comercial|fixadora_n",
+    "perene": "false",
+    "ciclo_dias_min": "100",
+    "ciclo_dias_max": "140",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "30",
+    "tmax_critica_c": "40",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "450",
+    "agua_ciclo_mm_max": "800",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "0.5",
+    "profundidade_raiz_m": "1.3",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "baixo",
+    "valor_forrageiro": "baixo",
+    "fontes": "Embrapa Soja Circular Técnica 48 (2007) (temperatura e água)|Embrapa Soja Documentos 284 e 309 (ciclo)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes)|FAO-56 Tab.22 (raiz)|IBGE PAM tabela 5457 (código)",
+    "confianca_parametros": "alta"
+  },
+  "mudancas": [
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "35",
+      "depois": "40",
+      "motivo": "Circular Técnica 48: acima de 40 °C há distúrbios na floração"
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "700",
+      "depois": "800",
+      "motivo": "Circular Técnica 48: 450 a 800 mm/ciclo"
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Farias, Nepomuceno & Neumaier, Embrapa Soja, Circular Técnica 48, Ecofisiologia da Soja, 2007, p. 3",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/470308/1/circtec48.pdf",
+      "trecho": "A soja se adapta melhor às regiões onde as temperaturas oscilam entre 20°C e 30°C sendo que a temperatura ideal para seu desenvolvimento está em torno de 30°C."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 48, 2007, p. 3",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/470308/1/circtec48.pdf",
+      "trecho": "Regiões com temperaturas menores ou iguais a 10°C graus são impróprias ao cultivo da soja, pois nesses locais o crescimento vegetativo da soja é pequeno ou nulo."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 48, 2007, p. 3",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/470308/1/circtec48.pdf",
+      "trecho": "temperaturas acima de 40°C têm efeito adverso na taxa de crescimento, provocam estragos na floração e diminuem a capacidade de retenção de vagens."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 48, 2007, p. 5",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/470308/1/circtec48.pdf",
+      "trecho": "A necessidade total de água na cultura da soja, para obtenção do máximo rendimento, varia entre 450 a 800 mm/ciclo"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Soja, Documentos 284, Cultivares de Soja 2007/2008 Norte e Nordeste",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/469955/1/Documentos284.pdf",
+      "trecho": "MA. PI. TO. PA: Precoce até 110 dias; Médio 111 a 125 dias; Tardio > 125 dias. RR: até 105 dias; 106 a 115 dias; > 115 dias"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Soja, Documentos 309, Cultivares de Soja 2008/2009 Região Centro-Sul",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/469568/1/doc309.pdf",
+      "trecho": "a cultivar Embrapa 48, de ciclo semiprecoce, apresentou 124 dias da emergência à maturação no Paraná (tabelas de cultivares: 115 a 138 dias de ciclo total)"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Allen et al. 1998, Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "e. Legumes (Leguminosae) 0.4 1.15 0.55 ... Soybeans 1.15 0.50 (Kc ini herdado do grupo)"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Allen et al. 1998, Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Soybeans 0.6-1.3 (valor maior para sequeiro)"
+    },
+    {
+      "colunas": [
+        "codigo_pam"
+      ],
+      "fonte": "IBGE, API de agregados, tabela 5457, classificação 782",
+      "url": "https://servicodados.ibge.gov.br/api/v3/agregados/5457/metadados",
+      "trecho": "40124 Soja (em grão)"
+    }
+  ],
+  "pendencias": [
+    "Catálogos de cultivares de 2007/2008; cultivares superprecoces atuais podem fechar o ciclo em cerca de 90 dias.",
+    "cobertura_solo, aporte_biomassa e valor_forrageiro são julgamento, sem fonte com números."
+  ]
+}

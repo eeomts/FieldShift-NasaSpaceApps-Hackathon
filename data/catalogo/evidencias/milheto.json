@@ -1,0 +1,243 @@
+{
+  "id": "milheto",
+  "valores": {
+    "tipos": "cobertura|forrageira|raiz_profunda|tolerante_seca",
+    "perene": "false",
+    "ciclo_dias_min": "45",
+    "ciclo_dias_max": "105",
+    "temp_base_c": "13",
+    "temp_otima_min_c": "25",
+    "temp_otima_max_c": "35",
+    "tmax_critica_c": "40",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "450",
+    "agua_ciclo_mm_max": "650",
+    "kc_inicial": "0.3",
+    "kc_medio": "1.0",
+    "kc_final": "0.3",
+    "profundidade_raiz_m": "2.0",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "true",
+    "cobertura_solo": "alta",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "alto",
+    "fontes": "Embrapa Milho e Sorgo, Cultivo do Milheto, Sistema de Produção 3, 5a ed. 2016 (ciclo por cultivar e uso, raiz, reciclagem de nutrientes, descompactação, biomassa, forragem, tmax, água 440 mm)|Embrapa Milho e Sorgo, Cultivo do Milheto - Clima, Sistema de Produção 3, 2009 (temp. base ~13 °C, ótimo 31-34 °C, não tolera geada, tolerância à seca)|Embrapa Milho e Sorgo, Circular Técnica 29 Manejo da Cultura do Milheto, 2003 (cobertura: dessecação na pré-floração, seca, raiz profunda)|FAO ECOCROP Pennisetum glaucum id 8418 (temperatura ótima 25-35, absoluta 12-40)|FAO Irrigation Water Management Training Manual 3, Tab.5 (água 450-650 mm, linha Sorghum/Millet)|FAO-56 Tab.12 (Kc, linha Millet, Kc ini do grupo Cereals)|FAO-56 Tab.22 (raiz 1.0-2.0 m, limite superior = sequeiro)|Silva & Rosolem, RBCS 25:253-260, 2001 (raiz do milheto atravessa camada compactada)",
+    "confianca_parametros": "alta"
+  },
+  "mudancas": [
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "60",
+      "depois": "45",
+      "motivo": "Na cobertura (uso principal no Brasil) o milheto é dessecado na pré-floração; as cultivares florescem com 43 a 58 dias (Embrapa SP3). O mínimo passa a ser o manejo da cobertura. O máximo (105) é a colheita de grão."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "100",
+      "depois": "105",
+      "motivo": "Maturidade fisiológica de BRS 1501/1502 aos 104 DAE; ADR 500 e ADR 7010 com ciclo até colheita de 100 dias (Embrapa SP3). FAO-56 Tab.11 dá 105 dias."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "12",
+      "depois": "13",
+      "motivo": "Embrapa (Cultivo do Milheto, Clima): temperatura base 'próxima a 13ºC'. 12 é o mínimo absoluto do ECOCROP, não a base térmica."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "rascunho",
+      "depois": "referências conferidas",
+      "motivo": "Retirado RASCUNHO A CONFERIR; cada fonte com o que cobre."
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Todas as colunas preenchidas têm fonte primária lida (Embrapa, FAO, ECOCROP, RBCS)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Circular Técnica 29 - Manejo da Cultura do Milheto, 2003",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487545/1/Circ29.pdf",
+      "trecho": "alto volume de massa verde que, dessecado na pré-floração, produz uma massa seca de baixa relação C/N e de rápida decomposição."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (Sistema de Produção 3, 5a ed.), 2016, Cultivares, Tab.3 e Tab.5",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "Florescimento 45-50 dias [ADR 300] / 53-58 dias [ADR 500]; Ciclo: emerg. ao floresc. 43 dias / 51 dias / 45 dias [ANSB MC, ANM 17, ANM 30]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Plantio",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "pode-se conseguir até 5 t ha-1 de matéria seca com menos de 60 dias"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Ecofisiologia e Cultivares",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "a maturidade fisiológica das cultivares de milheto BRS1501 e BRS1502 ocorre aos 104 DAE [...] BRS1503 [...] aos 97 DAE; Ciclo até colheita 92 dias [ADR 300] / 100 dias [ADR 500]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "FAO-56, Tab.11 (duração das fases)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Millet 15 25 40 25 105 June Calif. Desert, USA"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "sensivel_geada",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto - Clima (Landau & Pereira Filho), 2009",
+      "url": "https://ainfo.cnptia.embrapa.br/digital/bitstream/item/27379/1/Clima.pdf",
+      "trecho": "Medidas sugerem um ótimo de temperatura de 31ºC a 34ºC para milheto. [...] Plantas de milheto não toleram geadas, sendo que a temperatura, base para acessar o seu desenvolvimento vegetal, deve estar próxima a 13ºC."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "FAO ECOCROP, data sheet Pennisetum glaucum (id 8418)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=8418",
+      "trecho": "Temperat. requir. Optimal 25 35, Absolute 12 40; Killing temp. early growth 0; Crop cycle 60 120"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Ecofisiologia",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "elevadas (≥ 40 ºC) temperaturas durante FC 1 e/ou FC 3 têm pouco efeito [...] Ao contrário, em FC 2, o estresse térmico faz reduzir a fertilidade das espiguetas"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "FAO, Irrigation Water Management Training Manual 3 (Irrigation Water Needs), Tab.5",
+      "url": "https://www.fao.org/4/s2022e/s2022e02.htm",
+      "trecho": "APPROXIMATE VALUES OF SEASONAL CROP WATER NEEDS [...] Sorghum/Millet 450-650"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Fertilidade de solos",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "irrigação ou suplementação para cerca de 440mm totais durante o ciclo"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Tab.12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "i. Cereals 0.3 1.15 0.4 [...] Millet 1.00 0.30 1.5"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Tab.22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Millet 1.0-2.0 0.55"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "raiz_profunda",
+        "tipos"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Ecofisiologia e Importância",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "Em genótipos de ciclo longo, o sistema radicular pode atingir até três metros de profundidade no solo, diferentemente de raízes em cultivares de ciclo curto que chegam a apenas 140 cm; [...] ferramenta para descompactação e estruturação de solo"
+    },
+    {
+      "colunas": [
+        "raiz_profunda",
+        "tipos",
+        "cobertura_solo"
+      ],
+      "fonte": "Silva & Rosolem, Crescimento radicular de espécies utilizadas como cobertura decorrente da compactação do solo, RBCS 25:253-260, 2001",
+      "url": "https://www.redalyc.org/pdf/1802/180218429002.pdf",
+      "trecho": "Os estados de compactação impostos em subsuperfície não impediram o crescimento de raízes de [...] milheto [...]. O milheto apresentou-se como a espécie mais indicada para cobertura, por suas características de produção de matéria seca e crescimento radicular."
+    },
+    {
+      "colunas": [
+        "tipos",
+        "raiz_profunda"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Cultivares",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "O sistema radicular profundo possibilita a reciclagem de nutrientes dispersos no solo e favorece o acúmulo de substâncias, como cálcio, potássio e nitrogênio, na camada superior"
+    },
+    {
+      "colunas": [
+        "tipos",
+        "cobertura_solo",
+        "aporte_biomassa"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Apresentação/Importância/Plantio",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "O grande sucesso do milheto como planta de cobertura nos solos do Cerrado brasileiro é em razão da sua alta resistência à seca [...]; O milheto pode produzir sem adubação e, dependendo da época de plantio, produz de 20 a 70ton/ha de matéria verde."
+    },
+    {
+      "colunas": [
+        "tipos"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Circular Técnica 29, 2003",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487545/1/Circ29.pdf",
+      "trecho": "alta capacidade de tolerar déficit hídrico prolongado e abaixo de 400 mm"
+    },
+    {
+      "colunas": [
+        "aporte_biomassa"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Cultivares, Tab.4 e Tab.5",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "Produtividade de palhada (massa seca) 5 a 8 t ha -1 [ADR 7010]; Matéria seca (t ha -1) 8.750 / 18.122 / 16.800 [ANSB MC, ANM 17, ANM 30]"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro",
+        "tipos"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "Como forragem, o potencial produtivo do milheto pode chegar a 60 t ha-1 de massa verde e a 20 t ha-1 de matéria seca; [...] muito apreciada pelo gado, já que, além de ser nutritiva, não possui fatores antinutricionais como os cianogênios; [BN-2, folha] Proteína bruta (%) 21,40, Digestibilidade in situ (%) 71,50"
+    },
+    {
+      "colunas": [
+        "perene"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Apresentação",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "É uma gramínea anual de verão, cespitosa, de crescimento ereto"
+    }
+  ],
+  "pendencias": [
+    "Ciclo mistura dois usos de propósito: ciclo_dias_min=45 é o manejo da COBERTURA (dessecação na pré-floração, florescimento das cultivares 43-58 dias); ciclo_dias_max=105 é a colheita de GRÃO (maturidade fisiológica 97-104 DAE; ADR 500/ADR 7010 100 dias). Se o integrador preferir só o uso de cobertura, usar 45-60; só grão, usar 76-105 (ENA 1 76 dias no plantio das secas). O ZARC agrupa cultivares em Grupo I até 110 dias, II 110-130 e III acima de 130 dias (emergência-maturação), mas as cultivares descritas no SP3 ficam em 76-104 dias.",
+    "Água 450-650 mm é a faixa FAO conjunta 'Sorghum/Millet' para ciclo completo até grão; não achei valor Embrapa específico para a cobertura (ciclo ~45-60 dias), que deve consumir menos. Embrapa cita 440 mm para alta produtividade de grão e tolerância a menos de 400 mm, coerente com o limite inferior.",
+    "tmax_critica_c=40: a Embrapa diz que estresse térmico em FC 2 (formação da panícula, inclui o florescimento) reduz a fertilidade das espiguetas e cita >=40 °C como temperatura elevada; não há limiar específico para antese no texto. 40 coincide com o máximo absoluto do ECOCROP.",
+    "cobertura_solo=alta: cobertura rápida e densa, mas a palhada dessecada na pré-floração tem baixa C/N e decomposição rápida (Circ. 29), ou seja, persiste menos que a de braquiária.",
+    "Grão de milheto tem mercado (ração), mas é secundário e sem código PAM; por isso 'comercial' não entrou em tipos."
+  ]
+}
