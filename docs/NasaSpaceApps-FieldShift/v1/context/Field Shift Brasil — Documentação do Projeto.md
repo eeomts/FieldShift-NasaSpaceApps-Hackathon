@@ -1,24 +1,26 @@
-# Field Shift Minas — Documentação do Projeto
+# Field Shift Brasil — Documentação do Projeto
 
-Nov 13, 2026 · @Gui
+Nov 13, 2026 · @Gui · Atualizado em 14/11/2026: escopo ampliado de Minas Gerais para o Brasil inteiro (D-008)
 
 ## Visão geral
 
-Vamos construir uma ferramenta de apoio à decisão que compara pelo menos três estratégias de rotação de culturas para produtores de Minas Gerais, usando observações da NASA, dados de solo, características das culturas e as prioridades do produtor.
+Vamos construir uma ferramenta de apoio à decisão que compara pelo menos três estratégias de rotação de culturas para produtores de todo o Brasil, usando observações da NASA, dados de solo, características das culturas e as prioridades do produtor.
 
 O desafio é o **Field Shift: Adapting Farms with NASA Data**, do NASA Space Apps Challenge 2026. Ele parte de um problema concreto: temperaturas mudando, chuvas menos previsíveis, falta de água, eventos extremos e solos se degradando tornam difícil escolher uma rotação que proteja o campo, economize água e dê resiliência no longo prazo.
 
 A ferramenta não substitui o produtor nem o agrônomo. Ela mostra padrões e possibilidades, explica de onde vem cada sugestão e aponta o que precisa de validação local.
 
-## Escopo: Minas Gerais
+## Escopo: Brasil inteiro
 
-O foco é o estado de Minas Gerais como um todo, não uma única fazenda ou região.
+O foco é o Brasil como um todo, não uma única fazenda, região ou estado. A primeira versão do projeto olhava só para Minas Gerais; a equipe ampliou o escopo para o país inteiro (decisão D-008 em `DECISOES.md`).
 
-Isso vira um diferencial: Minas tem regiões com clima, relevo e solo muito diferentes, então a mesma ferramenta deve gerar recomendações diferentes para lugares diferentes. Mostrar isso com dados é a forma mais clara de provar que a ferramenta responde às condições locais.
+Isso vira um diferencial: o Brasil tem biomas, climas, relevos, solos e sistemas de produção muito diferentes, da soja e do milho safrinha no Cerrado ao sequeiro do Semiárido, do trigo e da geada no Sul ao café nas serras do Sudeste e à fronteira agrícola na borda da Amazônia. A mesma ferramenta deve gerar recomendações diferentes para lugares diferentes. Mostrar isso com dados é a forma mais clara de provar que a ferramenta responde às condições locais.
 
-O foco em Minas tem duas consequências práticas:
+O escopo nacional tem quatro consequências práticas:
 
-- só os datasets globais da lista do desafio servem; os exclusivos dos EUA ficam de fora (ver *Lacunas*);
+- só os datasets globais da lista do desafio servem; os exclusivos dos EUA ficam de fora e são substituídos, quando possível, por fontes brasileiras (ver *Lacunas*);
+- os indicadores passam a ser separados por **bioma** e região, e os do panorama nacional são **pré-calculados** numa grade comum; dados de 30 m entram só nos pontos escolhidos;
+- as regras de recomendação precisam funcionar em todos os biomas, ou a ferramenta precisa dizer claramente onde não funciona;
 - onde a cultura principal é perene, como o café, "rotação" vira cobertura nas entrelinhas e manejo do solo, não troca de cultura. A ferramenta trata esse caso à parte.
 
 ## Objetivos do desafio e como atendemos
@@ -37,9 +39,9 @@ Cada pedido do texto do desafio tem uma parte correspondente na ferramenta.
 | Mostrar incerteza e onde a expertise local é necessária | Nível de confiança por indicador e avisos de validação em cada recomendação |
 | Harmonizar dados de resoluções diferentes | Grade comum de análise (ver *Metodologia*) |
 
-## Fontes de dados para Minas
+## Fontes de dados para o Brasil
 
-Treze datasets da lista do desafio têm cobertura global e servem para Minas. As descrições abaixo seguem o texto do desafio; resoluções e cobertura de cada um devem ser confirmadas nas páginas oficiais antes do uso.
+Treze datasets da lista do desafio têm cobertura global e servem para o Brasil. As descrições abaixo seguem o texto do desafio; resoluções e cobertura de cada um devem ser confirmadas nas páginas oficiais antes do uso. Os datasets complementares (SMAP L4, HLS, MERRA-2, MODIS Land Cover, FIRMS) e as fontes brasileiras estão em `BANCO_DE_DADOS_NASA.md`, e cada um tem uma nota própria na pasta `tools/`.
 
 | Dataset | O que fornece | Uso na ferramenta |
 | --- | --- | --- |
@@ -50,7 +52,7 @@ Treze datasets da lista do desafio têm cobertura global e servem para Minas. As
 | Landsat (30 m) | Reflectância, NDVI, índices de vegetação | Vigor da cultura, solo descoberto, transições de estação |
 | MODIS/VIIRS (250–1000 m) | NDVI e índices de vegetação | Séries longas de vegetação em escala regional |
 | Sentinel-2 (10–20 m) | Imagens multiespectrais com bandas para vegetação | NDVI/EVI e solo descoberto no nível do talhão |
-| GRACE e GRACE-FO | Tendência de água armazenada | Contexto de longo prazo da disponibilidade hídrica no estado |
+| GRACE e GRACE-FO | Tendência de água armazenada | Contexto de longo prazo da disponibilidade hídrica nas grandes bacias e regiões |
 | SRTM | Elevação | Declividade, escoamento, risco de erosão, baixadas sujeitas a geada |
 | GLDAS | Temperatura, chuva, umidade do solo, radiação em séries contínuas | Início de secas, déficits de umidade, transições de estação |
 | ERA5 | Variáveis climáticas horárias, incluindo temperatura do solo | Preencher lacunas e reforçar séries históricas |
@@ -61,20 +63,20 @@ Treze datasets da lista do desafio têm cobertura global e servem para Minas. As
 
 Doze datasets da lista cobrem só os EUA e ficam fora: Web Soil Survey, SSURGO/STATSGO2, CDL (CropScape), PRISM, NAIP, NLCD, CoCoRaHS, NWIS, USDA AMS Market News, NASS QuickStats, OpenET e LANDFIRE. O USDA Ag Data Commons deve ser verificado caso a caso, pois pode ter algum estudo aplicável.
 
-Isso abre quatro lacunas, que a ferramenta mostra em vez de esconder:
+Isso abre quatro lacunas. Fontes brasileiras abertas fecham parte delas, e a ferramenta mostra o que continua faltando em vez de esconder:
 
 | Lacuna | O que perdemos | Como tratamos |
 | --- | --- | --- |
-| Solo detalhado do talhão | Textura, matéria orgânica, drenagem e erodibilidade no nível do campo (SSURGO) | Usar restrições de solo do GAEZ e permitir que o produtor informe o tipo de solo ou resultados de análise |
-| Histórico de culturas plantadas | Rotação real por ano (CDL) | O produtor informa a rotação atual; o calendário de NDVI ajuda a conferir |
-| Mercado e preços | Preços e demanda por cultura (AMS, QuickStats) | O produtor indica quais culturas têm mercado para ele; a ferramenta não estima preço |
-| Validação em solo | Chuva medida em campo e poços (CoCoRaHS, NWIS) | Comparar fontes de satélite e reanálise entre si e marcar a confiança de cada indicador |
+| Solo detalhado do talhão | Textura, matéria orgânica, drenagem e erodibilidade no nível do campo (SSURGO) | Usar Embrapa Solos/PronaSolos, SoilGrids e as restrições de solo do GAEZ (fonte final em aberto, Q-07) e permitir que o produtor informe o tipo de solo ou resultados de análise |
+| Histórico de culturas plantadas | Rotação real por ano (CDL) | O produtor informa a rotação atual; o MapBiomas e o calendário de NDVI ajudam a conferir; o IBGE PAM mostra as culturas de cada município |
+| Mercado e preços | Preços e demanda por cultura (AMS, QuickStats) | O produtor indica quais culturas têm mercado para ele; CONAB e CEPEA dão preços e custos de referência, mas a ferramenta não estima preço |
+| Validação em solo | Chuva medida em campo e poços (CoCoRaHS, NWIS) | Comparar fontes de satélite e reanálise entre si e com estações do INMET, CEMADEN e ANA, e marcar a confiança de cada indicador |
 
 O próprio desafio pede para mostrar lacunas e pontos de validação local, então tratá-las abertamente conta a favor.
 
 ## Estrutura da ferramenta
 
-O uso segue quatro etapas, do panorama do estado até a comparação das estratégias para um local.
+O uso segue quatro etapas, do panorama do país até a comparação das estratégias para um local.
 
 &#91;embedded content: fluxo da ferramenta · 4 etapas e os dados de cada uma\]
 
@@ -115,7 +117,7 @@ Cada estratégia tem um cartão com os mesmos campos:
 | Lacunas | O que não sabemos (solo detalhado, mercado, histórico) |
 | Riscos para revisão local | O que o produtor ou agrônomo precisa conferir: doenças, mercado, calendário, maquinário |
 
-Quais culturas específicas entram em cada família para Minas ainda precisa ser definido pela equipe, com apoio do GAEZ para checar a aptidão.
+Quais culturas específicas entram em cada família em cada bioma e região ainda precisa ser definido pela equipe, com apoio do GAEZ e do ZARC para checar a aptidão e a janela de plantio.
 
 ## Design centrado no produtor
 
@@ -129,14 +131,15 @@ A ferramenta precisa ser usada por quem tem pouca experiência com tecnologia ou
 
 ## Regiões de demonstração (em debate)
 
-A proposta é demonstrar a ferramenta em três ou quatro pontos de regiões bem diferentes do estado, para mostrar recomendações que mudam conforme o local.
+A proposta é demonstrar a ferramenta em três ou quatro pontos de regiões bem diferentes do país, para mostrar recomendações que mudam conforme o local (ver Q-01 em `DECISOES.md`).
 
 | Região candidata | O que queremos mostrar com os dados |
 | --- | --- |
-| Triângulo / Alto Paranaíba | Rotação de grãos e a janela de solo descoberto na seca |
-| Norte de Minas | Déficit hídrico e culturas tolerantes à seca |
-| Sul de Minas | Café perene: cobertura nas entrelinhas |
-| Zona da Mata | Relevo acidentado e risco de erosão |
+| Cerrado (MT, GO, Alto Paranaíba/MG, MATOPIBA) | Rotação de grãos, janela de solo descoberto na seca e risco de fogo no entorno |
+| Semiárido (sertão da BA, PE, CE, Norte de Minas) | Déficit hídrico, veranicos e culturas tolerantes à seca |
+| Sul (PR, SC, RS) | Culturas de inverno, geada e diversificação da rotação |
+| Borda da Amazônia (norte do MT, sul do PA, RO) | Fronteira agrícola e muitas nuvens na safra (exige radar) |
+| Sudeste serrano (Sul de Minas, Zona da Mata, ES) | Café perene: cobertura nas entrelinhas, relevo acidentado e risco de erosão |
 
 As características de cada região são hipóteses de partida. Elas precisam ser confirmadas pelos dados (NDVI, POWER, SMAP, SRTM) antes de entrar na apresentação.
 
@@ -144,10 +147,10 @@ As características de cada região são hipóteses de partida. Elas precisam se
 
 - [ ] Tecnologia e formato do protótipo (adaptar o app em Streamlit com NASA POWER ou outra stack) — em debate na equipe
 - [ ] Quais regiões entram na demonstração
-- [ ] Quais culturas específicas compõem cada família de estratégia em Minas
+- [ ] Quais culturas específicas compõem cada família de estratégia em cada bioma e região
 - [ ] Tamanho da grade comum de análise e período histórico usado
 - [ ] Pesos padrão dos critérios antes de o produtor ajustar
-- [ ] Verificar no USDA Ag Data Commons se há estudos aplicáveis a Minas
+- [ ] Verificar no USDA Ag Data Commons se há estudos aplicáveis ao Brasil
 - [ ] Confirmar nas páginas oficiais a resolução e a cobertura de cada dataset
 
 *Base deste documento: texto do desafio Field Shift e descrições dos datasets da lista de recursos do desafio.*
