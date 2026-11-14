@@ -52,7 +52,7 @@ export function Mapa({ valor, onChange }: { valor: Ponto | null; onChange: (p: P
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="h-[300px] overflow-hidden rounded-[28px] shadow-[inset_0_0_0_2px_#C7E8D2]">
+      <div className="h-[300px] overflow-hidden rounded-[28px] lg:h-[460px] shadow-[inset_0_0_0_2px_#C7E8D2]">
         <MapContainer
           center={valor ? [valor.lat, valor.lon] : [10, 0]}
           zoom={valor ? 13 : 2}
