@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/* Tokens do protótipo "Premium Playful" (layout/AgroIA Protótipo.html) */
+@theme {
+  --color-creme: #FFF7EA;
+  --color-tinta: #1D2B22;
+  --color-suave: #4F5F54;
+  --color-folha: #1F7A4D;
+  --color-folha-escura: #155C39;
+  --color-folha-clara: #DDF3E4;
+  --color-morro: #3FA36B;
+  --color-sol: #FFC23D;
+  --color-sol-escuro: #E0A21B;
+  --color-sol-claro: #FFEFC7;
+  --color-sol-texto: #7A4E00;
+  --color-borda: #E9DEC8;
+  --color-linha: #F0E6D2;
+  --color-terra: #EFE4CF;
+  --color-terra-texto: #5C4B2E;
+  --color-ceu: #E1EEFB;
+  --color-ceu-texto: #1D4E86;
+  --font-titulo: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --shadow-degrau: 0 5px 0 var(--color-folha-escura);
+  --shadow-degrau-sol: 0 4px 0 var(--color-sol-escuro);
+  --shadow-cartao: 0 10px 24px -14px rgba(29, 43, 34, 0.35);
+}
+
+html, body, #root { min-height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-creme);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+button { cursor: pointer; font: inherit; }
+button:disabled { cursor: not-allowed; }
+:focus-visible { outline: 3px solid var(--color-sol); outline-offset: 2px; }
+.leaflet-container { font-family: var(--font-sans); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
