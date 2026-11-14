@@ -83,7 +83,7 @@ O Sr. Geraldo planta grãos perto de Balsas, no sul do Maranhão, região do MAT
 | INPE Queimadas | Confirma o mesmo padrão de focos no município. |
 | MapBiomas Fogo | Cicatriz de queimada na pastagem vizinha nos dois anos. |
 | HLS (NBR) | Queda do índice de queimada numa faixa de 200 m do talhão em 2024. |
-| MODIS Land Cover / MapBiomas | Entorno com pastagem e savana, as classes que mais queimam na região. |
+| MapBiomas | Entorno com pastagem e savana, as classes que mais queimam na região. |
 
 ### Onde os dados se completam
 

@@ -53,11 +53,11 @@ arquivos = earthaccess.download(resultados, "dados/gldas")
 ds = xr.open_mfdataset(arquivos)
 ```
 
-> Confirmar nas páginas oficiais a versão atual da biblioteca e a versão mínima do Python, os nomes exatos das opções de login (`strategy`), os nomes das variáveis de ambiente e o comportamento de `open` para dados fora da nuvem. O `bounding_box` busca arquivos que **tocam** a caixa; o recorte fino continua sendo feito no `xarray` ou pelo Harmony.
+> Confirmar nas páginas oficiais a versão atual da biblioteca e a versão mínima do Python, os nomes exatos das opções de login (`strategy`), os nomes das variáveis de ambiente e o comportamento de `open` para dados fora da nuvem. O `bounding_box` busca arquivos que **tocam** a caixa; o recorte fino continua sendo feito no `xarray`.
 
 ### O que produz para o projeto
 
-- **Scripts de coleta** para cada dataset do inventário: GLDAS, GPM IMERG, SMAP L4, MERRA-2, MODIS.
+- **Scripts de coleta** para cada dataset do inventário: GLDAS, GPM IMERG, SMAP L4, MODIS.
 - **Arquivos brutos organizados** por produto e período, que alimentam o pré-cálculo dos indicadores na grade comum.
 - **Registro da origem:** cada arquivo baixado guarda o nome do granule e a versão, que vão para a citação de fonte no cartão.
 
@@ -132,4 +132,4 @@ O `earthaccess` é o que torna o escopo nacional possível no prazo do hackathon
 - **Leitura na nuvem:** é mais rápida dentro da região da nuvem da NASA; de fora, pode ser lenta e às vezes vale mais baixar.
 - **Biblioteca em evolução:** nomes de funções e opções podem mudar entre versões; fixar a versão no ambiente do projeto.
 - **Credenciais:** um `.netrc` ou variável de ambiente esquecido no repositório expõe a conta.
-- **Tratamento:** usar o `earthaccess` no pré-cálculo, fixar a versão, testar com poucos arquivos, contar arquivos por mês e combinar com Harmony quando o recorte no servidor for possível.
+- **Tratamento:** usar o `earthaccess` no pré-cálculo, fixar a versão, testar com poucos arquivos e contar arquivos por mês.

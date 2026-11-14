@@ -44,7 +44,7 @@ O país inteiro em 30 m são centenas de tiles e milhares de imagens por ano, vo
 
 ### Nível de confiança
 
-Depende de quantas **imagens limpas** existem no mês. Na estação chuvosa do Centro-Oeste e do Norte, pode haver uma ou nenhuma por mês. Nessas regiões o **Sentinel-1** (radar, que enxerga através das nuvens) deixa de ser complemento e passa a ser necessário. A rotação detectada também é comparada com o MapBiomas.
+Depende de quantas **imagens limpas** existem no mês. Na estação chuvosa do Centro-Oeste e do Norte, pode haver uma ou nenhuma por mês. Nessas regiões, e só nelas, entra o **Sentinel-1** (radar, que enxerga através das nuvens), uma fonte opcional do projeto (`extras/`). A rotação detectada também é comparada com o MapBiomas.
 
 ## Onde o produtor vê isso
 
@@ -84,7 +84,7 @@ O Sr. Carlos planta grãos perto de Sorriso, no Mato Grosso, região de Cerrado 
 
 **A rotação informada está certa, mas o calendário não.** O Sr. Carlos faz safrinha todo ano, como disse. O HLS e o Sentinel-1 mostram, porém, que em 2 anos a soja foi colhida tarde e o milho foi plantado fora da janela do ZARC. O GLDAS e o SMAP L4 explicam por que esses milhos renderam menos: a água acabou antes do enchimento de grãos.
 
-**O HLS sozinho não basta aqui.** Com quase nenhuma imagem limpa de novembro a fevereiro, as datas da soja vêm do Sentinel-1. A confiança do calendário é **alta** porque as duas fontes se completam; sem o radar, seria **baixa**.
+**O HLS sozinho não basta aqui.** Com quase nenhuma imagem limpa de novembro a fevereiro, a região é nublada o bastante para acionar o Sentinel-1, que é opcional, e as datas da soja vêm dele. A confiança do calendário é **alta** porque as duas fontes se completam; sem o radar, seria **baixa**.
 
 **O solo descoberto pega o calor mais forte.** O HLS mostra solo nu de julho a setembro, e o POWER mostra máximas acima de 35 °C nesses meses. Solo exposto ao sol forte perde matéria orgânica e umidade.
 
@@ -123,12 +123,12 @@ Com os pesos do Sr. Carlos (solo e renda altos), a **estratégia B** empata com 
 
 ## Conclusão
 
-O HLS é o olho da ferramenta no talhão. Ele mostra a rotação que de fato aconteceu, as datas reais e o tempo de solo descoberto. Os dados de chuva e de solo explicam o que o HLS mostra. Nas regiões mais nubladas do país, ele precisa do Sentinel-1 para fechar o calendário, e isso aparece no nível de confiança.
+O HLS é o olho da ferramenta no talhão. Ele mostra a rotação que de fato aconteceu, as datas reais e o tempo de solo descoberto. Os dados de chuva e de solo explicam o que o HLS mostra. Nas regiões mais nubladas do país, e só nelas, ele recebe o reforço opcional do Sentinel-1 para fechar o calendário, e isso aparece no nível de confiança.
 
 ## Limitações
 
-- **Nuvens:** na estação chuvosa do Centro-Oeste e do Norte há poucas imagens limpas; o Sentinel-1 passa a ser necessário.
+- **Nuvens:** na estação chuvosa do Centro-Oeste e do Norte há poucas imagens limpas; só nesses casos entra o Sentinel-1, que é opcional.
 - **Escala:** inviável para o Brasil inteiro em 30 m; usar só nos pontos escolhidos e o MODIS no panorama nacional.
 - **30 m:** bom para talhões médios e grandes; talhões muito pequenos ou estreitos ficam com bordas misturadas.
 - **NDVI não identifica a cultura sozinho:** a curva sugere o tipo de ciclo, mas a cultura vem do produtor e do MapBiomas.
-- **Tratamento:** máscara de nuvem, série suavizada, contagem de imagens limpas por mês e cruzamento com MapBiomas e Sentinel-1.
+- **Tratamento:** máscara de nuvem, série suavizada, contagem de imagens limpas por mês e cruzamento com MapBiomas e, nas regiões muito nubladas, com o Sentinel-1.

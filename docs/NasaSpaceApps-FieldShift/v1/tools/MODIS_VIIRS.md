@@ -64,7 +64,7 @@
 | 3. Compósito de 16 dias | Após filtros de qualidade, nuvem e geometria, o método **CV-MVC** compara as duas observações de maior NDVI e escolhe a mais próxima do nadir; se as condições forem ruins, usa o maior NDVI (MVC) | Equipe MODIS | [2] |
 | 4. Índices e qualidade | NDVI, EVI, camadas *VI Quality* e *pixel reliability* | Equipe MODIS | [2] |
 | 5. Distribuição | **LP DAAC** (Earthdata Cloud), grade senoidal em tiles | LP DAAC | [1][3] |
-| 6. Acesso | AppEEARS, Earthdata Search, earthaccess, Worldview | Usuário | [1][9] |
+| 6. Acesso | AppEEARS, Earthdata Search, earthaccess | Usuário | [1][9] |
 | 7. Field Shift | Filtro de qualidade, escala, suavização, curva típica (seção 8) | Equipe | — |
 
 > **Resumo para o agricultor:** "Satélites passam todo dia; a NASA escolhe, a cada 16 dias, a melhor imagem de cada pedaço do mapa. Assim dá para ver, ano após ano, quando o campo está verde e quando está descoberto."
@@ -93,7 +93,6 @@ A versão 6 do MOD13A1 foi descontinuada; use a **6.1 (061)** [7].
 | **AppEEARS** | Série por ponto (CSV) ou área; decodifica a qualidade | [8][9] |
 | **AppEEARS — serviço de qualidade** | `GET /quality/{produto}/{camada}/{valor}` traduz um valor de qualidade em texto | [8] |
 | **Earthdata Search / earthaccess** | Busca e download | [1] |
-| **NASA Worldview** | Visualizar camadas | — |
 | **LAADS DAAC** | Planejamento da transição MODIS → VIIRS | [5] |
 
 ---
@@ -102,7 +101,7 @@ A versão 6 do MOD13A1 foi descontinuada; use a **6.1 (061)** [7].
 
 ### 6.1 Pedido no AppEEARS
 
-Campos do `POST /task` iguais aos de `SMAP.md` (seção 6.2). Específico:
+Campos gerais do `POST /task` em `APPEEARS.md`. Específico:
 
 | Campo | Valor | Observação |
 |---|---|---|
@@ -254,7 +253,7 @@ print(exposto.groupby(exposto.index.month).size())                    # meses de
 2. **Filtre a qualidade** (reliability 0–1) [2].
 3. Use o **composite day of the year**.
 4. Calcule **curva típica** e **anomalia**.
-5. Complemente com **Landsat/HLS** no talhão.
+5. Complemente com **HLS** no talhão.
 6. Avise que **palhada pode parecer solo nu**.
 
 ---
@@ -278,7 +277,7 @@ print(exposto.groupby(exposto.index.month).size())                    # meses de
 | Pontuação | Critério **proteção do solo** |
 | Telas | Curva de NDVI no fundo do calendário de 12 meses |
 
-**Não resolve:** detalhe no talhão (Landsat/HLS), palhada × solo nu (SWIR ou agricultor), cultura plantada (MapBiomas ou agricultor).
+**Não resolve:** detalhe no talhão (HLS), palhada × solo nu (SWIR ou agricultor), cultura plantada (MapBiomas ou agricultor).
 
 ---
 
@@ -312,7 +311,7 @@ print(exposto.groupby(exposto.index.month).size())                    # meses de
 > *De onde vem: satélites MODIS (2001–2025) e VIIRS (2018–2025), pixels de 250–500 m.*
 > *Atenção: palhada seca também aparece assim.*
 
-**Efeito:** evidência principal da estratégia B; POWER, SMAP e MODIS contam a mesma história nos anos ruins (confiança **Alta**). A ressalva da palhada vira pergunta ao Sr. José na ferramenta.
+**Efeito:** evidência principal da estratégia B; POWER, SMAP L4 e MODIS contam a mesma história nos anos ruins (confiança **Alta**). A ressalva da palhada vira pergunta ao Sr. José na ferramenta.
 
 ---
 

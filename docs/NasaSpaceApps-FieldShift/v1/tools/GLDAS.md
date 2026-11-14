@@ -10,15 +10,13 @@ O GLDAS (Global Land Data Assimilation System) não é uma imagem de satélite. 
 
 O GLDAS cobre três lacunas que os outros datasets da lista deixam.
 
-**1. Umidade na zona das raízes.** O SMAP mede só os primeiros ~5 cm do solo. O GLDAS (versão Noah) estima a umidade em camadas: 0–10, 10–40, 40–100 e 100–200 cm. Para uma cultura de raiz profunda, um milho safrinha ou uma braquiária, o que importa é o que está abaixo da superfície.
+**1. Umidade na zona das raízes.** O GLDAS (versão Noah) estima a umidade em camadas: 0–10, 10–40, 40–100 e 100–200 cm. Para uma cultura de raiz profunda, um milho safrinha ou uma braquiária, o que importa é o que está abaixo da superfície.
 
-**2. Série longa e sem buracos.** O SMAP começa em 2015 e tem falhas de passagem. O GLDAS 2.1 tem dados mensais contínuos desde 2000, e o GLDAS 2.0 volta até 1948. Com isso dá para calcular o que é "normal" para cada mês em cada lugar e dizer se um ano está seco *em relação ao normal*. Essa é a anomalia de umidade listada no glossário da ferramenta.
+**2. Série longa e sem buracos.** O SMAP L4 começa em 2015. O GLDAS 2.1 tem dados mensais contínuos desde 2000, e o GLDAS 2.0 volta até 1948. Com isso dá para calcular o que é "normal" para cada mês em cada lugar e dizer se um ano está seco *em relação ao normal*. Essa é a anomalia de umidade listada no glossário da ferramenta.
 
 **3. Balanço hídrico completo.** Na mesma base vêm evapotranspiração, escoamento superficial e temperatura do solo. Isso permite fechar a conta de chuva que entra menos água que sai, sem misturar fontes incompatíveis.
 
-Ele também conversa com o GRACE: a versão GLDAS 2.2 assimila dados do GRACE, o que ajuda a ligar o contexto de água armazenada nas grandes bacias do país à umidade do solo mês a mês.
-
-Em resumo: o SMAP diz como está a superfície agora; o GLDAS diz como costuma estar a água onde as raízes trabalham e quando ela costuma faltar. Para decidir rotação, que é uma decisão de vários anos, o segundo pesa mais.
+Em resumo: o SMAP L4 diz como está o solo agora, mas só desde 2015; o GLDAS diz como costuma estar a água onde as raízes trabalham e quando ela costuma faltar. Para decidir rotação, que é uma decisão de vários anos, o segundo pesa mais.
 
 ## Como entra no projeto
 
@@ -31,11 +29,11 @@ Em resumo: o SMAP diz como está a superfície agora; o GLDAS diz como costuma e
 
 | Variável | O que é | Uso |
 | --- | --- | --- |
-| `SoilMoi0_10cm` | Umidade de 0–10 cm | Comparação com o SMAP |
+| `SoilMoi0_10cm` | Umidade de 0–10 cm | Comparação com o SMAP L4 |
 | `SoilMoi10_40cm` | Umidade de 10–40 cm | Recarga do solo e janela de plantio |
 | `SoilMoi40_100cm` | Umidade de 40–100 cm | Água para culturas de raiz profunda |
 | `RootMoist` | Umidade na zona das raízes | Indicador principal de déficit hídrico |
-| `Evap` | Evapotranspiração | Demanda de água, comparação com ECOSTRESS |
+| `Evap` | Evapotranspiração | Demanda de água |
 | `Qs` | Escoamento superficial | Risco de erosão, junto com SRTM e GPM |
 
 > Confirmar nas páginas oficiais os nomes exatos das variáveis, a resolução e a latência (o produto mais recente costuma sair com um a dois meses de atraso).
@@ -49,7 +47,7 @@ Em resumo: o SMAP diz como está a superfície agora; o GLDAS diz como costuma e
 
 ### Nível de confiança
 
-O GLDAS entra na comparação entre fontes junto com SMAP e ERA5. Se os três concordam, a confiança sobe. Como a resolução é regional, o indicador sempre leva o aviso de que é um valor da região, não do talhão.
+O GLDAS entra na comparação entre fontes junto com SMAP L4 e ERA5. Se os três concordam, a confiança sobe. Como a resolução é regional, o indicador sempre leva o aviso de que é um valor da região, não do talhão.
 
 ## Onde o produtor vê isso
 
@@ -83,17 +81,15 @@ O Sr. João tem uma fazenda perto de Patos de Minas (MG), no Alto Paranaíba, re
 | GPM IMERG | A chuva termina, em média, no fim de março. Em dezembro e janeiro há de 2 a 3 eventos por ano acima de 50 mm/dia. |
 | NASA POWER | Evapotranspiração de referência alta de abril a setembro. Risco regional de geada baixo. |
 | **GLDAS** | A água na zona das raízes cai abaixo do percentil 20 em maio em 6 de cada 10 anos. A camada de 10–40 cm só se recupera em meados de novembro. |
-| SMAP | Confirma que a superfície seca a partir de abril (série 2015–2025). |
+| SMAP L4 | Confirma que o solo seca a partir de abril (série 2015–2025). |
 | ERA5 | Também mostra a recarga tardia do solo em novembro. |
-| ECOSTRESS | A evapotranspiração do milho safrinha despenca em maio, sinal de estresse hídrico. |
-| Sentinel-2 / Landsat | O NDVI do talhão fica abaixo de 0,3 de julho a outubro: cerca de 4 meses de solo descoberto. |
+| HLS | O NDVI do talhão fica abaixo de 0,3 de julho a outubro: cerca de 4 meses de solo descoberto. |
 | SRTM | Parte do talhão tem de 6 a 8% de declividade, e há uma baixada no canto sul. |
 | FAO GAEZ | Aptidão boa para sorgo, braquiária e milheto; média para milho safrinha. |
-| GRACE | Tendência regional de queda na água armazenada. Entra só como contexto. |
 
 ### Onde os dados se completam
 
-**Por que a safrinha sofre.** O GPM mostra que a chuva acaba em março, mas isso sozinho não diz se o milho passa fome. O GLDAS mostra que a água *nas raízes* acaba em maio, justamente no enchimento de grãos. O ECOSTRESS confirma que a planta reduziu a transpiração. Três fontes independentes apontam o mesmo problema: confiança **alta**.
+**Por que a safrinha sofre.** O GPM mostra que a chuva acaba em março, mas isso sozinho não diz se o milho passa fome. O GLDAS mostra que a água *nas raízes* acaba em maio, justamente no enchimento de grãos. O SMAP L4 confirma que o solo seca na mesma época. Três fontes apontam o mesmo problema: confiança **alta**.
 
 **O risco do solo descoberto.** O NDVI mostra quatro meses sem cobertura, o SRTM mostra declividade e o GPM mostra chuvas fortes no início da safra. Juntos, indicam que a primeira chuva pesada bate em solo nu e inclinado: risco alto de erosão.
 
@@ -126,7 +122,7 @@ Com os pesos do Sr. João (água e solo altos), a **estratégia B** fica em prim
 >
 > **Por que foi sugerida:** na sua região, a água onde as raízes alcançam costuma acabar em maio, e seu talhão fica cerca de 4 meses descoberto antes das chuvas fortes de dezembro.
 >
-> **Evidências:** déficit de umidade nas raízes (GLDAS, SMAP e ERA5 concordam, confiança alta); solo descoberto de julho a outubro (Sentinel-2, confiança alta); declividade de 6–8% (SRTM, confiança alta).
+> **Evidências:** déficit de umidade nas raízes (GLDAS, SMAP L4 e ERA5 concordam, confiança alta); solo descoberto de julho a outubro (HLS, confiança alta); declividade de 6–8% (SRTM, confiança alta).
 >
 > **Benefícios:** a palhada protege o solo na seca, as raízes da braquiária abrem caminho para a água infiltrar, e sobra forragem para o vizinho.
 >
@@ -136,7 +132,7 @@ Com os pesos do Sr. João (água e solo altos), a **estratégia B** fica em prim
 
 ## Conclusão
 
-O GLDAS não decide nada sozinho. Ele explica o *porquê* por trás do que o NDVI e a chuva mostram: os satélites veem a superfície, e o GLDAS estima o que acontece embaixo dela. O cruzamento com SMAP e ERA5 é o que transforma uma estimativa de modelo em evidência com nível de confiança.
+O GLDAS não decide nada sozinho. Ele explica o *porquê* por trás do que o NDVI e a chuva mostram: os satélites veem a superfície, e o GLDAS estima o que acontece embaixo dela. O cruzamento com SMAP L4 e ERA5 é o que transforma uma estimativa de modelo em evidência com nível de confiança.
 
 Esse roteiro pode virar a demonstração da apresentação. Rodando o mesmo caso em outra região, como o Semiárido nordestino ou o Sul do país, os mesmos dados levariam a uma recomendação diferente, que é o diferencial descrito na documentação do projeto.
 
@@ -145,4 +141,4 @@ Esse roteiro pode virar a demonstração da apresentação. Rodando o mesmo caso
 - **Resolução de ~28 km:** valor regional, não do talhão.
 - **É modelo, não medição:** os parâmetros de solo são genéricos e podem não representar bem a variedade de solos do Brasil.
 - **Latência:** os meses mais recentes podem demorar a sair.
-- **Tratamento:** sempre cruzar com SMAP e ERA5, mostrar o nível de confiança e indicar validação local.
+- **Tratamento:** sempre cruzar com SMAP L4 e ERA5, mostrar o nível de confiança e indicar validação local.

@@ -17,11 +17,11 @@ Os dados mais recentes saem com poucos dias de atraso, numa versão preliminar (
 
 ## Por que usar
 
-**1. Segunda opinião sobre o NASA POWER.** A meteorologia do POWER vem do MERRA-2, a reanálise da NASA. O ERA5 é outra reanálise, de outra instituição, com outro modelo. Quando os dois concordam, a confiança sobe. Comparar POWER com MERRA-2 não serve para isso, porque um deriva do outro.
+**1. Segunda opinião sobre o NASA POWER.** A meteorologia do POWER vem do MERRA-2, a reanálise da NASA. O ERA5 é outra reanálise, de outra instituição, com outro modelo. Quando os dois concordam, a confiança sobe.
 
 **2. Série muito longa.** Desde 1940 (ERA5) ou 1950 (ERA5-Land). Dá para calcular o "normal" de cada mês com décadas de dados e ver se um risco, como geada ou veranico, mudou de frequência.
 
-**3. Umidade e temperatura do solo em camadas.** O ERA5-Land estima a água no solo em quatro camadas (0–7, 7–28, 28–100 e 100–289 cm) e a temperatura do solo. É um terceiro ponto de vista, ao lado de GLDAS e SMAP.
+**3. Umidade e temperatura do solo em camadas.** O ERA5-Land estima a água no solo em quatro camadas (0–7, 7–28, 28–100 e 100–289 cm) e a temperatura do solo. É um terceiro ponto de vista, ao lado de GLDAS e SMAP L4.
 
 **4. Dados horários.** Permitem contar horas de frio, horas de calor forte e mínimas noturnas, o que médias diárias escondem.
 
@@ -36,8 +36,8 @@ Os dados mais recentes saem com poucos dias de atraso, numa versão preliminar (
 | --- | --- | --- |
 | `t2m` | Temperatura do ar a 2 m | Máximas, mínimas, graus-dia, geada |
 | `d2m` | Ponto de orvalho a 2 m | Umidade do ar, risco de doença |
-| `tp` | Precipitação total | Comparação com IMERG, CHIRPS e POWER |
-| `swvl1` a `swvl4` | Água no solo em 4 camadas | Comparação com GLDAS e SMAP |
+| `tp` | Precipitação total | Comparação com IMERG e POWER |
+| `swvl1` a `swvl4` | Água no solo em 4 camadas | Comparação com GLDAS e SMAP L4 |
 | `stl1` | Temperatura do solo (0–7 cm) | Época de semeadura |
 | `ssrd` | Radiação solar na superfície | Potencial de produção |
 | `pev` | Evaporação potencial | Demanda de água da cultura |
@@ -53,7 +53,7 @@ Os dados mais recentes saem com poucos dias de atraso, numa versão preliminar (
 
 ### Nível de confiança
 
-O ERA5 entra em três comparações: temperatura com o POWER, chuva com IMERG e CHIRPS, e umidade do solo com GLDAS e SMAP. A independência é **parcial**: as reanálises e os produtos de chuva usam muitas das mesmas observações, inclusive estações do INMET enviadas pela rede internacional. A estação mais próxima do INMET continua sendo a referência local. Atenção também ao **GAEZ v5**: o clima dele vem do AgERA5, que é derivado do ERA5. GAEZ e ERA5 nunca contam como duas confirmações.
+O ERA5 entra em três comparações: temperatura com o POWER, chuva com IMERG, e umidade do solo com GLDAS e SMAP L4. A independência é **parcial**: as reanálises e os produtos de chuva usam muitas das mesmas observações, inclusive estações do INMET enviadas pela rede internacional. A estação mais próxima do INMET continua sendo a referência local. Atenção também ao **GAEZ v5**: o clima dele vem do AgERA5, que é derivado do ERA5. GAEZ e ERA5 nunca contam como duas confirmações.
 
 ## Onde o produtor vê isso
 
@@ -83,7 +83,6 @@ O Sr. Valdir cultiva arroz e cria gado perto de Dom Pedrito, na Campanha gaúcha
 | **ERA5-Land** | Camada de 0–7 cm perto da saturação de junho a agosto em 8 de cada 10 anos. Em média, 12 dias por inverno com mínima abaixo de 3 °C. |
 | **ERA5** | Em 5 dos últimos 20 verões, mais de 20 dias seguidos sem chuva relevante entre dezembro e janeiro. |
 | NASA POWER | Mesma frequência de geada na célula de 0,5°; verões secos nos mesmos anos. |
-| MERRA-2 | Concorda com o POWER, mas não conta como fonte separada. |
 | GPM IMERG | Confirma os verões secos (série desde 2000). |
 | INMET (estação mais próxima) | Mínimas do inverno 1 °C mais baixas que o ERA5-Land, em média. |
 | SRTM | Declividade abaixo de 1%: drenagem lenta. |
@@ -94,7 +93,7 @@ O Sr. Valdir cultiva arroz e cria gado perto de Dom Pedrito, na Campanha gaúcha
 
 **O inverno é frio e encharcado.** O ERA5-Land mostra solo saturado no inverno, e o SRTM explica: a várzea é plana e drena devagar. Uma pastagem de inverno precisa tolerar frio e excesso de água.
 
-**A soja corre risco no verão seco.** ERA5, POWER e IMERG concordam sobre os verões secos. POWER e MERRA-2 contam como uma fonte só. Ainda assim, há duas reanálises diferentes e um produto de satélite: confiança **alta** para o padrão regional.
+**A soja corre risco no verão seco.** ERA5, POWER e IMERG concordam sobre os verões secos. São duas reanálises diferentes e um produto de satélite: confiança **alta** para o padrão regional.
 
 **A geada local é mais forte.** A estação do INMET registra mínimas mais baixas que o ERA5-Land. A ferramenta usa a estação para ajustar o limiar e marca a geada no talhão com confiança **média**.
 
@@ -139,7 +138,7 @@ O ERA5 é a segunda opinião sobre o clima. Ele não substitui o POWER, mas perm
 
 - **É modelo, não medição:** suaviza eventos locais, como geadas em baixadas e chuvas de verão muito concentradas.
 - **Resolução:** 28 km (ERA5) ou 9 km (ERA5-Land), ainda regional.
-- **Chuva menos confiável que temperatura:** para chuva, IMERG e CHIRPS costumam ser melhores.
+- **Chuva menos confiável que temperatura:** para chuva, o IMERG e as estações do INMET costumam ser melhores.
 - **Independência parcial:** usa observações que também entram em outros produtos; o AgERA5 do GAEZ deriva dele.
 - **Volume:** dados horários para o Brasil inteiro são pesados.
 - **Tratamento:** pedir só as variáveis e a área necessárias, pré-calcular os indicadores, cruzar com POWER, IMERG e INMET e mostrar o nível de confiança.

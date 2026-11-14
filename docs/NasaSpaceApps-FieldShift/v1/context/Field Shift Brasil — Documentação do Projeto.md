@@ -41,23 +41,19 @@ Cada pedido do texto do desafio tem uma parte correspondente na ferramenta.
 
 ## Fontes de dados para o Brasil
 
-Treze datasets da lista do desafio têm cobertura global e servem para o Brasil. As descrições abaixo seguem o texto do desafio; resoluções e cobertura de cada um devem ser confirmadas nas páginas oficiais antes do uso. Os datasets complementares (SMAP L4, HLS, MERRA-2, MODIS Land Cover, FIRMS) e as fontes brasileiras estão em `BANCO_DE_DADOS_NASA.md`, e cada um tem uma nota própria na pasta `tools/`.
+Treze datasets da lista do desafio têm cobertura global e servem para o Brasil. A equipe escolheu os que entram no MVP (D-009 em `DECISOES.md`); a tabela abaixo mostra só esses. As descrições seguem o texto do desafio; resoluções e cobertura de cada um devem ser confirmadas nas páginas oficiais antes do uso. As fontes brasileiras e as opcionais estão em `BANCO_DE_DADOS_NASA.md`, e cada fonte tem uma nota própria na pasta `tools/` (opcionais em `tools/extras/`).
 
 | Dataset | O que fornece | Uso na ferramenta |
 | --- | --- | --- |
 | NASA POWER | Temperatura, umidade, radiação e indicadores agroclimáticos | Série climática base, risco de geada, estação de cultivo, demanda hídrica |
 | GPM IMERG | Taxa e acumulado de precipitação | Regularidade da chuva, eventos extremos, risco de erosão |
-| SMAP | Umidade do solo superficial, a cada 2–3 dias | Estresse hídrico, disponibilidade de água, infiltração |
-| ECOSTRESS | Temperatura de superfície e evapotranspiração em alta resolução | Pontos de calor e de estresse hídrico, demanda de água da cultura |
-| Landsat (30 m) | Reflectância, NDVI, índices de vegetação | Vigor da cultura, solo descoberto, transições de estação |
+| SMAP L4 | Umidade do solo até a zona das raízes (cerca de 1 m), em 9 km | Estresse hídrico, disponibilidade de água, dias que o solo aguenta sem chuva |
+| HLS (Landsat + Sentinel-2 harmonizados, 30 m) | Reflectância, NDVI e índices de vegetação a cada 2–3 dias | Vigor da cultura, solo descoberto e calendário de cobertura no nível do talhão |
 | MODIS/VIIRS (250–1000 m) | NDVI e índices de vegetação | Séries longas de vegetação em escala regional |
-| Sentinel-2 (10–20 m) | Imagens multiespectrais com bandas para vegetação | NDVI/EVI e solo descoberto no nível do talhão |
-| GRACE e GRACE-FO | Tendência de água armazenada | Contexto de longo prazo da disponibilidade hídrica nas grandes bacias e regiões |
 | SRTM | Elevação | Declividade, escoamento, risco de erosão, baixadas sujeitas a geada |
 | GLDAS | Temperatura, chuva, umidade do solo, radiação em séries contínuas | Início de secas, déficits de umidade, transições de estação |
 | ERA5 | Variáveis climáticas horárias, incluindo temperatura do solo | Preencher lacunas e reforçar séries históricas |
 | FAO GAEZ | Aptidão agroclimática por cultura, restrições de solo, água disponível | Checar se a cultura sugerida é adequada ao clima e solo do local |
-| GEDI | Biomassa e estrutura da vegetação | Contexto da paisagem ao redor das lavouras |
 
 ## Lacunas de dados e como tratamos
 
@@ -69,7 +65,7 @@ Isso abre quatro lacunas. Fontes brasileiras abertas fecham parte delas, e a fer
 | --- | --- | --- |
 | Solo detalhado do talhão | Textura, matéria orgânica, drenagem e erodibilidade no nível do campo (SSURGO) | Usar Embrapa Solos/PronaSolos, SoilGrids e as restrições de solo do GAEZ (fonte final em aberto, Q-07) e permitir que o produtor informe o tipo de solo ou resultados de análise |
 | Histórico de culturas plantadas | Rotação real por ano (CDL) | O produtor informa a rotação atual; o MapBiomas e o calendário de NDVI ajudam a conferir; o IBGE PAM mostra as culturas de cada município |
-| Mercado e preços | Preços e demanda por cultura (AMS, QuickStats) | O produtor indica quais culturas têm mercado para ele; CONAB e CEPEA dão preços e custos de referência, mas a ferramenta não estima preço |
+| Mercado e preços | Preços e demanda por cultura (AMS, QuickStats) | O produtor indica quais culturas têm mercado para ele; o IBGE PAM dá o valor da produção por município como referência, mas a ferramenta não estima preço |
 | Validação em solo | Chuva medida em campo e poços (CoCoRaHS, NWIS) | Comparar fontes de satélite e reanálise entre si e com estações do INMET, CEMADEN e ANA, e marcar a confiança de cada indicador |
 
 O próprio desafio pede para mostrar lacunas e pontos de validação local, então tratá-las abertamente conta a favor.
@@ -86,7 +82,7 @@ As etapas 1 e 2 usam dados de satélite e reanálise; a etapa 3 depende do que o
 
 A recomendação sai de uma pontuação transparente, com regras e pesos visíveis, em vez de um modelo caixa-preta.
 
-**1. Harmonização dos dados.** Os datasets têm resoluções muito diferentes, de 10 m (Sentinel-2) a centenas de km (GRACE). Como o desafio sugere, reamostramos e agregamos tudo para uma grade comum e para passos de tempo mensais. Cada indicador guarda a resolução de origem, para a ferramenta avisar quando um valor é regional e não do talhão.
+**1. Harmonização dos dados.** Os datasets têm resoluções muito diferentes, de 30 m (HLS) a cerca de 50 km (NASA POWER). Como o desafio sugere, reamostramos e agregamos tudo para uma grade comum e para passos de tempo mensais. Cada indicador guarda a resolução de origem, para a ferramenta avisar quando um valor é regional e não do talhão.
 
 **2. Indicadores por local e mês.** A partir da grade, calculamos indicadores como: temperatura máxima e mínima, risco de geada, chuva acumulada e eventos extremos, anomalia de umidade do solo, evapotranspiração, NDVI (cobertura e solo descoberto), declividade e tendência de água armazenada.
 
@@ -141,7 +137,7 @@ A proposta é demonstrar a ferramenta em três ou quatro pontos de regiões bem 
 | Borda da Amazônia (norte do MT, sul do PA, RO) | Fronteira agrícola e muitas nuvens na safra (exige radar) |
 | Sudeste serrano (Sul de Minas, Zona da Mata, ES) | Café perene: cobertura nas entrelinhas, relevo acidentado e risco de erosão |
 
-As características de cada região são hipóteses de partida. Elas precisam ser confirmadas pelos dados (NDVI, POWER, SMAP, SRTM) antes de entrar na apresentação.
+As características de cada região são hipóteses de partida. Elas precisam ser confirmadas pelos dados (NDVI, POWER, SMAP L4, SRTM) antes de entrar na apresentação.
 
 ## Questões em aberto
 

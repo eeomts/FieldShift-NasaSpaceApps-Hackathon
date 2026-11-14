@@ -103,7 +103,7 @@
 
 ### 6.1 Pedido de área no AppEEARS
 
-Campos gerais em `SMAP.md` (seção 6.2). Específico:
+Campos gerais do `POST /task` em `APPEEARS.md`. Específico:
 
 | Campo | Valor | Observação |
 |---|---|---|
@@ -216,7 +216,6 @@ Classificação de relevo amplamente usada no Brasil (Sistema Brasileiro de Clas
 3. Use o **recorte da fazenda**.
 4. **Combine** com chuva extrema (IMERG) e cobertura (NDVI): declive sozinho não é risco.
 5. Passe a altitude ao **NASA POWER**.
-6. Compare com o **TOPODATA** (INPE), citado no repositório como equivalente nacional [8].
 
 ---
 
@@ -226,10 +225,10 @@ Classificação de relevo amplamente usada no Brasil (Sistema Brasileiro de Clas
 
 | Motivo | Por que importa |
 |---|---|
-| **Única camada obrigatória em escala de talhão** | POWER, SMAP e IMERG têm 10–55 km |
+| **Única camada obrigatória em escala de talhão** | POWER, SMAP L4 e IMERG têm 9–55 km |
 | **Explica a erosão** | Declive + chuva forte + solo descoberto |
 | **Explica a geada localizada** | Ar frio se acumula nas baixadas |
-| **Melhora outras fontes** | Altitude corrige o POWER e ajuda a interpretar o ECOSTRESS |
+| **Melhora outras fontes** | Altitude corrige o POWER |
 | **Termos do desafio** | "Zones of erosion risk" e "frost-prone areas" |
 
 | Etapa | Papel |
@@ -274,7 +273,7 @@ Classificação de relevo amplamente usada no Brasil (Sistema Brasileiro de Clas
 > ❄️ **A baixada perto do córrego pode gelar antes do resto.**
 > *De onde vem: SRTM + NASA POWER. Só um termômetro no local mede a diferença real.*
 
-**Efeito:** a faixa norte é inclinada (SRTM), mais quente na seca (ECOSTRESS) e mais fraca (Landsat): zona de manejo com cobertura permanente (estratégia B). Altitude passada ao POWER (`site-elevation=950`). Confiança **Alta** (declividade) e **Média** (geada na baixada).
+**Efeito:** a faixa norte é inclinada (SRTM) e mais fraca (HLS): zona de manejo com cobertura permanente (estratégia B). Altitude passada ao POWER (`site-elevation=950`). Confiança **Alta** (declividade) e **Média** (geada na baixada).
 
 ---
 
@@ -292,7 +291,7 @@ Classificação de relevo amplamente usada no Brasil (Sistema Brasileiro de Clas
 
 ### 16.2 Base do projeto
 
-8. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002, D-003: TOPODATA).
+8. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md` (D-002).
 9. Repositório da equipe, `docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md` (§7 geada com relevo, §13 MVP).
 
 *Consulta das fontes: 14 de novembro de 2026.*

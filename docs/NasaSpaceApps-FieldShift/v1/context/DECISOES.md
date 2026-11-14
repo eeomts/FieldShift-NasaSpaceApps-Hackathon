@@ -23,7 +23,7 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Consequência:** 12 datasets da aba Resources ficam fora (ver D-003). As lacunas de solo, histórico de culturas e preços precisam ser preenchidas com fontes brasileiras ou mostradas ao usuário.
 
 ### D-002 — Classificação dos datasets
-- **Status:** Proposto (Gui, 14/11/2026). Falta confirmar com a equipe.
+- **Status:** **Substituída por D-009** (14/11/2026). Antes: proposto (Gui, 14/11/2026).
 - **Fonte:** `bancos-de-dados-field-shift-brasil.md`
 - **Obrigatórios (6):** NASA POWER, GPM IMERG, SMAP, MODIS NDVI (MOD13Q1), SRTM, FAO GAEZ v5
 - **Complementares (6):** Sentinel-2, Landsat 8/9, ECOSTRESS, GLDAS, ERA5, GRACE/GRACE-FO
@@ -31,16 +31,16 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Motivo:** os obrigatórios cobrem os indicadores básicos (clima, chuva, umidade, cobertura do solo, relevo e aptidão das culturas). Os complementares melhoram a precisão e o nível de confiança.
 
 ### D-003 — Datasets só dos EUA ficam fora
-- **Status:** Decidido (consequência direta de D-001, mantida em D-008)
+- **Status:** Decidido (consequência direta de D-001, mantida em D-008; equivalentes revistos na D-009)
 - **Itens:** Web Soil Survey, SSURGO/STATSGO2, CDL, PRISM, NAIP, NLCD, CoCoRaHS, NWIS, AMS Market News, NASS QuickStats, OpenET, LANDFIRE
-- **Equivalentes brasileiros possíveis:** MapBiomas (histórico de culturas), IBGE PAM (estatísticas), CONAB/CEPEA (preços), Embrapa Solos (solo), INMET/CEMADEN (estações), ANA HidroWeb (água), ZARC (calendário e risco por cultura), TOPODATA (relevo). Ver `BANCO_DE_DADOS_NASA.md`.
+- **Equivalentes brasileiros usados (D-009):** MapBiomas (histórico de culturas), IBGE PAM (estatísticas e valor da produção, que também serve ao critério de renda), INMET/CEMADEN (estações), ZARC (calendário e risco por cultura) e, como opcional, Embrapa Solos (solo). Ver `BANCO_DE_DADOS_NASA.md`.
 
 ### D-004 — Usar FAO GAEZ v5, não v4
 - **Status:** Proposto (junto com D-002)
 - **Motivo:** a v5 atualiza a linha de base para 2020 e tem resolução melhor.
 
 ### D-005 — GRACE só como contexto regional
-- **Status:** Proposto (junto com D-002)
+- **Status:** **Substituída por D-009** (o GRACE saiu do projeto). Antes: proposto (junto com D-002)
 - **Motivo:** a resolução real é de cerca de 3°. O GRACE responde "a água está diminuindo nesta bacia ou região?", mas não muda a recomendação para um talhão.
 
 ### D-006 — A ferramenta apoia, não decide
@@ -60,9 +60,29 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Consequências:**
   - A D-003 continua valendo: os 12 datasets só dos EUA ficam fora, e os equivalentes brasileiros passam a ser usados em escala nacional.
   - Os indicadores passam a ser separados por **bioma** (mapa de biomas do IBGE) e por região.
-  - O processamento fica mais pesado: os indicadores do panorama nacional devem ser **pré-calculados** numa grade comum. Dados de 30 m (HLS, Landsat, Sentinel-2) entram só nos pontos escolhidos e nas regiões de demonstração.
+  - O processamento fica mais pesado: os indicadores do panorama nacional devem ser **pré-calculados** numa grade comum. Dados de 30 m (HLS) entram só nos pontos escolhidos e nas regiões de demonstração.
   - As regras de recomendação precisam funcionar em todos os biomas, ou a ferramenta precisa dizer claramente onde não funciona.
   - Os documentos com "Minas" no nome ou no escopo foram atualizados; os casos hipotéticos em cidades de MG continuam como exemplos.
+
+### D-009 — Fontes de dados e ferramentas do MVP
+- **Status:** Decidido (equipe, 14/11/2026)
+- **Substitui:** D-002 e D-005
+- **Motivo:** com 48 h e escopo nacional, cada fonte precisa ter um papel que nenhuma outra cubra. Fontes repetidas, sem escala útil para o talhão ou só de estudo saíram. As notas de cada fonte estão em `tools/`.
+- **Núcleo (17), em `tools/`:**
+  - **Clima:** NASA POWER; ERA5 (segunda opinião independente)
+  - **Chuva:** GPM IMERG
+  - **Água no solo:** GLDAS (série longa); SMAP L4 (zona das raízes, situação atual), no lugar do SMAP L3
+  - **Vegetação:** MODIS NDVI (panorama nacional); HLS (talhão), no lugar de Landsat e Sentinel-2 separados
+  - **Relevo:** SRTM
+  - **Aptidão:** FAO GAEZ v5
+  - **Solo:** SoilGrids (fonte final ainda em Q-07)
+  - **Uso do solo e histórico:** MapBiomas
+  - **Validação:** ZARC; INMET/CEMADEN
+  - **Contexto regional e renda:** IBGE PAM
+  - **Acesso:** Earthdata Search (login), earthaccess (código), AppEEARS (séries por ponto)
+- **Opcionais (3), em `tools/extras/`:** FIRMS (risco de fogo; volta ao núcleo se a demo tiver Cerrado ou borda da Amazônia), Sentinel-1 (só se a demo tiver região muito nublada na safra), Embrapa Solos (depende da Q-07).
+- **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess e o AppEEARS cobrem), NASA Harvest e ARSET (referência e estudo, não fonte).
+- **Consequência:** as notas das fontes que saíram foram apagadas e as citações a elas foram tiradas dos documentos do projeto. Os documentos que descrevem a lista oficial do desafio continuam citando todos os datasets dela.
 
 ---
 
@@ -73,9 +93,9 @@ Precisam ser resolvidas antes de virar código.
 | # | Onde | Problema | Sugestão |
 |---|---|---|---|
 | I-1 | `CONTEXTO-DESAFIO.md` §13 × `bancos-de-dados-field-shift-brasil.md` | O MVP do contexto usa **SoilGrids + HLS** para solo e vegetação. A classificação dos bancos de dados usa **GAEZ v5 + MODIS** e não cita SoilGrids. | Decidir a fonte de solo (ver Q-07) e atualizar o documento que ficar desatualizado. |
-| I-2 | `desafio-field-shift-...-explicado-do-zero.md` Parte 3 | O exemplo do "seu Antônio" cita **NDVI do Landsat** como evidência, mas o plano de dados usa **MODIS** como obrigatório e Landsat como complementar. | Alinhar o exemplo quando a demo for definida. |
+| I-2 | `desafio-field-shift-...-explicado-do-zero.md` Parte 3 | O exemplo do "seu Antônio" cita **NDVI do Landsat** como evidência, mas o plano de dados usa **MODIS** no panorama e **HLS** no talhão; o Landsat não é usado como fonte separada (D-009). | Alinhar o exemplo quando a demo for definida. |
 | I-3 | `BANCO_DE_DADOS_NASA.md` e `dataset_nasa_miasgerais-focus.md` | Os dois arquivos eram idênticos. | **Resolvido (14/11/2026):** o segundo foi removido. |
-| I-4 | `BANCO_DE_DADOS_NASA.md` §3 | Diz que o NASA POWER "já é usado no app em Streamlit", mas não existe app nem stack definida. | Corrigir o texto ou registrar a stack quando ela for decidida (Q-09). |
+| I-4 | `BANCO_DE_DADOS_NASA.md` §3 | Diz que o NASA POWER "já é usado no app em Streamlit", mas não existe app nem stack definida. | **Resolvido (14/11/2026):** a frase foi tirada na revisão da D-009. A stack continua em aberto (Q-09). |
 | I-5 | `explicado-do-zero.md` Parte 5 | Fala do repositório `nasa-space-app`, mas o repositório é `FieldShift`. | Atualizar o nome. |
 | I-6 | `README.md` | A linha do título está repetida três vezes e não há descrição do projeto. | Reescrever quando o escopo fechar. |
 | I-7 | `docs/NasaSpaceApps-FieldShift/v1/.pdf/` | Os três PDFs ainda têm "Minas" no nome e no conteúdo, e não acompanham a mudança de escopo (D-008). | Gerar de novo a partir dos `.md` atualizados. |
@@ -126,3 +146,4 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 |---|---|
 | 14/11/2026 | Registro criado. Decisões D-001 a D-007 levantadas dos documentos existentes; inconsistências e perguntas em aberto listadas. |
 | 14/11/2026 | **D-008:** escopo muda para o Brasil inteiro e substitui a D-001. Atualizados D-003, D-005, I-1, I-2, Q-01 a Q-03 e Q-07; I-3 resolvido; I-7 criado. Arquivos renomeados de `-minas` para `-brasil`. |
+| 14/11/2026 | **D-009:** fontes do MVP definidas (17 no núcleo, 3 opcionais, 19 fora). Substitui D-002 e D-005; D-003, D-008 e I-2 ajustados. |

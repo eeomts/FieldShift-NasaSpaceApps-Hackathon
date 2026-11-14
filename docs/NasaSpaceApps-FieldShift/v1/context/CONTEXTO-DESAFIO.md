@@ -182,6 +182,8 @@ A imagem do desafio mostra uma agricultora de **Nevada (EUA) em campos de alfafa
 
 ## 6. Catálogo de dados
 
+> **Atualização (14/11/2026, D-009 em `DECISOES.md`):** esta seção é o levantamento inicial. As fontes que o projeto usa de fato são as do núcleo em `tools/` (NASA POWER, GPM IMERG, MODIS NDVI, HLS, SRTM, GLDAS, SMAP L4, ERA5, FAO GAEZ, SoilGrids, MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM, Earthdata Search, earthaccess e AppEEARS), mais as opcionais em `tools/extras/` (FIRMS, Sentinel-1 e Embrapa Solos). As demais fontes citadas aqui ficaram fora do MVP.
+
 ### 6.1 Datasets NASA citados no desafio
 
 > Resoluções e períodos aproximados. Confirmar nos produtos exatos escolhidos **[verificar]**.
@@ -225,6 +227,8 @@ A imagem do desafio mostra uma agricultora de **Nevada (EUA) em campos de alfafa
 ---
 
 ## 7. Indicadores derivados (features)
+
+> **Atualização (14/11/2026, D-009 em `DECISOES.md`):** esta seção é o levantamento inicial. As fontes que o projeto usa de fato são as do núcleo em `tools/` (NASA POWER, GPM IMERG, MODIS NDVI, HLS, SRTM, GLDAS, SMAP L4, ERA5, FAO GAEZ, SoilGrids, MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM, Earthdata Search, earthaccess e AppEEARS), mais as opcionais em `tools/extras/` (FIRMS, Sentinel-1 e Embrapa Solos). As demais fontes citadas aqui ficaram fora do MVP.
 
 Calcular por local, por mês (ou semana) do ano, com climatologia (ex.: 1991–2020 ou o período disponível) e tendência recente.
 
@@ -327,6 +331,8 @@ confianca: "alta" | "media" | "baixa"
 **Explicável primeiro.** Um sistema de regras + análise multicritério transparente, alimentado por indicadores calculados dos dados NASA, é mais defensável (e mais alinhado ao desafio) do que um modelo "caixa-preta". IA entra para detectar padrões e para redigir explicações, sempre ancorada nos números calculados.
 
 ### 9.2 Pipeline
+
+> **Atualização (14/11/2026, D-009 em `DECISOES.md`):** esta seção é o levantamento inicial. As fontes que o projeto usa de fato são as do núcleo em `tools/` (NASA POWER, GPM IMERG, MODIS NDVI, HLS, SRTM, GLDAS, SMAP L4, ERA5, FAO GAEZ, SoilGrids, MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM, Earthdata Search, earthaccess e AppEEARS), mais as opcionais em `tools/extras/` (FIRMS, Sentinel-1 e Embrapa Solos). As demais fontes citadas aqui ficaram fora do MVP.
 1. **Ingestão**: buscar séries por local (POWER, SMAP, GPM, NDVI via MODIS/HLS, SRTM, GRACE, SoilGrids).
 2. **Harmonização**: agregar tudo para **passo mensal** (ou semanal) e para o **ponto/polígono do talhão** (valor do pixel que contém o ponto ou média ponderada por área). Registrar a resolução original de cada variável para comunicar incerteza.
 3. **Features**: calcular indicadores da seção 7 (climatologia + tendência + anomalias).
@@ -411,6 +417,8 @@ Implicações para o projeto:
 ---
 
 ## 13. Escopo sugerido para o MVP (hackathon)
+
+> **Atualização (14/11/2026, D-009 em `DECISOES.md`):** esta seção é o levantamento inicial. As fontes que o projeto usa de fato são as do núcleo em `tools/` (NASA POWER, GPM IMERG, MODIS NDVI, HLS, SRTM, GLDAS, SMAP L4, ERA5, FAO GAEZ, SoilGrids, MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM, Earthdata Search, earthaccess e AppEEARS), mais as opcionais em `tools/extras/` (FIRMS, Sentinel-1 e Embrapa Solos). As demais fontes citadas aqui ficaram fora do MVP.
 
 **Mínimo demonstrável:**
 1. Entrada: ponto no mapa + rotação atual + 3–5 sliders de prioridade.

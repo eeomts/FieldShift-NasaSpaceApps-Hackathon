@@ -15,7 +15,7 @@ Os dados são gratuitos. O arquivo completo também é distribuído pela **ASF**
 
 ## Por que usar
 
-**1. A safra brasileira acontece debaixo de nuvem.** A soja do Centro-Oeste e do Norte cresce na estação chuvosa. Nesses meses, o HLS e o Sentinel-2 podem ter uma ou nenhuma imagem limpa por mês. O radar não depende disso.
+**1. A safra brasileira acontece debaixo de nuvem.** A soja do Centro-Oeste e do Norte cresce na estação chuvosa. Nesses meses, o HLS pode ter uma ou nenhuma imagem limpa por mês. O radar não depende disso.
 
 **2. Fecha o calendário do talhão.** A VH sobe quando a lavoura fecha e cai de uma vez na colheita. Com isso dá para estimar as datas de plantio e colheita mesmo sem imagem óptica. É o papel que o `HLS.md` já prevê para ele.
 

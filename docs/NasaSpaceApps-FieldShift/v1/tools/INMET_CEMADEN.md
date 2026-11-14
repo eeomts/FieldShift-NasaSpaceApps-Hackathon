@@ -16,7 +16,7 @@ O **CEMADEN** (Centro Nacional de Monitoramento e Alertas de Desastres Naturais)
 
 **1. São o substituto brasileiro do CoCoRaHS.** Nos EUA, o desafio usa uma rede de pluviômetros de voluntários. Aqui, INMET e CEMADEN cumprem esse papel (D-003).
 
-**2. Chuva medida no chão.** O GPM IMERG, o CHIRPS e o NASA POWER estimam a chuva em células de 10 a 50 km. Um pluviômetro mede num ponto. Comparar os dois mostra se o satélite erra muito na região.
+**2. Chuva medida no chão.** O GPM IMERG e o NASA POWER estimam a chuva em células de 10 a 50 km. Um pluviômetro mede num ponto. Comparar os dois mostra se o satélite erra muito na região.
 
 **3. Veranicos e chuvas fortes.** Estimativas de satélite costumam suavizar extremos. A estação mostra melhor as chuvas de 80 mm em uma hora e os 20 dias sem chuva no meio da safra.
 
@@ -32,7 +32,7 @@ O **CEMADEN** (Centro Nacional de Monitoramento e Alertas de Desastres Naturais)
 
 | Variável | O que é | Uso |
 | --- | --- | --- |
-| Precipitação (mm) | Chuva por hora ou por dia | Validar IMERG, CHIRPS e POWER |
+| Precipitação (mm) | Chuva por hora ou por dia | Validar IMERG e POWER |
 | Temperatura do ar (°C) | Máxima, mínima, horária | Validar POWER, calor e geada |
 | Umidade relativa (%) | Umidade do ar | Risco de fogo e doenças |
 | Radiação global | Energia do sol | Validar POWER e evapotranspiração |
@@ -51,7 +51,7 @@ O **CEMADEN** (Centro Nacional de Monitoramento e Alertas de Desastres Naturais)
 
 ### Nível de confiança
 
-O pluviômetro mede um ponto. Uma estação a 40 km pode não representar o talhão, sobretudo com chuva de trovoada. A série precisa ter poucos buracos. Atenção: o **IMERG Final** e o **CHIRPS** usam pluviômetros na calibração, e parte deles pode ser do INMET. Por isso, concordância entre IMERG e INMET **não conta como duas fontes independentes**. A rede do CEMADEN, mais densa e mais recente, ajuda a ter uma comparação mais limpa.
+O pluviômetro mede um ponto. Uma estação a 40 km pode não representar o talhão, sobretudo com chuva de trovoada. A série precisa ter poucos buracos. Atenção: o **IMERG Final** usa pluviômetros na calibração, e parte deles pode ser do INMET. Por isso, concordância entre IMERG e INMET **não conta como duas fontes independentes**. A rede do CEMADEN, mais densa e mais recente, ajuda a ter uma comparação mais limpa.
 
 ## Onde o produtor vê isso
 
