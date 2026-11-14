@@ -87,17 +87,17 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 
 #### Revisão proposta da D-009 — NASA Harvest volta ao projeto
 - **Status:** Proposto (14/11/2026). Falta confirmar com a equipe.
-- **Origem:** documentos do Guilherme em `tools/` (`relacao-nasa-power-harvest-portal.md`, `harvest-portal-api.md`, `harvest-portal-api-guia-de-uso.md`, `harvest-portal-mcp.md`, `harvest-portal-mcp-implementacao.md`, `nasaharvest-github.md`). Eles mostram usos concretos do NASA Harvest que a D-009 não tinha considerado; ela o tratava só como referência para o pitch.
+- **Origem:** documentos do Guilherme em `tools/` (`NASA_POWER_X_HARVEST_PORTAL.md`, `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `NASA_HARVEST_PORTAL_MCP.md`, `NASA_HARVEST_PORTAL_MCP_IMPLEMENTACAO.md`, `NASA_HARVEST.md`). Eles mostram usos concretos do NASA Harvest que a D-009 não tinha considerado; ela o tratava só como referência para o pitch.
 - **Proposta:** o NASA Harvest volta ao projeto em três papéis:
   1. **Harvest Portal como contexto de mercado.** As tabelas do portal (FAO, OECD) dão produção e tendência **do país**. Elas aparecem como contexto ("o mercado nacional dessa cultura cresce ou encolhe"), mas **não** formam a nota de mercado. A fonte principal da renda continua sendo o **IBGE PAM**, que tem dados **por município**. Sem dado no portal, a ferramenta mostra "mercado não verificado", nunca nota zero.
   2. **Harvest Portal MCP no chat.** Se o chat do produtor for construído (ver `application/architecture/DASHBOARD-E-CHAT.md`), o assistente consulta o portal pelo MCP para responder perguntas de mercado com fonte, sem inventar números. Risco: a página oficial não lista as funções do servidor; confirmar antes de implementar.
   3. **`crop-cycle-detection` (GitHub do NASA Harvest).** Código pronto para detectar os ciclos de cultura em séries de NDVI. Usado com o MODIS (panorama) e o HLS (talhão) para mostrar a rotação real e o tempo de solo descoberto, sem escrever o método do zero. Conferir a licença e o esforço de adaptação.
 - **Motivo:** o `crop-cycle-detection` e o MCP resolvem partes do produto (calendário de cobertura e chat com fontes) com material pronto. Como fonte de mercado, o portal é fraco para o Brasil porque só tem dados nacionais; por isso fica como contexto. De quebra, o projeto passa a usar mais de uma fonte da NASA com papéis claros, o que ajuda no pitch.
-- **Alternativa descartada:** usar o Harvest Portal como fonte principal da nota de mercado (proposta original de `relacao-nasa-power-harvest-portal.md`). Mercado nacional não representa o mercado local do produtor, e o IBGE PAM cobre esse papel melhor.
+- **Alternativa descartada:** usar o Harvest Portal como fonte principal da nota de mercado (proposta original de `NASA_POWER_X_HARVEST_PORTAL.md`). Mercado nacional não representa o mercado local do produtor, e o IBGE PAM cobre esse papel melhor.
 - **Se aprovada:**
   - O NASA Harvest sai da lista "Fora do projeto" e entra no núcleo, na linha **Contexto regional e renda** (portal, como contexto), na linha **Vegetação** (`crop-cycle-detection`) e numa nova linha **Chat** (MCP).
-  - Os arquivos em `tools/` passam ao padrão `<NOME>.md`. Sugestão: `NASA_HARVEST.md` (visão geral e GitHub) e `NASA_HARVEST_PORTAL.md` (API, guia de uso e MCP). O `arquitetura-completa-field-shift.md` vai para `application/architecture/`.
-  - Atualizar as citações a arquivos com nomes antigos (`nasa-power-api-daily.md` → `NASA_POWER.md`, pasta `fontes/` → `tools/`) e decidir o que fazer com o `fluxo-aplicativo-power-harvest-mcp.md`, que é citado mas não existe.
+  - **Feito em 14/11/2026 (independe da aprovação):** os arquivos foram renomeados para o padrão `<NOME>.md`: `NASA_HARVEST.md` (GitHub), `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `NASA_HARVEST_PORTAL_MCP.md`, `NASA_HARVEST_PORTAL_MCP_IMPLEMENTACAO.md` e `NASA_POWER_X_HARVEST_PORTAL.md`. O `arquitetura-completa-field-shift.md` foi para `application/architecture/ARQUITETURA-COMPLETA.md`. As citações a nomes antigos foram corrigidas.
+  - Ainda em aberto: o `fluxo-aplicativo-power-harvest-mcp.md` e o `comunicacao-entre-apis.md` são citados, mas não existem no repositório.
 ---
 
 ## 2. Inconsistências encontradas nos documentos

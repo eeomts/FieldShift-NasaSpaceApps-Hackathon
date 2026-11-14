@@ -4,7 +4,7 @@
 
 > Projeto: Field Shift (NASA Space Apps Challenge 2026)
 > Documento compilado em 14/11/2026
-> Documentos relacionados: `harvest-portal-api.md`, `harvest-portal-mcp.md`, `arquitetura-completa-field-shift.md`, `fontes/modis-viirs.md`, `fontes/landsat.md`
+> Documentos relacionados: `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_MCP.md`, `ARQUITETURA-COMPLETA.md`, `MODIS_VIIRS.md`, `HLS.md`
 
 ---
 
@@ -407,7 +407,7 @@ Derivados para o Field Shift:
   • comparação com a rotação que o agricultor cadastrou
 ```
 
-⚠️ Confirme o nome do produto, a camada de NDVI, o fator de escala e a camada de qualidade em `fontes/modis-viirs.md` e no AppEEARS.
+⚠️ Confirme o nome do produto, a camada de NDVI, o fator de escala e a camada de qualidade em `MODIS_VIIRS.md` e no AppEEARS.
 
 ### 10.2 Código de integração (esboço)
 
@@ -582,6 +582,6 @@ O agricultor cadastrou: **soja (out–fev) → milho safrinha (fev–jul) → po
 - glam-api: https://github.com/nasaharvest/glam-api
 
 **Documentos do projeto**
-- `harvest-portal-api.md`, `harvest-portal-api-guia-de-uso.md`, `harvest-portal-mcp.md`
-- `arquitetura-completa-field-shift.md`
-- `fontes/modis-viirs.md`, `fontes/landsat.md`
+- `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `NASA_HARVEST_PORTAL_MCP.md`
+- `ARQUITETURA-COMPLETA.md`
+- `MODIS_VIIRS.md`, `HLS.md`

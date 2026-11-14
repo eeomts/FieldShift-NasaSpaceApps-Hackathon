@@ -11,8 +11,8 @@
 > | `context/BANCO_DE_DADOS_NASA.md` | Lista de datasets e ferramentas |
 > | `application/ONBOARDING.md` | **Questionário do primeiro acesso: fonte oficial do onboarding** |
 > | `tools/*.md` | Uma nota por fonte do núcleo da D-009 (NASA POWER, SMAP L4, GPM IMERG, MODIS, HLS, SRTM, SoilGrids, GLDAS, ERA5, AppEEARS, earthaccess etc.) com acesso, variáveis, latência e limitações |
-> | `tools/arquitetura-completa-field-shift.md` | Fluxo "Analisar meu campo" passo a passo (coleta, harmonização, diagnóstico, filtro, mercado, estratégias, chat com MCP). O AgroIA usa esse fluxo e acrescenta o Dashboard diário e o chat |
-> | `tools/harvest-portal-*.md` | API e MCP do NASA Harvest Portal (dados de mercado por país) |
+> | `tools/ARQUITETURA-COMPLETA.md` | Fluxo "Analisar meu campo" passo a passo (coleta, harmonização, diagnóstico, filtro, mercado, estratégias, chat com MCP). O AgroIA usa esse fluxo e acrescenta o Dashboard diário e o chat |
+> | `tools/NASA_HARVEST_PORTAL_*.md` | API e MCP do NASA Harvest Portal (dados de mercado por país) |
 > | `application/DOR-DO-AGRICULTOR-E-CASO-DE-USO.md` | Dor do produtor e persona Dona Marta |
 >
 > Marcadores: **[decidir]** = equipe ainda não definiu · **[verificar]** = confirmar em fonte oficial antes de virar código.
@@ -138,7 +138,7 @@ Cada card tem: valor principal em frase simples · mini gráfico (se fizer senti
 | 6 | **Seu solo** | Textura, carbono orgânico, pH. Mostra lado a lado o que o produtor informou e o modelo | **SoilGrids** (250 m) + onboarding | Estático |
 | 7 | **Relevo e erosão** | Declividade do ponto e vizinhança; risco com chuva forte | **SRTM** (30 m) + chuva (POWER/IMERG) + resposta 7/16 do onboarding | Estático + mensal |
 | 8 | **Água no solo ao longo dos anos** | Umidade do solo em série longa: os anos secos e a tendência | **GLDAS** (série longa, D-009) | Mensal (1 a 2 meses de atraso) |
-| 9 | **Estratégias de rotação** | Atual + 2 alternativas, nota por prioridade, selo de confiança; detalhe com por que / evidência / benefícios / lacunas / riscos | Indicadores + base de culturas + **FAO GAEZ** (aptidão) + **Harvest Portal** (mercado, por país) + prioridades. Fluxo em `arquitetura-completa-field-shift.md` | Recalcula quando o perfil muda ou 1×/mês |
+| 9 | **Estratégias de rotação** | Atual + 2 alternativas, nota por prioridade, selo de confiança; detalhe com por que / evidência / benefícios / lacunas / riscos | Indicadores + base de culturas + **FAO GAEZ** (aptidão) + **Harvest Portal** (mercado, por país) + prioridades. Fluxo em `ARQUITETURA-COMPLETA.md` | Recalcula quando o perfil muda ou 1×/mês |
 | 10 | **Calendário da fazenda** | 12 meses com as culturas e faixas de risco (geada, calor, seca, solo descoberto) | Perfil + climatologia POWER | Mensal |
 
 **Enriquecimento regional (opcional):** se o ponto estiver no Brasil, acrescentar ZARC (janela de plantio), MapBiomas (histórico de uso) e INMET (estação próxima). Nos EUA: CDL, SSURGO e OpenET. A arquitetura deve prever um "plugin por país", mas o MVP roda só com fontes globais.
@@ -179,7 +179,7 @@ Pergunta do produtor
        Gemini (instruções do sistema + [1..4]) ─► resposta + fontes + sugestões
 ```
 
-**Function calling do Gemini (recomendado se der tempo):** ferramentas como `serie_historica(variavel, inicio, fim)`, `comparar_rotacoes(prioridades)`, `previsao(dias)`, `buscar_evento(tipo, ano)` e `mercado(cultura, pais)`. A última consulta o **Harvest Portal** pela API (ou pelo MCP `https://mcp.harvestportal.org/mcp`, como em `arquitetura-completa-field-shift.md`; **[verificar]** suporte a MCP no SDK do Gemini). O modelo busca o dado sob demanda e a API devolve **números calculados pelo nosso código**, nunca pelo modelo.
+**Function calling do Gemini (recomendado se der tempo):** ferramentas como `serie_historica(variavel, inicio, fim)`, `comparar_rotacoes(prioridades)`, `previsao(dias)`, `buscar_evento(tipo, ano)` e `mercado(cultura, pais)`. A última consulta o **Harvest Portal** pela API (ou pelo MCP `https://mcp.harvestportal.org/mcp`, como em `ARQUITETURA-COMPLETA.md`; **[verificar]** suporte a MCP no SDK do Gemini). O modelo busca o dado sob demanda e a API devolve **números calculados pelo nosso código**, nunca pelo modelo.
 
 ### 6.2 Base de conhecimento (para indexar)
 | Conteúdo | Fonte |
@@ -258,7 +258,7 @@ Todo dia (cron, ex.: 05:00 UTC) ─► para cada fazenda
 | SMAP L4, MODIS, HLS, GPM IMERG | `earthaccess` (Python) / AppEEARS API | **Earthdata Login** (gratuito) | `tools/EARTHACCESS.md`, `tools/APPEEARS.md` |
 | GLDAS | earthaccess | Earthdata | `tools/GLDAS.md` |
 | ERA5 (segunda opinião, opcional) | Copernicus CDS | Conta CDS | `tools/ERA5.md` |
-| Harvest Portal | API CKAN (`datastore_search`) / MCP | Não | `tools/harvest-portal-api.md` |
+| Harvest Portal | API CKAN (`datastore_search`) / MCP | Não | `tools/NASA_HARVEST_PORTAL_API.md` |
 | SRTM | AppEEARS / earthaccess | Earthdata | `tools/SRTM.md` |
 | SoilGrids | REST por ponto | Não | `tools/SOILGRIDS.md` |
 | FAO GAEZ v5 | Download de rasters | Não | `tools/FAO_GAEZ.md` (D-004) |

@@ -4,7 +4,7 @@
 
 > Projeto: Field Shift (NASA Space Apps Challenge 2026)
 > Documento compilado em 14/11/2026
-> Documentos relacionados: `harvest-portal-api.md`, `harvest-portal-api-guia-de-uso.md`, `fluxo-aplicativo-power-harvest-mcp.md`, `arquitetura-completa-field-shift.md`
+> Documentos relacionados: `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `fluxo-aplicativo-power-harvest-mcp.md`, `ARQUITETURA-COMPLETA.md`
 
 ---
 
@@ -404,6 +404,6 @@ Instruções fixas enviadas à IA em toda conversa:
 - Especificação do Model Context Protocol: https://modelcontextprotocol.io
 
 **Documentos do projeto**
-- `harvest-portal-api.md` e `harvest-portal-api-guia-de-uso.md`: a API que o MCP usa por baixo
+- `NASA_HARVEST_PORTAL_API.md` e `NASA_HARVEST_PORTAL_API_GUIA.md`: a API que o MCP usa por baixo
 - `fluxo-aplicativo-power-harvest-mcp.md`: Fluxo A (API) e Fluxo B (MCP)
-- `arquitetura-completa-field-shift.md`: o sistema inteiro
+- `ARQUITETURA-COMPLETA.md`: o sistema inteiro
