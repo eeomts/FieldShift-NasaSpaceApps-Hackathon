@@ -54,6 +54,9 @@ A PAM não é medição de satélite nem de balança. É uma estimativa feita pe
 - **Anos ruins:** frequência de anos com rendimento 20% abaixo da mediana.
 - **Perda de área:** diferença entre área plantada e área colhida.
 - **Tendência:** a área da cultura cresce, cai ou fica estável.
+- **Valor por hectare:** valor da produção × 1.000 ÷ área colhida, em R$/ha, corrigido pela inflação (IPCA). É a base do critério de renda.
+- **Rendimento em anos secos:** média do rendimento nos anos secos ÷ média nos demais − 1. Os anos secos vêm da chuva (GPM IMERG, INMET) e do NASA POWER no local; é aqui que a PAM e os dados de clima se cruzam.
+- **Escala regional:** usar a **microrregião** (`/n9/`) como padrão, por ser mais estável que o município, e mostrar o município como detalhe.
 
 ### Nível de confiança
 
@@ -145,4 +148,112 @@ A PAM traz a voz da **região**: o que se planta, quanto rende e quantas vezes d
 - **Atraso:** cada ano sai só no segundo semestre do ano seguinte (os dados de 2025 foram atualizados em outubro de 2026).
 - **Safras misturadas:** fora do milho, a PAM nem sempre separa safra e safrinha.
 - **Mudanças de município:** municípios criados depois de 1974 quebram a série.
+- **Corte mínimo:** produto com menos de 1 ha e 1 t no município fica fora da pesquisa, então culturas pequenas aparecem como ausentes.
+- **Só 64 produtos:** culturas de cobertura, como braquiária e crotalária, provavelmente não aparecem.
+- **Valor nominal:** o valor da produção precisa ser corrigido pelo IPCA (tabela 1737 do SIDRA) para comparar anos.
+- **Ano civil:** quando a colheita passa do ano civil, conta no ano em que se colheu a maior parte, então a safrinha pode cair no ano seguinte ao plantio.
 - **Tratamento:** usar mediana e frequência de anos ruins, cruzar quedas com dados de clima e avisar que é média do município.
+
+## Guia técnico: API do SIDRA
+
+Referência para quem vai implementar a coleta. Os códigos de tabela, variáveis e produtos citados em *Harmonização* foram conferidos nos metadados do SIDRA; o resto desta seção vem da documentação dos clientes oficiais e comunitários (`sidrar`, `sidrapy`, `DadosAbertosBrasil`) e da ajuda oficial (`apisidra.ibge.gov.br/home/ajuda`). Itens com ⚠️ devem ser confirmados na primeira chamada real.
+
+### APIs do IBGE usadas
+
+| API | Endereço base | Para quê |
+| --- | --- | --- |
+| **SIDRA** | `https://apisidra.ibge.gov.br/values` | Baixar os dados da tabela 5457 |
+| **Agregados v3** | `https://servicodados.ibge.gov.br/api/v3/agregados` | Metadados: variáveis, classificações, códigos dos produtos, períodos |
+| **Localidades v1** | `https://servicodados.ibge.gov.br/api/v1/localidades` | Código IBGE do município, da microrregião e da UF |
+| **Malhas v3** (opcional) | `https://servicodados.ibge.gov.br/api/v3/malhas` | Contorno do município para o mapa |
+
+Todas são abertas, sem login, e devolvem JSON.
+
+### Anatomia da URL
+
+```
+https://apisidra.ibge.gov.br/values/t/5457/n6/<município>/v/8331,216,214,112,215/p/last%2010/c782/40124,40122
+                                    └─┬──┘└──────┬──────┘└──────────┬─────────┘└────┬────┘└──────┬──────┘
+                                   tabela  nível + local        variáveis        período   produto (soja, milho)
+```
+
+| Bloco | Significado | Exemplos |
+| --- | --- | --- |
+| `/t/{tabela}` | Tabela do SIDRA | `/t/5457` (todas as lavouras), `/t/839` (milho 1ª e 2ª safra), `/t/1737` (IPCA) |
+| `/n{nível}/{locais}` | Nível territorial | `n1` Brasil, `n3` UF, `n6` município, `n9` microrregião, `n8` mesorregião; um código, vários separados por vírgula ou `all` |
+| `/v/{variáveis}` | Variáveis | `/v/214,112`, `/v/allxp` (todas, sem as percentuais) |
+| `/p/{períodos}` | Anos | `last`, `last%2010`, `2015-2024`, `2021,2024`, `all` |
+| `/c782/{produtos}` | Produto | `/c782/40124` ou `/c782/all` |
+| `/h/n` (opcional) | Resposta sem a linha de cabeçalho | — |
+
+⚠️ Pedir `/n6/all` com muitas variáveis e anos pode estourar o limite de valores por consulta. Divida por UF ou por produto.
+
+### Estrutura da resposta
+
+A API devolve uma lista JSON. **O primeiro item é o cabeçalho**, que diz o que cada chave significa; os demais são as linhas. As dimensões (`D1`, `D2`…) seguem a ordem dos blocos na URL ⚠️.
+
+```json
+[
+  {"NC": "Nível Territorial (Código)", "MN": "Unidade de Medida", "V": "Valor",
+   "D1C": "Município (Código)", "D1N": "Município", "D2C": "Variável (Código)",
+   "D3C": "Ano (Código)", "D4C": "Produto das lavouras temporárias e permanentes (Código)"},
+  {"NC": "6", "MN": "Toneladas", "V": "14800", "D1C": "<código>", "D2C": "214", "D3C": "2024", "D4C": "40125"}
+]
+```
+
+- `V` vem como **texto**: converta para número.
+- Símbolos ⚠️: `-` costuma indicar zero absoluto; `..`, `...` e `X` indicam dado não disponível, não aplicável ou omitido por sigilo. **Nunca trate `..` ou `X` como zero.**
+
+### Descobrir códigos
+
+```python
+import requests
+
+# Produtos (classificação 782) e seus códigos na tabela 5457
+meta = requests.get("https://servicodados.ibge.gov.br/api/v3/agregados/5457/metadados").json()
+for c in meta["classificacoes"]:
+    print(c["id"], c["nome"])
+    for cat in c["categorias"][:10]:
+        print("   ", cat["id"], cat["nome"])
+
+# Código IBGE de um município (a resposta também traz a microrregião, campo "microrregiao" ⚠️)
+muns = requests.get("https://servicodados.ibge.gov.br/api/v1/localidades/estados/GO/municipios").json()
+codigo = next(m["id"] for m in muns if m["nome"] == "Rio Verde")
+```
+
+### Implementação em Python
+
+```python
+import pandas as pd, requests
+
+VARIAVEIS = {8331: "area_plantada_ha", 216: "area_colhida_ha", 214: "quantidade_t",
+             112: "rendimento_kg_ha", 215: "valor_mil_reais"}
+
+def montar_url(nivel, localidade, codigos_produtos, periodo="last 10"):
+    v = ",".join(str(k) for k in VARIAVEIS)
+    c = ",".join(str(p) for p in codigos_produtos)
+    return (f"https://apisidra.ibge.gov.br/values/t/5457/n{nivel}/{localidade}"
+            f"/v/{v}/p/{periodo.replace(' ', '%20')}/c782/{c}")
+
+def para_tabela(dados):
+    cabecalho, linhas = dados[0], dados[1:]
+    df = pd.DataFrame(linhas).rename(columns=cabecalho)
+    df["Valor"] = pd.to_numeric(df["Valor"].replace({"-": "0"}), errors="coerce")  # ".." e "X" viram vazio
+    return df.pivot_table(index=["Produto das lavouras temporárias e permanentes", "Ano"],
+                          columns="Variável", values="Valor").reset_index()
+
+url = montar_url(nivel=9, localidade="<microrregião>", codigos_produtos=[40124, 40122, 40125])
+tabela = para_tabela(requests.get(url, timeout=60).json())
+```
+
+Alternativas prontas: `sidrapy.get_table(table_code="5457", territorial_level="6", ibge_territorial_code="<cód.>", period="last 10")` em Python, ou `get_sidra(api="/t/5457/n6/<cód.>/v/214/p/last%2010/c782/all")` com o pacote `sidrar` em R.
+
+### Boas práticas
+
+1. Baixe e guarde antes da demo, com cache por microrregião e produto.
+2. Use a microrregião como padrão e mostre o município como detalhe.
+3. Confirme os códigos nos metadados da tabela 5457 antes da primeira coleta.
+4. Nunca trate `..` ou `X` como zero.
+5. Corrija o valor pela inflação antes de comparar anos.
+6. Cite sempre "IBGE/PAM" e a escala ao lado do número.
+7. Peça só as variáveis e os produtos necessários, para não estourar o limite da API.

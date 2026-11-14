@@ -4,7 +4,7 @@
 
 > Projeto: Field Shift (NASA Space Apps Challenge 2026)
 > Documento compilado em 14/11/2026
-> Documentos relacionados: `fluxo-aplicativo-power-harvest-mcp.md`, `ibge-pam-sidra.md`, `harvest-portal-mcp.md`, `referencia-apis-field-shift.md`
+> Documentos relacionados: `fluxo-aplicativo-power-harvest-mcp.md`, `IBGE_PAM.md`, `harvest-portal-mcp.md`, `REFERENCIA_APIS.md`
 
 ---
 
