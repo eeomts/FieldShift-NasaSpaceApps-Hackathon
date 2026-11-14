@@ -1,0 +1,50 @@
+# Questionário do onboarding em formato que o código lê.
+# Fonte: application/ONBOARDING.md. Três perguntas de exemplo, uma de cada tipo.
+#
+# tipos: sim_nao_nao_sei | escolha | figuras | texto_livre | faixa | mapa | calendario | multipla (até N)
+
+perguntas:
+  - id: p14
+    bloco: 4
+    texto:
+      pt: "Depois de chuva forte, a água fica empoçada mais de um dia?"
+      en: "After heavy rain, does water stay pooled for more than a day?"
+    tipo: sim_nao_nao_sei
+    obrigatoria: false
+    alimenta:
+      atributo: drenagem          # atributo do retrato do solo
+      fonte: observacao           # peso 0,5 na fusão de evidências
+      se_sim: ruim
+      se_nao: boa
+
+  - id: p19_cor
+    bloco: 4
+    texto:
+      pt: "Com qual figura a sua terra mais se parece?"
+      en: "Which picture looks most like your soil?"
+    tipo: figuras
+    opcoes:
+      - { valor: escura,    imagem: cor_escura.jpg,    pt: "Preta ou marrom bem escura", en: "Black or very dark brown" }
+      - { valor: marrom,    imagem: cor_marrom.jpg,    pt: "Marrom",                     en: "Brown" }
+      - { valor: vermelha,  imagem: cor_vermelha.jpg,  pt: "Vermelha",                   en: "Red" }
+      - { valor: amarelada, imagem: cor_amarelada.jpg, pt: "Amarelada",                  en: "Yellowish" }
+      - { valor: cinza,     imagem: cor_cinza.jpg,     pt: "Cinza ou com manchas cinza", en: "Grey or grey-mottled" }
+      - { valor: clara,     imagem: cor_clara.jpg,     pt: "Clara ou esbranquiçada",     en: "Pale or whitish" }
+    obrigatoria: false
+    alimenta:
+      cruza_com: p19_jeito        # o resultado sai do cruzamento cor × jeito (tabela no ONBOARDING.md)
+
+  - id: p26b
+    bloco: 6
+    texto:
+      pt: "Que máquinas e equipamentos você tem ou consegue usar?"
+      en: "Which machines and equipment do you have or can use?"
+    tipo: texto_livre
+    obrigatoria: false
+    interpretacao:
+      ia: true                    # IA separa os itens e casa com equipamentos.csv
+      catalogo: equipamento
+      confirmar_item_a_item: true
+    alimenta:
+      tabela: restricao
+      tipo_restricao: equipamento

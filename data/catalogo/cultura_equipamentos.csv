@@ -1,0 +1,5 @@
+cultura_id,equipamento_id,etapa
+milho,plantadeira_graos,plantio
+milho,matraca,plantio
+milho,colhedora_graos,colheita
+milho,manual,colheita
