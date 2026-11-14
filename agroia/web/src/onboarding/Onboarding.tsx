@@ -30,7 +30,6 @@ const PERFIS: Record<string, { nome: string; texto: string }> = {
   A: { nome: "Experiência", texto: "Vamos usar os dados globais e as suas respostas. Alguns testes simples deixam a análise mais firme." },
   B: { nome: "Observador", texto: "Vamos combinar o que você observa com os dados globais de solo e clima." },
   C: { nome: "Com laudo", texto: "Os valores do seu laudo vão ter prioridade sobre os modelos. É o nível de confiança mais alto." },
-  D: { nome: "Técnico", texto: "Mostramos mais detalhe técnico na tela, e o fluxo é o mesmo." },
 };
 
 export function Onboarding() {
@@ -156,6 +155,9 @@ function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; culturas: Cult
           <span className="text-xs font-bold opacity-85">Seu perfil</span>
           <span className="font-titulo text-2xl font-extrabold">{fazenda.perfil} · {perfil.nome}</span>
           <span className="text-sm leading-snug opacity-90">{perfil.texto}</span>
+          {fazenda.papel === "tecnico" && (
+            <span className="text-xs font-bold opacity-85">Preenchido por técnico · mostramos mais detalhe técnico</span>
+          )}
         </Cartao>
       )}
 

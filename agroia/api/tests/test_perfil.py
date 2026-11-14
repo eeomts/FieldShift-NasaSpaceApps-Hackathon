@@ -1,9 +1,17 @@
-from app.onboarding.perfil import calcula_perfil, meses_sem_cobertura
+from app.onboarding.perfil import calcula_papel, calcula_perfil, meses_sem_cobertura
 from app.onboarding.schemas import ItemCalendario, Respostas
 
 
+def test_papel_e_independente_do_perfil():
+    tecnico_com_laudo = Respostas(q1_quem="tecnico", q12_analise="sim", q12_tem_resultado="sim")
+    assert calcula_papel(tecnico_com_laudo) == "tecnico"
+    assert calcula_perfil(tecnico_com_laudo) == "C"
+    assert calcula_papel(Respostas(q1_quem="tecnico")) == "tecnico"
+    assert calcula_perfil(Respostas(q1_quem="tecnico")) == "A"
+    assert calcula_papel(Respostas()) == "produtor"
+
+
 def test_regras_do_perfil():
-    assert calcula_perfil(Respostas(q1_quem="tecnico", q12_analise="sim", q12_tem_resultado="sim")) == "D"
     assert calcula_perfil(Respostas(q12_analise="sim", q12_tem_resultado="sim")) == "C"
     assert calcula_perfil(Respostas(q12_analise="sim", q12_tem_resultado="nao")) == "A"
     assert calcula_perfil(Respostas(q13_textura="argilosa")) == "B"

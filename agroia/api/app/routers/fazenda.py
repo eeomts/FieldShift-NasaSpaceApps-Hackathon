@@ -24,6 +24,7 @@ class FazendaOut(BaseModel):
     onboarding_concluido: bool
     status_processamento: str
     perfil: str | None
+    papel: str | None
     modificadores: dict
     retrato_solo: dict
     proximos_passos: list[dict]
@@ -39,6 +40,7 @@ def _out(f: Fazenda) -> FazendaOut:
         onboarding_concluido=f.onboarding_concluido,
         status_processamento=f.status_processamento,
         perfil=f.perfil,
+        papel=f.papel,
         modificadores={"irrigacao": f.irrigacao, "animais": f.animais},
         retrato_solo=f.retrato_solo or {},
         proximos_passos=f.proximos_passos or [],
@@ -73,6 +75,7 @@ def salvar(dados: SalvarFazenda, u: Usuario = Depends(usuario_atual), db: Sessio
     f.culturas_excluidas = [c.model_dump() for c in r.q26a_excluidas]
     f.equipamentos = [e.model_dump() for e in r.q26b_equipamentos]
     f.perfil = perfil.calcula_perfil(r)
+    f.papel = perfil.calcula_papel(r)
     f.retrato_solo = perfil.retrato_solo(r)
     f.proximos_passos = perfil.proximos_passos(r)
     f.calendario = [

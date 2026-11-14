@@ -13,10 +13,13 @@ def _respondida(valor) -> bool:
     return valor is not None and valor != "nao_sei"
 
 
+def calcula_papel(r: Respostas) -> str:
+    """Quem está respondendo. É independente do perfil: um técnico pode ter laudo (C) ou não (A/B)."""
+    return "tecnico" if r.q1_quem == "tecnico" else "produtor"
+
+
 def calcula_perfil(r: Respostas) -> str:
-    """Regra inicial de classificação (ONBOARDING.md)."""
-    if r.q1_quem == "tecnico":
-        return "D"
+    """Nível de dado sobre o solo (ONBOARDING.md): A experiência, B observador, C com laudo."""
     if r.q12_analise == "sim" and r.q12_tem_resultado == "sim":
         return "C"
     observacoes = sum(_respondida(getattr(r, k)) for k in _OBSERVACAO)

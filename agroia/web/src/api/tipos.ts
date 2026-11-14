@@ -85,7 +85,8 @@ export interface Fazenda {
   passo_atual: number;
   onboarding_concluido: boolean;
   status_processamento: string;
-  perfil: "A" | "B" | "C" | "D" | null;
+  perfil: "A" | "B" | "C" | null;
+  papel: "produtor" | "tecnico" | null;
   modificadores: { irrigacao: string | null; animais: boolean | null };
   retrato_solo: {
     indicadores?: Indicador[];

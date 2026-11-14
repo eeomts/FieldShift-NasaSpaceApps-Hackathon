@@ -31,7 +31,8 @@ class Fazenda(Base):
     __table_args__ = (
         CheckConstraint("lat IS NULL OR (lat BETWEEN -90 AND 90)", name="ck_fazenda_lat"),
         CheckConstraint("lon IS NULL OR (lon BETWEEN -180 AND 180)", name="ck_fazenda_lon"),
-        CheckConstraint("perfil IS NULL OR perfil IN ('A','B','C','D')", name="ck_fazenda_perfil"),
+        CheckConstraint("perfil IS NULL OR perfil IN ('A','B','C')", name="ck_fazenda_perfil"),
+        CheckConstraint("papel IS NULL OR papel IN ('produtor','tecnico')", name="ck_fazenda_papel"),
     )
 
     id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
@@ -40,7 +41,8 @@ class Fazenda(Base):
     lat: Mapped[float | None] = mapped_column(Float)
     lon: Mapped[float | None] = mapped_column(Float)
     nome_local: Mapped[str | None] = mapped_column(String(200))
-    perfil: Mapped[str | None] = mapped_column(String(1))
+    perfil: Mapped[str | None] = mapped_column(String(1))  # nível de dado do solo: A, B ou C
+    papel: Mapped[str | None] = mapped_column(String(10))  # quem respondeu: produtor ou tecnico
     irrigacao: Mapped[str | None] = mapped_column(String(10))
     animais: Mapped[bool | None] = mapped_column(Boolean)
     terreno: Mapped[str | None] = mapped_column(String(20))

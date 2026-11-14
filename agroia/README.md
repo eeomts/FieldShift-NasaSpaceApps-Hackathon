@@ -16,7 +16,7 @@ O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpace
 - **Salvamento por etapa:** o questionário salva a cada "Continuar", então dá para parar e voltar depois. Só conclui com o ponto marcado no mapa.
 - **Texto livre com IA (perguntas 8, 26a e 26b):** o Gemini separa o que o produtor escreveu em itens da base, e o produtor confirma um por um.
   - Sem chave do Gemini, ou se ele falhar, o texto é casado pelos nomes conhecidos e o produtor completa pela lista.
-- **Resumo final:** perfil do produtor (A, B, C ou D), meses com a terra descoberta, retrato do solo e próximos passos sugeridos.
+- **Resumo final:** perfil do produtor (A, B ou C) e papel (produtor ou técnico), meses com a terra descoberta, retrato do solo e próximos passos sugeridos.
 
 ## Estrutura
 
@@ -31,7 +31,7 @@ agroia/
 │   │   ├── security.py       # senha (argon2) e token (JWT)
 │   │   ├── base.py           # carrega culturas/equipamentos e casa nomes por sinônimo
 │   │   ├── routers/          # rotas: auth, fazenda, onboarding
-│   │   ├── onboarding/       # formato das respostas, perfil A–D, retrato do solo
+│   │   ├── onboarding/       # formato das respostas, perfil A–C, papel, retrato do solo
 │   │   └── llm/              # texto livre -> lista (Gemini, com a lista como reserva)
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
 │   ├── tests/                # pytest (só rodam num Postgres local)

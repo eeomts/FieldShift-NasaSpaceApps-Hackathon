@@ -27,6 +27,7 @@ def test_salvar_parcial_e_concluir(client, auth):
     f = r.json()
     assert f["onboarding_concluido"] is True
     assert f["perfil"] == "A"
+    assert f["papel"] == "produtor"
     assert f["modificadores"] == {"irrigacao": "nao", "animais": False}
     assert f["meses_sem_cobertura"] == [4, 5, 6, 7, 8, 9, 10]
     assert f["retrato_solo"]["figuras"]["leitura"] == "Argilosa e bem drenada"
