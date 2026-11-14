@@ -26,12 +26,18 @@ function Bloco({ titulo, texto, children }: { titulo: string; texto?: string; ch
   );
 }
 
+/** No computador, perguntas curtas lado a lado. No celular, uma embaixo da outra. */
+function Grade({ children }: { children: ReactNode }) {
+  return <div className="grid gap-4 lg:grid-cols-2 lg:items-start">{children}</div>;
+}
+
 const nomeCultura = (culturas: CulturaBase[], id: string | null) => culturas.find((c) => c.id === id)?.nome;
 
 /* ---------- Bloco 1: quem é você ---------- */
 export function PassoQuem({ r, set }: PassoProps) {
   return (
     <Bloco titulo="Primeiro, quem é você?" texto="São 6 partes rapidinhas. Dá para parar e continuar depois.">
+      <Grade>
       <Opcoes pergunta="Quem está respondendo?" colunas={1} valor={r.q1_quem} onChange={(v) => set({ q1_quem: v })}
         opcoes={[{ valor: "produtor", rotulo: "Sou o produtor" }, { valor: "tecnico", rotulo: "Sou técnico ou ajudo um produtor" }]} />
       <Opcoes pergunta="Tamanho aproximado da área" colunas={2} valor={r.q2_area} onChange={(v) => set({ q2_area: v })}
@@ -44,6 +50,7 @@ export function PassoQuem({ r, set }: PassoProps) {
         opcoes={[{ valor: "sim", rotulo: "Sim" }, { valor: "as_vezes", rotulo: "Às vezes" }, { valor: "nao", rotulo: "Não" }]} />
       <Opcoes pergunta="Tem criação de animais?" valor={r.q4_animais} onChange={(v) => set({ q4_animais: v })}
         opcoes={[{ valor: "sim", rotulo: "Sim" }, { valor: "nao", rotulo: "Não" }]} />
+      </Grade>
     </Bloco>
   );
 }
@@ -88,6 +95,7 @@ export function PassoCampo({ r, set }: PassoProps) {
   ];
   return (
     <Bloco titulo="Como é o seu campo?">
+      <Grade>
       <Opcoes pergunta="Tem irrigação?" valor={r.q6_irrigacao} onChange={(v) => set({ q6_irrigacao: v })}
         opcoes={[{ valor: "sim", rotulo: "Sim" }, { valor: "parte", rotulo: "Só em parte" }, { valor: "nao", rotulo: "Não" }]} />
       <fieldset className="m-0 flex flex-col gap-2.5 rounded-[22px] border-0 bg-white p-4 shadow-cartao">
@@ -106,6 +114,7 @@ export function PassoCampo({ r, set }: PassoProps) {
           })}
         </div>
       </fieldset>
+      </Grade>
     </Bloco>
   );
 }
@@ -206,10 +215,12 @@ export function PassoPlanta({ r, set, culturas }: PassoProps) {
           })
         }
       />
+      <Grade>
       {itens.map((it, idx) => (
         <CartaoCultura key={idx} item={it} culturas={culturas} onChange={(n) => atualizar(idx, n)}
           onRemover={() => set({ q8_culturas: itens.filter((_, i) => i !== idx) })} />
       ))}
+      </Grade>
       <AdicionarDaLista
         rotulo="Adicionar cultura pela lista"
         opcoes={culturas.map((c) => ({ id: c.id, nome: c.nome }))}
@@ -259,6 +270,7 @@ function AdicionarDaLista({ rotulo, opcoes, onAdicionar }: { rotulo: string; opc
 export function PassoPosColheita({ r, set }: PassoProps) {
   return (
     <Bloco titulo="E depois da colheita?">
+      <Grade>
       <Opcoes pergunta="Depois da colheita, o que acontece com o campo?" colunas={2} valor={r.q10_pos_colheita}
         onChange={(v) => set({ q10_pos_colheita: v })}
         opcoes={[
@@ -267,6 +279,7 @@ export function PassoPosColheita({ r, set }: PassoProps) {
         ]} />
       <Opcoes pergunta="Deixa a palha ou o resto da cultura no campo?" valor={r.q11_palha}
         onChange={(v) => set({ q11_palha: v })} opcoes={SIM_NAO_NAOSEI} />
+      </Grade>
     </Bloco>
   );
 }
@@ -316,6 +329,8 @@ export function PassoSolo1({ r, set }: PassoProps) {
   const anoAtual = new Date().getFullYear();
   return (
     <Bloco titulo="O que você sabe do seu solo?" texto={`"Não sei" também ajuda: mostra onde precisamos ter mais cuidado.`}>
+      <Grade>
+      <div className="flex flex-col gap-4">
       <Opcoes pergunta="Já fez análise de solo em laboratório?" valor={r.q12_analise}
         onChange={(v) => set({ q12_analise: v, ...(v !== "sim" && { q12_tem_resultado: null, q12_ano: null, q12_laudo: null }) })} opcoes={SIM_NAO_NAOSEI} />
       {r.q12_analise === "sim" && (
@@ -335,6 +350,7 @@ export function PassoSolo1({ r, set }: PassoProps) {
           </label>
         </Cartao>
       )}
+      </div>
       <Opcoes pergunta="A terra é mais arenosa, argilosa ou meio-termo?" colunas={2} valor={r.q13_textura}
         onChange={(v) => set({ q13_textura: v })}
         opcoes={[
@@ -344,17 +360,18 @@ export function PassoSolo1({ r, set }: PassoProps) {
       {PERGUNTAS_SOLO.map(({ k, p }) => (
         <Opcoes key={k} pergunta={p} valor={r[k] as SNS | null} onChange={(v) => set({ [k]: v })} opcoes={SIM_NAO_NAOSEI} />
       ))}
+      </Grade>
     </Bloco>
   );
 }
 
 const CORES = [
-  { v: "escura", rotulo: "Preta ou bem escura", fundo: "#3B2A20" },
-  { v: "marrom", rotulo: "Marrom", fundo: "#7A5230" },
-  { v: "vermelha", rotulo: "Vermelha", fundo: "#9E3B26" },
-  { v: "amarela", rotulo: "Amarelada", fundo: "#C9A24A" },
-  { v: "cinza", rotulo: "Cinza ou com manchas", fundo: "repeating-radial-gradient(circle at 30% 40%, #8C8C84 0 6px, #A9A79C 6px 12px)" },
-  { v: "clara", rotulo: "Clara, esbranquiçada", fundo: "#E6D9BE" },
+  { v: "escura", rotulo: "Preta", desc: "Preta ou marrom bem escura", fundo: "#3B2A20" },
+  { v: "marrom", rotulo: "Marrom", desc: "Marrom", fundo: "#7A5230" },
+  { v: "vermelha", rotulo: "Vermelha", desc: "Vermelha", fundo: "#9E3B26" },
+  { v: "amarela", rotulo: "Amarela", desc: "Amarelada", fundo: "#C9A24A" },
+  { v: "cinza", rotulo: "Cinza", desc: "Cinza ou com manchas cinza", fundo: "repeating-radial-gradient(circle at 30% 40%, #8C8C84 0 6px, #A9A79C 6px 12px)" },
+  { v: "clara", rotulo: "Clara", desc: "Clara ou esbranquiçada", fundo: "#E6D9BE" },
 ] as const;
 
 const JEITOS = [
@@ -380,12 +397,12 @@ export function PassoSolo2({ r, set }: PassoProps) {
     <Bloco titulo="Pegue um punhado de terra" texto="Cor e jeito na mão são pistas, não análise. A gente cruza com os dados de solo depois.">
       <fieldset className="m-0 flex flex-col gap-2.5 rounded-[22px] border-0 bg-white p-4 shadow-cartao">
         <legend className="float-left mb-2.5 w-full p-0 text-[15px] font-bold">Com qual cor a sua terra mais se parece?</legend>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-2 lg:grid-cols-6">
           {CORES.map((c) => {
             const on = r.q19_cor === c.v;
             return (
-              <button key={c.v} type="button" aria-pressed={on} onClick={() => set({ q19_cor: c.v })}
-                className={cx("flex flex-col items-stretch gap-1.5 rounded-2xl border-2 p-1.5 text-xs leading-tight font-bold",
+              <button key={c.v} type="button" aria-pressed={on} title={c.desc} aria-label={c.desc} onClick={() => set({ q19_cor: c.v })}
+                className={cx("flex min-w-0 flex-col items-stretch gap-1.5 rounded-2xl border-2 p-1.5 text-xs leading-tight font-bold",
                   on ? "border-folha bg-folha-clara" : "border-borda bg-white")}>
                 <span className="h-12 rounded-xl" style={{ background: c.fundo }} />
                 {c.rotulo}
@@ -398,7 +415,7 @@ export function PassoSolo2({ r, set }: PassoProps) {
       </fieldset>
       <fieldset className="m-0 flex flex-col gap-2.5 rounded-[22px] border-0 bg-white p-4 shadow-cartao">
         <legend className="float-left mb-2.5 w-full p-0 text-[15px] font-bold">E na mão, ela parece mais com qual?</legend>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2 lg:grid-cols-3">
           {JEITOS.map((j) => {
             const on = r.q19_jeito === j.v;
             return (
@@ -413,10 +430,12 @@ export function PassoSolo2({ r, set }: PassoProps) {
         </div>
         <BotaoNaoSei on={r.q19_jeito === "nao_sei"} onClick={() => set({ q19_jeito: "nao_sei" })} />
       </fieldset>
+      <Grade>
       <Opcoes pergunta="Tem partes do campo onde a lavoura sempre vai pior?" valor={r.q20_partes_piores}
         onChange={(v) => set({ q20_partes_piores: v })} opcoes={SIM_NAO_NAOSEI} />
       <Opcoes pergunta="Já usou calcário?" valor={r.q21_calcario} onChange={(v) => set({ q21_calcario: v })} opcoes={SIM_NAO_NAOSEI} />
       <Opcoes pergunta="Usa adubo ou esterco?" valor={r.q22_adubo} onChange={(v) => set({ q22_adubo: v })} opcoes={SIM_NAO_NAOSEI} />
+      </Grade>
     </Bloco>
   );
 }
@@ -437,6 +456,7 @@ export function PassoClima({ r, set }: PassoProps) {
     <Bloco titulo="O que você tem sentido no clima?" texto="Com o ano, procuramos o evento nos dados da NASA para o seu ponto.">
       <Opcoes pergunta="Sente que a chuva mudou nos últimos anos?" valor={r.q23_chuva_mudou}
         onChange={(v) => set({ q23_chuva_mudou: v })} opcoes={SIM_NAO_NAOSEI} />
+      <Grade>
       {PERDAS.map(({ k, p }) => {
         const atual = perdas[k] ?? { resposta: null, ano: null };
         return (
@@ -456,6 +476,7 @@ export function PassoClima({ r, set }: PassoProps) {
           </div>
         );
       })}
+      </Grade>
     </Bloco>
   );
 }
@@ -481,7 +502,7 @@ export function PassoPrioridades({ r, set }: PassoProps) {
     set({ q25_prioridades: escolhidas.includes(v) ? escolhidas.filter((x) => x !== v) : escolhidas.length < 3 ? [...escolhidas, v] : escolhidas });
   return (
     <Bloco titulo="O que é mais importante pra você?" texto="Escolha até 3. Isso muda a ordem das sugestões.">
-      <div className="grid grid-cols-2 gap-2.5">
+      <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-3">
         {PRIORIDADES.map((p) => {
           const on = escolhidas.includes(p.v);
           const cheio = !on && escolhidas.length >= 3;
@@ -510,6 +531,7 @@ export function PassoRestricoes({ r, set, culturas, equipamentos }: PassoProps) 
         exemplo="Ex.: não planto soja, não tenho onde vender" texto={r.q26a_texto ?? ""}
         onTexto={(t) => set({ q26a_texto: t })}
         onResultado={(res) => set({ q26a_excluidas: res.itens.map((i) => ({ cultura_id: i.id, texto_original: i.texto_original, motivo: i.motivo ?? null })) })} />
+      <Grade>
       {excluidas.map((ex, idx) => (
         <Cartao key={idx}>
           <div className="flex items-center justify-between gap-2">
@@ -522,6 +544,7 @@ export function PassoRestricoes({ r, set, culturas, equipamentos }: PassoProps) 
             onChange={(v) => set({ q26a_excluidas: excluidas.map((x, i) => (i === idx ? { ...x, motivo: v } : x)) })} opcoes={MOTIVOS.map((m) => ({ valor: m.v, rotulo: m.rotulo }))} />
         </Cartao>
       ))}
+      </Grade>
       <AdicionarDaLista rotulo="Adicionar cultura que não plantaria" opcoes={culturas.map((c) => ({ id: c.id, nome: c.nome }))}
         onAdicionar={(id) => set({ q26a_excluidas: [...excluidas, { cultura_id: id, texto_original: nomeCultura(culturas, id) ?? id, motivo: null }] })} />
 
