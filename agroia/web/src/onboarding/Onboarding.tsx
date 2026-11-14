@@ -179,8 +179,8 @@ function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; culturas: Cult
           <Selo tom="ceu">Informado por você · vamos cruzar com SoilGrids e NASA</Selo>
           {solo.figuras && <span className="text-[15px] font-bold">{solo.figuras.leitura}</span>}
           <ul className="m-0 flex list-none flex-col gap-1.5 p-0">
-            {solo.indicadores?.map((i) => (
-              <li key={i.atributo} className="text-sm text-suave">• {i.valor}</li>
+            {solo.indicadores?.filter((i) => i.texto).map((i) => (
+              <li key={i.origem} className="text-sm text-suave">• {i.texto}</li>
             ))}
           </ul>
         </Cartao>

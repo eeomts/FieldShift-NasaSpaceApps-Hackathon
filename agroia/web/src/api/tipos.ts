@@ -73,9 +73,13 @@ export interface Respostas {
   q26b_equipamentos?: Equipamento[];
 }
 
+/** Um item do retrato do solo. `valor` é a categoria que o motor usa; `texto` é o que aparece na tela. */
 export interface Indicador {
   atributo: string;
   valor: string;
+  texto: string | null;
+  fonte: "produtor" | "laudo";
+  origem: string;
   confianca: string;
 }
 
@@ -90,7 +94,7 @@ export interface Fazenda {
   modificadores: { irrigacao: string | null; animais: boolean | null };
   retrato_solo: {
     indicadores?: Indicador[];
-    figuras?: { cor: string | null; jeito: string | null; leitura: string; confianca: string } | null;
+    figuras?: { cor: string | null; jeito: string | null; leitura: string; confianca: string; atributos: Indicador[] } | null;
   };
   proximos_passos: { id: string; titulo: string; texto: string }[];
   meses_sem_cobertura: number[];

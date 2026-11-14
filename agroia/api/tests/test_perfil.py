@@ -1,4 +1,4 @@
-from app.onboarding.perfil import calcula_papel, calcula_perfil, meses_sem_cobertura
+from app.onboarding.perfil import calcula_papel, calcula_perfil, meses_sem_cobertura, retrato_solo
 from app.onboarding.schemas import ItemCalendario, Respostas
 
 
@@ -22,6 +22,31 @@ def test_regras_do_perfil():
     quatro_mais_figuras = (cinco | {"q18_minhocas": "nao_sei"}) | dict(q19_cor="vermelha", q19_jeito="gruda")
     assert calcula_perfil(Respostas(**quatro_mais_figuras)) == "B"
     assert calcula_perfil(Respostas()) == "A"
+
+
+def test_retrato_do_solo_tem_valores_padronizados_para_o_motor():
+    retrato = retrato_solo(Respostas(q13_textura="argilosa", q14_encharca="sim", q18_minhocas="nao",
+                                     q19_cor="cinza", q19_jeito="gruda"))
+    por_origem = {i["origem"]: i for i in retrato["indicadores"]}
+    assert por_origem["q14_encharca"]["atributo"] == "drenagem"
+    assert por_origem["q14_encharca"]["valor"] == "ruim"
+    assert por_origem["q14_encharca"]["texto"] == "Água fica empoçada mais de um dia"
+    assert por_origem["q18_minhocas"]["valor"] == "baixa"
+    assert por_origem["q13_textura"]["valor"] == "argilosa"
+    assert all(i["fonte"] == "produtor" for i in retrato["indicadores"])
+
+    figuras = retrato["figuras"]
+    assert figuras["leitura"].startswith("Argilosa com drenagem ruim")
+    assert {(a["atributo"], a["valor"]) for a in figuras["atributos"]} == {("drenagem", "ruim"), ("textura", "argilosa")}
+    assert all(a["confianca"] == "baixa" for a in figuras["atributos"])
+
+
+def test_figura_so_com_cor_ou_nao_sei():
+    so_cor = retrato_solo(Respostas(q19_cor="escura", q19_jeito="nao_sei"))["figuras"]
+    assert so_cor["jeito"] is None and so_cor["leitura"] == "Mais matéria orgânica"
+    assert so_cor["atributos"] == [{"atributo": "materia_organica", "valor": "alta", "texto": None,
+                                    "fonte": "produtor", "origem": "q19_cor", "confianca": "baixa"}]
+    assert retrato_solo(Respostas(q19_cor="nao_sei"))["figuras"] is None
 
 
 def test_perguntas_de_manejo_nao_contam_como_conhecimento_do_solo():
