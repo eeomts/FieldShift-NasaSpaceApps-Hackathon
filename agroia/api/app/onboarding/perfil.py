@@ -1,8 +1,12 @@
 """Regras que transformam as respostas nas saídas do questionário (ONBOARDING.md, "O que sai")."""
 from app.onboarding.schemas import ItemCalendario, Respostas
 
-_BLOCO4 = ["q12_analise", "q13_textura", "q14_encharca", "q15_casca", "q16_erosao", "q17_dura",
-           "q18_minhocas", "q20_partes_piores", "q21_calcario", "q22_adubo"]
+# Perguntas de OBSERVAÇÃO do solo. As de manejo (q12 análise, q21 calcário, q22 adubo) não contam:
+# responder "não usei calcário" não diz nada sobre como o solo é.
+_OBSERVACAO = ["q13_textura", "q14_encharca", "q15_casca", "q16_erosao", "q17_dura",
+               "q18_minhocas", "q20_partes_piores"]
+# 8 observações possíveis (as 7 acima + a pergunta 19, que vale uma quando tem cor e jeito)
+MIN_OBSERVACOES_B = 5
 
 
 def _respondida(valor) -> bool:
@@ -15,9 +19,9 @@ def calcula_perfil(r: Respostas) -> str:
         return "D"
     if r.q12_analise == "sim" and r.q12_tem_resultado == "sim":
         return "C"
-    conhecidas = sum(_respondida(getattr(r, k)) for k in _BLOCO4)
-    conhecidas += _respondida(r.q19_cor) and _respondida(r.q19_jeito)
-    if _respondida(r.q13_textura) or conhecidas >= 6:
+    observacoes = sum(_respondida(getattr(r, k)) for k in _OBSERVACAO)
+    observacoes += _respondida(r.q19_cor) and _respondida(r.q19_jeito)
+    if _respondida(r.q13_textura) or observacoes >= MIN_OBSERVACOES_B:
         return "B"
     return "A"
 

@@ -33,7 +33,7 @@ O questionário faz duas coisas ao mesmo tempo:
 **Regra inicial de classificação:**
 - **D** se a pergunta 1 = "técnico".
 - **C** se a pergunta 12 = "sim" **e** tem o resultado em mãos.
-- **B** se respondeu a textura (13) **ou** pelo menos 6 perguntas do bloco 4 sem "não sei".
+- **B** se respondeu a textura (13) **ou** pelo menos 5 das 8 perguntas de **observação** do solo sem "não sei" (13 a 18, 20 e a 19, que vale uma quando tem cor e jeito). As perguntas de manejo (12, 21 e 22) não contam: "nunca usei calcário" não diz nada sobre como o solo é.
 - **A** nos demais casos.
 
 ---
