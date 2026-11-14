@@ -9,6 +9,7 @@ app = FastAPI(title="AgroIA API", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=get_settings().cors_list,
+    allow_origin_regex=get_settings().cors_origin_regex,
     allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["Authorization", "Content-Type"],
 )

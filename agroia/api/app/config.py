@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     db_port: int = 5433
     db_name: str = "agricultura"
     db_user: str = "agricultura_app"
-    db_password: str
+    db_password: str = Field(min_length=1)
     db_sslmode: str = "prefer"
 
     # Autenticação
@@ -27,6 +27,8 @@ class Settings(BaseSettings):
 
     # Front-end permitido (CORS), separado por vírgula
     cors_origins: str = "http://localhost:5173"
+    # Em desenvolvimento, aceita o front em qualquer porta do localhost (o Vite pula para 5174 se a 5173 estiver ocupada).
+    cors_origin_regex: str | None = r"http://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?"
 
     @property
     def database_url(self) -> str:
