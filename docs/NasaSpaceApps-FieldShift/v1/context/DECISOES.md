@@ -81,9 +81,23 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - **Contexto regional e renda:** IBGE PAM
   - **Acesso:** Earthdata Search (login), earthaccess (código), AppEEARS (séries por ponto)
 - **Opcionais (3), em `tools/extras/`:** FIRMS (risco de fogo; volta ao núcleo se a demo tiver Cerrado ou borda da Amazônia), Sentinel-1 (só se a demo tiver região muito nublada na safra), Embrapa Solos (depende da Q-07).
-- **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess e o AppEEARS cobrem), NASA Harvest e ARSET (referência e estudo, não fonte).
+- **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess e o AppEEARS cobrem), NASA Harvest e ARSET (referência e estudo, não fonte). **O NASA Harvest está em revisão: ver a proposta abaixo.**
 - **Consequência:** as notas das fontes que saíram foram apagadas e as citações a elas foram tiradas dos documentos do projeto. Os documentos que descrevem a lista oficial do desafio continuam citando todos os datasets dela.
 
+
+#### Revisão proposta da D-009 — NASA Harvest volta ao projeto
+- **Status:** Proposto (14/11/2026). Falta confirmar com a equipe.
+- **Origem:** documentos do Guilherme em `tools/` (`relacao-nasa-power-harvest-portal.md`, `harvest-portal-api.md`, `harvest-portal-api-guia-de-uso.md`, `harvest-portal-mcp.md`, `harvest-portal-mcp-implementacao.md`, `nasaharvest-github.md`). Eles mostram usos concretos do NASA Harvest que a D-009 não tinha considerado; ela o tratava só como referência para o pitch.
+- **Proposta:** o NASA Harvest volta ao projeto em três papéis:
+  1. **Harvest Portal como contexto de mercado.** As tabelas do portal (FAO, OECD) dão produção e tendência **do país**. Elas aparecem como contexto ("o mercado nacional dessa cultura cresce ou encolhe"), mas **não** formam a nota de mercado. A fonte principal da renda continua sendo o **IBGE PAM**, que tem dados **por município**. Sem dado no portal, a ferramenta mostra "mercado não verificado", nunca nota zero.
+  2. **Harvest Portal MCP no chat.** Se o chat do produtor for construído (ver `application/architecture/DASHBOARD-E-CHAT.md`), o assistente consulta o portal pelo MCP para responder perguntas de mercado com fonte, sem inventar números. Risco: a página oficial não lista as funções do servidor; confirmar antes de implementar.
+  3. **`crop-cycle-detection` (GitHub do NASA Harvest).** Código pronto para detectar os ciclos de cultura em séries de NDVI. Usado com o MODIS (panorama) e o HLS (talhão) para mostrar a rotação real e o tempo de solo descoberto, sem escrever o método do zero. Conferir a licença e o esforço de adaptação.
+- **Motivo:** o `crop-cycle-detection` e o MCP resolvem partes do produto (calendário de cobertura e chat com fontes) com material pronto. Como fonte de mercado, o portal é fraco para o Brasil porque só tem dados nacionais; por isso fica como contexto. De quebra, o projeto passa a usar mais de uma fonte da NASA com papéis claros, o que ajuda no pitch.
+- **Alternativa descartada:** usar o Harvest Portal como fonte principal da nota de mercado (proposta original de `relacao-nasa-power-harvest-portal.md`). Mercado nacional não representa o mercado local do produtor, e o IBGE PAM cobre esse papel melhor.
+- **Se aprovada:**
+  - O NASA Harvest sai da lista "Fora do projeto" e entra no núcleo, na linha **Contexto regional e renda** (portal, como contexto), na linha **Vegetação** (`crop-cycle-detection`) e numa nova linha **Chat** (MCP).
+  - Os arquivos em `tools/` passam ao padrão `<NOME>.md`. Sugestão: `NASA_HARVEST.md` (visão geral e GitHub) e `NASA_HARVEST_PORTAL.md` (API, guia de uso e MCP). O `arquitetura-completa-field-shift.md` vai para `application/architecture/`.
+  - Atualizar as citações a arquivos com nomes antigos (`nasa-power-api-daily.md` → `NASA_POWER.md`, pasta `fontes/` → `tools/`) e decidir o que fazer com o `fluxo-aplicativo-power-harvest-mcp.md`, que é citado mas não existe.
 ---
 
 ## 2. Inconsistências encontradas nos documentos
@@ -147,3 +161,4 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 14/11/2026 | Registro criado. Decisões D-001 a D-007 levantadas dos documentos existentes; inconsistências e perguntas em aberto listadas. |
 | 14/11/2026 | **D-008:** escopo muda para o Brasil inteiro e substitui a D-001. Atualizados D-003, D-005, I-1, I-2, Q-01 a Q-03 e Q-07; I-3 resolvido; I-7 criado. Arquivos renomeados de `-minas` para `-brasil`. |
 | 14/11/2026 | **D-009:** fontes do MVP definidas (17 no núcleo, 3 opcionais, 19 fora). Substitui D-002 e D-005; D-003, D-008 e I-2 ajustados. |
+| 14/11/2026 | Proposta de revisão da D-009: NASA Harvest volta como contexto de mercado (Harvest Portal), no chat (MCP) e na detecção de ciclos (`crop-cycle-detection`). A confirmar com a equipe. |
