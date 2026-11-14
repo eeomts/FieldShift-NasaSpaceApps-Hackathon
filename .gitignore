@@ -1,2 +1,6 @@
 .claude/settings.local.json
 .obsidian/
+
+# Downloads grandes de dados (ver data/brutos/README.md)
+data/brutos/*
+!data/brutos/README.md
