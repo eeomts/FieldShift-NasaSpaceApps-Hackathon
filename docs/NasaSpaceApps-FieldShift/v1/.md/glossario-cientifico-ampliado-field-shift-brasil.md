@@ -694,7 +694,7 @@ Permitir que cada evidência seja compreendida dentro de seus limites, para que 
 
 ### 23.1 Base do projeto
 
-Documentos fornecidos pelo usuário: "Field Shift Minas - Documentação do Projeto.md" e "Texto colado(20261114-132558).txt", que contém o contexto do desafio e a descrição de recursos. Eles fundamentam o recorte em Minas Gerais, os objetivos, as fontes candidatas e a proposta de comparação de estratégias.
+Documentos fornecidos pelo usuário: "Field Shift Minas - Documentação do Projeto.md" e "Texto colado(20261114-132558).txt", que contém o contexto do desafio e a descrição de recursos. Eles fundamentaram o recorte inicial em Minas Gerais (depois ampliado para o Brasil inteiro pela D-008), os objetivos, as fontes candidatas e a proposta de comparação de estratégias.
 
 As explicações são sínteses em português, acompanhadas de exemplos próprios. Não são transcrições dos documentos científicos. Os números dos exercícios e os cenários são didáticos. As sugestões para a interface e a metodologia constituem propostas de aplicação, não especificações oficialmente aprovadas pela NASA.
 
@@ -728,4 +728,4 @@ As explicações são sínteses em português, acompanhadas de exemplos próprio
 26. NASA POWER. Meteorological data sources. <https://power.larc.nasa.gov/docs/methodology/data/sources_meteorology/>
 27. FAO. Global Agro-Ecological Zones: recursos e potencial agrícola. <https://www.fao.org/land-water/resources/tools/databases/gaez/en>
 
-*Consulta das fontes: 14 de novembro de 2026. Características operacionais e versões de produtos devem ser conferidas novamente no momento da implementação. As fontes foram usadas para conceitos e limites de interpretação, não para produzir um diagnóstico atual de Minas Gerais.*
+*Consulta das fontes: 14 de novembro de 2026. Características operacionais e versões de produtos devem ser conferidas novamente no momento da implementação. As fontes foram usadas para conceitos e limites de interpretação, não para produzir um diagnóstico atual de qualquer região do Brasil.*
