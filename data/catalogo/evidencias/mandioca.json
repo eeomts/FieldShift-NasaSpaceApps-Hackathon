@@ -1,0 +1,229 @@
+{
+  "id": "mandioca",
+  "valores": {
+    "tipos": "comercial|tolerante_seca",
+    "perene": "true",
+    "ciclo_dias_min": "180",
+    "ciclo_dias_max": "720",
+    "temp_base_c": "14",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "27",
+    "tmax_critica_c": "",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "1000",
+    "agua_ciclo_mm_max": "1500",
+    "kc_inicial": "0.3",
+    "kc_medio": "0.8",
+    "kc_final": "0.3",
+    "profundidade_raiz_m": "0.8",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "baixo",
+    "valor_forrageiro": "medio",
+    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc Cassava year 1: 0.3/0.80/0.30)|FAO-56 Tab.22 (raiz Cassava year 1: 0.5-0.8 m; usado limite superior)|FAO-56 Tab.11 (duração Cassava year 1: 210 dias; year 2: 360 dias)|Embrapa Mandioca e Fruticultura/Embrapa Semiárido, Sistema de Produção de Mandioca no Semiárido, Sistema de Produção 12, 2a ed. 2020 (ciclo 6 a 24 meses em sequeiro; temperatura ideal 20-27 °C; chuva 1000-1500 mm/ano; tolerância à seca)|Mattos, Farias & Ferreira Filho (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa 2006 (chuva anual 1000-1500 mm; temp. 20-27 °C; paralisa a ~15 °C; geada; uso da parte aérea e das raízes na alimentação animal; solo descoberto, erosão e pouco resíduo)|Embrapa Amazônia Ocidental, Circular Técnica 23, 2004 (ciclo de cultivares brasileiras 6-8 a 12-16 meses)|Schons et al., Ciência Rural 37(6):1586-1592, 2007 (temperatura base 14 °C para emissão de folhas; cita ZARC-SC com Tb 15 °C)|Alves, Fisiologia da mandioca, EMBRAPA-CNPMF 1990 (não cresce abaixo de 15 °C; arbusto perene)|FAO ECOCROP Manihot esculenta (temp. ótima 20-29 °C, absoluta 10-35 °C; morte a 0 °C no início do crescimento; perene)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "240",
+      "depois": "180",
+      "motivo": "Embrapa (Sistema de Produção no Semiárido): em sequeiro a colheita varia de 6 a 24 meses; a CT 23 da Embrapa lista cultivares de 6 a 8 meses (Zolhudinha) e Aipim Manteiga de 6 a 10 meses. Não achei fonte para '8 a 24 meses'."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "12",
+      "depois": "14",
+      "motivo": "Schons et al. 2007 estimaram Tb = 14 °C para emissão de folhas no RS e citam o ZARC de SC com Tb = 15 °C; a Embrapa (Alves 1990) diz que a mandioca não cresce abaixo de 15 °C. Não achei fonte para 12 °C."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "29",
+      "depois": "27",
+      "motivo": "A Embrapa (500 perguntas e Sistema de Produção no Semiárido) dá a faixa ideal de 20 a 27 °C de média anual. O 29 vinha do ECOCROP (20-29 °C). Preferi a fonte brasileira; as duas concordam no mínimo de 20 °C."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "",
+      "depois": "1000",
+      "motivo": "Embrapa e ECOCROP: chuva anual ótima de 1000 a 1500 mm. ATENÇÃO: é CHUVA ANUAL, não consumo medido no ciclo. Como o ciclo de referência (ano 1) dura cerca de 1 ano, foi usada como aproximação."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "",
+      "depois": "1500",
+      "motivo": "Igual ao anterior (chuva anual, não água no ciclo)."
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Embrapa (500 perguntas, q.101): crescimento inicial lento, solo descoberto por mais tempo, espaçamento largo; está entre as culturas anuais com maiores perdas de solo e água por erosão."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "baixo",
+      "depois": "medio",
+      "motivo": "Embrapa: a parte aérea serve de alimento animal in natura, como feno (variedades mansas) ou como silagem (bravas); as folhas têm muita proteína; mais de 50% da produção brasileira vai para alimentação animal (dado FAO citado pela Embrapa). Não é forrageira de uso principal, por isso medio e não alto."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|...",
+      "depois": "(ver valores)",
+      "motivo": "Fontes primárias conferidas com trechos literais."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO, Allen et al., Crop Evapotranspiration (FAO-56), Tab.12, 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Cassava - year 1 0.3 0.80 3 0.30 ... - year 2 0.3 1.10 0.50. Nota 3: \"The midseason values for cassava assume non-stressed conditions during or following the rainy season. The Kc end values account for dormancy during the dry season.\""
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Tab.22, 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Cassava - year 1 0.5-0.8 0.35 - year 2 0.7-1.0 0.40"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Tab.11 (duração das fases), 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Cassava: year 1 20 40 90 60 210 Rainy ... year 2 150 40 110 60 360 season. Justificativa do ano 1: no Brasil as cultivares precoces e semiprecoces são colhidas com 10 a 16 meses, ou seja, dentro de um só ciclo vegetativo. O ano 2 (Kc médio 1.10, final 0.50, raiz 1.0 m) só vale para lavouras colhidas com 18 a 24 meses."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Mandioca e Fruticultura/Embrapa Semiárido, Sistema de Produção de Mandioca no Semiárido (SP 12), 2a ed., 2020",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1131107/1/Sistema-de-Producao-de-Mandioca-no-Semiarido.pdf",
+      "trecho": "em condições de sequeiro, a colheita da mandioca varia de 6 a 24 meses após o plantio"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.80-81",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "As variedades de mandioca têm ciclos que variam de 6 a 36 meses. ... Precoces (ciclo de 10 a 14 meses). Semiprecoces (ciclo de 14 a 16 meses). Tardias (ciclo maior que 18 meses)."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "Embrapa Amazônia Ocidental, Recomendações Técnicas do Cultivo de Mandioca para o Amazonas, Circular Técnica 23, 2004, Tab.3",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/681059/1/CircularTecnican23.pdf",
+      "trecho": "Ciclo (meses) 6a8 [Zolhudinha] 7a8 7a8 12 a 16 [BRS Purus] 6 a 10 [Aipim Manteiga]"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Schons, Streck, Kraulich, Pinheiro & Zanon, Ciência Rural 37(6):1586-1592, 2007",
+      "url": "https://www.redalyc.org/pdf/331/33137613.pdf",
+      "trecho": "et al. (2006) usaram uma Tb = 15°C no zoneamento agrícola de riscos climáticos para a cultura da mandioca para o Estado de Santa Catarina. ... adotou-se uma Tb = 14°C para aparecimento de folhas da variedade de mandioca \"RS 13\""
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "perene"
+      ],
+      "fonte": "Alves, A.A.C., Fisiologia da mandioca, EMBRAPA-CNPMF, Cruz das Almas, 1990",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/637721/1/FisiologiadaMandiocaAlfredoid6944.pdf",
+      "trecho": "seu crescimento é \"normal\" quando a temperatura média anual situa-se entre 20 e 27°C (MOTA, 1974), podendo a planta crescer bem entre valores de temperatura oscilando entre 16 e 38°C ... A mandioca não cresce em temperaturas abaixo de 15°C."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.28 e q.84",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "Média anual de temperatura entre 20oC e 27oC. Precipitação pluvial média anual entre 1.000 mm e 1.500 mm, distribuídos entre 8 e 9 meses. (q.28: \"total anual de 1.000 mm a 1.500 mm, com boa distribuição durante 6 a 8 meses do ciclo vegetativo\") — VALOR DE CHUVA ANUAL"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "tipos"
+      ],
+      "fonte": "Embrapa, Sistema de Produção de Mandioca no Semiárido (SP 12), 2a ed., 2020, capítulos Clima e Manejo de irrigação",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1131107/1/Sistema-de-Producao-de-Mandioca-no-Semiarido.pdf",
+      "trecho": "A faixa ideal de temperatura situa-se entre 20 ºC a 27 ºC (média anual). ... A pluviosidade mais adequada está entre 1.000 mm a 1.500 mm por ano, bem distribuídos ... A mandioca é uma cultura que apresenta tolerância à seca ou ao deficit hídrico do solo quando comparada com outras culturas."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "sensivel_geada",
+        "perene"
+      ],
+      "fonte": "FAO ECOCROP, Manihot esculenta, data sheet 1420",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=1420",
+      "trecho": "Life span perennial ... Temperat. requir. 20 29 10 35 ... Rainfall (annual) 1000 1500 500 5000 ... Killing temp. during rest 7 Killing temp. early growth 0 ... Crop cycle 180 365"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.26 e q.185",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "Em regiões sujeitas a geadas, as hastes de mandioca têm que ser obrigatoriamente armazenadas para serem protegidas contra as baixas temperaturas, que danificam a parte aérea da planta."
+    },
+    {
+      "colunas": [
+        "cobertura_solo",
+        "aporte_biomassa"
+      ],
+      "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.101",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "praticamente, exporta tudo o que absorveu, não devolvendo quase nada ao solo na forma de resíduos culturais ... A mandioca é uma das culturas anuais que provocam maiores perdas de solo e de água por erosão, tanto por seu crescimento inicial lento, permanecendo o solo descoberto e desprotegido por mais tempo"
+    },
+    {
+      "colunas": [
+        "raiz_profunda"
+      ],
+      "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.43",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "As camadas de impedimento, situadas logo abaixo da camada arável do solo, além de dificultar o crescimento e engrossamento das raízes, restringem a infiltração da água no solo"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.466 e q.483",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "A parte aérea de variedades mansas ... pode ser usada in natura e na forma de feno (desidratada) na alimentação animal, ao passo que a de variedades bravas ... pode ser usada na forma de ensilagem. ... um pouco mais de 50% da produção é destinada à alimentação animal."
+    }
+  ],
+  "pendencias": [
+    "tmax_critica_c deixado vazio: na mandioca a floração não importa para a produção e não achei limite de calor da Embrapa. Há dois limites gerais de crescimento, não de floração: ECOCROP máx. absoluto de 35 °C e Alves (1990), que diz que a planta cresce bem até 38 °C. Se o app precisar de um teto de calor, 35 °C (ECOCROP) é a opção mais conservadora.",
+    "agua_ciclo_mm_min e agua_ciclo_mm_max são CHUVA ANUAL ótima (Embrapa e ECOCROP: 1000-1500 mm/ano), não consumo de água medido no ciclo. Não achei ETc total do ciclo em fonte da Embrapa. Em lavouras de 18-24 meses a necessidade no ciclo será maior. O Semiárido produz com 500-700 mm/ano usando variedades adaptadas.",
+    "Kc e raiz usam o ano 1 do FAO-56 (210 dias). Para lavouras de 2 ciclos (18-24 meses) valem os valores do ano 2: Kc ini 0.3, médio 1.10, final 0.50 e raiz 1.0 m. A tabela tem uma linha só, então ficou o ano 1, que vale para as cultivares precoces e semiprecoces (10-16 meses).",
+    "temp_base_c = 14 vem de um único estudo com uma cultivar (RS 13, no RS), feito com a emissão de folhas. A Embrapa (Alves 1990) e o ZARC-SC usam 15 °C, e não li o documento do ZARC-SC diretamente.",
+    "temp_otima_max_c: Embrapa 27 °C contra ECOCROP 29 °C. Escolhi a Embrapa. As duas faixas se referem à média do ar (anual na Embrapa).",
+    "ciclo_dias_min = 180 (6 meses) vale para aipim/mesa e colheitas precoces. A mandioca industrial raramente é colhida antes de 10-12 meses.",
+    "Não consultei o ZARC da mandioca diretamente."
+  ]
+}

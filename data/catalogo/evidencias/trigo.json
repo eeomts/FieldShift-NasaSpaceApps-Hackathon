@@ -1,0 +1,174 @@
+{
+  "id": "trigo",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "105",
+    "ciclo_dias_max": "165",
+    "temp_base_c": "0",
+    "temp_otima_min_c": "15",
+    "temp_otima_max_c": "23",
+    "tmax_critica_c": "31",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "450",
+    "agua_ciclo_mm_max": "650",
+    "kc_inicial": "0.3",
+    "kc_medio": "1.15",
+    "kc_final": "0.25",
+    "profundidade_raiz_m": "1.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "fontes": "FAO-56 Tab.12 linha Spring Wheat + grupo Cereals (Kc)|FAO-56 Tab.22 Spring Wheat 1.0-1.5 m (raiz; limite superior)|Embrapa 2016 Trigo: o produtor pergunta Cap.2 (trigos de primavera no Brasil; geada no espigamento-floração)|Silva et al. 2008 PAB 43(10) Embrapa Trigo (geada no espigamento)|ZARC trigo MAPA Portarias 385/2022 RS e 02/2021 GO e 434/2025 BA (ciclo por grupo; geada no espigamento)|Embrapa Cerrados Circular Técnica 49 2021 BRS 264 (ciclo mínimo)|Embrapa Trigo Comunicado Técnico 324 2013 (temperatura base 0 °C)|FAO ECOCROP Triticum aestivum (temperatura ótima)|Porter & Gawith 1999 Eur J Agron via Jacott & Boden 2020 J Exp Bot (tmax na antese)|FAO Irrigation Water Management Training Manual 3 Tab.14 (água)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "100",
+      "depois": "105",
+      "motivo": "A cultivar mais curta documentada no Cerrado (BRS 264, superprecoce) tem 105 dias da emergência à maturação e é colhida por volta de 110 dias após a semeadura. O ZARC de GO (Região 4) define o Grupo I como n ≤/< 100 dias da emergência à colheita; somando 5 a 10 dias da semeadura à emergência, o mínimo da semeadura à colheita fica em cerca de 105 dias."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "140",
+      "depois": "165",
+      "motivo": "O ZARC de trigo de sequeiro do RS (Port. 385/2022), Região 1 (fria), tem Grupo II de 141 a 160 dias e Grupo III com 160 dias ou mais da emergência à colheita. O valor 140 deixava de fora as cultivares médias e tardias do Sul. Com cerca de 5 dias da semeadura à emergência, o máximo fica em cerca de 165 dias. O Grupo III não tem teto, então 165 é uma estimativa conservadora."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "30",
+      "depois": "31",
+      "motivo": "Porter & Gawith (1999), revisão de 65 estudos, citados por Jacott & Boden (2020): acima de 31 °C o sucesso da polinização na antese fica limitado. Não achei fonte Embrapa com um limiar numérico."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|...",
+      "depois": "(ver valores)",
+      "motivo": "Troquei por referências conferidas e tirei o marcador de rascunho."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "Allen et al., FAO Irrigation and Drainage Paper 56, Tab.12, 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "i. Cereals 0.3 1.15 0.4 ... Spring Wheat 1.15 0.25-0.4 (10) ... 10 The higher value is for hand-harvested crops."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Allen et al., FAO-56, Tab.22, 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Spring Wheat 1.0-1.5 0.55 Winter Wheat 1.5-1.8 0.55"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Cunha, G.R. da et al. Bioclimatologia e zoneamento agrícola. In: De Mori et al. (Ed.) Trigo: o produtor pergunta, a Embrapa responde. Embrapa, 2016, cap.2, p.31-57",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1040316/1/ID436112016LVTrigoCap2.pdf",
+      "trecho": "No Brasil, são cultivados, comercialmente, trigos de primavera (com menor necessidade em vernalização) da espécie Triticum aestivum L."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Cunha, G.R. da et al. (Embrapa, 2016), Trigo: o produtor pergunta, cap.2, pergunta 55",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1040316/1/ID436112016LVTrigoCap2.pdf",
+      "trecho": "A sensibilidade do trigo à geada começa a aumentar depois do início do emborrachamento. Atinge o seu máximo na floração e diminui após os estádios de grão em massa mole e dura."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Silva, E.P. da; Cunha, G.R. da et al. Fatores abióticos envolvidos na tolerância de trigo à geada. Pesq. agropec. bras. 43(10):1257-1265, 2008",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/914/5510/32623",
+      "trecho": "A temperatura de -7°C, no espigamento, resultou em falha na produção de grãos de ambas as cultivares"
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "ciclo_dias_max"
+      ],
+      "fonte": "MAPA/SPA, Portaria nº 385, de 6/12/2022, ZARC trigo de sequeiro RS, ano-safra 2022/2023",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2022-2023/rio-grande-do-sul-rs/port-no-385-trigo-de-sequeiro-rs-ret.pdf",
+      "trecho": "risco de geada ... temperaturas do ar igual ou menor a 1,0 C ... dois decêndios (20 dias) ao redor do espigamento ... Região 1: Grupo I (n ≤ 140 dias); Grupo II (141 dias ≤ n ≤ 160 dias); e Grupo III (n ≥ 160 dias), onde n expressa o número de dias da emergência à maturação ponto de colheita."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "MAPA/SPA, Portaria nº 02, de 11/01/2021, ZARC trigo de sequeiro GO, ano-safra 2020/2021",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2020-2021/goias-go/port-no-02-trigo-de-sequeiro-go-ret.pdf",
+      "trecho": "Região 4: Grupo I (n ≤ 100 dias); Grupo II (100 dias ≤ n ≤ 120 dias); e Grupo III (n>120 dias), onde n expressa o número de dias da emergência à maturação ponto de colheita. (símbolos de comparação ilegíveis no PDF)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "Albrecht, J.C. Cultivar Trigo BRS 264. Embrapa Cerrados, Circular Técnica 49, 2021",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1133610/1/Cultivar-trigo-BRS-264-Circular-tecnica-49.pdf",
+      "trecho": "Ciclo: super superprecoce (50 dias da emergência ao espigamento e 105 dias da emergência à maturação). ... A BRS 264 deve ser colhida em torno de 110 dias após a semeadura"
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "tmax_critica_c"
+      ],
+      "fonte": "MAPA/SPA, Portaria nº 434, de 22/10/2025, ZARC trigo de sequeiro BA, ano-safra 2025/2026",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2025-2026/bahia-ba/PO80031.PDF",
+      "trecho": "Na região tropical, deficiência hídrica e excesso de calor (temperaturas elevadas, causando esterilidade na espiga) são os principais limitantes."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Rodrigues, O. et al. Caracterização ontogenética de cultivares brasileiras de trigo. Embrapa Trigo, Comunicado Técnico 324, 2013",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/988430/1/2013comunicadotecnicoonline324.pdf",
+      "trecho": "A duração das respectivas fases foi quantificada em soma térmica utilizando-se a temperatura basal de zero grau."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, ficha Triticum aestivum (id 2114)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=2114",
+      "trecho": "Temperat. requir. 15 23 5 27 ... Killing temp. early growth 0 ... Crop cycle 90 250"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Jacott, C.N.; Boden, S.A. Feeling the heat: developmental and molecular responses of wheat and barley to high ambient temperatures. J. Exp. Bot. 71(19):5740, 2020 (citando Porter & Gawith 1999, Eur. J. Agron. 10:23-36)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7540836/",
+      "trecho": "The average optimum temperature for anthesis in wheat is 21.0 °C, and temperatures higher than 31 °C limit the success of pollination (Porter and Gawith, 1999)"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Brouwer & Heibloem, FAO Irrigation Water Management Training Manual 3, Tab.14, 1986",
+      "url": "https://www.fao.org/4/s2022e/s2022e07.htm",
+      "trecho": "Table 14 INDICATIVE VALUES OF CROP WATER NEEDS AND SENSITIVITY TO DROUGHT ... Barley/Oats/Wheat 450-650 low-medium"
+    }
+  ],
+  "pendencias": [
+    "tmax_critica_c (31): a fonte lida é uma revisão secundária (Jacott & Boden 2020) que cita Porter & Gawith 1999. Não li o original e não achei limiar numérico em documento da Embrapa.",
+    "ciclo_dias_max (165): o Grupo III do ZARC da Região 1 do RS não tem teto (≥160 dias da emergência à colheita). 165 soma cerca de 5 dias até a emergência. Cultivares tardias ou de duplo propósito semeadas 20 a 40 dias antes podem passar disso. Não achei uma ficha de cultivar tardia com o número de dias.",
+    "ciclo_dias_min (105): o Grupo I do ZARC de GO (≤/<100 dias da emergência à colheita) pode dar algo perto de 100 da semeadura à colheita. Escolhi 105 com base na BRS 264, a cultivar mais curta que encontrei documentada.",
+    "agua_ciclo_mm: o valor 450–650 mm é genérico da FAO para cevada/aveia/trigo. Não achei um total por ciclo da Embrapa para o Brasil.",
+    "cobertura_solo (media), aporte_biomassa (medio), valor_forrageiro (baixo), raiz_profunda (false): julgamento qualitativo, sem fonte primária com números. Observação: a Embrapa recomenda trigo de duplo propósito (pastejo + grão) no Sul (Informações Técnicas Trigo e Triticale, 2023, item 7). Se o app considerar isso, valor_forrageiro poderia subir para 'medio'.",
+    "temp_otima (15–23) vem do ECOCROP, que é genérico para a espécie. Não achei faixa ótima da Embrapa para cultivares brasileiras."
+  ]
+}
