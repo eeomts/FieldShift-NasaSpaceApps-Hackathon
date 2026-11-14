@@ -6,7 +6,7 @@ Aqui ficam os dados que o time prepara à mão ou baixa uma vez, antes de o app 
 
 Cada arquivo tem **um dono só**. Ninguém edita o arquivo de outra pessoa; se precisar de uma mudança, avise o dono. Isso evita conflito no Git.
 
-### Pessoa 1 — Base de culturas (perfil: agronomia) · _____________
+### Pessoa 1 — Base de culturas (perfil: agronomia) · Yury
 
 O caminho crítico do projeto: o motor inteiro depende dela.
 
