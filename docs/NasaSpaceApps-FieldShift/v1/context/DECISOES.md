@@ -78,7 +78,7 @@ Precisam ser resolvidas antes de virar código.
 | I-4 | `BANCO_DE_DADOS_NASA.md` §3 | Diz que o NASA POWER "já é usado no app em Streamlit", mas não existe app nem stack definida. | Corrigir o texto ou registrar a stack quando ela for decidida (Q-09). |
 | I-5 | `explicado-do-zero.md` Parte 5 | Fala do repositório `nasa-space-app`, mas o repositório é `FieldShift`. | Atualizar o nome. |
 | I-6 | `README.md` | A linha do título está repetida três vezes e não há descrição do projeto. | Reescrever quando o escopo fechar. |
-| I-7 | `docs/v1/.pdf/` | Os três PDFs ainda têm "Minas" no nome e no conteúdo, e não acompanham a mudança de escopo (D-008). | Gerar de novo a partir dos `.md` atualizados. |
+| I-7 | `docs/NasaSpaceApps-FieldShift/v1/.pdf/` | Os três PDFs ainda têm "Minas" no nome e no conteúdo, e não acompanham a mudança de escopo (D-008). | Gerar de novo a partir dos `.md` atualizados. |
 
 ---
 
