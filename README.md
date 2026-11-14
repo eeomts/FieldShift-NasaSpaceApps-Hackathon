@@ -54,6 +54,7 @@ npm run dev                       # abre em http://localhost:5173
 │   ├── api/                        # back-end: FastAPI + PostgreSQL
 │   ├── web/                        # front-end: React + Vite + TypeScript
 │   └── base/                       # culturas e equipamentos usados pelo questionário
+├── layout/                         # 🎨 protótipo navegável (HTML e PDF): referência visual das telas
 ├── data/                           # 📦 dados preparados pela equipe (catálogo, demo, RAG, fotos de solo)
 │   └── README.md                   # divisão das tarefas de dados entre 3 pessoas
 └── docs/NasaSpaceApps-FieldShift/v1/
