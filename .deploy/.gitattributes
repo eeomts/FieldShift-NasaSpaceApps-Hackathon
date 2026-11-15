@@ -1,0 +1,2 @@
+# scripts rodam em sh (Git Bash e Linux) e entram na imagem: sempre LF, mesmo com checkout no Windows
+* text=auto eol=lf
