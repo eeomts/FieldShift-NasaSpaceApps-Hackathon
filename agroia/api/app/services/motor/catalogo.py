@@ -2,14 +2,14 @@
 import csv
 import json
 import logging
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from functools import lru_cache
 from pathlib import Path
 from typing import Any, Literal
 
 from app.core.caminhos import RAIZ_REPO
-from app.services.motor.parametros import ARRANJOS_DE_CONSORCIO
+from app.services.motor.parametros import ARRANJOS_DE_CONSORCIO, PALHADA_ALTA_T_HA, PALHADA_MEDIA_T_HA
 
 log = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ class ArranjoRegional:
 
     nome: str
     estados: tuple[str, ...] = ()  # vazio = o arquivo não traz lista
-    regional: bool = True  # False: consórcio (regra 4); a regra 13 (região) não usa
+    regional: bool = True  # False: consórcio (regra 4) ou outro sistema na mesma região; a regra 13 (região) não usa
     ciclo_dias_min: float | None = None
     ciclo_dias_max: float | None = None
     graus_dia_ciclo_min: float | None = None
@@ -117,6 +117,7 @@ class CulturaMotor:
     depende_da_epoca: dict[str, bool | None] = field(default_factory=dict, compare=False)  # coluna -> bool (regra 15)
     faixa_palhada: FaixaPalhada | None = None  # regua.ms_palhada_t_ha
     arranjos: tuple[ArranjoRegional, ...] = ()  # regua.arranjos
+    arranjo_aplicado: str | None = None  # nome do arranjo regional cujos números substituíram os da linha (regra 13)
     extras: dict[str, str] = field(default_factory=dict, compare=False)  # colunas novas do CSV, sem tipo
 
     def tem_tipo(self, tipo: str) -> bool:
@@ -148,6 +149,43 @@ def janela_de_semeadura(c: CulturaMotor, estado: str | None = None) -> JanelaSem
     if c.semeadura_inicio is None or c.semeadura_fim is None:
         return None
     return JanelaSemeadura(c.semeadura_inicio, c.semeadura_fim, c.condicao_semeadura)
+
+
+def classe_da_palhada(t_ha: float) -> str:
+    """Régua do README do catálogo: baixo < 2,3; médio de 2,3 a < 6; alto a partir de 6 t/ha de matéria seca."""
+    return "baixo" if t_ha < PALHADA_MEDIA_T_HA else "medio" if t_ha < PALHADA_ALTA_T_HA else "alto"
+
+
+# Campos que o arranjo regional substitui quando traz valor (None no arranjo = mantém o da linha)
+CAMPOS_DO_ARRANJO = (
+    "ciclo_dias_min", "ciclo_dias_max", "graus_dia_ciclo_min", "graus_dia_ciclo_max", "agua_ciclo_mm_min", "agua_ciclo_mm_max",
+    "semeadura_inicio", "semeadura_fim", "manejo_inicio", "manejo_fim", "tipo_manejo",
+)  # fmt: skip
+
+
+def cultura_no_estado(c: CulturaMotor, estado: str | None) -> CulturaMotor:
+    """Regra 13: se o estado está num arranjo regional da cultura, os números do arranjo valem no lugar dos da linha.
+
+    A cultura passa a valer no estado do arranjo mesmo fora de `estados_validos`. Sem estado ou sem arranjo: a própria `c`.
+    """
+    if estado is None:
+        return c
+    achados = [a for a in c.arranjos_regionais if estado in a.estados]
+    if not achados:
+        return c
+    if len(achados) > 1:
+        log.warning("Cultura %s tem %d arranjos regionais para %s; usando %s.", c.id, len(achados), estado, achados[0].nome)
+    a = achados[0]
+    mudancas: dict[str, Any] = {k: v for k in CAMPOS_DO_ARRANJO if (v := getattr(a, k)) is not None}
+    if a.condicao_semeadura:
+        mudancas["condicao_semeadura"] = a.condicao_semeadura
+    if a.palhada is not None:
+        mudancas["faixa_palhada"] = a.palhada
+        if a.palhada.tipico is not None:  # sem típico, a classe da linha fica
+            mudancas["aporte_biomassa"] = classe_da_palhada(a.palhada.tipico)
+    if c.estados_validos and estado not in c.estados_validos:
+        mudancas["estados_validos"] = c.estados_validos + (estado,)
+    return replace(c, arranjo_aplicado=a.nome, **mudancas)
 
 
 def _texto(v: str | None) -> str | None:
@@ -200,7 +238,7 @@ def _arranjo(nome: str, a: dict[str, Any], contexto: str) -> ArranjoRegional:
     return ArranjoRegional(
         nome=nome,
         estados=tuple(e.upper() for e in _lista(a.get("estados"))),
-        regional=nome not in ARRANJOS_DE_CONSORCIO,
+        regional=nome not in ARRANJOS_DE_CONSORCIO and not _texto(a.get("sistema")),  # "sistema": outro manejo nos mesmos estados da linha
         tipo_manejo=_texto(a.get("tipo_manejo")),
         condicao_semeadura=_lista(a.get("condicao_semeadura")),
         palhada=_faixa(a.get("ms_palhada_t_ha")),

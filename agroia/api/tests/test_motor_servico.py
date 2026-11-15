@@ -6,6 +6,7 @@ import pytest
 from app.core.erros import ErroDeNegocio
 from app.models import CalendarioItem, Fazenda
 from app.services.clima.agregacao import LinhaMensal
+from app.services.motor.catalogo import ArranjoRegional, FaixaPalhada
 from app.services.motor.entradas import ClimaDoServico, clima_de_linhas, montar_entradas
 from app.services.motor.motor_service import analisar_entradas
 from motor_helpers import PLANO, clima, cultura, entradas, item
@@ -120,6 +121,22 @@ def test_cobertura_sem_janela_chega_ao_resultado_com_o_alerta_de_janela_nao_conf
     com_milheto = [r for r in a.melhores if any(i.cultura_id == "milheto" for i in r.estrategia.itens)]
     assert com_milheto and all("janela_nao_confirmada" in [x.codigo for x in r.alertas] for r in com_milheto)
     assert not any(x.codigo == "janela_nao_confirmada" for x in a.atual.alertas)  # a atual não passa pela regra 12
+
+
+def test_arranjo_regional_do_estado_vale_nas_entradas_e_a_fonte_da_evidencia_diz_isso():
+    arranjo = ArranjoRegional("goiano", ("GO",), ciclo_dias_min=120, palhada=FaixaPalhada(5, 7.0, 9))
+    cs = {c.id: c for c in CULTURAS}
+    cs["soja"] = replace(cs["soja"], aporte_biomassa="baixo", arranjos=(arranjo,))
+    cs["milho"] = replace(cs["milho"], aporte_biomassa="baixo")
+    e = montar(fazenda(codigo_local="5218805"), cs)  # Rio Verde, GO
+    assert e.estado == "GO" and e.catalogo["soja"].arranjo_aplicado == "goiano" and e.catalogo["soja"].ciclo_dias_min == 120
+    assert e.catalogo["soja"].aporte_biomassa == "alto" and e.catalogo["milho"].arranjo_aplicado is None
+    palha = next(ev for ev in analisar_entradas(e).atual.notas["terra"].evidencias if ev.texto.startswith("Palha"))
+    assert palha.valor == "alto" and palha.fonte == "Base de culturas do Field Shift (números para GO, arranjo goiano)"
+    sem_estado = montar(fazenda(codigo_local=None), cs)  # sem estado, nada é aplicado
+    assert sem_estado.catalogo["soja"].arranjo_aplicado is None and sem_estado.catalogo["soja"].ciclo_dias_min == 100
+    outro = montar(fazenda(pais="US", codigo_local="19169"), cs)  # Iowa: fora do arranjo
+    assert outro.catalogo["soja"].arranjo_aplicado is None
 
 
 def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():

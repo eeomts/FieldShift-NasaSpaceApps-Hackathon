@@ -8,7 +8,7 @@ from app.models import Fazenda
 from app.services.clima.agregacao import LinhaMensal
 from app.services.clima.clima_service import ClimaService, media_por_mes
 from app.services.clima.limiares import BASE_FIM, BASE_INICIO
-from app.services.motor.catalogo import CulturaMotor, catalogo_do_pais, equipamentos_por_cultura
+from app.services.motor.catalogo import CulturaMotor, catalogo_do_pais, cultura_no_estado, equipamentos_por_cultura
 from app.services.motor.estados import estado_do_local
 from app.services.motor.local import pais_e_codigo
 from app.services.motor.modelo import ItemRotacao
@@ -136,13 +136,14 @@ def montar_entradas(
     catalogo = catalogo_por_pais(pais)
     if not catalogo:
         raise ErroDeNegocio(422, MSG_SEM_CATALOGO)
+    estado = estado_do_local(pais, codigo_local)
     atual = rotacao_atual(f)
     if not atual:
         raise ErroDeNegocio(422, MSG_SEM_ROTACAO)
     ids_equipamentos = frozenset(e["equipamento_id"] for e in (f.equipamentos or []) if e.get("equipamento_id"))
     return EntradasMotor(
         pais=pais,
-        catalogo=catalogo,
+        catalogo={i: cultura_no_estado(c, estado) for i, c in catalogo.items()},  # números do arranjo regional, se houver (regra 13)
         atual=atual,
         meses_vazios=meses_sem_cobertura(list(atual)),  # ItemRotacao tem os mesmos campos de ItemCalendario
         clima=fonte_clima.do_local(f.lat, f.lon),
@@ -153,5 +154,5 @@ def montar_entradas(
         equipamentos_cultura=equipamentos if equipamentos is not None else equipamentos_por_cultura(),
         prioridades=list(f.prioridades or []),
         erodibilidade=erodibilidade_da_fazenda(f),
-        estado=estado_do_local(pais, codigo_local),
+        estado=estado,
     )

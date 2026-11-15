@@ -27,6 +27,13 @@ Par = tuple[ItemRotacao, CulturaMotor]
 Saida = tuple[NotaCriterio, list[str]]  # nota e lacunas
 
 
+def fonte_da_base(c: CulturaMotor, e: EntradasMotor) -> str:
+    """Fonte dos números da cultura; com arranjo regional aplicado (regra 13), diz para qual estado e arranjo."""
+    if c.arranjo_aplicado is None:
+        return FONTE_BASE
+    return f"{FONTE_BASE} (números para {e.estado}, arranjo {c.arranjo_aplicado})"
+
+
 def classe_do_k(k: float) -> str:
     return "baixa" if k < K_LIMITE_BAIXA else "media" if k < K_LIMITE_MEDIA else "alta"
 
@@ -78,7 +85,7 @@ def nota_agua(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMotor
     ]
     baixas = [c for _, c in com_dado if c.confianca_parametros == "baixa" and c.agua_ciclo_mm_min and c.agua_ciclo_mm_max]
     for c in dict.fromkeys(baixas):  # regra 10: confiança baixa mostra a faixa, não um número só
-        evid.append(Evidencia(f"Água que {c.nome} usa no ciclo (faixa da literatura, confiança baixa)", f"{num(c.agua_ciclo_mm_min, 0)}–{num(c.agua_ciclo_mm_max, 0)}", "mm", FONTE_BASE, None))
+        evid.append(Evidencia(f"Água que {c.nome} usa no ciclo (faixa da literatura, confiança baixa)", f"{num(c.agua_ciclo_mm_min, 0)}–{num(c.agua_ciclo_mm_max, 0)}", "mm", fonte_da_base(c, e), None))
     if baixas:
         texto += f" Os dados de água de {_lista_nomes([(i, c) for i, c in com_dado if c in baixas])} têm confiança baixa: a estimativa pode errar."
     return NotaCriterio("agua", nota, texto, evid), lac
@@ -106,7 +113,7 @@ def nota_terra(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMoto
     texto = f"O campo tem planta em {cobertos} dos 12 meses, a maior palhada é a de {cultura_palha.nome} (classe {classe}) e a rotação {fix_texto}."
     evid = [
         Evidencia("Meses do ano com planta no campo", cobertos, "meses", FONTE_CALENDARIO, None),
-        Evidencia(f"Palha que fica no campo (maior da rotação: {cultura_palha.nome})", classe, "classe", FONTE_BASE, None),
+        Evidencia(f"Palha que fica no campo (maior da rotação: {cultura_palha.nome})", classe, "classe", fonte_da_base(cultura_palha, e), None),
         Evidencia("Planta que fixa nitrogênio na rotação", "sim" if fixadoras else "não", None, FONTE_BASE, None),
     ]
     return NotaCriterio("terra", nota, texto, evid), lac
@@ -197,7 +204,7 @@ def nota_animais(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMo
         return _sem_dado("animais", "Sem dado de comida para os animais nas culturas desta rotação.", lac + ["Sem valor forrageiro: critério de animais ignorado."])
     nota, c, classe = max(valores, key=lambda x: x[0])
     texto = f"A melhor comida para os animais da rotação é a de {c.nome} (classe {classe})."
-    return NotaCriterio("animais", nota, texto, [Evidencia(f"Valor forrageiro (maior da rotação: {c.nome})", classe, "classe", FONTE_BASE, None)]), lac
+    return NotaCriterio("animais", nota, texto, [Evidencia(f"Valor forrageiro (maior da rotação: {c.nome})", classe, "classe", fonte_da_base(c, e), None)]), lac
 
 
 def calcular_notas(estrategia: Estrategia, e: EntradasMotor) -> tuple[dict[str, NotaCriterio], list[str]]:

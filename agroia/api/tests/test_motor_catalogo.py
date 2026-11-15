@@ -1,13 +1,23 @@
 """Catálogo do motor: BR (17) e EUA (18), vazio = None, janela, régua das evidências e equipamentos."""
 import csv
 import logging
+from dataclasses import replace
 
 import pytest
 
 from app.core.caminhos import RAIZ_REPO
 from app.services import catalogo as base_do_app
 from app.services.motor import catalogo
-from app.services.motor.catalogo import catalogo_do_pais, equipamentos_por_cultura, ler_catalogo
+from app.services.motor.catalogo import (
+    ArranjoRegional,
+    FaixaPalhada,
+    catalogo_do_pais,
+    classe_da_palhada,
+    cultura_no_estado,
+    equipamentos_por_cultura,
+    janela_de_semeadura,
+    ler_catalogo,
+)
 
 
 @pytest.fixture(autouse=True)
@@ -233,3 +243,83 @@ def test_evidencia_com_json_invalido_e_erro_claro(tmp_path):
     csv.write_text("id,nome,tipos\nsoja,Soja,comercial\n", encoding="utf-8")
     with pytest.raises(ValueError, match="soja.json"):
         ler_catalogo(csv, "BR")
+
+
+# --- regra 13: arranjos regionais
+def test_trevo_dos_eua_em_al_usa_o_arranjo_alabama_e_fora_dele_usa_a_linha():
+    trevo = catalogo_do_pais("US")["trevo"]
+    al = cultura_no_estado(trevo, "AL")
+    assert al.arranjo_aplicado == "alabama" and (al.ciclo_dias_min, al.ciclo_dias_max) == (116, 256)
+    assert (al.graus_dia_ciclo_min, al.graus_dia_ciclo_max, al.agua_ciclo_mm_min, al.agua_ciclo_mm_max) == (800, 2650, 90, 430)
+    assert al.semeadura_inicio == (8, 25) and al.manejo_fim == (5, 8) and al.tipo_manejo == "dessecacao"
+    assert janela_de_semeadura(al).inicio == (8, 25)  # a janela da regra 12 lê a cultura já trocada
+    assert cultura_no_estado(trevo, "TN").arranjo_aplicado == "tennessee" and cultura_no_estado(trevo, "TN").ciclo_dias_min == 172
+    for outro in ("GA", "IA", None):  # GA é a região de referência da linha
+        c = cultura_no_estado(trevo, outro)
+        assert c is trevo and c.arranjo_aplicado is None and c.ciclo_dias_min == 149
+
+
+def test_ervilhaca_em_ga_usa_a_janela_e_a_palhada_do_arranjo_e_mantem_o_resto_da_linha():
+    erv = catalogo_do_pais("US")["ervilhaca"]
+    ga = cultura_no_estado(erv, "GA")
+    assert ga.semeadura_inicio == (9, 15) and ga.semeadura_fim == (11, 1) and ga.manejo_inicio == (3, 8) and ga.ciclo_dias_min == 127
+    assert ga.condicao_semeadura == erv.condicao_semeadura  # o arranjo não traz: fica a da linha
+    assert erv.aporte_biomassa == "baixo" and ga.aporte_biomassa == "medio"  # típico 4,32 t/ha recalcula a classe
+    assert ga.faixa_palhada.tipico == 4.32
+    assert ga.confianca_parametros == erv.confianca_parametros and ga.nome == erv.nome
+
+
+def test_arranjo_sem_um_campo_mantem_o_da_linha():
+    algodao = catalogo_do_pais("US")["algodao"]
+    ga = cultura_no_estado(algodao, "GA")
+    assert ga.arranjo_aplicado == "georgia" and ga.semeadura_inicio == (5, 2)  # só a semeadura vem do arranjo
+    assert (ga.ciclo_dias_min, ga.graus_dia_ciclo_min, ga.aporte_biomassa, ga.faixa_palhada) == (130, 1270, "baixo", algodao.faixa_palhada)
+    trevo_al = cultura_no_estado(catalogo_do_pais("US")["trevo"], "AL")  # arranjo sem palhada: classe e faixa da linha
+    assert trevo_al.aporte_biomassa == "medio" and trevo_al.faixa_palhada.tipico == 3.25
+
+
+def test_consorcio_e_outro_sistema_nunca_sao_aplicados_como_regionais():
+    br = catalogo_do_pais("BR")
+    for estado in ("GO", "MT", "MS", "PR"):  # estados do consórcio da pastagem
+        assert cultura_no_estado(br["pastagem"], estado) is br["pastagem"]
+    milheto = br["milheto"]  # "primavera" é outro sistema nos mesmos estados da linha, não uma região
+    assert not milheto.arranjos[0].regional and cultura_no_estado(milheto, "GO") is milheto
+
+
+def test_classe_da_palhada_pelos_limites_da_regua():
+    assert [classe_da_palhada(t) for t in (0.5, 2.29, 2.3, 5.99, 6.0, 12.4)] == ["baixo", "baixo", "medio", "medio", "alto", "alto"]
+
+
+def test_palhada_do_arranjo_sem_tipico_mantem_a_classe_da_linha():
+    base = replace(catalogo_do_pais("BR")["soja"], aporte_biomassa="baixo")
+    com_tipico = replace(base, arranjos=(ArranjoRegional("a", ("GO",), palhada=FaixaPalhada(5, 6.5, 8)),))
+    sem_tipico = replace(base, arranjos=(ArranjoRegional("a", ("GO",), palhada=FaixaPalhada(5, None, 8)),))
+    assert cultura_no_estado(com_tipico, "GO").aporte_biomassa == "alto"
+    r = cultura_no_estado(sem_tipico, "GO")
+    assert r.aporte_biomassa == "baixo" and r.faixa_palhada.maximo == 8
+
+
+def test_cultura_vale_no_estado_do_arranjo_mesmo_fora_de_estados_validos():
+    us = catalogo_do_pais("US")
+    for id_, estado in (("cevada", "MT"), ("feijao", "MI"), ("ervilhaca", "GA"), ("trevo", "AL"), ("trevo", "TN")):
+        linha = us[id_]
+        assert not linha.vale_em(estado), (id_, estado)
+        assert cultura_no_estado(linha, estado).vale_em(estado), (id_, estado)
+    assert cultura_no_estado(us["trevo"], "AL").vale_em("GA")  # a região da linha continua valendo
+    assert not cultura_no_estado(us["trevo"], "AL").vale_em("IA")
+    assert cultura_no_estado(catalogo_do_pais("BR")["crotalaria"], "RS").vale_em("RS")
+
+
+def test_mais_de_um_arranjo_regional_no_mesmo_estado_usa_o_primeiro_e_registra(caplog):
+    soja = catalogo_do_pais("BR")["soja"]
+    dois = replace(soja, arranjos=(ArranjoRegional("a", ("GO",), ciclo_dias_min=1), ArranjoRegional("b", ("GO",), ciclo_dias_min=2)))
+    with caplog.at_level(logging.WARNING):
+        r = cultura_no_estado(dois, "GO")
+    assert r.arranjo_aplicado == "a" and r.ciclo_dias_min == 1 and "2 arranjos regionais" in caplog.text
+
+
+def test_dados_reais_nao_repetem_estado_entre_arranjos_regionais():
+    for pais in ("BR", "US"):
+        for c in catalogo_do_pais(pais).values():
+            estados = [e for a in c.arranjos_regionais for e in a.estados]
+            assert len(estados) == len(set(estados)), c.id
