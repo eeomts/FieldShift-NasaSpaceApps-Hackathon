@@ -11,7 +11,7 @@
     "perene": "false",
     "ciclo_dias_min": "123",
     "ciclo_dias_max": "140",
-    "graus_dia_ciclo_min": "1300",
+    "graus_dia_ciclo_min": "1250",
     "graus_dia_ciclo_max": "1520",
     "temp_base_c": "10",
     "temp_otima_min_c": "24",
@@ -51,7 +51,7 @@
     },
     "graus_dia_ciclo_min": {
       "tipo": "calculo",
-      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 10), scripts/gd_nasa_power.py com eua/cenarios/milho_gd.json, 2001-2020. Fontes em GDD 86/50 °F (com teto): Elmore 2011 Nashua 105 RM = 2533 °F (1407 °C com teto) e Lewis 110 RM = 2657 °F (1476 °C). Refeito nas datas e dias da mesma tabela: Nashua 25/abr + 140 d = mediana 1326 (P10 1087, P90 1434); Nashua 16/mai + 135 d = 1339; Lewis 25/abr + 129 d = 1411; Lewis 9/mai + 123 d = 1460. Mínimo = 1326 arredondado para baixo = 1300 (híbrido de ciclo cheio do norte de Iowa). O POWER sem teto dá 1-6% menos que a fonte: o teto eleva a Tmin a 50 °F nas noites frias de maio e setembro, e o POWER com teto (conta minha) fica ~4% abaixo do GDD do Hybrid-Maize."
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 10), scripts/gd_nasa_power.py com eua/cenarios/milho_gd.json, pela convenção do mínimo (evidencias/README.md): mediana 2001-2020 do cenário de menor soma. Cenário milho_clima_nashua_0516_123d: Nashua-IA (nordeste de Iowa, o local mais frio das fontes da linha), semeadura 16/mai (a mais tardia de Elmore 2011 ali; o ciclo mais curto, 123 d, também vem de semeadura tardia, Lewis 9/mai) + ciclo_dias_min 123 d = mediana 1258 (P10 1079, P90 1412). Mínimo = 1258 arredondado para baixo = 1250. Não usei a semeadura de 25/abr com 123 d (mediana 1140): a mesma tabela mostra que, semeado em 25/abr, o híbrido de Nashua leva 140 d até R6; mesmo nessa leitura, 1140 fica acima do corte de 90% (1125). Conferência, exigências de Elmore 2011 (GDD 86/50 °F: Nashua 105 RM = 2533, Lewis 110 RM = 2657) refeitas nas datas e dias da tabela: Nashua 25/abr + 140 d = 1326; Nashua 16/mai + 135 d = 1339; Lewis 25/abr + 129 d = 1411; Lewis 9/mai + 123 d = 1460. O mínimo anterior (1300) ficava acima da mediana do cenário frio (1258). O POWER sem teto dá 1-6% menos que a fonte com teto."
     },
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
@@ -141,7 +141,7 @@
       "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
       "valor_brasil": "1500, 1900",
       "decisao": "trocado",
-      "motivo": "Exigência dos híbridos do Corn Belt (2500-2750 GDD °F) refeita no POWER sem teto: 1300-1520. Os híbridos americanos são de ciclo mais curto em soma térmica do que o 'normal' brasileiro, e as noites frias de maio e setembro somam pouco sem teto."
+      "motivo": "Exigência dos híbridos do Corn Belt (2500-2750 GDD °F) refeita no POWER sem teto: 1250-1520 (mínimo pela convenção do cenário mais frio, Nashua-IA). Os híbridos americanos são de ciclo mais curto em soma térmica do que o 'normal' brasileiro, e as noites frias de maio e setembro somam pouco sem teto."
     },
     {
       "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
@@ -241,7 +241,7 @@
       ],
       "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/milho_gd.json (NASA POWER diário, comunidade AG, 2001-2020; Champaign só 2013)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-      "trecho": "milho_nashua_0425_105rm_140d: mediana 1326 (mín 1072, máx 1660, P10 1087, P90 1434), referência 1407 (-5,7%); milho_nashua_0516_105rm_135d: mediana 1339 (-4,8%); milho_lewis_0425_110rm_129d: mediana 1411 (-4,4%); milho_lewis_0509_110rm_123d: mediana 1460 (P10 1238, P90 1620), referência 1476 (-1,1%); milho_champaign_2013_0501_0910: 1495 contra 1533 (-2,5%); milho_champaign_2013_0515_0920: 1520 contra 1514 (+0,4%)"
+      "trecho": "milho_clima_nashua_0516_123d: mediana 1258 (mín 1064, máx 1583, P10 1079, P90 1412); milho_clima_nashua_0425_123d: mediana 1140 (P10 952); milho_nashua_0425_105rm_140d: mediana 1326 (mín 1072, máx 1660, P10 1087, P90 1434), referência 1407 (-5,7%); milho_nashua_0516_105rm_135d: mediana 1339 (-4,8%); milho_lewis_0425_110rm_129d: mediana 1411 (-4,4%); milho_lewis_0509_110rm_123d: mediana 1460 (P10 1238, P90 1620), referência 1476 (-1,1%); milho_champaign_2013_0501_0910: 1495 contra 1533 (-2,5%); milho_champaign_2013_0515_0920: 1520 contra 1514 (+0,4%)"
     },
     {
       "colunas": [
@@ -430,6 +430,12 @@
       "antes": "",
       "depois": "baixo",
       "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min",
+      "antes": "1300",
+      "depois": "1250",
+      "motivo": "Revisão do lote 3 (15/11; arquiteto, 'Fora da implementação'; pedido do usuário): convenção do mínimo de graus-dia (evidencias/README.md): mediana 2001-2020 do cenário de menor soma da região de referência (local mais frio com ensaio ou recomendação, data de semeadura usada ali, ciclo_dias_min). Nashua-IA 16/mai + 123 d = mediana 1258, abaixo de 1300. As exigências de Elmore 2011 refeitas no POWER (1326-1460) ficam como conferência."
     }
   ],
   "pendencias": [
@@ -443,7 +449,8 @@
     "kc_medio 1,20 é do clima padrão; no Corn Belt úmido e com pouco vento a eq. 62 baixaria um pouco (o motor ajusta no local).",
     "regua: digestibilidade sem n (a UNL não informa); só duas fontes de C/N nos EUA; a palhada não desconta enfardamento nem pastejo. O k de Ames (inverno congelado) é bem menor que o do Brasil (0,0045), e a palhada que sobra em 60 dias fica em 10,6 t/ha.",
     "codigo_nass: 'CORN, GRAIN' conferido por citação secundária (tabela da KBS LTER com o item do QuickStats); no QuickStats o commodity é 'CORN' e a utilização 'GRAIN'. Conferir no próprio QuickStats (exige chave da API).",
-    "calendario_usda: o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto (vem do catálogo da série)."
+    "calendario_usda: o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto (vem do catálogo da série).",
+    "graus_dia_min (revisão do lote 3, 15/11): 1250 segue a convenção (Nashua 16/mai + ciclo_dias_min 123 d, mediana 1258). O ciclo de 123 d é de um híbrido 110 RM em Lewis (sudoeste de Iowa); em Nashua o híbrido da fonte (105 RM) leva 135-140 d, então o cenário mistura o ciclo mais curto com o local mais frio, como pede a convenção. DECISÃO para o coordenador/motor: se a janela do motor juntar a semeadura mais cedo (25/abr) com 123 d, a mediana em Nashua é 1140, acima do corte (1125), mas no limite."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

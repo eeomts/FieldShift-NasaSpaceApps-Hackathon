@@ -1,5 +1,5 @@
 {
-  "_leia": "Cenários de graus-dia do girassol (oilseed sunflower, sequeiro, Dakota do Norte) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 4), sem teto (Tb 4 °C da linha do Brasil). (1) Cenários 'ndawn_r9': exigência do NDAWN/NDSU A1995 (R9 = maturação fisiológica = 2310 GDD °F da semeadura, Tb 44 °F, sem teto, Tmax e Tmin abaixo de 44 °F elevadas a 44 °F), convertida com 'alvo_com_teto' (teto 150 °F = sem teto na prática; o script eleva a Tmin à Tb, como o NDAWN). 'referencia.valor' = 2310 / 1,8 = 1283 °C·dia na Tb 6,7 °C. (2) Cenários de ensaio ('dias'): datas de semeadura e dias até a maturação dos híbridos oleícolas comerciais mais precoce e mais tardio de cada ensaio da NDSU (A652, 2021-2025), no ano do ensaio; esses cenários não têm 'referencia' (a fonte só dá dias) e a origem fica em 'fonte'. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "_leia": "Cenários de graus-dia do girassol (oilseed sunflower, sequeiro, Dakota do Norte) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 4), sem teto (Tb 4 °C da linha do Brasil). (1) Cenários 'ndawn_r9': exigência do NDAWN/NDSU A1995 (R9 = maturação fisiológica = 2310 GDD °F da semeadura, Tb 44 °F, sem teto, Tmax e Tmin abaixo de 44 °F elevadas a 44 °F), convertida com 'alvo_com_teto' (teto 150 °F = sem teto na prática; o script eleva a Tmin à Tb, como o NDAWN). 'referencia.valor' = 2310 / 1,8 = 1283 °C·dia na Tb 6,7 °C. (2) Cenários de ensaio ('dias'): datas de semeadura e dias até a maturação dos híbridos oleícolas comerciais mais precoce e mais tardio de cada ensaio da NDSU (A652, 2021-2025), no ano do ensaio; esses cenários não têm 'referencia' (a fonte só dá dias) e a origem fica em 'fonte'. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa. (3) Cenários 'clima' (revisão do lote 3, 15/11): convenção do mínimo de graus-dia; 'girassol_clima_langdon_0523_104d' define graus_dia_ciclo_min; os outros são conferência. Rode-os pelo nome (ex.: gd_nasa_power.py --cenarios <este arquivo> girassol_clima_langdon_0523_104d girassol_clima_langdon_0530_104d) para usar o cache 2001-2020; o arquivo inteiro pede Langdon 2001-2024, que não está no cache.",
   "locais": {
     "fargo": {
       "nome": "Fargo-ND (NDSU/USDA-ARS)",
@@ -307,6 +307,58 @@
         2025
       ],
       "fonte": "NDSU A652-25, Tab. 3: 131 DAP (CP4255E e H47HO11 EX)."
+    },
+    {
+      "nome": "girassol_clima_langdon_0523_104d",
+      "cultura": "girassol",
+      "local": "langdon",
+      "semeadura": "05-23",
+      "dias": 104,
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Convenção do mínimo (evidencias/README.md, graus-dia; revisão do lote 3, 15/11): mediana 2001-2020 do cenário de menor soma da região de referência = local mais frio com ensaio ou recomendação, data de semeadura usada ali e ciclo_dias_min. Langdon = local mais frio dos ensaios oleícolas da NDSU (A652) em ND; 23/mai = semeadura do ensaio de 2023 em Langdon (A652-23, Tab. 9), a de menor soma entre as datas dos ensaios ali; 104 d = ciclo_dias_min (N5H493 CL, Fargo 2023). DEFINE graus_dia_ciclo_min."
+    },
+    {
+      "nome": "girassol_clima_langdon_0530_104d",
+      "cultura": "girassol",
+      "local": "langdon",
+      "semeadura": "05-30",
+      "dias": 104,
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência: semeadura do ensaio de 2024 em Langdon (A652-24, Tab. 9, 30/mai) + ciclo_dias_min."
+    },
+    {
+      "nome": "girassol_clima_carrington_0526_104d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "05-26",
+      "dias": 104,
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência (local mais quente): semeadura do ensaio de 2021 em Carrington (A652-21, Tab. 9, 26/mai) + ciclo_dias_min."
+    },
+    {
+      "nome": "girassol_clima_fargo_0519_104d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "05-19",
+      "dias": 104,
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência (local mais quente): semeadura do ensaio de 2021 em Fargo (A652-21, Tab. 6, 19/mai) + ciclo_dias_min."
     }
   ]
 }

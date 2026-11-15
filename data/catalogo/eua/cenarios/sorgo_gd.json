@@ -1,5 +1,5 @@
 {
-  "_leia": "Cenários de graus-dia do sorgo granífero (grain sorghum, sequeiro, Kansas e oeste do Texas) para scripts/gd_nasa_power.py. Cada cenário converte a exigência de Gerik et al. (B-6137, GDU °F com base 50 °F, teto 100 °F e Tmin elevada a 50 °F) para a régua do catálogo: o script acha, ano a ano, o dia em que o GDU da fonte é atingido no POWER e soma nas mesmas datas o GD sem teto com Tb 10 °C (50 °F). A saída dá os dias até a camada preta (maturação fisiológica) e o GD convertido. 'referencia.valor' = GDU °F / 1,8, ainda com teto e piso. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "_leia": "Cenários de graus-dia do sorgo granífero (grain sorghum, sequeiro, Kansas e oeste do Texas) para scripts/gd_nasa_power.py. Cada cenário converte a exigência de Gerik et al. (B-6137, GDU °F com base 50 °F, teto 100 °F e Tmin elevada a 50 °F) para a régua do catálogo: o script acha, ano a ano, o dia em que o GDU da fonte é atingido no POWER e soma nas mesmas datas o GD sem teto com Tb 10 °C (50 °F). A saída dá os dias até a camada preta (maturação fisiológica) e o GD convertido. 'referencia.valor' = GDU °F / 1,8, ainda com teto e piso. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa. Cenários 'sorgo_clima_*' (revisão do lote 3, 15/11): convenção do mínimo de graus-dia, modo 'dias' com ciclo_dias_min (84 d, Diawara 2012); 'sorgo_clima_manhattan_0525_84d' define graus_dia_ciclo_min e os outros são conferência.",
   "locais": {
     "manhattan": {
       "nome": "Manhattan-KS (K-State Agronomy North Farm)",
@@ -180,6 +180,58 @@
         "valor": 1485,
         "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo curto ('Short Season Hybrid'), camada preta (black layer) a 2673 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 2673 / 1,8 = 1485 °C·dia com teto e piso. DOUBLE-CROP depois do trigo: semeadura em 1/jul, logo após a colheita do trigo no centro-sul do Kansas (colheita 'most active' 20/jun-5/jul, Handbook 628); híbrido precoce, como a K-State recomenda para semeaduras tardias. Não entra na faixa da linha (plantio cheio); fica para comparação."
       }
+    },
+    {
+      "nome": "sorgo_clima_manhattan_0525_84d",
+      "cultura": "sorgo",
+      "local": "manhattan",
+      "semeadura": "05-25",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Convenção do mínimo (evidencias/README.md, graus-dia; revisão do lote 3, 15/11): mediana 2001-2020 do cenário de menor soma da região de referência = local mais frio com ensaio ou recomendação, data de semeadura usada ali e ciclo_dias_min. Manhattan = local de menor soma entre os locais da linha com ensaio ou recomendação no Kansas (com 84 d: Manhattan 25/mai < Hutchinson 26/mai < Hays 1/jun); 25/mai = semeadura do ensaio de 2010 em Manhattan (Diawara 2012, Tab. 3.7), onde o híbrido precoce DKS 28-05 levou 85 d; 84 d = ciclo_dias_min (DKS 28-05, Hutchinson, 26/mai/2010). DEFINE graus_dia_ciclo_min."
+    },
+    {
+      "nome": "sorgo_clima_manhattan_0520_84d",
+      "cultura": "sorgo",
+      "local": "manhattan",
+      "semeadura": "05-20",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência, não usado: data dos cenários de Gerik et al. em Manhattan (20/mai, não é data de ensaio) + ciclo_dias_min."
+    },
+    {
+      "nome": "sorgo_clima_hutchinson_0526_84d",
+      "cultura": "sorgo",
+      "local": "hutchinson",
+      "semeadura": "05-26",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência: semeadura do ensaio de 2010 em Hutchinson (Diawara 2012, Tab. 3.8, 26/mai), onde foram medidos os 84 d."
+    },
+    {
+      "nome": "sorgo_clima_hays_0601_84d",
+      "cultura": "sorgo",
+      "local": "hays",
+      "semeadura": "06-01",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência: Hays (oeste do Kansas, sem ensaio de Diawara), data dos cenários de Gerik et al. (1/jun) + ciclo_dias_min."
     }
   ]
 }
