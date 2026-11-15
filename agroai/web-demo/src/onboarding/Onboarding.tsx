@@ -13,6 +13,7 @@ import { useIdioma } from "../i18n";
 import {
   PARTES, PASSO_RESUMO, telaVisivel, TELAS, TOTAL_PERGUNTAS, unidadePadrao, hemisferioDe, type TelaId, type Unidade,
 } from "./dados";
+import { respostasExemplo } from "./exemplo";
 import { Resumo } from "./Resumo";
 import { TelaLocal } from "./TelaLocal";
 import * as T from "./Telas";
@@ -71,14 +72,16 @@ export function Onboarding() {
       .then((f) => {
         if (!vivo) return;
         setFazenda(f);
-        setR(f.respostas);
+        // Conta sem respostas: já vem preenchido com o produtor de exemplo (demo).
+        setR(Object.keys(f.respostas ?? {}).length === 0 ? respostasExemplo(idioma) : f.respostas);
         let p = f.onboarding_concluido ? 0 : Math.min(f.passo_atual, PASSO_RESUMO);
         while (p < PASSO_RESUMO && !telaVisivel(TELAS[p].id, f.respostas)) p++;
         setPasso(p);
       })
       .catch((e) => {
         if (!vivo) return;
-        if (!(e instanceof ErroApi && e.status === 404)) setFalhaInicial(textoErro(e));
+        if (e instanceof ErroApi && e.status === 404) setR(respostasExemplo(idioma));
+        else setFalhaInicial(textoErro(e));
       })
       .finally(() => vivo && setCarregando(false));
     return () => {
@@ -149,11 +152,11 @@ export function Onboarding() {
     return p;
   }, [passo, r]);
 
-  async function salvar(destino: number, concluir = false) {
+  async function salvar(destino: number, concluir = false, respostas: Respostas = r) {
     setSalvando(true);
     setErro(null);
     try {
-      const f = await api<Fazenda>("/fazenda", { method: "PUT", body: { respostas: r, passo_atual: destino, concluir } });
+      const f = await api<Fazenda>("/fazenda", { method: "PUT", body: { respostas, passo_atual: destino, concluir } });
       setFazenda(f);
       if (concluir) {
         await recarregar();
@@ -167,6 +170,9 @@ export function Onboarding() {
       setSalvando(false);
     }
   }
+
+  // Demo: completa o que falta com o exemplo, salva tudo e vai ao dashboard.
+  const pularTudo = () => salvar(PASSO_RESUMO, true, { ...respostasExemplo(idioma), ...r });
 
   if (carregando) return <div className="flex min-h-dvh flex-col"><Carregando texto={t("Carregando…", "Loading…")} /></div>;
   if (falhaInicial)
@@ -238,6 +244,12 @@ export function Onboarding() {
             </span>
             <div className="flex shrink-0 items-center gap-2">
               {tela ? <Selo>{tela.numero} / {TOTAL_PERGUNTAS}</Selo> : <Selo>{t("Tudo respondido", "All answered")}</Selo>}
+              {tela && (
+                <button type="button" onClick={pularTudo} disabled={salvando}
+                  className="h-8 rounded-full border-2 border-borda bg-white px-3 text-xs font-bold text-folha-escura disabled:opacity-50">
+                  {t("Pular tudo", "Skip All")}
+                </button>
+              )}
               <SeletorIdioma className="lg:hidden" />
             </div>
           </div>
