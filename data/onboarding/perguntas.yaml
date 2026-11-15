@@ -206,10 +206,10 @@ perguntas:
     exemplo_por_zona:
       Af_Am:                     # tropical úmido (chove o ano todo ou quase)
         pt: "planto mandioca e milho juntos e tenho um pedaço de capim para o gado"
-        en: "I grow cassava and maize together and have a patch of grass for the cattle"
+        en: "I grow cassava and corn together and have a patch of grass for the cattle"
       Aw_As:                     # tropical com estação seca (savana)
         pt: "planto milho e feijão juntos na estação chuvosa e, depois da colheita, o campo fica parado na seca"
-        en: "I plant maize and beans together in the rainy season and leave the field idle in the dry season"
+        en: "I plant corn and beans together in the rainy season and leave the field idle in the dry season"
       B:                         # árido e semiárido
         pt: "planto sorgo e feijão-caupi quando chegam as chuvas; o resto do ano o campo fica parado"
         en: "I plant sorghum and cowpea when the rains come; the rest of the year the field is idle"
@@ -221,7 +221,7 @@ perguntas:
         en: "I sow wheat in spring and harvest at the end of summer; in winter the field is idle"
       padrao:                    # zona desconhecida ou E (polar)
         pt: "planto milho na estação das chuvas e, depois da colheita, deixo o campo parado"
-        en: "I plant maize in the rainy season and leave the field idle after harvest"
+        en: "I plant corn in the rainy season and leave the field idle after harvest"
     tipo: texto_livre
     obrigatoria: false
     interpretacao:
@@ -440,7 +440,7 @@ perguntas:
     bloco: 4
     texto:
       pt: "A terra fica dura demais para cavar ou arar?"
-      en: "Is the soil too hard to dig or plough?"
+      en: "Is the soil too hard to dig or plow?"
     tipo: sim_nao_nao_sei
     obrigatoria: false
     alimenta:
@@ -463,7 +463,7 @@ perguntas:
     bloco: 4
     texto:
       pt: "Com qual destas cores a sua terra mais se parece?"
-      en: "Which of these colours looks most like your soil?"
+      en: "Which of these colors looks most like your soil?"
     tipo: figuras
     # imagem: fotos de data/onboarding/fotos-solo/ (ainda em revisão; até lá o app mostra amostras de cor)
     opcoes:
@@ -471,7 +471,7 @@ perguntas:
       - { valor: marrom,   imagem: cor_marrom.jpg,    pt: "Marrom",                     en: "Brown" }
       - { valor: vermelha, imagem: cor_vermelha.jpg,  pt: "Vermelha",                   en: "Red" }
       - { valor: amarela,  imagem: cor_amarela.jpg,   pt: "Amarelada",                  en: "Yellowish" }
-      - { valor: cinza,    imagem: cor_cinza.jpg,     pt: "Cinza ou com manchas cinza", en: "Grey, or grey-mottled" }
+      - { valor: cinza,    imagem: cor_cinza.jpg,     pt: "Cinza ou com manchas cinza", en: "Gray, or gray-mottled" }
       - { valor: clara,    imagem: cor_clara.jpg,     pt: "Clara ou esbranquiçada",     en: "Pale or whitish" }
       - { valor: nao_sei,  pt: "Não sei",             en: "Not sure" }
     obrigatoria: false
@@ -495,7 +495,7 @@ perguntas:
     opcoes:
       - { valor: solta,   imagem: jeito_solta.jpg,     pt: "Solta, escorre entre os dedos",     en: "Loose — runs through your fingers" }
       - { valor: fofa,    imagem: jeito_fofa.jpg,      pt: "Fofa, em grumos pequenos",          en: "Crumbly, in small lumps" }
-      - { valor: gruda,   imagem: jeito_gruda.jpg,     pt: "Gruda e dá para moldar molhada",    en: "Sticky — you can mould it when wet" }
+      - { valor: gruda,   imagem: jeito_gruda.jpg,     pt: "Gruda e dá para moldar molhada",    en: "Sticky — you can mold it when wet" }
       - { valor: torroes, imagem: jeito_torroes.jpg,   pt: "Torrões duros que não se desfazem", en: "Hard clods that won't break up" }
       - { valor: racha,   imagem: jeito_racha.jpg,     pt: "Racha quando seca",                 en: "Cracks open when dry" }
       - { valor: pedras,  imagem: jeito_pedras.jpg,    pt: "Muita pedra ou cascalho",           en: "Lots of stones or gravel" }
@@ -570,7 +570,7 @@ perguntas:
     bloco: 4
     texto:
       pt: "Você usa adubo ou esterco?"
-      en: "Do you use fertiliser or manure?"
+      en: "Do you use fertilizer or manure?"
     tipo: sim_nao_nao_sei
     obrigatoria: false
     alimenta:
@@ -745,10 +745,10 @@ perguntas:
     bloco: 6
     texto:
       pt: "Que máquinas e ferramentas você tem ou consegue usar?"
-      en: "What machinery or equipment do you have, or can get hold of?"
+      en: "What machinery or equipment do you have or can get access to?"
     exemplo:
       pt: "tenho um trator pequeno e uma plantadeira; a colheita é na mão"
-      en: "I've got a small tractor and a planter; we harvest by hand"
+      en: "I have a small tractor and a planter; we harvest by hand"
     tipo: texto_livre
     obrigatoria: false
     interpretacao:
