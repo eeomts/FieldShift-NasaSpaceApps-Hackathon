@@ -1,6 +1,6 @@
 # PAM: produção agrícola por município
 
-Produção Agrícola Municipal do IBGE (tabela 5457 do SIDRA), por município, cultura e ano. É a fonte do critério "renda extra" do motor: diz se a cultura se planta e quanto rende no município do produtor. Equivale ao `eua/nass/producao_condado.csv` dos EUA.
+Produção Agrícola Municipal do IBGE (tabela 5457 do SIDRA), por município, cultura e ano. É dado preparado para o critério "renda extra" do motor: diz se a cultura se planta e quanto rende no município do produtor. **O motor ainda não lê este arquivo** (conferido em 15/11/2026): hoje a nota de renda é a contagem de culturas de venda da rotação, sem preço nem produção da região. A PAM só entra na nota quando o motor passar a lê-la. Equivale ao `eua/nass/producao_condado.csv` dos EUA.
 
 | Arquivo | O que é |
 |---|---|
@@ -71,7 +71,7 @@ Só `requests` fora da biblioteca padrão. São 90 chamadas (9 produtos × 10 an
 
 ## Tamanho
 
-Em 15/11/2026: **556.400 linhas, 19,5 MB** (19.516.497 bytes), cerca de 1,95 MB por ano com 10 culturas, ou 0,2 MB por cultura e ano. Cabe no limite de ~20 MB do Git, mas com folga de só 0,5 MB: **uma cultura a mais (ex.: aveia de grão) passa de 20 MB**. Nesse caso, ou se reduz para 9 anos (`--anos 9`, ainda acima dos 5 que a média de produtividade precisa), ou se grava fora do Git (`--saida data/brutos/pam/producao_municipal.csv`). Os 5.564 municípios são os que o SIDRA devolve para a tabela. Dos 5.571 de `brasil/municipios/municipios.csv`, faltam 7, que a tabela 5457 não traz: Santa Cruz do Arari (PA), Arraial do Cabo, Nilópolis e São João de Meriti (RJ), Diadema, Ilha Comprida e São Caetano do Sul (SP). Para eles o motor não tem dado da PAM (ausente = sem dado, não 0).
+Em 15/11/2026: **556.400 linhas, 19,5 MB** (19.516.497 bytes), cerca de 1,95 MB por ano com 10 culturas, ou 0,2 MB por cultura e ano. Cabe no limite de ~20 MB do Git, mas com folga de só 0,5 MB: **uma cultura a mais (ex.: aveia de grão) passa de 20 MB**. Nesse caso, ou se reduz para 9 anos (`--anos 9`, ainda acima dos 5 que a média de produtividade precisa), ou se grava fora do Git (`--saida data/brutos/pam/producao_municipal.csv`). Os 5.564 municípios são os que o SIDRA devolve para a tabela. Dos 5.571 de `brasil/municipios/municipios.csv`, faltam 7, que a tabela 5457 não traz: Santa Cruz do Arari (PA), Arraial do Cabo, Nilópolis e São João de Meriti (RJ), Diadema, Ilha Comprida e São Caetano do Sul (SP). Quando o motor passar a ler a PAM, esses 7 ficam sem dado (ausente = sem dado, não 0).
 
 ## Conferência manual
 

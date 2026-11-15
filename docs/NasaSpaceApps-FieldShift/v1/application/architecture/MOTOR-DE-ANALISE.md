@@ -62,9 +62,9 @@ Votos: ruim = 1,0 contra moderada = 0,4. Resultado: **drenagem ruim, confiança 
 
 **b) Filtro (elimina o inviável):**
 - A cultura não completa o ciclo na janela (graus-dia).
-- Risco de geada alto em fase sensível.
-- Precisa de mais água do que a chuva e a irrigação dão.
-- Cultura excluída (26a), falta de equipamento (26b), drenagem incompatível (cálculo 2).
+- Risco de frio ou geada alto na fase sensível (regra 17, implementada em 15/11/2026): com `tmin_critica_c` na base, conta os dias da fase em que a mínima fica abaixo do limiar da cultura (com `tmin_dias_seguidos`, se houver), em mais de 30 % dos anos de 1991 a 2020; o texto diz "geada" quando o limiar é de até 0 °C e "frio" acima disso. Com `tmin_efeito` = `aviso` (esterilidade do arroz por frio), a cultura fica e recebe só o aviso. Sem limiar na base, vale a reserva: 2 °C no terço do meio do ciclo. Sem a mínima diária do local, vira lacuna, sem eliminar. A semeadura é no dia 15 do mês (proposta, a validar).
+- Água: **não elimina** (regra 1). Se a chuva do período cobre menos de 80 % do que a cultura usa, aparece o aviso "água no limite". Só o arroz irrigado é cortado, quando o produtor não marcou irrigação.
+- Cultura excluída (26a) e falta de equipamento (26b). A drenagem (cálculo 2) ainda não entra no filtro.
 
 **c) Pontuar cada critério de 0 a 1:**
 
@@ -74,7 +74,7 @@ Votos: ruim = 1,0 contra moderada = 0,4. Resultado: **drenagem ruim, confiança 
 | Melhorar a terra | Meses com cobertura + biomassa + fixação de nitrogênio |
 | Evitar erosão | Cobertura **nos meses de chuva forte** × declividade |
 | Menos praga | Alternância de famílias botânicas |
-| Renda extra | Culturas comerciais a mais |
+| Renda extra | Quantas culturas de venda (`comercial`) a rotação tem. Preço e produção da região ainda não entram: o motor não lê a PAM nem o NASS |
 | Comida pros animais | Valor forrageiro |
 
 **d) Peso das prioridades** (pergunta 25, até 3 escolhas): 1ª = 0,5, 2ª = 0,3, 3ª = 0,2. Os critérios não escolhidos recebem um peso pequeno para não sumirem. *(Proposta inicial.)*
