@@ -9,8 +9,7 @@ ARRANJOS_DE_CONSORCIO = frozenset({"consorcio_milho_safrinha", "braquiaria_solte
 PALHADA_ALTA_T_HA = 6.0  # Alvarenga et al. 2001, Informe Agropecuário 22(208): 6 t/ha é quantidade adequada ao plantio direto
 PALHADA_MEDIA_T_HA = 2.3  # Lopes, Cogo & Levien 1987, RBCS 11:71-75: massa que dá 50 % de cobertura do solo
 
-# Candidatas
-MAX_CANDIDATAS = 30  # proposta, validar com o Yury
+# Candidatas (sem limite: todas são avaliadas, a conta é barata; decisão do usuário em 15/11)
 CEREAIS_INVERNO = frozenset({"trigo", "cevada", "centeio", "aveia"})  # regra 12, apos_cereal_inverno: proposta, validar com o Yury
 
 # Filtro de graus-dia (regra 2 do README do catálogo, Yury 14/11, revista em 15/11)

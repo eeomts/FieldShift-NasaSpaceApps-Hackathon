@@ -154,6 +154,21 @@ def test_aviso_da_regua_e_textos_de_confianca_baixa_chegam_ao_resultado():
     assert not any(a.codigo.startswith("aviso_") for r in sem.melhores for a in r.alertas)
 
 
+def test_todas_as_candidatas_geradas_chegam_ao_filtro(monkeypatch):
+    from app.services.motor import motor_service
+    from app.services.motor.candidatas import gerar_candidatas
+
+    muitas = {f"c{i}": cultura(f"c{i}", tipos=("comercial", "tolerante_seca", "fixadora_n"), fixa_nitrogenio=True, ciclo_dias_min=30) for i in range(40)}
+    e = montar(fazenda(), {**muitas, "soja": CULTURAS[0], "milho": CULTURAS[1]})
+    geradas = gerar_candidatas(motor_service.Estrategia("atual", "Sua rotação atual", "atual", e.atual), e.catalogo, e.meses_vazios, e.estado)
+    chamadas = []
+    original = motor_service.avaliar
+    monkeypatch.setattr(motor_service, "avaliar", lambda itens, ent, eliminar: chamadas.append(eliminar) or original(itens, ent, eliminar))
+    a = analisar_entradas(e)
+    assert len(geradas) > 30 and chamadas.count(True) == len(geradas)  # todas avaliadas, nenhuma cortada antes
+    assert len(a.eliminadas) <= len(geradas)
+
+
 def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():
     e = montar(fazenda(equipamentos=[{"equipamento_id": None, "texto_original": "?"}]))
     assert e.equipamentos is None

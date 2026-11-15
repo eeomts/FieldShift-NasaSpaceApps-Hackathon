@@ -5,7 +5,7 @@ from app.services.motor.calendario import maior_janela_vazia, meses_do_periodo, 
 from app.services.motor.catalogo import CulturaMotor, janela_de_semeadura
 from app.services.motor.formatos import periodo_texto
 from app.services.motor.modelo import Alerta, Estrategia, ItemRotacao
-from app.services.motor.parametros import CEREAIS_INVERNO, MAX_CANDIDATAS
+from app.services.motor.parametros import CEREAIS_INVERNO
 
 A_LANCO = "a_lanco_lavoura_em_pe"  # só informação (regra 12): nunca vira sugestão
 
@@ -131,7 +131,7 @@ def _principal(atual: tuple[ItemRotacao, ...], catalogo: dict[str, CulturaMotor]
 
 
 def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses_vazios: list[int], estado: str | None = None) -> list[Estrategia]:
-    """Candidatas sem repetir itens e sem a atual, no máximo MAX_CANDIDATAS (ordem: janela, tolerante à seca, leguminosa).
+    """Candidatas sem repetir itens e sem a atual, todas (sem corte; ordem: janela, tolerante à seca, leguminosa).
 
     Só entram culturas válidas no `estado` da fazenda (regra 13); as da atual continuam no catálogo para as contas.
     Coberturas só entram onde a janela de semeadura e a cultura anterior permitem (regra 12).
@@ -184,4 +184,4 @@ def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses
                 if (col := _trocar_por(atual, p, c, catalogo, estado)) is not None:
                     adicionar(f"leguminosa:{velho.cultura_id or p}->{c.id}", f"Trocar {_nome_do_item(velho, catalogo)} por {c.nome}", "leguminosa", col)
 
-    return saida[:MAX_CANDIDATAS]
+    return saida

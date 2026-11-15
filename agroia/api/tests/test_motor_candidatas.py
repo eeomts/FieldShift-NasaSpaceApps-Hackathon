@@ -3,7 +3,6 @@ from app.services.motor.calendario import maior_janela_vazia, meses_do_periodo, 
 from app.services.motor.candidatas import chave, gerar_candidatas
 from app.services.motor.catalogo import catalogo_do_pais
 from app.services.motor.modelo import Estrategia
-from app.services.motor.parametros import MAX_CANDIDATAS
 from motor_helpers import cultura, item
 
 
@@ -97,14 +96,16 @@ def test_sem_duplicata_e_sem_a_propria_atual():
     assert "leguminosa:janela:caupi" not in ids(c)  # a fixadora na janela já veio da regra 1
 
 
-def test_no_maximo_30_candidatas():
+def test_nao_ha_limite_de_candidatas():
     muitas = {
         f"c{i}": cultura(f"c{i}", tipos=("comercial", "tolerante_seca", "fixadora_n"), fixa_nitrogenio=True, ciclo_dias_min=30)
         for i in range(60)
     }
     muitas["milho"] = cultura("milho")
     a = atual(item("milho", 10, 2), item("trigo", 3, 6))
-    assert len(gerar_candidatas(a, muitas, [7, 8, 9])) == MAX_CANDIDATAS
+    c = gerar_candidatas(a, muitas, [7, 8, 9])
+    assert len(c) == 180 > 30  # 60 na janela, 60 trocas da principal por tolerante à seca e 60 trocas do trigo por leguminosa
+    assert len({x.id for x in c}) == len(c)  # sem corte e sem repetir
 
 
 def test_cultura_fora_do_catalogo_na_atual_nao_quebra_e_nao_e_principal():
