@@ -26,17 +26,19 @@ agroia/
 │   ├── app/                  # em camadas: routers -> services -> repositories -> models
 │   │   ├── main.py           # cria a API, liga as rotas e trata os erros de negócio
 │   │   ├── core/             # config.py (.env), db.py (PostgreSQL), security.py (senha e JWT), erros.py
-│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (busca_log)
+│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (busca_log), clima.py (clima_celula, clima_mensal)
 │   │   ├── schemas/          # entrada e saída das rotas: auth.py, fazenda.py, onboarding.py (respostas)
-│   │   ├── repositories/     # acesso ao banco: usuario, fazenda, conhecimento (busca híbrida)
+│   │   ├── repositories/     # acesso ao banco: usuario, fazenda, conhecimento (busca híbrida), clima
 │   │   ├── services/         # regras de negócio
 │   │   │   ├── auth_service.py      # cadastro, login, apagar conta
 │   │   │   ├── catalogo.py          # culturas/equipamentos (agroia/base) e casamento por sinônimo
 │   │   │   ├── interpretacao.py     # texto livre -> lista (Gemini, com a lista como reserva)
 │   │   │   ├── onboarding/          # perfil.py (perfil A–C, papel, retrato do solo), fazenda_service.py
 │   │   │   ├── rag/                 # base de conhecimento: chunker, embeddings (Gemini), fontes, ingestao
-│   │   │   └── agente/              # busca_conhecimento_service.py (descarta trecho fraco, grava busca_log)
-│   │   ├── cli/              # comandos: rag.py (ingerir, buscar)
+│   │   │   ├── agente/              # busca_conhecimento_service.py (descarta trecho fraco, grava busca_log)
+│   │   │   ├── clima/               # célula da grade, ET0 (FAO-56), limites, agregação mensal, clima_service.py
+│   │   │   └── integracao/          # nasa_power.py (cliente HTTP do NASA POWER)
+│   │   ├── cli/              # comandos: rag.py (ingerir, buscar), clima.py (baixar, mostrar, demo)
 │   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
 │   ├── tests/                # pytest (só rodam num Postgres local)
@@ -140,6 +142,8 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | `documento` | Cada texto da base de conhecimento (glossário, metodologia, culturas, satélites), com fonte, caminho de origem e hash do conteúdo |
 | `trecho` | Pedaços de um documento com embedding (`vector(768)`) e busca textual em português |
 | `busca_log` | Cada busca na base de conhecimento: palavras do produtor, consulta, trechos devolvidos e descartados |
+| `clima_celula` | Uma célula da grade do NASA POWER (0,5° × 0,625°, ~50 km): centro, elevação, período baixado, limite de chuva forte (P95 de 1991–2020) e fonte. Fazendas vizinhas dividem a mesma linha |
+| `clima_mensal` | Por célula, ano e mês: chuva, ET0, temperaturas (média, média das máximas e mínimas, extremos), dias de geada (Tmin < 2 °C), de calor (Tmax > 35 °C) e de chuva forte, maior sequência seca (< 1 mm) e dias válidos. Sem dado fica `NULL`, nunca 0 |
 
 ## Base de conhecimento (RAG)
 
@@ -153,6 +157,20 @@ uv run python -m app.cli.rag buscar "veranico no milho" --tipo glossario   # tes
 ```
 
 Documento que sai da lista de fontes é removido do banco na próxima ingestão. Os testes usam um embedder falso: não gastam a API.
+
+## Clima (NASA POWER)
+
+O clima de um ponto vem da API pública do NASA POWER (não precisa de chave). A API chama a célula pelo centro e baixa a série diária de 1991-01-01 até 31/12 do último ano completo, uma vez por célula; depois só relê o banco. A ET0 é calculada aqui (FAO-56 Penman-Monteith). Os critérios de geada, calor, chuva forte e sequência seca estão em `data/rag/metodologia-indicadores.md`.
+
+```bash
+cd agroia/api
+uv run alembic upgrade head                                  # cria clima_celula e clima_mensal
+uv run python -m app.cli.clima baixar --lat -11.31 --lon -41.81   # baixa e guarda a célula do ponto
+uv run python -m app.cli.clima mostrar --lat -11.31 --lon -41.81  # climatologia mensal 1991–2020, com fonte e período
+uv run python -m app.cli.clima demo                          # baixa e mostra os 3 pontos de data/demo/pontos_demo.csv
+```
+
+Os testes do clima usam respostas simuladas: não acessam a rede.
 
 Para mudar uma tabela, altere o model em `app/models/` e gere uma migração:
 
