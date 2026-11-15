@@ -134,3 +134,45 @@ def test_frio_traduz_limiar_e_dias_seguidos():
         "Irrigated rice: cold during flowering in 45% of the years (low below 15 °C for 3 days in a row); "
         "the damage is partial, check locally."
     )
+
+
+# --- frases do motor revisado (graus-dia pela mediana, erosão, pragas, água que elimina, janela, frio e calor por dias seguidos)
+@pytest.mark.parametrize(
+    ("pt", "en"),
+    [
+        ("Algodão: o calor do período dá 1.148 graus-dia na metade dos anos (2001–2020) e ela precisa de pelo menos 1.400; não fecha o ciclo.",
+         "Cotton: the period's heat gives 1,148 degree-days in half of the years (2001–2020) and it needs at least 1,400; it cannot finish its cycle."),
+        ("Soja: no limite térmico, validar localmente; o calor do período dá 1.350 graus-dia na metade dos anos (2001–2020) e ela precisa de pelo menos 1.500.",
+         "Soybean: at its heat limit, check locally; the period's heat gives 1,350 degree-days in half of the years (2001–2020) and it needs at least 1,500."),
+        ("Milho: em ano frio pode não completar o ciclo; em 1 a cada 10 anos (2001–2020) o calor do período fica em 1.215 graus-dia, e ela precisa de pelo menos 1.300.",
+         "Corn: in a cold year it may not finish its cycle; in 1 of every 10 years (2001–2020) the period's heat is only 1,215 degree-days, and it needs at least 1,300."),
+        ("Milho: sem anos suficientes de clima para checar o calor do ciclo.", "Corn: not enough years of climate data to check the season's heat."),
+        ("Algodão: a chuva do período (104 mm) cobre só 22% da água que a cultura usa (474 mm); sem irrigação não fecha.",
+         "Cotton: the period's rain (104 mm) covers only 22% of the water the crop uses (474 mm); without irrigation it cannot finish."),
+        ("Trigo: em 40% dos anos (1991–2020) a mínima ficou abaixo de 1 °C na floração (dez a jan); o frio nessa fase tira produção.",
+         "Wheat: in 40% of the years (1991–2020) the low fell below 1 °C at flowering (Dec to Jan); cold in this stage cuts yield."),
+        ("Soja: em 40% dos anos (1991–2020) a mínima ficou abaixo de -2,2 °C por 3 dias seguidos no enchimento dos grãos (nov a fev); a geada nessa fase tira produção.",
+         "Soybean: in 40% of the years (1991–2020) the low fell below -2.2 °C for 3 days in a row during grain fill (Nov to Feb); frost in this stage cuts yield."),
+        ("Milho: em 40% dos anos (1991–2020) a temperatura passou de 33 °C por 3 dias seguidos na floração (nov a jan); o calor nessa fase pode reduzir a produção.",
+         "Corn: in 40% of the years (1991–2020) the temperature went above 33 °C for 3 days in a row at flowering (Nov to Jan); heat in this stage can cut yield."),
+        ("2 de 3 trocas de cultura mudam de família de planta.", "2 of 3 crop changes switch to a different plant family."),
+        ("12% dos dias de chuva forte caem em meses com planta no campo; terreno suave ondulado, declividade de 5,5% medida por satélite (SRTM).",
+         "12% of heavy-rain days fall in months with plants in the field; gently rolling terrain, slope of 5.5% measured by satellite (SRTM)."),
+        ("Palhada de Milho: palhada média, de 2,1 a 9,8 t/ha conforme a data de manejo (depende da época)",
+         "Straw of Corn: medium, 2.1 to 9.8 t/ha depending on the management date (depends on the season)"),
+        ("Base de culturas do Field Shift (números para GA, arranjo sudeste)", "Field Shift crop database (figures for GA, regional arrangement sudeste)"),
+        ("Milheto: a época de semeadura ainda não foi confirmada para a sua região.", "Pearl millet: the sowing time has not been confirmed for your region yet."),
+    ],
+)  # fmt: skip
+def test_frases_do_motor_revisado_em_ingles(pt, en):
+    assert traduzir(pt) == en
+    assert not _PT.search(en), en
+
+
+def test_textos_do_catalogo_ficam_fora_das_lacunas_em_ingles():
+    from app.services.motor.catalogo import catalogo_do_pais
+    from app.services.motor.ingles import lacunas_em_ingles
+
+    crot = catalogo_do_pais("BR")["crotalaria"]
+    lacunas = [f"{crot.nome}: {crot.lacuna_informacao}", f"{crot.nome}: {crot.risco_revisao_local}", "Milho: sem anos suficientes de clima para checar o frio."]
+    assert lacunas_em_ingles(lacunas) == ["Corn: not enough years of climate data to check cold."]

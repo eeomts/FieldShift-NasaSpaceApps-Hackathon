@@ -7,7 +7,7 @@ from app.schemas import estrategias as s
 from app.services import catalogo
 from app.services.integracao.nasa_power import ErroNasaPower
 from app.services.motor import modelo as m
-from app.services.motor.ingles import traduzir, traduzir_unidade, traduzir_valor
+from app.services.motor.ingles import lacunas_em_ingles, traduzir, traduzir_unidade, traduzir_valor
 from app.services.motor.motor_service import MotorService
 
 MSG_SEM_FAZENDA = "Fazenda não encontrada."
@@ -63,7 +63,7 @@ def _em_ingles(r: s.Resultado) -> s.Resultado:
         "por_que": [traduzir(t) for t in r.por_que],
         "onde_piora": [traduzir(t) for t in r.onde_piora],
         "alertas": [a.model_copy(update={"texto": traduzir(a.texto)}) for a in r.alertas],
-        "lacunas": [traduzir(t) for t in r.lacunas],
+        "lacunas": lacunas_em_ingles(r.lacunas),
     })  # fmt: skip
 
 
