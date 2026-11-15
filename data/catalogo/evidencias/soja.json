@@ -1,5 +1,9 @@
 {
   "id": "soja",
+  "pais": "BR",
+  "nome": "Soja",
+  "nome_cientifico": "Glycine max",
+  "familia_botanica": "Fabaceae",
   "valores": {
     "tipos": "comercial|fixadora_n",
     "perene": "false",

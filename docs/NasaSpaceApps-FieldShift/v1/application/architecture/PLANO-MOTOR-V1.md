@@ -20,7 +20,7 @@ A IA não participa de nenhum número. O chat só explica o que o motor devolveu
 
 ## PR D1 — Base do motor (sem rota)
 - **Catálogo do motor** (`app/services/motor/catalogo.py`): lê `data/catalogo/culturas.csv` (BR) e `data/catalogo/eua/culturas.csv` (EUA, quando existir); só essas culturas são candidatas. Família botânica e `tipos` do CSV. Cultura do calendário fora do catálogo: entra na rotação atual, mas sem nota ("sem dados suficientes").
-- **`arroz_irrigado`** entra em `agroia/base/culturas.json` (regra 8).
+- **`arroz_irrigado`** entra em `agroai/base/culturas.json` (regra 8).
 - **País e município**: ponto-em-polígono nas malhas `data/brasil/municipios/municipios.geojson` e `data/eua/condados/condados.geojson` (shapely). Migration `0006`: `fazenda.pais` (`BR`|`US`|null) e `fazenda.codigo_local` (IBGE 7 dígitos ou FIPS 5), calculados ao salvar o local.
 - **Graus-dia** (regra 2): GD = soma de max(0, Tmed − Tb), sem teto, a partir da série DIÁRIA do POWER. Ao baixar a célula, gravar a soma mensal para cada Tb inteiro de 0 a 20 °C (`clima_mensal.gd_por_tb` JSONB ou tabela própria). Mesma conta do `data/catalogo/scripts/gd_nasa_power.py`.
 - **SRTM** (`app/services/integracao/srtm.py`): OpenTopoData `srtm30m`, grade 3×3 (~30 m) em volta do ponto, declividade pelo método de Horn, classes da Embrapa (plano < 3 %, suave 3–8, ondulado 8–20, forte 20–45, montanhoso > 45). Cache por ponto arredondado. Falhou: usa q7 e marca a fonte.
@@ -89,7 +89,7 @@ interface Analise {
 - Front (autorizado): tipos em `api/tipos.ts` (+ `"analise"` em `TipoFonte`), `api/estrategias.ts`, `components/estrategias/`, seção "Suas estratégias" no `Dashboard.tsx` no lugar do card provisório, rótulo no `components/chat/Mensagens.tsx`.
 
 ## Dados que faltam
-- **Catálogo dos EUA:** só `milho` (1 de 12). Construído pelo agente `agroia-dataset-eua`, em lotes. Sem ele, fazenda nos EUA fica sem alternativas.
+- **Catálogo dos EUA:** só `milho` (1 de 12). Construído pelo agente `agroai-dataset-eua`, em lotes. Sem ele, fazenda nos EUA fica sem alternativas.
 - PAM (palhada local, regra 6): sem ela, usa o valor típico da régua.
 - ZARC janelas: não é necessário no v1 (a janela vem do calendário do produtor).
 

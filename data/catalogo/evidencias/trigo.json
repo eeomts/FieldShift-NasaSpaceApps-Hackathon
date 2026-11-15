@@ -1,5 +1,9 @@
 {
   "id": "trigo",
+  "pais": "BR",
+  "nome": "Trigo",
+  "nome_cientifico": "Triticum aestivum",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "comercial",
     "perene": "false",

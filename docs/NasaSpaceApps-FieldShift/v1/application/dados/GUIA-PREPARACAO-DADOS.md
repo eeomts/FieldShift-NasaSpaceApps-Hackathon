@@ -9,7 +9,7 @@
 | # | Tarefa | Tipo de trabalho | Quem | Esforço | Bloqueia |
 |---|---|---|---|---|---|
 | 1 | **Parâmetros das culturas** (`data/catalogo/culturas.csv`) | Pesquisa agronômica | Alguém de agronomia | **Alto** | Motor inteiro, ZARC, PAM |
-| 2 | Sinônimos das culturas (campo `nomes` do `agroia/base/culturas.json`) | Revisão de lista | Qualquer pessoa | Baixo | Texto livre do onboarding |
+| 2 | Sinônimos das culturas (campo `nomes` do `agroai/base/culturas.json`) | Revisão de lista | Qualquer pessoa | Baixo | Texto livre do onboarding |
 | 3 | O que cada cultura exige de equipamento (`cultura_equipamentos.csv`) | Planilha | Qualquer pessoa | Baixo | Filtro da pergunta 26b |
 | 4 | Pontos da demo (`pontos_demo.csv`) | Decisão do time + teste | Time | Baixo | AppEEARS, pré-cálculo |
 | 5 | Pedido no AppEEARS (NDVI e SMAP dos pontos) | Download | Quem tiver conta Earthdata | Médio (espera) | Cartão "meses descobertos" |
@@ -18,9 +18,9 @@
 | 8 | Textos do RAG | Escrita | Quem escreve bem para o produtor | Médio | Agente |
 | 10 | Fotos de solo (pergunta 19) | Busca de imagens | Qualquer pessoa | Baixo | Onboarding |
 
-A antiga tarefa 9 (`perguntas.yaml`) saiu: o questionário já está implementado nas telas do app (`agroia/web/src/onboarding/`).
+A antiga tarefa 9 (`perguntas.yaml`) saiu: o questionário já está implementado nas telas do app (`agroai/web/src/onboarding/`).
 
-**Fonte única do catálogo:** ids, nomes, sinônimos, família, grupo e tipos das culturas ficam em `agroia/base/culturas.json`; as categorias de equipamento, em `agroia/base/equipamentos.json`. Os arquivos de `data/catalogo/` usam esses mesmos ids e só acrescentam o que falta (parâmetros agronômicos e exigência de equipamento).
+**Fonte única do catálogo:** ids, nomes, sinônimos, família, grupo e tipos das culturas ficam em `agroai/base/culturas.json`; as categorias de equipamento, em `agroai/base/equipamentos.json`. Os arquivos de `data/catalogo/` usam esses mesmos ids e só acrescentam o que falta (parâmetros agronômicos e exigência de equipamento).
 
 **Ordem:** a tarefa 1 é o caminho crítico e começa já. As tarefas 4 e 5 também começam cedo, porque o AppEEARS demora para responder. O resto anda em paralelo.
 
@@ -35,7 +35,7 @@ A malha municipal do IBGE, a PAM em si e os dados do NASA POWER, SoilGrids e SRT
 | **UTF-8**, sem BOM | Acentos ("feijão") chegam certos no banco |
 | **Separador vírgula, decimal com ponto** (`4.5`, não `4,5`) | ⚠️ O Excel em português salva CSV com `;` e decimal com vírgula. **Edite no Google Sheets** e use Arquivo → Fazer download → CSV, que sai no formato certo |
 | **Vazio = não sei.** Nunca preencher 0 para "não sei" | Zero é um valor real; vazio vira "sem dado" e aparece como lacuna |
-| **Ids iguais aos do `agroia/base/culturas.json`** (`feijao_caupi`, `aveia`, `pastagem`) | São as chaves que o app usa; um id diferente quebra a ligação |
+| **Ids iguais aos do `agroai/base/culturas.json`** (`feijao_caupi`, `aveia`, `pastagem`) | São as chaves que o app usa; um id diferente quebra a ligação |
 | **Sim/não como `true` / `false`** | Formato que o carregador entende sem conversão |
 | **Listas dentro de uma célula separadas por `|`** (`FAO-56|Embrapa`) | A vírgula já é o separador do CSV |
 | **Toda linha com fonte** | O app mostra de onde vem cada número; sem fonte, não entra |
@@ -49,7 +49,7 @@ A malha municipal do IBGE, a PAM em si e os dados do NASA POWER, SoilGrids e SRT
 
 **Para quê:** o motor filtra o que não cabe no clima do local e dá nota a cada estratégia comparando os dados da NASA com estes parâmetros. Sem eles, nada funciona.
 
-O app já conhece 40 culturas (`agroia/base/culturas.json`, com família, grupo, perene, tipos e sinônimos). Este CSV acrescenta **só os parâmetros agronômicos**, e só para as culturas que o motor vai usar nas estratégias.
+O app já conhece 40 culturas (`agroai/base/culturas.json`, com família, grupo, perene, tipos e sinônimos). Este CSV acrescenta **só os parâmetros agronômicos**, e só para as culturas que o motor vai usar nas estratégias.
 
 **Culturas do motor (16)**, com os ids do app. Cobrem as rotações atuais típicas e as alternativas que o motor sugere:
 
@@ -64,7 +64,7 @@ O app já conhece 40 culturas (`agroia/base/culturas.json`, com família, grupo,
 
 | Coluna | O que é | Unidade / valores | Fonte sugerida |
 |---|---|---|---|
-| `id` | Id da cultura no `agroia/base/culturas.json` | já preenchido | — |
+| `id` | Id da cultura no `agroai/base/culturas.json` | já preenchido | — |
 | `nome_cientifico` | Espécie usada como referência dos parâmetros | já preenchido | Embrapa |
 | `ciclo_dias_min`, `ciclo_dias_max` | Duração do plantio à colheita | dias | Embrapa, FAO-56 |
 | `graus_dia_ciclo_min`, `graus_dia_ciclo_max` | Graus-dia da semeadura à maturação (coberturas: ao manejo no florescimento), com a `temp_base_c` da linha, sem teto | °C·dia | Ensaios brasileiros de fenologia; WOFOST/AquaCrop só para conferir |
@@ -90,7 +90,7 @@ O app já conhece 40 culturas (`agroia/base/culturas.json`, com família, grupo,
 
 ---
 
-## 2. Sinônimos — campo `nomes` do `agroia/base/culturas.json`
+## 2. Sinônimos — campo `nomes` do `agroai/base/culturas.json`
 
 **Para quê:** a IA e a lista reserva casam o que o produtor escreve ("macaxeira", "capim pras vacas") com a base. Quanto mais nomes populares, melhor.
 
@@ -108,7 +108,7 @@ O app tem só português e inglês: cada cultura tem nomes em PT e EN. A tarefa 
 
 **Para quê:** o filtro da pergunta 26b ("que máquinas você tem?") elimina culturas que o produtor não consegue plantar ou colher.
 
-- As categorias já existem em `agroia/base/equipamentos.json` (`trator`, `plantadeira_graos`, `colhedora`, `pulverizador`, `preparo_solo`, `rocadeira`, `ensiladeira`, `irrigacao`, `tracao_animal`, `manual`). Só acrescente uma categoria nova lá, por PR, se faltar.
+- As categorias já existem em `agroai/base/equipamentos.json` (`trator`, `plantadeira_graos`, `colhedora`, `pulverizador`, `preparo_solo`, `rocadeira`, `ensiladeira`, `irrigacao`, `tracao_animal`, `manual`). Só acrescente uma categoria nova lá, por PR, se faltar.
 - No CSV, para cada cultura do motor, o que ela **exige** em cada etapa (`plantio` ou `colheita`). Se dá para fazer à mão, use `manual`.
 
 ---
@@ -226,7 +226,7 @@ Fonte: Embrapa, guia de plantas de cobertura.
 
 ## 9. ~~`perguntas.yaml`~~ (saiu)
 
-O questionário já está implementado nas telas do app (`agroia/web/src/onboarding/`), e o formato das respostas está em `agroia/api/app/schemas/onboarding.py`. Não é mais preciso converter as perguntas para um arquivo.
+O questionário já está implementado nas telas do app (`agroai/web/src/onboarding/`), e o formato das respostas está em `agroai/api/app/schemas/onboarding.py`. Não é mais preciso converter as perguntas para um arquivo.
 
 ---
 
@@ -254,7 +254,7 @@ Isso alimenta a seção "dados usados" da submissão do Space Apps e a coluna "d
 ## Checklist final antes da carga
 
 - [ ] `culturas.csv` com as 17 culturas do motor, sem `0` no lugar de "não sei", cada linha com `fontes`
-- [ ] Sinônimos regionais revisados no `agroia/base/culturas.json`
+- [ ] Sinônimos regionais revisados no `agroai/base/culturas.json`
 - [ ] `cultura_equipamentos.csv` cobrindo plantio e colheita de todas as culturas do motor, com ids do `equipamentos.json`
 - [ ] `pontos_demo.csv` com todos os pontos marcados `soilgrids_ok = true`
 - [ ] Tarefa do AppEEARS concluída e CSVs guardados

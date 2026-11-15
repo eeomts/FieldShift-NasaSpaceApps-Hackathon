@@ -106,6 +106,8 @@
 | **Harvest Portal (MCP)** | IA do chat via `https://mcp.harvestportal.org/mcp` | Nenhum | — | País | — | — |
 | **Banco do aplicativo** | Interno | Login do agricultor | — | — | — | — |
 
+> **Aviso de 15/11/2026: o AppEEARS foi descartado** (decisão do usuário; nota datada na D-009 do `DECISOES.md`). As linhas de SMAP, ECOSTRESS, MODIS NDVI e Landsat / HLS acima que dizem "AppEEARS" são o plano antigo, e o app **não** usa o AppEEARS. O clima do app vem do NASA POWER, baixado por célula.
+
 ### 2.2 Três jeitos de falar com os dados
 
 | Jeito | Usado em | Por quê |
@@ -123,7 +125,7 @@
 | # | Tarefa | Ferramenta |
 |---|---|---|
 | 0.1 | Escolher a região da demo e alguns talhões de exemplo | Mapa |
-| 0.2 | Baixar MODIS NDVI, SMAP, SRTM e, se der, GPM e ECOSTRESS desses talhões | Earthdata / AppEEARS |
+| 0.2 | Baixar MODIS NDVI, SMAP, SRTM e, se der, GPM e ECOSTRESS desses talhões (**o AppEEARS foi descartado em 15/11/2026**; a ferramenta desta tarefa está em aberto) | Earthdata |
 | 0.3 | Baixar e guardar a série do NASA POWER dos mesmos talhões | API do POWER |
 | 0.4 | Descobrir no Harvest Portal os `resource_id`, colunas e códigos das culturas | **MCP no Claude** e depois API |
 | 0.5 | Baixar as tabelas de mercado | API do Harvest |

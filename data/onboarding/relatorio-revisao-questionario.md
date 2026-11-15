@@ -2,7 +2,7 @@
 
 > 14/11/2026 · Pessoa 3 (conteúdo para o produtor)
 >
-> O time propôs uma versão nova do questionário: 23 perguntas em 6 partes, com algumas perguntas agrupadas na mesma tela. Este relatório compara essa versão com o que o app já faz (`agroia/api/app/schemas/onboarding.py`, `agroia/api/app/services/onboarding/perfil.py`, `agroia/web/src/onboarding/Passos.tsx`) e com os roteiros de teste do chat (`TESTES_CHAT_SR_JOSE.md` e `TESTES_CHAT_SR_SMITH.md`).
+> O time propôs uma versão nova do questionário: 23 perguntas em 6 partes, com algumas perguntas agrupadas na mesma tela. Este relatório compara essa versão com o que o app já faz (`agroai/api/app/schemas/onboarding.py`, `agroai/api/app/services/onboarding/perfil.py`, `agroai/web/src/onboarding/Passos.tsx`) e com os roteiros de teste do chat (`TESTES_CHAT_SR_JOSE.md` e `TESTES_CHAT_SR_SMITH.md`).
 >
 > **Resultado:** a versão foi aplicada no `data/onboarding/perguntas.yaml`. **4 pontos não funcionavam** e foram corrigidos antes de entrar; as demais mudanças entraram como propostas.
 

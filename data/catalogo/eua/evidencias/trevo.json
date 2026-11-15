@@ -108,7 +108,7 @@
       "coluna": "todas",
       "valor_brasil": "(não existe)",
       "decisao": "trocado",
-      "motivo": "O trevo não está no catálogo do Brasil (está em agroia/base/culturas.json como cobertura fixadora de N, id genérico 'clover'). Tudo vem de fontes dos EUA, do ECOCROP e do FAO-56. A Tb 4 °C é a do trevo-encarnado (Pessotto et al. 2023, 3,9 °C), igual à da ervilhaca."
+      "motivo": "O trevo não está no catálogo do Brasil (está em agroai/base/culturas.json como cobertura fixadora de N, id genérico 'clover'). Tudo vem de fontes dos EUA, do ECOCROP e do FAO-56. A Tb 4 °C é a do trevo-encarnado (Pessotto et al. 2023, 3,9 °C), igual à da ervilhaca."
     }
   ],
   "evidencias": [

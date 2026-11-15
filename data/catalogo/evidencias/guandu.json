@@ -1,5 +1,9 @@
 {
   "id": "guandu",
+  "pais": "BR",
+  "nome": "Guandu",
+  "nome_cientifico": "Cajanus cajan",
+  "familia_botanica": "Fabaceae",
   "valores": {
     "tipos": "cobertura|forrageira|fixadora_n|raiz_profunda|tolerante_seca",
     "perene": "false",

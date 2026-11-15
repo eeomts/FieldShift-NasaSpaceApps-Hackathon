@@ -3,9 +3,9 @@
 #   - versão do questionário revisada pelo time em 14/11/2026: 23 perguntas em 6 partes;
 #   - application/ONBOARDING.md (conteúdo);
 #   - o código já implementado:
-#       agroia/api/app/schemas/onboarding.py          → ids e valores aceitos (Respostas)
-#       agroia/api/app/services/onboarding/perfil.py  → o que cada resposta alimenta (perfil, solo)
-#       agroia/web/src/onboarding/Passos.tsx          → telas
+#       agroai/api/app/schemas/onboarding.py          → ids e valores aceitos (Respostas)
+#       agroai/api/app/services/onboarding/perfil.py  → o que cada resposta alimenta (perfil, solo)
+#       agroai/web/src/onboarding/Passos.tsx          → telas
 # Se mudar um id ou valor aqui, mude também no schemas/onboarding.py (e vice-versa). Dono: Pessoa 3.
 # O que foi ajustado na versão revisada e por quê: data/onboarding/relatorio-revisao-questionario.md
 #
@@ -795,7 +795,7 @@ perguntas:
     obrigatoria: false
     botao_ia: { pt: "Separar com a AgroAI", en: "Sort it with AgroAI" }
     interpretacao:
-      ia: true                    # casa com agroia/base/equipamentos.json
+      ia: true                    # casa com agroai/base/equipamentos.json
       catalogo: equipamento
       saida: q26b_equipamentos    # lista de Equipamento
       campos: [texto_original, equipamento_id]

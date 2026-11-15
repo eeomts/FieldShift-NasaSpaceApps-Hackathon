@@ -6,15 +6,25 @@ script junta tudo no CSV, sem conflito entre agentes. As colunas seguem o
 cabeçalho do catálogo do Brasil (data/catalogo/culturas.csv) mais as colunas
 extras do país (EXTRAS).
 
+No catálogo do Brasil (data/catalogo/) vale o mesmo: as evidências
+evidencias/<id>.json são a fonte (nome, nome_cientifico e familia_botanica ficam
+no topo do JSON, como nos EUA) e o culturas.csv é gerado por este script. A
+ordem das linhas do Brasil é a de ORDEM_BR; a dos EUA é a alfabética do nome do arquivo.
+
 Uso (na raiz do repositório):
     python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua            # só valida
     python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua --apply    # grava o CSV
+    python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo --apply        # idem, Brasil
+    python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo --saida /tmp/br.csv   # grava em outro lugar
     python3 -I data/catalogo/scripts/montar_csv.py --comparar     # frio igual na mesma espécie (BR x EUA)
 
-Não rode --apply no catálogo do Brasil: as evidências de lá não têm nome,
-nome_cientifico e familia_botanica, e o CSV do Brasil é sincronizado à mão.
+O cabeçalho do CSV do Brasil vem do próprio data/catalogo/culturas.csv; mudar
+colunas exige editar o cabeçalho dele e as evidências. O teste
+agroai/api/tests/test_dados_consistencia.py gera os dois CSVs numa pasta
+temporária e compara byte a byte com os versionados: rode --apply e versione o CSV
+sempre que mudar uma evidência.
 
-Validações: id existe em agroia/base/culturas.json; todas as colunas presentes
+Validações: id existe em agroai/base/culturas.json; todas as colunas presentes
 (as de janela, região e texto para o produtor são opcionais: ausente = vazio);
 números válidos; mínimo <= máximo; kc_medio <= 1,25; categorias da régua;
 tipos coerentes com fixa_nitrogenio e raiz_profunda; fontes preenchidas; nenhum
@@ -24,6 +34,11 @@ sem frações, limiar de -10 a 20 °C, dias seguidos >= 2, efeito, e cada coluna
 entrada em evidencias e origem); janela de
 semeadura obrigatória nas coberturas (sem `comercial`); lacuna_informacao e
 risco_revisao_local obrigatórios com confiança `baixa`.
+
+Avisos (não impedem gravar): `perene` e o vocabulário de `tipos` que o culturas.json
+e o CSV têm em comum (cobertura, fixadora_n, raiz_profunda, tolerante_seca) divergem
+no mesmo id. O JSON guarda um valor por id e o CSV um por país; qual vale é decisão
+do dono do dado.
 """
 import argparse
 import csv
@@ -34,8 +49,13 @@ import re
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 BASE_BR = os.path.join(ROOT, "data", "catalogo", "culturas.csv")
-CATALOGO_APP = os.path.join(ROOT, "agroia", "base", "culturas.json")
+CATALOGO_APP = os.path.join(ROOT, "agroai", "base", "culturas.json")
 EXTRAS = ["codigo_nass", "calendario_usda"]
+# Ordem das linhas do culturas.csv do Brasil (a histórica do arquivo). Id fora da lista vai ao fim, em ordem alfabética.
+ORDEM_BR = ["soja", "milho", "feijao", "trigo", "arroz", "algodao", "mandioca", "sorgo", "milheto", "feijao_caupi",
+            "girassol", "crotalaria", "nabo_forrageiro", "aveia", "guandu", "pastagem", "arroz_irrigado"]
+# Vocabulário de `tipos` que o culturas.json e o CSV têm em comum (o CSV ainda tem comercial e forrageira).
+TIPOS_COMUNS = ["cobertura", "fixadora_n", "raiz_profunda", "tolerante_seca"]
 FIXAS = {"id", "nome", "nome_cientifico", "familia_botanica"}
 NUM = ["ciclo_dias_min", "ciclo_dias_max", "graus_dia_ciclo_min", "graus_dia_ciclo_max", "temp_base_c",
        "temp_otima_min_c", "temp_otima_max_c", "tmax_critica_c", "tmin_critica_c", "agua_ciclo_mm_min", "agua_ciclo_mm_max",
@@ -161,24 +181,39 @@ def comparar():
         raise SystemExit(1)
 
 
-def main():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--catalogo", help="pasta do catálogo (ex.: data/catalogo/eua)")
-    ap.add_argument("--apply", action="store_true", help="grava o culturas.csv")
-    ap.add_argument("--comparar", action="store_true", help="compara o frio da mesma espécie nos dois CSVs")
-    args = ap.parse_args()
-    if args.comparar:
-        return comparar()
-    if not args.catalogo:
-        ap.error("informe --catalogo ou --comparar")
+def divergencias_json_csv(linhas, culturas_json):
+    """Atributos que o JSON e o CSV têm em comum e que divergem no mesmo id.
 
+    `linhas`: dicts do CSV (strings). `culturas_json`: lista `culturas` do culturas.json.
+    Devolve [(id, campo, valor_no_json, valor_no_csv)], campo = "perene" ou "tipos:<tipo>".
+    """
+    por_id = {c["id"]: c for c in culturas_json}
+    saida = []
+    for r in linhas:
+        c = por_id.get(r["id"])
+        if c is None:
+            continue
+        if r.get("perene") in ("true", "false") and (r["perene"] == "true") != bool(c.get("perene")):
+            saida.append((r["id"], "perene", bool(c.get("perene")), r["perene"] == "true"))
+        tipos_csv = set(filter(None, (r.get("tipos") or "").split("|")))
+        tipos_json = set(c.get("tipos") or [])
+        for t in TIPOS_COMUNS:
+            if (t in tipos_json) != (t in tipos_csv):
+                saida.append((r["id"], f"tipos:{t}", t in tipos_json, t in tipos_csv))
+    return saida
+
+
+def montar(catalogo):
+    """Lê as evidências do catálogo e devolve (colunas, linhas, problemas, avisos)."""
+    eh_br = os.path.realpath(catalogo) == os.path.dirname(BASE_BR)
     with open(BASE_BR, encoding="utf-8") as f:
-        colunas = next(csv.reader(f)) + EXTRAS
+        colunas = next(csv.reader(f)) + ([] if eh_br else EXTRAS)  # o Brasil não tem as colunas extras do país
     with open(CATALOGO_APP, encoding="utf-8") as f:
-        ids_app = {c["id"] for c in json.load(f)["culturas"]}
+        culturas_json = json.load(f)["culturas"]
+    ids_app = {c["id"] for c in culturas_json}
 
     linhas, problemas = [], []
-    for p in sorted(glob.glob(os.path.join(args.catalogo, "evidencias", "*.json"))):
+    for p in sorted(glob.glob(os.path.join(catalogo, "evidencias", "*.json"))):
         with open(p, encoding="utf-8") as f:
             texto = f.read()
         ev = json.loads(texto)
@@ -192,7 +227,7 @@ def main():
             problemas.append(f"{cid}: {msg}")
 
         if cid not in ids_app:
-            erro("id não existe em agroia/base/culturas.json")
+            erro("id não existe em agroai/base/culturas.json")
         faltam = [c for c in colunas if c not in ev.get("valores", {}) and c not in FIXAS | OPCIONAIS and c not in EXTRAS]
         if faltam:
             erro(f"valores sem {faltam}")
@@ -251,17 +286,45 @@ def main():
             erro("caminho temporário no arquivo de evidência")
         linhas.append(r)
 
+    if eh_br:
+        pos = {c: n for n, c in enumerate(ORDEM_BR)}
+        linhas.sort(key=lambda r: (pos.get(r["id"], len(pos)), r["id"]))
+    avisos = [f"{i}: {campo} diverge entre culturas.json ({vj}) e o CSV ({vc})"
+              for i, campo, vj, vc in divergencias_json_csv(linhas, culturas_json)]
+    return colunas, linhas, problemas, avisos
+
+
+def gravar_csv(caminho, colunas, linhas):
+    with open(caminho, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=colunas, lineterminator="\n")
+        w.writeheader()
+        w.writerows(linhas)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--catalogo", help="pasta do catálogo (ex.: data/catalogo/eua)")
+    ap.add_argument("--apply", action="store_true", help="grava o culturas.csv")
+    ap.add_argument("--saida", help="grava o CSV neste caminho em vez de no catálogo (não mexe no versionado)")
+    ap.add_argument("--comparar", action="store_true", help="compara o frio da mesma espécie nos dois CSVs")
+    args = ap.parse_args()
+    if args.comparar:
+        return comparar()
+    if not args.catalogo:
+        ap.error("informe --catalogo ou --comparar")
+
+    colunas, linhas, problemas, avisos = montar(args.catalogo)
     print(f"{len(linhas)} cultura(s), {len(colunas)} colunas")
     for p in problemas:
         print("  PROBLEMA", p)
-    if args.apply:
+    for a in avisos:
+        print("  AVISO", a)
+    if args.apply or args.saida:
         if problemas:
             raise SystemExit("CSV não gravado: corrija os problemas acima.")
-        with open(os.path.join(args.catalogo, "culturas.csv"), "w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=colunas, lineterminator="\n")
-            w.writeheader()
-            w.writerows(linhas)
-        print("culturas.csv gravado")
+        destino = args.saida or os.path.join(args.catalogo, "culturas.csv")
+        gravar_csv(destino, colunas, linhas)
+        print(f"{destino} gravado")
     elif problemas:
         raise SystemExit(1)
 

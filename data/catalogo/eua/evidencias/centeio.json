@@ -112,7 +112,7 @@
       "coluna": "todas",
       "valor_brasil": "(não existe)",
       "decisao": "trocado",
-      "motivo": "O centeio não está no catálogo do Brasil (está em agroia/base/culturas.json como cobertura). A Tb 0 segue a do trigo do Brasil (mesma régua para cereais de inverno); o resto vem de fontes dos EUA, do ECOCROP e do FAO-56."
+      "motivo": "O centeio não está no catálogo do Brasil (está em agroai/base/culturas.json como cobertura). A Tb 0 segue a do trigo do Brasil (mesma régua para cereais de inverno); o resto vem de fontes dos EUA, do ECOCROP e do FAO-56."
     }
   ],
   "evidencias": [

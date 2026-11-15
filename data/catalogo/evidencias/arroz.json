@@ -1,5 +1,9 @@
 {
   "id": "arroz",
+  "pais": "BR",
+  "nome": "Arroz de terras altas",
+  "nome_cientifico": "Oryza sativa",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "comercial",
     "perene": "false",

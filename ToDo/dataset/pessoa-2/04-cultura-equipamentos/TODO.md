@@ -7,7 +7,7 @@ A pergunta 26b ("que máquinas você tem?") elimina as culturas que o produtor n
 
 ## Entrada
 - As 16 culturas de `data/catalogo/culturas.csv`, mais `arroz_irrigado` (Brasil) e as culturas dos EUA que não existem no Brasil: `alfafa`, `amendoim`, `canola`, `centeio`, `cevada`, `ervilhaca`, `trevo` (`data/catalogo/eua/evidencias/`).
-- As categorias de `agroia/base/equipamentos.json`: `trator`, `plantadeira_graos`, `colhedora`, `pulverizador`, `preparo_solo`, `rocadeira`, `ensiladeira`, `irrigacao`, `tracao_animal`, `manual`.
+- As categorias de `agroai/base/equipamentos.json`: `trator`, `plantadeira_graos`, `colhedora`, `pulverizador`, `preparo_solo`, `rocadeira`, `ensiladeira`, `irrigacao`, `tracao_animal`, `manual`.
 
 ## Saída: `data/catalogo/cultura_equipamentos.csv` (24 culturas, 91 linhas; justificativas e fontes em `notas.md`)
 
@@ -20,7 +20,7 @@ A pergunta 26b ("que máquinas você tem?") elimina as culturas que o produtor n
 - Sem coluna de país: a mesma `cultura_id` vale para o Brasil e para os EUA.
 - Mais de uma linha na mesma etapa = **qualquer uma** delas serve (ex.: milho dá para plantar com plantadeira ou à mão).
 - Se dá para fazer à mão, inclua `manual`.
-- **Culturas sem linha:** o `agroia/base/culturas.json` tem 41 culturas; 24 têm linha aqui. As 17 restantes (batata, batata-doce, cana, café, cacau, banana, citros, frutíferas, hortaliças, abóbora, capineira, feijão-de-porco, mucuna, grão-de-bico, lentilha, gergelim, quinoa) hoje **passam sem restrição** no filtro 26b e geram a lacuna "Sem lista de máquinas para ..." (`filtro.py`, `_equipamento`). Se alguma entrar no catálogo do motor, precisa de linha aqui.
+- **Culturas sem linha:** o `agroai/base/culturas.json` tem 41 culturas; 24 têm linha aqui. As 17 restantes (batata, batata-doce, cana, café, cacau, banana, citros, frutíferas, hortaliças, abóbora, capineira, feijão-de-porco, mucuna, grão-de-bico, lentilha, gergelim, quinoa) hoje **passam sem restrição** no filtro 26b e geram a lacuna "Sem lista de máquinas para ..." (`filtro.py`, `_equipamento`). Se alguma entrar no catálogo do motor, precisa de linha aqui.
 
 ## Pronto quando
 - [x] As 16 culturas com plantio e colheita (64 linhas, conferido por script).

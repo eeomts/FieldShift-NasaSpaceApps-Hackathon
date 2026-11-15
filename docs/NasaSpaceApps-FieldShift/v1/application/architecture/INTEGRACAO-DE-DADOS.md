@@ -16,6 +16,8 @@
 | **Rápida** | NASA POWER, SoilGrids, SRTM | Segundos | Na hora |
 | **Lenta** | NDVI (MODIS), SMAP, ET via AppEEARS; chuva IMERG | Minutos (pedido assíncrono) | Em segundo plano, por uma fila |
 
+> **Aviso de 15/11/2026: o AppEEARS foi descartado** (decisão do usuário; nota datada na D-009 do `DECISOES.md`). A linha "Lenta" acima, o AppEEARS na tabela de serviços testados e a pendência de medir o tempo dele descrevem o plano antigo: o app **não** usa o AppEEARS. As fontes "Rápidas" (NASA POWER, SoilGrids, SRTM) não mudam.
+
 Na prática, o dashboard aparece em segundos com clima, solo e relevo, e os cartões de vegetação e umidade surgem depois, com o aviso "novo dado chegou".
 
 ## Componentes

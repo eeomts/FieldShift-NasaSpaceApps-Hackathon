@@ -1,6 +1,6 @@
 # PAM: produção agrícola por município
 
-Produção Agrícola Municipal do IBGE (tabela 5457 do SIDRA), por município, cultura e ano. É a fonte do critério "renda extra" do motor: diz se a cultura se planta e quanto rende no município do produtor. Equivale ao `eua/nass/producao_condado.csv` dos EUA.
+Produção Agrícola Municipal do IBGE (tabela 5457 do SIDRA), por município, cultura e ano. É dado preparado para o critério "renda extra" do motor: diz se a cultura se planta e quanto rende no município do produtor. **O motor ainda não lê este arquivo** (conferido em 15/11/2026): hoje a nota de renda é a contagem de culturas de venda da rotação, sem preço nem produção da região. A PAM só entra na nota quando o motor passar a lê-la. Equivale ao `eua/nass/producao_condado.csv` dos EUA.
 
 | Arquivo | O que é |
 |---|---|
@@ -40,7 +40,7 @@ Uma linha por município × cultura × ano. Todos os municípios que o SIDRA dev
 | Coluna | Conteúdo |
 |---|---|
 | `municipio_id` | código IBGE de 7 dígitos (o mesmo de `brasil/municipios/municipios.csv`) |
-| `cultura_id` | id da base (`agroia/base/culturas.json`) |
+| `cultura_id` | id da base (`agroai/base/culturas.json`) |
 | `ano` | ano civil da colheita |
 | `area_plantada_ha` | área plantada ou destinada à colheita (variável 8331), ha |
 | `area_colhida_ha` | área colhida (216), ha |
@@ -71,7 +71,7 @@ Só `requests` fora da biblioteca padrão. São 90 chamadas (9 produtos × 10 an
 
 ## Tamanho
 
-Em 15/11/2026: **556.400 linhas, 19,5 MB** (19.516.497 bytes), cerca de 1,95 MB por ano com 10 culturas, ou 0,2 MB por cultura e ano. Cabe no limite de ~20 MB do Git, mas com folga de só 0,5 MB: **uma cultura a mais (ex.: aveia de grão) passa de 20 MB**. Nesse caso, ou se reduz para 9 anos (`--anos 9`, ainda acima dos 5 que a média de produtividade precisa), ou se grava fora do Git (`--saida data/brutos/pam/producao_municipal.csv`). Os 5.564 municípios são os que o SIDRA devolve para a tabela. Dos 5.571 de `brasil/municipios/municipios.csv`, faltam 7, que a tabela 5457 não traz: Santa Cruz do Arari (PA), Arraial do Cabo, Nilópolis e São João de Meriti (RJ), Diadema, Ilha Comprida e São Caetano do Sul (SP). Para eles o motor não tem dado da PAM (ausente = sem dado, não 0).
+Em 15/11/2026: **556.400 linhas, 19,5 MB** (19.516.497 bytes), cerca de 1,95 MB por ano com 10 culturas, ou 0,2 MB por cultura e ano. Cabe no limite de ~20 MB do Git, mas com folga de só 0,5 MB: **uma cultura a mais (ex.: aveia de grão) passa de 20 MB**. Nesse caso, ou se reduz para 9 anos (`--anos 9`, ainda acima dos 5 que a média de produtividade precisa), ou se grava fora do Git (`--saida data/brutos/pam/producao_municipal.csv`). Os 5.564 municípios são os que o SIDRA devolve para a tabela. Dos 5.571 de `brasil/municipios/municipios.csv`, faltam 7, que a tabela 5457 não traz: Santa Cruz do Arari (PA), Arraial do Cabo, Nilópolis e São João de Meriti (RJ), Diadema, Ilha Comprida e São Caetano do Sul (SP). Quando o motor passar a ler a PAM, esses 7 ficam sem dado (ausente = sem dado, não 0).
 
 ## Conferência manual
 
@@ -83,3 +83,7 @@ Duas células conferidas em 15/11/2026 contra a API de agregados do IBGE (`servi
 | Unaí (MG) 3170404, feijão, 2023 | `valor_mil_reais` / `area_plantada_ha` | 222300 / 21500 | 222300 / 21500 ([consulta](https://servicodados.ibge.gov.br/api/v3/agregados/5457/periodos/2023/variaveis/215%7C8331?localidades=N6%5B3170404%5D&classificacao=782%5B40112%5D)) |
 
 Também conferido: uma segunda rodada só do girassol 2024–2025 deu linhas idênticas às do arquivo (rodar de novo não muda nada).
+
+---
+
+Volta para o [`data/README.md`](../../README.md).

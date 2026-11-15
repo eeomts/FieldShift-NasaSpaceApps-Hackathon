@@ -1,0 +1,370 @@
+"""Motor completo sobre fazendas e climas sintéticos: entradas, erros de negócio, atual, melhores e eliminadas."""
+from datetime import date
+from dataclasses import replace
+
+import pytest
+
+from app.core.erros import ErroDeNegocio
+from app.models import CalendarioItem, Fazenda
+from app.services.clima.agregacao import LinhaMensal
+from app.services.motor.catalogo import ArranjoRegional, FaixaPalhada, catalogo_do_pais
+from app.services.motor.entradas import ClimaDoServico, clima_de_linhas, montar_entradas
+from app.services.motor.motor_service import analisar_entradas
+from motor_helpers import PLANO, clima, cultura, entradas, item, serie_diaria
+
+# Fazenda de Rio Verde (GO): dentro da malha do IBGE
+LAT, LON = -17.644301, -51.080503
+
+
+class ClimaFalso:
+    def __init__(self, c):
+        self.c, self.chamadas = c, []
+
+    def do_local(self, lat, lon):
+        self.chamadas.append((lat, lon))
+        return self.c
+
+
+class RelevoFalso:
+    def __init__(self, r=PLANO):
+        self.r = r
+
+    def declividade_da_fazenda(self, f):
+        return self.r
+
+
+def fazenda(calendario=(("soja", 10, 2), ("milho", 2, 6)), **campos) -> Fazenda:
+    f = Fazenda(lat=LAT, lon=LON, pais="BR", irrigacao="nao", prioridades=[], culturas_excluidas=[], equipamentos=[])
+    f.calendario = [CalendarioItem(ordem=i, cultura_id=c, texto_original=c or "outra", inicio_mes=a, fim_mes=b, perene=False) for i, (c, a, b) in enumerate(calendario)]
+    for k, v in campos.items():
+        setattr(f, k, v)
+    return f
+
+
+def montar(f, catalogo=None, c=None):
+    catalogo = catalogo if catalogo is not None else {x.id: x for x in CULTURAS}
+    return montar_entradas(f, ClimaFalso(c or clima()), RelevoFalso(), catalogo_por_pais=lambda p: catalogo, equipamentos={})
+
+
+CULTURAS = [
+    cultura("soja", tipos=("comercial", "fixadora_n"), fixa_nitrogenio=True, familia_botanica="Fabaceae", aporte_biomassa="medio"),
+    cultura("milho", ciclo_dias_max=145, aporte_biomassa="alto"),
+    cultura("sorgo", tipos=("comercial", "tolerante_seca"), ciclo_dias_min=90, valor_forrageiro="medio"),
+    cultura("milheto", tipos=("cobertura", "tolerante_seca"), ciclo_dias_min=45, valor_forrageiro="alto", aporte_biomassa="alto", confianca_parametros="baixa"),
+    cultura("crotalaria", tipos=("cobertura", "fixadora_n"), fixa_nitrogenio=True, familia_botanica="Fabaceae", ciclo_dias_min=56, aporte_biomassa="alto", confianca_parametros="media"),
+]
+
+
+# --- erros de negócio
+def test_sem_local_pede_para_marcar_o_local():
+    with pytest.raises(ErroDeNegocio) as e:
+        montar(fazenda(lat=None, lon=None, pais=None))
+    assert e.value.status_code == 422 and e.value.mensagem == "Marque o local da fazenda para comparar rotações."
+
+
+def test_pais_fora_de_br_e_us_nao_gera_analise():
+    with pytest.raises(ErroDeNegocio) as e:
+        montar(fazenda(lat=48.85, lon=2.35, pais=None))  # Paris
+    assert "Brasil" in e.value.mensagem
+
+
+def test_catalogo_vazio_do_pais_avisa_que_nao_tem_as_culturas():
+    with pytest.raises(ErroDeNegocio) as e:
+        montar(fazenda(pais="US"), catalogo={})
+    assert e.value.mensagem == "Ainda não temos as culturas desta região na base."
+
+
+def test_sem_calendario_pede_o_que_o_produtor_planta():
+    with pytest.raises(ErroDeNegocio) as e:
+        montar(fazenda(calendario=()))
+    assert "planta" in e.value.mensagem
+
+
+def test_pais_nulo_com_local_dentro_do_brasil_e_descoberto_pela_malha():
+    e = montar(fazenda(pais=None))
+    assert e.pais == "BR"
+
+
+# --- entradas montadas da fazenda
+def test_entradas_lidas_da_fazenda():
+    f = fazenda(
+        prioridades=["agua", "terra"], irrigacao="parte",
+        culturas_excluidas=[{"cultura_id": "sorgo", "texto_original": "sorgo"}, {"cultura_id": None, "texto_original": "x"}],
+        equipamentos=[{"equipamento_id": "manual", "texto_original": "m"}, {"equipamento_id": None, "texto_original": "?"}],
+    )
+    c = ClimaFalso(clima())
+    e = montar_entradas(f, c, RelevoFalso(), catalogo_por_pais=lambda p: {x.id: x for x in CULTURAS})
+    assert c.chamadas == [(LAT, LON)] and e.meses_vazios == [7, 8, 9] and e.irrigacao == "parte"
+    assert e.excluidas == {"sorgo"} and e.equipamentos == {"manual"} and e.prioridades == ["agua", "terra"]
+    assert [(i.cultura_id, i.inicio_mes, i.fim_mes) for i in e.atual] == [("soja", 10, 2), ("milho", 2, 6)]
+
+
+def test_estado_da_fazenda_vem_do_codigo_do_local():
+    assert montar(fazenda(codigo_local="5218805")).estado == "GO"
+    assert montar(fazenda(pais="US", codigo_local="19169")).estado == "IA"
+    assert montar(fazenda(codigo_local=None)).estado is None  # sem código: não sabemos
+
+
+def test_analise_nao_sugere_cultura_de_outro_estado_e_a_atual_ganha_aviso():
+    cs = {c.id: c for c in CULTURAS}
+    cs["crotalaria"] = replace(cs["crotalaria"], estados_validos=("GA",))
+    cs["soja"] = replace(cs["soja"], estados_validos=("GA",))
+    a = analisar_entradas(montar(fazenda(pais="US", codigo_local="19169"), cs))  # condado de Iowa
+    assert not any("crotalaria" in (i.cultura_id or "") for r in a.melhores for i in r.estrategia.itens)
+    assert "sem_dado_regiao" in [x.codigo for x in a.atual.alertas]  # a soja está na atual
+    sem_estado = analisar_entradas(montar(fazenda(pais="US", codigo_local=None), cs))
+    assert any("não sabemos o estado" in l for l in sem_estado.atual.lacunas)
+
+
+def test_cobertura_sem_janela_chega_ao_resultado_com_o_alerta_de_janela_nao_confirmada():
+    cs = {c.id: c for c in CULTURAS if c.id != "crotalaria"}  # milheto (cobertura) sem semeadura no catálogo
+    a = analisar_entradas(montar(fazenda(), cs))
+    com_milheto = [r for r in a.melhores if any(i.cultura_id == "milheto" for i in r.estrategia.itens)]
+    assert com_milheto and all("janela_nao_confirmada" in [x.codigo for x in r.alertas] for r in com_milheto)
+    assert not any(x.codigo == "janela_nao_confirmada" for x in a.atual.alertas)  # a atual não passa pela regra 12
+
+
+def test_arranjo_regional_do_estado_vale_nas_entradas_e_a_fonte_da_evidencia_diz_isso():
+    arranjo = ArranjoRegional("goiano", ("GO",), ciclo_dias_min=120, palhada=FaixaPalhada(5, 7.0, 9))
+    cs = {c.id: c for c in CULTURAS}
+    cs["soja"] = replace(cs["soja"], aporte_biomassa="baixo", arranjos=(arranjo,))
+    cs["milho"] = replace(cs["milho"], aporte_biomassa="baixo")
+    e = montar(fazenda(codigo_local="5218805"), cs)  # Rio Verde, GO
+    assert e.estado == "GO" and e.catalogo["soja"].arranjo_aplicado == "goiano" and e.catalogo["soja"].ciclo_dias_min == 120
+    assert e.catalogo["soja"].aporte_biomassa == "alto" and e.catalogo["milho"].arranjo_aplicado is None
+    palha = next(ev for ev in analisar_entradas(e).atual.notas["terra"].evidencias if ev.texto.startswith("Palha"))
+    assert palha.valor == "5,0–9,0" and palha.unidade == "t/ha" and palha.fonte == "Base de culturas do Field Shift (números para GO, arranjo goiano)"
+    sem_estado = montar(fazenda(codigo_local=None), cs)  # sem estado, nada é aplicado
+    assert sem_estado.catalogo["soja"].arranjo_aplicado is None and sem_estado.catalogo["soja"].ciclo_dias_min == 100
+    outro = montar(fazenda(pais="US", codigo_local="19169"), cs)  # Iowa: fora do arranjo
+    assert outro.catalogo["soja"].arranjo_aplicado is None
+
+
+def test_aviso_da_regua_e_textos_de_confianca_baixa_chegam_ao_resultado():
+    past = replace(catalogo_do_pais("US")["pastagem"], estados_validos=())
+    cs = {c.id: c for c in CULTURAS}
+    cs["pastagem"] = past
+    cs["milheto"] = replace(cs["milheto"], lacuna_informacao="Falta medição.", risco_revisao_local="Confirme com o agrônomo.")
+    com = analisar_entradas(montar(fazenda(calendario=(("milho", 10, 2), ("pastagem", 3, 9), ("milheto", 3, 4))), cs))
+    aviso = next(a for a in com.atual.alertas if a.codigo == "aviso_valor_forrageiro")
+    assert aviso.texto.startswith("Festuca alta (tall fescue): a maioria dos pastos")  # alerta sem o "Atenção"
+    assert "(Atenção: a maioria dos pastos" in com.atual.notas["animais"].explicacao  # a explicação mantém o prefixo
+    assert com.atual.lacunas[com.atual.lacunas.index("Milheto: Falta medição.") + 1] == "Milheto: Confirme com o agrônomo."
+    sem = analisar_entradas(montar(fazenda(), cs))  # soja e milho, sem pastagem: nada de aviso
+    assert not any(a.codigo.startswith("aviso_") for a in sem.atual.alertas)
+    assert not any(a.codigo.startswith("aviso_") for r in sem.melhores for a in r.alertas)
+
+
+def test_todas_as_candidatas_geradas_chegam_ao_filtro(monkeypatch):
+    from app.services.motor import motor_service
+    from app.services.motor.candidatas import gerar_candidatas
+
+    muitas = {f"c{i}": cultura(f"c{i}", tipos=("comercial", "tolerante_seca", "fixadora_n"), fixa_nitrogenio=True, ciclo_dias_min=30) for i in range(40)}
+    e = montar(fazenda(), {**muitas, "soja": CULTURAS[0], "milho": CULTURAS[1]})
+    geradas = gerar_candidatas(motor_service.Estrategia("atual", "Sua rotação atual", "atual", e.atual), e.catalogo, e.meses_vazios, e.estado)
+    chamadas = []
+    original = motor_service.avaliar
+    monkeypatch.setattr(motor_service, "avaliar", lambda itens, ent, eliminar: chamadas.append(eliminar) or original(itens, ent, eliminar))
+    a = analisar_entradas(e)
+    assert len(geradas) > 30 and chamadas.count(True) == len(geradas)  # todas avaliadas, nenhuma cortada antes
+    assert len(a.eliminadas) <= len(geradas)
+
+
+def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():
+    e = montar(fazenda(equipamentos=[{"equipamento_id": None, "texto_original": "?"}]))
+    assert e.equipamentos is None
+    assert montar(fazenda(equipamentos=[])).equipamentos is None
+
+
+def test_clima_de_linhas_gd_por_ano_geada_por_ano_e_ignora_fora_da_base():
+    def linha(ano, mes, gd, geada, chuva=100.0):
+        return LinhaMensal(ano, mes, chuva, 50.0, 20.0, 28.0, 14.0, 35.0, 5.0, geada, 0, 2, 3, 30, gd)
+
+    todos = [{str(tb): float(max(0, 20 - tb)) for tb in range(21)}, {str(tb): float(max(0, 24 - tb)) for tb in range(21)}]
+    linhas = [linha(1991, 1, todos[0], 0), linha(1992, 1, todos[1], 2), linha(1993, 1, {}, None), linha(2021, 1, todos[1], 9, chuva=999.0)]
+    linhas += [linha(2001, 1, todos[0], 0), linha(2002, 1, {}, None), linha(2020, 12, todos[1], 0), linha(2021, 3, todos[0], 0), linha(2022, 1, todos[0], 0)]
+    series = serie_diaria(anos=range(1990, 2024))  # 1990 e 2022 em diante ficam fora: só 1991 a 2021 (2021 fecha a safra de 2020)
+    c = clima_de_linhas(linhas, "fonte", "1991–2020", series)
+    assert sorted(c.serie_diaria) == list(range(1991, 2022)) and c.serie_diaria[2020].tmin_c[0] == 15.0
+    assert clima_de_linhas(linhas, "fonte", "1991–2020").serie_diaria == {}  # sem série, vazio
+    # GD só de 2001 em diante (o ano seguinte a 2020 fecha a safra que atravessa o ano); {} e 2022 ficam fora
+    assert c.gd_por_tb_ano == {2001: {1: todos[0]}, 2020: {12: todos[1]}, 2021: {1: todos[1], 3: todos[0]}}
+    assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}, 2001: {1: 0}, 2002: {1: None}, 2020: {12: 0}}  # 2021 está fora de 1991–2020
+    assert c.chuva_mm[1] == 100.0 and c.chuva_mm[2] is None and c.et0_mm[1] == 50.0 and c.dias_chuva_forte[1] == 2.0
+
+
+def test_clima_do_servico_monta_do_servico_de_clima():
+    class ServicoFalso:
+        def obter(self, lat, lon):
+            return "celula"
+
+        def climatologia(self, celula):
+            class C:
+                fonte, periodo = "NASA POWER, média", "1991–2020"
+
+            return C()
+
+        def linhas(self, celula):
+            return []
+
+        def series_diarias(self, celula):
+            return serie_diaria(anos=[2020, 2022])  # 2022 fica fora da janela de 1991 a 2021
+
+    c = ClimaDoServico(ServicoFalso()).do_local(LAT, LON)
+    assert c.fonte == "NASA POWER, média" and c.gd_por_tb_ano == {} and c.chuva_mm[1] is None and sorted(c.serie_diaria) == [2020]
+
+
+# --- análise
+def analisar(f=None, **mudancas):
+    e = montar(f or fazenda())
+    for k, v in mudancas.items():
+        setattr(e, k, v)
+    return analisar_entradas(e)
+
+
+def test_analise_traz_atual_ate_duas_melhores_eliminadas_pesos_e_fontes():
+    a = analisar(fazenda(prioridades=["terra", "erosao", "animais"]))
+    assert a.pais == "BR" and a.atual.estrategia.origem == "atual" and a.atual.estrategia.id == "atual"
+    assert 1 <= len(a.melhores) <= 2
+    assert sum(a.pesos.values()) == pytest.approx(1) and a.pesos["terra"] == pytest.approx(0.425)
+    assert any("NASA POWER" in f for f in a.fontes) and any("Calendário" in f for f in a.fontes)
+    assert a.gerado_em is not None
+
+
+def test_melhores_sao_diferentes_da_atual_e_entre_si_e_ordenadas():
+    a = analisar()
+    chaves = [frozenset((i.cultura_id, i.inicio_mes, i.fim_mes) for i in r.estrategia.itens) for r in a.melhores]
+    atual = frozenset((i.cultura_id, i.inicio_mes, i.fim_mes) for i in a.atual.estrategia.itens)
+    assert len(set(chaves)) == len(chaves) and atual not in chaves
+    assert [r.nota_final for r in a.melhores] == sorted((r.nota_final for r in a.melhores), reverse=True)
+
+
+def test_por_que_so_aparece_para_criterio_que_ganha_da_atual_por_0_1_ou_mais():
+    a = analisar()
+    assert a.atual.por_que == []
+    for r in a.melhores:
+        ganhos = [c for c, n in r.notas.items() if n.nota is not None and a.atual.notas[c].nota is not None and n.nota - a.atual.notas[c].nota >= 0.1 - 1e-9]
+        assert len(r.por_que) == min(3, len(ganhos))
+
+
+def test_atual_nunca_e_eliminada_mesmo_com_tudo_errado():
+    cl = clima(chuva=1.0, tmed=5.0, geada={m: 30 for m in range(1, 13)})
+    ruins = [cultura("soja", sensivel_geada=True, graus_dia_ciclo_min=9000), cultura("milho", sensivel_geada=True, graus_dia_ciclo_min=9000)]
+    f = fazenda(culturas_excluidas=[{"cultura_id": "soja", "texto_original": "soja"}])
+    a = analisar_entradas(montar(f, {c.id: c for c in ruins}, cl))
+    assert a.atual.estrategia.id == "atual" and a.eliminadas == [] and a.melhores == []
+    assert {x.codigo for x in a.atual.alertas} >= {"graus_dia", "agua_no_limite", "geada"}
+
+
+def test_candidata_so_e_avaliada_pelo_que_tem_de_novo():
+    # a soja da atual está no limite térmico e com geada; a candidata que a mantém não é eliminada por ela
+    problematicas = [cultura("soja", sensivel_geada=True, graus_dia_ciclo_min=9000, tipos=("comercial", "fixadora_n"), fixa_nitrogenio=True), *CULTURAS[1:]]
+    a = analisar_entradas(montar(fazenda(), {c.id: c for c in problematicas}, clima(geada={11: 30})))
+    assert a.melhores and all(any(i.cultura_id == "soja" for i in r.estrategia.itens) for r in a.melhores)
+
+
+def test_eliminadas_trazem_o_motivo_em_portugues():
+    a = analisar(fazenda(culturas_excluidas=[{"cultura_id": "sorgo", "texto_original": "sorgo"}]))
+    sorgo = [x for x in a.eliminadas if "Sorgo" in x.estrategia.nome]
+    assert sorgo and all("Você disse que não planta Sorgo." in x.motivos for x in sorgo)
+    assert all(x.motivos for x in a.eliminadas)
+
+
+def test_filtro_de_geada_elimina_candidata_de_janela_com_motivo():
+    sensiveis = [*CULTURAS[:2], cultura("sorgo", tipos=("comercial", "tolerante_seca"), ciclo_dias_min=90, sensivel_geada=True), *CULTURAS[3:]]
+    a = analisar_entradas(montar(fazenda(), {c.id: c for c in sensiveis}, clima(geada={7: 15, 8: 15, 9: 15})))
+    janela = next(x for x in a.eliminadas if x.estrategia.id == "janela:sorgo")
+    assert any("geada" in m for m in janela.motivos)
+
+
+def test_cultura_fora_do_catalogo_na_atual_vira_lacuna_sem_quebrar():
+    a = analisar(fazenda(calendario=(("soja", 10, 2), (None, 2, 6))))
+    assert any("Sem dados suficientes de" in l for l in a.atual.lacunas)
+    assert a.atual.nota_final is not None
+
+
+def test_confianca_da_estrategia_e_a_menor_das_culturas():
+    a = analisar()
+    assert a.atual.confianca == "alta"
+    com_milheto = [r for r in a.melhores if any(i.cultura_id == "milheto" for i in r.estrategia.itens)]
+    assert all(r.confianca == "baixa" for r in com_milheto)
+
+
+def test_sem_prioridade_todos_os_pesos_valem_um_sexto():
+    a = analisar()
+    assert all(v == pytest.approx(1 / 6) for v in a.pesos.values())
+
+
+def test_criterio_sem_dado_na_atual_sai_dos_pesos_efetivos():
+    cs = {c.id: c for c in CULTURAS}
+    for k in ("soja", "milho"):
+        cs[k] = replace(cs[k], valor_forrageiro=None)
+    a = analisar_entradas(montar(fazenda(prioridades=["animais"]), cs))
+    assert a.atual.notas["animais"].nota is None and "animais" not in a.atual.pesos
+    assert sum(a.atual.pesos.values()) == pytest.approx(1) and a.pesos["animais"] == pytest.approx(0.75)
+
+
+def test_falta_de_agua_elimina_so_a_sugestao_nova_sem_irrigacao_e_a_atual_vira_aviso():
+    seco = clima(chuva=1.0)
+    sem = analisar_entradas(montar(fazenda(irrigacao="nao"), c=seco))
+    com = analisar_entradas(montar(fazenda(irrigacao="sim"), c=seco))
+    assert any("a chuva do período" in m and "sem irrigação não fecha" in m for x in sem.eliminadas for m in x.motivos)
+    assert not sem.melhores  # nenhuma sugestão sobrevive com 1 mm de chuva por mês
+    assert any(a.codigo == "agua_no_limite" for a in sem.atual.alertas)  # a atual só avisa
+    assert not any(a.codigo == "agua_no_limite" for r in [com.atual, *com.melhores] for a in r.alertas)
+    assert not any("a chuva do período" in m for x in com.eliminadas for m in x.motivos)
+
+
+def test_analise_com_a_entrada_direta_dos_helpers():
+    e = entradas([item("soja", 10, 2), item("milho", 2, 6)], CULTURAS, prioridades=["renda"])
+    a = analisar_entradas(e)
+    assert a.atual.notas["renda"].nota == 0.8 and a.pesos["renda"] == pytest.approx(0.75)
+
+
+def test_atual_e_a_melhor_quando_nenhuma_das_melhores_a_supera():
+    # ano todo coberto, palha alta no milho: a única troca possível (milho por sorgo) perde em terra
+    cs = {
+        "soja": CULTURAS[0],
+        "milho": CULTURAS[1],
+        "sorgo": cultura("sorgo", tipos=("comercial", "tolerante_seca"), aporte_biomassa="baixo"),
+    }
+    a = analisar_entradas(montar(fazenda(calendario=(("soja", 10, 3), ("milho", 4, 9))), cs))
+    assert a.melhores and all(r.nota_final < a.atual.nota_final for r in a.melhores)
+    assert a.atual_e_a_melhor is True
+    assert any("Cuida menos da terra" in f for f in a.melhores[0].onde_piora)  # e a tela pode dizer onde piora
+
+
+def test_atual_nao_e_a_melhor_quando_uma_candidata_a_supera():
+    # a atual sem cobertura nem leguminosa: incluir cultura no vazio melhora a nota
+    cs = {c.id: c for c in CULTURAS}
+    a = analisar_entradas(montar(fazenda(calendario=(("milho", 10, 2),)), cs))
+    assert a.melhores and a.melhores[0].nota_final > a.atual.nota_final and a.atual_e_a_melhor is False
+
+
+def test_onde_piora_nas_melhores_e_vazio_na_atual():
+    a = analisar()
+    assert a.atual.onde_piora == []
+    for r in a.melhores:
+        perdas = [c for c, n in r.notas.items() if n.nota is not None and a.atual.notas[c].nota is not None and a.atual.notas[c].nota - n.nota >= 0.1 - 1e-9]
+        assert len(r.onde_piora) == min(3, len(perdas))
+        assert all("contra" in f for f in r.onde_piora)
+
+
+# --- erodibilidade K vem do retrato da fazenda (a busca do SoilGrids é em segundo plano)
+def test_entradas_pegam_o_k_do_retrato_da_fazenda():
+    e = montar(fazenda(retrato_solo={"soilgrids": {"k_usle": 0.0145, "sem_dado": False}}))
+    assert e.erodibilidade.k_usle == 0.0145 and e.erodibilidade.fonte == "SoilGrids 2.0 (ISRIC)"
+
+
+@pytest.mark.parametrize("retrato", [{}, None, {"soilgrids": None}, {"soilgrids": {"sem_dado": True, "k_usle": None}}, {"soilgrids": {"sem_dado": False, "k_usle": None}}])
+def test_sem_mapa_ou_sem_dado_ou_sem_k_a_erodibilidade_e_none(retrato):
+    assert montar(fazenda(retrato_solo=retrato)).erodibilidade is None
+
+
+def test_analise_cita_a_fonte_do_k_e_a_lacuna_quando_falta():
+    com = analisar_entradas(montar(fazenda(retrato_solo={"soilgrids": {"k_usle": 0.03, "sem_dado": False}})))
+    assert "SoilGrids 2.0 (ISRIC)" in com.fontes
+    assert not any("erodibilidade" in l for l in com.atual.lacunas)
+    sem = analisar_entradas(montar(fazenda(retrato_solo={})))
+    assert "SoilGrids 2.0 (ISRIC)" not in sem.fontes
+    assert any("erodibilidade" in l for l in sem.atual.lacunas)

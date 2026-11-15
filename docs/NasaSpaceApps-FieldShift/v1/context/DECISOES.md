@@ -33,7 +33,7 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 ### D-003 — Datasets só dos EUA ficam fora
 - **Status:** **Alterada pela D-010** (15/11/2026): continua valendo para as fazendas do Brasil; para as dos EUA, o Census (condados), o CDL e o NASS QuickStats entram. Antes: decidido (consequência direta de D-001, mantida em D-008; equivalentes revistos na D-009)
 - **Itens:** Web Soil Survey, SSURGO/STATSGO2, CDL, PRISM, NAIP, NLCD, CoCoRaHS, NWIS, AMS Market News, NASS QuickStats, OpenET, LANDFIRE
-- **Equivalentes brasileiros usados (D-009):** MapBiomas (histórico de culturas), IBGE PAM (estatísticas e valor da produção, que também serve ao critério de renda), INMET/CEMADEN (estações), ZARC (calendário e risco por cultura) e, como opcional, Embrapa Solos (solo). Ver `BANCO_DE_DADOS_NASA.md`.
+- **Equivalentes brasileiros usados (D-009):** MapBiomas (histórico de culturas), IBGE PAM (estatísticas e valor da produção, que serviria ao critério de renda; **o motor ainda não a lê, ver a nota de 15/11/2026 na D-009**), INMET/CEMADEN (estações), ZARC (calendário e risco por cultura) e, como opcional, Embrapa Solos (solo). Ver `BANCO_DE_DADOS_NASA.md`.
 
 ### D-004 — Usar FAO GAEZ v5, não v4
 - **Status:** Proposto (junto com D-002)
@@ -79,16 +79,18 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - **Uso do solo e histórico:** MapBiomas
   - **Validação:** ZARC; INMET/CEMADEN
   - **Contexto regional e renda:** IBGE PAM
-  - **Acesso:** Earthdata Search (login), earthaccess (código), AppEEARS (séries por ponto)
+  - **Acesso:** Earthdata Search (login), earthaccess (código), AppEEARS (séries por ponto; **descartado em 15/11/2026, ver a nota abaixo**)
 - **Opcionais (3), em `tools/extras/`:** FIRMS (risco de fogo; volta ao núcleo se a demo tiver Cerrado ou borda da Amazônia), Sentinel-1 (só se a demo tiver região muito nublada na safra), Embrapa Solos (depende da Q-07).
 - **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess e o AppEEARS cobrem), NASA Harvest e ARSET (referência e estudo, não fonte). **O NASA Harvest está em revisão: ver a proposta abaixo.**
 - **Consequência:** as notas das fontes que saíram foram apagadas e as citações a elas foram tiradas dos documentos do projeto. Os documentos que descrevem a lista oficial do desafio continuam citando todos os datasets dela.
+- **Nota de 15/11/2026 (revisão "projeto-dados 15_11_26"), renda: o que o motor faz hoje.** A linha "Contexto regional e renda: IBGE PAM" e a revisão da D-009 abaixo descrevem o plano, não o código. Hoje o motor **não lê** a PAM (`data/brasil/pam/`), o NASS (`data/eua/nass/`) nem as janelas do ZARC (`data/brasil/zarc/janelas.csv`). A nota de renda (`criterios.nota_renda`) é a **contagem de culturas de venda** (tipo `comercial`) da rotação, e o texto na tela diz: "Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota." A PAM e o NASS são dados preparados para quando o motor passar a lê-los; o ZARC também não entra no filtro de janela. Nenhuma decisão mudou: só o registro do estado real.
+- **Nota de 15/11/2026, AppEEARS descartado (decisão do usuário).** O projeto **não vai mais usar o AppEEARS**. Vale para a linha "Acesso" do núcleo acima, para o NDVI e o SMAP "por ponto" e para o texto da D-010 que o cita. Os arquivos `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico (nada foi apagado). Não existe `data/demo/appeears_eua/`. As fontes do clima, do solo e do relevo do app (NASA POWER, SoilGrids, SRTM) não mudam. Esta nota não cria decisão nova nem renumera nada.
 
 
 ### D-010 — O app também aceita fazendas nos EUA
 - **Status:** Decidido (Augusto, 15/11/2026; avisar a equipe)
 - **Amplia:** D-008 (escopo) · **Altera:** D-003 (datasets só dos EUA)
-- **Motivo:** o desafio Field Shift é da NASA, e os dados da NASA (POWER, SMAP, MODIS/VIIRS pelo AppEEARS) e o SoilGrids cobrem os EUA do mesmo jeito que o Brasil. Muda só a parte das fontes nacionais.
+- **Motivo:** o desafio Field Shift é da NASA, e os dados da NASA (POWER, SMAP, MODIS/VIIRS pelo AppEEARS, que foi descartado em 15/11/2026: ver a nota na D-009) e o SoilGrids cobrem os EUA do mesmo jeito que o Brasil. Muda só a parte das fontes nacionais.
 - **Fontes dos EUA, no lugar das brasileiras** (detalhes em `data/README.md`, seção "EUA"):
   - **Município (IBGE)** → **condado** (Census TIGERweb), `data/eua/condados/`, chave `condado_id` (FIPS de 5 dígitos).
   - **ZARC** → datas usuais de plantio e colheita do **USDA NASS** por estado, `data/eua/nass/datas_plantio.csv`. É mais grosso: por estado, sem risco em %, sem tipo de solo nem ciclo, edição de 2010.
@@ -103,7 +105,7 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Status:** Proposto (14/11/2026). Falta confirmar com a equipe.
 - **Origem:** documentos do Guilherme em `tools/` (`NASA_POWER_X_HARVEST_PORTAL.md`, `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `NASA_HARVEST_PORTAL_MCP.md`, `NASA_HARVEST_PORTAL_MCP_IMPLEMENTACAO.md`, `NASA_HARVEST.md`). Eles mostram usos concretos do NASA Harvest que a D-009 não tinha considerado; ela o tratava só como referência para o pitch.
 - **Proposta:** o NASA Harvest volta ao projeto em três papéis:
-  1. **Harvest Portal como contexto de mercado.** As tabelas do portal (FAO, OECD) dão produção e tendência **do país**. Elas aparecem como contexto ("o mercado nacional dessa cultura cresce ou encolhe"), mas **não** formam a nota de mercado. A fonte principal da renda continua sendo o **IBGE PAM**, que tem dados **por município**. Sem dado no portal, a ferramenta mostra "mercado não verificado", nunca nota zero.
+  1. **Harvest Portal como contexto de mercado.** As tabelas do portal (FAO, OECD) dão produção e tendência **do país**. Elas aparecem como contexto ("o mercado nacional dessa cultura cresce ou encolhe"), mas **não** formam a nota de mercado. A fonte principal da renda continua sendo o **IBGE PAM**, que tem dados **por município** (**plano: hoje o motor ainda não lê a PAM; ver a nota de 15/11/2026 na D-009**). Sem dado no portal, a ferramenta mostra "mercado não verificado", nunca nota zero.
   2. **Harvest Portal MCP no chat.** Se o chat do produtor for construído (ver `application/architecture/DASHBOARD-E-CHAT.md`), o assistente consulta o portal pelo MCP para responder perguntas de mercado com fonte, sem inventar números. Risco: a página oficial não lista as funções do servidor; confirmar antes de implementar.
   3. **`crop-cycle-detection` (GitHub do NASA Harvest).** Código pronto para detectar os ciclos de cultura em séries de NDVI. Usado com o MODIS (panorama) e o HLS (talhão) para mostrar a rotação real e o tempo de solo descoberto, sem escrever o método do zero. Conferir a licença e o esforço de adaptação.
 - **Motivo:** o `crop-cycle-detection` e o MCP resolvem partes do produto (calendário de cobertura e chat com fontes) com material pronto. Como fonte de mercado, o portal é fraco para o Brasil porque só tem dados nacionais; por isso fica como contexto. De quebra, o projeto passa a usar mais de uma fonte da NASA com papéis claros, o que ajuda no pitch.
@@ -116,11 +118,11 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Status:** Decidido (Yury, Pessoa 1, 15/11/2026) para o catálogo de culturas. Falta a equipe rever a D-003 para as outras fontes.
 - **Motivo:** o questionário já foi revisado para escopo global e testado em fazendas dos EUA (`data/onboarding/relatorio-revisao-questionario.md`), e os testes de chat do produtor americano (`TESTES_CHAT_SR_SMITH.md`) pedem culturas que o catálogo do Brasil não tem ou trata com outro sistema (centeio de cobertura, trigo de inverno, arroz inundado, amendoim).
 - **Consequências:**
-  - Novo catálogo `data/catalogo/eua/`, no mesmo formato do Brasil, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc`. Guia em `data/catalogo/eua/README.md`; construído pelo agente `agroia-dataset-eua`.
+  - Novo catálogo `data/catalogo/eua/`, no mesmo formato do Brasil, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc`. Guia em `data/catalogo/eua/README.md`; construído pelo agente `agroai-dataset-eua`.
   - Para o catálogo dos EUA, entram fontes que a D-003 deixava de fora: USDA NASS QuickStats (no lugar da PAM), USDA Agricultural Handbook 628 e RMA (no lugar do ZARC), extensão das universidades land-grant e USDA-ARS/NRCS (no lugar da Embrapa).
   - A régua das colunas qualitativas, a regra de confiança e as regras do motor são as mesmas do Brasil (`data/catalogo/evidencias/README.md`), para as notas serem comparáveis.
   - **Em aberto com a equipe:** se a D-003 cai também para solo (SSURGO), histórico de culturas (CDL) e clima (PRISM) nos pontos dos EUA.
-  - **Resolvido (15/11):** o id `arroz_irrigado` entrou no `agroia/base/culturas.json` (commit f910193). "arroz irrigado", "arroz de várzea", "flooded rice" e afins casam com ele; "arroz" e "rice" sozinhos ficam ambíguos e o app pede que o produtor escolha (não decide pelo país).
+  - **Resolvido (15/11):** o id `arroz_irrigado` entrou no `agroai/base/culturas.json` (commit f910193). "arroz irrigado", "arroz de várzea", "flooded rice" e afins casam com ele; "arroz" e "rice" sozinhos ficam ambíguos e o app pede que o produtor escolha (não decide pelo país).
   - **Decisões da revisão dos lotes 1 e 2 dos EUA (15/11, `reviews/lotes-1-2-eua 15_11_26/`), valem para os dois catálogos:**
     - a água não elimina cultura de sequeiro, só marca "água no limite" (regra 1 do motor); só o arroz irrigado sem várzea ou irrigação é eliminado;
     - graus-dia: o motor compara a mediana local; nas coberturas não elimina;
@@ -213,3 +215,5 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 15/11/2026 | **D-010:** o app também aceita fazendas nos EUA. Amplia a D-008 e altera a D-003 (Census, CDL e NASS QuickStats entram para as fazendas dos EUA). |
 | 15/11/2026 | **D-010:** catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |
 | 15/11/2026 | **D-011:** chat e RAG com Gemini (`google-genai` + `gemini-embedding-001` 768d), sem framework de agentes, RAG com pgvector + busca textual no próprio Postgres. |
+| 15/11/2026 | Nota na D-009 (revisão "projeto-dados 15_11_26"): o motor ainda não lê a PAM, o NASS nem as janelas do ZARC; a renda é a contagem de culturas de venda. Sem decisão nova. |
+| 15/11/2026 | Nota na D-009: o projeto não vai mais usar o AppEEARS (decisão do usuário). `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico. |

@@ -47,8 +47,8 @@ SERIES = {
                "WHEAT, WINTER - PRODUCTION, MEASURED IN BU", 60 * KG_POR_LB),
               ("WHEAT, SPRING, (EXCL DURUM) - ACRES PLANTED", "WHEAT, SPRING, (EXCL DURUM) - ACRES HARVESTED",
                "WHEAT, SPRING, (EXCL DURUM) - PRODUCTION, MEASURED IN BU", 60 * KG_POR_LB)],
-    "arroz": [("RICE - ACRES PLANTED", "RICE - ACRES HARVESTED",
-               "RICE - PRODUCTION, MEASURED IN CWT", 100 * KG_POR_LB)],
+    "arroz_irrigado": [("RICE - ACRES PLANTED", "RICE - ACRES HARVESTED",
+                       "RICE - PRODUCTION, MEASURED IN CWT", 100 * KG_POR_LB)],
     # Upland = algodão herbáceo (Gossypium hirsutum), o da base. O Pima (G. barbadense) fica de fora.
     "algodao": [("COTTON, UPLAND - ACRES PLANTED", "COTTON, UPLAND - ACRES HARVESTED",
                  "COTTON, UPLAND - PRODUCTION, MEASURED IN 480 LB BALES", 480 * KG_POR_LB)],  # pluma

@@ -9,9 +9,9 @@
 - Várias linhas na mesma etapa = **qualquer uma** serve. Por isso, cada etapa lista todas as formas comuns de fazer, para o filtro da pergunta 26b não eliminar uma cultura que o produtor consegue fazer de outro jeito.
 - O CSV **não expressa "precisa de A e de B"**. Quando a operação exige duas máquinas em sequência (amendoim: arrancador-invertedor e depois recolhedora; feno: segadora, ancinho e enfardadora), a linha usa a categoria que representa o conjunto mecanizado.
 - `trator` **não aparece sozinho**: plantadeira, colhedora e roçadeira já pressupõem o trator. Listar `trator` como alternativa diria que só o trator basta, o que não é verdade.
-- Só os ids de `agroia/base/equipamentos.json`. Nenhum id foi inventado.
+- Só os ids de `agroai/base/equipamentos.json`. Nenhum id foi inventado.
 - O CSV não tem coluna de país: a mesma `cultura_id` vale para o Brasil e para os EUA (ex.: `aveia`, `milho`).
-- O filtro (`agroia/api/app/services/motor/filtro.py`, `_equipamento`) só lê as etapas `plantio` e `colheita`. Por isso as coberturas usam `colheita` para o manejo do fim do ciclo (não há etapa `manejo`).
+- O filtro (`agroai/api/app/services/motor/filtro.py`, `_equipamento`) só lê as etapas `plantio` e `colheita`. Por isso as coberturas usam `colheita` para o manejo do fim do ciclo (não há etapa `manejo`).
 
 ## Culturas de cobertura e forrageiras: o que é "colheita"
 

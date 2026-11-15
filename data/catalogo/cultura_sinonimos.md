@@ -2,21 +2,21 @@
 
 > Tarefa P3-02 (`ToDo/dataset/pessoa-3/02-sinonimos-culturas/`). Dono: Pessoa 3. Revisado em 15/11/2026 com o mapa de nomes do ZARC (`data/brasil/zarc/mapa_culturas_zarc.csv`), a base de culturas do Brasil (`data/catalogo/culturas.csv`) e o catálogo dos EUA (`data/catalogo/eua/culturas.csv`).
 >
-> A fonte única dos nomes das culturas é o campo `nomes` de cada cultura em **`agroia/base/culturas.json`**, que é arquivo do app e só muda por PR, avisando o Pedro. Este documento lista o que já existe lá e **o que a proposta muda**.
+> A fonte única dos nomes das culturas é o campo `nomes` de cada cultura em **`agroai/base/culturas.json`**, que é arquivo do app e só muda por PR, avisando o Pedro. Este documento lista o que já existe lá e **o que a proposta muda**.
 >
-> **Idiomas:** o app tem só **português e inglês** (decisão da Pessoa 3, 15/11/2026). Hoje o `culturas.json` ainda tem uma lista `"es"` (espanhol) em cada uma das 42 culturas: a proposta é **tirar todas**. As tabelas abaixo mostram só PT e EN.
+> **Idiomas:** o app tem só **português e inglês** (decisão da Pessoa 3, 15/11/2026). Hoje o `culturas.json` ainda tem uma lista `"es"` (espanhol) em cada uma das 41 culturas: a proposta é **tirar todas**. As tabelas abaixo mostram só PT e EN.
 
 ## Como aplicar (no PR do app)
-1. **Tirar o espanhol:** apagar a chave `"es"` do `nomes` das 42 culturas do `agroia/base/culturas.json`.
+1. **Tirar o espanhol:** apagar a chave `"es"` do `nomes` das 41 culturas do `agroai/base/culturas.json`.
 2. **Nomes novos:** para cada linha com nomes em **Novos propostos**, acrescentar o nome na lista do idioma certo (`pt` ou `en`).
 3. **Código que ainda fala de espanhol** (fica para quem fizer o PR, não é desta tarefa):
-   - `agroia/api/tests/test_arroz_irrigado.py` espera os idiomas `{"pt", "en", "es"}`: passa a esperar `{"pt", "en"}`.
-   - A API ainda aceita `idioma="es"` em `GET /culturas` (`app/routers/onboarding.py`) e no cadastro (`app/schemas/auth.py`). O front já só usa PT e EN (`agroia/web/src/i18n.tsx`).
-4. Rodar os testes da API (`agroia/api/tests/test_interpretar.py` e o resto).
+   - `agroai/api/tests/test_arroz_irrigado.py` espera os idiomas `{"pt", "en", "es"}`: passa a esperar `{"pt", "en"}`.
+   - A API ainda aceita `idioma="es"` em `GET /culturas` (`app/routers/onboarding.py`) e no cadastro (`app/schemas/auth.py`). O front já só usa PT e EN (`agroai/web/src/i18n.tsx`).
+4. Rodar os testes da API (`agroai/api/tests/test_interpretar.py` e o resto).
 
 ## Resumo
 - **48 nomes novos**: 41 para as 17 culturas do motor do Brasil (regionais, nomes do ZARC, nomes usados nos EUA e erros comuns de escrita) e 7 para culturas que só estão no catálogo dos EUA.
-- **Conferido por script** com a mesma normalização do app (`agroia/api/app/services/catalogo.py`: ignora acento, maiúscula e hífen), já sem o espanhol: nenhum nome proposto já existe no app, e nenhum nome fica repetido em duas culturas.
+- **Conferido por script** com a mesma normalização do app (`agroai/api/app/services/catalogo.py`: ignora acento, maiúscula e hífen), já sem o espanhol: nenhum nome proposto já existe no app, e nenhum nome fica repetido em duas culturas.
 - Sem o espanhol, o app deixa de reconhecer nomes como "maíz", "yuca" ou "frijol". Isso é esperado: o app só atende PT e EN.
 - **Resolvido (15/11):** "batata" sozinha é ambígua: o app pede para o produtor escolher entre batata inglesa e batata-doce (campo `ambiguo` no `culturas.json`).
 - **Arroz aplicado (15/11):** os nomes de terras altas do `arroz` entraram no app. "arroz" e "rice" sozinhos são ambíguos: o app pede para o produtor escolher entre terras altas e irrigado, sem decidir pelo país.

@@ -3,7 +3,7 @@ soja,Soybeans,
 milho,Corn for grain,"Milho grão. ""Corn for silage"" fica de fora. Nos EUA não há safrinha: é uma safra por ano."
 feijao,"Beans, dry edible",Feijão seco em geral (vários tipos de Phaseolus vulgaris). Só os estados produtores.
 trigo,"Wheat, winter|Wheat, spring","O 1º nome é o trigo de inverno (plantado no outono); o 2º é o de primavera. ""Wheat, Durum"" é outra espécie e fica de fora."
-arroz,"Rice, all","Quase todo o arroz dos EUA é irrigado por inundação; o motor é de sequeiro, então use só como referência de calendário."
+arroz_irrigado,"Rice, all","Arroz irrigado (inundado) do Delta do Arkansas e do Sul dos EUA: quase todo o arroz do país é assim. É o mesmo arroz_irrigado do catálogo dos EUA."
 algodao,"Cotton, all",
 mandioca,,Não está no NASS (não é cultura comercial nos EUA).
 sorgo,Sorghum for grain,"""Sorghum for silage"" fica de fora."

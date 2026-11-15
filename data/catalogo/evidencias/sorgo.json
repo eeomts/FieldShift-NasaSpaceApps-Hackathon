@@ -1,5 +1,9 @@
 {
   "id": "sorgo",
+  "pais": "BR",
+  "nome": "Sorgo",
+  "nome_cientifico": "Sorghum bicolor",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "comercial|tolerante_seca|raiz_profunda",
     "perene": "false",

@@ -1,12 +1,14 @@
 # Validação dos parâmetros do motor
 
-Conferência, em 15/11/2026, dos números marcados "proposta, validar com o Yury" em `agroia/api/app/services/motor/parametros.py`. Para cada um: a conta que o motor faz, o que dizem as fontes e o veredito.
+Conferência, em 15/11/2026, dos números marcados "proposta, validar com o Yury" em `agroai/api/app/services/motor/parametros.py`. Para cada um: a conta que o motor faz, o que dizem as fontes e o veredito.
 
 - **ok**: o número tem fonte, ou é coerente com uma fonte (dito quando a fonte só confirma a ordem de grandeza).
 - **troca para X**: uma fonte indica outro valor ou outra forma.
 - **sem fonte**: é escolha de produto. Precisa aparecer como escolha na tela ou no documento.
 
 Todas as fontes foram abertas nesta conferência. As URLs e os trechos estão em cada seção e na lista do fim. Nenhum código, catálogo ou outro documento foi alterado.
+
+> **Atualização de 15/11/2026 (mesmo dia, depois da conferência).** A regra 17 (frio por cultura; seção 2.2 e item 5 da seção 3) foi **implementada** no motor, e o texto da nota de renda passou a dizer que é contagem (item 8 da seção 3, só a parte da renda). O restante do documento é o histórico da conferência e não foi reescrito: onde o texto diz "não está pronto" ou "hoje", leia as marcas "implementado" abaixo.
 
 ---
 
@@ -15,7 +17,7 @@ Todas as fontes foram abertas nesta conferência. As URLs e os trechos estão em
 | # | Constante | Valor atual | Veredito | Valor proposto | Fonte principal |
 |---|---|---|---|---|---|
 | 1 | `AGUA_ALERTA_ABAIXO` | 0,80 | **ok** (ordem de grandeza) | manter 0,80 e explicar o aviso pelo Ky | FAO-56 eq. 90 e Tab. 24 (Ky do FAO-33); ZARC soja (ISNA ≥ 0,55) |
-| 2 | `GEADA_FASE_SENSIVEL = "terco_medio"` | terço do meio do ciclo | **ok como reserva**; a regra 17 substitui quando houver `tmin_critica_c` | manter só para cultura sem `tmin_critica_c` | FAO Frost protection, Tab. 4.5; FAO-56 cap. 6 e Tab. 11 |
+| 2 | `GEADA_FASE_SENSIVEL = "terco_medio"` | terço do meio do ciclo | **ok como reserva**; a regra 17 (implementada em 15/11/2026) substitui quando houver `tmin_critica_c` | manter só para cultura sem `tmin_critica_c` | FAO Frost protection, Tab. 4.5; FAO-56 cap. 6 e Tab. 11 |
 | 3 | `TERRA_PESO_COBERTURA / BIOMASSA / FIXADORA` | 0,4 / 0,3 / 0,3 | **sem fonte** (pesos); estrutura coerente com a FAO | manter e mostrar como escolha da equipe | FAO, Agricultura de Conservação (3 princípios); NRCS SCI só como analogia |
 | 4a | `CLASSE_BIOMASSA` | 0,33 / 0,66 / 1,0 | **ok** | manter (a curva dá ≈ 0,3 / 0,7 / 0,9) | Lopes, Cogo & Levien 1987 (RBCS 11:71-75); Alvarenga et al. 2001 (régua do README) |
 | 4b | `CLASSE_FORRAGEIRO` | 0 / 0,3 / 0,6 / 1,0 | **sem fonte** | 0 / 0,33 / 0,67 / 1,0 (degraus iguais) ou declarar o atual | régua do README (classe ordinal) |
@@ -23,7 +25,7 @@ Todas as fontes foram abertas nesta conferência. As URLs e os trechos estão em
 | 6a | `K_LIMITE_BAIXA / MEDIA` | 0,020 / 0,035 | **troca** | **0,015 / 0,030** | Mannigel et al. 2002 (classes de K para solos brasileiros) |
 | 6b | `FATOR_K` | 0,75 / 1,0 / 1,25 | **troca** | proporcional ao K: **K ÷ 0,0225** (ou, por classe, 0,44 / 1 / 1,67) | USLE, A = R·K·LS·C·P (AH 537); centro da classe "médio" de Mannigel et al. 2002 |
 | 7 | `PRAGAS_DESCONTO_MESMA_FAMILIA` | 0,2 por par | **troca** (forma); o 0,2 não tem fonte | tirar o desconto; nota = 1 − pares seguidos da mesma família ÷ pares | Embrapa Soja (alternar espécies); a conta atual pune quem acrescenta cultura |
-| 8 | `RENDA_POR_COMERCIAIS` | 0 / 0,5 / 0,8 / 1,0 | **sem fonte** | manter e explicar na tela que é contagem, não lucro | calibrar depois com o valor da produção do IBGE PAM (D-009) |
+| 8 | `RENDA_POR_COMERCIAIS` | 0 / 0,5 / 0,8 / 1,0 | **sem fonte** | manter e explicar na tela que é contagem, não lucro (texto feito em 15/11/2026: "Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota.") | calibrar depois com o valor da produção do IBGE PAM (D-009) |
 | 9 | `MAX_CANDIDATAS` | 30 | **sem fonte** (engenharia) | aplicar o corte **depois** do filtro, ou tirar o corte | contagem feita com o catálogo atual (seção 2.9) |
 
 Notas de 0 a 1 citadas abaixo foram calculadas com o código atual do motor (`criterios.py`), rodado localmente.
@@ -58,7 +60,9 @@ Uma coisa compensa a outra em parte. Por isso **não** proponho trocar para a ch
 
 **A conta do motor** (`filtro._geada`, `calendario.meses_do_terco_medio`). Só para culturas com `sensivel_geada`. O ciclo, em meses inteiros, é cortado em três partes iguais. Entram os meses que **tocam** o terço do meio: num ciclo de 4 meses, os meses 2 e 3 (de 25 % a 75 % do ciclo); num de 3 meses, só o do meio; num de 5 meses, do 2º ao 4º. Perene: o ano todo. Um ano conta quando algum desses meses teve 1 dia ou mais com mínima abaixo de 2 °C (`clima/limiares.py`). A cultura sai se isso aconteceu em mais de 30 % dos anos.
 
-**A regra 17 substitui o terço do meio.** Com `tmin_critica_c` preenchida (catálogos preenchidos em 15/11; ver o README de evidências, "Dano por frio"), o teste usa o limiar da cultura só nos **dias** da fase sensível: da semeadura + `fase_frio_inicio_frac` × ciclo médio até a semeadura + `fase_frio_fim_frac` × ciclo médio (`ciclo_todo` = o ciclo inteiro). Um ano conta com `tmin_dias_seguidos` dias seguidos abaixo do limiar (vazio = 1). Com `tmin_efeito` = `aviso` (esterilidade do arroz), a cultura não sai: recebe um aviso, como o calor. O terço do meio com 2 °C fica só como **reserva** para cultura sem limiar com fonte (README das evidências, regra 17).
+**A regra 17 substitui o terço do meio (implementada em 15/11/2026).** Com `tmin_critica_c` preenchida (catálogos preenchidos em 15/11; ver o README de evidências, "Dano por frio"), o teste usa o limiar da cultura só nos **dias** da fase sensível: da semeadura + `fase_frio_inicio_frac` × ciclo médio até a semeadura + `fase_frio_fim_frac` × ciclo médio (`ciclo_todo` = o ciclo inteiro). Um ano conta com `tmin_dias_seguidos` dias seguidos abaixo do limiar (vazio = 1). Com `tmin_efeito` = `aviso` (esterilidade do arroz), a cultura não sai: recebe um aviso, como o calor. O terço do meio com 2 °C fica só como **reserva** para cultura sem limiar com fonte (README das evidências, regra 17).
+
+**Estado em 15/11/2026: implementado** (`filtro.py`: `janela_do_frio`, `fracao_de_anos_com_frio`, `_frio`; reserva em `_geada`). A semeadura é o dia 15 do mês de início (`SEMEADURA_DIA_DO_MES`, proposta, validar com o Yury; alternativa: dias 1, 11 e 21, como os decêndios do ZARC), os anos de semeadura são 1991-2020 e só entram os anos com todos os dias da janela. Sem a mínima diária do local, a cultura com `tmin_critica_c` recebe uma lacuna e não é eliminada. O texto diz "geada" quando o limiar é de até 0 °C e "frio" acima disso, com a fase em linguagem simples (florada, enchimento dos grãos, todo o ciclo). A conferência de Passo Fundo, Ness County, Santa Maria e outros locais na tela continua pendente.
 
 **Fontes para a reserva**
 - FAO, *Frost protection: fundamentals, practice and economics*, vol. 1, Tabela 4.5 (https://www.fao.org/4/y7223e/y7223e0a.htm), temperaturas críticas de dano em germinação / floração / frutificação (°C): *"Spring wheat -9, -10 -1, -2 -2, -4"*; *"Soybeans -3, -4 -2, -3 -2, -3"*; *"Corn [maize] -2, -3 -1, -2 -2, -3"*; *"Sunflower -5, -6 -2, -3 -2, -3"*; *"Beans -5, -6 -2, -3 -3, -4"*. Em todas as culturas da tabela, a floração é a fase mais sensível ou empata com a mais sensível. A mesma obra (https://www.fao.org/4/y7223e/y7223e07.htm) diz que esses limites valem para o ar no abrigo: *"correlated with air temperatures called 'critical temperatures' measured in standard instrument shelters"*.
@@ -69,12 +73,12 @@ Uma coisa compensa a outra em parte. Por isso **não** proponho trocar para a ch
 
 Duas observações para a tela e para o código:
 - Os 2 °C no abrigo ficam 3 a 5 °C acima do dano na floração da FAO (−1 a −3 °C). A reserva é conservadora e elimina mais do que a tabela pediria. O ZARC da soja usa *"temperaturas mínimas menores ou iguais a 3°C no abrigo meteorológico"* (portaria citada em 2.1), também conservador. Não é preciso trocar, mas o texto deve dizer "risco de geada", não "dano certo".
-- O texto do alerta diz sempre "fase de floração". Com a regra 17, a fase pode ser `emergencia`, `enchimento_grao` etc.; o texto deve usar `fase_sensivel_frio`.
+- O texto do alerta dizia sempre "fase de floração". Com a regra 17, a fase pode ser `enchimento_grao`, `ciclo_todo` etc.; o texto usa `fase_sensivel_frio` (**implementado em 15/11/2026**, em `filtro._frio` e `parametros.FASES_FRIO_TEXTO`). A reserva `_geada` mantém "fase de floração".
 
-**O que a regra 17 exige no código** (não está pronto):
-1. `catalogo.py` não conhece `tmin_critica_c`, `fase_sensivel_frio`, `fase_frio_inicio_frac`, `fase_frio_fim_frac`, `tmin_dias_seguidos` e `tmin_efeito`: hoje elas caem em `extras`, como texto. Precisam entrar em `CAMPOS_NUMERICOS` (ou `CAMPOS_TEXTO`) e no `CulturaMotor`.
-2. **O dado de clima de hoje não basta.** `clima_mensal` guarda só os dias abaixo de 2 °C por mês (`TMIN_GEADA_C`), e os dados diários não ficam no banco. A regra 17 precisa, para cada limiar do catálogo (hoje de −3,3 a 15 °C, inclusive 10 e 15 °C do arroz), contar os dias **dentro da janela da fase** e a **maior sequência de dias seguidos** abaixo do limiar. Opções: guardar a série diária de `T2M_MIN` por célula (ou por decêndio, como o ZARC) e contar na hora; ou um JSONB por ano com, para cada limiar do catálogo, as datas ou sequências abaixo dele. Contar só "dias abaixo de cada grau inteiro por mês" não serve: não cobre 10 e 15 °C, não conta dias seguidos e não recorta a janela. Isso pede migration e reagregação do clima nas células (na VPS, só com confirmação do usuário), quando o motor implementar a regra.
-3. A janela da fase vai em **dias** (decisão de 15/11), não em meses inteiros: contar por mês elimina o arroz irrigado em Santa Maria em até 18 de 19 anos e o feijão em 11 de 19; pela janela, 4 a 9 e 1 de 19 (simulação com NASA POWER diário 2001-2019, `reviews/`, revisão de 15/11).
+**O que a regra 17 exigia no código** (**implementado em 15/11/2026**; a lista abaixo é o histórico do que foi pedido):
+1. (Feito: `catalogo.py` lê os seis campos como número ou texto.) `catalogo.py` não conhecia `tmin_critica_c`, `fase_sensivel_frio`, `fase_frio_inicio_frac`, `fase_frio_fim_frac`, `tmin_dias_seguidos` e `tmin_efeito`: hoje elas caem em `extras`, como texto. Precisam entrar em `CAMPOS_NUMERICOS` (ou `CAMPOS_TEXTO`) e no `CulturaMotor`.
+2. (Feito: a Tmin diária fica em `clima_mensal.tmin_diaria`, lista JSONB de 28 a 31 valores por mês, migration 0008; `agregacao.py` preenche; `ClimaDoLocal.tmin_por_dia`. Célula sem a coluna é baixada de novo no primeiro uso. A migration ainda precisa rodar na VPS, só com confirmação do usuário.) **O dado de clima de então não bastava.** `clima_mensal` guarda só os dias abaixo de 2 °C por mês (`TMIN_GEADA_C`), e os dados diários não ficam no banco. A regra 17 precisa, para cada limiar do catálogo (hoje de −3,3 a 15 °C, inclusive 10 e 15 °C do arroz), contar os dias **dentro da janela da fase** e a **maior sequência de dias seguidos** abaixo do limiar. Opções: guardar a série diária de `T2M_MIN` por célula (ou por decêndio, como o ZARC) e contar na hora; ou um JSONB por ano com, para cada limiar do catálogo, as datas ou sequências abaixo dele. Contar só "dias abaixo de cada grau inteiro por mês" não serve: não cobre 10 e 15 °C, não conta dias seguidos e não recorta a janela. Isso pede migration e reagregação do clima nas células (na VPS, só com confirmação do usuário), quando o motor implementar a regra.
+3. (Feito.) A janela da fase vai em **dias** (decisão de 15/11), não em meses inteiros: contar por mês elimina o arroz irrigado em Santa Maria em até 18 de 19 anos e o feijão em 11 de 19; pela janela, 4 a 9 e 1 de 19 (simulação com NASA POWER diário 2001-2019, `reviews/`, revisão de 15/11).
 
 ### 2.3 Fórmula da nota Terra (pesos 0,4 / 0,3 / 0,3)
 
@@ -243,7 +247,7 @@ Se a equipe quiser premiar a diversidade da FAO (3 culturas ou mais), um bônus 
 **Veredito: sem fonte.** A escala de ganho decrescente (a 2ª cultura vale menos que a 1ª) é escolha da equipe. É razoável, porque mais culturas comerciais trazem mais renda e mais trabalho e risco, mas nenhuma fonte dá esses degraus.
 
 **Como deixar explícito**
-- Na tela: "Renda extra = quantas culturas da rotação você pode vender. Não é lucro nem preço."
+- Na tela: "Renda extra = quantas culturas da rotação você pode vender. Não é lucro nem preço." (**Feito em 15/11/2026**, na explicação da nota de renda: "Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota.")
 - No documento do motor: registrar a escala como decisão.
 
 **Forma com fonte de calibrar:** o valor da produção por hectare do IBGE PAM no município (a fonte de renda escolhida na D-009) daria uma nota relativa, por exemplo o valor por hectare da rotação dividido pelo da melhor rotação candidata. Nos EUA, o arquivo do NASS carregado hoje não tem o valor da produção (D-010). Até lá, a contagem fica, com o aviso acima.
@@ -280,10 +284,10 @@ Nada abaixo foi alterado por esta conferência.
 2. **Declive (`FATOR_DECLIVE`, `criterios.nota_erosao`).** Trocar pelos LS da RUSLE com rampa de 46 m e teto 1: plano 0,22, suave ondulado 0,84, ondulado 1, forte ondulado 1, montanhoso 1. Melhor ainda: quando `relevo.declividade_pct` existir, calcular o LS da declividade medida (tabela da seção 2.5 ou equação do AH 703). Declarar a rampa como constante (`RAMPA_TIPICA_M = 46`).
 3. **K (`K_LIMITE_BAIXA`, `K_LIMITE_MEDIA`, `FATOR_K`).** Limites 0,015 e 0,030. Fator proporcional: `fator_k = k_usle / 0.0225`, ou, por classe, 0,44 / 1 / 1,67. Manter a classe só para o texto da tela.
 4. **Pragas (`nota_pragas`).** Tirar `PRAGAS_DESCONTO_MESMA_FAMILIA` e o termo (distintas − 1) ÷ (n − 1). Nota = 1 − repetidos ÷ pares, com a volta da última para a primeira. Uma cultura = 0. Atualizar os testes de `test_motor_criterios.py`.
-5. **Regra 17 (frio por cultura).** a) `catalogo.py`: ler `tmin_critica_c`, `fase_frio_inicio_frac`, `fase_frio_fim_frac` e `tmin_dias_seguidos` como números e `fase_sensivel_frio` e `tmin_efeito` como texto (hoje caem em `extras`). b) Clima: dado diário (ou por decêndio) de `T2M_MIN`, com contagem na janela da fase e de dias seguidos, para qualquer limiar do catálogo (ver 2.2, item 2; migration quando implementar). c) `_geada`: com `tmin_critica_c`, usar o limiar, a janela em dias e os dias seguidos; `tmin_efeito` = `aviso` gera aviso, não eliminação; sem limiar, manter o terço do meio com 2 °C. d) Texto do alerta: usar a fase da cultura no lugar de "fase de floração" fixo, em linguagem simples (ex.: "florada", "enchimento dos grãos"), e dizer "frio", não "geada", quando o limiar for acima de 0 °C (arroz).
+5. **Regra 17 (frio por cultura). Implementada em 15/11/2026 (itens a a d); o texto abaixo é o pedido original.** a) `catalogo.py`: ler `tmin_critica_c`, `fase_frio_inicio_frac`, `fase_frio_fim_frac` e `tmin_dias_seguidos` como números e `fase_sensivel_frio` e `tmin_efeito` como texto (hoje caem em `extras`). b) Clima: dado diário (ou por decêndio) de `T2M_MIN`, com contagem na janela da fase e de dias seguidos, para qualquer limiar do catálogo (ver 2.2, item 2; migration quando implementar). c) `_geada`: com `tmin_critica_c`, usar o limiar, a janela em dias e os dias seguidos; `tmin_efeito` = `aviso` gera aviso, não eliminação; sem limiar, manter o terço do meio com 2 °C. d) Texto do alerta: usar a fase da cultura no lugar de "fase de floração" fixo, em linguagem simples (ex.: "florada", "enchimento dos grãos"), e dizer "frio", não "geada", quando o limiar for acima de 0 °C (arroz).
 6. **Candidatas (`MAX_CANDIDATAS`).** Mover o corte para depois do filtro em `motor_service.analisar_entradas`, ou tirá-lo. Ajustar `test_no_maximo_30_candidatas`.
 7. **Forragem (`CLASSE_FORRAGEIRO`).** Decidir entre 0 / 0,33 / 0,67 / 1,0 e o atual com o motivo escrito.
-8. **Texto da tela** (com o front): explicar a nota Terra (pesos da equipe), a renda (contagem, não lucro), o aviso de água (80 % da água ≈ 15–25 % de perda, segundo a FAO) e a erodibilidade ("estimada pelo mapa global de solo").
+8. **Texto da tela** (com o front; a parte da renda foi feita em 15/11/2026): explicar a nota Terra (pesos da equipe), a renda (contagem, não lucro), o aviso de água (80 % da água ≈ 15–25 % de perda, segundo a FAO) e a erodibilidade ("estimada pelo mapa global de solo").
 9. **Opcional (v2):** contar como cobertos os meses de palha após a colheita, com `cobertura_solo`; coluna Ky no catálogo para o aviso de água; nota de renda pelo valor da produção do IBGE PAM.
 
 ---

@@ -1,5 +1,9 @@
 {
   "id": "pastagem",
+  "pais": "BR",
+  "nome": "Braquiária",
+  "nome_cientifico": "Urochloa brizantha",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "forrageira|cobertura|raiz_profunda|tolerante_seca",
     "perene": "true",
