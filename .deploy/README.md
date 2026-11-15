@@ -79,15 +79,15 @@ Então:
 Se um nginx do host já ocupa 80/443, o Caddy não sobe ("address already in use"). Não derrube o nginx: ponha o AgroAI atrás dele.
 
 ```text
-internet :443 -> nginx do host (TLS pelo certbot) -> 127.0.0.1:8082 -> Caddy (só HTTP) -> API
+internet :443 -> nginx do host (TLS pelo certbot) -> 127.0.0.1:8084 -> Caddy (só HTTP) -> API
 ```
 
-No `producao.env`: `PROXY=127.0.0.1:8082`. O script troca os dois sites do Caddy para HTTP sem certificado, publicado só em `127.0.0.1`; o Caddy separa o completo e a demo pelo `Host` que o nginx repassa.
+No `producao.env`: `PROXY=127.0.0.1:8084`. O script troca os dois sites do Caddy para HTTP sem certificado, publicado só em `127.0.0.1`; o Caddy separa o completo e a demo pelo `Host` que o nginx repassa.
 
 ```bash
 ./.deploy/agroai producao up -d --build
-curl -I -H 'Host: agroai.mateusmoreira.dev' http://127.0.0.1:8082/        # 200
-curl -I -H 'Host: demo-agroai.mateusmoreira.dev' http://127.0.0.1:8082/   # 200
+curl -I -H 'Host: agroai.mateusmoreira.dev' http://127.0.0.1:8084/        # 200
+curl -I -H 'Host: demo-agroai.mateusmoreira.dev' http://127.0.0.1:8084/   # 200
 
 sudo cp .deploy/nginx-agroai.conf /etc/nginx/sites-available/agroai
 sudo nano /etc/nginx/sites-available/agroai        # confira server_name e porta
@@ -96,7 +96,7 @@ sudo nginx -t && sudo systemctl reload nginx
 sudo certbot --nginx -d agroai.mateusmoreira.dev -d demo-agroai.mateusmoreira.dev
 ```
 
-A porta tem de estar livre: `sudo ss -ltnp | grep 8082` sem saída.
+A porta tem de estar livre: `sudo ss -ltnp | grep 8084` sem saída. Na VPS atual, a 8082 é do `controla` e a 8083 do `jobhunter`.
 
 ## Atualizar
 
