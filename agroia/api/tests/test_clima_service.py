@@ -132,6 +132,91 @@ def test_celula_sem_gd_por_tb_e_baixada_de_novo(db):
     assert len(cliente.chamadas) == 2
 
 
+# --- série diária de Tmin/Tmax (clima_serie_diaria)
+class ClienteComFalhas(ClienteFalso):
+    """Como o falso, com tmin 15,3 e buracos: 4 de julho de 2010 sem Tmin, 29 de fevereiro de 2000 sem Tmax."""
+
+    def serie_diaria(self, lat, lon, inicio, fim):
+        serie = super().serie_diaria(lat, lon, inicio, fim)
+        for d in serie.dias:
+            if d.tmin is not None:
+                d.tmin = 15.3
+            if d.data == date(2010, 7, 4):
+                d.tmin = None
+            if d.data == date(2000, 2, 29):
+                d.tmax = None
+        return serie
+
+
+def test_download_grava_a_serie_diaria_de_todos_os_anos_com_bissexto(db):
+    s, _ = servico(db)
+    celula = s.obter(-11.3, -41.8, hoje=HOJE)
+    series = s.series_diarias(celula)
+    assert sorted(series) == list(range(1991, 2026))
+    assert len(series[2000].tmin_c) == len(series[2000].tmax_c) == 366  # bissexto
+    assert len(series[1999].tmin_c) == len(series[2025].tmax_c) == 365
+    assert series[2024].tmin_c[59] == 15.0 and series[2024].tmax_c[59] == 30.0  # 29 de fevereiro de 2024
+    assert series[2023].tmin_c[59] == 15.0  # 1º de março: índice 59 em ano comum
+    assert [x.ano for x in ClimaRepository(db).series_diarias(celula.id)] == list(range(1991, 2026))
+
+
+def test_serie_diaria_guarda_nulo_onde_o_power_nao_deu_dado_e_nunca_zero(db):
+    s, _ = servico(db)
+    series = s.series_diarias(s.obter(-11.3, -41.8, hoje=HOJE))
+    assert series[2010].tmin_c[0] is None and series[2010].tmax_c[0] is None  # 1º de janeiro sem dado (cliente falso)
+    assert 0 not in series[2010].tmin_c and 0 not in series[2010].tmax_c
+
+
+def test_serie_diaria_buracos_isolados_e_valor_real_volta_arredondado(db):
+    cliente = ClienteComFalhas()
+    s = ClimaService(ClimaRepository(db), cliente)
+    series = s.series_diarias(s.obter(-11.3, -41.8, hoje=HOJE))
+    julho_4 = date(2010, 7, 4).timetuple().tm_yday - 1
+    assert series[2010].tmin_c[julho_4] is None and series[2010].tmax_c[julho_4] == 30.0  # só a Tmin falta
+    assert series[2000].tmax_c[59] is None and series[2000].tmin_c[59] == 15.3  # só a Tmax falta
+    assert series[2010].tmin_c[julho_4 + 1] == 15.3  # REAL de 4 bytes, de volta a 2 casas (15,3 e não 15,300000190734863)
+
+
+def test_celula_baixada_antes_da_tabela_baixa_de_novo_uma_vez_e_grava_a_serie(db, caplog):
+    s, cliente = servico(db)
+    celula = s.obter(-11.3, -41.8, hoje=HOJE)
+    db.execute(text("DELETE FROM clima_serie_diaria WHERE celula_id = :c"), {"c": celula.id})  # como uma célula antiga
+    db.commit()
+    assert s.repositorio.faltam_serie_diaria(celula)
+    with caplog.at_level("INFO"):
+        s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 2 and "sem a série diária" in caplog.text
+    assert len(s.series_diarias(celula)) == 35 and not s.repositorio.faltam_serie_diaria(celula)
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 2  # só uma vez
+    assert len(s.repositorio.meses(celula.id)) == 35 * 12  # os meses seguem sem duplicar
+
+
+def test_ano_faltando_na_serie_diaria_nao_dispara_novo_download(db):
+    s, cliente = servico(db)
+    celula = s.obter(-11.3, -41.8, hoje=HOJE)
+    db.execute(text("DELETE FROM clima_serie_diaria WHERE celula_id = :c AND ano = 2005"), {"c": celula.id})
+    db.commit()
+    assert not s.repositorio.faltam_serie_diaria(celula)  # só a célula sem nenhuma linha conta como antiga
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 1 and 2005 not in s.series_diarias(celula)  # não baixa de novo a cada análise
+
+
+def test_ano_novo_acrescenta_o_ano_na_serie_sem_duplicar(db):
+    s, _ = servico(db)
+    celula = s.obter(-11.3, -41.8, hoje=HOJE)
+    celula = s.obter(-11.3, -41.8, hoje=date(2027, 2, 1))
+    assert sorted(s.series_diarias(celula)) == list(range(1991, 2027))
+
+
+def test_apagar_a_celula_apaga_a_serie_diaria(db):
+    s, _ = servico(db)
+    celula = s.obter(-11.3, -41.8, hoje=HOJE)
+    db.execute(text("DELETE FROM clima_celula WHERE id = :c"), {"c": celula.id})
+    db.commit()
+    assert ClimaRepository(db).series_diarias(celula.id) == []
+
+
 def test_ano_leva_fonte_e_periodo(db):
     s, _ = servico(db)
     a = s.ano(s.obter(-11.3, -41.8, hoje=HOJE), 2024)

@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 import pytest
 
-from app.services.clima.agregacao import DiaClima, agregar_por_mes, limite_chuva_forte, percentil
+from app.services.clima.agregacao import DiaClima, agregar_por_mes, limite_chuva_forte, percentil, series_por_ano
 
 
 def dia(data: date, tmax=30.0, tmin=15.0, chuva=0.0, et0=4.0) -> DiaClima:
@@ -127,3 +127,17 @@ def test_sequencia_seca_nao_atravessa_o_mes_nem_dia_sem_dado():
 def test_meses_saem_em_ordem_cronologica():
     dias = mes(2001, 1, 2) + mes(2000, 12, 2) + mes(2000, 2, 2)
     assert [(l.ano, l.mes) for l in agregar_por_mes(dias, limite_forte=None)] == [(2000, 2), (2000, 12), (2001, 1)]
+
+
+def test_series_por_ano_indice_zero_e_1_de_janeiro_e_bissexto_tem_366():
+    dias = [dia(date(2023, 1, 1) + timedelta(days=i), tmax=30.0 + i % 3, tmin=10.0 + i % 3) for i in range(365 + 366)]  # 2023 e 2024
+    s23, s24 = series_por_ano(dias)
+    assert (s23.ano, s24.ano) == (2023, 2024) and len(s23.tmin_c) == 365 and len(s24.tmax_c) == 366
+    assert s23.tmin_c[0] == 10.0 and s23.tmax_c[1] == 31.0 and s24.tmin_c[59] == dias[365 + 59].tmin  # 29 de fevereiro de 2024
+
+
+def test_series_por_ano_dia_sem_dado_ou_ausente_na_serie_fica_none_nunca_zero():
+    dias = [dia(date(2023, 1, 1), tmin=None), dia(date(2023, 1, 3), tmax=None)]  # 2 de janeiro nem veio
+    (s,) = series_por_ano(dias)
+    assert s.tmin_c[:3] == [None, None, 15.0] and s.tmax_c[:3] == [30.0, None, None]
+    assert 0 not in s.tmin_c and 0 not in s.tmax_c and len(s.tmin_c) == 365

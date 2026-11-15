@@ -1,4 +1,5 @@
 """Clima de um ponto: baixa do NASA POWER uma vez por célula, guarda por mês e devolve com fonte e período."""
+import logging
 from dataclasses import asdict, dataclass, field
 from datetime import date
 
@@ -7,11 +8,13 @@ from fastapi import Depends
 from app.core.erros import ErroDeNegocio
 from app.models import ClimaCelula
 from app.repositories.clima_repository import ClimaRepository
-from app.services.clima.agregacao import DiaClima, LinhaMensal, agregar_por_mes, limite_chuva_forte
+from app.services.clima.agregacao import DiaClima, LinhaMensal, SerieDoAno, agregar_por_mes, limite_chuva_forte, series_por_ano
 from app.services.clima.celula import centro_da_celula, id_da_celula
 from app.services.clima.et0 import et0_diaria
 from app.services.clima.limiares import BASE_FIM, BASE_INICIO
 from app.services.integracao.nasa_power import ClienteNasaPower, get_cliente
+
+log = logging.getLogger(__name__)
 
 FONTE = "NASA POWER daily, comunidade AG"
 INICIO_SERIE = date(BASE_INICIO, 1, 1)
@@ -103,13 +106,15 @@ class ClimaService:
         self.cliente = cliente
 
     def obter(self, lat: float, lon: float, hoje: date | None = None) -> ClimaCelula:
-        """Célula do ponto com o clima já no banco. Baixa do NASA POWER se não houver, faltar o último ano ou o GD."""
+        """Célula do ponto com o clima já no banco. Baixa do NASA POWER se não houver, faltar o último ano, o GD ou a série diária."""
         if not (-90 <= lat <= 90) or not (-180 <= lon <= 180):
             raise ErroDeNegocio(422, "Latitude deve estar entre -90 e 90 e longitude entre -180 e 180.")
         fim = date((hoje or date.today()).year - 1, 12, 31)  # último ano completo
         celula = self.repositorio.celula_por_id(id_da_celula(lat, lon))
         if celula is not None and celula.fim >= fim and not self.repositorio.faltam_graus_dia(celula.id):
-            return celula
+            if not self.repositorio.faltam_serie_diaria(celula):
+                return celula
+            log.info("Célula %s sem a série diária de Tmin/Tmax (baixada antes da tabela): baixando de novo uma vez.", celula.id)
         return self._baixar_e_gravar(lat, lon, fim)
 
     def _baixar_e_gravar(self, lat: float, lon: float, fim: date) -> ClimaCelula:
@@ -138,7 +143,18 @@ class ClimaService:
             "fonte": FONTE,
         }
         meses = [asdict(l) for l in agregar_por_mes(dias, limite)]
-        return self.repositorio.gravar(celula, meses)
+        series = [{"ano": x.ano, "tmin_c": x.tmin_c, "tmax_c": x.tmax_c} for x in series_por_ano(dias)]
+        return self.repositorio.gravar(celula, meses, series)
+
+    def series_diarias(self, celula: ClimaCelula) -> dict[int, SerieDoAno]:
+        """Tmin/Tmax de cada dia, por ano. O banco guarda REAL (4 bytes): volta arredondado a 2 casas, como o POWER manda."""
+        def casas(v: float | None) -> float | None:
+            return None if v is None else round(v, 2)
+
+        return {
+            s.ano: SerieDoAno(s.ano, [casas(v) for v in s.tmin_c], [casas(v) for v in s.tmax_c])
+            for s in self.repositorio.series_diarias(celula.id)
+        }
 
     def linhas(self, celula: ClimaCelula) -> list[LinhaMensal]:
         """Todas as linhas (ano, mês) da célula, em ordem cronológica."""

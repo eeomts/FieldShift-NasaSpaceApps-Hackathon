@@ -1,4 +1,5 @@
 """Série diária -> linhas mensais (somas, médias, extremos e contagens). Dia ausente não entra na conta da variável."""
+import calendar
 from dataclasses import dataclass
 from datetime import date, timedelta
 
@@ -43,6 +44,26 @@ class LinhaMensal:
     maior_seq_seca_dias: int | None
     dias_validos: int
     gd_por_tb: dict[str, float] | None = None  # GD do mês por Tb inteira 0-20; {} = mês sem temperatura completa
+
+
+@dataclass
+class SerieDoAno:
+    """Tmin e Tmax de cada dia do ano (índice 0 = 1º de janeiro; 366 valores em ano bissexto); sem dado = None."""
+
+    ano: int
+    tmin_c: list[float | None]
+    tmax_c: list[float | None]
+
+
+def series_por_ano(dias: list[DiaClima]) -> list[SerieDoAno]:
+    """Uma série por ano presente nos dias, em ordem. Dia que falta na série fica None."""
+    por_ano: dict[int, SerieDoAno] = {}
+    for d in dias:
+        n = 366 if calendar.isleap(d.data.year) else 365
+        serie = por_ano.setdefault(d.data.year, SerieDoAno(d.data.year, [None] * n, [None] * n))
+        i = d.data.timetuple().tm_yday - 1
+        serie.tmin_c[i], serie.tmax_c[i] = d.tmin, d.tmax
+    return [por_ano[a] for a in sorted(por_ano)]
 
 
 def percentil(valores: list[float], p: float) -> float | None:
