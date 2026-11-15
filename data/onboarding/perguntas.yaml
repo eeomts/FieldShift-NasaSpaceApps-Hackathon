@@ -206,10 +206,10 @@ perguntas:
     exemplo_por_zona:
       Af_Am:                     # tropical úmido (chove o ano todo ou quase)
         pt: "planto mandioca e milho juntos e tenho um pedaço de capim para o gado"
-        en: "I grow cassava and maize together and have a patch of grass for the cattle"
+        en: "I grow cassava and corn together and have a patch of grass for the cattle"
       Aw_As:                     # tropical com estação seca (savana)
         pt: "planto milho e feijão juntos na estação chuvosa e, depois da colheita, o campo fica parado na seca"
-        en: "I plant maize and beans together in the rainy season and leave the field idle in the dry season"
+        en: "I plant corn and beans together in the rainy season and leave the field idle in the dry season"
       B:                         # árido e semiárido
         pt: "planto sorgo e feijão-caupi quando chegam as chuvas; o resto do ano o campo fica parado"
         en: "I plant sorghum and cowpea when the rains come; the rest of the year the field is idle"
@@ -221,7 +221,7 @@ perguntas:
         en: "I sow wheat in spring and harvest at the end of summer; in winter the field is idle"
       padrao:                    # zona desconhecida ou E (polar)
         pt: "planto milho na estação das chuvas e, depois da colheita, deixo o campo parado"
-        en: "I plant maize in the rainy season and leave the field idle after harvest"
+        en: "I plant corn in the rainy season and leave the field idle after harvest"
     tipo: texto_livre
     obrigatoria: false
     interpretacao:
@@ -312,6 +312,12 @@ perguntas:
     texto:
       pt: "Nesses meses a terra fica sem nada plantado?"
       en: "Is the land left bare in these months?"
+    # Em clima com inverno de neve (zona_climatica começa com D), o campo pode parecer vazio no
+    # calendário e no satélite, mas estar coberto de neve e palhada. A ajuda evita a resposta errada.
+    ajuda_se: { zona_climatica_comeca_com: D }
+    ajuda:
+      pt: "Se nesses meses o campo fica coberto de neve ou de palhada, conte como coberto (responda \"não\")."
+      en: "If the field is under snow or crop residue in these months, count it as covered (answer \"no\")."
     nota: "Mostrada sobre o calendário completo do ano, com os meses vazios destacados."
     tipo: sim_nao_nao_sei
     obrigatoria: false
@@ -440,7 +446,7 @@ perguntas:
     bloco: 4
     texto:
       pt: "A terra fica dura demais para cavar ou arar?"
-      en: "Is the soil too hard to dig or plough?"
+      en: "Is the soil too hard to dig or plow?"
     tipo: sim_nao_nao_sei
     obrigatoria: false
     alimenta:
@@ -463,7 +469,7 @@ perguntas:
     bloco: 4
     texto:
       pt: "Com qual destas cores a sua terra mais se parece?"
-      en: "Which of these colours looks most like your soil?"
+      en: "Which of these colors looks most like your soil?"
     tipo: figuras
     # imagem: fotos de data/onboarding/fotos-solo/ (ainda em revisão; até lá o app mostra amostras de cor)
     opcoes:
@@ -471,7 +477,7 @@ perguntas:
       - { valor: marrom,   imagem: cor_marrom.jpg,    pt: "Marrom",                     en: "Brown" }
       - { valor: vermelha, imagem: cor_vermelha.jpg,  pt: "Vermelha",                   en: "Red" }
       - { valor: amarela,  imagem: cor_amarela.jpg,   pt: "Amarelada",                  en: "Yellowish" }
-      - { valor: cinza,    imagem: cor_cinza.jpg,     pt: "Cinza ou com manchas cinza", en: "Grey, or grey-mottled" }
+      - { valor: cinza,    imagem: cor_cinza.jpg,     pt: "Cinza ou com manchas cinza", en: "Gray, or gray-mottled" }
       - { valor: clara,    imagem: cor_clara.jpg,     pt: "Clara ou esbranquiçada",     en: "Pale or whitish" }
       - { valor: nao_sei,  pt: "Não sei",             en: "Not sure" }
     obrigatoria: false
@@ -495,7 +501,7 @@ perguntas:
     opcoes:
       - { valor: solta,   imagem: jeito_solta.jpg,     pt: "Solta, escorre entre os dedos",     en: "Loose — runs through your fingers" }
       - { valor: fofa,    imagem: jeito_fofa.jpg,      pt: "Fofa, em grumos pequenos",          en: "Crumbly, in small lumps" }
-      - { valor: gruda,   imagem: jeito_gruda.jpg,     pt: "Gruda e dá para moldar molhada",    en: "Sticky — you can mould it when wet" }
+      - { valor: gruda,   imagem: jeito_gruda.jpg,     pt: "Gruda e dá para moldar molhada",    en: "Sticky — you can mold it when wet" }
       - { valor: torroes, imagem: jeito_torroes.jpg,   pt: "Torrões duros que não se desfazem", en: "Hard clods that won't break up" }
       - { valor: racha,   imagem: jeito_racha.jpg,     pt: "Racha quando seca",                 en: "Cracks open when dry" }
       - { valor: pedras,  imagem: jeito_pedras.jpg,    pt: "Muita pedra ou cascalho",           en: "Lots of stones or gravel" }
@@ -556,10 +562,12 @@ perguntas:
         en: "Something else"
       - { valor: nao,     pt: "Não",     en: "No" }
       - { valor: nao_sei, pt: "Não sei", en: "Not sure" }
-    # Contexto local: em zona árida ou semiárida (zona_climatica começa com B) ou com irrigação,
-    # o gesso aparece primeiro; nos outros lugares, o calcário aparece primeiro.
+    # Contexto local: em clima seco (zona B, ou mediterrâneo Csa/Csb, com verão sem chuva), onde o
+    # sal no solo é comum, o gesso aparece primeiro; nos outros lugares, o calcário aparece primeiro.
+    # A irrigação sozinha não conta: um pivô em clima úmido (ex.: Nebraska, Dfa) tem solo ácido ou
+    # neutro e usa calcário (teste 8 do TESTES_CHAT_SR_SMITH.md).
     ordem_por_local:
-      gesso_primeiro_se: { zona_climatica_comeca_com: B, ou_q6_irrigacao: [sim, parte] }
+      gesso_primeiro_se: { zona_climatica_comeca_com: B, ou_zona_climatica: [Csa, Csb] }
     obrigatoria: false
     alimenta:
       fonte: produtor
@@ -570,7 +578,7 @@ perguntas:
     bloco: 4
     texto:
       pt: "Você usa adubo ou esterco?"
-      en: "Do you use fertiliser or manure?"
+      en: "Do you use fertilizer or manure?"
     tipo: sim_nao_nao_sei
     obrigatoria: false
     alimenta:
@@ -595,8 +603,14 @@ perguntas:
 
   - id: q24_perdas.geada.resposta
     bloco: 5
-    # Não aparece em clima quente sem inverno frio (tropical e árido quente).
-    mostrar_se: { zona_climatica_nao_e: [Af, Am, Aw, As, BWh, BSh] }
+    # Some só se o histórico do ponto não tem frio de geada: nenhum dia com temperatura mínima abaixo
+    # de 2 °C no NASA POWER (o mesmo limite do indicador de risco de geada). A regra por zona climática
+    # errava: deserto quente (BWh) e semiárido quente (BSh) também têm geada, como o Vale Central da
+    # Califórnia (teste 6 do TESTES_CHAT_SR_SMITH.md).
+    # Se o POWER ainda não tiver chegado, usar a zona: some só em clima tropical (zona começa com A).
+    mostrar_se:
+      regra: power_tmin_minima_abaixo_de_2c
+      se_sem_power: { zona_climatica_nao_comeca_com: A }
     texto:
       pt: "Já perdeu a colheita por geada?"
       en: "Have you ever lost a crop to frost?"
@@ -669,8 +683,12 @@ perguntas:
 
   - id: q24_perdas.salinidade.resposta   # NOVA
     bloco: 5
-    # Só aparece onde sal no solo é comum: clima árido ou semiárido, ou campo irrigado.
-    mostrar_se: { zona_climatica_comeca_com: B, ou_q6_irrigacao: [sim, parte] }
+    # Só aparece onde sal no solo é comum: clima seco (zona B), ou irrigação em clima mediterrâneo
+    # (Csa/Csb, verão sem chuva). Pivô em clima úmido não conta (teste 8 do TESTES_CHAT_SR_SMITH.md).
+    mostrar_se:
+      ou:
+        - { zona_climatica_comeca_com: B }
+        - { zona_climatica: [Csa, Csb], q6_irrigacao: [sim, parte] }
     texto:
       pt: "Já perdeu a colheita porque a terra ficou salgada (manchas brancas, planta queimando)?"
       en: "Have you ever lost a crop because the soil turned salty (white crust, scorched plants)?"
@@ -745,10 +763,10 @@ perguntas:
     bloco: 6
     texto:
       pt: "Que máquinas e ferramentas você tem ou consegue usar?"
-      en: "What machinery or equipment do you have, or can get hold of?"
+      en: "What machinery or equipment do you have or can get access to?"
     exemplo:
       pt: "tenho um trator pequeno e uma plantadeira; a colheita é na mão"
-      en: "I've got a small tractor and a planter; we harvest by hand"
+      en: "I have a small tractor and a planter; we harvest by hand"
     tipo: texto_livre
     obrigatoria: false
     interpretacao:
