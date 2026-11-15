@@ -1,5 +1,5 @@
 {
-  "_leia": "Cenários de água do trevo-encarnado (crimson clover, cobertura de inverno antes do milho na Geórgia) para scripts/etc_nasa_power.py. ETc da semeadura ao manejo na primavera. 'fases_dias' = inicial, desenvolvimento, média, final; quando o manejo cai no desenvolvimento, 'mid' = Kc atingido no dia do manejo (ver 'nota'). Mesmas datas de eua/cenarios/trevo_gd.json. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "_leia": "Cenários de água do trevo-encarnado (crimson clover, cobertura de inverno antes do milho na Geórgia) para scripts/etc_nasa_power.py. ETc da semeadura ao manejo na primavera. 'fases_dias' = inicial, desenvolvimento, média, final; quando o manejo cai no desenvolvimento, 'mid' = Kc atingido no dia do manejo (ver 'nota'). Mesmas datas de eua/cenarios/trevo_gd.json. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API). Revisão de 15/11: cenários do Alabama e do Tennessee (mesmas datas de trevo_gd.json), que definem a água de regua.arranjos.alabama e regua.arranjos.tennessee; não mudam a linha (GA).",
   "locais": {
     "tifton": {
       "nome": "Tifton-GA (UGA Tifton Campus; Coastal Plain da Geórgia)",
@@ -12,6 +12,36 @@
       "lat": 33.87,
       "lon": -83.45,
       "elevacao_m": 278.6
+    },
+    "belle_mina": {
+      "nome": "Belle Mina-AL (Tennessee Valley Research and Extension Center, AAES; norte do Alabama). Coordenadas aproximadas da localidade",
+      "lat": 34.65,
+      "lon": -86.88,
+      "elevacao_m": 232.9
+    },
+    "ev_smith": {
+      "nome": "Shorter-AL (E.V. Smith Research Center, AAES/Auburn; centro do Alabama). Coordenadas aproximadas da localidade",
+      "lat": 32.44,
+      "lon": -85.89,
+      "elevacao_m": 144.32
+    },
+    "headland": {
+      "nome": "Headland-AL (Wiregrass Research and Extension Center, AAES; sul do Alabama). Coordenadas aproximadas da localidade",
+      "lat": 31.35,
+      "lon": -85.34,
+      "elevacao_m": 109.31
+    },
+    "milan": {
+      "nome": "Milan-TN (UT AgResearch and Education Center at Milan; oeste do Tennessee). Coordenadas aproximadas da localidade",
+      "lat": 35.92,
+      "lon": -88.76,
+      "elevacao_m": 128.48
+    },
+    "springfield": {
+      "nome": "Springfield-TN (UT Highland Rim AgResearch and Education Center; norte do Middle Tennessee). Coordenadas aproximadas da localidade",
+      "lat": 36.47,
+      "lon": -86.87,
+      "elevacao_m": 192.49
     }
   },
   "cenarios": [
@@ -182,6 +212,256 @@
         "valor": 313,
         "nota": "Cenário de máximo no Piedmont (conferência): média 313 mm."
       }
+    },
+    {
+      "nome": "trevo_belle_mina_1001_0311",
+      "cultura": "trevo",
+      "local": "belle_mina",
+      "semeadura": "10-01",
+      "fases_dias": [
+        30,
+        132,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.11,
+        "end": 1.11
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): mínimo do norte do AL: semeadura mais tardia (1/out) e manejo mais cedo (11/mar); 161 dias corridos. Janelas do trevo-encarnado no Alabama: norte 'Aug 25-Oct 1', centro 'Sept 1-Oct 15', sul 'Sept 15-Nov 15' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, colunas ALABAMA). Manejo = semeadura do milho no Alabama (Handbook 628, 2010: início da fase mais ativa 25/mar, fim 18/mai) menos 14 dias (11/mar) ou 10 dias (8/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Manejo após 132 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 132/140 × 0,75 = 1.11."
+    },
+    {
+      "nome": "trevo_belle_mina_0825_0508",
+      "cultura": "trevo",
+      "local": "belle_mina",
+      "semeadura": "08-25",
+      "fases_dias": [
+        30,
+        140,
+        87,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): máximo do norte do AL: semeadura mais cedo (25/ago) e manejo mais tardio (8/mai); 256 dias corridos. Janelas do trevo-encarnado no Alabama: norte 'Aug 25-Oct 1', centro 'Sept 1-Oct 15', sul 'Sept 15-Nov 15' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, colunas ALABAMA). Manejo = semeadura do milho no Alabama (Handbook 628, 2010: início da fase mais ativa 25/mar, fim 18/mai) menos 14 dias (11/mar) ou 10 dias (8/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Desenvolvimento completo (140 dias) e 87 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo."
+    },
+    {
+      "nome": "trevo_ev_smith_1015_0311",
+      "cultura": "trevo",
+      "local": "ev_smith",
+      "semeadura": "10-15",
+      "fases_dias": [
+        30,
+        118,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.03,
+        "end": 1.03
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): mínimo do centro do AL: semeadura mais tardia (15/out) e manejo mais cedo (11/mar); 147 dias corridos. Janelas do trevo-encarnado no Alabama: norte 'Aug 25-Oct 1', centro 'Sept 1-Oct 15', sul 'Sept 15-Nov 15' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, colunas ALABAMA). Manejo = semeadura do milho no Alabama (Handbook 628, 2010: início da fase mais ativa 25/mar, fim 18/mai) menos 14 dias (11/mar) ou 10 dias (8/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Manejo após 118 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 118/140 × 0,75 = 1.03."
+    },
+    {
+      "nome": "trevo_ev_smith_0901_0508",
+      "cultura": "trevo",
+      "local": "ev_smith",
+      "semeadura": "09-01",
+      "fases_dias": [
+        30,
+        140,
+        80,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): máximo do centro do AL: semeadura mais cedo (1/set) e manejo mais tardio (8/mai); 249 dias corridos. Janelas do trevo-encarnado no Alabama: norte 'Aug 25-Oct 1', centro 'Sept 1-Oct 15', sul 'Sept 15-Nov 15' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, colunas ALABAMA). Manejo = semeadura do milho no Alabama (Handbook 628, 2010: início da fase mais ativa 25/mar, fim 18/mai) menos 14 dias (11/mar) ou 10 dias (8/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Desenvolvimento completo (140 dias) e 80 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 428,
+        "nota": "arranjos.alabama agua_ciclo_mm.max = 430 (média 428)"
+      }
+    },
+    {
+      "nome": "trevo_headland_1115_0311",
+      "cultura": "trevo",
+      "local": "headland",
+      "semeadura": "11-15",
+      "fases_dias": [
+        30,
+        87,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.87,
+        "end": 0.87
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): mínimo do sul do AL: semeadura mais tardia (15/nov) e manejo mais cedo (11/mar); 116 dias corridos. Janelas do trevo-encarnado no Alabama: norte 'Aug 25-Oct 1', centro 'Sept 1-Oct 15', sul 'Sept 15-Nov 15' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, colunas ALABAMA). Manejo = semeadura do milho no Alabama (Handbook 628, 2010: início da fase mais ativa 25/mar, fim 18/mai) menos 14 dias (11/mar) ou 10 dias (8/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Manejo após 87 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 87/140 × 0,75 = 0.87.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 91,
+        "nota": "arranjos.alabama agua_ciclo_mm.min = 90 (média 91, arredondada para baixo; mesma estatística da linha)"
+      }
+    },
+    {
+      "nome": "trevo_headland_0915_0508",
+      "cultura": "trevo",
+      "local": "headland",
+      "semeadura": "09-15",
+      "fases_dias": [
+        30,
+        140,
+        66,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): máximo do sul do AL: semeadura mais cedo (15/set) e manejo mais tardio (8/mai); 235 dias corridos. Janelas do trevo-encarnado no Alabama: norte 'Aug 25-Oct 1', centro 'Sept 1-Oct 15', sul 'Sept 15-Nov 15' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, colunas ALABAMA). Manejo = semeadura do milho no Alabama (Handbook 628, 2010: início da fase mais ativa 25/mar, fim 18/mai) menos 14 dias (11/mar) ou 10 dias (8/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Desenvolvimento completo (140 dias) e 66 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo."
+    },
+    {
+      "nome": "trevo_milan_1001_0322",
+      "cultura": "trevo",
+      "local": "milan",
+      "semeadura": "10-01",
+      "fases_dias": [
+        30,
+        140,
+        3,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): mínimo do oeste do TN: semeadura mais tardia (1/out) e manejo mais cedo (22/mar); 172 dias corridos. Janela do trevo-encarnado no Tennessee: outono 'Aug 15-Oct 1' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, coluna TENNESSEE FALL, sem divisão por região). Manejo = semeadura do milho no Tennessee (Handbook 628, 2010: início da fase mais ativa 5/abr, fim 25/mai) menos 14 dias (22/mar) ou 10 dias (15/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Desenvolvimento completo (140 dias) e 3 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo."
+    },
+    {
+      "nome": "trevo_milan_0815_0515",
+      "cultura": "trevo",
+      "local": "milan",
+      "semeadura": "08-15",
+      "fases_dias": [
+        30,
+        140,
+        104,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): máximo do oeste do TN: semeadura mais cedo (15/ago) e manejo mais tardio (15/mai); 273 dias corridos. Janela do trevo-encarnado no Tennessee: outono 'Aug 15-Oct 1' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, coluna TENNESSEE FALL, sem divisão por região). Manejo = semeadura do milho no Tennessee (Handbook 628, 2010: início da fase mais ativa 5/abr, fim 25/mai) menos 14 dias (22/mar) ou 10 dias (15/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Desenvolvimento completo (140 dias) e 104 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 511,
+        "nota": "arranjos.tennessee agua_ciclo_mm.max = 515 (média 511)"
+      }
+    },
+    {
+      "nome": "trevo_springfield_1001_0322",
+      "cultura": "trevo",
+      "local": "springfield",
+      "semeadura": "10-01",
+      "fases_dias": [
+        30,
+        140,
+        3,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): mínimo do norte do Middle TN: semeadura mais tardia (1/out) e manejo mais cedo (22/mar); 172 dias corridos. Janela do trevo-encarnado no Tennessee: outono 'Aug 15-Oct 1' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, coluna TENNESSEE FALL, sem divisão por região). Manejo = semeadura do milho no Tennessee (Handbook 628, 2010: início da fase mais ativa 5/abr, fim 25/mai) menos 14 dias (22/mar) ou 10 dias (15/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Desenvolvimento completo (140 dias) e 3 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 160,
+        "nota": "arranjos.tennessee agua_ciclo_mm.min = 160 (média 160)"
+      }
+    },
+    {
+      "nome": "trevo_springfield_0815_0515",
+      "cultura": "trevo",
+      "local": "springfield",
+      "semeadura": "08-15",
+      "fases_dias": [
+        30,
+        140,
+        104,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Revisão de 15/11 (pendência do Alabama/Tennessee): máximo do norte do Middle TN: semeadura mais cedo (15/ago) e manejo mais tardio (15/mai); 273 dias corridos. Janela do trevo-encarnado no Tennessee: outono 'Aug 15-Oct 1' (SARE, Conservation Tillage Systems in the Southeast, 2020, cap. 5, Tab. 5.4, coluna TENNESSEE FALL, sem divisão por região). Manejo = semeadura do milho no Tennessee (Handbook 628, 2010: início da fase mais ativa 5/abr, fim 25/mai) menos 14 dias (22/mar) ou 10 dias (15/mai), a mesma regra da linha (NRCS). Mesma curva PROXY da linha (trigo de inverno 'Mediterranean' do FAO-56 Tab. 11, Kc do berseem Tab. 12). Desenvolvimento completo (140 dias) e 104 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo."
     }
   ]
 }
