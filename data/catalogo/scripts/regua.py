@@ -7,26 +7,31 @@ de cada limite estão em data/catalogo/evidencias/README.md.
 Uso (na raiz do repositório):
     python3 -I data/catalogo/scripts/regua.py            # só mostra a comparação
     python3 -I data/catalogo/scripts/regua.py --apply    # grava CSV e evidências
+    python3 -I data/catalogo/scripts/regua.py --catalogo data/catalogo/eua --apply
+
+Sem culturas.csv na pasta (catálogo dos EUA), lê e grava só as evidências; o
+CSV é montado depois por montar_csv.py.
 
 O --apply é idempotente: rodar duas vezes dá o mesmo resultado.
 """
+import argparse
 import csv
+import glob
 import json
 import math
 import os
-import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-CSV_PATH = os.path.join(ROOT, "data/catalogo/culturas.csv")
-EV_DIR = os.path.join(ROOT, "data/catalogo/evidencias")
 
 # Limites da régua. As fontes estão no README.md de evidencias/.
 CORTE_BAIXO_T_HA = 2.3  # abaixo: "baixo" (50% de cobertura, Lopes, Cogo & Levien 1987; Cruz et al. 2001)
 CORTE_ALTO_T_HA = 6.0  # a partir daqui: "alto" (palhada adequada ao SPD, Alvarenga et al. 2001)
 HORIZONTE_COBERTURA_DIAS = 60  # até a cultura seguinte cobrir 50% do solo (USDA AH 537; De Maria 1995)
 DIGESTIBILIDADE_MIN_PCT = 60.0
-# Só estas métricas medem digestibilidade e podem rebaixar o "alto".
-METRICAS_DIGESTIBILIDADE = {"DIVMS", "DIVMO", "DMS", "DMO", "DMD"}
+# Só estas métricas medem digestibilidade e podem rebaixar o "alto" (siglas em
+# português e as equivalentes em inglês: IVDMD = DIVMS, IVOMD = DIVMO, OMD = DMO).
+# NDT/TDN e digestibilidade "verdadeira" (IVTD) não entram.
+METRICAS_DIGESTIBILIDADE = {"DIVMS", "DIVMO", "DMS", "DMO", "DMD", "IVDMD", "IVOMD", "OMD"}
 
 USO = {"principal": "alto", "com_restricao": "medio", "residual": "baixo", "nao_serve": "nenhum"}
 COLUNAS = ("aporte_biomassa", "cobertura_solo", "valor_forrageiro")
@@ -92,14 +97,28 @@ def calcular(regua):
 
 
 def main():
-    apply = "--apply" in sys.argv
-    with open(CSV_PATH, encoding="utf-8") as f:
-        rows = list(csv.DictReader(f))
-    cols = list(rows[0].keys())
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--catalogo", default=os.path.join(ROOT, "data", "catalogo"), help="pasta do catálogo")
+    ap.add_argument("--apply", action="store_true", help="grava o resultado")
+    args = ap.parse_args()
+    apply = args.apply
+    csv_path = os.path.join(args.catalogo, "culturas.csv")
+    ev_dir = os.path.join(args.catalogo, "evidencias")
+    tem_csv = os.path.exists(csv_path)
+    if tem_csv:
+        with open(csv_path, encoding="utf-8") as f:
+            rows = list(csv.DictReader(f))
+        cols = list(rows[0].keys())
+    else:
+        rows, cols = [], []
+        for p in sorted(glob.glob(os.path.join(ev_dir, "*.json"))):
+            with open(p, encoding="utf-8") as f:
+                ev = json.load(f)
+            rows.append({"id": ev["id"], **{c: ev.get("valores", {}).get(c, "") for c in COLUNAS}})
 
     print(f"{'id':16}{'MS':>6}{'rem':>6}  {'biomassa':16}{'cobertura':16}{'forrageiro':16}aviso")
     for row in rows:
-        ev_path = os.path.join(EV_DIR, f"{row['id']}.json")
+        ev_path = os.path.join(ev_dir, f"{row['id']}.json")
         with open(ev_path, encoding="utf-8") as f:
             ev = json.load(f)
         regua = ev.get("regua")
@@ -139,11 +158,12 @@ def main():
             json.dump(ev, f, ensure_ascii=False, indent=2)
             f.write("\n")
 
-    if apply:
-        with open(CSV_PATH, "w", encoding="utf-8", newline="") as f:
+    if apply and tem_csv:
+        with open(csv_path, "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=cols, lineterminator="\n")
             writer.writeheader()
             writer.writerows(rows)
+    if apply:
         print("APLICADO")
 
 
