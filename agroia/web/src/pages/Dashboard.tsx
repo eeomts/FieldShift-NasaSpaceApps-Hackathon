@@ -6,6 +6,7 @@ import { useSessao } from "../api/sessao";
 import type { CulturaBase, Fazenda } from "../api/tipos";
 import { Casca, SeletorIdioma } from "../components/Casca";
 import { Estrategias } from "../components/estrategias/Estrategias";
+import { SuaTerra } from "../components/solo/SuaTerra";
 import { Brilho, Pino, Sair } from "../components/icones";
 import { Aviso, BotaoContorno, Carregando, cx } from "../components/ui";
 import { INICIAIS_MESES, MESES_LONGOS, useIdioma, type Idioma } from "../i18n";
@@ -224,6 +225,13 @@ export function Dashboard() {
           )}
           <span className="text-[11px] text-suave">{t("Em breve: NASA MODIS NDVI (MOD13Q1) · 250 m · a cada 16 dias", "Coming soon: NASA MODIS NDVI (MOD13Q1) · 250 m · every 16 days")}</span>
         </div>
+
+        {/* Sua terra: síntese do solo (retrato_solo.sintese de GET /fazenda) */}
+        {fazenda.onboarding_concluido && (
+          <div className="lg:col-span-8">
+            <SuaTerra inicial={fazenda} />
+          </div>
+        )}
 
         {/* Estratégias: comparação real de rotações (GET /fazenda/estrategias) */}
         <div className="lg:col-span-8">

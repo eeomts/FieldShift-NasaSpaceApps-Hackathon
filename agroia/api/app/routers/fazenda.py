@@ -1,5 +1,5 @@
 """Rotas da fazenda (questionário)."""
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, BackgroundTasks, Depends
 
 from app.core.security import usuario_atual
 from app.models import Usuario
@@ -15,6 +15,11 @@ def ler(u: Usuario = Depends(usuario_atual), servico: FazendaService = Depends()
 
 
 @router.put("/fazenda", response_model=FazendaOut)
-def salvar(dados: SalvarFazenda, u: Usuario = Depends(usuario_atual), servico: FazendaService = Depends()) -> FazendaOut:
-    """Salva o questionário (parcial ou completo). Com concluir=true, exige o local do campo."""
-    return servico.salvar(u, dados)
+def salvar(
+    dados: SalvarFazenda, tarefas: BackgroundTasks, u: Usuario = Depends(usuario_atual), servico: FazendaService = Depends()
+) -> FazendaOut:
+    """Salva o questionário (parcial ou completo). Com concluir=true, exige o local do campo.
+
+    O mapa de solo (SoilGrids) é buscado depois da resposta; `status_processamento` diz como está.
+    """
+    return servico.salvar(u, dados, tarefas)

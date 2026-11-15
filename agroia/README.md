@@ -127,8 +127,8 @@ Os testes cobrem:
 | GET | `/me` | Dados do usuário logado |
 | PATCH | `/me` | Troca o idioma da conta: `{"idioma": "pt" \| "en"}` |
 | DELETE | `/me` | Apaga a conta e todos os dados |
-| GET | `/fazenda` | Questionário salvo, perfil e resumo |
-| PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`) |
+| GET | `/fazenda` | Questionário salvo, perfil, resumo, `status_processamento` (`pendente`, `processando`, `pronto`, `erro`) e o retrato do solo (`indicadores`, `figuras`, `sintese`, `soilgrids`) |
+| PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`). Com local novo, responde na hora com `status_processamento: "processando"` e busca o solo no SoilGrids em segundo plano (veja "Solo") |
 | GET | `/fazenda/estrategias` | Compara a rotação atual com as 2 melhores alternativas, na hora (a 1ª vez numa região baixa o NASA POWER, 10–30 s). Erros: 404 sem fazenda, 422 sem local / sem culturas da região / sem calendário, 503 se o NASA POWER falhar |
 | POST | `/onboarding/interpretar` | Texto livre → itens da base (perguntas 8, 26a e 26b). Aceita `hemisferio` (`N`/`S`) e `idioma` (`pt`/`en`) |
 | GET | `/culturas`, `/equipamentos` | Listas reserva (`?idioma=pt\|en`) |
@@ -158,6 +158,7 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | `clima_celula` | Uma célula da grade do NASA POWER (0,5° × 0,625°, ~50 km): centro, elevação, período baixado, limite de chuva forte (P95 de 1991–2020) e fonte. Fazendas vizinhas dividem a mesma linha |
 | `clima_mensal` | Por célula, ano e mês: chuva, ET0, temperaturas (média, média das máximas e mínimas, extremos), dias de geada (Tmin < 2 °C), de calor (Tmax > 35 °C) e de chuva forte, maior sequência seca (< 1 mm) e dias válidos. Sem dado fica `NULL`, nunca 0. `gd_por_tb`: graus-dia do mês para cada temperatura-base inteira de 0 a 20 °C (JSONB, sem teto); `{}` = mês sem temperatura completa, `NULL` = célula baixada antes da coluna (é baixada de novo) |
 | `relevo_ponto` | Cache da declividade do SRTM por ponto (lat/lon com 4 casas): `declividade_pct`, classe da Embrapa e fonte |
+| `solo_ponto` | Cache do SoilGrids por ponto (lat/lon com 3 casas) e **propriedade** (`clay`, `sand`, `silt`, `soc`, `phh2o`, `bdod`, `cec`): média de 0–30 cm (`superficial`) e de 0–100 cm (`raizes`) já convertidas, a incerteza relativa de cada e a fonte. Cada propriedade é gravada assim que chega (a busca retoma de onde parou). Ponto sem dado no mapa (área urbana ou água) também é guardado, com `sem_dado = true` |
 
 ## Base de conhecimento (RAG)
 
@@ -194,6 +195,26 @@ uv run python -m app.cli.clima demo                          # baixa e mostra os
 ```
 
 Os testes do clima usam respostas simuladas: não acessam a rede.
+
+## Solo (SoilGrids)
+
+O solo por ponto vem da API REST do ISRIC (`/soilgrids/v2.0/properties/query`, sem chave): argila, areia, silte, carbono, pH, CTC e densidade, nas profundidades de 0 a 100 cm, com média e quantis 0,05, 0,50 e 0,95 (nitrogênio e pedregosidade ficaram de fora: nada os usa ainda). Os números chegam em "unidades mapeadas" e são convertidos (argila, areia, silte, carbono, pH e CTC ÷ 10; densidade ÷ 100); a textura é renormalizada se não somar 100 ± 2; as profundidades viram duas médias ponderadas pela espessura (0–30 e 0–100 cm); a incerteza relativa é (Q0,95 − Q0,05) ÷ Q0,50. Área urbana ou água vem tudo nulo: fica `sem_dado`. A API pública é **lenta** e tem limite de uso justo: nos testes de 15/11 o custo era por propriedade (uma propriedade levou de 20 a 90 s; três já estouravam os 180 s do gateway, com 504). Por isso o cliente pede **uma propriedade por vez** (7 pedidos, textura primeiro; mínimo de 15 s entre o início de um e o do próximo), com timeout de 170 s (o gateway devolve 504 aos 180 s) e uma nova tentativa em 429/5xx/timeout. Cada propriedade vai para o cache `solo_ponto` assim que chega; uma falha não derruba as outras (a busca desiste depois de 2 falhas) e a próxima busca pede só o que falta. O resultado pode ser **parcial**: o `soilgrids` sai com o que veio (o que falta é `null`) e a síntese usa o que existir (só o pH já dá a acidez). Um ponto novo leva alguns minutos; a fase 2 (COG do ISRIC lido direto) tira essa espera.
+
+- **Segundo plano:** o `PUT /fazenda` com local novo (ou sem mapa no retrato) grava o retrato só com o que o produtor contou, marca `processando` e responde. Uma tarefa (`BackgroundTasks`, sessão de banco própria) busca o solo, refaz o retrato com a fusão e grava `pronto` se veio ao menos a textura (argila, areia e silte) ou se o ponto não tem dado; senão grava `erro` (o que veio fica no retrato e no cache). Sem local: `pendente`. Mesmo local já processado: não chama de novo. Busca em andamento (menos de 15 min) ou que falhou há menos de 10 min: não agenda outra. Fazenda `processando` há mais de 15 min (o servidor reiniciou no meio): o `GET /fazenda` devolve `erro` e a próxima gravação agenda de novo.
+- **Derivados** (`services/solo/derivados.py`): classe textural pelos grupamentos da Embrapa (SiBCS 2018), matéria orgânica = carbono × 1,724, acidez pelas mesmas faixas do laudo (`perfil.py`) e erodibilidade K da USLE pelo método de Williams (modelo EPIC), em t·ha·h/(ha·MJ·mm).
+- **Fusão** (`services/solo/fusao.py`, `MOTOR-DE-ANALISE.md`, cálculo 2): para textura, matéria orgânica e acidez, cada fonte vota com seu peso (laudo 0,9; teste de campo 0,7, ainda não existe no app; observação do produtor 0,5; SoilGrids 0,4; "não sei" não vota). Vence o valor com mais votos; o laudo decide sozinho. Confiança: alta com soma ≥ 0,9 e sem discordância, média com soma ≥ 0,5, baixa abaixo disso. Quando o mapa discorda do produtor, `divergencia` traz a frase "O mapa global sugere X, mas você observou Y. No seu campo vale o que você vê." Resultado em `retrato_solo.sintese`; os números do mapa em `retrato_solo.soilgrids`.
+- **Motor:** o critério de erosão multiplica o fator de declive por um fator da classe de K (baixa 0,75, média 1, alta 1,25; limites e fatores são proposta em `parametros.py`). Sem K, o fator é neutro e entra uma lacuna. O K vem do retrato da fazenda: o motor não chama o SoilGrids.
+- **Chat:** `ver_ficha` manda a `sintese` (valor, confiança, evidências e divergência), nunca a coordenada.
+
+**Pré-carga para a demo abrir na hora** (respeita o intervalo mínimo e retoma de onde parou; rode de novo se algum ponto ficar `parcial` ou `falhou`):
+
+```bash
+cd agroia/api
+uv run python -m app.cli.solo demo                           # pontos de data/demo/pontos_demo.csv e pontos_demo_eua.csv
+uv run python -m app.cli.solo baixar --lat -17.64 --lon -51.08   # um ponto
+```
+
+Os testes usam um cliente falso e respostas simuladas no formato real da API: não acessam a rede.
 
 ## Base do motor de rotação
 

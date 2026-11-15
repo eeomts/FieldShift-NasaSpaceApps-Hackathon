@@ -31,6 +31,11 @@ CLASSE_BIOMASSA = {"baixo": 0.33, "baixa": 0.33, "medio": 0.66, "media": 0.66, "
 CLASSE_FORRAGEIRO = {"nenhum": 0.0, "baixo": 0.3, "medio": 0.6, "alto": 1.0}  # "nenhum" vem da régua do README
 FATOR_DECLIVE = {"plano": 0.25, "suave_ondulado": 0.5, "ondulado": 0.75, "forte_ondulado": 1.0, "montanhoso": 1.0}
 FATOR_DECLIVE_SEM_DADO = 0.5
+# Erodibilidade K da USLE (t·ha·h/(ha·MJ·mm), SoilGrids pelo método de Williams): classes e fatores são proposta, validar com o Yury.
+K_LIMITE_BAIXA = 0.02  # abaixo disso: baixa
+K_LIMITE_MEDIA = 0.035  # abaixo disso: média; daí em diante: alta
+FATOR_K = {"baixa": 0.75, "media": 1.0, "alta": 1.25}  # multiplica o fator de declive; média = neutro
+FATOR_K_SEM_DADO = 1.0
 PRAGAS_DESCONTO_MESMA_FAMILIA = 0.2  # por par seguido da mesma família
 RENDA_POR_COMERCIAIS = {0: 0.0, 1: 0.5, 2: 0.8}  # 3 ou mais: RENDA_MAXIMA
 RENDA_MAXIMA = 1.0

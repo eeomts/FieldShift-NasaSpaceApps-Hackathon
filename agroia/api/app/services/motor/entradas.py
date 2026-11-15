@@ -78,6 +78,21 @@ class ClimaDoServico:
         return clima_de_linhas(self.clima.linhas(celula), climatologia.fonte, climatologia.periodo)
 
 
+@dataclass(frozen=True)
+class Erodibilidade:
+    """K da USLE do solo da fazenda (SoilGrids), em t·ha·h/(ha·MJ·mm)."""
+
+    k_usle: float
+    fonte: str = "SoilGrids 2.0 (ISRIC)"
+
+
+def erodibilidade_da_fazenda(f: Fazenda) -> Erodibilidade | None:
+    """K guardado no retrato da fazenda (a busca do SoilGrids é em segundo plano); sem mapa ou sem dado: None."""
+    solo = (f.retrato_solo or {}).get("soilgrids") or {}
+    k = solo.get("k_usle")
+    return None if solo.get("sem_dado") or k is None else Erodibilidade(k_usle=k)
+
+
 @dataclass
 class EntradasMotor:
     pais: str
@@ -91,6 +106,7 @@ class EntradasMotor:
     equipamentos: frozenset[str] | None = None  # None = não respondeu (não filtra)
     equipamentos_cultura: dict[str, dict[str, set[str]]] = field(default_factory=dict)
     prioridades: list[str] = field(default_factory=list)
+    erodibilidade: Erodibilidade | None = None  # None = sem o mapa de solo (lacuna no critério de erosão)
     estado: str | None = None  # UF ou sigla USPS da fazenda; None = não sabemos (regra 13 não filtra)
 
 
@@ -132,5 +148,6 @@ def montar_entradas(
         equipamentos=ids_equipamentos or None,
         equipamentos_cultura=equipamentos if equipamentos is not None else equipamentos_por_cultura(),
         prioridades=list(f.prioridades or []),
+        erodibilidade=erodibilidade_da_fazenda(f),
         estado=estado_do_local(pais, codigo_local),
     )
