@@ -52,11 +52,12 @@ RAMPA_PADRAO_M = 22.13  # 72,6 pés: rampa da parcela-padrão da USLE
 # Sem declividade medida (só a classe, da resposta q7): LS no meio de cada classe com rampa de 46 m (1,5 %, 5,5 % e 14 % dão 0,22, 0,84 e 2,76), teto 1
 FATOR_DECLIVE = {"plano": 0.22, "suave_ondulado": 0.84, "ondulado": 1.0, "forte_ondulado": 1.0, "montanhoso": 1.0}
 FATOR_DECLIVE_SEM_DADO = 0.5  # escolha de produto (VALIDACAO-PARAMETROS-MOTOR.md): entre o plano e o suave ondulado
-# Erodibilidade K da USLE (t·ha·h/(ha·MJ·mm), SoilGrids pelo método de Williams): classes e fatores são proposta, validar com o Yury.
-K_LIMITE_BAIXA = 0.02  # abaixo disso: baixa
-K_LIMITE_MEDIA = 0.035  # abaixo disso: média; daí em diante: alta
-FATOR_K = {"baixa": 0.75, "media": 1.0, "alta": 1.25}  # multiplica o fator de declive; média = neutro
-FATOR_K_SEM_DADO = 1.0
+# Erodibilidade K da USLE (t·ha·h/(ha·MJ·mm), SoilGrids pelo método de Williams). Classes de Mannigel et al. 2002 (Acta Scientiarum 24(5)):
+# baixa < 0,015, média de 0,015 a < 0,030, alta daí em diante. A classe só aparece no texto; a conta usa o K inteiro.
+K_LIMITE_BAIXA = 0.015
+K_LIMITE_MEDIA = 0.030
+K_REFERENCIA = 0.0225  # centro da classe "média" de Mannigel et al. 2002 (0,015 a 0,030): fator = K / K_REFERENCIA, como na USLE (A = R·K·LS·C·P, AH 537)
+FATOR_K_SEM_DADO = 1.0  # escolha de produto (VALIDACAO-PARAMETROS-MOTOR.md): neutro, a classe média
 PRAGAS_DESCONTO_MESMA_FAMILIA = 0.2  # por par seguido da mesma família
 RENDA_POR_COMERCIAIS = {0: 0.0, 1: 0.5, 2: 0.8}  # 3 ou mais: RENDA_MAXIMA
 RENDA_MAXIMA = 1.0
