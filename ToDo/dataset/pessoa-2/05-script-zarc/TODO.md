@@ -34,6 +34,8 @@ As janelas de plantio oficiais (risco climático de 20 %, 30 % e 40 %) por munic
 1. Baixe a tábua e o dicionário; registre no `data/FONTES.md`.
 2. Preencha o `mapa_culturas_zarc.csv` olhando os nomes no arquivo.
 3. Script `data/scripts/preparar_zarc.py`: filtra as culturas do mapa, mantém as janelas de 20/30/40 % e converte decêndio em data.
+   - **Manejo:** o motor é de sequeiro, então filtre `Cod_Outros_Manejos = 1` (Sequeiro) em **todas** as culturas; a tábua tem linhas irrigadas de trigo, feijão, arroz e aveia, entre outras. A única exceção é o `arroz_irrigado`, que usa `Cod_Outros_Manejos = 2` (Irrigado).
+   - Uma janela com `fim` menor que `início` atravessa o ano (ex.: decêndio 34 a 3).
 4. Decêndio: o ano tem 36 (3 por mês: dias 1–10, 11–20 e 21–fim). **Confirme no dicionário** se a numeração do ZARC segue isso.
 
 ## Pronto quando
