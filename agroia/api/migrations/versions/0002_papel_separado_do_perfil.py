@@ -1,8 +1,5 @@
 """papel (quem respondeu) separado do perfil (nível de dado)
 
-O perfil D ("técnico") deixa de existir: quem respondeu vai para a coluna `papel`,
-e o perfil passa a ser só o nível de dado sobre o solo (A, B ou C).
-
 Revision ID: 0002
 Revises: 0001
 """

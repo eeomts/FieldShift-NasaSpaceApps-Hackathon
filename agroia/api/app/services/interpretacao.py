@@ -12,8 +12,8 @@ from typing import Literal
 
 from pydantic import BaseModel
 
-from app import base
-from app.config import get_settings
+from app.core.config import get_settings
+from app.services import catalogo
 
 log = logging.getLogger(__name__)
 
@@ -57,7 +57,7 @@ _INSTRUCOES = {
 
 
 def _catalogo(campo: Campo) -> str:
-    itens = base.equipamentos() if campo == "equipamentos" else base.culturas()
+    itens = catalogo.equipamentos() if campo == "equipamentos" else catalogo.culturas()
     linhas = []
     for item_id, item in itens.items():
         nomes = sorted({n for ns in item["nomes"].values() for n in ns})
@@ -95,7 +95,7 @@ def _via_gemini(campo: Campo, texto: str) -> list[_ItemIA]:
 
 def _valida(campo: Campo, itens: list[_ItemIA]) -> list[dict]:
     """Aplica as regras da base: ids desconhecidos viram 'não encontrado', meses fora de 1..12 viram null."""
-    validos = base.equipamentos() if campo == "equipamentos" else base.culturas()
+    validos = catalogo.equipamentos() if campo == "equipamentos" else catalogo.culturas()
     saida = []
     for it in itens:
         item_id = it.id if it.id in validos else None
@@ -130,7 +130,7 @@ def interpretar(campo: Campo, texto: str) -> dict:
             return {"fonte": "ia", "itens": _valida(campo, _via_gemini(campo, texto))}
         except Exception:  # IA fora do ar, cota, timeout, JSON inválido: o app continua funcionando
             log.exception("Falha ao interpretar com Gemini; usando a lista reserva")
-    catalogo = base.equipamentos() if campo == "equipamentos" else base.culturas()
+    itens_catalogo = catalogo.equipamentos() if campo == "equipamentos" else catalogo.culturas()
     achados = [_ItemIA(texto_original=a["texto_original"], id=a["id"], confianca="media")
-               for a in base.casa_texto(texto, catalogo)]
+               for a in catalogo.casa_texto(texto, itens_catalogo)]
     return {"fonte": "lista", "itens": _valida(campo, achados)}

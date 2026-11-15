@@ -6,7 +6,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from app import base
+from app.services import catalogo
+from app.services.interpretacao import Campo
 
 SNS = Literal["sim", "nao", "nao_sei"]
 Mes = int
@@ -30,7 +31,7 @@ class ItemCalendario(BaseModel):
     @field_validator("cultura_id")
     @classmethod
     def cultura_existe(cls, v: str | None) -> str | None:
-        if v is not None and v not in base.culturas():
+        if v is not None and v not in catalogo.culturas():
             raise ValueError(f"cultura desconhecida: {v}")
         return v
 
@@ -73,7 +74,7 @@ class CulturaExcluida(BaseModel):
     @field_validator("cultura_id")
     @classmethod
     def cultura_existe(cls, v: str | None) -> str | None:
-        if v is not None and v not in base.culturas():
+        if v is not None and v not in catalogo.culturas():
             raise ValueError(f"cultura desconhecida: {v}")
         return v
 
@@ -85,7 +86,7 @@ class Equipamento(BaseModel):
     @field_validator("equipamento_id")
     @classmethod
     def equipamento_existe(cls, v: str | None) -> str | None:
-        if v is not None and v not in base.equipamentos():
+        if v is not None and v not in catalogo.equipamentos():
             raise ValueError(f"equipamento desconhecido: {v}")
         return v
 
@@ -142,3 +143,9 @@ class Respostas(BaseModel):
         if len(set(self.q25_prioridades)) != len(self.q25_prioridades):
             raise ValueError("prioridades repetidas")
         return self
+
+
+# Texto livre das perguntas 8, 26a ou 26b para a IA separar em itens da base.
+class Interpretar(BaseModel):
+    campo: Campo
+    texto: str = Field(max_length=1000)

@@ -5,7 +5,7 @@ import unicodedata
 from functools import lru_cache
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parents[2] / "base"
+BASE_DIR = Path(__file__).resolve().parents[3] / "base"  # agroia/base
 
 
 def normaliza(texto: str) -> str:
@@ -60,3 +60,15 @@ def casa_texto(texto: str, itens: dict[str, dict]) -> list[dict]:
             vistos.add(item_id)
             saida.append({"id": item_id, "texto_original": sinonimo})
     return saida
+
+
+def listar_culturas(idioma: str = "pt") -> list[dict]:
+    """Culturas para a lista reserva do onboarding (quando a IA não está disponível)."""
+    return [
+        {"id": c["id"], "nome": nome_exibicao(c, idioma), "grupo": c["grupo"], "perene": c["perene"], "tipos": c["tipos"]}
+        for c in culturas().values()
+    ]
+
+
+def listar_equipamentos() -> list[dict]:
+    return [{"id": e["id"], "nome": e["nome"]} for e in equipamentos().values()]

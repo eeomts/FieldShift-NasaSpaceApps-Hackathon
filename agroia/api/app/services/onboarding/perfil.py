@@ -1,5 +1,5 @@
 """Regras que transformam as respostas nas saídas do questionário (ONBOARDING.md, "O que sai")."""
-from app.onboarding.schemas import ItemCalendario, Respostas
+from app.schemas.onboarding import ItemCalendario, Respostas
 
 # Perguntas de OBSERVAÇÃO do solo. As de manejo (q12 análise, q21 calcário, q22 adubo) não contam:
 # responder "não usei calcário" não diz nada sobre como o solo é.
