@@ -1,1 +1,1 @@
-"""Motor de rotação: catálogo, local, relevo e (nos próximos PRs) filtro, notas e explicação."""
+"""Motor de rotação: catálogo, local, relevo, candidatas, filtro, critérios, pontuação e explicação (MotorService.analisar)."""

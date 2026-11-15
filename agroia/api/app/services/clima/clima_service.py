@@ -140,8 +140,12 @@ class ClimaService:
         meses = [asdict(l) for l in agregar_por_mes(dias, limite)]
         return self.repositorio.gravar(celula, meses)
 
+    def linhas(self, celula: ClimaCelula) -> list[LinhaMensal]:
+        """Todas as linhas (ano, mês) da célula, em ordem cronológica."""
+        return [self._linha(m) for m in self.repositorio.meses(celula.id)]
+
     def climatologia(self, celula: ClimaCelula) -> Climatologia:
-        linhas = [self._linha(m) for m in self.repositorio.meses(celula.id)]
+        linhas = self.linhas(celula)
         return Climatologia(
             celula_id=celula.id,
             lat=celula.lat,
