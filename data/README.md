@@ -47,9 +47,11 @@ As 16 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os par
 |---|---|---|
 | 8. Textos do RAG | `rag/*.md` (lista em `rag/README.md`) | Médio |
 | 2. Revisar e ampliar os sinônimos e nomes regionais das culturas | campo `nomes` do `agroia/base/culturas.json` | Baixo |
-| 10. 12 fotos de solo com créditos | `onboarding/fotos-solo/` + `CREDITOS.md` | Baixo |
+| 10. 12 fotos de solo com créditos ✅ feito | `onboarding/fotos-solo/` + `CREDITOS.md` | Baixo |
 
 O questionário (antiga tarefa 9) já está implementado nas telas do app (`agroia/web/src/onboarding/`), então não precisa mais do `perguntas.yaml`.
+
+**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`, com o porquê de cada mudança em `onboarding/relatorio-revisao-questionario.md`. Ela serve de especificação para as telas: o que o código ainda precisa fazer está no fim do relatório.
 
 ## Estrutura
 
