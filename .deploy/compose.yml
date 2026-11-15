@@ -23,8 +23,8 @@ services:
 
   api:
     build:
-      context: ../agroia
-      dockerfile: ../.deploy/api.Dockerfile
+      context: ..
+      dockerfile: .deploy/api.Dockerfile
       additional_contexts:
         deploy: .
     restart: always

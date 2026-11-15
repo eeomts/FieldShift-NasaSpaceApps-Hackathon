@@ -1,0 +1,227 @@
+# Fichas das culturas
+
+Uma seção por cultura da base do Field Shift (as 16 de `data/catalogo/culturas.csv`): para que serve, o que faz pelo solo, os cuidados e o resumo dos números da base. Os números completos e a origem de cada um ficam em `data/catalogo/culturas.csv` e `data/catalogo/evidencias/`.
+
+## Soja
+
+A soja (Glycine max) é uma leguminosa plantada para grão. É a principal cultura de exportação do Brasil e vira óleo, farelo para ração e muitos outros produtos. É plantada principalmente na época das águas, no Cerrado e no Sul, muitas vezes seguida de milho safrinha.
+
+Vantagens da soja para o solo: como toda leguminosa, a soja tem bactérias na raiz que pegam nitrogênio do ar, por isso quase não precisa de adubo nitrogenado. Na rotação com capins e cereais, como milho e braquiária, ela ajuda a quebrar o ciclo de pragas e doenças.
+
+Cuidados com a soja: deixa pouca palhada, que se decompõe rápido, então o solo fica mais exposto depois da colheita se não vier outra cultura ou cobertura. É sensível a veranico na floração e no enchimento de grão, a encharcamento e à ferrugem asiática. Precisa de máquinas para plantar e colher e de mercado para vender. Soja em sequência, ano após ano, aumenta problemas com nematoides e doenças.
+
+Na base do Field Shift, a soja tem ciclo de 100 a 140 dias, é sensível a geada, usa de 450 a 800 mm de água no ciclo, cresce melhor entre 20 e 30 °C, fixa nitrogênio e deixa pouca biomassa no campo.
+
+Como o produtor costuma dizer: soja, soy, soya, lavoura de soja, safra de verão, soja na palha.
+
+Fonte: Embrapa Soja; base de culturas do Field Shift.
+
+## Milho
+
+O milho (Zea mays) é um cereal da família dos capins, plantado para grão, silagem, milho verde e consumo na própria propriedade. É uma das culturas mais plantadas no Brasil, tanto na safra das águas quanto como milho safrinha, depois da soja.
+
+Vantagens do milho para o solo: produz muita palhada, que dura mais no chão do que a de leguminosas, protegendo a terra e alimentando o plantio direto. Tem raiz em cabeleira que ajuda a estruturar a terra. É um ótimo parceiro de rotação com leguminosas como feijão e soja, que deixam nitrogênio para ele, e pode ser consorciado com feijão ou com braquiária. Para quem tem gado, a silagem de milho é um alimento de alto valor.
+
+Cuidados com o milho: pede bastante água e adubo, principalmente nitrogênio. É sensível à falta de chuva no pendoamento e no enchimento do grão; um veranico nessa hora derruba a colheita. Sofre com geada e com calor forte na floração. O milho safrinha corre mais risco de seca e de frio no fim do ciclo. Milho atrás de milho favorece pragas como a cigarrinha e doenças.
+
+Na base do Field Shift, o milho tem ciclo de 110 a 145 dias, é sensível a geada, usa de 500 a 800 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita biomassa.
+
+Como o produtor costuma dizer: milho, milharal, roça de milho, milho safrinha, milho verde, corn, maíz.
+
+Fonte: Embrapa Milho e Sorgo; FAO-56; base de culturas do Field Shift.
+
+## Feijão
+
+O feijão-comum (Phaseolus vulgaris) é uma leguminosa plantada para grão, base da alimentação no Brasil. Inclui o carioca, o preto e outros tipos. Tem ciclo curto e pode ser plantado em mais de uma época por ano: feijão das águas, da seca e de inverno, onde há irrigação.
+
+Vantagens do feijão para o solo: como leguminosa, faz parceria com bactérias que fixam nitrogênio do ar, e parte desse nitrogênio pode ficar para a próxima cultura. É um bom parceiro de rotação e de consórcio com milho e mandioca, e o ciclo curto cabe em janelas pequenas do calendário.
+
+Cuidados com o feijão: é sensível a quase todos os extremos. Não aguenta encharcamento, sofre com falta de água na floração, perde flores com calor e morre com geada. Deixa pouca palhada, então protege pouco o solo depois da colheita. Tem muitas doenças e pragas, como mosca-branca e mofo-branco, e a semente de boa qualidade faz muita diferença. Plantar feijão em seguida no mesmo campo aumenta as doenças de solo.
+
+Na base do Field Shift, o feijão tem ciclo de 60 a 100 dias, é sensível a geada, usa de 250 a 400 mm de água no ciclo, cresce melhor entre 18 e 25 °C, sofre com calor acima de 30 °C na floração e fixa nitrogênio.
+
+Como o produtor costuma dizer: feijão, feijão-carioca, feijão-preto, feijão das águas, feijão da seca, feijão de inverno, frijol.
+
+Fonte: Embrapa Arroz e Feijão; base de culturas do Field Shift.
+
+## Trigo
+
+O trigo (Triticum aestivum) é um cereal de inverno, plantado para grão e farinha. No Brasil, é cultivado principalmente no Sul, no outono e inverno, e em áreas altas do Cerrado, com irrigação ou no sequeiro.
+
+Vantagens do trigo para o solo: ocupa o campo no inverno, quando muitas áreas do Sul ficariam paradas, e deixa palhada para o plantio direto da soja ou do milho no verão. É um capim, então alterna bem com leguminosas e ajuda a quebrar o ciclo de doenças dessas culturas.
+
+Cuidados com o trigo: geada no espigamento e na floração pode causar grandes perdas, e chuva na colheita estraga a qualidade do grão, que pode germinar na espiga. Tem doenças importantes em anos úmidos, como a brusone e a giberela. Depende de máquinas para plantar e colher e de mercado (moinhos ou cooperativa) para vender. Em regiões quentes, só vai bem com variedades adaptadas.
+
+Na base do Field Shift, o trigo tem ciclo de 105 a 165 dias, cresce mesmo com frio (temperatura base de 0 °C), vai melhor entre 15 e 23 °C, sofre com calor acima de 31 °C, é sensível a geada nas fases de flor e usa de 450 a 650 mm de água no ciclo.
+
+Como o produtor costuma dizer: trigo, lavoura de inverno, cultura de inverno, wheat, trigo safrinha.
+
+Fonte: Embrapa Trigo; base de culturas do Field Shift.
+
+## Arroz
+
+O arroz (Oryza sativa) é um cereal plantado para grão, base da alimentação brasileira junto com o feijão. Há dois sistemas principais: o arroz irrigado por inundação, forte no Rio Grande do Sul e em Santa Catarina, e o arroz de sequeiro (ou de terras altas), que depende da chuva e é comum no Cerrado e no Norte.
+
+Vantagens do arroz para o solo: o arroz irrigado aproveita várzeas e baixadas que encharcam e onde outras culturas não vão bem. O arroz de sequeiro é um capim que alterna com leguminosas na rotação.
+
+Cuidados com o arroz: o arroz de sequeiro é muito sensível a veranico, principalmente na floração; em região de chuva irregular, o risco é alto. O arroz irrigado precisa de muita água e de estrutura de irrigação e drenagem. Frio na floração faz o grão ficar chocho. A brusone é a doença mais séria. Como a várzea de arroz fica alagada, a escolha de culturas de rotação ali é limitada.
+
+Na base do Field Shift, o arroz tem ciclo de 95 a 115 dias, é sensível a geada, cresce melhor entre 20 e 35 °C, sofre com calor acima de 35 °C e usa de 400 a 600 mm de água no ciclo.
+
+Como o produtor costuma dizer: arroz, arroz de sequeiro, arroz de terras altas, arroz irrigado, arroz de várzea, rice.
+
+Fonte: Embrapa Arroz e Feijão; base de culturas do Field Shift.
+
+## Algodão
+
+O algodão (Gossypium hirsutum) é cultivado para a fibra (pluma) e para o caroço, que vira óleo e ração. No Brasil, é plantado principalmente no Cerrado, em grandes áreas, muitas vezes como segunda safra depois da soja. Também existe algodão na agricultura familiar do Semiárido.
+
+Vantagens do algodão para o solo: é de outra família (Malvaceae), então ajuda a diversificar uma rotação de soja e milho. Tem raiz pivotante que desce fundo na terra quando não há camada compactada.
+
+Cuidados com o algodão: é uma cultura cara e exigente em adubo, defensivos e máquinas, e o bicudo é uma praga muito séria, que exige controle em toda a região. Depois da colheita, a soqueira (resto da planta) precisa ser destruída por lei, e a palhada é pouca, então o solo fica exposto se não houver cobertura. Chuva na abertura dos capulhos estraga a fibra. Precisa de mercado e de beneficiadora por perto.
+
+Na base do Field Shift, o algodão tem o ciclo mais longo entre as anuais, de 140 a 190 dias, é sensível a geada, precisa de calor (temperatura base de 15 °C), cresce melhor entre 20 e 30 °C e usa muita água, de 700 a 1.300 mm no ciclo. Não serve de forragem.
+
+Como o produtor costuma dizer: algodão, algodoeiro, pluma, algodão safrinha, cotton.
+
+Fonte: Embrapa Algodão; base de culturas do Field Shift.
+
+## Mandioca
+
+A mandioca (Manihot esculenta) é uma planta de raiz plantada para farinha, goma, consumo de mesa e ração. É uma das culturas mais tradicionais do Brasil, presente em todas as regiões, principalmente na agricultura familiar. Tem nomes diferentes em cada lugar: macaxeira, aipim, mandioca-mansa.
+
+Vantagens da mandioca para o produtor e para o solo: aguenta bem a seca e terras fracas e ácidas, onde outras culturas falham. Tem ciclo longo e flexível: a raiz pode ficar na terra e ser colhida conforme a necessidade. As folhas e a rama servem de alimento para os animais. Consorcia bem com feijão e milho no começo do ciclo.
+
+Cuidados com a mandioca: no começo, a planta cresce devagar e deixa o chão descoberto por muito tempo, o que facilita a erosão, principalmente em terreno inclinado; vale consorciar ou cobrir as entrelinhas. Não aguenta encharcamento, que apodrece a raiz. A colheita remove muita terra e nutrientes. Geada queima a parte de cima. Algumas variedades (mandioca-brava) são tóxicas cruas e só servem para farinha.
+
+Na base do Field Shift, a mandioca é tratada como perene, com ciclo de 180 a 720 dias (6 meses a 2 anos), é tolerante à seca, sensível a geada, cresce melhor entre 20 e 27 °C e vai bem em regiões com 1.000 a 1.500 mm de chuva por ano.
+
+Como o produtor costuma dizer: mandioca, macaxeira, aipim, maniva, mandioca-mansa, roça de mandioca, cassava, yuca.
+
+Fonte: Embrapa Mandioca e Fruticultura; base de culturas do Field Shift.
+
+## Sorgo
+
+O sorgo (Sorghum bicolor) é um cereal da família dos capins, parecido com o milho. É plantado para grão (ração), para silagem, para pasto e como planta de cobertura. No Brasil, é muito usado como segunda safra, depois da soja, quando já é tarde para o milho.
+
+Vantagens do sorgo para o solo: aguenta bem mais a seca do que o milho, porque tem raiz funda e consegue "parar" e voltar a crescer quando volta a chover. Produz bastante palhada e raízes que ajudam a estruturar a terra. Por isso é uma das principais trocas sugeridas para regiões ou épocas com risco de veranico.
+
+Cuidados com o sorgo: o grão vale menos que o do milho e tem menos mercado em algumas regiões. Passarinhos atacam a panícula. Não gosta de frio, e a geada prejudica. O sorgo de pasto jovem pode ser tóxico para o gado, por isso o pastejo precisa de manejo. Sendo um capim, como o milho, não quebra o ciclo das pragas do milho: é melhor alternar com leguminosas.
+
+Na base do Field Shift, o sorgo tem ciclo de 90 a 130 dias, raiz de até 2 metros, é tolerante à seca, usa de 380 a 600 mm de água no ciclo (menos que o milho), cresce melhor entre 22 e 34 °C, deixa muita biomassa e tem alto valor como forragem.
+
+Como o produtor costuma dizer: sorgo, sorgo safrinha, sorgo forrageiro, sorgo de silagem, sorghum, milo.
+
+Fonte: Embrapa Milho e Sorgo; base de culturas do Field Shift.
+
+## Milheto
+
+O milheto (Pennisetum glaucum) é um capim de ciclo curto, muito resistente à seca. No Brasil, é usado principalmente como planta de cobertura para formar palhada no plantio direto, e também como pasto, silagem e grão para ração.
+
+Vantagens do milheto para o solo: cresce rápido, mesmo com pouca chuva e em terra fraca e arenosa, e produz muita palhada em pouco tempo. A raiz é forte e funda, ajudando a soltar terra compactada e a reciclar nutrientes que estavam mais embaixo. É uma das coberturas mais usadas no Cerrado para fechar a janela entre a colheita da safra e o início das chuvas.
+
+Cuidados com o milheto: a palhada se decompõe mais rápido que a de braquiária em clima quente e úmido. Não aguenta geada. Se deixar formar semente, pode virar planta daninha na lavoura seguinte, então precisa ser manejado (roçado ou dessecado) na hora certa. Sendo um capim, é melhor alternar com leguminosas na rotação.
+
+Na base do Field Shift, o milheto tem ciclo de 45 a 105 dias, raiz de até 2 metros, é tolerante à seca, cresce melhor no calor, entre 25 e 35 °C, aguenta até 40 °C, cobre muito bem o solo, deixa muita biomassa e tem alto valor como forragem.
+
+Como o produtor costuma dizer: milheto, milheto-pérola, capim de cobertura, palhada de milheto, pearl millet.
+
+Fonte: Embrapa Milho e Sorgo; Embrapa Cerrados (plantas de cobertura); base de culturas do Field Shift.
+
+## Feijão-caupi
+
+O feijão-caupi (Vigna unguiculata) é uma leguminosa plantada para grão seco e para vagem e grão verde. É a base da alimentação no Nordeste e no Norte, com muitos nomes: feijão-de-corda, feijão-macassar, feijão-fradinho, feijão-verde. Também é plantado como safrinha no Cerrado.
+
+Vantagens do feijão-caupi para o solo: aguenta muito mais calor e seca do que o feijão-comum e vai bem em terra fraca e arenosa. Como leguminosa, fixa nitrogênio do ar e pode deixar parte para a próxima cultura. Tem ciclo curto e também pode ser usado como adubo verde. É uma das melhores opções de leguminosa para o Semiárido e para regiões quentes.
+
+Cuidados com o feijão-caupi: não aguenta encharcamento nem geada. Sofre com pulgão e outras pragas, e com viroses. Chuva na época da colheita estraga o grão. Deixa pouca palhada, então protege pouco o solo depois da colheita. O preço e o mercado variam bastante de região para região.
+
+Na base do Field Shift, o feijão-caupi tem ciclo de 60 a 90 dias, é tolerante à seca, fixa nitrogênio, usa de 300 a 450 mm de água no ciclo e cresce bem numa faixa larga de temperatura, de 18 a 34 °C.
+
+Como o produtor costuma dizer: feijão-de-corda, feijão-macassar, feijão-fradinho, feijão-verde, caupi, feijão-de-moita, cowpea.
+
+Fonte: Embrapa Meio-Norte; base de culturas do Field Shift.
+
+## Girassol
+
+O girassol (Helianthus annuus) é plantado para grão, que vira óleo, ração e alimento para pássaros, e também para silagem e para apicultura. No Brasil, é usado principalmente como segunda safra no Cerrado e em rotação no Sul.
+
+Vantagens do girassol para o solo: é de outra família (Asteraceae), o que diversifica rotações de soja e milho e ajuda a quebrar ciclos de pragas e doenças. Tem raiz pivotante funda, que recicla nutrientes de camadas mais baixas e aproveita água que outras culturas não alcançam. As flores atraem abelhas.
+
+Cuidados com o girassol: precisa de boro, e a falta desse nutriente derruba a produção. Passarinhos atacam os capítulos. Chuva e umidade alta na floração favorecem doenças como o mofo-branco, que também ataca soja e feijão, então não é boa ideia colocá-lo entre essas culturas em áreas com o problema. Cobre pouco o solo. Precisa de quem compre o grão na região.
+
+Na base do Field Shift, o girassol tem ciclo de 90 a 130 dias, é tolerante à seca, sensível a geada, usa de 400 a 700 mm de água no ciclo, cresce melhor entre 20 e 25 °C e cobre pouco o solo.
+
+Como o produtor costuma dizer: girassol, sunflower, girasol, maravilla.
+
+Fonte: Embrapa Soja (girassol); base de culturas do Field Shift.
+
+## Crotalária
+
+A crotalária (Crotalaria juncea e espécies parecidas) é uma leguminosa usada como adubo verde e planta de cobertura. Não é plantada para vender grão, e sim para melhorar a terra. Cresce rápido e alta.
+
+Vantagens da crotalária para o solo: fixa muito nitrogênio do ar e, quando roçada, deixa esse nitrogênio para a cultura seguinte. Produz bastante massa em pouco tempo e tem raiz pivotante que ajuda a soltar a terra compactada. Algumas espécies ajudam a reduzir nematoides, um problema sério em áreas de soja, cana e algodão. É uma das plantas de cobertura mais recomendadas para entressafra no Cerrado e no Sudeste.
+
+Cuidados com a crotalária: precisa ser roçada ou cortada na floração, antes de formar semente, para não virar planta daninha e para aproveitar melhor o nitrogênio. Não aguenta geada e cresce pouco no frio. A palhada de leguminosa se decompõe rápido, então protege o solo por menos tempo do que a palhada de capim; misturar com milheto ou braquiária ajuda. Não serve como alimento para o gado.
+
+Na base do Field Shift, a crotalária tem ciclo de 56 a 160 dias (conforme a época e o corte), é sensível a geada, fixa nitrogênio, cobre muito bem o solo, deixa muita biomassa e cresce melhor entre 20 e 30 °C.
+
+Como o produtor costuma dizer: crotalária, crotalária-juncea, adubo verde, planta pra adubar a terra, sunn hemp.
+
+Fonte: Embrapa Agrobiologia; Embrapa Cerrados (plantas de cobertura); base de culturas do Field Shift.
+
+## Nabo forrageiro
+
+O nabo forrageiro (Raphanus sativus) é uma planta da família da couve e da mostarda (Brassicaceae), usada como planta de cobertura de outono e inverno, principalmente no Sul e no Cerrado. Também serve de pasto, e o grão pode virar óleo.
+
+Vantagens do nabo forrageiro para o solo: tem uma raiz pivotante grossa e forte, que fura a terra compactada e deixa canais para a água e para as raízes da próxima cultura. Cresce muito rápido, cobrindo o chão em poucas semanas, e recicla nutrientes como fósforo e potássio de camadas mais fundas. É de outra família, o que ajuda a diversificar a rotação. As flores atraem abelhas.
+
+Cuidados com o nabo forrageiro: a palhada se decompõe rápido e protege o solo por pouco tempo; misturar com aveia-preta ajuda a fazer uma cobertura mais duradoura. Se deixar soltar semente, vira planta daninha nas lavouras seguintes. Precisa de alguma umidade para se estabelecer e não vai bem em terra encharcada nem em calor forte.
+
+Na base do Field Shift, o nabo forrageiro tem ciclo de 60 a 120 dias, aguenta geada, raiz de até 2 metros, é tolerante à seca, usa pouca água (de 160 a 330 mm no ciclo), cresce melhor no frio, entre 12 e 25 °C, e cobre muito bem o solo.
+
+Como o produtor costuma dizer: nabo, nabo forrageiro, nabiça, nabo pra cobertura, oilseed radish, nabo forrajero.
+
+Fonte: Embrapa Trigo e Embrapa Clima Temperado (plantas de cobertura de inverno); base de culturas do Field Shift.
+
+## Aveia-preta
+
+A aveia-preta (Avena strigosa) é um capim de inverno usado como planta de cobertura e como pasto. É a cobertura de inverno mais usada no Sul do Brasil, antes do plantio direto de soja ou milho no verão.
+
+Vantagens da aveia-preta para o solo: aguenta frio e geada, cobrindo o chão justamente no inverno, quando muitas áreas ficariam paradas. Produz bastante palhada, que dura bem no chão e protege a terra da erosão e do sol. Tem raiz em cabeleira que melhora a estrutura da terra e ajuda a abafar plantas daninhas. Para quem tem gado, serve de pasto de inverno de boa qualidade e ainda deixa palha depois.
+
+Cuidados com a aveia-preta: precisa de frio e de alguma chuva no outono e inverno, então vai bem no Sul e em áreas altas, mas não no Cerrado quente e seco. A palhada de capim pode prender nitrogênio no começo da decomposição, o que pede atenção na adubação do milho seguinte. Se não for manejada na hora certa, pode soltar semente.
+
+Na base do Field Shift, a aveia-preta tem ciclo de 100 a 140 dias, aguenta geada, cresce mesmo com frio (temperatura base de 4 °C), sofre com calor acima de 32 °C, cobre muito bem o solo, deixa muita biomassa e tem alto valor como forragem.
+
+Como o produtor costuma dizer: aveia, aveia-preta, aveia de cobertura, pasto de inverno, black oat, avena negra.
+
+Fonte: Embrapa Trigo; Embrapa Pecuária Sul; base de culturas do Field Shift.
+
+## Guandu
+
+O guandu (Cajanus cajan) é uma leguminosa arbustiva usada como adubo verde, cobertura, pasto (banco de proteína) e para grão, que também é alimento humano. Também é chamado de feijão-guandu ou andu.
+
+Vantagens do guandu para o solo: tem raiz pivotante muito funda e forte, uma das melhores para romper camadas compactadas e buscar água e nutrientes no fundo. Por isso aguenta bem a seca. Fixa nitrogênio do ar e produz muita folha e galho. Para quem tem gado, é um alimento rico em proteína na época seca.
+
+Cuidados com o guandu: cresce devagar no começo, então o chão fica exposto nas primeiras semanas. Não gosta de frio, de geada nem de terra encharcada. Se não for cortado, o arbusto pode rebrotar e ocupar o campo por mais tempo do que o planejado, e os galhos grossos podem atrapalhar o plantio seguinte se não forem bem manejados.
+
+Na base do Field Shift, o guandu é tratado como cultura anual, com ciclo de 90 a 150 dias até o corte. É sensível a geada, tem raiz de até 2 metros, é tolerante à seca, fixa nitrogênio, aguenta calor até perto de 40 °C, deixa muita biomassa e tem alto valor como forragem.
+
+Como o produtor costuma dizer: guandu, feijão-guandu, andu, guando, pigeon pea, gandul.
+
+Fonte: Embrapa Agrobiologia; Embrapa Pecuária Sudeste; base de culturas do Field Shift.
+
+## Braquiária
+
+A braquiária (Urochloa brizantha e espécies parecidas) é um capim perene, o pasto mais plantado do Brasil. É usada para alimentar o gado e, cada vez mais, como planta de cobertura em consórcio com milho ou depois da soja, na integração lavoura-pecuária. A variedade Marandu é conhecida como braquiarão.
+
+Vantagens da braquiária para o solo: tem raízes abundantes e fundas, que soltam a terra, aguentam a seca e guardam muita matéria orgânica. Produz palhada que dura bastante no chão, protegendo contra a erosão e o sol, e ajuda a abafar plantas daninhas. Plantada junto com o milho safrinha, ela cresce depois da colheita e forma pasto para o gado na seca e palhada para a próxima safra.
+
+Cuidados com a braquiária: é um capim muito forte e pode competir com a lavoura se não for manejado; no consórcio, o produtor precisa controlar a época de plantio e o crescimento. Para voltar a plantar lavoura, é preciso dessecar ou manejar bem. Sendo um capim, é melhor alternar com leguminosas. O pasto mal manejado, com muito gado, degrada e deixa a terra exposta.
+
+Na base do Field Shift, a braquiária é perene, sem ciclo fixo, tem raiz profunda, é tolerante à seca, sensível a geada, gosta de calor (cresce melhor entre 30 e 35 °C), cobre muito bem o solo, deixa muita biomassa e tem alto valor como forragem.
+
+Como o produtor costuma dizer: braquiária, braquiarão, capim, capim-braquiária, marandu, pasto, capim pras vacas, brachiaria.
+
+Fonte: Embrapa Gado de Corte; Embrapa, integração lavoura-pecuária-floresta; base de culturas do Field Shift.
