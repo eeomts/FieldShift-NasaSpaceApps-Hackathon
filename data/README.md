@@ -27,7 +27,7 @@ O caminho crítico do projeto: o motor inteiro depende dela.
 | 1. Parâmetros agronômicos das 16 culturas do motor | `catalogo/culturas.csv` | Alto |
 | 7. Código da PAM de cada cultura (coluna `codigo_pam`) | `catalogo/culturas.csv` | Baixo |
 
-Os 16 `id` (os mesmos do `agroia/base/culturas.json`) e os nomes científicos **já estão preenchidos**, e o milho tem uma linha de exemplo a conferir. O nome no ZARC fica no arquivo da Pessoa 2.
+As 16 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 9 delas (as outras não aparecem na PAM ou falta conferir). A coluna `nome_zarc` não é preenchida à mão: ela vem do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6, Pessoa 2) na carga.
 
 ### Pessoa 2 — Dados da NASA e do Brasil (perfil: dados) · Augusto
 
