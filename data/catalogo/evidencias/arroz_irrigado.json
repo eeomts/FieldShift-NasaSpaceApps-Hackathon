@@ -1,0 +1,391 @@
+{
+  "id": "arroz_irrigado",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "100",
+    "ciclo_dias_max": "145",
+    "temp_base_c": "11",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "33",
+    "tmax_critica_c": "35",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "580",
+    "agua_ciclo_mm_max": "720",
+    "kc_inicial": "1.05",
+    "kc_medio": "1.2",
+    "kc_final": "0.6",
+    "profundidade_raiz_m": "0.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "baixo",
+    "fontes": "SISTEMA: arroz irrigado por inundação das várzeas/terras baixas do RS e SC, em rotação com soja; o arroz de terras altas fica na linha arroz|SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, 2025, cap. 2, 3, 6 e 8 (ciclo das cultivares 100-145 d; temperaturas críticas Tab.3.2 Yoshida 1981; esterilidade por frio 15-19 °C e por calor >35 °C; ET média 7,2 mm/dia; período de irrigação 80-100 d; lâmina total 6.000-12.000 m³/ha; resteva usada para pastejo)|MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado subtropical RS 2026/2027 (grupos de ciclo ≤105 a ≥136 d; Tmin ≤15 °C na pré-floração; Tmax ≥35 °C na floração; geada Tmin <2 °C; déficit hídrico nulo por ser irrigado)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C, Infeld et al. 1998, arroz irrigado RS)|Meus et al., Ecofisiologia do arroz visando altas produtividades, Santa Maria, 2020 (Tb 11 °C no PlanejArroz/SimulArroz; temperaturas cardinais 11/26/40 °C da emissão de folhas)|Parfitt et al., Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 313, 2018 (ET do arroz ~650 mm, Mota et al. 1990; uso de água 8-10 mil m³/ha)|Stone, Irrigação, cap. 17 de A Cultura do Arroz no Brasil, 2ª ed., Embrapa Arroz e Feijão, 2006 (ET diária 6,8-8,7 mm no RS, Mota et al. 1990)|FAO Irrigation Water Management Training Manual 3, Tab.14 (Rice paddy 450-700 mm; conferência da água)|FAO-56 Tab.12 e Tab.14 (Kc de Rice: ini 1.05 para arroz com lâmina, mid 1.20, end 0.90-0.60)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite inferior, de manejo de irrigação, porque o solo fica inundado)|IBGE PAM tabela 5457 (código 40102; não separa irrigado de terras altas)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "id",
+      "antes": "",
+      "depois": "arroz_irrigado",
+      "motivo": "Linha nova. A linha arroz passa a representar só o arroz de terras altas; esta representa o arroz irrigado por inundação de RS/SC."
+    },
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "",
+      "depois": "100",
+      "motivo": "SOSBAI 2025: BRS Atalanta, a cultivar de ciclo mais curto citada, tem 'ciclo muito precoce, em torno de 100 dias'. O ZARC RS usa Grupo I até 105 d."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "",
+      "depois": "145",
+      "motivo": "SOSBAI 2025: Risomarino CL tem 'Ciclo de 145 dias para Santa Catarina' e SCS123 Pérola 135-144 d. No ZARC RS o Grupo IV é ≥136 d. O ciclo é contado da emergência à maturação (ver pendência)."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "",
+      "depois": "11",
+      "motivo": "Tb de 11 °C (Infeld et al. 1998), medida em arroz irrigado no RS e usada pela Embrapa Clima Temperado no graus-dia (Steinmetz et al. 2007) e no PlanejArroz/SimulArroz (Meus et al. 2020)."
+    },
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "",
+      "depois": "20",
+      "motivo": "SOSBAI Tab.3.2 (Yoshida 1981, temperatura média diária do ar): a menor ótima das fases após a germinação é a da maturação, 20-25 °C."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "",
+      "depois": "33",
+      "motivo": "SOSBAI Tab.3.2: a maior ótima após a germinação é a da antese, 30-33 °C. O '20 a 35 °C' do texto SOSBAI vale só para a germinação, por isso não foi usado como teto."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "",
+      "depois": "35",
+      "motivo": "ZARC RS: restringe decêndios com Tmax ≥35 °C na floração plena. SOSBAI: >35 °C causa esterilidade de espiguetas e a máxima crítica da antese é 35 °C (Tab.3.2)."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "antes": "",
+      "depois": "true",
+      "motivo": "ZARC RS considera o risco de geada (Tmin <2 °C no abrigo). O arroz também sofre esterilidade por frio bem acima de 0 °C (ver pendência)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "",
+      "depois": "580",
+      "motivo": "Consumo (ET), não lâmina de irrigação. SOSBAI: ET média de 7,2 mm/dia × período de irrigação de 80 d = 576 mm, arredondado para 580."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "",
+      "depois": "720",
+      "motivo": "SOSBAI: 7,2 mm/dia × 100 d = 720 mm. A faixa contém o valor de Mota et al. 1990 (~650 mm, via Embrapa BPD 313) e fica dentro da faixa FAO (450-700 mm) até o teto."
+    },
+    {
+      "coluna": "kc_inicial",
+      "antes": "",
+      "depois": "1.05",
+      "motivo": "FAO-56 Tab.12/14: 1.05 é o Kc ini do arroz com lâmina de água em clima subúmido e vento calmo a moderado, que é a condição padrão do FAO-56."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "",
+      "depois": "1.2",
+      "motivo": "FAO-56 Tab.12, Rice."
+    },
+    {
+      "coluna": "kc_final",
+      "antes": "",
+      "depois": "0.6",
+      "motivo": "FAO-56 Tab.12, Rice, faixa 0.90-0.60. No RS a irrigação é suprimida 10-15 dias após a floração plena (solos argilosos) e o grão seca no campo; o FAO-56 manda usar o Kc end baixo para culturas que secam no campo."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "antes": "",
+      "depois": "0.5",
+      "motivo": "FAO-56 Tab.22, Rice 0.5-1.0 m. Exceção à regra do limite superior: a própria FAO diz que o valor maior é para sequeiro e o menor para manejo de irrigação, e o solo fica inundado. A SOSBAI diz que o sistema radicular se concentra na parte mais superficial do solo."
+    },
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "alto",
+      "motivo": "Julgamento: lavouras de ~8 t/ha de grãos (Embrapa BPD 313; ZARC >7 t/ha) deixam muita resteva. Não achei fonte com t/ha de palha (ver pendência)."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "SOSBAI: produtores 'adotam a resteva do arroz como uma opção para alimentar animais'. É só a resteva/rebrote, não um uso forrageiro planejado."
+    },
+    {
+      "coluna": "codigo_pam",
+      "antes": "",
+      "depois": "40102",
+      "motivo": "Mesmo código da linha arroz. A PAM não separa os sistemas."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 6 (cultivares)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "BRS Atalanta - É uma cultivar de ciclo muito precoce, em torno de 100 dias"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 6 (cultivares)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "Risomarino CL [...] Ciclo de 145 dias para Santa Catarina. [...] SCS123 Pérola [...] A cultivar apresenta ciclo longo (135-144 dias)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 4 e 6",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "Para as cultivares de ciclo precoce (até 120 dias) e médio (entre 120 e 135 dias) [...] Para as cultivares de ciclo tardio (mais de 135 dias) [...] BRS Pampeira - Possui ciclo biológico de 133 dias da emergência à maturação"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 66, de 14/04/2026, ZARC arroz irrigado subtropical RS, ano-safra 2026/2027, Anexo",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/rio-grande-do-sul/PORTN62.PDF",
+      "trecho": "As cultivares de arroz foram classificadas em quatro grupos de características homogêneas: Grupo I (n ≤ 105 dias); Grupo II (106 dias ≤ n ≤ 120 dias); Grupo III (121 dias ≤ n ≤ 135 dias) e Grupo IV (n ≥ 136 dias), onde n expressa o número de dias da emergência à maturação fisiológica."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Steinmetz et al., Estádios de desenvolvimento de 10 cultivares de arroz irrigado expressos em graus-dia, XV Congresso Brasileiro de Agrometeorologia, Embrapa Clima Temperado, 2007",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/743981/1/CBAgro152007Estadios2081.pdf",
+      "trecho": "temperatura base (Tb) de 11ºC (INFELD et al., 1998), da emergência (i=1) até a data de cada estádio"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Meus, L. D. et al. Ecofisiologia do arroz visando altas produtividades. Santa Maria, 2020 (ISBN 978-65-992356-0-3), cap. 10 (SimulArroz e PlanejArroz); texto extraído por OCR, símbolos de grau corrigidos",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1127619/1/Steinmetz-ecofisiologia-digital.pdf",
+      "trecho": "a temperatura base (Tb) de 11 °C (Infeld et al., 1998), da emergência (i=1) a cada um dos seis estágios [...] As temperaturas cardinais de emissão de folhas usadas no cálculo da f(T) são 11 °C (Ellis et al., 1993; Infeld et al., 1998), 26 °C (Ellis et al., 1993) e 40 °C (Gao et al., 1992)"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 3, Tabela 3.2 (fonte: Yoshida 1981; lida na imagem da p. 33)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "Tabela 3.2 - Temperaturas críticas mínimas, máximas e ótimas [...] Emergência e estabelecimento da plântula 12-13 / 35 / 25-30; Perfilhamento 9-16 / 33 / 25-31; Iniciação do primórdio floral 15 / 35 / 25-30; Emergência da panícula 15-20 / 38 / 25-28; Antese 22 / 35 / 30-33; Maturação 12-18 / 30 / 20-25. (1) Refere-se à temperatura média diária do ar, com exceção da fase de germinação."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 3",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "A temperatura ótima para o desenvolvimento do arroz situa-se na faixa de 20 a 35°C, para a germinação, de 30 a 33°C, para a floração, e de 20 a 25°C, para a maturação (Tabela 3.2)."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 66, de 14/04/2026, ZARC arroz irrigado subtropical RS, ano-safra 2026/2027, Anexo",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/rio-grande-do-sul/PORTN62.PDF",
+      "trecho": "Foram restringidos os decêndios com risco de ocorrência de três ou mais dias consecutivos temperaturas mínimas do ar ≤ 15 °C na fase de pré-floração da cultura e com temperatura máxima do ar ≥ 35 °C na fase de floração plena da cultura; Foi considerado o risco de ocorrência de geadas por meio da probabilidade de ocorrência de valores de temperaturas mínimas menores a 2 °C observadas no abrigo meteorológico."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 3",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "A planta de arroz é mais sensível a baixas temperaturas na fase de pré-floração ou, mais especificamente, na microsporogênese (estádio R2 [...]). A faixa crítica de temperatura para induzir esterilidade de espiguetas é de 15 a 17°C, para os genótipos tolerantes ao frio, e de 17 a 19°C, para os mais sensíveis. [...] A ocorrência de altas temperaturas diurnas (superiores a 35°C) também pode causar esterilidade de espiguetas. A fase mais sensível do arroz a altas temperaturas é a floração."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 6.1.6",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "Os estresses causados pelos extremos de temperatura do ar baixa (inferior a 17ºC) ou alta (superior a 35ºC) são de ocorrência comum no sul do Brasil."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 8.3",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "Partindo da consideração que a demanda média de água do arroz é de cerca de 12 mm/dia (evapotranspiração = 7,2 mm/dia e perdas = 4,8 mm/dia)"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 8.1",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "um volume de água médio de 6.000 a 12.000 m3/ha (vazão de 0,70 a 1,75 L/s.ha), para um período médio de irrigação de 80 a 100 dias."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Parfitt, Silva, Bueno, Timm, Campos, Aires, Timm. Quantificação da Demanda Hídrica na Cultura do Arroz em Função do Manejo da Irrigação por Inundação. Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 313, 2018",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1103517/1/BOLETIM313.pdf",
+      "trecho": "Segundo Mota et al. (1990), a evapotranspiração da cultura do arroz situa-se em torno de 650 mm. Entretanto, a quantidade total de água necessária para atender a lavoura de arroz inclui outros componentes, como a água necessária para a saturação do solo e formação da lâmina de irrigação, bem como a água perdida lateralmente e por percolação profunda"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Stone, L. F. Irrigação. In: Santos, Stone & Vieira (eds.), A Cultura do Arroz no Brasil, 2ª ed., Embrapa Arroz e Feijão, 2006, cap. 17",
+      "url": "https://ainfo.cnptia.embrapa.br/digital/bitstream/doc/193299/1/lv-cultura-arroz-Brasil-2ed.cap17.pdf",
+      "trecho": "Para o Rio Grande do Sul, Mota et al. (1990) verificaram que a evapotranspiração diária variou de 6,8 a 8,7 mm durante o período compreendido entre 30 dias após a emergência e dez dias após a floração do arroz."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "FAO, Irrigation Water Management Training Manual No. 3: Irrigation Water Needs, cap. 3, Tab.14, 1986",
+      "url": "https://www.fao.org/4/s2022e/s2022e07.htm",
+      "trecho": "The crop water need (ET crop) is defined as the depth (or amount) of water needed to meet the water loss through evapotranspiration. [...] Rice (paddy) 450-700 high"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CONTEXTO, NÃO USADO NO VALOR (lâmina total de irrigação, com perdas): Parfitt, Silva, Bueno, Timm, Campos, Aires, Timm. Quantificação da Demanda Hídrica na Cultura do Arroz em Função do Manejo da Irrigação por Inundação. Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 313, 2018",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1103517/1/BOLETIM313.pdf",
+      "trecho": "Para suprir a necessidade de água do arroz, estima-se que venha sendo utilizado, atualmente, um volume médio de 8 a 10 mil m3 ha-1 de água, para um período médio de irrigação de 80 a 100 dias"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 3 (chuva)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "a precipitação pluvial durante o período de irrigação corresponde, em média, a 46% do total da água consumida por evapotranspiração."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 66, de 14/04/2026, ZARC arroz irrigado subtropical RS, ano-safra 2026/2027, Anexo",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/rio-grande-do-sul/PORTN62.PDF",
+      "trecho": "Por se tratar de uma cultura irrigada, assume-se que o risco de déficit hídrico é sempre nulo, uma vez que as necessidades de água da cultura são sempre atendidas pela irrigação."
+    },
+    {
+      "colunas": [
+        "kc_inicial"
+      ],
+      "fonte": "FAO-56, cap. 6, Kc ini for paddy rice e Tab.14",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "For rice growing in paddy fields with a water depth of 0.10-0.20 m, the ETc during the initial stage mainly consists of evaporation from the standing water. The Kc ini in Table 12 is 1.05 for a sub-humid climate with calm to moderate wind speeds."
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 Tab.12 (t12.txt extraído)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Rice 1.05 1.20 0.90-0.60 1"
+    },
+    {
+      "colunas": [
+        "kc_final"
+      ],
+      "fonte": "FAO-56, cap. 6, Kc end",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "crops that are allowed to senesce and dry out in the field before harvest receive less frequent irrigation or no irrigation at all during the late season stage. Consequently, both the soil surface and vegetation are dry and the value for Kc end will be relatively small"
+    },
+    {
+      "colunas": [
+        "kc_final"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 8.3.3",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "Em solos argilosos, de difícil drenagem, é possível suspender a irrigação entre 10 e 15 dias após a floração plena, mas em solos bem drenados (arenosos) indica-se postergar a supressão da irrigação."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 Tab.22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Rice 0.5-1.0 ... The smaller values for Zr may be used for irrigation scheduling and the larger values for modeling soil water stress or for rainfed conditions."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 4.7.2 (toxidez por ácidos orgânicos)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "No sistema plantio direto, em que a palha fica acumulada na superfície do solo, ocorre maior produção de ácidos orgânicos na parte mais superficial do solo, justamente onde se concentra o sistema radicular do arroz"
+    },
+    {
+      "colunas": [
+        "aporte_biomassa"
+      ],
+      "fonte": "Parfitt, Silva, Bueno, Timm, Campos, Aires, Timm. Quantificação da Demanda Hídrica na Cultura do Arroz em Função do Manejo da Irrigação por Inundação. Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 313, 2018",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1103517/1/BOLETIM313.pdf",
+      "trecho": "Nessa região são cultivados anualmente 1,2 milhões de hectares, sendo que a produtividade média está entre as mais altas do mundo, próxima a 8 mil kg ha-1."
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 9.4.8 (manejo da área na entressafra)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "normalmente após a colheita do arroz, produtores e/ou proprietários do campo adotam a resteva do arroz como uma opção para alimentar animais"
+    },
+    {
+      "colunas": [
+        "tipos"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 5.2.3 (sistema plantio direto)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "Normalmente, porém, tem-se sucesso na semeadura direta do arroz sobre a resteva de outra cultura de verão, mais comumente soja, sorgo ou milho"
+    }
+  ],
+  "pendencias": [
+    "codigo_pam 40102 é o mesmo da linha arroz: a PAM do IBGE não separa arroz irrigado de arroz de terras altas. Qualquer cruzamento com a PAM (área, produção) mistura os dois sistemas; no RS e em SC quase toda a área é irrigada, no Centro-Norte predomina terras altas.",
+    "Frio (risco central no RS), sem coluna: a esterilidade de espiguetas por frio na microsporogênese (R2, 7-14 dias antes da emissão das panículas) ocorre com temperatura de 15-17 °C nos genótipos tolerantes e 17-19 °C nos sensíveis (SOSBAI). O ZARC RS restringe decêndios com 3 ou mais dias seguidos de Tmin ≤15 °C na pré-floração e usa como critério auxiliar Tmed <14 °C no 1º decêndio após a emergência e <19 °C nos 3 últimos decêndios. tmax_critica_c só cobre calor; sensivel_geada=true não captura esse risco. Sugestão: criar uma coluna tmin_critica_c (15 °C, critério do ZARC) aplicada à fase de pré-floração.",
+    "Água: agua_ciclo 580-720 mm é CONSUMO (ET), estimado como ET média de 7,2 mm/dia (SOSBAI) × período de irrigação de 80-100 dias (SOSBAI). Bate com os ~650 mm de Mota et al. 1990 (citado pela Embrapa BPD 313; não li o original). A conta cobre só o período inundado: a ET entre a semeadura e o início da irrigação em V3/V4 (~15 dias após a emergência) e a da fase final após a supressão ficam de fora, então 720 pode subestimar ciclos longos (tardias de SC, 145 d).",
+    "Água: o volume de irrigação é outra coisa e NÃO entrou na coluna: 6.000-12.000 m³/ha (600-1.200 mm, SOSBAI) ou 8-10 mil m³/ha (Embrapa BPD 313), porque inclui saturação do solo, formação da lâmina, percolação, fluxo lateral e perdas em canais. A pendência da linha arroz citava 688-1.210 mm da Embrapa; isso também é lâmina aplicada (1,0-1,4 L/s/ha por 80-100 d), não ET.",
+    "Motor: o filtro 'precisa de mais água do que a chuva dá' vai eliminar o arroz irrigado em quase todo lugar se tratar a cultura como sequeiro. O ZARC assume déficit hídrico nulo por ser irrigado. O motor precisa de uma regra própria: só sugerir arroz_irrigado em terras baixas/várzeas com água de irrigação disponível, e não aplicar o filtro de chuva (ou tratar a irrigação como entrada). Não há coluna para isso hoje. A chuva no período de irrigação cobre em média 46% da ET (SOSBAI).",
+    "Kc: usei FAO-56 Tab.12 (1.05/1.20/0.60), já na condição padrão. Não achei Kc medido em arroz INUNDADO no RS em fonte primária que eu tenha lido. O único Kc local que encontrei é o de Mota (1976), ~1.15 na maior parte do ciclo, citado por um artigo da Ciência Rural (1998) que não abriu, e é Kc sobre tanque/ETo antiga, não Penman-Monteith. O Kc da UFSM (Tonetto, Petry et al. 2024: 0.72/1.13/0.95) é de arroz por aspersão, não inundado. Se o time achar o trabalho de Kc da Embrapa Clima Temperado ou do IRGA com ETo Penman-Monteith, converter com a eq. 62 do FAO-56.",
+    "kc_final 0.6: a FAO dá 0.90-0.60. Escolhi a ponta baixa porque no RS a irrigação é suprimida 10-15 dias após a floração em solos argilosos e o grão seca no campo. Em solos arenosos a SOSBAI manda adiar a supressão, o que puxaria o Kc end para perto de 0.9.",
+    "profundidade_raiz_m = 0.5 foge da regra do limite superior do BRIEF. Justificativa: a própria FAO-56 diz que o limite superior serve para sequeiro e o inferior para manejo de irrigação, e o arroz irrigado passa 80-100 dias com o solo inundado. Se o time preferir manter a regra uniforme, use 1.0 (mesma fonte). Para o balanço hídrico isso só importa se o motor simular o arroz irrigado sem irrigação.",
+    "Ciclo 100-145 d é da EMERGÊNCIA à maturação (SOSBAI e ZARC). Da semeadura são mais 5-10 dias (ZARC: 'intervalo médio entre 5 e 10 dias para ocorrência da emergência'), e no sistema convencional com solo frio a emergência pode atrasar mais de 20 dias (SOSBAI). O ZARC conta até a maturação fisiológica; da maturação fisiológica até a colheita são mais 1-2 semanas (SOSBAI). Se o motor conta da semeadura à colheita, o teto realista fica perto de 160 d.",
+    "temp_otima 20-33 é o envelope das ótimas das fases após a germinação na Tab.3.2 da SOSBAI (Yoshida 1981): maturação 20-25 e antese 30-33. O núcleo das fases vegetativas é 25-30/31 °C. O '20 a 35 °C' que a linha arroz usa (Embrapa 500 Perguntas) aparece na SOSBAI como ótima da germinação. Os modelos do RS usam ótima de 26 °C para emissão de folhas (Meus et al. 2020).",
+    "Qualitativas como julgamento: aporte_biomassa=alto (não achei t/ha de palha de arroz irrigado em fonte primária; só a produtividade de grãos ~8 t/ha), cobertura_solo=media, raiz_profunda=false, tipos=comercial. A SOSBAI fala da resteva só como pastejo e como problema (ácidos orgânicos, metano), não como cobertura.",
+    "Fonte da SOSBAI: usei a edição de 2025 (XXXIV Reunião Técnica, Santa Maria), a disponível no site. Os números de água (6.000-12.000 m³/ha; 7,2 mm/dia de ET) e as temperaturas podem ter sido herdados de edições anteriores sem mudança."
+  ],
+  "pendencias_resolvidas": [
+    "Pendência da linha arroz: 'O arroz irrigado por inundação (RS/SC) fica fora [...] Se o app precisar dele, crie uma linha separada' — resolvida com esta linha nova arroz_irrigado (Kc ini 1.05; água como ET, não como lâmina; ciclo até 145 d)."
+  ]
+}
