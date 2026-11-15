@@ -2,6 +2,7 @@
 from datetime import date, datetime
 
 from sqlalchemy import CheckConstraint, Date, DateTime, Float, ForeignKey, SmallInteger, String, func
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.db import Base
@@ -46,3 +47,6 @@ class ClimaMensal(Base):
     dias_chuva_forte: Mapped[int | None] = mapped_column(SmallInteger)
     maior_seq_seca_dias: Mapped[int | None] = mapped_column(SmallInteger)
     dias_validos: Mapped[int | None] = mapped_column(SmallInteger)
+    # Graus-dia do mês por Tb inteira ({"0": 512.3, ..., "20": 3.1}), sem teto. {} = mês sem temperatura completa;
+    # NULL = célula baixada antes desta coluna (o serviço baixa de novo).
+    gd_por_tb: Mapped[dict | None] = mapped_column(JSONB(none_as_null=True))

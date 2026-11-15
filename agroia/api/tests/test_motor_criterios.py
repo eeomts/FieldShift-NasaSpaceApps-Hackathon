@@ -1,0 +1,221 @@
+"""Seis critérios 0-1: fórmula, limites 0 e 1, explicação, evidências e lacunas."""
+import pytest
+
+from app.services.motor.criterios import calcular_notas
+from app.services.motor.modelo import Estrategia
+from app.services.motor.relevo_service import Relevo
+from motor_helpers import PLANO, clima, cultura, entradas, item
+
+
+def notas(itens, culturas, **mudancas):
+    e = entradas(itens, culturas, **mudancas)
+    return calcular_notas(Estrategia("x", "x", "atual", tuple(itens)), e)
+
+
+# --- água: ETc anual / chuva anual (chuva padrão: 1200 mm; ET0 100 mm/mês)
+def kc1(id_="c", **kw):
+    return cultura(id_, kc_inicial=1.0, kc_medio=1.0, kc_final=1.0, **kw)
+
+
+def test_agua_meio_ano_de_kc_1_usa_metade_da_chuva():
+    n, _ = notas([item("c", 1, 6)], [kc1()])
+    assert n["agua"].nota == pytest.approx(0.5)
+    assert "600 mm" in n["agua"].explicacao and "1200 mm" in n["agua"].explicacao
+
+
+def test_agua_limites_zero_e_um():
+    n, _ = notas([item("c", 1, 12, perene=True)], [kc1(perene=True)], clima=clima(chuva=50.0))  # ETc 1200 contra 600 mm
+    assert n["agua"].nota == 0.0
+    n, _ = notas([item("c", 1, 6)], [kc1()], clima=clima(et0=0.0))
+    assert n["agua"].nota == 1.0
+
+
+def test_agua_consorcio_vale_o_componente_que_mais_usa_agua():
+    a, b = kc1("a"), cultura("b", kc_inicial=0.5, kc_medio=0.5, kc_final=0.5)
+    n, _ = notas([item("a", 1, 6), item("b", 1, 6)], [a, b])
+    assert n["agua"].nota == pytest.approx(0.5)  # não soma: 600 mm, não 900 mm
+
+
+def test_agua_irrigacao_sim_diz_que_a_irrigacao_cobre_a_falta():
+    n, _ = notas([item("c", 1, 6)], [kc1()], irrigacao="sim")
+    assert "irrigação cobre a falta" in n["agua"].explicacao
+    n, _ = notas([item("c", 1, 6)], [kc1()], irrigacao="parte")
+    assert "só parte" in n["agua"].explicacao
+
+
+def test_agua_evidencias_com_numero_fonte_e_periodo():
+    n, _ = notas([item("c", 1, 6)], [kc1()])
+    etc, chuva = n["agua"].evidencias
+    assert (etc.valor, etc.unidade, chuva.valor, chuva.unidade) == (600.0, "mm", 1200.0, "mm")
+    assert chuva.fonte == "NASA POWER (teste)" and chuva.periodo == "1991–2020" and "FAO-56" in etc.fonte
+
+
+def test_agua_confianca_baixa_mostra_faixa_e_nao_so_um_numero():
+    n, _ = notas([item("c", 1, 6)], [kc1(confianca_parametros="baixa")])
+    faixa = n["agua"].evidencias[-1]
+    assert faixa.valor == "300–500" and "faixa" in faixa.texto and "confiança baixa" in n["agua"].explicacao
+
+
+def test_agua_sem_chuva_do_local_ou_sem_kc_e_sem_dado():
+    cl = clima()
+    cl.chuva_mm[3] = None
+    n, lac = notas([item("c", 1, 6)], [kc1()], clima=cl)
+    assert n["agua"].nota is None and lac
+    n, lac = notas([item("c", 1, 6)], [cultura("c", kc_medio=None)])
+    assert n["agua"].nota is None and any("Kc" in l for l in lac)
+
+
+# --- terra: 0,4 x meses/12 + 0,3 x biomassa + 0,3 x fixadora
+def test_terra_maximo_com_o_ano_todo_palha_alta_e_leguminosa():
+    a, b = cultura("a", aporte_biomassa="alto"), cultura("b", fixa_nitrogenio=True)
+    n, _ = notas([item("a", 1, 6), item("b", 7, 12)], [a, b])
+    assert n["terra"].nota == pytest.approx(1.0)
+
+
+def test_terra_palha_baixa_sem_leguminosa_e_seis_meses():
+    n, _ = notas([item("c", 1, 6)], [cultura("c", aporte_biomassa="baixo")])
+    assert n["terra"].nota == pytest.approx(0.4 * 6 / 12 + 0.3 * 0.33)
+
+
+def test_terra_usa_a_maior_palha_da_rotacao():
+    a, b = cultura("a", aporte_biomassa="baixo"), cultura("b", aporte_biomassa="medio")
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6)], [a, b])
+    assert n["terra"].nota == pytest.approx(0.4 * 6 / 12 + 0.3 * 0.66)
+
+
+def test_terra_classe_desconhecida_ou_vazia_e_sem_dado_com_lacuna():
+    n, lac = notas([item("c", 1, 6)], [cultura("c", aporte_biomassa="enorme")])
+    assert n["terra"].nota is None and any("desconhecida" in l for l in lac)
+    n, lac = notas([item("c", 1, 6)], [cultura("c", aporte_biomassa=None)])
+    assert n["terra"].nota is None and lac
+
+
+def test_terra_aceita_a_escala_feminina():
+    n, _ = notas([item("c", 1, 12)], [cultura("c", aporte_biomassa="alta")])
+    assert n["terra"].nota == pytest.approx(0.4 + 0.3)
+
+
+# --- erosão: 1 - (1 - parcela coberta) x fator do declive
+FORTE_NO_VERAO = [10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]  # toda a chuva forte em jan-mar
+
+
+def test_erosao_chuva_forte_toda_coberta_em_terreno_plano_da_nota_maxima():
+    n, _ = notas([item("c", 1, 3)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=PLANO)
+    assert n["erosao"].nota == 1.0
+
+
+def test_erosao_chuva_forte_toda_descoberta_em_declive_forte_da_zero():
+    n, _ = notas([item("c", 7, 9)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("montanhoso", 60.0, "SRTM"))
+    assert n["erosao"].nota == 0.0
+    n, _ = notas([item("c", 7, 9)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("forte_ondulado", 30.0, "SRTM"))
+    assert n["erosao"].nota == 0.0
+
+
+@pytest.mark.parametrize("classe, fator", [("plano", 0.25), ("suave_ondulado", 0.5), ("ondulado", 0.75)])
+def test_erosao_fator_do_declive(classe, fator):
+    n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo(classe, None, "q7"))
+    parcela = 2 / 3
+    assert n["erosao"].nota == pytest.approx(1 - (1 - parcela) * fator)
+
+
+def test_erosao_sem_declividade_usa_fator_medio_e_registra_lacuna():
+    n, lac = notas([item("c", 7, 9)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=None)
+    assert n["erosao"].nota == pytest.approx(0.5) and any("declividade" in l for l in lac)
+
+
+def test_erosao_evidencias_trazem_parcela_e_declividade_com_fonte():
+    n, _ = notas([item("c", 1, 3)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("plano", 1.5, "SRTM 30 m"))
+    parcela, declive = n["erosao"].evidencias
+    assert parcela.valor == 100.0 and parcela.unidade == "%" and (declive.valor, declive.fonte) == (1.5, "SRTM 30 m")
+
+
+def test_erosao_sem_chuva_forte_no_dado_e_sem_nota():
+    n, lac = notas([item("c", 1, 3)], [cultura("c")], clima=clima(forte=[None] * 12))
+    assert n["erosao"].nota is None and lac
+
+
+def test_erosao_cultura_fora_do_catalogo_ainda_cobre_o_solo():
+    n, _ = notas([item(None, 1, 3)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=PLANO)
+    assert n["erosao"].nota == 1.0
+
+
+# --- pragas
+def test_pragas_uma_cultura_so_da_zero():
+    n, _ = notas([item("a", 1, 6)], [cultura("a")])
+    assert n["pragas"].nota == 0.0
+
+
+def test_pragas_duas_familias_distintas_dao_um():
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6)], [cultura("a"), cultura("b", familia_botanica="Fabaceae")])
+    assert n["pragas"].nota == 1.0
+
+
+def test_pragas_mesma_familia_seguida_desconta_e_nunca_fica_negativa():
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6)], [cultura("a"), cultura("b")])
+    assert n["pragas"].nota == 0.0
+    a, b = cultura("a"), cultura("b", familia_botanica="Fabaceae")
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6), item("a", 7, 9)], [a, b])  # P F P: (2-1)/(3-1) = 0,5; a volta P->P desconta 0,2
+    assert n["pragas"].nota == pytest.approx(0.3)
+
+
+def test_pragas_ordena_pelo_mes_de_inicio():
+    a, b = cultura("a"), cultura("b", familia_botanica="Fabaceae")
+    n1, _ = notas([item("a", 1, 3), item("a", 4, 6), item("b", 7, 9)], [a, b])
+    n2, _ = notas([item("b", 7, 9), item("a", 1, 3), item("a", 4, 6)], [a, b])
+    assert n1["pragas"].nota == n2["pragas"].nota
+
+
+def test_pragas_sem_familia_e_lacuna():
+    n, lac = notas([item("a", 1, 3), item("b", 4, 6)], [cultura("a", familia_botanica=None), cultura("b")])
+    assert n["pragas"].nota == 0.0 and any("família" in l for l in lac)  # sobra 1 cultura com família
+    n, _ = notas([item("a", 1, 3)], [cultura("a", familia_botanica=None)])
+    assert n["pragas"].nota is None
+
+
+# --- renda
+@pytest.mark.parametrize("n_comerciais, esperado", [(0, 0.0), (1, 0.5), (2, 0.8), (3, 1.0), (4, 1.0)])
+def test_renda_pelo_numero_de_culturas_comerciais(n_comerciais, esperado):
+    itens = [item(f"c{i}", 1 + i, 1 + i) for i in range(n_comerciais)] + [item("capa", 12, 12)]
+    culturas = [cultura(f"c{i}") for i in range(n_comerciais)] + [cultura("capa", tipos=("cobertura",))]
+    n, _ = notas(itens, culturas)
+    assert n["renda"].nota == esperado
+
+
+# --- animais
+@pytest.mark.parametrize("classe, esperado", [("baixo", 0.3), ("medio", 0.6), ("alto", 1.0)])
+def test_animais_pela_classe_do_valor_forrageiro(classe, esperado):
+    n, _ = notas([item("c", 1, 3)], [cultura("c", valor_forrageiro=classe)])
+    assert n["animais"].nota == esperado
+
+
+def test_animais_usa_o_maior_da_rotacao():
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6)], [cultura("a", valor_forrageiro="baixo"), cultura("b", valor_forrageiro="alto")])
+    assert n["animais"].nota == 1.0
+
+
+def test_animais_vazio_em_todas_e_ignorado_com_lacuna():
+    n, lac = notas([item("a", 1, 3)], [cultura("a", valor_forrageiro=None)])
+    assert n["animais"].nota is None and "Sem dado" in n["animais"].explicacao and lac
+
+
+def test_animais_cultura_vazia_nao_derruba_a_que_tem_valor():
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6)], [cultura("a", valor_forrageiro=None), cultura("b", valor_forrageiro="medio")])
+    assert n["animais"].nota == 0.6
+
+
+def test_animais_valor_desconhecido_vira_lacuna_sem_chute():
+    n, lac = notas([item("a", 1, 3)], [cultura("a", valor_forrageiro="superalto")])
+    assert n["animais"].nota is None and any("desconhecido" in l for l in lac)
+
+
+# --- cultura fora do catálogo
+def test_cultura_fora_do_catalogo_vira_lacuna_e_nao_entra_nas_notas():
+    n, lac = notas([item(None, 1, 3, texto="amendoim"), item("a", 4, 6)], [cultura("a")])
+    assert any("amendoim" in l and "sem dados suficientes" in l.lower() for l in lac)
+    assert n["renda"].nota == 0.5 and n["terra"].nota is not None
+
+
+def test_so_cultura_fora_do_catalogo_deixa_as_notas_de_cultura_sem_dado():
+    n, lac = notas([item(None, 1, 3, texto="amendoim")], [cultura("a")])
+    assert all(n[c].nota is None for c in ("agua", "terra", "pragas", "renda", "animais"))
+    assert n["erosao"].nota is not None  # o calendário sozinho já diz quando o solo está coberto

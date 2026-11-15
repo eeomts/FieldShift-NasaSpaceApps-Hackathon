@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from datetime import date, timedelta
 
+from app.services.clima.graus_dia import gd_mensal_por_tb, tmed_do_dia
 from app.services.clima.limiares import (
     BASE_FIM,
     BASE_INICIO,
@@ -41,6 +42,7 @@ class LinhaMensal:
     dias_chuva_forte: int | None
     maior_seq_seca_dias: int | None
     dias_validos: int
+    gd_por_tb: dict[str, float] | None = None  # GD do mês por Tb inteira 0-20; {} = mês sem temperatura completa
 
 
 def percentil(valores: list[float], p: float) -> float | None:
@@ -113,6 +115,7 @@ def _linha_do_mes(ano: int, mes: int, dias: list[DiaClima], limite_forte: float 
         maior_seq_seca_dias=_maior_sequencia_seca(dias),
         # Dias com chuva, Tmax e Tmin presentes (os que sustentam as contagens).
         dias_validos=sum(d.chuva is not None and d.tmax is not None and d.tmin is not None for d in dias),
+        gd_por_tb=gd_mensal_por_tb((tmed_do_dia(d.tmax, d.tmin) for d in dias), ano, mes),
     )
 
 
