@@ -52,6 +52,20 @@ def test_celula_vazia_vira_none_e_nao_zero(tmp_path):
     assert milho.kc_medio is None  # coluna que nem existe no arquivo
 
 
+def test_estados_validos_vira_tupla_em_maiuscula_e_vazio_e_sem_restricao(tmp_path):
+    csv = tmp_path / "culturas.csv"
+    csv.write_text(
+        "id,nome,tipos,estados_validos\n"
+        "trevo,Trevo,cobertura,ga| al\n"
+        "milho,Milho,comercial,\n",
+        encoding="utf-8",
+    )
+    c = ler_catalogo(csv, "US")
+    assert c["trevo"].estados_validos == ("GA", "AL") and "estados_validos" not in c["trevo"].extras
+    assert c["trevo"].vale_em("GA") and not c["trevo"].vale_em("IA") and c["trevo"].vale_em(None)
+    assert c["milho"].estados_validos == () and c["milho"].vale_em("IA") and c["milho"].vale_em(None)
+
+
 def test_eua_sem_csv_devolve_vazio_e_avisa(monkeypatch, tmp_path, caplog):
     monkeypatch.setitem(catalogo.CSV_POR_PAIS, "US", tmp_path / "eua" / "culturas.csv")
     with caplog.at_level(logging.WARNING):

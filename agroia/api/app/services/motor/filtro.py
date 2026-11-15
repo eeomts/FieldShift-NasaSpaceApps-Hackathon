@@ -71,6 +71,16 @@ def _equipamento(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: 
             achados.append(Achado("equipamento", f"{c.nome}: falta máquina para o {etapa}; serve {' ou '.join(nomes)}.", True))
 
 
+def _regiao(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    """Regra 13: base da cultura válida só em certos estados. Fora da lista, só avisa (a candidata nem é gerada)."""
+    if not c.estados_validos:
+        return  # vazio = sem restrição
+    if e.estado is None:
+        lac.append(f"{c.nome}: não sabemos o estado da fazenda, então não checamos se a base dela vale para sua região.")
+    elif not c.vale_em(e.estado):
+        achados.append(Achado("sem_dado_regiao", f"{c.nome}: sem dado para sua região ({e.estado}); a base dela vale para {', '.join(c.estados_validos)}.", False))
+
+
 def _graus_dia(c: CulturaMotor, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
     minimo, tb = c.graus_dia_ciclo_min, c.temp_base_c
     if minimo is None or tb is None:
@@ -138,6 +148,7 @@ def achados_do_item(item: ItemRotacao, c: CulturaMotor, e: EntradasMotor, da_atu
     lac: list[str] = []
     if not da_atual and c.id in e.excluidas:  # a atual é escolha do produtor; só as candidatas respeitam a exclusão
         achados.append(Achado("excluida", f"Você disse que não planta {c.nome}.", True))
+    _regiao(c, e, achados, lac)
     _equipamento(c, e, achados, lac)
     if c.id == ARROZ_IRRIGADO and e.irrigacao != "sim":
         achados.append(Achado("arroz_sem_irrigacao", f"{c.nome} só entra com irrigação ou várzea e você não marcou irrigação.", True))

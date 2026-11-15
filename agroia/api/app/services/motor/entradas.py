@@ -10,6 +10,7 @@ from app.services.clima.clima_service import ClimaService, media_por_mes
 from app.services.clima.graus_dia import TB_MAX, TB_MIN
 from app.services.clima.limiares import BASE_FIM, BASE_INICIO
 from app.services.motor.catalogo import CulturaMotor, catalogo_do_pais, equipamentos_por_cultura
+from app.services.motor.estados import estado_do_local
 from app.services.motor.local import pais_e_codigo
 from app.services.motor.modelo import ItemRotacao
 from app.services.motor.relevo_service import Relevo
@@ -90,6 +91,7 @@ class EntradasMotor:
     equipamentos: frozenset[str] | None = None  # None = não respondeu (não filtra)
     equipamentos_cultura: dict[str, dict[str, set[str]]] = field(default_factory=dict)
     prioridades: list[str] = field(default_factory=list)
+    estado: str | None = None  # UF ou sigla USPS da fazenda; None = não sabemos (regra 13 não filtra)
 
 
 def rotacao_atual(f: Fazenda) -> tuple[ItemRotacao, ...]:
@@ -108,7 +110,7 @@ def montar_entradas(
     """Entradas do motor para a fazenda. Sem local, país fora de BR/US, catálogo vazio ou calendário vazio: erro de negócio."""
     if f.lat is None or f.lon is None:
         raise ErroDeNegocio(422, MSG_SEM_LOCAL)
-    pais = f.pais or pais_e_codigo(f.lat, f.lon)[0]
+    pais, codigo_local = (f.pais, f.codigo_local) if f.pais else pais_e_codigo(f.lat, f.lon)
     if pais not in ("BR", "US"):
         raise ErroDeNegocio(422, MSG_PAIS)
     catalogo = catalogo_por_pais(pais)
@@ -130,4 +132,5 @@ def montar_entradas(
         equipamentos=ids_equipamentos or None,
         equipamentos_cultura=equipamentos if equipamentos is not None else equipamentos_por_cultura(),
         prioridades=list(f.prioridades or []),
+        estado=estado_do_local(pais, codigo_local),
     )

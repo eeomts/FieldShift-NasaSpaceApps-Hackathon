@@ -64,10 +64,15 @@ class CulturaMotor:
     nome_zarc: str | None = None  # só BR
     codigo_nass: str | None = None  # só US
     calendario_usda: str | None = None  # só US
+    estados_validos: tuple[str, ...] = ()  # siglas (UF no BR, USPS nos EUA); vazio = sem restrição (regra 13)
     extras: dict[str, str] = field(default_factory=dict, compare=False)  # colunas novas do CSV, sem tipo
 
     def tem_tipo(self, tipo: str) -> bool:
         return tipo in self.tipos
+
+    def vale_em(self, estado: str | None) -> bool:
+        """A base da cultura vale no estado? Sem lista ou sem estado conhecido, não restringe."""
+        return not self.estados_validos or estado is None or estado in self.estados_validos
 
 
 def _texto(v: str | None) -> str | None:
@@ -90,7 +95,7 @@ def _lista(v: str | None) -> tuple[str, ...]:
 
 
 def _linha_para_cultura(linha: dict[str, str], pais: str) -> CulturaMotor:
-    conhecidas = {"id", "tipos", "fontes", *CAMPOS_NUMERICOS, *CAMPOS_BOOLEANOS, *CAMPOS_TEXTO}
+    conhecidas = {"id", "tipos", "fontes", "estados_validos", *CAMPOS_NUMERICOS, *CAMPOS_BOOLEANOS, *CAMPOS_TEXTO}
     valores = {c: _numero(linha.get(c)) for c in CAMPOS_NUMERICOS}
     valores |= {c: _booleano(linha.get(c)) for c in CAMPOS_BOOLEANOS}
     valores |= {c: _texto(linha.get(c)) for c in CAMPOS_TEXTO}
@@ -99,6 +104,7 @@ def _linha_para_cultura(linha: dict[str, str], pais: str) -> CulturaMotor:
         pais=pais,
         tipos=_lista(linha.get("tipos")),
         fontes=_lista(linha.get("fontes")),
+        estados_validos=tuple(e.upper() for e in _lista(linha.get("estados_validos"))),
         extras={k: v for k, v in linha.items() if k not in conhecidas and _texto(v)},
         **valores,
     )

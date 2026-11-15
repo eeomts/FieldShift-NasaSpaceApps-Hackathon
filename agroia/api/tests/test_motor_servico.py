@@ -97,6 +97,23 @@ def test_entradas_lidas_da_fazenda():
     assert [(i.cultura_id, i.inicio_mes, i.fim_mes) for i in e.atual] == [("soja", 10, 2), ("milho", 2, 6)]
 
 
+def test_estado_da_fazenda_vem_do_codigo_do_local():
+    assert montar(fazenda(codigo_local="5218805")).estado == "GO"
+    assert montar(fazenda(pais="US", codigo_local="19169")).estado == "IA"
+    assert montar(fazenda(codigo_local=None)).estado is None  # sem código: não sabemos
+
+
+def test_analise_nao_sugere_cultura_de_outro_estado_e_a_atual_ganha_aviso():
+    cs = {c.id: c for c in CULTURAS}
+    cs["crotalaria"] = replace(cs["crotalaria"], estados_validos=("GA",))
+    cs["soja"] = replace(cs["soja"], estados_validos=("GA",))
+    a = analisar_entradas(montar(fazenda(pais="US", codigo_local="19169"), cs))  # condado de Iowa
+    assert not any("crotalaria" in (i.cultura_id or "") for r in a.melhores for i in r.estrategia.itens)
+    assert "sem_dado_regiao" in [x.codigo for x in a.atual.alertas]  # a soja está na atual
+    sem_estado = analisar_entradas(montar(fazenda(pais="US", codigo_local=None), cs))
+    assert any("não sabemos o estado" in l for l in sem_estado.atual.lacunas)
+
+
 def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():
     e = montar(fazenda(equipamentos=[{"equipamento_id": None, "texto_original": "?"}]))
     assert e.equipamentos is None
