@@ -3,8 +3,26 @@
 MESES = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 
 
+# Classe do CSV em português de produtor (as chaves internas, como CLASSE_BIOMASSA, não mudam)
+EXIBE_PALHADA = {"baixo": "baixa", "baixa": "baixa", "medio": "média", "media": "média", "alto": "alta", "alta": "alta"}
+EXIBE_FORRAGEIRO = {"nenhum": "nenhum", "baixo": "baixo", "medio": "médio", "alto": "alto"}
+
+
+def classe_da_palha_texto(classe: str) -> str:
+    return EXIBE_PALHADA.get(classe, classe)
+
+
+def classe_forrageira_texto(classe: str) -> str:
+    return EXIBE_FORRAGEIRO.get(classe, classe)
+
+
 def num(v: float, casas: int = 2) -> str:
     return f"{v:.{casas}f}".replace(".", ",")
+
+
+def inteiro(v: float) -> str:
+    """Inteiro com ponto de milhar: 1150 vira '1.150'."""
+    return f"{v:,.0f}".replace(",", ".")
 
 
 def pct(v: float) -> str:

@@ -23,12 +23,18 @@ class ItemRotacao:
 
 
 @dataclass(frozen=True)
+class Alerta:
+    codigo: str
+    texto: str
+
+
+@dataclass(frozen=True)
 class Estrategia:
     id: str
     nome: str
     origem: Origem
     itens: tuple[ItemRotacao, ...]
-    lacunas: tuple[str, ...] = ()  # o que não deu para confirmar ao gerar a candidata (ex.: época de semeadura); vai para o produtor
+    alertas: tuple[Alerta, ...] = field(default=(), compare=False)  # avisos de quem montou a candidata (ex.: janela não confirmada)
 
 
 @dataclass(frozen=True)
@@ -52,12 +58,6 @@ class NotaCriterio:
     nota: float | None  # None = sem dado: o critério é ignorado e o peso vai para os outros
     explicacao: str
     evidencias: list[Evidencia] = field(default_factory=list)
-
-
-@dataclass(frozen=True)
-class Alerta:
-    codigo: str
-    texto: str
 
 
 @dataclass

@@ -1,8 +1,9 @@
 """Fazendas e climas sintéticos para os testes do motor de rotação (sem banco e sem rede)."""
-from collections.abc import Callable
-from dataclasses import fields
+import calendar
+from dataclasses import MISSING, fields
 from datetime import date, timedelta
 
+from app.services.clima.agregacao import SerieDoAno
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.entradas import ClimaDoLocal, EntradasMotor
 from app.services.motor.modelo import ItemRotacao
@@ -11,11 +12,6 @@ from app.services.onboarding.perfil import meses_sem_cobertura
 
 ANOS = range(1991, 2021)
 PLANO = Relevo("plano", 1.0, "SRTM (teste)")
-# Campos novos do catálogo (regras 12 e 17): default None; o teste que precisa deles passa em `cultura(...)`.
-CAMPOS_COM_DEFAULT_NONE = {
-    "tmin_critica_c", "fase_sensivel_frio", "fase_frio_inicio_frac", "fase_frio_fim_frac", "tmin_dias_seguidos",
-    "tmin_efeito", "semeadura_inicio", "semeadura_fim", "condicao_semeadura",
-}
 
 
 def cultura(id: str = "c", **mudancas) -> CulturaMotor:
@@ -30,18 +26,39 @@ def cultura(id: str = "c", **mudancas) -> CulturaMotor:
         "valor_forrageiro": "baixo", "confianca_parametros": "alta", "estados_validos": (),
     }  # fmt: skip
     base.update(mudancas)
-    sem_default_none = {f.name for f in fields(CulturaMotor)} - {"fontes", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda", "extras"}
-    assert set(base) - CAMPOS_COM_DEFAULT_NONE == sem_default_none - CAMPOS_COM_DEFAULT_NONE  # conjunto exato; os campos novos são opcionais
+    todos = {f.name for f in fields(CulturaMotor)}
+    obrigatorios = {f.name for f in fields(CulturaMotor) if f.default is MISSING and f.default_factory is MISSING}
+    assert obrigatorios <= set(base) <= todos  # campos com valor padrão (janela, régua, extras...) são opcionais
     return CulturaMotor(**base)
 
 
-def clima(
-    chuva=100.0, et0=100.0, tmed=25.0, forte=1.0, geada: dict[int, int] | None = None,
-    tmin_por_dia: dict[date, float | None] | None = None,
-) -> ClimaDoLocal:
+ANOS_GD = range(2001, 2022)  # 2001–2020 mais 2021, que fecha a safra de 2020 que atravessa o ano
+
+
+def serie_diaria(tmin=15.0, tmax=25.0, anos=range(1991, 2022), dias: dict | None = None) -> dict[int, SerieDoAno]:
+    """Série diária sintética (índice 0 = 1º de janeiro): Tmin e Tmax constantes, com `dias` = {data: {"tmin": x, "tmax": y}} trocando valores (None = sem dado)."""
+    saida = {a: SerieDoAno(a, [tmin] * (366 if calendar.isleap(a) else 365), [tmax] * (366 if calendar.isleap(a) else 365)) for a in anos}
+    for d, v in (dias or {}).items():
+        if d.year in saida:
+            i = d.timetuple().tm_yday - 1
+            if "tmin" in v:
+                saida[d.year].tmin_c[i] = v["tmin"]
+            if "tmax" in v:
+                saida[d.year].tmax_c[i] = v["tmax"]
+    return saida
+
+
+def episodio(anos, mes: int, dia: int, n: int, **valores) -> dict:
+    """`n` dias seguidos a partir de mes/dia em cada um dos `anos`, com os `valores` (tmin=..., tmax=...) para `serie_diaria`."""
+    return {date(a, mes, dia) + timedelta(days=k): valores for a in anos for k in range(n)}
+
+
+def clima(chuva=100.0, et0=100.0, tmed=25.0, forte=1.0, geada: dict[int, int] | None = None, tmed_por_ano: dict | None = None, serie: dict | None = None) -> ClimaDoLocal:
     """Cada argumento aceita um número (todos os meses) ou uma lista de 12.
 
     `geada` = {mês: nº de anos (dos 30) com dia de geada nesse mês}. GD do mês = (tmed - Tb) x 30, sem teto.
+    `serie` = série diária por ano (ver `serie_diaria`); sem ela, Tmin 15 °C e Tmax 25 °C em todos os dias de 1991 a 2021 ({} = sem série).
+    `tmed_por_ano` = {ano: tmed (número ou lista de 12)} troca a temperatura desse ano; None no lugar do ano tira o ano do GD.
     """
 
     def doze(v):
@@ -49,6 +66,12 @@ def clima(
 
     ch, e0, tm, fo = doze(chuva), doze(et0), doze(tmed), doze(forte)
     geada = geada or {}
+    por_ano = tmed_por_ano or {}
+
+    def gd_do_ano(ano):
+        t = doze(por_ano[ano]) if ano in por_ano else tm
+        return {m: {str(tb): max(0.0, t[m - 1] - tb) * 30 for tb in range(0, 21)} for m in range(1, 13)}
+
     return ClimaDoLocal(
         fonte="NASA POWER (teste)",
         periodo="1991–2020",
@@ -56,15 +79,9 @@ def clima(
         et0_mm={m: e0[m - 1] for m in range(1, 13)},
         dias_chuva_forte={m: fo[m - 1] for m in range(1, 13)},
         geada_por_ano={a: {m: int(i < geada.get(m, 0)) for m in range(1, 13)} for i, a in enumerate(ANOS)},
-        gd_por_tb_medio={m: {str(tb): max(0.0, tm[m - 1] - tb) * 30 for tb in range(0, 21)} for m in range(1, 13)},
-        tmin_por_dia=tmin_por_dia or {},
+        serie_diaria=serie if serie is not None else serie_diaria(),
+        gd_por_tb_ano={a: gd_do_ano(a) for a in ANOS_GD if por_ano.get(a, 0) is not None},
     )
-
-
-def serie_tmin(valor: Callable[[date], float | None], ate: date = date(2021, 12, 31)) -> dict[date, float | None]:
-    """Tmin diária de 1/1/1991 até `ate` (o fim da janela de 2020 pode cair em 2021); `valor(dia)` decide cada dia."""
-    inicio = date(1991, 1, 1)
-    return {d: valor(d) for d in (inicio + timedelta(days=i) for i in range((ate - inicio).days + 1))}
 
 
 def item(cultura_id: str | None, inicio: int | None, fim: int | None, perene: bool = False, texto: str | None = None) -> ItemRotacao:

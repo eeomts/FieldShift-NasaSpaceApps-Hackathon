@@ -1,8 +1,8 @@
 """Filtro: cada regra elimina com o motivo certo; a atual nunca é eliminada."""
-from datetime import date, timedelta
+import pytest
 
-from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada, janela_do_frio
-from motor_helpers import ANOS, clima, cultura, entradas, item, serie_tmin
+from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada, gd_das_safras
+from motor_helpers import clima, cultura, entradas, episodio, item, serie_diaria
 
 RESP = (10, 12)  # outubro a dezembro: 3 meses
 
@@ -72,7 +72,8 @@ def test_cultura_com_etapa_sem_linha_gera_lacuna_e_nao_elimina():
 def test_graus_dia_abaixo_de_90_por_cento_elimina():
     c = cultura("c", graus_dia_ciclo_min=1501)  # 1350 / 1501 = 89,9 %
     r = rodar(c, e_com(c))
-    assert r.eliminada and "graus-dia" in r.motivos[0] and "1501" in r.motivos[0]
+    assert r.eliminada and "graus-dia" in r.motivos[0] and "1.501" in r.motivos[0]
+    assert "1.350 graus-dia na metade dos anos (2001–2020)" in r.motivos[0]
 
 
 def test_graus_dia_entre_90_e_100_so_alerta():
@@ -126,18 +127,318 @@ def test_gd_usa_so_os_meses_do_periodo_e_a_virada_do_ano():
     assert avaliar([it2], entradas([it2], [c], clima=cl), True).eliminada
 
 
+# --- graus-dia pela mediana das safras 2001–2020 (regra 2) e perenes forrageiras sem filtro (regra 14)
+FRIO = 10  # tmed igual à Tb de 10: 0 GD no mês
+CICLO = [20, 20, 10, 10, 10, 10, 10, 10, 10, 10, 30, 30]  # nov e dez somam 600 cada; jan e fev, 300 cada
+
+
+def test_safra_que_atravessa_o_ano_soma_nov_dez_do_ano_de_plantio_e_jan_fev_do_seguinte():
+    cl = clima(tmed=CICLO, tmed_por_ano={2005: [FRIO] * 10 + [30, 30]})  # em 2005, jan e fev ficam sem calor
+    safras = gd_das_safras([11, 12, 1, 2], 10, cl)
+    assert len(safras) == 20  # plantios de 2001 a 2020; a de 2020 usa jan e fev de 2021
+    assert sorted(safras)[0] == 1200  # safra de 2004: nov-dez de 2004 (1200) + jan-fev de 2005 (0)
+    assert sorted(safras)[1:] == [1800] * 19  # a safra pertence ao ano de plantio: 2005 pega jan-fev de 2006
+
+
+def test_safra_sem_o_ano_seguinte_fica_de_fora():
+    cl = clima(tmed=CICLO, tmed_por_ano={2021: None})
+    assert len(gd_das_safras([11, 12, 1, 2], 10, cl)) == 19  # a de 2020 precisaria de jan-fev de 2021
+    assert len(gd_das_safras([10, 11, 12], 10, cl)) == 20  # no mesmo ano não precisa do seguinte
+
+
+def test_mediana_e_o_texto_com_numeros_periodo_e_minimo():
+    c = cultura("c", graus_dia_ciclo_min=1500)
+    it = item("c", 11, 2)  # 1800 GD em todas as safras
+    assert not avaliar([it], entradas([it], [c], clima=clima(tmed=CICLO)), True).eliminada
+    c2 = cultura("c", graus_dia_ciclo_min=2000)  # 1800 / 2000 = 90 %: não elimina, mas fica no limite
+    r = avaliar([it], entradas([it], [c2], clima=clima(tmed=CICLO)), True)
+    assert not r.eliminada and r.alertas[0].codigo == "limite_termico"
+    assert "1.800 graus-dia na metade dos anos (2001–2020) e ela precisa de pelo menos 2.000" in r.alertas[0].texto
+    c3 = cultura("c", graus_dia_ciclo_min=2100)  # 85,7 %: elimina
+    assert avaliar([it], entradas([it], [c3], clima=clima(tmed=CICLO)), True).eliminada
+
+
+def test_poucas_safras_viram_lacuna_e_nao_filtram():
+    c = cultura("c", graus_dia_ciclo_min=9000)
+    cl = clima(tmed_por_ano={a: None for a in range(2001, 2013)})  # só 8 safras (2013 a 2020)
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.eliminada and not r.alertas
+    assert any("sem anos suficientes de clima para checar o calor do ciclo" in l for l in r.lacunas)
+    cl10 = clima(tmed_por_ano={a: None for a in range(2001, 2011)})  # 10 safras: já decide
+    assert rodar(c, e_com(c, clima=cl10)).eliminada
+
+
+def test_p10_frio_com_mediana_boa_so_avisa_ano_frio():
+    c = cultura("c", graus_dia_ciclo_min=1300)  # mediana 1350 (104 %)
+    cl = clima(tmed_por_ano={a: FRIO for a in range(2001, 2005)})  # 4 anos de 20 sem calor: P10 = 0
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["ano_frio"]
+    assert "em ano frio pode não completar o ciclo" in r.alertas[0].texto and "1.300" in r.alertas[0].texto
+    um_so = clima(tmed_por_ano={2001: FRIO})  # 1 ano frio em 20: o P10 fica em 1215, acima de 90 % do mínimo (1170)
+    assert not rodar(c, e_com(c, clima=um_so)).alertas
+
+
+def test_a_mediana_manda_e_nao_a_media():
+    c = cultura("c", graus_dia_ciclo_min=1350)
+    cl = clima(tmed_por_ano={a: FRIO for a in range(2001, 2008)})  # 7 de 20 anos sem calor: a média cairia a 65 %
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["ano_frio"]
+    muitos = clima(tmed_por_ano={a: FRIO for a in range(2001, 2013)})  # 12 de 20: a mediana cai
+    assert rodar(c, e_com(c, clima=muitos)).eliminada
+
+
+def test_cobertura_com_calor_abaixo_do_minimo_nunca_elimina_so_avisa():
+    c = cultura("c", tipos=("cobertura",), graus_dia_ciclo_min=5000)
+    r = rodar(c, e_com(c))
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["pouco_crescimento"]
+    assert "pouco crescimento antes do frio ou do manejo" in r.alertas[0].texto and "5.000" in r.alertas[0].texto
+    perto = cultura("c", tipos=("cobertura",), graus_dia_ciclo_min=1400)  # 96 %: avisa (cobertura não tem margem de 90 %)
+    assert [a.codigo for a in rodar(perto, e_com(perto)).alertas] == ["pouco_crescimento"]
+    folga = cultura("c", tipos=("cobertura",), graus_dia_ciclo_min=1350)
+    assert not rodar(folga, e_com(folga)).alertas  # e sem aviso de ano frio, que é só de grão
+
+
+def test_perene_forrageira_nao_tem_filtro_de_graus_dia_nem_lacuna():
+    it = item("alfafa", 1, 12, perene=True)
+    vazia = cultura("alfafa", perene=True, tipos=("comercial", "forrageira"), graus_dia_ciclo_min=None, graus_dia_ciclo_max=None, temp_base_c=5)
+    r = avaliar([it], entradas([it], [vazia], clima=clima(tmed=FRIO)), True)
+    assert not r.eliminada and not any("graus-dia" in l or "calor" in l for l in r.lacunas) and not r.alertas
+    com_minimo = cultura("alfafa", perene=True, tipos=("comercial", "forrageira"), graus_dia_ciclo_min=9000)
+    assert not avaliar([it], entradas([it], [com_minimo], clima=clima(tmed=FRIO)), True).eliminada
+
+
+# --- calor na fase sensível (regra 11 revista): período out-dez, ciclo médio de 120 dias, semeadura em 15/out;
+# terço do meio = dias 40 a 80 depois da semeadura (24/nov a 3/jan); o ano conta com 3 dias seguidos acima do limite
+ANOS_30 = range(1991, 2021)
+QUENTE = {"tmax": 40.0}
+
+
+def calor_em(anos, n=3, mes=12, dia=1):
+    return clima(serie=serie_diaria(dias=episodio(anos, mes, dia, n, **QUENTE)))
+
+
+def test_calor_com_3_dias_seguidos_em_mais_de_30_por_cento_dos_anos_avisa_e_nao_elimina():
+    c = cultura("milho", tmax_critica_c=33)
+    r = rodar(c, e_com(c, clima=calor_em(range(1991, 2003))))  # 12 de 30 anos = 40 %
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["calor_floracao"]
+    assert r.alertas[0].texto == "Milho: em 40% dos anos (1991–2020) a temperatura passou de 33 °C por 3 dias seguidos na floração (nov a jan); o calor nessa fase pode reduzir a produção."
+    assert not avaliar([item("milho", *RESP)], e_com(c, clima=calor_em(range(1991, 2003))), False).eliminada  # na atual também só avisa
+
+
+def test_calor_com_2_dias_seguidos_nao_conta_quando_o_catalogo_pede_3():
+    c = cultura("milho", tmax_critica_c=33)
+    assert not rodar(c, e_com(c, clima=calor_em(ANOS_30, n=2))).alertas  # 2 dias quentes todo ano: nada
+    dois_separados = episodio(ANOS_30, 12, 1, 1, **QUENTE) | episodio(ANOS_30, 12, 3, 2, **QUENTE)  # 1 dia, folga, 2 dias: nunca 3 seguidos
+    assert not rodar(c, e_com(c, clima=clima(serie=serie_diaria(dias=dois_separados)))).alertas
+    assert [a.codigo for a in rodar(c, e_com(c, clima=calor_em(ANOS_30, n=3))).alertas] == ["calor_floracao"]
+
+
+def test_calor_em_30_por_cento_exato_nao_avisa():
+    c = cultura("milho", tmax_critica_c=33)
+    assert not rodar(c, e_com(c, clima=calor_em(range(1991, 2000)))).alertas  # 9 de 30 = 30 %: não passa de 30 %
+
+
+def test_calor_fora_da_fase_do_meio_nao_conta():
+    c = cultura("milho", tmax_critica_c=33.5)
+    assert not rodar(c, e_com(c, clima=calor_em(ANOS_30, mes=10, dia=20))).alertas  # calor no começo do ciclo (20 a 22/out)
+    assert not rodar(c, e_com(c, clima=calor_em(ANOS_30, mes=1, dia=5))).alertas  # e depois do fim da fase (3/jan)
+    it = item("milho", 6, 10)  # ciclo de 120 dias a partir de 15/jun: fase de 25/jul a 3/set
+    cl = clima(serie=serie_diaria(dias=episodio(ANOS_30, 8, 1, 3, **QUENTE)))
+    r = avaliar([it], entradas([it], [c], clima=cl), True)
+    assert "33,5 °C por 3 dias seguidos na floração (jul a set)" in r.alertas[0].texto
+
+
+def test_calor_na_safra_que_cruza_o_ano_usa_dias_do_ano_seguinte():
+    c = cultura("milho", tmax_critica_c=33)
+    it = item("milho", 11, 2)  # semeadura em 15/nov: a fase do meio vai de 25/dez a 3/fev
+    cl = clima(serie=serie_diaria(dias=episodio(range(1992, 2004), 1, 10, 3, **QUENTE)))  # janeiro de 1992 a 2003 = safras de 1991 a 2002
+    r = avaliar([it], entradas([it], [c], clima=cl), True)
+    assert [a.codigo for a in r.alertas] == ["calor_floracao"] and "40%" in r.alertas[0].texto and "(dez a fev)" in r.alertas[0].texto
+
+
+def test_tmax_critica_vazia_nao_avisa_nem_cria_lacuna():
+    c = cultura("c", tmax_critica_c=None)
+    r = rodar(c, e_com(c, clima=calor_em(ANOS_30, n=20)))
+    assert not r.alertas and not r.eliminada and not any("calor" in l for l in r.lacunas)
+
+
+def test_calor_em_perene_olha_o_ano_todo():
+    p = cultura("alfafa", perene=True, tmax_critica_c=33, graus_dia_ciclo_min=None)
+    it = item("alfafa", 1, 12, perene=True)
+    cl = clima(serie=serie_diaria(dias=episodio(range(1991, 2006), 7, 10, 3, **QUENTE)))  # calor em julho, metade dos anos
+    r = avaliar([it], entradas([it], [p], clima=cl), True)
+    assert [a.codigo for a in r.alertas] == ["calor_floracao"] and "ao longo do ano" in r.alertas[0].texto
+
+
+def test_ano_com_dia_sem_dado_na_fase_fica_de_fora_e_poucos_anos_viram_lacuna():
+    c = cultura("milho", tmax_critica_c=33)
+    # 12 anos quentes; os outros 18 têm um dia sem dado dentro da fase e saem da conta: 12 de 12 contam, avisa
+    buracos = episodio([a for a in ANOS_30 if a >= 2003], 12, 10, 1, tmax=None)
+    cl = clima(serie=serie_diaria(dias=episodio(range(1991, 2003), 12, 1, 3, **QUENTE) | buracos))
+    r = rodar(c, e_com(c, clima=cl))
+    assert "100%" in r.alertas[0].texto
+    so_9_anos = clima(serie=serie_diaria(dias=episodio(range(1991, 2003), 12, 1, 3, **QUENTE) | episodio(range(2003, 2021), 12, 10, 1, tmax=None)))
+    so_9_anos.serie_diaria = {a: s for a, s in so_9_anos.serie_diaria.items() if a < 2000}  # só 1991-1999: 9 anos com a fase inteira
+    r = rodar(c, e_com(c, clima=so_9_anos))
+    assert not r.alertas and not r.eliminada and any("sem anos suficientes de clima para checar o risco de calor" in l for l in r.lacunas)
+
+
+def test_sem_serie_diaria_calor_vira_lacuna():
+    c = cultura("milho", tmax_critica_c=33)
+    r = rodar(c, e_com(c, clima=clima(serie={})))
+    assert not r.alertas and any("temperatura máxima" in l for l in r.lacunas)
+
+
+# --- frio por cultura (regra 17): ciclo médio de 120 dias, semeadura em 15/out; fase 0,5 a 0,75 = 14/dez a 13/jan
+FRIO_DIA = {"tmin": -5.0}
+
+
+def trigo(**mudancas):
+    base = {"tmin_critica_c": 1.0, "fase_sensivel_frio": "floracao", "fase_frio_inicio_frac": 0.5, "fase_frio_fim_frac": 0.75, "sensivel_geada": True}
+    return cultura("trigo", **(base | mudancas))
+
+
+def frio_em(anos, n=1, mes=12, dia=20):
+    return clima(serie=serie_diaria(dias=episodio(anos, mes, dia, n, **FRIO_DIA)))
+
+
+def test_frio_so_conta_nos_dias_da_fase_e_o_texto_diz_frio_para_limiar_acima_de_zero():
+    c = trigo()
+    r = rodar(c, e_com(c, clima=frio_em(range(1991, 2003))))  # 12 de 30 anos, 20/dez dentro da fase
+    assert r.eliminada and r.alertas == []
+    assert r.motivos == ["Trigo: em 40% dos anos (1991–2020) a mínima ficou abaixo de 1 °C na floração (dez a jan); o frio nessa fase tira produção."]
+    assert not rodar(c, e_com(c, clima=frio_em(ANOS_30, mes=11, dia=20))).eliminada  # frio antes da fase (20/nov)
+    assert not rodar(c, e_com(c, clima=frio_em(ANOS_30, mes=2, dia=10))).eliminada  # e depois (10/fev)
+
+
+def test_frio_em_30_por_cento_exato_nao_filtra_e_acima_filtra():
+    c = trigo()
+    assert not rodar(c, e_com(c, clima=frio_em(range(1991, 2000)))).eliminada  # 9 de 30
+    assert rodar(c, e_com(c, clima=frio_em(range(1991, 2001)))).eliminada  # 10 de 30
+
+
+def test_frio_pede_os_dias_seguidos_do_catalogo():
+    c = trigo(tmin_dias_seguidos=3)
+    assert not rodar(c, e_com(c, clima=frio_em(ANOS_30, n=2))).eliminada  # 2 dias seguidos não bastam
+    r = rodar(c, e_com(c, clima=frio_em(ANOS_30, n=3)))
+    assert r.eliminada and "abaixo de 1 °C por 3 dias seguidos na floração" in r.motivos[0]
+    assert rodar(trigo(tmin_dias_seguidos=None), e_com(trigo(), clima=frio_em(ANOS_30, n=1))).eliminada  # vazio = 1 dia
+
+
+def test_frio_na_safra_que_cruza_o_ano_olha_janeiro_do_ano_seguinte():
+    c = trigo()  # a fase vai até 13/jan do ano seguinte
+    r = rodar(c, e_com(c, clima=frio_em(range(1992, 2004), mes=1, dia=5)))  # janeiro de 1992 a 2003 = safras de 1991 a 2002
+    assert r.eliminada and "40%" in r.motivos[0]
+    assert not rodar(c, e_com(c, clima=frio_em(range(1992, 2004), mes=1, dia=20))).eliminada  # 20/jan já passou da fase
+
+
+def test_frio_efeito_aviso_nunca_elimina_e_elimina_e_o_padrao():
+    aviso = trigo(tmin_efeito="aviso")
+    r = rodar(aviso, e_com(aviso, clima=frio_em(ANOS_30)))
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["frio"] and "o frio nessa fase tira produção" in r.alertas[0].texto
+    assert rodar(trigo(tmin_efeito="elimina"), e_com(trigo(), clima=frio_em(ANOS_30))).eliminada
+    atual = avaliar([item("trigo", *RESP)], e_com(trigo(), clima=frio_em(ANOS_30)), False)  # na rotação atual vira alerta
+    assert not atual.eliminada and [a.codigo for a in atual.alertas] == ["frio"]
+
+
+def test_texto_diz_geada_so_quando_o_limiar_e_de_geada():
+    soja = trigo(tmin_critica_c=-2.2, fase_sensivel_frio="enchimento_grao")
+    r = rodar(soja, e_com(soja, clima=clima(serie=serie_diaria(dias=episodio(ANOS_30, 12, 20, 1, tmin=-3.0)))))
+    assert r.eliminada and "a mínima ficou abaixo de -2,2 °C no enchimento dos grãos" in r.motivos[0] and "a geada nessa fase tira produção" in r.motivos[0]
+    zero = trigo(tmin_critica_c=0.0)  # limiar de 0 °C ainda é geada
+    r0 = rodar(zero, e_com(zero, clima=clima(serie=serie_diaria(dias=episodio(ANOS_30, 12, 20, 1, tmin=-1.0)))))
+    assert "a geada nessa fase tira produção" in r0.motivos[0]
+    meio = trigo(tmin_critica_c=0.5)  # acima de 0 °C é frio
+    assert "o frio nessa fase" in rodar(meio, e_com(meio, clima=frio_em(ANOS_30))).motivos[0]
+
+
+@pytest.mark.parametrize("fase, texto", [
+    ("emergencia", "na emergência"), ("vegetativo", "no crescimento"), ("floracao", "na floração"),
+    ("enchimento_grao", "no enchimento dos grãos"), ("ciclo_todo", "durante o ciclo"),
+])
+def test_texto_da_fase_do_frio_em_linguagem_simples(fase, texto):
+    c = trigo(fase_sensivel_frio=fase, fase_frio_inicio_frac=0.0, fase_frio_fim_frac=1.0)
+    r = rodar(c, e_com(c, clima=frio_em(ANOS_30)))
+    assert f"{texto} (out a fev)" in r.motivos[0]  # 15/out + 120 dias = 12/fev
+
+
+def test_frio_em_perene_olha_o_ano_todo():
+    p = cultura("alfafa", perene=True, tmin_critica_c=-10.0, graus_dia_ciclo_min=None, sensivel_geada=True)
+    it = item("alfafa", 1, 12, perene=True)
+    cl = clima(serie=serie_diaria(dias=episodio(range(1991, 2006), 7, 10, 1, tmin=-12.0)))
+    r = avaliar([it], entradas([it], [p], clima=cl), True)  # sem frações no catálogo: cai no teste mensal (sem geada no clima), com lacuna
+    assert not r.eliminada
+    p2 = cultura("alfafa", perene=True, tmin_critica_c=-10.0, fase_frio_inicio_frac=0.0, fase_frio_fim_frac=1.0, fase_sensivel_frio="ciclo_todo", graus_dia_ciclo_min=None)
+    r2 = avaliar([it], entradas([it], [p2], clima=cl), True)
+    assert r2.eliminada and "ao longo do ano" in r2.motivos[0]
+
+
+def test_ano_com_dia_sem_dado_na_fase_do_frio_fica_de_fora():
+    c = trigo()
+    buracos = episodio(range(2003, 2021), 12, 20, 1, tmin=None)  # 18 anos sem dado num dia da fase
+    cl = clima(serie=serie_diaria(dias=episodio(range(1991, 2003), 12, 20, 1, **FRIO_DIA) | buracos))
+    r = rodar(c, e_com(c, clima=cl))
+    assert r.eliminada and "100%" in r.motivos[0]  # 12 de 12 anos com dado
+
+
+def test_poucos_anos_com_dado_viram_lacuna_e_o_frio_nao_filtra():
+    c = trigo()
+    cl = clima(serie=serie_diaria(dias=episodio(range(1991, 2000), 12, 20, 1, **FRIO_DIA), anos=range(1991, 2000)))  # 9 anos: só a série até 1999
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.eliminada and any("sem anos suficientes de clima para checar o frio" in l for l in r.lacunas)
+
+
+def test_sem_limiar_o_teste_antigo_de_geada_continua_igual():
+    c = cultura("c", sensivel_geada=True)  # sem tmin_critica_c: 2 °C no terço do meio, por mês
+    assert rodar(c, e_com(c, clima=clima(geada={11: 30}))).eliminada
+    assert not rodar(c, e_com(c, clima=clima(geada={10: 30}))).eliminada
+    assert not rodar(c, e_com(c, clima=clima(geada={11: 30}, serie={}))).lacunas  # a série diária nem é lida
+
+
+def test_com_limiar_mas_sem_serie_diaria_cai_na_regra_antiga_com_lacuna():
+    c = trigo()
+    r = rodar(c, e_com(c, clima=clima(geada={11: 30}, serie={})))
+    assert r.eliminada and r.motivos[0].startswith("Trigo: em 100% dos anos houve geada na fase de floração")  # teste mensal de 2 °C
+    assert any("sem dados diários de temperatura mínima" in l for l in r.lacunas)
+    sem_fracoes = trigo(fase_frio_inicio_frac=None, fase_frio_fim_frac=None)
+    assert any("sem a fase do frio" in l for l in rodar(sem_fracoes, e_com(sem_fracoes, clima=clima())).lacunas)
+
+
 # --- água: ET0 de 100 mm/mês e Kc 1,0 dão ETc de 300 mm nos 3 meses do período
 def agua(chuva_mes, **kc):
     c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0, **kc)  # ETc = 300 mm nos 3 meses
     return rodar(c, e_com(c, clima=clima(chuva=chuva_mes)))
 
 
-def test_agua_chuva_abaixo_de_50_por_cento_nao_elimina_e_avisa_o_deficit():
-    r = agua(49.0)  # 147 mm de chuva contra 300 mm: 49 %; o sequeiro não é eliminado pela água (regra 1)
-    assert not r.eliminada and r.motivos == []
-    assert [a.codigo for a in r.alertas] == ["agua_no_limite"]
-    texto = r.alertas[0].texto
-    assert "água no limite" in texto and "49%" in texto and "faltam cerca de 153 mm" in texto  # 300 - 147
+def test_agua_candidata_abaixo_de_50_por_cento_e_eliminada_com_os_mm():
+    r = agua(22.0)  # 66 mm de chuva contra 300 mm: 22 %; sem irrigação a sugestão não fecha
+    assert r.eliminada and r.alertas == []
+    assert r.motivos == ["C: a chuva do período (66 mm) cobre só 22% da água que a cultura usa (300 mm); sem irrigação não fecha."]
+
+
+def test_agua_na_atual_abaixo_de_50_por_cento_so_avisa_com_o_deficit():
+    c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
+    r = rodar(c, e_com(c, clima=clima(chuva=22.0)), eliminar=False)  # a rotação atual nunca é eliminada pela água
+    assert not r.eliminada and r.motivos == [] and [a.codigo for a in r.alertas] == ["agua_no_limite"]
+    assert "água no limite" in r.alertas[0].texto and "22%" in r.alertas[0].texto and "faltam cerca de 234 mm" in r.alertas[0].texto
+
+
+def test_agua_candidata_entre_50_e_80_por_cento_so_avisa():
+    r = agua(60.0)
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"] and "água no limite" in r.alertas[0].texto
+
+
+def test_agua_candidata_sem_irrigacao_informada_tambem_e_eliminada():
+    c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
+    assert rodar(c, e_com(c, clima=clima(chuva=22.0), irrigacao=None)).eliminada
+
+
+def test_agua_reserva_sem_kc_elimina_abaixo_de_50_por_cento_do_minimo_da_base():
+    c = cultura("c", kc_inicial=None, kc_medio=None, kc_final=None, agua_ciclo_mm_min=300, agua_ciclo_mm_max=500)
+    r = rodar(c, e_com(c, clima=clima(chuva=49.0)))  # 147 mm contra 300 mm: 49 %
+    assert r.motivos == ["C: a chuva do período (147 mm) cobre só 49% da água que a cultura precisa (300 mm); sem irrigação não fecha."]
+    assert not rodar(c, e_com(c, clima=clima(chuva=50.0))).eliminada  # 150 mm: 50 % exato só avisa
+    assert not rodar(c, e_com(c, clima=clima(chuva=49.0), irrigacao="sim")).eliminada
 
 
 def test_agua_entre_50_e_80_por_cento_alerta():
@@ -179,9 +480,9 @@ def test_irrigacao_sim_nao_filtra_agua():
     assert not r.eliminada and not r.alertas
 
 
-def test_irrigacao_parte_so_alerta():
+def test_irrigacao_parte_so_alerta_mesmo_na_candidata_muito_seca():
     c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
-    r = rodar(c, e_com(c, clima=clima(chuva=1.0), irrigacao="parte"))
+    r = rodar(c, e_com(c, clima=clima(chuva=1.0), irrigacao="parte"))  # candidata (eliminar=True) a 1 %: com irrigação em parte, só avisa
     assert not r.eliminada and r.alertas[0].codigo == "agua_no_limite" and "irrigada" in r.alertas[0].texto
 
 
@@ -204,8 +505,10 @@ def test_sem_kc_e_sem_faixa_vira_lacuna():
 def test_perene_compara_com_a_chuva_do_ano():
     p = cultura("pastagem", perene=True, kc_medio=1.0)
     it = item("pastagem", 1, 12, perene=True)
-    r = avaliar([it], entradas([it], [p], clima=clima(chuva=40.0)), True)  # 480 mm contra 1200 mm: avisa, não elimina
-    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"] and "faltam cerca de 720 mm" in r.alertas[0].texto
+    r = avaliar([it], entradas([it], [p], clima=clima(chuva=60.0)), True)  # 720 mm contra 1200 mm: 60 %, avisa, não elimina
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"] and "faltam cerca de 480 mm" in r.alertas[0].texto
+    r = avaliar([it], entradas([it], [p], clima=clima(chuva=40.0)), True)  # 480 mm contra 1200 mm: 40 %, a sugestão é eliminada
+    assert r.eliminada and "480 mm" in r.motivos[0] and "1200 mm" in r.motivos[0]
     r = avaliar([it], entradas([it], [p], clima=clima(chuva=100.0)), True)
     assert not r.eliminada and not r.alertas
 
@@ -304,136 +607,3 @@ def test_geada_em_cultura_perene_olha_o_ano_todo():
     p = cultura("pastagem", perene=True, sensivel_geada=True, graus_dia_ciclo_min=None, kc_medio=0.1)
     it = item("pastagem", 1, 12, perene=True)
     assert avaliar([it], entradas([it], [p], clima=clima(geada={7: 15})), True).eliminada
-
-
-# --- frio por fase (regra 17): limiar da cultura, só nos dias da fase, dias seguidos
-def com_frio(c, it, dias, valor=-5.0, base=20.0, comeco=0, anos=ANOS, ausente=()):
-    """Tmin diária: `base` em todo dia; `dias` dias seguidos a `valor`, `comeco` dias depois do início da fase, nos `anos`.
-
-    `ausente` = dias (offset desde o início da fase) sem dado em todos os anos.
-    """
-    frias, falta = set(), set()
-    for a in ANOS:
-        ini, fim = janela_do_frio(c, it, a)
-        if a in anos:
-            frias |= {ini + timedelta(days=comeco + i) for i in range(dias)}
-        falta |= {ini + timedelta(days=o) for o in ausente}
-    return serie_tmin(lambda d: None if d in falta else (valor if d in frias else base))
-
-
-def frio(c, it, serie, eliminar=True):
-    return avaliar([it], entradas([it], [c], clima=clima(tmin_por_dia=serie)), eliminar)
-
-
-SOJA = dict(sensivel_geada=True, tmin_critica_c=-2.2, fase_sensivel_frio="enchimento_grao", fase_frio_inicio_frac=0.73, fase_frio_fim_frac=1.0)
-ARROZ = dict(sensivel_geada=True, tmin_critica_c=15, fase_sensivel_frio="floracao", fase_frio_inicio_frac=0.59, fase_frio_fim_frac=0.72, tmin_dias_seguidos=3, tmin_efeito="aviso")
-
-
-def test_frio_soja_com_minima_de_0_grau_nao_sai_porque_o_limiar_e_menos_2_2():
-    c = cultura("soja", **SOJA)
-    it = item("soja", *RESP)
-    r = frio(c, it, com_frio(c, it, dias=60, valor=0.0))  # 0 °C seria geada de 2 °C, mas não passa de -2,2
-    assert not r.eliminada and not r.alertas and not r.lacunas
-
-
-def test_frio_soja_abaixo_do_limiar_na_fase_elimina_com_o_texto_de_geada():
-    c = cultura("soja", **SOJA)
-    it = item("soja", *RESP)
-    r = frio(c, it, com_frio(c, it, dias=1, valor=-3.0, comeco=5))  # a janela é o fim do ciclo
-    assert r.eliminada and "geada" in r.motivos[0] and "enchimento dos grãos" in r.motivos[0] and "100%" in r.motivos[0]
-    assert "-2,2" in r.motivos[0]
-    na_atual = frio(c, it, com_frio(c, it, dias=1, valor=-3.0), eliminar=False)
-    assert not na_atual.eliminada and [a.codigo for a in na_atual.alertas] == ["geada"]
-
-
-def test_frio_a_30_por_cento_dos_anos_passa_e_acima_elimina():
-    c = cultura("soja", **SOJA)
-    it = item("soja", *RESP)
-    assert not frio(c, it, com_frio(c, it, 1, valor=-3.0, anos=list(ANOS)[:9])).eliminada  # 9 de 30
-    assert frio(c, it, com_frio(c, it, 1, valor=-3.0, anos=list(ANOS)[:10])).eliminada  # 10 de 30
-
-
-def test_frio_arroz_15_graus_3_dias_com_2_dias_frios_nao_conta():
-    c = cultura("arroz", **ARROZ)
-    it = item("arroz", *RESP)
-    r = frio(c, it, com_frio(c, it, dias=2, valor=10.0))
-    assert not r.eliminada and not r.alertas and not r.lacunas
-
-
-def test_frio_arroz_com_3_dias_seguidos_vira_aviso_de_frio_e_nao_elimina():
-    c = cultura("arroz", **ARROZ)
-    it = item("arroz", *RESP)
-    r = frio(c, it, com_frio(c, it, dias=3, valor=10.0))
-    assert not r.eliminada
-    [a] = r.alertas
-    assert a.codigo == "frio" and "frio na florada em 100% dos anos" in a.texto and "3 dias seguidos" in a.texto
-    assert "geada" not in a.texto and "15 °C" in a.texto
-
-
-def test_frio_dia_sem_dado_quebra_a_sequencia_e_tira_o_ano_da_conta():
-    c = cultura("arroz", **ARROZ)
-    it = item("arroz", *RESP)
-    # 3 dias frios com o do meio sem dado, em todos os anos: nenhum ano tem a janela completa
-    r = frio(c, it, com_frio(c, it, dias=3, valor=10.0, ausente=[1]))
-    assert not r.eliminada and not r.alertas and any("sem a mínima diária" in l for l in r.lacunas)
-    # sem dado só em 20 anos: os 10 restantes (todos frios) decidem
-    serie = com_frio(c, it, dias=3, valor=10.0)
-    for a in list(ANOS)[:20]:
-        serie[janela_do_frio(c, it, a)[0]] = None
-    assert [x.codigo for x in frio(c, it, serie).alertas] == ["frio"]
-
-
-def test_frio_trigo_com_geada_so_fora_da_janela_da_fase_passa():
-    c = cultura("trigo", sensivel_geada=True, tmin_critica_c=1, fase_sensivel_frio="floracao", fase_frio_inicio_frac=0.59, fase_frio_fim_frac=0.73)
-    it = item("trigo", 6, 10)
-    ini, fim = janela_do_frio(c, it, 2000)
-    assert (fim - ini).days > 10
-    # geada todo ano nos 10 dias antes da fase e nos 10 depois dela
-    serie_fora = serie_tmin(lambda d: -2.0 if any(
-        (a := janela_do_frio(c, it, ano)) and ((a[0] - timedelta(days=10)) <= d < a[0] or a[1] < d <= (a[1] + timedelta(days=10))) for ano in (d.year, d.year - 1)
-    ) else 10.0)
-    r = frio(c, it, serie_fora)
-    assert not r.eliminada and not r.alertas and not r.lacunas
-    assert frio(c, it, com_frio(c, it, 1, valor=-2.0, comeco=3)).eliminada  # um dia dentro da fase, todo ano
-
-
-def test_frio_janela_que_vira_o_ano():
-    c = cultura("c", sensivel_geada=True, tmin_critica_c=0, fase_sensivel_frio="floracao", fase_frio_inicio_frac=0.3, fase_frio_fim_frac=0.5, tmin_dias_seguidos=3)
-    it = item("c", 11, 3)  # semeadura em 15/nov, ciclo médio 120: a fase vai de ~21/dez a ~14/jan
-    ini, fim = janela_do_frio(c, it, 2000)
-    assert (ini.year, ini.month, fim.year, fim.month) == (2000, 12, 2001, 1)
-    # 3 dias seguidos: 30/dez, 31/dez e 1/jan (a virada do ano está dentro da sequência)
-    serie = serie_tmin(lambda d: -1.0 if (d.month, d.day) in {(12, 30), (12, 31), (1, 1)} else 10.0)
-    r = frio(c, it, serie)
-    assert r.eliminada and "geada" in r.motivos[0] and "3 dias seguidos" in r.motivos[0]
-    # a 2020 usa dias de 2021, que a série tem; com só 2 dias por ano, não conta
-    serie2 = serie_tmin(lambda d: -1.0 if (d.month, d.day) in {(12, 31), (1, 1)} else 10.0)
-    assert not frio(c, it, serie2).eliminada
-
-
-def test_frio_sem_dado_diario_vira_lacuna_nao_elimina_e_nao_cai_nos_2_graus():
-    c = cultura("soja", **SOJA)
-    it = item("soja", *RESP)
-    r = avaliar([it], entradas([it], [c], clima=clima(geada={11: 30, 12: 30, 1: 30})), True)  # geada < 2 °C todo ano, mas sem Tmin diária
-    assert not r.eliminada and not r.alertas
-    assert r.lacunas == ["Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio."]
-
-
-def test_frio_sem_tmin_critica_mantem_a_reserva_de_2_graus_no_terco_do_meio():
-    c = cultura("c", sensivel_geada=True)  # sem tmin_critica_c
-    it = item("c", *RESP)
-    serie = serie_tmin(lambda d: -10.0)  # a série diária é ignorada
-    assert not avaliar([it], entradas([it], [c], clima=clima(tmin_por_dia=serie)), True).eliminada
-    assert avaliar([it], entradas([it], [c], clima=clima(geada={11: 30}, tmin_por_dia=serie)), True).eliminada
-
-
-def test_frio_fase_vazia_usa_o_ciclo_todo_e_perene_o_ano_todo():
-    c = cultura("c", sensivel_geada=True, tmin_critica_c=0)
-    it = item("c", *RESP)
-    ini, fim = janela_do_frio(c, it, 2000)
-    assert ini == date(2000, 10, 15) and (fim - ini).days == 120
-    p = cultura("pastagem", perene=True, sensivel_geada=True, tmin_critica_c=-3.3, fase_sensivel_frio="ciclo_todo")
-    ip = item("pastagem", 1, 12, perene=True)
-    assert janela_do_frio(p, ip, 2000) == (date(2000, 1, 1), date(2000, 12, 31))
-    r = frio(p, ip, serie_tmin(lambda d: -4.0 if (d.month, d.day) == (7, 1) else 10.0))
-    assert r.eliminada and "geada" in r.motivos[0] and "ao longo do ano" in r.motivos[0]

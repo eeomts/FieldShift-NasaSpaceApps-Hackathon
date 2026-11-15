@@ -1,10 +1,13 @@
 """Seis critérios 0-1: fórmula, limites 0 e 1, explicação, evidências e lacunas."""
 import pytest
 
+from app.services.motor.catalogo import FaixaPalhada, catalogo_do_pais
 from app.services.motor.criterios import calcular_notas, classe_do_k
+from app.services.motor.declive import fator_do_declive, ls_rusle
 from app.services.motor.entradas import Erodibilidade
 from app.services.motor.modelo import Estrategia
 from app.services.motor.relevo_service import Relevo
+from app.services.solo.derivados import erodibilidade_k
 from motor_helpers import PLANO, clima, cultura, entradas, item
 
 
@@ -96,7 +99,7 @@ def test_terra_aceita_a_escala_feminina():
     assert n["terra"].nota == pytest.approx(0.4 + 0.3)
 
 
-# --- erosão: 1 - (1 - parcela coberta) x fator do declive
+# --- erosão: 1 - (1 - parcela coberta) x fator do declive (LS da RUSLE da declividade medida; só a classe: tabela por classe)
 FORTE_NO_VERAO = [10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]  # toda a chuva forte em jan-mar
 
 
@@ -112,11 +115,11 @@ def test_erosao_chuva_forte_toda_descoberta_em_declive_forte_da_zero():
     assert n["erosao"].nota == 0.0
 
 
-@pytest.mark.parametrize("classe, fator", [("plano", 0.25), ("suave_ondulado", 0.5), ("ondulado", 0.75)])
-def test_erosao_fator_do_declive(classe, fator):
+@pytest.mark.parametrize("classe, fator", [("plano", 0.22), ("suave_ondulado", 0.84), ("ondulado", 1.0), ("forte_ondulado", 1.0), ("montanhoso", 1.0)])
+def test_erosao_fator_do_declive_so_pela_classe(classe, fator):
     n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo(classe, None, "q7"))
     parcela = 2 / 3
-    assert n["erosao"].nota == pytest.approx(1 - (1 - parcela) * fator)
+    assert n["erosao"].nota == pytest.approx(max(0.0, 1 - (1 - parcela) * fator))
 
 
 def test_erosao_sem_declividade_usa_fator_medio_e_registra_lacuna():
@@ -140,6 +143,39 @@ def test_erosao_cultura_fora_do_catalogo_ainda_cobre_o_solo():
     assert n["erosao"].nota == 1.0
 
 
+@pytest.mark.parametrize("pct, ls", [(1.5, 0.22), (5.5, 0.84), (14.0, 2.76), (32.5, 7.59), (60.0, 13.65)])
+def test_ls_da_rusle_reproduz_a_tabela_da_validacao_com_rampa_de_46_m(pct, ls):
+    assert ls_rusle(pct) == pytest.approx(ls, rel=0.02)  # tabela 2.5 do VALIDACAO-PARAMETROS-MOTOR.md (AH 703, razão moderada)
+
+
+def test_ls_da_rusle_vale_1_na_parcela_padrao_da_usle_e_cresce_com_a_rampa():
+    assert ls_rusle(9.0, 22.13) == pytest.approx(1.0, abs=0.01)  # 72,6 pés e 9 %
+    assert ls_rusle(5.5, 91) == pytest.approx(1.13, rel=0.02) and ls_rusle(5.5, 23) == pytest.approx(0.64, rel=0.03)
+
+
+@pytest.mark.parametrize("pct, fator", [(1.5, 0.222), (5.5, 0.846), (14.0, 1.0), (60.0, 1.0)])
+def test_erosao_com_declividade_medida_usa_o_ls_com_teto_1(pct, fator):
+    assert fator_do_declive(pct) == pytest.approx(fator, abs=0.002)
+    n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("plano", pct, "SRTM 30 m"))
+    assert n["erosao"].nota == pytest.approx(max(0.0, 1 - (1 / 3) * fator), abs=0.001)
+
+
+def test_erosao_medida_vence_a_classe_e_o_texto_cita_a_declividade_e_a_fonte():
+    # a classe diz "plano" (fator 0,22), mas a declividade medida de 14 % manda: fator 1
+    n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("plano", 14.0, "SRTM 30 m"))
+    assert n["erosao"].nota == pytest.approx(1 - 1 / 3)
+    assert "declividade de 14,0% medida por satélite (SRTM)" in n["erosao"].explicacao
+    declive = n["erosao"].evidencias[1]
+    assert (declive.valor, declive.unidade, declive.fonte) == (14.0, "%", "SRTM 30 m")
+    q7, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("plano", None, "q7"))
+    assert "medida por satélite" not in q7["erosao"].explicacao and q7["erosao"].evidencias[1].unidade == "classe"
+
+
+def test_erosao_sem_nada_usa_o_fator_sem_dado():
+    n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=None)
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5) and any("declividade" in l for l in lac)
+
+
 # --- pragas
 def test_pragas_uma_cultura_so_da_zero():
     n, _ = notas([item("a", 1, 6)], [cultura("a")])
@@ -151,12 +187,41 @@ def test_pragas_duas_familias_distintas_dao_um():
     assert n["pragas"].nota == 1.0
 
 
-def test_pragas_mesma_familia_seguida_desconta_e_nunca_fica_negativa():
+def test_pragas_mesma_familia_seguida_da_zero_e_voltar_para_a_mesma_familia_nao_pune_duas_vezes():
     n, _ = notas([item("a", 1, 3), item("b", 4, 6)], [cultura("a"), cultura("b")])
     assert n["pragas"].nota == 0.0
     a, b = cultura("a"), cultura("b", familia_botanica="Fabaceae")
-    n, _ = notas([item("a", 1, 3), item("b", 4, 6), item("a", 7, 9)], [a, b])  # P F P: (2-1)/(3-1) = 0,5; a volta P->P desconta 0,2
-    assert n["pragas"].nota == pytest.approx(0.3)
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6), item("a", 7, 9)], [a, b])  # P F P: P->F, F->P mudam; a volta P->P não: 2 de 3
+    assert n["pragas"].nota == pytest.approx(2 / 3)
+    assert n["pragas"].explicacao == "2 de 3 trocas de cultura mudam de família de planta."
+
+
+# tabela 2.7 do VALIDACAO-PARAMETROS-MOTOR.md, com as famílias do catálogo real do Brasil, na ordem do ano
+CASOS_PRAGAS = [
+    (["soja"], 0.0),
+    (["soja", "milho"], 1.0),
+    (["soja", "milho", "trigo"], 2 / 3),
+    (["soja", "milho", "crotalaria"], 2 / 3),
+    (["soja", "milho", "nabo_forrageiro"], 1.0),
+    (["milho", "milheto"], 0.0),
+    (["soja", "feijao"], 0.0),
+    (["aveia", "soja", "trigo", "milho"], 0.5),
+]
+
+
+@pytest.mark.parametrize("ids, esperado", CASOS_PRAGAS)
+def test_pragas_casos_da_tabela_da_validacao(ids, esperado):
+    br = catalogo_do_pais("BR")
+    itens = [item(id_, 1 + 2 * i, 2 + 2 * i) for i, id_ in enumerate(ids)]
+    n, _ = notas(itens, [br[i] for i in ids])
+    assert n["pragas"].nota == pytest.approx(esperado)
+
+
+def test_pragas_acrescentar_cultura_de_familia_nova_ou_ja_presente_nao_derruba_a_nota():
+    br = catalogo_do_pais("BR")
+    dois, _ = notas([item("soja", 1, 2), item("milho", 3, 4)], [br["soja"], br["milho"]])
+    tres, _ = notas([item("soja", 1, 2), item("milho", 3, 4), item("trigo", 5, 6)], [br["soja"], br["milho"], br["trigo"]])
+    assert dois["pragas"].nota == 1.0 and tres["pragas"].nota == pytest.approx(2 / 3)  # antes caía de 1,0 para 0,3
 
 
 def test_pragas_ordena_pelo_mes_de_inicio():
@@ -223,28 +288,55 @@ def test_so_cultura_fora_do_catalogo_deixa_as_notas_de_cultura_sem_dado():
 
 
 # --- erosão com a erodibilidade K do solo (SoilGrids): 1 - (1 - parcela) x fator do declive x fator do K
-@pytest.mark.parametrize("k, classe, fator", [(0.0145, "baixa", 0.75), (0.02, "media", 1.0), (0.034, "media", 1.0), (0.035, "alta", 1.25), (0.05, "alta", 1.25)])
-def test_erosao_fator_da_erodibilidade(k, classe, fator):
+@pytest.mark.parametrize("k, classe", [(0.0145, "baixa"), (0.015, "media"), (0.0225, "media"), (0.0299, "media"), (0.030, "alta"), (0.05, "alta")])
+def test_erosao_fator_da_erodibilidade_e_proporcional_ao_k_e_a_classe_so_vai_para_o_texto(k, classe):
     e = Erodibilidade(k_usle=k)
     n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"), erodibilidade=e)
     assert classe_do_k(k) == classe
-    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5 * fator)  # parcela 2/3, declive 0,5
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.84 * (k / 0.0225))  # parcela 2/3, declive 0,84, fator K = K / 0,0225
+    assert f"erodibilidade {classe.replace('media', 'média')}, estimada pelo mapa global de solo" in n["erosao"].explicacao
     assert not any("erodibilidade" in l for l in lac)
 
 
-def test_erosao_sem_k_usa_fator_neutro_e_registra_lacuna():
+# solos da tabela 2.6 do VALIDACAO-PARAMETROS-MOTOR.md: (argila, areia, silte, carbono g/kg), K de Williams, classe, fator K
+SOLOS = [
+    ((70, 15, 15, 20), 0.0126, "baixa", 0.56),  # Latossolo muito argiloso
+    ((50, 35, 15, 15), 0.0138, "baixa", 0.61),  # Latossolo argiloso
+    ((25, 65, 10, 10), 0.0163, "media", 0.72),  # textura média
+    ((15, 75, 10, 8), 0.0169, "media", 0.75),  # arenoso/médio
+    ((20, 20, 60, 15), 0.0234, "media", 1.04),  # franco-siltoso dos EUA
+    ((15, 15, 70, 10), 0.0337, "alta", 1.50),  # muito siltoso
+]
+
+
+@pytest.mark.parametrize("composicao, k, classe, fator_k", SOLOS)
+def test_erosao_solos_da_tabela_da_validacao(composicao, k, classe, fator_k):
+    k_calculado = erodibilidade_k(*composicao)
+    assert k_calculado == pytest.approx(k, abs=1e-4) and classe_do_k(k_calculado) == classe
+    n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"), erodibilidade=Erodibilidade(k_calculado))
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.84 * fator_k, abs=0.002)
+
+
+def test_erosao_sem_k_usa_fator_neutro_e_registra_lacuna():  # FATOR_K_SEM_DADO = 1
     n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"), erodibilidade=None)
-    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5)  # o mesmo de antes do K
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.84)  # o mesmo de antes do K
     assert any("erodibilidade" in l for l in lac)
 
 
 def test_erosao_com_k_alto_em_declive_forte_nao_passa_de_zero():
     n, _ = notas([item("c", 7, 9)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("forte_ondulado", 30.0, "SRTM"), erodibilidade=Erodibilidade(0.05))
-    assert n["erosao"].nota == 0.0
+    assert n["erosao"].nota == 0.0  # fator do declive 1 x fator K 2,2 em solo todo descoberto: a nota fica no limite de 0
+
+
+def test_erosao_nota_fica_entre_0_e_1_com_k_muito_alto_e_com_k_muito_baixo():
+    for k in (0.001, 0.06, 0.2):
+        for parcela_mes in ((1, 3), (7, 9)):
+            n, _ = notas([item("c", *parcela_mes)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("montanhoso", 60.0, "SRTM"), erodibilidade=Erodibilidade(k))
+            assert 0.0 <= n["erosao"].nota <= 1.0
 
 
 def test_erosao_k_alto_piora_e_k_baixo_melhora_a_nota():
-    kw = dict(clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("ondulado", None, "q7"))
+    kw = dict(clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"))
     baixo, _ = notas([item("c", 1, 2)], [cultura("c")], erodibilidade=Erodibilidade(0.01), **kw)
     alto, _ = notas([item("c", 1, 2)], [cultura("c")], erodibilidade=Erodibilidade(0.05), **kw)
     assert baixo["erosao"].nota > alto["erosao"].nota
@@ -255,3 +347,62 @@ def test_erosao_evidencia_do_k_com_valor_unidade_e_fonte():
     k = n["erosao"].evidencias[-1]
     assert k.valor == 0.0145 and k.unidade == "t·ha·h/(ha·MJ·mm)" and k.fonte == "SoilGrids 2.0 (ISRIC)"
     assert "baixa" in k.texto and "erodibilidade baixa" in n["erosao"].explicacao
+
+
+# --- regra 15: a classe da palhada vem com a faixa quando depende da época
+def palha(n):
+    return next(ev for ev in n["terra"].evidencias if ev.texto.startswith(("Palha ", "Palhada ")))
+
+
+def test_palha_que_depende_da_epoca_mostra_a_classe_com_a_faixa():
+    milho = cultura("milho", aporte_biomassa="medio", faixa_palhada=FaixaPalhada(2.1, 6.0, 9.8), depende_da_epoca={"aporte_biomassa": True})
+    n, _ = notas([item("milho", 1, 3)], [milho])
+    ev = palha(n)
+    assert ev.texto == "Palhada de Milho: palhada média, de 2,1 a 9,8 t/ha conforme a data de manejo (depende da época)"
+    assert (ev.valor, ev.unidade, ev.fonte) == ("2,1–9,8", "t/ha", "Base de culturas do Field Shift")
+    assert "(palhada média, de 2,1 a 9,8 t/ha conforme a data de manejo)" in n["terra"].explicacao
+
+
+@pytest.mark.parametrize("depende", [False, None])
+def test_palha_que_nao_depende_da_epoca_fica_como_antes(depende):
+    milho = cultura("milho", aporte_biomassa="medio", faixa_palhada=FaixaPalhada(2.1, 6.0, 9.8), depende_da_epoca={"aporte_biomassa": depende})
+    n, _ = notas([item("milho", 1, 3)], [milho])
+    ev = palha(n)
+    assert ev.texto == "Palha que fica no campo (maior da rotação: Milho)" and (ev.valor, ev.unidade) == ("média", "classe")
+    assert "t/ha" not in n["terra"].explicacao and "(classe média)" in n["terra"].explicacao
+
+
+def test_palha_que_depende_da_epoca_sem_faixa_completa_fica_como_antes():
+    milho = cultura("milho", aporte_biomassa="medio", faixa_palhada=FaixaPalhada(None, 6.0, None), depende_da_epoca={"aporte_biomassa": True})
+    assert palha(notas([item("milho", 1, 3)], [milho])[0]).unidade == "classe"
+
+
+def test_palha_do_catalogo_real_milho_do_brasil_mostra_a_faixa():
+    milho = catalogo_do_pais("BR")["milho"]  # depende_da_epoca verdadeiro, faixa 3,9 a 14,5 t/ha
+    ev = palha(notas([item("milho", 1, 3)], [milho])[0])
+    assert ev.valor == "3,9–14,5" and ev.unidade == "t/ha"
+
+
+# --- regra 16: o aviso da régua vai junto da explicação do critério
+def test_aviso_da_pastagem_dos_eua_aparece_na_explicacao_de_animais_sem_duplicar_atencao():
+    past = catalogo_do_pais("US")["pastagem"]
+    n, _ = notas([item("pastagem", 1, 12, perene=True)], [past])
+    aviso = past.avisos["valor_forrageiro"]
+    assert n["animais"].explicacao.endswith(f"(classe alto). ({aviso})") and "Atenção: Atenção" not in n["animais"].explicacao
+    assert n["animais"].explicacao.count("Atenção") == 1
+
+
+def test_aviso_sem_atencao_no_inicio_ganha_o_prefixo_e_sem_aviso_nada_muda():
+    c = cultura("c", valor_forrageiro="alto", avisos={"valor_forrageiro": "A variedade pode intoxicar o gado."})
+    assert notas([item("c", 1, 3)], [c])[0]["animais"].explicacao.endswith("(Atenção: A variedade pode intoxicar o gado.)")
+    sem = notas([item("c", 1, 3)], [cultura("c", valor_forrageiro="alto")])[0]["animais"].explicacao
+    assert sem == "A melhor comida para os animais da rotação é a de C (classe alto)."
+
+
+def test_classes_aparecem_em_portugues_de_produtor_no_texto_e_na_evidencia():
+    for chave, exibida in (("baixo", "baixa"), ("medio", "média"), ("alto", "alta")):
+        n, _ = notas([item("c", 1, 3)], [cultura("c", aporte_biomassa=chave)])
+        assert f"(classe {exibida})" in n["terra"].explicacao and palha(n).valor == exibida
+    for chave, exibida in (("nenhum", "nenhum"), ("baixo", "baixo"), ("medio", "médio"), ("alto", "alto")):
+        n, _ = notas([item("c", 1, 3)], [cultura("c", valor_forrageiro=chave)])
+        assert n["animais"].explicacao.endswith(f"(classe {exibida}).") and n["animais"].evidencias[0].valor == exibida

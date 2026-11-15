@@ -1,30 +1,36 @@
-"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada/frio e arroz irrigado eliminam; a água só avisa. Cada um com o motivo."""
-from collections.abc import Iterable
+"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada, arroz irrigado e chuva muito curta (só sugestões) eliminam; calor e água no limite avisam."""
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
-from datetime import date, timedelta
+from typing import Any
 
 from app.services import catalogo as base
+from app.services.clima.agregacao import percentil
 from app.services.clima.graus_dia import gd_para_tb
+from app.services.clima.limiares import BASE_FIM, BASE_INICIO
 from app.services.motor.calendario import meses_do_terco_medio
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.entradas import ClimaDoLocal, EntradasMotor
-from app.services.motor.formatos import MESES, num, pct
+from app.services.motor.fases import anos_com_sequencia, meses_da_fase
+from app.services.motor.formatos import MESES, inteiro, num, pct
 from app.services.motor.hidrico import chuva_do_periodo, etc_mensal
 from app.services.motor.modelo import Alerta, ItemRotacao
 from app.services.motor.parametros import (
     AGUA_ALERTA_ABAIXO,
+    AGUA_ELIMINA_SUGESTAO_ABAIXO,
     AGUA_MUITO_ABAIXO,
+    CALOR_DIAS_SEGUIDOS,
+    CALOR_FASE_FIM_FRAC,
+    CALOR_FASE_INICIO_FRAC,
+    CALOR_MAX_FRACAO_DE_ANOS,
     GD_ALERTA_ABAIXO,
-    FASE_FRIO_PADRAO,
-    FASE_FRIO_PERENE,
-    FASES_FRIO_TEXTO,
+    GD_ANO_FIM,
+    GD_ANO_INICIO,
     GD_ELIMINA_ABAIXO,
+    GD_MIN_SAFRAS,
+    GD_PERCENTIL_ANO_FRIO,
     GEADA_FASE_SENSIVEL,
     GEADA_MAX_FRACAO_DE_ANOS,
     GEADA_MIN_DIAS_NO_ANO,
-    SEMEADURA_DIA_DO_MES,
-    TMIN_ANO_FIM,
-    TMIN_ANO_INICIO,
 )
 
 ARROZ_IRRIGADO = "arroz_irrigado"
@@ -35,6 +41,7 @@ class Achado:
     codigo: str
     texto: str
     grave: bool  # grave elimina a candidata; na rotação atual vira alerta
+    texto_alerta: str | None = None  # texto do alerta na rotação atual, quando difere do motivo de eliminação
 
 
 @dataclass
@@ -48,67 +55,35 @@ class ResultadoFiltro:
         return bool(self.motivos)
 
 
-def _gd_do_periodo(meses: list[int], tb: float, clima: ClimaDoLocal) -> float | None:
-    parciais = [gd_para_tb(clima.gd_por_tb_medio.get(m), tb) for m in meses]
-    return None if not parciais or any(p is None for p in parciais) else sum(parciais)
+def gd_das_safras(meses: list[int], tb: float, clima: ClimaDoLocal) -> list[float]:
+    """Graus-dia de cada safra com ano de plantio em 2001–2020. Os meses do período vêm em ordem: quando o mês
+    volta (dez -> jan) o ciclo entrou no ano seguinte. Safra com algum mês sem GD completo fica de fora."""
+    safras = []
+    for plantio in range(GD_ANO_INICIO, GD_ANO_FIM + 1):
+        ano, anterior, total = plantio, 0, 0.0
+        for m in meses:
+            ano += m < anterior
+            anterior = m
+            parcial = gd_para_tb(clima.gd_por_tb_ano.get(ano, {}).get(m), tb)
+            if parcial is None:
+                break
+            total += parcial
+        else:
+            safras.append(total)
+    return safras
+
+
+def _fracao_de_anos(meses: list[int], por_ano: dict[int, dict[int, Any]], conta: Callable[[Any], bool]) -> float | None:
+    """Parcela dos anos (com dado em todos os meses do período) em que algum mês satisfaz `conta`."""
+    anos = [a for a, por_mes in por_ano.items() if all(por_mes.get(m) is not None for m in meses)]
+    if not anos or not meses:
+        return None
+    return sum(any(conta(por_ano[a][m]) for m in meses) for a in anos) / len(anos)
 
 
 def fracao_de_anos_com_geada(meses: list[int], clima: ClimaDoLocal) -> float | None:
     """Parcela dos anos (com dado em todos os meses do período) em que algum mês teve dias de geada."""
-    anos = [a for a, por_mes in clima.geada_por_ano.items() if all(por_mes.get(m) is not None for m in meses)]
-    if not anos or not meses:
-        return None
-    com_geada = sum(any(clima.geada_por_ano[a][m] >= GEADA_MIN_DIAS_NO_ANO for m in meses) for a in anos)
-    return com_geada / len(anos)
-
-
-def janela_do_frio(c: CulturaMotor, item: ItemRotacao, ano: int) -> tuple[date, date] | None:
-    """Dias (início, fim, inclusive) da fase sensível ao frio no ano de semeadura `ano` (regra 17).
-
-    Perene: o ano todo. Senão: semeadura no dia SEMEADURA_DIA_DO_MES de `inicio_mes` + fração × ciclo médio da base;
-    fração vazia = o ciclo inteiro. Sem ciclo na base: None.
-    """
-    if item.perene:
-        return date(ano, 1, 1), date(ano, 12, 31)
-    ciclos = [v for v in (c.ciclo_dias_min, c.ciclo_dias_max) if v is not None]
-    if not ciclos or item.inicio_mes is None:
-        return None
-    ciclo = sum(ciclos) / len(ciclos)
-    semeadura = date(ano, item.inicio_mes, SEMEADURA_DIA_DO_MES)
-    ini = 0.0 if c.fase_frio_inicio_frac is None else c.fase_frio_inicio_frac
-    fim = 1.0 if c.fase_frio_fim_frac is None else c.fase_frio_fim_frac
-    return semeadura + timedelta(days=round(ini * ciclo)), semeadura + timedelta(days=round(fim * ciclo))
-
-
-def _ano_com_frio(janela: tuple[date, date], limiar: float, seguidos: int, clima: ClimaDoLocal) -> bool | None:
-    """O ano teve `seguidos` dias seguidos com Tmin < limiar na janela? None se algum dia da janela não tem dado."""
-    ini, fim = janela
-    temps = [clima.tmin_por_dia.get(ini + timedelta(days=i)) for i in range((fim - ini).days + 1)]
-    if any(t is None for t in temps):
-        return None
-    corrida = 0
-    for t in temps:
-        corrida = corrida + 1 if t < limiar else 0
-        if corrida >= seguidos:
-            return True
-    return False
-
-
-def fracao_de_anos_com_frio(c: CulturaMotor, item: ItemRotacao, clima: ClimaDoLocal) -> float | None:
-    """Parcela dos anos de semeadura 1991-2020, com todos os dias da fase presentes, em que o frio da regra 17 ocorreu."""
-    limiar = c.tmin_critica_c
-    if limiar is None:
-        return None
-    seguidos = max(1, round(c.tmin_dias_seguidos or 1))
-    resultados = []
-    for ano in range(TMIN_ANO_INICIO, TMIN_ANO_FIM + 1):
-        janela = janela_do_frio(c, item, ano)
-        if janela is None:
-            return None
-        r = _ano_com_frio(janela, limiar, seguidos, clima)
-        if r is not None:
-            resultados.append(r)
-    return sum(resultados) / len(resultados) if resultados else None
+    return _fracao_de_anos(meses, clima.geada_por_ano, lambda dias: dias >= GEADA_MIN_DIAS_NO_ANO)
 
 
 def _equipamento(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
@@ -139,19 +114,34 @@ def _regiao(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[
 
 def _graus_dia(c: CulturaMotor, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
     minimo, tb = c.graus_dia_ciclo_min, c.temp_base_c
+    if c.perene and (minimo is None or c.tem_tipo("forrageira")):
+        return  # regra 14: perene forrageira (pastagem, alfafa) não tem filtro de ciclo nem de graus-dia; vazio = não se aplica
     if minimo is None or tb is None:
-        if not (c.perene and minimo is None):  # pastagem: graus-dia não se aplica
-            lac.append(f"{c.nome}: sem exigência de graus-dia na base, não checamos o calor do ciclo.")
+        lac.append(f"{c.nome}: sem exigência de graus-dia na base, não checamos o calor do ciclo.")
         return
-    gd = _gd_do_periodo(meses, tb, e.clima)
-    if gd is None:
+    safras = gd_das_safras(meses, tb, e.clima)
+    if not safras:
         lac.append(f"{c.nome}: sem graus-dia do clima do local para o período, não checamos o calor do ciclo.")
         return
-    razao = gd / minimo  # só o mínimo conta (regra 9: a mandioca nunca é cortada pelo máximo)
+    if len(safras) < GD_MIN_SAFRAS:
+        lac.append(f"{c.nome}: sem anos suficientes de clima para checar o calor do ciclo.")
+        return
+    mediana = percentil(safras, 50)  # regra 2: a mediana dos anos, não o ano a ano
+    razao = mediana / minimo  # só o mínimo conta (regra 9: a mandioca nunca é cortada pelo máximo)
+    periodo = f"{GD_ANO_INICIO}–{GD_ANO_FIM}"
+    calor = f"o calor do período dá {inteiro(mediana)} graus-dia na metade dos anos ({periodo}) e ela precisa de pelo menos {inteiro(minimo)}"
+    if c.e_cobertura:  # coberturas: o calor nunca elimina, quem decide se cabe é a janela (regra 12)
+        if razao < GD_ALERTA_ABAIXO:
+            achados.append(Achado("pouco_crescimento", f"{c.nome}: pouco crescimento antes do frio ou do manejo; {calor}.", False))
+        return
     if razao < GD_ELIMINA_ABAIXO:
-        achados.append(Achado("graus_dia", f"{c.nome}: o calor do período dá {num(gd, 0)} graus-dia e ela precisa de pelo menos {num(minimo, 0)}; não fecha o ciclo.", True))
-    elif razao < GD_ALERTA_ABAIXO:
-        achados.append(Achado("limite_termico", f"{c.nome}: no limite térmico ({num(gd, 0)} de {num(minimo, 0)} graus-dia), validar localmente.", False))
+        achados.append(Achado("graus_dia", f"{c.nome}: {calor}; não fecha o ciclo.", True))
+        return
+    if razao < GD_ALERTA_ABAIXO:
+        achados.append(Achado("limite_termico", f"{c.nome}: no limite térmico, validar localmente; {calor}.", False))
+    p10 = percentil(safras, GD_PERCENTIL_ANO_FRIO)
+    if p10 < GD_ELIMINA_ABAIXO * minimo:
+        achados.append(Achado("ano_frio", f"{c.nome}: em ano frio pode não completar o ciclo; em 1 a cada 10 anos ({periodo}) o calor do período fica em {inteiro(p10)} graus-dia, e ela precisa de pelo menos {inteiro(minimo)}.", False))
 
 
 def _agua(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
@@ -168,55 +158,103 @@ def _agua(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor
             return
         razao = chuva / etc
         muito_abaixo, limite = razao < AGUA_MUITO_ABAIXO, razao < AGUA_ALERTA_ABAIXO
+        elimina = razao < AGUA_ELIMINA_SUGESTAO_ABAIXO
+        motivo = f"{c.nome}: a chuva do período ({num(chuva, 0)} mm) cobre só {pct(razao)} da água que a cultura usa ({num(etc, 0)} mm); sem irrigação não fecha."
         falta = etc - chuva
         resumo = f"a chuva do período ({num(chuva, 0)} mm) cobre {pct(razao)} do que ela usa ({num(etc, 0)} mm)"
     elif c.agua_ciclo_mm_min is not None:  # reserva: faixa de água da base
         muito_abaixo = chuva < c.agua_ciclo_mm_min
         falta = c.agua_ciclo_mm_min - chuva
         limite = muito_abaixo or (c.agua_ciclo_mm_max is not None and chuva < c.agua_ciclo_mm_max)
+        elimina = chuva < AGUA_ELIMINA_SUGESTAO_ABAIXO * c.agua_ciclo_mm_min  # sem a conta local: a mesma razão contra o mínimo da base
+        motivo = f"{c.nome}: a chuva do período ({num(chuva, 0)} mm) cobre só {pct(chuva / c.agua_ciclo_mm_min)} da água que a cultura precisa ({num(c.agua_ciclo_mm_min, 0)} mm); sem irrigação não fecha."
         resumo = f"a chuva do período ({num(chuva, 0)} mm) fica abaixo do que ela precisa ({num(c.agua_ciclo_mm_min, 0)} a {num(c.agua_ciclo_mm_max or c.agua_ciclo_mm_min, 0)} mm)"
     else:
         lac.append(f"{c.nome}: sem Kc nem faixa de água na base, não checamos a água.")
         return
     if not limite:
         return
-    # a água nunca elimina (regra 1): a chuva da estação fica abaixo da demanda onde o sequeiro é típico
     deficit = f"; faltam cerca de {num(falta, 0)} mm" if falta > 0 else ""
     complemento = "; só fecha na parte irrigada" if e.irrigacao == "parte" and muito_abaixo else ""
-    achados.append(Achado("agua_no_limite", f"{c.nome}: água no limite, {resumo}{deficit}{complemento}.", False))
+    aviso = f"{c.nome}: água no limite, {resumo}{deficit}{complemento}."
+    # só a sugestão nova é eliminada (a rotação atual vira aviso, em `avaliar`); com irrigação em parte da área, só avisa
+    if elimina and e.irrigacao != "parte":
+        achados.append(Achado("agua_no_limite", motivo, True, aviso))
+    else:
+        achados.append(Achado("agua_no_limite", aviso, False))
+
+
+def _fase_sensivel(item: ItemRotacao, meses: list[int], modo: str) -> list[int]:
+    """Fase sensível = floração: o terço do meio do ciclo (perene: o ano todo)."""
+    return meses_do_terco_medio(meses) if modo == "terco_medio" and not item.perene else meses
+
+
+def _calor(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    """Regra 11 (revista): só avisa; tmax_critica_c vazio = sem aviso e sem lacuna. O ano conta com CALOR_DIAS_SEGUIDOS dias quentes seguidos."""
+    limite = c.tmax_critica_c
+    if limite is None:
+        return
+    if not e.clima.serie_diaria:
+        lac.append(f"{c.nome}: sem dados diários de temperatura máxima do local, não checamos o risco de calor.")
+        return
+    contam, com_dado = anos_com_sequencia(item, c, e.clima.serie_diaria, "tmax_c", CALOR_FASE_INICIO_FRAC, CALOR_FASE_FIM_FRAC, lambda t: t > limite, CALOR_DIAS_SEGUIDOS)
+    if com_dado < GD_MIN_SAFRAS:
+        lac.append(f"{c.nome}: sem anos suficientes de clima para checar o risco de calor.")
+        return
+    fracao = contam / com_dado
+    if fracao > CALOR_MAX_FRACAO_DE_ANOS:
+        graus = num(limite, 0 if limite == int(limite) else 1)
+        perene = item.perene or c.perene
+        onde = "ao longo do ano" if perene else f"na floração ({meses_da_fase(item, c, CALOR_FASE_INICIO_FRAC, CALOR_FASE_FIM_FRAC)})"
+        achados.append(Achado("calor_floracao", f"{c.nome}: em {pct(fracao)} dos anos ({BASE_INICIO}–{BASE_FIM}) a temperatura passou de {graus} °C por {CALOR_DIAS_SEGUIDOS} dias seguidos {onde}; o calor nessa fase pode reduzir a produção.", False))
+
+
+FASE_DO_FRIO = {
+    "emergencia": "na emergência",
+    "vegetativo": "no crescimento",
+    "floracao": "na floração",
+    "enchimento_grao": "no enchimento dos grãos",
+    "ciclo_todo": "durante o ciclo",
+}
+
+
+def _frio(c: CulturaMotor, item: ItemRotacao, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    """Regra 17: limiar da cultura só nos dias da fase sensível; o ano conta com tmin_dias_seguidos dias seguidos abaixo dele."""
+    limiar, seguidos = c.tmin_critica_c, c.tmin_dias_seguidos or 1
+    contam, com_dado = anos_com_sequencia(item, c, e.clima.serie_diaria, "tmin_c", c.fase_frio_inicio_frac, c.fase_frio_fim_frac, lambda t: t < limiar, seguidos)
+    if com_dado < GD_MIN_SAFRAS:
+        lac.append(f"{c.nome}: sem anos suficientes de clima para checar o frio.")
+        return
+    fracao = contam / com_dado
+    if fracao <= GEADA_MAX_FRACAO_DE_ANOS:
+        return
+    graus = num(limiar, 0 if limiar == int(limiar) else 1)
+    duracao = f" por {seguidos} dias seguidos" if seguidos > 1 else ""
+    if item.perene or c.perene:
+        onde = "ao longo do ano"
+    else:
+        fase = FASE_DO_FRIO.get(c.fase_sensivel_frio or "", "na fase sensível")
+        onde = f"{fase} ({meses_da_fase(item, c, c.fase_frio_inicio_frac, c.fase_frio_fim_frac)})"
+    codigo, dano = ("geada", "a geada") if limiar <= 0 else ("frio", "o frio")  # "geada" só quando o limiar é de geada
+    texto = f"{c.nome}: em {pct(fracao)} dos anos ({BASE_INICIO}–{BASE_FIM}) a mínima ficou abaixo de {graus} °C{duracao} {onde}; {dano} nessa fase tira produção."
+    achados.append(Achado(codigo, texto, c.tmin_efeito != "aviso"))  # efeito aviso (dano parcial) nunca elimina
 
 
 def _geada(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    if c.tmin_critica_c is not None:
+        if e.clima.serie_diaria and c.fase_frio_inicio_frac is not None and c.fase_frio_fim_frac is not None:
+            _frio(c, item, e, achados, lac)
+            return
+        lac.append(f"{c.nome}: sem dados diários de temperatura mínima do local ou sem a fase do frio na base: usamos o teste de geada por mês.")
     if not c.sensivel_geada:
         return
-    # fase sensível = floração: o terço do meio do ciclo (perene: o ano todo)
-    fase = meses_do_terco_medio(meses) if GEADA_FASE_SENSIVEL == "terco_medio" and not item.perene else meses
+    fase = _fase_sensivel(item, meses, GEADA_FASE_SENSIVEL)
     fracao = fracao_de_anos_com_geada(fase, e.clima)
     if fracao is None:
         lac.append(f"{c.nome}: sem dados de geada do local para a floração, não checamos o risco de geada.")
     elif fracao > GEADA_MAX_FRACAO_DE_ANOS:
         onde = "/".join(MESES[m - 1] for m in fase)
         achados.append(Achado("geada", f"{c.nome}: em {pct(fracao)} dos anos houve geada na fase de floração ({onde}) e ela é sensível.", True))
-
-
-def _frio(c: CulturaMotor, item: ItemRotacao, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
-    """Regra 17: limiar de Tmin da cultura, só nos dias da fase sensível. Sem dado diário: lacuna, nunca o limiar de 2 °C."""
-    limiar = c.tmin_critica_c
-    onde, fase = FASE_FRIO_PERENE if item.perene else FASES_FRIO_TEXTO.get(c.fase_sensivel_frio or "", FASE_FRIO_PADRAO)
-    fracao = fracao_de_anos_com_frio(c, item, e.clima)
-    if fracao is None:
-        lac.append(f"{c.nome}: sem a mínima diária do local para a fase {fase}, não checamos o frio.")
-        return
-    if fracao <= GEADA_MAX_FRACAO_DE_ANOS:
-        return
-    termo = "geada" if limiar <= 0 else "frio"
-    graus = num(limiar, 1).removesuffix(",0")
-    seguidos = max(1, round(c.tmin_dias_seguidos or 1))
-    quanto = f"mínima abaixo de {graus} °C" + (f" por {seguidos} dias seguidos" if seguidos > 1 else "")
-    if c.tmin_efeito == "aviso":  # dano parcial (ex.: esterilidade do arroz): fica, com o aviso
-        achados.append(Achado(termo, f"{c.nome}: {termo} {onde} em {pct(fracao)} dos anos ({quanto}); o dano é parcial, validar localmente.", False))
-    else:
-        achados.append(Achado(termo, f"{c.nome}: em {pct(fracao)} dos anos houve {termo} {onde} ({quanto}) e ela é sensível.", True))
 
 
 def achados_do_item(item: ItemRotacao, c: CulturaMotor, e: EntradasMotor, da_atual: bool) -> tuple[list[Achado], list[str]]:
@@ -234,10 +272,8 @@ def achados_do_item(item: ItemRotacao, c: CulturaMotor, e: EntradasMotor, da_atu
         return achados, lac
     _graus_dia(c, meses, e, achados, lac)
     _agua(c, item, meses, e, achados, lac)
-    if c.tmin_critica_c is not None:
-        _frio(c, item, e, achados, lac)
-    else:
-        _geada(c, item, meses, e, achados, lac)  # reserva: 2 °C no terço do meio, para cultura sem limiar na base
+    _geada(c, item, meses, e, achados, lac)
+    _calor(c, item, meses, e, achados, lac)
     return achados, lac
 
 
@@ -252,7 +288,7 @@ def avaliar(itens: Iterable[ItemRotacao], e: EntradasMotor, eliminar: bool) -> R
         for a in achados:
             if a.grave and eliminar:
                 r.motivos.append(a.texto)
-            elif a.texto not in [x.texto for x in r.alertas]:
-                r.alertas.append(Alerta(a.codigo, a.texto))
+            elif (a.texto_alerta or a.texto) not in [x.texto for x in r.alertas]:
+                r.alertas.append(Alerta(a.codigo, a.texto_alerta or a.texto))
         r.lacunas += [l for l in lac if l not in r.lacunas]
     return r

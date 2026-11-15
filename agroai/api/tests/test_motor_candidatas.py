@@ -1,10 +1,9 @@
 """Candidatas: atual, janela vazia, troca da principal por tolerante à seca e leguminosa."""
 from app.services.motor.calendario import maior_janela_vazia, meses_do_periodo, meses_necessarios, partes_por_terco
-from app.services.motor.candidatas import _mes_na_janela_de_semeadura, chave, gerar_candidatas
-from app.services.motor.motor_service import analisar_entradas
+from app.services.motor.candidatas import chave, gerar_candidatas
+from app.services.motor.catalogo import catalogo_do_pais
 from app.services.motor.modelo import Estrategia
-from app.services.motor.parametros import MAX_CANDIDATAS
-from motor_helpers import cultura, entradas, item
+from motor_helpers import cultura, item
 
 
 def atual(*itens) -> Estrategia:
@@ -97,14 +96,16 @@ def test_sem_duplicata_e_sem_a_propria_atual():
     assert "leguminosa:janela:caupi" not in ids(c)  # a fixadora na janela já veio da regra 1
 
 
-def test_no_maximo_30_candidatas():
+def test_nao_ha_limite_de_candidatas():
     muitas = {
         f"c{i}": cultura(f"c{i}", tipos=("comercial", "tolerante_seca", "fixadora_n"), fixa_nitrogenio=True, ciclo_dias_min=30)
         for i in range(60)
     }
     muitas["milho"] = cultura("milho")
     a = atual(item("milho", 10, 2), item("trigo", 3, 6))
-    assert len(gerar_candidatas(a, muitas, [7, 8, 9])) == MAX_CANDIDATAS
+    c = gerar_candidatas(a, muitas, [7, 8, 9])
+    assert len(c) == 180 > 30  # 60 na janela, 60 trocas da principal por tolerante à seca e 60 trocas do trigo por leguminosa
+    assert len({x.id for x in c}) == len(c)  # sem corte e sem repetir
 
 
 def test_cultura_fora_do_catalogo_na_atual_nao_quebra_e_nao_e_principal():
@@ -123,120 +124,116 @@ def test_meses_do_terco_medio_sao_os_meses_inteiros_que_tocam_o_terco():
     assert meses_do_terco_medio([11, 12, 1, 2, 3, 4]) == [1, 2]
 
 
-# --- regra 12: janela de semeadura e condição das coberturas
-def cobertura(id_="nabo", inicio="04-01", fim="05-31", condicao="apos_colheita_graos", ciclo=60, **mais):
+# --- regra 12: coberturas só entram onde a janela de semeadura e a cultura anterior permitem
+def cob(id_, inicio, fim, condicao=("apos_colheita_graos",), ciclo=45, **mais):
+    ini, fi = (tuple(int(p) for p in x.split("-")) if x else None for x in (inicio, fim))
     mais.setdefault("tipos", ("cobertura",))
-    return cultura(id_, ciclo_dias_min=ciclo, semeadura_inicio=inicio, semeadura_fim=fim, condicao_semeadura=condicao, **mais)
+    return cultura(id_, ciclo_dias_min=ciclo, semeadura_inicio=ini, semeadura_fim=fi, condicao_semeadura=condicao, **mais)
 
 
-def so_janela(a, c, vazios, id_="nabo"):
-    """A candidata de janela da cobertura `id_` (ou None): (inicio, fim, lacunas)."""
-    cat = {x.id: x for x in [cultura("soja"), cultura("trigo", ciclo_dias_min=105), cultura("aveia", ciclo_dias_min=100), c]}
-    achada = [x for x in gerar_candidatas(a, cat, vazios) if x.id == f"janela:{id_}"]
-    if not achada:
-        return None
-    i = achada[0].itens[-1]
-    return i.inicio_mes, i.fim_mes, list(achada[0].lacunas)
+def leg(id_, inicio, fim, ciclo=56):
+    return cob(id_, inicio, fim, ciclo=ciclo, tipos=("cobertura", "fixadora_n"), fixa_nitrogenio=True)
 
 
-def test_mes_na_janela_de_semeadura_conta_o_mes_que_toca_a_janela_e_a_que_vira_o_ano():
-    nabo = cobertura()  # 01/04 a 31/05
-    assert [m for m in range(1, 13) if _mes_na_janela_de_semeadura(nabo, m)] == [4, 5]
-    crotalaria = cobertura("c", "10-01", "03-31")  # vira o ano
-    assert [m for m in range(1, 13) if _mes_na_janela_de_semeadura(crotalaria, m)] == [1, 2, 3, 10, 11, 12]
-    milheto = cobertura("m", "01-21", "04-15")  # janeiro entra: a janela começa no dia 21
-    assert [m for m in range(1, 13) if _mes_na_janela_de_semeadura(milheto, m)] == [1, 2, 3, 4]
-    assert _mes_na_janela_de_semeadura(cobertura("x", None, None), 4) is None and _mes_na_janela_de_semeadura(cobertura("x", "abc", "05-31"), 4) is None
+def cands(catalogo, a, vazios, origem="janela"):
+    return {x.id: x for x in gerar_candidatas(a, {c.id: c for c in catalogo}, vazios) if x.origem == origem}
 
 
-def test_nabo_nao_entra_numa_janela_vazia_de_janeiro_a_marco():
-    a = atual(item("soja", 8, 12), item("trigo", 4, 7))  # vazio: jan-mar
-    assert so_janela(a, cobertura(), [1, 2, 3]) is None
+def periodo(x, pos=-1):
+    return (x.itens[pos].inicio_mes, x.itens[pos].fim_mes)
 
 
-def test_nabo_entra_numa_janela_vazia_de_abril_a_julho_no_primeiro_mes_da_janela_de_semeadura():
-    a = atual(item("soja", 8, 3))
-    assert so_janela(a, cobertura(), [4, 5, 6, 7]) == (4, 5, [])  # 60 dias = 2 meses, plantado em abril
-    a = atual(item("soja", 8, 2))
-    assert so_janela(a, cobertura(), [3, 4, 5, 6]) == (4, 5, [])  # março não é época: começa em abril, ainda cabe
+def test_aveia_e_nabo_dos_eua_nao_entram_depois_de_milho_ou_soja_colhidos_em_outubro():
+    us = catalogo_do_pais("US")
+    cat = [us["soja"], us["milho"], us["aveia"], us["nabo_forrageiro"]]  # semeadura em agosto e setembro
+    for x in ("milho", "soja"):
+        c = cands(cat, atual(item(x, 5, 10)), [11, 12, 1, 2, 3, 4])
+        assert "janela:aveia" not in c and "janela:nabo_forrageiro" not in c, x
 
 
-def test_cobertura_nao_entra_se_o_ciclo_minimo_nao_cabe_depois_do_inicio_da_semeadura():
-    a = atual(item("soja", 8, 2))
-    assert so_janela(a, cobertura(), [3, 4]) is None  # começaria em abril: sobra 1 mês (30 dias) para 60 dias de ciclo
+def test_aveia_dos_eua_serve_depois_de_trigo_e_nao_depois_de_milho():
+    us = catalogo_do_pais("US")
+    cat = [us["trigo"], us["milho"], us["aveia"]]
+    depois_do_trigo = cands(cat, atual(item("trigo", 2, 7)), [8, 9, 10, 11, 12, 1])  # trigo colhido em julho
+    assert periodo(depois_do_trigo["janela:aveia"]) == (8, 10) and depois_do_trigo["janela:aveia"].alertas == ()
+    assert "janela:aveia" not in cands(cat, atual(item("milho", 2, 7)), [8, 9, 10, 11, 12, 1])
 
 
-def test_janela_de_semeadura_que_vira_o_ano():
-    crot = cobertura("crot", "10-01", "03-31", ciclo=56)
-    a = atual(item("soja", 1, 6))
-    assert so_janela(a, crot, [7, 8, 9, 10, 11], "crot") == (10, 11, [])  # começa em outubro; 2 meses cobrem 56 dias
-    assert so_janela(a, crot, [7, 8, 9, 10], "crot") is None  # só outubro sobra: 30 dias < 56
-    a = atual(item("soja", 5, 11))
-    assert so_janela(a, crot, [12, 1, 2, 3], "crot") == (12, 1, [])  # janela vazia que também vira o ano
+def test_centeio_dos_eua_cabe_em_outubro_depois_de_soja_colhida_em_setembro():
+    us = catalogo_do_pais("US")
+    cat = [us["soja"], us["centeio"]]
+    assert periodo(cands(cat, atual(item("soja", 4, 9)), [10, 11, 12, 1, 2, 3])["janela:centeio"]) == (10, 3)  # 178 dias: 6 meses livres
+    assert "janela:centeio" not in cands(cat, atual(item("soja", 4, 9)), [10, 11, 12, 1, 2])  # 5 meses: o ciclo não cabe
 
 
-def test_apos_cereal_inverno_depois_de_soja_nao_gera_e_depois_de_trigo_gera():
-    aveia = cobertura("aveia", "08-15", "09-15", "apos_cereal_inverno", ciclo=61)
-    assert so_janela(atual(item("soja", 1, 7)), aveia, [8, 9, 10, 11], "aveia") is None
-    assert so_janela(atual(item("trigo", 1, 7)), aveia, [8, 9, 10, 11], "aveia") == (8, 10, [])
+def test_cobertura_e_empurrada_para_o_inicio_da_janela_de_semeadura_se_ainda_cabe():
+    c = cands([cultura("trigo"), cob("aveia", "08-01", "09-15")], atual(item("trigo", 1, 6)), [7, 8, 9, 10, 11, 12])
+    assert periodo(c["janela:aveia"]) == (8, 9)  # livre desde julho, semeadura só em ago-set: 45 dias = 2 meses a partir de agosto
+    assert not cands([cultura("trigo"), cob("aveia", "12-01", "12-31")], atual(item("trigo", 1, 6)), [7, 8, 9])  # nenhum mês livre na janela
+    assert not cands([cultura("trigo"), cob("aveia", "09-01", "09-30", ciclo=100)], atual(item("trigo", 1, 6)), [7, 8, 9])  # empurrada, o ciclo não cabe
 
 
-def test_apos_colheita_de_graos_exige_cultura_comercial_antes():
-    depois_de_cobertura = atual(item("aveia", 8, 3))  # a aveia deste catálogo é só cobertura (não é grão de venda)
-    cat = {"aveia": cobertura("aveia", "03-01", "03-31", ciclo=100), "nabo": cobertura()}
-    assert not [x for x in gerar_candidatas(depois_de_cobertura, cat, [4, 5, 6, 7]) if x.id == "janela:nabo"]
-    assert so_janela(atual(item("soja", 8, 3)), cobertura(), [4, 5, 6, 7]) == (4, 5, [])
+def test_cobertura_so_a_lanco_nunca_e_sugerida_e_silagem_sozinha_tambem_nao():
+    for cond in (("a_lanco_lavoura_em_pe",), ("apos_silagem",), ("apos_silagem", "a_lanco_lavoura_em_pe")):
+        assert not cands([cultura("milho"), cob("aveia", "07-01", "09-30", cond)], atual(item("milho", 1, 6)), [7, 8, 9]), cond
+    assert not cands([cob("aveia", "07-01", "09-30", ("a_lanco_lavoura_em_pe",))], atual(item(None, 1, 6, texto="x")), [7, 8, 9])  # nem sem cultura anterior
+    assert cands([cultura("milho"), cob("aveia", "07-01", "09-30", ("apos_silagem", "apos_colheita_graos"))], atual(item("milho", 1, 6)), [7, 8, 9])  # outra condição serve
 
 
-def test_a_lanco_na_lavoura_em_pe_nunca_vira_sugestao_mas_a_outra_condicao_vale():
-    a = atual(item("soja", 8, 3))
-    assert so_janela(a, cobertura(condicao="a_lanco_lavoura_em_pe"), [4, 5, 6, 7]) is None
-    assert so_janela(a, cobertura(condicao="apos_colheita_graos|a_lanco_lavoura_em_pe"), [4, 5, 6, 7]) == (4, 5, [])
-    sem_a_lanco = atual(item("trigo", 8, 3))
-    assert so_janela(sem_a_lanco, cobertura(condicao="apos_cereal_inverno|a_lanco_lavoura_em_pe"), [4, 5, 6, 7]) == (4, 5, [])
+def test_cobertura_sem_condicao_nao_e_restringida_pela_cultura_anterior():
+    c = cands([cultura("pasto", tipos=("forrageira",)), cob("aveia", "07-01", "09-30", ())], atual(item("pasto", 1, 6)), [7, 8, 9])
+    assert "janela:aveia" in c and c["janela:aveia"].alertas == ()
 
 
-def test_apos_silagem_gera_com_lacuna_em_linguagem_simples():
-    a = atual(item("soja", 8, 3))
-    r = so_janela(a, cobertura(condicao="apos_cereal_inverno|apos_silagem"), [4, 5, 6, 7])
-    assert r[:2] == (4, 5) and len(r[2]) == 1 and "silagem" in r[2][0] and r[2][0].startswith("Nabo: ")
-    # com a condição verificável atendida, a lacuna da silagem não aparece
-    assert so_janela(atual(item("trigo", 8, 3)), cobertura(condicao="apos_cereal_inverno|apos_silagem"), [4, 5, 6, 7])[2] == []
+def test_apos_colheita_de_graos_exige_comercial_nao_perene():
+    pasto, mandioca = cultura("pasto", tipos=("forrageira",)), cultura("mandioca", perene=True)
+    aveia = cob("aveia", "07-01", "09-30")
+    assert not cands([pasto, aveia], atual(item("pasto", 1, 6)), [7, 8, 9])  # a anterior não é grão
+    assert not cands([mandioca, aveia], atual(item("mandioca", 1, 6)), [7, 8, 9])  # nem perene
+    assert "janela:aveia" in cands([cultura("milho"), aveia], atual(item("milho", 1, 6)), [7, 8, 9])
 
 
-def test_valor_de_condicao_desconhecido_e_cultura_anterior_desconhecida_geram_com_lacuna():
-    a = atual(item("soja", 8, 3))
-    r = so_janela(a, cobertura(condicao="depois_de_algo_novo"), [4, 5, 6, 7])
-    assert r[:2] == (4, 5) and "não conseguimos confirmar" in r[2][0]
-    fora = atual(item(None, 8, 3, texto="amendoim"))
-    r = so_janela(fora, cobertura(), [4, 5, 6, 7])
-    assert r[:2] == (4, 5) and "não conseguimos confirmar" in r[2][0]
+def test_cobertura_sem_janela_e_sugerida_com_alerta_de_janela_nao_confirmada():
+    x = cands([cultura("milho"), cob("milheto", None, None, ())], atual(item("milho", 1, 6)), [7, 8, 9])["janela:milheto"]
+    assert periodo(x) == (7, 8) and [a.codigo for a in x.alertas] == ["janela_nao_confirmada"]
+    assert x.alertas[0].texto == "Milheto: a época de semeadura ainda não foi confirmada para a sua região."
 
 
-def test_cobertura_sem_janela_no_catalogo_gera_com_lacuna_e_grao_nao_tem_lacuna():
-    a = atual(item("soja", 8, 3))
-    sem = cultura("nabo", tipos=("cobertura",), ciclo_dias_min=60)
-    inicio, fim, lacunas = so_janela(a, sem, [1, 2, 3, 4])
-    assert (inicio, fim) == (1, 2)  # sem janela segue como antes: no início da janela vazia
-    assert len(lacunas) == 1 and "ainda não confirmamos a melhor época" in lacunas[0]
-    cat = {"soja": cultura("soja"), "sorgo": cultura("sorgo", ciclo_dias_min=60)}
-    graos = [x for x in gerar_candidatas(a, cat, [4, 5, 6, 7]) if x.id == "janela:sorgo"]
-    assert graos and graos[0].lacunas == ()
+def test_cultura_anterior_fora_do_catalogo_sugere_com_alerta_para_conferir():
+    x = cands([cob("aveia", "03-01", "05-31")], atual(item(None, 10, 2, texto="amendoim")), [3, 4, 5])["janela:aveia"]
+    assert [a.codigo for a in x.alertas] == ["janela_nao_confirmada"]
+    assert x.alertas[0].texto == "Aveia: confira se dá para semear depois de amendoim."
 
 
-def test_troca_por_cobertura_tambem_respeita_a_janela_de_semeadura():
-    a = atual(item("soja", 10, 2), item("milho", 6, 9))  # a principal (milho) começa em junho
-    fora = cobertura("nabo", ciclo=60, tipos=("cobertura", "tolerante_seca"))
-    catalogo = {"soja": cultura("soja", ciclo_dias_max=140), "milho": cultura("milho", ciclo_dias_max=145), "nabo": fora}
-    assert "tolerante_seca:milho->nabo" not in ids(gerar_candidatas(a, catalogo, []))  # junho: fora de 01/04 a 31/05
-    a = atual(item("soja", 10, 2), item("milho", 4, 7))
-    assert "tolerante_seca:milho->nabo" in ids(gerar_candidatas(a, catalogo, []))
+def test_janela_que_cruza_o_ano_out_a_mar():
+    cro, milho = cob("crotalaria", "10-01", "03-31", ciclo=56), cultura("milho")
+    assert periodo(cands([milho, cro], atual(item("milho", 5, 12)), [1, 2, 3])["janela:crotalaria"]) == (1, 2)  # janeiro está na janela
+    assert periodo(cands([milho, cro], atual(item("milho", 5, 9)), [10, 11, 12])["janela:crotalaria"]) == (10, 11)
+    assert not cands([milho, cro], atual(item("milho", 11, 4)), [5, 6, 7])  # mai-jul fica fora (colheita em abril)
 
 
-def test_lacuna_da_candidata_chega_ao_resultado_da_analise():
-    sem_janela = cultura("milheto", tipos=("cobertura", "tolerante_seca"), ciclo_dias_min=45)
-    e = entradas([item("soja", 10, 2), item("milho", 2, 6)], [cultura("soja"), cultura("milho", ciclo_dias_max=145), sem_janela])
-    a = analisar_entradas(e)
-    achadas = [r for r in a.melhores if any(i.cultura_id == "milheto" for i in r.estrategia.itens)]
-    assert achadas and all("ainda não confirmamos a melhor época" in " ".join(r.lacunas) for r in achadas)
-    assert "ainda não confirmamos a melhor época" not in " ".join(a.atual.lacunas)
+def test_troca_por_cobertura_respeita_a_janela_e_empurra_o_inicio():
+    milho, trigo = cultura("milho", ciclo_dias_max=145), cultura("trigo")
+    a = atual(item("milho", 10, 2), item("trigo", 3, 6))  # principal: milho; a leguminosa entra no lugar do trigo (mar-jun)
+    dentro = cands([milho, trigo, leg("crotalaria", "03-01", "05-31")], a, [], "leguminosa")["leguminosa:trigo->crotalaria"]
+    assert periodo(dentro, 1) == (3, 6) and dentro.alertas == ()
+    empurrada = cands([milho, trigo, leg("crotalaria", "05-01", "05-31")], a, [], "leguminosa")["leguminosa:trigo->crotalaria"]
+    assert periodo(empurrada, 1) == (5, 6)  # semeada em maio, quando a janela dela abre
+    assert "leguminosa:trigo->crotalaria" not in cands([milho, trigo, leg("crotalaria", "08-01", "09-30")], a, [], "leguminosa")
+
+
+def test_troca_da_principal_por_cobertura_tolerante_a_seca_tambem_segue_a_janela():
+    a = atual(item("soja", 10, 2), item("milho", 2, 6))
+    soja, milho = cultura("soja", ciclo_dias_max=140), cultura("milho", ciclo_dias_max=145)
+
+    def milheto(ini, fim):
+        return cob("milheto", ini, fim, tipos=("cobertura", "tolerante_seca"))
+
+    assert "tolerante_seca:milho->milheto" in cands([soja, milho, milheto("02-01", "03-31")], a, [], "tolerante_seca")
+    assert "tolerante_seca:milho->milheto" not in cands([soja, milho, milheto("09-01", "10-31")], a, [], "tolerante_seca")
+
+
+def test_cultura_comercial_ignora_a_janela_de_semeadura_das_colunas():
+    sorgo = cultura("sorgo", tipos=("comercial", "tolerante_seca"), ciclo_dias_min=90, semeadura_inicio=(1, 1), semeadura_fim=(1, 31), condicao_semeadura=("apos_cereal_inverno",))
+    r = cands([cultura("milho"), sorgo], atual(item("milho", 1, 6)), [7, 8, 9])
+    assert periodo(r["janela:sorgo"]) == (7, 9) and r["janela:sorgo"].alertas == ()

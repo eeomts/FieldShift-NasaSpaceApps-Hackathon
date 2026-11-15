@@ -1,8 +1,8 @@
-"""Clima do NASA POWER guardado por célula da grade e agregado por mês."""
+"""Clima do NASA POWER guardado por célula da grade: agregado por mês e Tmin/Tmax diárias por ano."""
 from datetime import date, datetime
 
-from sqlalchemy import CheckConstraint, Date, DateTime, Float, ForeignKey, SmallInteger, String, func
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy import REAL, CheckConstraint, Date, DateTime, Float, ForeignKey, SmallInteger, String, func
+from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.db import Base
@@ -50,6 +50,14 @@ class ClimaMensal(Base):
     # Graus-dia do mês por Tb inteira ({"0": 512.3, ..., "20": 3.1}), sem teto. {} = mês sem temperatura completa;
     # NULL = célula baixada antes desta coluna (o serviço baixa de novo).
     gd_por_tb: Mapped[dict | None] = mapped_column(JSONB(none_as_null=True))
-    # Tmin de cada dia do mês (28 a 31 valores, índice = dia - 1; null no dia sem dado). NULL = célula baixada
-    # antes desta coluna (o serviço baixa de novo).
-    tmin_diaria: Mapped[list | None] = mapped_column(JSONB(none_as_null=True))
+
+
+class ClimaSerieDiaria(Base):
+    """Tmin e Tmax de cada dia do ano (índice 0 = 1º de janeiro; 366 valores em ano bissexto). Dia sem dado é NULL, nunca 0."""
+
+    __tablename__ = "clima_serie_diaria"
+
+    celula_id: Mapped[str] = mapped_column(ForeignKey("clima_celula.id", ondelete="CASCADE"), primary_key=True)
+    ano: Mapped[int] = mapped_column(SmallInteger, primary_key=True)
+    tmin_c: Mapped[list[float | None]] = mapped_column(ARRAY(REAL))
+    tmax_c: Mapped[list[float | None]] = mapped_column(ARRAY(REAL))

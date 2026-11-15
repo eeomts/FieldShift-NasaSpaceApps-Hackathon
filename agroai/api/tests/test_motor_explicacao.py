@@ -1,5 +1,6 @@
 """Explicação: 'por que' só com ganho de 0,1 ou mais, confiança (a menor) e lacunas."""
-from app.services.motor.explicacao import confianca, por_que
+from app.services.motor.catalogo import catalogo_do_pais, cultura_no_estado
+from app.services.motor.explicacao import avisos_da_regua, confianca, por_que
 from app.services.motor.modelo import CRITERIOS, NotaCriterio
 from motor_helpers import cultura, item
 
@@ -74,3 +75,70 @@ def test_onde_piora_no_maximo_3_frases_mais_pesadas_primeiro_e_ignora_sem_nota()
     frases = onde_piora(nova, atual, pesos)
     assert len(frases) == 3 and "terra" in frases[0] and "erosão" in frases[1] and "famílias" in frases[2]
     assert onde_piora(atual, nova, pesos) == []
+
+
+# --- regra 10: confiança baixa traz o que não sabemos e o que confirmar
+def test_confianca_baixa_traz_os_dois_textos_da_cultura_do_catalogo_real():
+    br = catalogo_do_pais("BR")
+    conf, lac = confianca((item("crotalaria", 10, 12),), br)
+    c = br["crotalaria"]
+    assert conf == "baixa" and lac == [f"Crotalária: {c.lacuna_informacao}", f"Crotalária: {c.risco_revisao_local}"]
+
+
+def test_confianca_alta_ou_media_nao_traz_os_textos_mesmo_se_preenchidos():
+    for nivel in ("alta", "media"):
+        c = cultura("c", confianca_parametros=nivel, lacuna_informacao="Falta medição.", risco_revisao_local="Confirme.")
+        assert confianca((item("c", 1, 3),), {"c": c}) == (nivel, [])
+    br = catalogo_do_pais("BR")
+    assert confianca((item("feijao", 1, 3), item("soja", 4, 8)), br)[1] == []  # catálogo real, confiança alta e média
+
+
+def test_texto_vazio_nao_cria_lacuna_vazia_e_a_cultura_repetida_nao_duplica():
+    vazia = cultura("c", confianca_parametros="baixa", lacuna_informacao=None, risco_revisao_local="")
+    assert confianca((item("c", 1, 3),), {"c": vazia}) == ("baixa", [])
+    so_lacuna = cultura("d", confianca_parametros="baixa", lacuna_informacao="Falta medição.")
+    assert confianca((item("d", 1, 3), item("d", 6, 8)), {"d": so_lacuna})[1] == ["D: Falta medição."]
+
+
+def test_confianca_nao_informada_mantem_a_lacuna_antiga():
+    c = cultura("c", confianca_parametros=None, lacuna_informacao="Falta.")
+    conf, lac = confianca((item("c", 1, 3),), {"c": c})
+    assert conf == "baixa" and lac == ["C: confiança dos parâmetros não informada; tratada como baixa."]
+
+
+# --- regra 16: avisos da régua viram alerta aviso_<coluna>
+def test_aviso_da_pastagem_dos_eua_vira_alerta_so_com_a_cultura_na_rotacao():
+    us = catalogo_do_pais("US")
+    a = avisos_da_regua((item("pastagem", 3, 9), item("milho", 10, 2)), us)
+    assert [x.codigo for x in a] == ["aviso_valor_forrageiro"]
+    assert a[0].texto == "Festuca alta (tall fescue): " + us["pastagem"].avisos["valor_forrageiro"].removeprefix("Atenção: ")  # o alerta já é um aviso
+    assert a[0].texto.startswith("Festuca alta (tall fescue): a maioria dos pastos antigos")
+    assert avisos_da_regua((item("milho", 10, 2),), us) == []  # sem aviso, sem alerta
+
+
+def test_aviso_so_aparece_se_a_classe_da_coluna_aparece():
+    c = cultura("c", avisos={"valor_forrageiro": "Cuidado.", "cobertura_solo": "Outro."}, valor_forrageiro=None)
+    assert avisos_da_regua((item("c", 1, 3),), {"c": c}) == []  # "não sei": a classe não aparece; cobertura_solo não é mostrada
+
+
+def test_alerta_do_aviso_tira_o_atencao_do_inicio_com_ou_sem_pontuacao():
+    for aviso in ("Atenção: a variedade intoxica.", "Atenção, a variedade intoxica.", "Atenção a variedade intoxica."):
+        c = cultura("c", avisos={"valor_forrageiro": aviso}, valor_forrageiro="alto")
+        assert avisos_da_regua((item("c", 1, 3),), {"c": c})[0].texto == "C: a variedade intoxica."
+    c = cultura("c", avisos={"valor_forrageiro": "A variedade intoxica."}, valor_forrageiro="alto")
+    assert avisos_da_regua((item("c", 1, 3),), {"c": c})[0].texto == "C: A variedade intoxica."  # sem o prefixo, fica igual
+
+
+def test_arranjo_regional_aplicado_nao_mostra_os_textos_da_linha_de_confianca_baixa():
+    us = catalogo_do_pais("US")
+    erv, trevo = us["ervilhaca"], us["trevo"]
+    assert erv.confianca_parametros == trevo.confianca_parametros == "baixa"
+    em_ia = {"ervilhaca": cultura_no_estado(erv, "IA")}  # IA é a região da linha: traz os textos
+    assert [x for x in confianca((item("ervilhaca", 1, 3),), em_ia)[1]] == [f"{erv.nome}: {erv.lacuna_informacao}", f"{erv.nome}: {erv.risco_revisao_local}"]
+    em_ga = {"ervilhaca": cultura_no_estado(erv, "GA")}  # arranjo sudeste: os textos falam de outra região
+    assert em_ga["ervilhaca"].arranjo_aplicado == "sudeste"
+    assert confianca((item("ervilhaca", 1, 3),), em_ga) == ("baixa", [])  # a confiança continua baixa, sem os textos
+    em_al = {"trevo": cultura_no_estado(trevo, "AL")}
+    assert em_al["trevo"].arranjo_aplicado == "alabama" and confianca((item("trevo", 1, 3),), em_al) == ("baixa", [])
+    em_ga_trevo = {"trevo": cultura_no_estado(trevo, "GA")}  # GA é a região da linha do trevo: traz os textos
+    assert len(confianca((item("trevo", 1, 3),), em_ga_trevo)[1]) == 2

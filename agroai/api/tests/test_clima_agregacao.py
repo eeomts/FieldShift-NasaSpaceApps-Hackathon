@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 import pytest
 
-from app.services.clima.agregacao import DiaClima, agregar_por_mes, limite_chuva_forte, percentil
+from app.services.clima.agregacao import DiaClima, agregar_por_mes, limite_chuva_forte, percentil, series_por_ano
 
 
 def dia(data: date, tmax=30.0, tmin=15.0, chuva=0.0, et0=4.0) -> DiaClima:
@@ -129,16 +129,15 @@ def test_meses_saem_em_ordem_cronologica():
     assert [(l.ano, l.mes) for l in agregar_por_mes(dias, limite_forte=None)] == [(2000, 2), (2000, 12), (2001, 1)]
 
 
-def test_tmin_diaria_tem_um_valor_por_dia_do_mes_e_none_no_dia_sem_dado():
-    dias = mes(2024, 2, 29, tmin=3.0)
-    dias[4] = dia(date(2024, 2, 5), tmin=None)
-    del dias[9]  # dia 10 nem veio na série
-    dias[0] = dia(date(2024, 2, 1), tmin=-1.5)
-    [l] = agregar_por_mes(dias, limite_forte=None)
-    assert len(l.tmin_diaria) == 29  # 2024 é bissexto
-    assert l.tmin_diaria[0] == -1.5 and l.tmin_diaria[1] == 3.0
-    assert l.tmin_diaria[4] is None and l.tmin_diaria[9] is None  # índice = dia - 1; ausente nunca vira 0
-    [fev23] = agregar_por_mes(mes(2023, 2, 28), limite_forte=None)
-    assert len(fev23.tmin_diaria) == 28
-    [jan] = agregar_por_mes(mes(2023, 1, 31, tmin=None), limite_forte=None)
-    assert jan.tmin_diaria == [None] * 31 and jan.dias_geada is None
+def test_series_por_ano_indice_zero_e_1_de_janeiro_e_bissexto_tem_366():
+    dias = [dia(date(2023, 1, 1) + timedelta(days=i), tmax=30.0 + i % 3, tmin=10.0 + i % 3) for i in range(365 + 366)]  # 2023 e 2024
+    s23, s24 = series_por_ano(dias)
+    assert (s23.ano, s24.ano) == (2023, 2024) and len(s23.tmin_c) == 365 and len(s24.tmax_c) == 366
+    assert s23.tmin_c[0] == 10.0 and s23.tmax_c[1] == 31.0 and s24.tmin_c[59] == dias[365 + 59].tmin  # 29 de fevereiro de 2024
+
+
+def test_series_por_ano_dia_sem_dado_ou_ausente_na_serie_fica_none_nunca_zero():
+    dias = [dia(date(2023, 1, 1), tmin=None), dia(date(2023, 1, 3), tmax=None)]  # 2 de janeiro nem veio
+    (s,) = series_por_ano(dias)
+    assert s.tmin_c[:3] == [None, None, 15.0] and s.tmax_c[:3] == [30.0, None, None]
+    assert 0 not in s.tmin_c and 0 not in s.tmax_c and len(s.tmin_c) == 365

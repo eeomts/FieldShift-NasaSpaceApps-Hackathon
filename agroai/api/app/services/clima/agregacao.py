@@ -1,6 +1,6 @@
 """Série diária -> linhas mensais (somas, médias, extremos e contagens). Dia ausente não entra na conta da variável."""
-from dataclasses import dataclass
 import calendar
+from dataclasses import dataclass
 from datetime import date, timedelta
 
 from app.services.clima.graus_dia import gd_mensal_por_tb, tmed_do_dia
@@ -44,7 +44,26 @@ class LinhaMensal:
     maior_seq_seca_dias: int | None
     dias_validos: int
     gd_por_tb: dict[str, float] | None = None  # GD do mês por Tb inteira 0-20; {} = mês sem temperatura completa
-    tmin_diaria: list[float | None] | None = None  # Tmin de cada dia (índice = dia - 1); None no dia sem dado
+
+
+@dataclass
+class SerieDoAno:
+    """Tmin e Tmax de cada dia do ano (índice 0 = 1º de janeiro; 366 valores em ano bissexto); sem dado = None."""
+
+    ano: int
+    tmin_c: list[float | None]
+    tmax_c: list[float | None]
+
+
+def series_por_ano(dias: list[DiaClima]) -> list[SerieDoAno]:
+    """Uma série por ano presente nos dias, em ordem. Dia que falta na série fica None."""
+    por_ano: dict[int, SerieDoAno] = {}
+    for d in dias:
+        n = 366 if calendar.isleap(d.data.year) else 365
+        serie = por_ano.setdefault(d.data.year, SerieDoAno(d.data.year, [None] * n, [None] * n))
+        i = d.data.timetuple().tm_yday - 1
+        serie.tmin_c[i], serie.tmax_c[i] = d.tmin, d.tmax
+    return [por_ano[a] for a in sorted(por_ano)]
 
 
 def percentil(valores: list[float], p: float) -> float | None:
@@ -97,12 +116,6 @@ def _maior_sequencia_seca(dias: list[DiaClima]) -> int | None:
     return maior
 
 
-def _tmin_por_dia_do_mes(ano: int, mes: int, dias: list[DiaClima]) -> list[float | None]:
-    """Uma Tmin por dia do mês (28 a 31 valores); dia que não veio na série ou veio sem Tmin fica None, nunca 0."""
-    por_dia = {d.data.day: d.tmin for d in dias}
-    return [por_dia.get(dia) for dia in range(1, calendar.monthrange(ano, mes)[1] + 1)]
-
-
 def _linha_do_mes(ano: int, mes: int, dias: list[DiaClima], limite_forte: float | None, tmax_calor: float) -> LinhaMensal:
     chuvas = [d.chuva for d in dias if d.chuva is not None]
     tmaxs = [d.tmax for d in dias if d.tmax is not None]
@@ -124,7 +137,6 @@ def _linha_do_mes(ano: int, mes: int, dias: list[DiaClima], limite_forte: float 
         # Dias com chuva, Tmax e Tmin presentes (os que sustentam as contagens).
         dias_validos=sum(d.chuva is not None and d.tmax is not None and d.tmin is not None for d in dias),
         gd_por_tb=gd_mensal_por_tb((tmed_do_dia(d.tmax, d.tmin) for d in dias), ano, mes),
-        tmin_diaria=_tmin_por_dia_do_mes(ano, mes, dias),
     )
 
 

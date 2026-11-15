@@ -21,7 +21,9 @@ algodao,plantadeira_graos,plantio
 algodao,manual,plantio
 algodao,colhedora,colheita
 algodao,manual,colheita
+mandioca,plantadeira_manivas,plantio
 mandioca,manual,plantio
+mandioca,afofador_mandioca,colheita
 mandioca,manual,colheita
 sorgo,plantadeira_graos,plantio
 sorgo,tracao_animal,plantio
@@ -73,10 +75,10 @@ canola,plantadeira_graos,plantio
 canola,colhedora,colheita
 amendoim,plantadeira_graos,plantio
 amendoim,manual,plantio
-amendoim,colhedora,colheita
+amendoim,arrancador_amendoim,colheita
 amendoim,manual,colheita
 alfafa,plantadeira_graos,plantio
-alfafa,rocadeira,colheita
+alfafa,enfardadeira,colheita
 alfafa,ensiladeira,colheita
 centeio,plantadeira_graos,plantio
 centeio,manual,plantio

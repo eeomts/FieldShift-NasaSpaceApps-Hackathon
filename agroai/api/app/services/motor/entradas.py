@@ -1,19 +1,18 @@
 """Reúne o que o motor precisa de uma fazenda: catálogo, rotação atual, clima da célula, relevo e restrições."""
 from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import date
 from typing import Protocol
 
 from app.core.erros import ErroDeNegocio
 from app.models import Fazenda
-from app.services.clima.agregacao import LinhaMensal
+from app.services.clima.agregacao import LinhaMensal, SerieDoAno
 from app.services.clima.clima_service import ClimaService, media_por_mes
-from app.services.clima.graus_dia import TB_MAX, TB_MIN
 from app.services.clima.limiares import BASE_FIM, BASE_INICIO
-from app.services.motor.catalogo import CulturaMotor, catalogo_do_pais, equipamentos_por_cultura
+from app.services.motor.catalogo import CulturaMotor, catalogo_do_pais, cultura_no_estado, equipamentos_por_cultura
 from app.services.motor.estados import estado_do_local
 from app.services.motor.local import pais_e_codigo
 from app.services.motor.modelo import ItemRotacao
+from app.services.motor.parametros import GD_ANO_FIM, GD_ANO_INICIO
 from app.services.motor.relevo_service import Relevo
 from app.services.onboarding.perfil import meses_sem_cobertura
 
@@ -33,26 +32,22 @@ class ClimaDoLocal:
     et0_mm: dict[int, float | None]
     dias_chuva_forte: dict[int, float | None]  # média de dias por ano
     geada_por_ano: dict[int, dict[int, int | None]]  # ano -> mês -> dias de geada (1991–2020)
-    gd_por_tb_medio: dict[int, dict[str, float]]  # mês -> Tb inteira ("0".."20") -> GD médio 1991–2020
-    # Tmin de cada dia da série (a partir de 1991, o fim da janela de 2020 pode cair em 2021). Dia sem dado: None ou ausente.
-    tmin_por_dia: dict[date, float | None] = field(default_factory=dict)
+    gd_por_tb_ano: dict[int, dict[int, dict[str, float]]]  # ano -> mês -> Tb inteira ("0".."20") -> GD; 2001–2021, só mês completo
+    serie_diaria: dict[int, SerieDoAno] = field(default_factory=dict)  # ano -> Tmin/Tmax de cada dia (1991–2021, o último fecha safras que cruzam o ano)
 
 
-def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str) -> ClimaDoLocal:
-    """Monta o clima a partir das linhas (ano, mês) da célula: climatologia, geada por ano e GD médio por Tb."""
+def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str, series: dict[int, SerieDoAno] | None = None) -> ClimaDoLocal:
+    """Monta o clima a partir das linhas (ano, mês) da célula: climatologia, geada por ano, GD mensal por Tb de cada ano e a série diária."""
     meses = {m.mes: m for m in media_por_mes(linhas)}
     base = [l for l in linhas if BASE_INICIO <= l.ano <= BASE_FIM]
     geada: dict[int, dict[int, int | None]] = {}
     for l in base:
         geada.setdefault(l.ano, {})[l.mes] = l.dias_geada
-    gd: dict[int, dict[str, float]] = {}
-    for mes in range(1, 13):
-        do_mes = [l.gd_por_tb for l in base if l.mes == mes and l.gd_por_tb]  # {} e None: mês sem temperatura completa
-        if do_mes:
-            gd[mes] = {str(tb): sum(d[str(tb)] for d in do_mes) / len(do_mes) for tb in range(TB_MIN, TB_MAX + 1)}
-    tmin_por_dia = {
-        date(l.ano, l.mes, i + 1): v for l in linhas if l.tmin_diaria for i, v in enumerate(l.tmin_diaria)
-    }  # mês sem a lista (célula antiga): dias ausentes
+    gd: dict[int, dict[int, dict[str, float]]] = {}
+    for l in linhas:
+        # o ano seguinte ao fim entra para fechar a safra que atravessa o ano; {} e None: mês sem temperatura completa
+        if GD_ANO_INICIO <= l.ano <= GD_ANO_FIM + 1 and l.gd_por_tb:
+            gd.setdefault(l.ano, {})[l.mes] = l.gd_por_tb
     return ClimaDoLocal(
         fonte=fonte,
         periodo=periodo,
@@ -60,8 +55,8 @@ def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str) -> Clim
         et0_mm={m: meses[m].et0_mm for m in range(1, 13)},
         dias_chuva_forte={m: meses[m].dias_chuva_forte for m in range(1, 13)},
         geada_por_ano=geada,
-        gd_por_tb_medio=gd,
-        tmin_por_dia=tmin_por_dia,
+        gd_por_tb_ano=gd,
+        serie_diaria={a: x for a, x in (series or {}).items() if BASE_INICIO <= a <= BASE_FIM + 1},
     )
 
 
@@ -82,7 +77,7 @@ class ClimaDoServico:
     def do_local(self, lat: float, lon: float) -> ClimaDoLocal:
         celula = self.clima.obter(lat, lon)
         climatologia = self.clima.climatologia(celula)
-        return clima_de_linhas(self.clima.linhas(celula), climatologia.fonte, climatologia.periodo)
+        return clima_de_linhas(self.clima.linhas(celula), climatologia.fonte, climatologia.periodo, self.clima.series_diarias(celula))
 
 
 @dataclass(frozen=True)
@@ -139,13 +134,14 @@ def montar_entradas(
     catalogo = catalogo_por_pais(pais)
     if not catalogo:
         raise ErroDeNegocio(422, MSG_SEM_CATALOGO)
+    estado = estado_do_local(pais, codigo_local)
     atual = rotacao_atual(f)
     if not atual:
         raise ErroDeNegocio(422, MSG_SEM_ROTACAO)
     ids_equipamentos = frozenset(e["equipamento_id"] for e in (f.equipamentos or []) if e.get("equipamento_id"))
     return EntradasMotor(
         pais=pais,
-        catalogo=catalogo,
+        catalogo={i: cultura_no_estado(c, estado) for i, c in catalogo.items()},  # números do arranjo regional, se houver (regra 13)
         atual=atual,
         meses_vazios=meses_sem_cobertura(list(atual)),  # ItemRotacao tem os mesmos campos de ItemCalendario
         clima=fonte_clima.do_local(f.lat, f.lon),
@@ -156,5 +152,5 @@ def montar_entradas(
         equipamentos_cultura=equipamentos if equipamentos is not None else equipamentos_por_cultura(),
         prioridades=list(f.prioridades or []),
         erodibilidade=erodibilidade_da_fazenda(f),
-        estado=estado_do_local(pais, codigo_local),
+        estado=estado,
     )

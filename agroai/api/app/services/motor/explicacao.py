@@ -1,8 +1,13 @@
 """Texto do 'por que', confiança (a menor das culturas) e lacunas de cada estratégia."""
+import re
+
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.formatos import num
-from app.services.motor.modelo import CRITERIOS, Confianca, ItemRotacao, NotaCriterio
+from app.services.motor.modelo import CRITERIOS, Alerta, Confianca, ItemRotacao, NotaCriterio
 from app.services.motor.parametros import DIFERENCA_MINIMA_POR_QUE, MAX_FRASES_POR_QUE, ORDEM_CONFIANCA
+
+PREFIXO_ATENCAO = re.compile(r"^Atenção\s*[:,]?\s*")  # o alerta já é um aviso: sem o "Atenção" do texto
+COLUNAS_COM_AVISO = ("valor_forrageiro", "aporte_biomassa")  # colunas cuja classe aparece num critério (animais, terra)
 
 FRASES = {
     "agua": "Gasta menos água",
@@ -56,6 +61,19 @@ def confianca(itens: tuple[ItemRotacao, ...], catalogo: dict[str, CulturaMotor])
         else:
             niveis.append(0)
             lac.append(f"{c.nome}: confiança dos parâmetros não informada; tratada como baixa.")
+        if c.confianca_parametros == "baixa" and c.arranjo_aplicado is None:  # regra 10: o que não sabemos e o que confirmar; os textos da linha falam da região de referência, não do arranjo
+            lac += [t for t in (f"{c.nome}: {x}" for x in (c.lacuna_informacao, c.risco_revisao_local) if x) if t not in lac]
     if not niveis:
         return "baixa", ["Nenhuma cultura da rotação está na base: confiança baixa."]
     return ORDEM_CONFIANCA[min(niveis)], lac  # type: ignore[return-value]
+
+
+def avisos_da_regua(itens: tuple[ItemRotacao, ...], catalogo: dict[str, CulturaMotor]) -> list[Alerta]:
+    """Regra 16: alerta `aviso_<coluna>` para cada aviso da régua das culturas da estratégia, em qualquer confiança."""
+    alertas: list[Alerta] = []
+    for c in dict.fromkeys(catalogo[i.cultura_id] for i in itens if i.cultura_id in catalogo):
+        for coluna in COLUNAS_COM_AVISO:
+            aviso = c.avisos.get(coluna)
+            if aviso and getattr(c, coluna) is not None:  # sem a classe ("não sei") ela nem aparece no cartão
+                alertas.append(Alerta(f"aviso_{coluna}", f"{c.nome}: {PREFIXO_ATENCAO.sub('', aviso)}"))
+    return alertas

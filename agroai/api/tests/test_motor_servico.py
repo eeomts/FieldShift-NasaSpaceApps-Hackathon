@@ -7,9 +7,10 @@ import pytest
 from app.core.erros import ErroDeNegocio
 from app.models import CalendarioItem, Fazenda
 from app.services.clima.agregacao import LinhaMensal
+from app.services.motor.catalogo import ArranjoRegional, FaixaPalhada, catalogo_do_pais
 from app.services.motor.entradas import ClimaDoServico, clima_de_linhas, montar_entradas
 from app.services.motor.motor_service import analisar_entradas
-from motor_helpers import PLANO, clima, cultura, entradas, item
+from motor_helpers import PLANO, clima, cultura, entradas, item, serie_diaria
 
 # Fazenda de Rio Verde (GO): dentro da malha do IBGE
 LAT, LON = -17.644301, -51.080503
@@ -115,32 +116,81 @@ def test_analise_nao_sugere_cultura_de_outro_estado_e_a_atual_ganha_aviso():
     assert any("não sabemos o estado" in l for l in sem_estado.atual.lacunas)
 
 
+def test_cobertura_sem_janela_chega_ao_resultado_com_o_alerta_de_janela_nao_confirmada():
+    cs = {c.id: c for c in CULTURAS if c.id != "crotalaria"}  # milheto (cobertura) sem semeadura no catálogo
+    a = analisar_entradas(montar(fazenda(), cs))
+    com_milheto = [r for r in a.melhores if any(i.cultura_id == "milheto" for i in r.estrategia.itens)]
+    assert com_milheto and all("janela_nao_confirmada" in [x.codigo for x in r.alertas] for r in com_milheto)
+    assert not any(x.codigo == "janela_nao_confirmada" for x in a.atual.alertas)  # a atual não passa pela regra 12
+
+
+def test_arranjo_regional_do_estado_vale_nas_entradas_e_a_fonte_da_evidencia_diz_isso():
+    arranjo = ArranjoRegional("goiano", ("GO",), ciclo_dias_min=120, palhada=FaixaPalhada(5, 7.0, 9))
+    cs = {c.id: c for c in CULTURAS}
+    cs["soja"] = replace(cs["soja"], aporte_biomassa="baixo", arranjos=(arranjo,))
+    cs["milho"] = replace(cs["milho"], aporte_biomassa="baixo")
+    e = montar(fazenda(codigo_local="5218805"), cs)  # Rio Verde, GO
+    assert e.estado == "GO" and e.catalogo["soja"].arranjo_aplicado == "goiano" and e.catalogo["soja"].ciclo_dias_min == 120
+    assert e.catalogo["soja"].aporte_biomassa == "alto" and e.catalogo["milho"].arranjo_aplicado is None
+    palha = next(ev for ev in analisar_entradas(e).atual.notas["terra"].evidencias if ev.texto.startswith("Palha"))
+    assert palha.valor == "5,0–9,0" and palha.unidade == "t/ha" and palha.fonte == "Base de culturas do Field Shift (números para GO, arranjo goiano)"
+    sem_estado = montar(fazenda(codigo_local=None), cs)  # sem estado, nada é aplicado
+    assert sem_estado.catalogo["soja"].arranjo_aplicado is None and sem_estado.catalogo["soja"].ciclo_dias_min == 100
+    outro = montar(fazenda(pais="US", codigo_local="19169"), cs)  # Iowa: fora do arranjo
+    assert outro.catalogo["soja"].arranjo_aplicado is None
+
+
+def test_aviso_da_regua_e_textos_de_confianca_baixa_chegam_ao_resultado():
+    past = replace(catalogo_do_pais("US")["pastagem"], estados_validos=())
+    cs = {c.id: c for c in CULTURAS}
+    cs["pastagem"] = past
+    cs["milheto"] = replace(cs["milheto"], lacuna_informacao="Falta medição.", risco_revisao_local="Confirme com o agrônomo.")
+    com = analisar_entradas(montar(fazenda(calendario=(("milho", 10, 2), ("pastagem", 3, 9), ("milheto", 3, 4))), cs))
+    aviso = next(a for a in com.atual.alertas if a.codigo == "aviso_valor_forrageiro")
+    assert aviso.texto.startswith("Festuca alta (tall fescue): a maioria dos pastos")  # alerta sem o "Atenção"
+    assert "(Atenção: a maioria dos pastos" in com.atual.notas["animais"].explicacao  # a explicação mantém o prefixo
+    assert com.atual.lacunas[com.atual.lacunas.index("Milheto: Falta medição.") + 1] == "Milheto: Confirme com o agrônomo."
+    sem = analisar_entradas(montar(fazenda(), cs))  # soja e milho, sem pastagem: nada de aviso
+    assert not any(a.codigo.startswith("aviso_") for a in sem.atual.alertas)
+    assert not any(a.codigo.startswith("aviso_") for r in sem.melhores for a in r.alertas)
+
+
+def test_todas_as_candidatas_geradas_chegam_ao_filtro(monkeypatch):
+    from app.services.motor import motor_service
+    from app.services.motor.candidatas import gerar_candidatas
+
+    muitas = {f"c{i}": cultura(f"c{i}", tipos=("comercial", "tolerante_seca", "fixadora_n"), fixa_nitrogenio=True, ciclo_dias_min=30) for i in range(40)}
+    e = montar(fazenda(), {**muitas, "soja": CULTURAS[0], "milho": CULTURAS[1]})
+    geradas = gerar_candidatas(motor_service.Estrategia("atual", "Sua rotação atual", "atual", e.atual), e.catalogo, e.meses_vazios, e.estado)
+    chamadas = []
+    original = motor_service.avaliar
+    monkeypatch.setattr(motor_service, "avaliar", lambda itens, ent, eliminar: chamadas.append(eliminar) or original(itens, ent, eliminar))
+    a = analisar_entradas(e)
+    assert len(geradas) > 30 and chamadas.count(True) == len(geradas)  # todas avaliadas, nenhuma cortada antes
+    assert len(a.eliminadas) <= len(geradas)
+
+
 def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():
     e = montar(fazenda(equipamentos=[{"equipamento_id": None, "texto_original": "?"}]))
     assert e.equipamentos is None
     assert montar(fazenda(equipamentos=[])).equipamentos is None
 
 
-def test_clima_de_linhas_media_gd_geada_por_ano_e_ignora_fora_da_base():
+def test_clima_de_linhas_gd_por_ano_geada_por_ano_e_ignora_fora_da_base():
     def linha(ano, mes, gd, geada, chuva=100.0):
         return LinhaMensal(ano, mes, chuva, 50.0, 20.0, 28.0, 14.0, 35.0, 5.0, geada, 0, 2, 3, 30, gd)
 
     todos = [{str(tb): float(max(0, 20 - tb)) for tb in range(21)}, {str(tb): float(max(0, 24 - tb)) for tb in range(21)}]
     linhas = [linha(1991, 1, todos[0], 0), linha(1992, 1, todos[1], 2), linha(1993, 1, {}, None), linha(2021, 1, todos[1], 9, chuva=999.0)]
-    c = clima_de_linhas(linhas, "fonte", "1991–2020")
-    assert c.gd_por_tb_medio[1]["10"] == 12.0 and 2 not in c.gd_por_tb_medio  # média de 10 e 14; {} fica fora; mês sem dado fica ausente
-    assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}}  # 2021 está fora de 1991–2020
+    linhas += [linha(2001, 1, todos[0], 0), linha(2002, 1, {}, None), linha(2020, 12, todos[1], 0), linha(2021, 3, todos[0], 0), linha(2022, 1, todos[0], 0)]
+    series = serie_diaria(anos=range(1990, 2024))  # 1990 e 2022 em diante ficam fora: só 1991 a 2021 (2021 fecha a safra de 2020)
+    c = clima_de_linhas(linhas, "fonte", "1991–2020", series)
+    assert sorted(c.serie_diaria) == list(range(1991, 2022)) and c.serie_diaria[2020].tmin_c[0] == 15.0
+    assert clima_de_linhas(linhas, "fonte", "1991–2020").serie_diaria == {}  # sem série, vazio
+    # GD só de 2001 em diante (o ano seguinte a 2020 fecha a safra que atravessa o ano); {} e 2022 ficam fora
+    assert c.gd_por_tb_ano == {2001: {1: todos[0]}, 2020: {12: todos[1]}, 2021: {1: todos[1], 3: todos[0]}}
+    assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}, 2001: {1: 0}, 2002: {1: None}, 2020: {12: 0}}  # 2021 está fora de 1991–2020
     assert c.chuva_mm[1] == 100.0 and c.chuva_mm[2] is None and c.et0_mm[1] == 50.0 and c.dias_chuva_forte[1] == 2.0
-
-
-def test_clima_de_linhas_monta_a_tmin_por_dia_e_ignora_mes_sem_a_lista():
-    def linha(ano, mes, tmin_diaria):
-        return LinhaMensal(ano, mes, 100.0, 50.0, 20.0, 28.0, 14.0, 35.0, 5.0, 0, 0, 2, 3, 30, {}, tmin_diaria)
-
-    c = clima_de_linhas([linha(2020, 2, [1.0, None] + [3.0] * 27), linha(2021, 1, [4.0] * 31), linha(2020, 3, None)], "f", "p")
-    assert c.tmin_por_dia[date(2020, 2, 1)] == 1.0 and c.tmin_por_dia[date(2020, 2, 2)] is None
-    assert c.tmin_por_dia[date(2020, 2, 29)] == 3.0 and c.tmin_por_dia[date(2021, 1, 31)] == 4.0  # 2021 fica (fim da janela de 2020)
-    assert date(2020, 3, 1) not in c.tmin_por_dia  # célula antiga: sem a lista, sem dia
 
 
 def test_clima_do_servico_monta_do_servico_de_clima():
@@ -157,8 +207,11 @@ def test_clima_do_servico_monta_do_servico_de_clima():
         def linhas(self, celula):
             return []
 
+        def series_diarias(self, celula):
+            return serie_diaria(anos=[2020, 2022])  # 2022 fica fora da janela de 1991 a 2021
+
     c = ClimaDoServico(ServicoFalso()).do_local(LAT, LON)
-    assert c.fonte == "NASA POWER, média" and c.gd_por_tb_medio == {} and c.chuva_mm[1] is None
+    assert c.fonte == "NASA POWER, média" and c.gd_por_tb_ano == {} and c.chuva_mm[1] is None and sorted(c.serie_diaria) == [2020]
 
 
 # --- análise
@@ -251,13 +304,15 @@ def test_criterio_sem_dado_na_atual_sai_dos_pesos_efetivos():
     assert sum(a.atual.pesos.values()) == pytest.approx(1) and a.pesos["animais"] == pytest.approx(0.75)
 
 
-def test_falta_de_agua_nao_elimina_candidata_e_vira_aviso_sem_irrigacao():
+def test_falta_de_agua_elimina_so_a_sugestao_nova_sem_irrigacao_e_a_atual_vira_aviso():
     seco = clima(chuva=1.0)
     sem = analisar_entradas(montar(fazenda(irrigacao="nao"), c=seco))
     com = analisar_entradas(montar(fazenda(irrigacao="sim"), c=seco))
-    assert not any("água" in m for x in sem.eliminadas for m in x.motivos)
-    assert any(a.codigo == "agua_no_limite" for r in [sem.atual, *sem.melhores] for a in r.alertas)
+    assert any("a chuva do período" in m and "sem irrigação não fecha" in m for x in sem.eliminadas for m in x.motivos)
+    assert not sem.melhores  # nenhuma sugestão sobrevive com 1 mm de chuva por mês
+    assert any(a.codigo == "agua_no_limite" for a in sem.atual.alertas)  # a atual só avisa
     assert not any(a.codigo == "agua_no_limite" for r in [com.atual, *com.melhores] for a in r.alertas)
+    assert not any("a chuva do período" in m for x in com.eliminadas for m in x.motivos)
 
 
 def test_analise_com_a_entrada_direta_dos_helpers():

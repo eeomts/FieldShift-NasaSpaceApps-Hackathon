@@ -46,6 +46,38 @@ _FRASES = {
 
 _Regra = tuple[re.Pattern, str | Callable[[re.Match], str]]
 
+_MILHAR = "\x00"  # vírgula de milhar em inglês: só vira "," no fim, depois da troca da vírgula decimal
+_FASE_FRIO_CALOR = {
+    "na emergência": "at emergence", "no crescimento": "during growth", "na floração": "at flowering",
+    "no enchimento dos grãos": "during grain fill", "durante o ciclo": "over the whole cycle",
+    "na fase sensível": "in the sensitive stage", "ao longo do ano": "through the year",
+}  # fmt: skip
+
+
+def _milhar(numero: str) -> str:
+    """'1.148' (milhar em português) vira '1,148'; número sem milhar passa igual."""
+    return numero.replace(".", _MILHAR) if re.fullmatch(r"\d{1,3}(?:\.\d{3})+", numero) else numero
+
+
+def _meses_a(intervalo: str | None) -> str:
+    """'nov a jan' vira ' (Nov to Jan)'."""
+    if not intervalo:
+        return ""
+    for pt, en in zip(_MESES_PT, _MESES_EN, strict=True):
+        intervalo = re.sub(rf"(?<![a-z]){pt}(?![a-z])", en, intervalo)
+    return f" ({intervalo.replace(' a ', ' to ')})"
+
+
+def _frio_ou_calor(m: re.Match) -> str:
+    """Frio (regra 17) e calor por dias seguidos: 'em P% dos anos (1991–2020) a mínima ficou abaixo de L °C ...'."""
+    nome, pct, periodo = m.group(1), m.group(2), m.group(3)
+    fase = _FASE_FRIO_CALOR[m.group("fase")] + _meses_a(m.group("meses"))
+    if "limiar" in m.groupdict() and m.groupdict().get("limiar") is not None:
+        dias = f" for {m.group('dias')} days in a row" if m.group("dias") else ""
+        dano = "frost" if m.group("dano") == "a geada" else "cold"
+        return f"{nome}: in {pct} of the years ({periodo}) the low fell below {m.group('limiar')} °C{dias} {fase}; {dano} in this stage cuts yield."
+    return f"{nome}: in {pct} of the years ({periodo}) the temperature went above {m.group('maxima')} °C for {m.group('dias_calor')} days in a row {fase}; heat in this stage can cut yield."
+
 # Regra 17 (frio por fase, filtro._frio): termo, onde (parametros.FASES_FRIO_TEXTO) e o limiar.
 _TERMO_FRIO = {"geada": "frost", "frio": "cold"}
 _ONDE_FRIO = {
@@ -95,12 +127,31 @@ _REGRAS: list[_Regra] = [
         # filtro: calor
         (r"^(.+?): sem exigência de graus-dia na base, não checamos o calor do ciclo\.$", r"\1: no degree-day requirement in our database, so we did not check the season's heat."),
         (r"^(.+?): sem graus-dia do clima do local para o período, não checamos o calor do ciclo\.$", r"\1: no local degree-days for this period, so we did not check the season's heat."),
-        (r"^(.+?): o calor do período dá (\S+) graus-dia e ela precisa de pelo menos (\S+); não fecha o ciclo\.$", r"\1: the period's heat gives \2 degree-days and it needs at least \3; it can't finish its cycle."),
-        (r"^(.+?): no limite térmico \((\S+) de (\S+) graus-dia\), validar localmente\.$", r"\1: at its heat limit (\2 of \3 degree-days); check locally."),
+        (r"o calor do período dá (\S+) graus-dia na metade dos anos \((\S+)\) e ela precisa de pelo menos (\S+?)(?=;|\.$|$)",
+         lambda m: f"the period's heat gives {_milhar(m.group(1))} degree-days in half of the years ({m.group(2)}) and it needs at least {_milhar(m.group(3))}"),
+        (r"; não fecha o ciclo\.$", "; it cannot finish its cycle."),
+        (r"^(.+?): no limite térmico, validar localmente; ", r"\1: at its heat limit, check locally; "),
+        (r"^(.+?): pouco crescimento antes do frio ou do manejo; ", r"\1: little growth before frost or termination; "),
+        (r"^(.+?): em ano frio pode não completar o ciclo; em 1 a cada 10 anos \((\S+)\) o calor do período fica em (\S+) graus-dia, e ela precisa de pelo menos (\S+)\.$",
+         lambda m: f"{m.group(1)}: in a cold year it may not finish its cycle; in 1 of every 10 years ({m.group(2)}) the period's heat is only {_milhar(m.group(3))} degree-days, and it needs at least {_milhar(m.group(4))}."),
+        (r"^(.+?): sem anos suficientes de clima para checar o calor do ciclo\.$", r"\1: not enough years of climate data to check the season's heat."),
+        (r"^(.+?): sem anos suficientes de clima para checar o frio\.$", r"\1: not enough years of climate data to check cold."),
+        (r"^(.+?): sem anos suficientes de clima para checar o risco de calor\.$", r"\1: not enough years of climate data to check heat risk."),
+        (r"^(.+?): sem dados diários de temperatura máxima do local, não checamos o risco de calor\.$", r"\1: no local daily maximum temperature data, so we did not check heat risk."),
+        (r"^(.+?): sem dados diários de temperatura mínima do local ou sem a fase do frio na base: usamos o teste de geada por mês\.$",
+         r"\1: no local daily minimum temperature data (or no cold stage in our database): we used the monthly frost check."),
+        # filtro: frio por cultura (regra 17) e calor por dias seguidos (regra 11)
+        (r"^(.+?): em (\S+) dos anos \((\S+)\) a mínima ficou abaixo de (?P<limiar>\S+) °C(?: por (?P<dias>\d+) dias seguidos)? "
+         r"(?P<fase>na emergência|no crescimento|na floração|no enchimento dos grãos|durante o ciclo|na fase sensível|ao longo do ano)(?: \((?P<meses>.+?)\))?; "
+         r"(?P<dano>a geada|o frio) nessa fase tira produção\.$", _frio_ou_calor),
+        (r"^(.+?): em (\S+) dos anos \((\S+)\) a temperatura passou de (?P<maxima>\S+) °C por (?P<dias_calor>\d+) dias seguidos "
+         r"(?P<fase>na floração|ao longo do ano)(?: \((?P<meses>.+?)\))?; o calor nessa fase pode reduzir a produção\.$", _frio_ou_calor),
         # filtro: água
         (r"^(.+?): sem chuva do clima do local para o período, não checamos a água\.$", r"\1: no local rainfall for this period, so we did not check water."),
         (r"^(.+?): sem Kc nem faixa de água na base, não checamos a água\.$", r"\1: no Kc or water range in our database, so we did not check water."),
         (r"^(.+?): água no limite, ", r"\1: water at the limit, "),
+        (r"^(.+?): a chuva do período \((\S+) mm\) cobre só (\S+) da água que a cultura (usa|precisa) \((\S+) mm\); sem irrigação não fecha\.$",
+         lambda m: f"{m.group(1)}: the period's rain ({m.group(2)} mm) covers only {m.group(3)} of the water the crop {'uses' if m.group(4) == 'usa' else 'needs'} ({m.group(5)} mm); without irrigation it cannot finish."),
         (r"a chuva do período \((\S+) mm\) cobre (\S+) do que ela usa \((\S+) mm\)", r"the period's rain (\1 mm) covers \2 of what it uses (\3 mm)"),
         (r"a chuva do período \((\S+) mm\) fica abaixo do que ela precisa \((\S+) a (\S+) mm\)", r"the period's rain (\1 mm) is below what it needs (\2 to \3 mm)"),
         (r"; faltam cerca de (\S+) mm", r"; about \1 mm short"),
@@ -136,6 +187,10 @@ _REGRAS: list[_Regra] = [
         (r"^(.+?): classe de palha desconhecida \((.+?)\)\.$", r"\1: unknown straw class (\2)."),
         (r"^Sem dados suficientes de palha das culturas\.$", "Not enough straw data for the crops."),
         (r"^Algumas culturas sem informação se fixam nitrogênio\.$", "Some crops have no information on nitrogen fixing."),
+        (r"O campo tem planta em (\d+) dos 12 meses, a maior palhada é a de (.+?) \(palhada (\w+), de (\S+) a (\S+) t/ha conforme a data de manejo\) e a rotação ",
+         lambda m: f"The field has plants in {m.group(1)} of the 12 months, the most straw comes from {m.group(2)} ({_classe(m, 3)} straw, {m.group(4)} to {m.group(5)} t/ha depending on the management date), and the rotation "),
+        (r"^Palhada de (.+?): palhada (\w+), de (\S+) a (\S+) t/ha conforme a data de manejo \(depende da época\)$",
+         lambda m: f"Straw of {m.group(1)}: {_classe(m, 2)}, {m.group(3)} to {m.group(4)} t/ha depending on the management date (depends on the season)"),
         (r"O campo tem planta em (\d+) dos 12 meses, a maior palhada é a de (.+?) \(classe (\w+)\) e a rotação ",
          lambda m: f"The field has plants in {m.group(1)} of the 12 months, the most straw comes from {m.group(2)} ({_classe(m, 3)} class), and the rotation "),
         (r"tem (.+?), que fixa nitrogênio\.$", r"has \1, which fixes nitrogen."),
@@ -149,12 +204,16 @@ _REGRAS: list[_Regra] = [
         (r"^Sem declividade do terreno: usamos um valor médio para a erosão\.$", "No slope data: we used an average value for erosion."),
         (r"^Classe de declive desconhecida \((.+?)\): usamos um valor médio para a erosão\.$", r"Unknown slope class (\1): we used an average value for erosion."),
         (r"(\S+) dos dias de chuva forte caem em meses com planta no campo; ", r"\1 of heavy-rain days fall in months with plants in the field; "),
+        (r" O solo tem erodibilidade (baixa|média|alta), estimada pelo mapa global de solo\.$", lambda m: f" The soil has {_ERODIBILIDADE[m.group(1)]} erodibility, estimated from the global soil map."),
         (r" O solo tem erodibilidade (baixa|média|alta)\.$", lambda m: f" The soil has {_ERODIBILIDADE[m.group(1)]} erodibility."),
+        (r"terreno ([a-z ]+), declividade de (\S+)% medida por satélite \(SRTM\)\.(?=\s|$)",
+         lambda m: f"{_RELEVO.get(m.group(1), m.group(1))} terrain, slope of {m.group(2)}% measured by satellite (SRTM)."),
         (r"sem dado de declive\.(?=\s|$)", "no slope data."),
         (r"terreno ([a-z ]+)\.(?=\s|$)", lambda m: f"{_RELEVO.get(m.group(1), m.group(1))} terrain."),
         (r"^Sem a erodibilidade do solo \(mapa global de solo\): contamos um valor médio para a erosão\.$",
          "No soil erodibility (global soil map): we used an average value for erosion."),
-        (r"^Erodibilidade do solo \(K da USLE, classe (baixa|média|alta)\)$", lambda m: f"Soil erodibility (USLE K, {_ERODIBILIDADE[m.group(1)]} class)"),
+        (r"^Erodibilidade do solo \(K da USLE, classe (baixa|média|alta)(?:, estimada pelo mapa global de solo)?\)$",
+         lambda m: f"Soil erodibility (USLE K, {_ERODIBILIDADE[m.group(1)]} class" + (", estimated from the global soil map)" if "estimada" in m.group(0) else ")")),
         (r"^Dias de chuva forte que caem em meses com planta$", "Heavy-rain days that fall in months with plants"),
         (r"^Declividade do terreno$", "Slope of the land"),
         # critérios: pragas
@@ -163,6 +222,7 @@ _REGRAS: list[_Regra] = [
         (r"^Só há uma cultura na rotação: nada quebra o ciclo de pragas e doenças\.$", "There is only one crop in the rotation: nothing breaks the pest and disease cycle."),
         (r"^A rotação tem (\d+) família\(s\) de plantas em (\d+) culturas, com (\d+) par\(es\) seguido\(s\) da mesma família\.$",
          r"The rotation has \1 plant family(ies) across \2 crops, with \3 back-to-back pair(s) from the same family."),
+        (r"^(\d+) de (\d+) trocas de cultura mudam de família de planta\.$", r"\1 of \2 crop changes switch to a different plant family."),
         (r"^Famílias botânicas na rotação$", "Botanical families in the rotation"),
         # critérios: renda
         (r"^Sem dados suficientes das culturas para contar as que dão renda\.$", "Not enough crop data to count the ones that bring income."),
@@ -177,6 +237,8 @@ _REGRAS: list[_Regra] = [
          r"\1: we could not confirm after which crop this cover crop can be sown. Check with your agronomist."),
         (r"^(.+?): esta cobertura só serve depois de uma cultura colhida para silagem, e não sabemos se a sua é\. Confirme antes de semear\.$",
          r"\1: this cover crop only fits after a crop harvested for silage, and we don't know if yours is. Check before sowing."),
+        (r"^(.+?): a época de semeadura ainda não foi confirmada para a sua região\.$", r"\1: the sowing time has not been confirmed for your region yet."),
+        (r"^(.+?): confira se dá para semear depois de (.+)\.$", r"\1: check whether it can be sown after \2."),
         # critérios: animais
         (r"^(.+?): valor forrageiro desconhecido \((.+?)\)\.$", r"\1: unknown forage value (\2)."),
         (r"^Sem dado de comida para os animais nas culturas desta rotação\.$", "No animal-feed data for the crops in this rotation."),
@@ -186,6 +248,7 @@ _REGRAS: list[_Regra] = [
         # crops fora da base
         (r"^Sem dados suficientes de (.+?): ela entra na rotação, mas não tem nota própria\.$", r"Not enough data on \1: it stays in the rotation, but has no score of its own."),
         # fontes
+        (r"^Base de culturas do Field Shift \(números para (\S+), arranjo (.+)\)$", r"Field Shift crop database (figures for \1, regional arrangement \2)"),
         (r"^Base de culturas do Field Shift \(Kc, FAO-56\) e ET0 do NASA POWER$", "Field Shift crop database (Kc, FAO-56) and ET0 from NASA POWER"),
         (r"^Base de culturas do Field Shift$", "Field Shift crop database"),
         (r"^Calendário informado pelo produtor$", "Calendar given by the farmer"),
@@ -239,7 +302,7 @@ def traduzir(texto: str | None) -> str | None:
     for padrao, en in _nomes_en():
         texto = padrao.sub(en, texto)
     texto = _MESES_RE.sub(_meses, texto)
-    return _DECIMAL.sub(".", texto)
+    return _DECIMAL.sub(".", texto).replace(_MILHAR, ",")
 
 
 def traduzir_valor(valor):
@@ -251,3 +314,20 @@ def traduzir_valor(valor):
 
 def traduzir_unidade(unidade: str | None) -> str | None:
     return _UNIDADES.get(unidade, unidade) if unidade else unidade
+
+
+@lru_cache
+def _textos_do_catalogo() -> frozenset[str]:
+    """lacuna_informacao e risco_revisao_local de todas as culturas: textos do catálogo, só em português."""
+    return frozenset(
+        t
+        for pais in catalogo_motor.CSV_POR_PAIS
+        for c in catalogo_motor.catalogo_do_pais(pais).values()
+        for t in (c.lacuna_informacao, c.risco_revisao_local)
+        if t
+    )
+
+
+def lacunas_em_ingles(lacunas: list[str]) -> list[str]:
+    """Traduz as lacunas; os textos do catálogo (que ainda não têm versão em inglês) ficam de fora."""
+    return [traduzir(t) for t in lacunas if t.partition(": ")[2] not in _textos_do_catalogo()]
