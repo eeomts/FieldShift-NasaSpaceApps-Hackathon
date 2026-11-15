@@ -1,0 +1,242 @@
+{
+  "_leia": "Cenários de graus-dia do nabo forrageiro (forage/tillage radish, Raphanus sativus, cobertura semeada no fim do verão e morta pelo inverno, Corn Belt) para scripts/gd_nasa_power.py. A exigência vai da semeadura à morte pelo frio (o 'manejo' desta cobertura). Tb 5 °C (PROXY da canola, a mesma do catálogo do Brasil). As fontes dão datas, não GDD: modo 'fim'. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "sutherland": {
+      "nome": "Sutherland-IA (ISU Northwest Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -95.54,
+      "elevacao_m": 422.49
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU Ag Engineering/Agronomy Farm; sítio de Sawyer et al. e de Jha & Yadav)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    },
+    "lafayette": {
+      "nome": "West Lafayette-IN (Purdue ACRE; sítio de Cavadini & Kladivko, AY-359-W)",
+      "lat": 40.47,
+      "lon": -86.99,
+      "elevacao_m": 221.92
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "nabo_forrageiro_nashua_0915_1114",
+      "cultura": "nabo_forrageiro",
+      "local": "nashua",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias (o NRCS pede pelo menos 60 dias de crescimento antes da morte pelo frio). Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto.",
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 338,
+        "nota": "graus_dia_ciclo_min = 330: mediana 338 (P10 271, P90 444), arredondada para baixo; a menor dos cenários de mínimo (Sutherland 390, Ames 421, Crawfordsville 456, Lafayette 481)."
+      }
+    },
+    {
+      "nome": "nabo_forrageiro_nashua_0825_1120",
+      "cultura": "nabo_forrageiro",
+      "local": "nashua",
+      "semeadura": "08-25",
+      "fim": "11-20",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura na última semana de agosto (Purdue) e fim em 20/nov; 88 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_nashua_0801_1205",
+      "cultura": "nabo_forrageiro",
+      "local": "nashua",
+      "semeadura": "08-01",
+      "fim": "12-05",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (1/ago) e fim mais tardio (5/dez); 127 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_sutherland_0915_1114",
+      "cultura": "nabo_forrageiro",
+      "local": "sutherland",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias (o NRCS pede pelo menos 60 dias de crescimento antes da morte pelo frio). Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_sutherland_0825_1120",
+      "cultura": "nabo_forrageiro",
+      "local": "sutherland",
+      "semeadura": "08-25",
+      "fim": "11-20",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura na última semana de agosto (Purdue) e fim em 20/nov; 88 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_sutherland_0801_1205",
+      "cultura": "nabo_forrageiro",
+      "local": "sutherland",
+      "semeadura": "08-01",
+      "fim": "12-05",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (1/ago) e fim mais tardio (5/dez); 127 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_ames_0915_1114",
+      "cultura": "nabo_forrageiro",
+      "local": "ames",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias (o NRCS pede pelo menos 60 dias de crescimento antes da morte pelo frio). Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_ames_0825_1120",
+      "cultura": "nabo_forrageiro",
+      "local": "ames",
+      "semeadura": "08-25",
+      "fim": "11-20",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura na última semana de agosto (Purdue) e fim em 20/nov; 88 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_ames_0801_1205",
+      "cultura": "nabo_forrageiro",
+      "local": "ames",
+      "semeadura": "08-01",
+      "fim": "12-05",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (1/ago) e fim mais tardio (5/dez); 127 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_crawfordsville_0915_1114",
+      "cultura": "nabo_forrageiro",
+      "local": "crawfordsville",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias (o NRCS pede pelo menos 60 dias de crescimento antes da morte pelo frio). Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_crawfordsville_0825_1120",
+      "cultura": "nabo_forrageiro",
+      "local": "crawfordsville",
+      "semeadura": "08-25",
+      "fim": "11-20",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura na última semana de agosto (Purdue) e fim em 20/nov; 88 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_crawfordsville_0801_1205",
+      "cultura": "nabo_forrageiro",
+      "local": "crawfordsville",
+      "semeadura": "08-01",
+      "fim": "12-05",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (1/ago) e fim mais tardio (5/dez); 127 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto.",
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1284,
+        "nota": "graus_dia_ciclo_max = 1280: mediana 1284 (P10 1191, P90 1497); a maior dos cenários de máximo (Lafayette 1277, Ames 1213, Sutherland 1154, Nashua 1030)."
+      }
+    },
+    {
+      "nome": "nabo_forrageiro_lafayette_0915_1114",
+      "cultura": "nabo_forrageiro",
+      "local": "lafayette",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias (o NRCS pede pelo menos 60 dias de crescimento antes da morte pelo frio). Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_lafayette_0825_1120",
+      "cultura": "nabo_forrageiro",
+      "local": "lafayette",
+      "semeadura": "08-25",
+      "fim": "11-20",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura na última semana de agosto (Purdue) e fim em 20/nov; 88 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    },
+    {
+      "nome": "nabo_forrageiro_lafayette_0801_1205",
+      "cultura": "nabo_forrageiro",
+      "local": "lafayette",
+      "semeadura": "08-01",
+      "fim": "12-05",
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (1/ago) e fim mais tardio (5/dez); 127 dias. Datas: semeadura 'Early August to Mid September' (USDA NRCS Iowa & ISU, Radish Cover Crop Fact Sheet for Iowa, CROP 3203, 2025, dados do MCCC); Purdue AY-359-W (Lafayette-IN): semeado na última semana de agosto, massa amostrada em novembro, morto pelo inverno depois; fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro (Iowa, SARE LNC13-352) a início de dezembro (Lenz et al. 2019, Nebraska; UMD FS 824: nabo danificado pela geada até o início de dezembro em Maryland). Modo 'fim': GD = soma de max(0, Tmed - 5), sem teto."
+    }
+  ]
+}

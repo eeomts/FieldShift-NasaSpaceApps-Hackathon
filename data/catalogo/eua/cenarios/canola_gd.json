@@ -1,0 +1,399 @@
+{
+  "_leia": "Cenários de graus-dia da canola de primavera (Brassica napus, sequeiro, Dakota do Norte) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 5), sem teto (Tb 5 °C = 41 °F do NDAWN). (1) 'canola_ensaio_*' ('dias'): data de semeadura e dias até a maturação ('Days to maturity', dias após a semeadura) do híbrido comercial mais precoce e do mais tardio de cada ensaio oficial da NDSU (A1124, 2023-2025) em Langdon, Minot e Carrington, no ano do ensaio ('anos' = ano da semeadura). Os dois ensaios de Carrington 2024 tiveram granizo em 22/jul e ficam fora da faixa (só registro). (2) 'canola_ndawn_ripe_*' ('alvo_com_teto'): estádio 'Ripe' do NDAWN (> 1874 GDD °F, Tb 41 °F, sem teto: teto 150 °F = sem teto na prática; o script eleva a Tmin à Tb, como o NDAWN), 2001-2020. (3) 'canola_clima_*': os extremos dos ensaios repetidos em 2001-2020. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    },
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "minot": {
+      "nome": "Minot-ND (NDSU North Central Research Extension Center)",
+      "lat": 48.18,
+      "lon": -101.3,
+      "elevacao_m": 570.25
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "canola_ensaio_langdon_2023_precoce_83d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "dias": 83,
+      "tb": 5,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A1124-23, Tab. 7-9 (Langdon, RR/Clearfield/LibertyLink): híbrido mais precoce 83 DAP (CS2600 CR-T, CS3000 TF, CP9221TF, DG 760 TC), mais tardio 94 DAP (PST SC 1159 CL); semeadura 25/mai/2023"
+    },
+    {
+      "nome": "canola_ensaio_langdon_2023_tardio_94d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "dias": 94,
+      "tb": 5,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A1124-23, Tab. 7-9 (Langdon, RR/Clearfield/LibertyLink): híbrido mais precoce 83 DAP (CS2600 CR-T, CS3000 TF, CP9221TF, DG 760 TC), mais tardio 94 DAP (PST SC 1159 CL); semeadura 25/mai/2023"
+    },
+    {
+      "nome": "canola_ensaio_minot_2023_precoce_89d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "06-01",
+      "dias": 89,
+      "tb": 5,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A1124-23, Tab. 10-11 (Minot, LL/RR): 89 DAP (CS3000TF) a 98 DAP (DG280CLC, CS2300, LR354PC); semeadura 1/jun/2023"
+    },
+    {
+      "nome": "canola_ensaio_minot_2023_tardio_98d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "06-01",
+      "dias": 98,
+      "tb": 5,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A1124-23, Tab. 10-11 (Minot, LL/RR): 89 DAP (CS3000TF) a 98 DAP (DG280CLC, CS2300, LR354PC); semeadura 1/jun/2023"
+    },
+    {
+      "nome": "canola_ensaio_langdon_2024_precoce_85d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-31",
+      "dias": 85,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A1124-24, Tab. 2 e 4 (Langdon, RR/LL): 85 DAP (CP9221TF) a 93 DAP (CS3100 TF); semeadura 31/mai/2024"
+    },
+    {
+      "nome": "canola_ensaio_langdon_2024_tardio_93d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-31",
+      "dias": 93,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A1124-24, Tab. 2 e 4 (Langdon, RR/LL): 85 DAP (CP9221TF) a 93 DAP (CS3100 TF); semeadura 31/mai/2024"
+    },
+    {
+      "nome": "canola_ensaio_minot_2024_precoce_95d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "05-12",
+      "dias": 95,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A1124-24, Tab. 9-10 (Minot, RR/LL): 95 DAP (L345PC, LR344PC, P516L) a 103 DAP (CS3100 TF); semeadura 12/mai/2024"
+    },
+    {
+      "nome": "canola_ensaio_minot_2024_tardio_103d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "05-12",
+      "dias": 103,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A1124-24, Tab. 9-10 (Minot, RR/LL): 95 DAP (L345PC, LR344PC, P516L) a 103 DAP (CS3100 TF); semeadura 12/mai/2024"
+    },
+    {
+      "nome": "canola_ensaio_carrington_2025_precoce_91d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-07",
+      "dias": 91,
+      "tb": 5,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A1124-25, Tab. 1-2 (Carrington, LL/RR, só os comerciais 'CA'): 91 DAP (L343PC) a 95 DAP (CS3200 TF); semeadura 7/mai/2025"
+    },
+    {
+      "nome": "canola_ensaio_carrington_2025_tardio_95d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-07",
+      "dias": 95,
+      "tb": 5,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A1124-25, Tab. 1-2 (Carrington, LL/RR, só os comerciais 'CA'): 91 DAP (L343PC) a 95 DAP (CS3200 TF); semeadura 7/mai/2025"
+    },
+    {
+      "nome": "canola_ensaio_minot_2025_precoce_103d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "05-09",
+      "dias": 103,
+      "tb": 5,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A1124-25, Tab. 7-8 (Minot, RR/LL; sem as linhas DL Seeds, experimentais em Carrington): 103 DAP (LR344PC) a 108 DAP (L333PC, L350PC, CP7130LL, CP7250LL, DK400TL, DK800LL, P612L); semeadura 9/mai/2025"
+    },
+    {
+      "nome": "canola_ensaio_minot_2025_tardio_108d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "05-09",
+      "dias": 108,
+      "tb": 5,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A1124-25, Tab. 7-8 (Minot, RR/LL; sem as linhas DL Seeds, experimentais em Carrington): 103 DAP (LR344PC) a 108 DAP (L333PC, L350PC, CP7130LL, CP7250LL, DK400TL, DK800LL, P612L); semeadura 9/mai/2025"
+    },
+    {
+      "nome": "canola_ensaio_langdon_2025_precoce_92d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-30",
+      "dias": 92,
+      "tb": 5,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A1124-25, Tab. 13-14 (Langdon, LL/RR): 92 DAP (BY 7202LL, CP9221TF, CS3300 TF) a 99 DAP (P612L); semeadura 30/mai/2025"
+    },
+    {
+      "nome": "canola_ensaio_langdon_2025_tardio_99d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-30",
+      "dias": 99,
+      "tb": 5,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A1124-25, Tab. 13-14 (Langdon, LL/RR): 92 DAP (BY 7202LL, CP9221TF, CS3300 TF) a 99 DAP (P612L); semeadura 30/mai/2025"
+    },
+    {
+      "nome": "canola_ensaio_carrington_2024_precoce_91d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-06",
+      "dias": 91,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "FORA DA FAIXA (granizo em 22/jul com dano nas síliquas): NDSU A1124-24, Tab. 7 (Carrington RR), 91-96 DAP; semeadura 6/mai/2024"
+    },
+    {
+      "nome": "canola_ensaio_carrington_2024_tardio_96d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-06",
+      "dias": 96,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "FORA DA FAIXA (granizo em 22/jul com dano nas síliquas): NDSU A1124-24, Tab. 7 (Carrington RR), 91-96 DAP; semeadura 6/mai/2024"
+    },
+    {
+      "nome": "canola_ensaio_carrington_2024_precoce_81d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-16",
+      "dias": 81,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "FORA DA FAIXA (granizo em 22/jul com dano nas síliquas): NDSU A1124-24, Tab. 8 (Carrington LL), 81-84 DAP; semeadura 16/mai/2024; maturou nas mesmas datas do ensaio RR semeado 10 dias antes"
+    },
+    {
+      "nome": "canola_ensaio_carrington_2024_tardio_84d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-16",
+      "dias": 84,
+      "tb": 5,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "FORA DA FAIXA (granizo em 22/jul com dano nas síliquas): NDSU A1124-24, Tab. 8 (Carrington LL), 81-84 DAP; semeadura 16/mai/2024; maturou nas mesmas datas do ensaio RR semeado 10 dias antes"
+    },
+    {
+      "nome": "canola_ndawn_ripe_langdon_0510",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-10",
+      "alvo_com_teto": {
+        "valor": 1874,
+        "unidade": "F",
+        "tb": 41,
+        "teto": 150
+      },
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1041,
+        "nota": "NDAWN Canola Growing Degree Days Help: estádio 'Ripe' > 1874 GDD °F (> 1041 °C·dia) da semeadura, Tb 41 °F (5 °C), sem teto, Tmax e Tmin abaixo de 41 °F elevadas a 41 °F. Conferência do fim do ciclo pelo modelo do estado."
+      }
+    },
+    {
+      "nome": "canola_ndawn_ripe_minot_0510",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "05-10",
+      "alvo_com_teto": {
+        "valor": 1874,
+        "unidade": "F",
+        "tb": 41,
+        "teto": 150
+      },
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1041,
+        "nota": "NDAWN Canola Growing Degree Days Help: estádio 'Ripe' > 1874 GDD °F (> 1041 °C·dia) da semeadura, Tb 41 °F (5 °C), sem teto, Tmax e Tmin abaixo de 41 °F elevadas a 41 °F. Conferência do fim do ciclo pelo modelo do estado."
+      }
+    },
+    {
+      "nome": "canola_ndawn_ripe_carrington_0510",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-10",
+      "alvo_com_teto": {
+        "valor": 1874,
+        "unidade": "F",
+        "tb": 41,
+        "teto": 150
+      },
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1041,
+        "nota": "NDAWN Canola Growing Degree Days Help: estádio 'Ripe' > 1874 GDD °F (> 1041 °C·dia) da semeadura, Tb 41 °F (5 °C), sem teto, Tmax e Tmin abaixo de 41 °F elevadas a 41 °F. Conferência do fim do ciclo pelo modelo do estado."
+      }
+    },
+    {
+      "nome": "canola_ndawn_ripe_langdon_0525",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "alvo_com_teto": {
+        "valor": 1874,
+        "unidade": "F",
+        "tb": 41,
+        "teto": 150
+      },
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1041,
+        "nota": "NDAWN Canola Growing Degree Days Help: estádio 'Ripe' > 1874 GDD °F (> 1041 °C·dia) da semeadura, Tb 41 °F (5 °C), sem teto, Tmax e Tmin abaixo de 41 °F elevadas a 41 °F. Conferência do fim do ciclo pelo modelo do estado."
+      }
+    },
+    {
+      "nome": "canola_clima_langdon_0525_83d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "dias": 83,
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência climática (2001-2020) dos extremos dos ensaios: mesmo número de dias e mesma data de semeadura do ensaio, em 20 anos."
+    },
+    {
+      "nome": "canola_clima_minot_0509_108d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "05-09",
+      "dias": 108,
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência climática (2001-2020) dos extremos dos ensaios: mesmo número de dias e mesma data de semeadura do ensaio, em 20 anos."
+    },
+    {
+      "nome": "canola_clima_carrington_0507_108d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-07",
+      "dias": 108,
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência climática (2001-2020) dos extremos dos ensaios: mesmo número de dias e mesma data de semeadura do ensaio, em 20 anos."
+    },
+    {
+      "nome": "canola_clima_langdon_0510_95d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-10",
+      "dias": 95,
+      "tb": 5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência climática (2001-2020) dos extremos dos ensaios: mesmo número de dias e mesma data de semeadura do ensaio, em 20 anos."
+    }
+  ]
+}

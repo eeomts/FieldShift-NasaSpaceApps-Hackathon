@@ -1,0 +1,540 @@
+{
+  "id": "ervilhaca",
+  "pais": "EUA",
+  "nome": "Ervilhaca-peluda (hairy vetch)",
+  "nome_cientifico": "Vicia villosa",
+  "familia_botanica": "Fabaceae",
+  "sistema": "hairy vetch como cobertura de inverno leguminosa ANTES DO MILHO no Corn Belt (Iowa, Illinois e leste do Nebraska): semeada de 1/ago a 15/set (depois de cereal colhido no verão, ou a lanço/em entrelinha na lavoura em pé) e dessecada na primavera, 10-14 dias antes da semeadura do milho, em geral ainda no vegetativo ou no início da floração. A linha é só do Corn Belt (revisão de 15/11, A-05); os números da Geórgia (Sudeste) ficam em regua.arranjos.sudeste. Não existe no catálogo do Brasil.",
+  "regiao_referencia": "Corn Belt: Iowa (datas de semeadura e manejo), Illinois e leste do Nebraska",
+  "valores": {
+    "tipos": "cobertura|fixadora_n",
+    "perene": "false",
+    "ciclo_dias_min": "208",
+    "ciclo_dias_max": "288",
+    "graus_dia_ciclo_min": "480",
+    "graus_dia_ciclo_max": "2460",
+    "temp_base_c": "4",
+    "temp_otima_min_c": "12",
+    "temp_otima_max_c": "22",
+    "tmax_critica_c": "",
+    "sensivel_geada": "false",
+    "agua_ciclo_mm_min": "115",
+    "agua_ciclo_mm_max": "385",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "1.15",
+    "profundidade_raiz_m": "0.9",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "false",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "baixo",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "",
+    "calendario_usda": "",
+    "fontes": "Teasdale, Devine, Mosjidis, Bellinder & Beste, Growth and Development of Hairy Vetch Cultivars in the Northeastern United States as Influenced by Planting and Harvesting Date, Agron. J. 96:1266-1271, 2004 (Tb 4 °C; lido no resumo)|USDA NRCS Iowa & ISU Extension, Hairy Vetch Cover Crop Fact Sheet for Iowa (CROP 3279), maio 2025 (época de semeadura do Midwest Cover Crop Council, semeadura na lavoura em pé, manejo até meados de maio, tolerância ao frio, C/N, massa, pastejo)|University of Illinois Extension, Quick Guide to Cover Crops for Forage, jul. 2022 (época de semeadura em Illinois)|USDA NRCS Booneville Plant Materials Center, Plant Guide Hairy Vetch (Vicia villosa), 2023 (raiz pivotante até 3 pés; manejo 10-14 dias antes da cultura de verão)|Clark (ed.), Managing Cover Crops Profitably, 3ª ed., SARE, 2007 (cap. Hairy Vetch e Chart 2: semeadura depois do cereal de inverno e na soja em pé, rusticidade por zona, N, massa, C/N, pastejo)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura do milho em Iowa, Illinois, Nebraska e Geórgia, para a data de manejo)|Ferreira de Almeida, Ramirez II, Robinson & Basche, Cover Crop Species Decomposition and Nitrogen Release During the Corn Growing Season, UNL CropWatch, 03/05/2022 (massa, C/N e decomposição, Mead-NE)|Sievers & Cook, Aboveground and Root Decomposition of Cereal Rye and Hairy Vetch Cover Crops, Soil Sci. Soc. Am. J. 82:147-155, 2018 (Carbondale-IL: massa, C/N, decomposição)|Ranells & Wagger, Nitrogen Release from Grass and Legume Cover Crop Monocultures and Bicultures, Agron. J. 88:777, 1996 (N acumulado e liberado, Carolina do Norte; lido no resumo)|USDA NRCS East National Technology Support Center, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N 11:1)|Heuzé, Tran, Edouard, Lessire & Lebas, Hairy vetch (Vicia villosa), Feedipedia, 2016 (PB e DMO da planta fresca; raiz; toxicidade)|FAO ECOCROP, Vicia villosa ssp. villosa (EcoPortCode 238009), cópia do banco no GitHub OpenCLIM/ecocrop (TOPMN 12, TOPMX 22; TMAX 28 °C só como referência, não é limiar de dano)|FAO-56 Tab. 12 (PROXY: grupo das leguminosas, Kc ini 0,4 e Kc mid 1,15; a ervilhaca não tem linha) e Tab. 11 (PROXY: fases do trigo de inverno em Idaho e no Mediterrâneo)|FAO-56 cap. 6 (Kc end = Kc mid em cultura colhida verde; convenção para cobertura manejada verde)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/ervilhaca_gd.json (graus-dia sem teto, Tb 4, da semeadura ao manejo, NASA POWER 2001-2020; linha: Iowa, Illinois e Mead-NE; Geórgia só no arranjo Sudeste)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/ervilhaca_etc.json (Kc PROXY do grupo das leguminosas × ET0 do NASA POWER, 2001-2020; linha: Iowa, Illinois e Mead-NE; Geórgia só no arranjo Sudeste)|Arranjo Sudeste (regua.arranjos.sudeste): Balkcom, Schomberg & Lee, Conservation Tillage Systems in the Southeast, SARE, 2020, cap. 5, Tab. 5.3 e 5.4 (épocas de semeadura na Geórgia, massa, N) e Gaskin, Hancock, Saha & Chatam, Cover Crop Biomass Sampling, UGA Extension Circular 1077, rev. jun. 2019 (Tab. 1: massa média e máxima no Sudeste)",
+    "confianca_parametros": "baixa",
+    "semeadura_inicio": "08-01",
+    "semeadura_fim": "09-15",
+    "manejo_inicio": "04-11",
+    "manejo_fim": "05-16",
+    "tipo_manejo": "dessecacao",
+    "condicao_semeadura": "apos_cereal_inverno|apos_colheita_graos|a_lanco_lavoura_em_pe",
+    "estados_validos": "IA|IL|NE",
+    "lacuna_informacao": "Não achamos medição de quanta água a ervilhaca usa no Corn Belt; usamos a de plantas parecidas. A massa medida foi pequena (0,8 a 1,8 t/ha) com dessecação em abril; dessecar em maio rende mais massa e mais nitrogênio.",
+    "risco_revisao_local": "Confirme com a extensão a data de semeadura (até meados de setembro) e a de dessecação antes do milho. No norte frio, sem neve, ela pode morrer no inverno. É difícil de matar só com glifosato, e a semente dura pode virar planta daninha."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "estudo_unico",
+      "nota": "Tb 4 °C da própria espécie: Teasdale et al. (2004, Agron. J.; 3 locais de MD e NY, 4 cultivares, 2 épocas): 'Hairy vetch growth and development could be predicted on the basis of growing degree days (GDD) with a base temperature of 4°C.' Lido só no resumo (Crossref), sem a tabela de GDD: pelo critério de 15/11 (estudo lido só pelo resumo) = estudo_unico (antes estava 'medido'). Pessotto et al. 2023 (câmara, Arkansas) estudou a ervilhaca, mas o resumo só dá a Tb do centeio, do trevo-encarnado e do trevo-balansa. ECOCROP: TMIN 2 °C (mínima do período de cultivo, não Tb)."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Semeadura -> manejo, por datas oficiais de Iowa. Semeadura mais tardia 15/set (NRCS/ISU Iowa, dados do MCCC: 'Early August to Mid September') até o manejo mais cedo 11/abr = início da fase mais ativa de semeadura do milho em Iowa (25/abr, Handbook 628) menos 14 dias (NRCS Plant Guide: 'Ten to fourteen days are recommended before planting the summer cash crop') = 208 dias corridos. A mesma janela cabe em Illinois (semeadura 'Aug- October', University of Illinois Extension 2022; milho de 21/abr a 5/jun) e no leste do Nebraska (milho de 27/abr a 21/mai). O mínimo antigo (127 d) era da Geórgia e foi para regua.arranjos.sudeste (revisão de 15/11, A-05)."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Máximo em Iowa: semeadura mais cedo 1/ago (NRCS/ISU) até o manejo mais tardio 16/mai = fim da semeadura do milho em Iowa (26/mai, Handbook 628) menos 10 dias = 288 dias corridos. O NRCS/ISU recomenda deixar a ervilhaca crescer 'until at least mid-May' para ter N mensurável e avisa que depois de meados de maio fica difícil matar e plantar. Conferência com ensaios: Mead-NE semeada em 26/ago e manejada em 29/abr (246 dias, UNL 2022); Carbondale-IL manejada em 17-23/abr (Sievers & Cook 2018)."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 4), scripts/gd_nasa_power.py com eua/cenarios/ervilhaca_gd.json, 2001-2020, na janela de Iowa. As fontes não dão GDD da semeadura ao manejo. Cenário de mínimo (15/set -> 11/abr), medianas: Nashua-IA 482 (P10 388, P90 636), Ames 585, Mead-NE 690, Crawfordsville 699, Urbana-IL 798, Carbondale-IL 1087. Mínimo = 480 (Nashua, arredondado para baixo). Coberturas: graus-dia não elimina (regra 2)."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo, cenário de máximo (1/ago -> 16/mai), medianas: Carbondale-IL 2455 (P10 2302, P90 2689), Urbana-IL 1986, Mead-NE 1918, Crawfordsville-IA 1870, Ames 1714, Nashua 1441. Máximo = 2460 (Carbondale, sul de Illinois; só Iowa daria 1870). Típico em Iowa (Ames, 1/set -> 25/abr) = 888. A exigência depende das datas de manejo, não de um alvo fisiológico. Os cenários da Geórgia saíram da faixa (arranjo Sudeste)."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/ervilhaca_etc.json (Kc × ET0 FAO-56 do POWER, 2001-2020). Curva PROXY: Kc ini 0,4 e Kc mid 1,15 do grupo das leguminosas (FAO-56 Tab. 12); fases do trigo de inverno de Idaho (FAO-56 Tab. 11: inicial até ~9/mar e desenvolvimento de 75 dias). Cenário de mínimo (15/set -> 11/abr): Nashua-IA média 117 mm (P10 96, P90 141) -> 115 (arredondado para baixo); Mead-NE 167 mm (conferência). Não achei medição americana do consumo de água da ervilhaca até o manejo."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo, cenário de máximo (1/ago -> 16/mai): Mead-NE média 384 mm (P10 330, P90 433; chuva mediana 470) -> 385; Crawfordsville-IA 331, Urbana-IL 327, Carbondale-IL 326. Típico em Iowa (Ames, 1/set -> 25/abr) = 200 mm. A chuva mediana do POWER na janela supera a ETc em Iowa e Illinois; no leste do Nebraska fica perto ou abaixo no outono-primavera longo (chuva 262-470 mm). A água não elimina cobertura (regra 1)."
+    },
+    "kc_inicial": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab. 12, grupo 'e. Legumes (Leguminosae)': Kc ini 0,4 (valor do grupo; a ervilhaca não tem linha). Igual ao do trigo de inverno 'with frozen soils', que vale para o inverno de Iowa. PROXY: categoria genérica."
+    },
+    "kc_medio": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab. 12, grupo das leguminosas Kc mid 1,15 (o mesmo da ervilha verde e da fava, gênero vizinho na tribo Fabeae). PROXY: categoria genérica. No manejo antes do milho a ervilhaca muitas vezes ainda está no desenvolvimento; no cálculo da água do Corn Belt o Kc chegou a 0,74-1,09 no dia do manejo."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "kc_final = kc_medio para cobertura dessecada verde (FAO-56 cap. 6: Kc end alto em cultura colhida verde), a mesma convenção do Brasil e do centeio."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "NRCS Plant Guide (a própria espécie): 'Hairy vetch has a taproot that can grow up to three feet long' = 0,91 m -> 0,9. Conferência: Feedipedia, 'shallow taproot that goes no deeper than 1 m'. O FAO-56 não tem ervilhaca (ervilha seca 0,6-1,0 m, Tab. 22)."
+    },
+    "tmax_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio (revisão de 15/11, M-04): a ervilhaca é dessecada antes da floração plena (abril a meados de maio, no vegetativo ou no início da floração), então não atravessa a fase sensível ao calor no sistema. O 28 °C era o TMAX do ECOCROP (limite de crescimento, não limiar de dano); fica só na evidência. Não é coluna do filtro de confiança."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "todas",
+      "valor_brasil": "(não existe)",
+      "decisao": "trocado",
+      "motivo": "A ervilhaca não está no catálogo do Brasil (está em agroia/base/culturas.json como cobertura fixadora de N). Tudo vem de fontes dos EUA, do ECOCROP e do FAO-56. A Tb 4 °C é a da própria espécie (Teasdale et al. 2004), não herdada do Brasil."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Teasdale, J.R.; Devine, T.E.; Mosjidis, J.A.; Bellinder, R.R.; Beste, C.E., Growth and Development of Hairy Vetch Cultivars in the Northeastern United States as Influenced by Planting and Harvesting Date, Agronomy Journal 96(5):1266-1271, 2004 (resumo lido via Crossref)",
+      "url": "https://doi.org/10.2134/agronj2004.1266",
+      "trecho": "Research was conducted at three locations (Salisbury, MD; Beltsville, MD; and Freeville, NY) [...] Hairy vetch growth and development could be predicted on the basis of growing degree days (GDD) with a base temperature of 4°C. The biomass of common hairy vetch increased linearly by 41 g m−2 for every 100 GDD"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "ciclo_dias_min",
+        "semeadura_inicio",
+        "semeadura_fim",
+        "manejo_fim",
+        "condicao_semeadura",
+        "tipo_manejo",
+        "sensivel_geada",
+        "cn_palhada",
+        "ms_palhada_t_ha",
+        "uso_forrageiro"
+      ],
+      "fonte": "USDA NRCS Iowa & Iowa State University Extension and Outreach, Hairy Vetch Cover Crop Fact Sheet for Iowa (CROP 3279), maio de 2025",
+      "url": "https://nrcs-prod.azureedge.us/sites/default/files/2025-05/Hairy%20Vetch%20Crop%20Fact%20Sheet.pdf",
+      "trecho": "Cold temperature tolerance: -20° F » Seeding date: Early August to Mid September* (F) [...] * Planting information from Midwest Cover Crop Council [...] Hairy Vetch 10:1 to 19:1 [...] Dry matter = 1,800 - 4,000 lbs./acre per year (Biomass quantity is dependent on planting and termination dates and precipitation.) [...] Cash crop interseed (early vegetative) Very good » Cash crop overseed (late seed fill) Fair » Grazing quality Poor [...] Vetch can be difficult to terminate with glyphosate. [...] To produce measurable nitrogen for a cash crop, allow hairy vetch to grow until at least mid-May. » Terminating after mid-May can make it difficult to kill and plant into hairy vetch due to long stems and tendrils."
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "estados_validos"
+      ],
+      "fonte": "University of Illinois Extension, Quick Guide to Cover Crops for Forage, julho de 2022 (tabela de época de semeadura)",
+      "url": "https://extension.illinois.edu/sites/default/files/resource_covercrop_forage_2022.pdf",
+      "trecho": "Hairy Vetch        15 to 25     5 to 8        1        Aug- October         14       60-75     1/2 to 2      Annual     Potential weed, Likely overwinter [...] Poor grazing, Nitrogen fixer, not best choice for livestock feed"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "manejo_inicio",
+        "manejo_fim"
+      ],
+      "fonte": "USDA NRCS, Booneville Plant Materials Center, Plant Guide Hairy Vetch (Vicia villosa Roth), 2023",
+      "url": "https://plants.usda.gov/DocumentLibrary/plantguide/pdf/pg_vivi.pdf",
+      "trecho": "Hairy vetch has a taproot that can grow up to three feet long. [...] Hairy vetch can be seeded [...] during early September to mid-October [...] The timing of termination depends on the planting time of the subsequent cash crop. Ten to fourteen days are recommended before planting the summer cash crop."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "manejo_inicio",
+        "manejo_fim",
+        "condicao_semeadura",
+        "estados_validos",
+        "regua.arranjos.sudeste"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, Corn for Grain - States e Soybeans for Beans - States",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "[Corn for grain] Georgia ........:     370    Mar 14 Mar 22 - Apr 21 May 4 [...] Illinois .......:  11,800    Apr 14 Apr 21 - May 23 Jun 5   Sep 14 Sep 23 - Nov 5  Nov 20 [...] Iowa ...........:  13,400    Apr 19 Apr 25 - May 18 May 26  Sep 21 Oct 5 - Nov 9   Nov 21 [...] Nebraska .......:   8,850    Apr 19 Apr 27 - May 15 May 21 [...] [Soybeans] Iowa ...........:   9,530    May 2  May 8 - Jun 2   Jun 16  Sep 21 Sep 28 - Oct 20 Oct 31"
+    },
+    {
+      "colunas": [
+        "regua.arranjos.sudeste"
+      ],
+      "fonte": "Balkcom, K.; Schomberg, H.; Lee, R.D., Chapter 5: Cover Crop Management, em Conservation Tillage Systems in the Southeast, SARE, 2020, Tab. 5.3 e 5.4 (colunas da Geórgia: Limestone Valley, Piedmont, Coastal Plain)",
+      "url": "https://www.sare.org/wp-content/uploads/Chapter-5-tables_Conservation-Tillage.pdf",
+      "trecho": "Vetch, hairy [...] Sept 15– Oct 15 C | Sept 15– Oct 15 | Sept 15– Nov 1 [...] Hairy vetch VNS ½–1½ 4,000–7,000 More cold tolerant than clovers, but residue is less persistent. Can fix up to 200 pounds N per acre."
+    },
+    {
+      "colunas": [
+        "regua.arranjos.sudeste"
+      ],
+      "fonte": "Gaskin, J.W.; Hancock, D.; Saha, U.; Chatam, K., Cover Crop Biomass Sampling, University of Georgia Cooperative Extension Circular 1077, revisada em junho de 2019, Tabela 1",
+      "url": "https://aesl.ces.uga.edu/Mineralization/Biomass/CoverCropBiomassSampling.pdf",
+      "trecho": "Table 1. The average and maximum dry biomass reported for some commonly used winter cover crops in the southeastern U.S. [...] Coastal Plain [...] Hairy vetch (Vicia villosa) 3,300 5,700 [...] Piedmont [...] Hairy vetch (Vicia villosa) 4,400 6,300"
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "estados_validos",
+        "condicao_semeadura",
+        "cn_palhada",
+        "fixa_nitrogenio",
+        "uso_forrageiro",
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "Clark, A. (ed.), Managing Cover Crops Profitably, 3ª edição, SARE Handbook 9, 2007, capítulo Hairy Vetch (p. 142-150) e Chart 2",
+      "url": "https://www.sare.org/wp-content/uploads/Managing-Cover-Crops-Profitably.pdf",
+      "trecho": "winter hardy through Hardiness Zone 4 and into Zone 3 (with snow cover) [...] Its C:N ratio ranges from 8:1 to 15:1 [...] Some Zone 5 Midwestern farmers with access to low-cost seed plant vetch after winter grain harvest in mid-summer [...] Vetch also can be no-tilled into soybean or corn stubble [...] Overseeding (40 lb./A) at leaf-yellowing into soybeans can work if adequate rainfall and soil moisture are available prior to the onset of freezing weather. [...] A severe freeze with temperatures less than 5° F may kill hairy vetch if there is no snow cover [...] Hairy vetch makes only fair grazing—livestock do not relish it. [Chart 2:] Hairy vetch p. 142 90–200 2,300–5,000"
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias",
+        "cn_palhada",
+        "ms_palhada_t_ha",
+        "ciclo_dias_max",
+        "condicao_semeadura",
+        "estados_validos"
+      ],
+      "fonte": "Ferreira de Almeida, T.; Ramirez II, S.; Robinson, E.; Basche, A., Cover Crop Species Decomposition and Nitrogen Release During the Corn Growing Season, UNL CropWatch, 03/05/2022 (Mead-NE, 2020-2021)",
+      "url": "https://cropwatch.unl.edu/2022/cover-crop-species-decomposition-and-nitrogen-release-during-corn-growing-season",
+      "trecho": "The cover crops were planted on Aug. 26, 2020 following oats. [...] cover crop termination on April 29, 2021 [...] hairy vetch in the vegetative stage [...] achieved an average of 5,500, 1,600 and 4,900 lbs per acre, respectively [...] at the end of the season, 26% of its mass remained [Tab. 1: C:N da ervilhaca 14:1 em 26/04/21]"
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "cn_palhada",
+        "ms_palhada_t_ha",
+        "estados_validos"
+      ],
+      "fonte": "Sievers, T.; Cook, R.L., Aboveground and Root Decomposition of Cereal Rye and Hairy Vetch Cover Crops, Soil Sci. Soc. Am. J. 82:147-155, 2018 (Southern Illinois University, Carbondale-IL, 2015), Tab. 2 e 4",
+      "url": "https://www.mssoy.org/sites/default/files/documents/sievers-cook-cc-decomp-sssaj-jan-2018.pdf",
+      "trecho": "Hairy vetch aboveground (k = 0.4505) [...] Hairy vetch had a lower C to N ratio than cereal rye in both aboveground (9.52 vs. 34.72) [...] MR or NR = ae-kt + Y0 [...] Hairy vetch Shoots 0.4505 b 87.96 b 11.31 a [Tab. 4; t em semanas] [...] In situ cover crops [...] Hairy vetch Shoots 791 27 21.4 15.6 [Tab. 2: kg/ha, g N/kg, kg N/ha, C/N]"
+    },
+    {
+      "colunas": [
+        "fixa_nitrogenio"
+      ],
+      "fonte": "Ranells, N.N.; Wagger, M.G., Nitrogen Release from Grass and Legume Cover Crop Monocultures and Bicultures, Agronomy Journal 88(5):777, 1996 (Carolina do Norte; resumo lido via Crossref)",
+      "url": "https://doi.org/10.2134/agronj1996.00021962008800050015x",
+      "trecho": "The greatest cover crop N content (2-yr mean) occurred with hairy vetch monoculture (154 kg N ha−1) [...] Estimates of N (kg ha−1) released from cover crop residue after 8 wk of field decomposition, averaged over 2 yr, were 24 for rye, 60 for crimson clover, 132 for hairy vetch"
+    },
+    {
+      "colunas": [
+        "cn_palhada"
+      ],
+      "fonte": "USDA NRCS East National Technology Support Center, Carbon to Nitrogen Ratios in Cropping Systems, janeiro de 2011, Tabela 1",
+      "url": "https://sarep.ucdavis.edu/sites/g/files/dgvnsk9171/files/media/documents/NRCS-C_N_ratios_cropping_systems.pdf",
+      "trecho": "hairy vetch cover crop 11:1"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Heuzé, V.; Tran, G.; Edouard, N.; Lessire, M.; Lebas, F., Hairy vetch (Vicia villosa), Feedipedia (INRAE, CIRAD, AFZ, FAO), 2016 (texto e tabela 'aerial part, fresh'; valores pontuais)",
+      "url": "https://www.feedipedia.org/node/238",
+      "trecho": "Hairy vetch is not very palatable to livestock [...] can be poisonous to livestock, including cattle, horses and poultry [...] It has a shallow taproot that goes no deeper than 1 m [...] Crude protein % DM 23.0 (SD 3.8, 18.6-30.5, Nb 16) [...] OM digestibility, Ruminant % 76.4 (SD 4.8, 72.1-84.0, Nb 9) [sem asterisco]"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, Vicia villosa ssp. villosa (EcoPortCode 238009), cópia integral do banco em GitHub OpenCLIM/ecocrop, EcoCrop_DB.csv (TMAX 28 °C só como referência: limite de crescimento, não limiar de dano; tmax_critica_c ficou vazio)",
+      "url": "https://github.com/OpenCLIM/ecocrop/blob/main/EcoCrop_DB.csv",
+      "trecho": "238009, Vicia villosa ssp. villosa, winter vetch [...] TOPMN 12, TOPMX 22, TMIN 2, TMAX 28 [...] KTMPR -5"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12 (PROXY: grupo das leguminosas) e Tabela 11 (fases do trigo de inverno)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "e. Legumes (Leguminosae) 0.4 1.15 0.55 [...] Peas - Fresh 0.5 1.15 1.10 [...] Winter Wheat [Tab. 11:] 30 140 40 30 240 November Mediterranean [...] 160 75 75 25 335 October Idaho, USA"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/ervilhaca_gd.json (NASA POWER diário, comunidade AG, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "Linha (Corn Belt, janela de Iowa): nashua_0915_0411 mediana 482 (P10 388, P90 636); ames_0915_0411 585; mead_0915_0411 690; crawfordsville_0915_0411 699; urbana_0915_0411 798; carbondale_0915_0411 1087; ames_0901_0425 888; nashua_0801_0516 1441; ames_0801_0516 1714; crawfordsville_0801_0516 1870; mead_0801_0516 1918; urbana_0801_0516 1986; carbondale_0801_0516 2455 (P10 2302, P90 2689). Arranjo Sudeste: watkinsville_1015_0308 751; tifton_1101_0308 999; watkinsville_0915_0424 1717; tifton_0915_0424 2400"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/ervilhaca_etc.json (NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "Linha (Corn Belt): nashua_0915_0411 média 117 mm (P10 96, P90 141), ET0 261, chuva 335; mead_0915_0411 167 (ET0 382, chuva 262); ames_0901_0425 200; carbondale_0801_0516 326; urbana_0801_0516 327; crawfordsville_0801_0516 331 (ET0 654, chuva 613); mead_0801_0516 384 (P10 330, P90 433), ET0 733, chuva 470. Arranjo Sudeste: watkinsville_1015_0308 112; tifton_1101_0308 143; tifton_0915_0424 451"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Pessotto, M.V.; Roberts, T.; Bertucci, M.B.; dos Santos, C.; Ross, J.; Savin, M.C., Determining cardinal temperatures for eight cover crop species, Agrosystems, Geosciences & Environment 6(3):e20393, 2023 (resumo lido via Crossref; o texto completo não abriu, HTTP 403)",
+      "url": "https://doi.org/10.1002/agg2.20393",
+      "trecho": "eight cover crop species, including [...] hairy vetch (Vicia villosa), using a growth chamber experiment. [...] base and optimum temperatures were −4.5 and 24.8°C for cereal rye, 3.9 and 26.6°C for crimson clover, and the base temperature was 3.4°C for balansa clover. [sem a Tb da ervilhaca no resumo]"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 0.79,
+      "max": 1.79,
+      "tipico": 1.29
+    },
+    "cn_palhada": {
+      "min": 8,
+      "max": 19,
+      "tipico": 11
+    },
+    "k_dia": {
+      "valor": 0.012,
+      "min": 0.0087,
+      "max": 0.0338
+    },
+    "meia_vida_dias": {
+      "valor": 58
+    },
+    "condicao_decomposicao": "Ervilhaca de cobertura dessecada na primavera, palhada em sacolas na superfície sob milho em plantio direto: Mead-NE (dessecada em 29/04/2021, vegetativa; UNL 2022) e Carbondale-IL (dessecada em 17-23/04/2015; Sievers & Cook 2018). Dois estudos do Corn Belt; nenhum do Sudeste com k em massa.",
+    "pb_pct": 23.0,
+    "digestibilidade_pct": {
+      "valor": 76.4,
+      "tipo": "OMD",
+      "n": 9,
+      "medicao": "medida",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes da ervilhaca fresca (Hairy vetch, aerial part, fresh), Feedipedia, sem asterisco (não estimada por equação), Nb 9, faixa 72,1-84,0. Não muda a classe: o uso 'residual' dá 'baixo'."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Ervilhaca de cobertura pastejada ou cortada antes da dessecação na primavera. PB 23,0% (Feedipedia, Nb 16). 'residual' porque as fontes americanas dão pastejo ruim: 'Grazing quality Poor' e 'Mechanical forage harvest Poor' (NRCS/ISU 2025), 'only fair grazing—livestock do not relish it' (SARE MCCP), e a Feedipedia registra baixa palatabilidade e casos de intoxicação de bovinos e cavalos (sementes). Os rótulos dos herbicidas da cultura anterior também podem proibir o pastejo, como no centeio.",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Massa no manejo, ervilhaca solteira antes do milho no Corn Belt (um valor por estudo): Sievers & Cook 2018 (Carbondale-IL, in situ, dessecada em 17-23/abr): 791 kg/ha = 0,79 t/ha; UNL 2022 (Mead-NE, 29/abr, vegetativa): 1600 lb/acre × 1,121 = 1,79 t/ha. Típico = mediana das duas = 1,29 t/ha; mínimo 0,79; máximo 1,79 (revisão de 15/11, A-05: a linha é só do Corn Belt; a mediana antiga de 2,75 misturava a Geórgia, que foi para regua.arranjos.sudeste). Ficaram de fora (faixas sem n, potenciais): NRCS/ISU Iowa 1800-4000 lb/acre (2,0-4,5 t/ha, 'dependent on planting and termination dates'), SARE MCCP 2300-5000 lb/acre (2,6-5,6 t/ha); e o ensaio de Beltsville-MD (Poffenbarger et al. 2015), com ervilhaca rolada na floração plena no fim de maio (outro sistema). C/N típico 11 (NRCS 2011); faixa 8-15 (SARE MCCP) e 10-19 (NRCS/ISU Iowa); medidos 9,5 (Sievers & Cook, material das sacolas), 15,6 (Sievers & Cook, in situ) e 14 (UNL).",
+      "decomposicao": "UNL 2022: 26% da massa restante no fim da safra. Como no centeio, o texto diz retiradas até 16 semanas (112 d: k = -ln(0,26)/112 = 0,0120/dia) e a tabela termina em 27/09 (154 d desde 26/04: k = 0,0087/dia). Sievers & Cook 2018 ajustaram MR = 87,96·e^(-0,4505·t) + 11,31 (t em semanas): aos 60 dias (8,57 semanas) restam 13,2% da massa, equivalente a k = -ln(0,132)/60 = 0,0338/dia. Valor = mediana dos três (0,0120); T½ = 0,693/0,0120 = 58 d. Palhada que sobra em 60 dias: 1,29 × e^(-0,012×60) = 0,63 t/ha (baixa com qualquer k da faixa: 0,77 com o mais lento). O SARE MCCP diz que a palhada da ervilhaca perde efeito 'after about three or four weeks'.",
+      "fixacao_n": "N na parte aérea e liberado: SARE MCCP Chart 2, N total (planta inteira) 90-200 lb/acre = 101-224 kg/ha; SARE Southeast: 'Can fix up to 200 pounds N per acre' (224 kg/ha); no plantio direto 'replacing up to 100 lb. N/A' (112 kg/ha). Medidos: Ranells & Wagger 1996 (Carolina do Norte), 154 kg N/ha acumulado (média de 2 anos) e 132 kg N/ha liberados em 8 semanas; UNL 2022 (Mead-NE, ervilhaca vegetativa de 1,8 t/ha), 62,5 lb/acre = 70 kg N/ha liberados até o fim da safra; Sievers & Cook 2018 (in situ, 0,79 t/ha), 21,4 kg N/ha na parte aérea. O N depende muito da data de manejo: o NRCS/ISU pede crescimento até meados de maio em Iowa para haver N mensurável.",
+      "geada": "sensivel_geada = false: a ervilhaca tolera -20 °F (-29 °C; NRCS/ISU) e é rústica até a zona 4 (zona 3 com neve; SARE MCCP); a floração (maio-junho) é a fase sensível, e o manejo antes do milho vem antes ou no início dela. Risco de morte no inverno: 'temperatures less than 5° F' (-15 °C) sem neve podem matar o estande (SARE MCCP).",
+      "codigos": "codigo_nass e calendario_usda vazios: a ervilhaca não tem commodity no NASS QuickStats (conferido só nos relatórios lidos, sem NASS_API_KEY) nem linha no Handbook 628 (2010), que só tem grãos, fibras e feno (alfafa e 'Other Hay'). A linha não usa produtividade do NASS.",
+      "colheita": "Não se aplica (cobertura manejada verde, sem colheita). O Handbook 628 serviu só para a data de semeadura do milho, que define o manejo.",
+      "janela": "Janela de Iowa (a mais curta das três fontes do Corn Belt): semeadura 1/ago a 15/set ('Early August to Mid September', NRCS/ISU, dados do MCCC); manejo 11/abr a 16/mai (milho de Iowa no Handbook 628 menos 14 ou 10 dias, NRCS Plant Guide). Illinois admite semeadura até outubro ('Aug- October', University of Illinois Extension 2022) e manejo até ~26/mai (milho até 5/jun). condicao_semeadura: depois de cereal de inverno colhido no verão ('Some Zone 5 Midwestern farmers [...] plant vetch after winter grain harvest in mid-summer', SARE MCCP; Mead-NE semeada depois da aveia, UNL 2022); a lanço ou em entrelinha na lavoura em pé ('Cash crop interseed (early vegetative) Very good', 'overseed (late seed fill) Fair', NRCS/ISU; 'Overseeding [...] at leaf-yellowing into soybeans can work', SARE MCCP); depois da colheita de grãos ('can be no-tilled into soybean or corn stubble', SARE MCCP), mas em Iowa a colheita da soja começa em 21/set e a do milho em 21/set (Handbook 628), depois do fim da janela: na prática a regra 12 não a sugere depois de grão colhido. tipo_manejo = dessecacao (herbicida antes do milho; 'Vetch can be difficult to terminate with glyphosate', NRCS/ISU)."
+    },
+    "resultado": {
+      "aporte_biomassa": "baixo",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 1.29,
+      "ms_remanescente_t_ha": 0.63,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    },
+    "arranjos": {
+      "sudeste": {
+        "estados": "GA",
+        "ms_palhada_t_ha": {
+          "min": 3.7,
+          "max": 7.06,
+          "tipico": 4.32
+        },
+        "ciclo_dias": {
+          "min": 127,
+          "max": 221
+        },
+        "graus_dia_ciclo": {
+          "min": 750,
+          "max": 2400
+        },
+        "agua_ciclo_mm": {
+          "min": 110,
+          "max": 455
+        },
+        "semeadura_inicio": "09-15",
+        "semeadura_fim": "11-01",
+        "manejo_inicio": "03-08",
+        "manejo_fim": "04-24",
+        "tipo_manejo": "dessecacao",
+        "origem": {
+          "ms_palhada_t_ha": "publicado",
+          "ciclo_dias": "publicado",
+          "graus_dia_ciclo": "calculo",
+          "agua_ciclo_mm": "calculo"
+        },
+        "nota": "Ervilhaca antes do milho na Geórgia (Coastal Plain e Piedmont), números que estavam na linha até 15/11 (revisão A-05). Semeadura 'Sept 15-Nov 1' no Coastal Plain e 'Sept 15-Oct 15' no Piedmont (SARE Southeast, Tab. 5.4); manejo = semeadura do milho na Geórgia (Handbook 628: 22/mar a 4/mai) menos 14 ou 10 dias. Ciclo 127 d (1/nov -> 8/mar) a 221 d (15/set -> 24/abr). Graus-dia (Tb 4, sem teto, POWER 2001-2020): mínimo Watkinsville 15/out -> 8/mar mediana 751 -> 750 (Tifton 1/nov -> 8/mar: 999); máximo Tifton 15/set -> 24/abr 2400. Água (mesma curva PROXY, fases do trigo 'Mediterranean'): Watkinsville 112 mm -> 110; Tifton 451 -> 455. Palhada: UGA C1077, média do Coastal Plain 3300 lb/acre = 3,70 t/ha e do Piedmont 4400 = 4,93 (típico = mediana 4,32); máximo do Piedmont 6300 = 7,06. Sem k medido no Sudeste (usar o da linha; o clima quente e úmido acelera a decomposição). Antes do algodão o manejo é mais tardio (meados de abril, SARE MCCP). Cenários: ervilhaca_tifton_* e ervilhaca_watkinsville_* em eua/cenarios/ervilhaca_{gd,etc}.json."
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "baixa",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "sistema",
+      "antes": "Iowa e Geórgia na mesma linha",
+      "depois": "só Corn Belt (Iowa, Illinois, leste do Nebraska)",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste."
+    },
+    {
+      "coluna": "regiao_referencia",
+      "antes": "Iowa (Corn Belt); Geórgia (Sudeste, Coastal Plain e Piedmont)",
+      "depois": "Corn Belt: Iowa (datas de semeadura e manejo), Illinois e leste do Nebraska",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste."
+    },
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "127",
+      "depois": "208",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste. O 127 era 1/nov -> 8/mar em Tifton-GA; o novo é 15/set -> 11/abr em Iowa."
+    },
+    {
+      "coluna": "graus_dia_ciclo_max",
+      "antes": "2400",
+      "depois": "2460",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste. O 2400 era Tifton-GA; o novo é Carbondale-IL (1/ago -> 16/mai), com cenários novos de Urbana-IL, Carbondale-IL e Mead-NE em eua/cenarios/ervilhaca_gd.json. O mínimo (480, Nashua) não mudou."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "110",
+      "depois": "115",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste. O 110 era Watkinsville-GA; o novo é Nashua-IA (média 117 mm)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "455",
+      "depois": "385",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste. O 455 era Tifton-GA; o novo é Mead-NE (média 384 mm), cenário novo em eua/cenarios/ervilhaca_etc.json."
+    },
+    {
+      "coluna": "regua.ms_palhada_t_ha",
+      "antes": "min 0,79, max 7,06, típico 2,75",
+      "depois": "min 0,79, max 1,79, típico 1,29",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste. Típico = mediana das medições do Corn Belt (0,79 e 1,79)."
+    },
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "medio",
+      "depois": "baixo",
+      "motivo": "Consequência da nova palhada típica (1,29 t/ha < 2,3). O coordenador confirma com regua.py --apply."
+    },
+    {
+      "coluna": "regua.arranjos.sudeste",
+      "antes": "",
+      "depois": "GA: ciclo 127-221, graus-dia 750-2400, água 110-455, palhada 3,70-7,06 (típico 4,32), janela",
+      "motivo": "Revisão de 15/11, A-05 (DECISÃO aceita pelo usuário): a linha passa a ser só do Corn Belt; a Geórgia foi para regua.arranjos.sudeste."
+    },
+    {
+      "coluna": "temp_base_c (origem)",
+      "antes": "medido",
+      "depois": "estudo_unico",
+      "motivo": "Critério de 15/11: estudo lido só pelo resumo, sem a tabela do número (Teasdale 2004). Valor 4 mantido."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "28",
+      "depois": "",
+      "motivo": "Revisão de 15/11, M-04: cobertura dessecada antes da floração plena; o TMAX do ECOCROP não é limiar de dano."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "",
+      "depois": "08-01 / 09-15",
+      "motivo": "Revisão de 15/11, M-02: janela de Iowa (NRCS/ISU, dados do MCCC)."
+    },
+    {
+      "coluna": "manejo_inicio/manejo_fim",
+      "antes": "",
+      "depois": "04-11 / 05-16",
+      "motivo": "Revisão de 15/11, M-02: milho de Iowa (Handbook 628) menos 14 ou 10 dias (NRCS Plant Guide)."
+    },
+    {
+      "coluna": "tipo_manejo",
+      "antes": "",
+      "depois": "dessecacao",
+      "motivo": "Revisão de 15/11, M-02: herbicida antes do milho (NRCS/ISU)."
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "",
+      "depois": "apos_cereal_inverno|apos_colheita_graos|a_lanco_lavoura_em_pe",
+      "motivo": "Revisão de 15/11, M-02: SARE MCCP e NRCS/ISU; ver regua.observacoes.janela."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "",
+      "depois": "IA|IL|NE",
+      "motivo": "Revisão de 15/11, M-09: estados do Corn Belt com fonte e cenário calculado."
+    },
+    {
+      "coluna": "lacuna_informacao / risco_revisao_local",
+      "antes": "",
+      "depois": "textos para o produtor",
+      "motivo": "Revisão de 15/11, M-11: obrigatórios com confiança baixa."
+    },
+    {
+      "coluna": "regua.arranjos.sudeste.origem",
+      "antes": "",
+      "depois": "{\"ms_palhada_t_ha\": \"publicado\", \"ciclo_dias\": \"publicado\", \"graus_dia_ciclo\": \"calculo\", \"agua_ciclo_mm\": \"calculo\"}",
+      "motivo": "Revisão de 15/11 (pacote 4, B-03): o arranjo não tinha a origem de cada número (evidencias/README.md, arranjos regionais). Números não mudaram. ciclo_dias = publicado (semeadura da Tab. 5.4 do SARE Southeast e manejo = semeadura do milho do Handbook 628 menos 10-14 dias do NRCS, mesma classe do ciclo da linha); graus_dia_ciclo = calculo (gd_nasa_power.py, eua/cenarios/ervilhaca_gd.json); agua_ciclo_mm = calculo (etc_nasa_power.py, eua/cenarios/ervilhaca_etc.json, curva de Kc PROXY como na linha); ms_palhada_t_ha = publicado (UGA C1077, Tab. 1: tabela oficial da extensão com a média e a máxima de biomassa relatadas para a ervilhaca por região do Sudeste; não é um ensaio com locais e anos declarados, por isso não é medido, e não é estudo único). Mesmo padrão de trevo.json (alabama, tennessee) e feijao.json (michigan)."
+    }
+  ],
+  "pendencias": [
+    "DECISÃO (revisão de 15/11, A-05, aceita pelo usuário): a linha é só do Corn Belt (Iowa, Illinois e leste do Nebraska). Os números da Geórgia (ciclo 127-221 d, graus-dia 750-2400, água 110-455 mm, palhada típica 4,32 t/ha, semeadura 15/set-1/nov, manejo 8/mar-24/abr) estão em regua.arranjos.sudeste, com estados 'GA'; o motor usa o arranjo quando o ponto estiver na Geórgia (regra 13). Antes do algodão o manejo é mais tardio (meados de abril, SARE MCCP).",
+    "DECISÃO (A-05): palhada típica = mediana das duas medições do Corn Belt (Carbondale-IL 0,79 e Mead-NE 1,79 t/ha) = 1,29 t/ha, classe 'baixo'. As duas tiveram dessecação em abril. Com dessecação em meados de maio a massa deve ser maior (NRCS/ISU Iowa: 1.800-4.000 lb/acre = 2,0-4,5 t/ha, faixa sem n, que pode levar a classe a 'medio'). Resolveria: ensaio de Iowa ou Illinois com massa no manejo em maio (ex.: Iowa Learning Farms, Practical Farmers of Iowa).",
+    "estados_validos = IA|IL|NE: estados com fonte lida para a janela (NRCS/ISU Iowa; University of Illinois Extension 2022 e Sievers & Cook em Carbondale-IL; UNL 2022 em Mead-NE) e cenários calculados (Nashua, Ames, Crawfordsville, Urbana, Carbondale, Mead). Indiana, Ohio e Missouri provavelmente servem, mas não li fonte com a janela; Minnesota, Wisconsin e as Dakotas ficaram de fora: a ervilhaca é rústica só até a zona 4 (zona 3 com neve) e morre abaixo de 5 °F sem neve (SARE MCCP). Resolveria: a ferramenta de seleção do Midwest Cover Crops Council por estado.",
+    "Janela: a de Iowa (semeadura 1/ago-15/set; manejo 11/abr-16/mai) vale para a linha. Illinois admite semeadura até outubro (University of Illinois Extension 2022, guia de forragem, sem distinção norte/sul) e manejo até ~26/mai; o leste do Nebraska até ~11/mai. Em Iowa a colheita do milho e da soja começa em 21/set (Handbook 628), depois do fim da janela: depois de grão colhido a ervilhaca só cabe a lanço na lavoura em pé ou depois de cereal de inverno ou aveia.",
+    "ciclo e graus_dia: dependem só das datas de semeadura e de manejo (decisão do produtor), não de um alvo fisiológico. O máximo de graus-dia (2460) vem de Carbondale, no sul de Illinois; só com Iowa seria 1870. Coberturas: graus-dia não elimina (regra 2). Resolveria: o GDD até a floração de Teasdale et al. 2004 (texto completo, não lido) ou a ferramenta de manejo do MCCC.",
+    "temp_base_c = 4: um estudo de campo em MD e NY (Teasdale et al. 2004), lido só no resumo, por isso estudo_unico (critério de 15/11). Pessotto et al. 2023 (Arkansas, câmara de crescimento) incluiu a ervilhaca, mas o resumo só traz a Tb do centeio (-4,5 °C), do trevo-encarnado (3,9 °C) e do trevo-balansa (3,4 °C); o texto completo não abriu (HTTP 403). Resolveria: a tabela do Teasdale 2004 ou do Pessotto 2023.",
+    "agua: CÁLCULO com Kc PROXY do grupo das leguminosas (FAO-56) e fases emprestadas do trigo de inverno de Idaho; sem medição americana. Com semeadura em agosto, a fase inicial com Kc 0,4 até março subestima o consumo do outono. O máximo (385 mm) vem de Mead-NE, mais seco e com mais ET0. Resolveria: medição de umidade do solo sob ervilhaca (ex.: ensaios de Beltsville-MD) ou o Kc do estudo austríaco de Bodner et al. 2007 (Agric. Water Manag.), que só foi visto em resultado de busca.",
+    "kc_inicial, kc_medio: PROXY (valores do grupo das leguminosas no FAO-56; a ervilhaca não tem linha).",
+    "tmax_critica_c vazio (revisão de 15/11, M-04): dessecada antes da floração plena, não atravessa a fase sensível ao calor. O TMAX 28 °C do ECOCROP fica só na evidência.",
+    "regua: k de dois estudos do Corn Belt com resultados muito diferentes (0,0087-0,0338/dia); nenhum do Sudeste.",
+    "sensivel_geada: no norte do Corn Belt (zonas 3-4) há risco de morte no inverno sem neve; a Feedipedia confirma que a geada é mais tolerada com cobertura de neve.",
+    "codigo_nass e calendario_usda vazios (sem commodity no NASS e sem linha no Handbook 628); QuickStats não conferido por falta de NASS_API_KEY."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 7,
+    "colunas": [
+      "temp_base_c",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "kc_inicial",
+      "kc_medio"
+    ]
+  }
+}

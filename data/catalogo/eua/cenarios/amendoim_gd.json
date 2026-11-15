@@ -1,0 +1,97 @@
+{
+  "_leia": "Cenários de graus-dia do amendoim (Peanut, runner, sul da Geórgia) para scripts/gd_nasa_power.py. As fontes dos EUA usam graus-dia com base 56 °F (13,3 °C) e teto de 95 °F (35 °C) na Tmax (NC State 2025; Anco et al. 2024). A Tb da linha é 13,3 °C (não há linha de amendoim no Brasil). O modo alvo_com_teto acha, ano a ano, o dia em que o DD56 da fonte é atingido em Tifton, com semeadura em 10/mai (UGA: janela ideal do fim de abril ao fim de maio; plantar depois de 10/mai reduz o vira-cabeça, TSWV), e soma o GD do catálogo (sem teto, Tb 13,3) nas mesmas datas. 'referencia.valor' = DD56 da fonte / 1,8 (°C·dia, com teto). 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "amendoim_tifton_0510_dd56_3013",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "alvo_com_teto": {"valor": 3013, "unidade": "F", "tb": 56, "teto": 95},
+      "tb": 13.3,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1674,
+        "nota": "Anco, Kirk & Hiers 2024, Peanut Science 51(1), Tab. 1 e 3 (Blackville-SC, runners FloRun 331, Georgia-16HO e TUFRunner 297, 2017-2022): menor soma térmica em que um cultivar já estava no valor econômico ótimo = 2021, 140 DAP, 3013 graus-dia (base 56 °F, teto 95 °F), Georgia-16HO. 3013 / 1,8 = 1674 °C·dia (com teto)."
+      }
+    },
+    {
+      "nome": "amendoim_tifton_0510_dd56_3269",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "alvo_com_teto": {"valor": 3269, "unidade": "F", "tb": 56, "teto": 95},
+      "tb": 13.3,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1816,
+        "nota": "Anco et al. 2024: maior soma térmica do primeiro arranquio ótimo fora do ano de seca = 2017, 154 DAP, 3269 graus-dia (Georgia-16HO e TUFRunner 297; o arranquio de 141 DAP, 3020, ainda não era ótimo). 3269 / 1,8 = 1816."
+      }
+    },
+    {
+      "nome": "amendoim_tifton_0510_dd56_3431_seca2019",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "alvo_com_teto": {"valor": 3431, "unidade": "F", "tb": 56, "teto": 95},
+      "tb": 13.3,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1906,
+        "nota": "Só referência: 2019 (seca 'acutely stressful' segundo os autores), Georgia-16HO ótimo só aos 148 DAP, 3431 graus-dia. Fica fora da faixa (a faixa é sem déficit hídrico)."
+      }
+    },
+    {
+      "nome": "amendoim_tifton_0510_dd56_2650_virginia_nc",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "alvo_com_teto": {"valor": 2650, "unidade": "F", "tb": 56, "teto": 95},
+      "tb": 13.3,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1472,
+        "nota": "Só conferência: Jordan (NC State), 2025 Peanut Information, cap. 3: '2,650 to 2,700 GDDs are needed for Virginia market types to mature' (base 56 °F, teto 95 °F). É outro tipo comercial (Virginia) e outra região."
+      }
+    },
+    {
+      "nome": "amendoim_tifton_0510_135d",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "dias": 135,
+      "tb": 13.3,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1674,
+        "nota": "Conferência pelos dias da UGA (Monfort, ago/2022): cultivar mais precoce citado, Georgia-09B, '135 to 140 days'. Referência = alvo mínimo convertido (1674)."
+      }
+    },
+    {
+      "nome": "amendoim_tifton_0510_150d",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "dias": 150,
+      "tb": 13.3,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1816,
+        "nota": "Conferência pelos dias da UGA (Monfort, ago/2022): Georgia-12Y 'medium-to-late maturing peanut (150 days +)'; FloRun 331 '140 to 150 days'. Referência = alvo máximo convertido (1816)."
+      }
+    }
+  ]
+}

@@ -17,6 +17,8 @@ export interface ItemCalendario {
   perene: boolean;
   consorcio_com: string[];
   ocupa: "todo" | "parte" | null;
+  /** Só no front: ids que o produtor precisa escolher (ex.: arroz x arroz irrigado). */
+  alternativas?: string[];
 }
 
 export type Correcao = "calcario" | "gesso" | "outra" | "nao" | "nao_sei";
@@ -149,6 +151,7 @@ export interface ItemInterpretado {
   id: string | null;
   encontrado: boolean;
   confianca: "alta" | "media" | "baixa";
+  alternativas?: string[];
   inicio_mes?: number | null;
   fim_mes?: number | null;
   perene?: boolean;

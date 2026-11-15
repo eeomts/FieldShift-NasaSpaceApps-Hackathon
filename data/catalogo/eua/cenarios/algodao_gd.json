@@ -1,0 +1,131 @@
+{
+  "_leia": "Cenários de graus-dia do algodão (Upland cotton, sequeiro; Lubbock-TX e sul da Geórgia) para scripts/gd_nasa_power.py. As fontes dos EUA usam DD60 (°F): DD60 = (Tmax + Tmin)/2 - 60, sem valor negativo (Texas A&M); a UGA limita a Tmax em 93 °F. A Tb da linha é 15 °C (a do Brasil), e 60 °F = 15,56 °C, então a conversão NÃO é só dividir por 1,8: o modo alvo_com_teto acha, ano a ano, o dia em que o DD60 da fonte é atingido e soma o GD do catálogo (sem teto, Tb 15) nas mesmas datas. Sem teto na fonte (Texas), usei teto 200 °F (nunca atingido). O script eleva a Tmin à Tb da fonte (60 °F); a conferência com Tb 15,56 (cenários *_conf_tb1556) mostra o efeito (~1%). 'referencia.valor' = DD60 da fonte / 1,8 (°C·dia com Tb 15,56). 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "lubbock": {
+      "nome": "Lubbock-TX (Texas A&M AgriLife Research and Extension Center)",
+      "lat": 33.69,
+      "lon": -101.82,
+      "elevacao_m": 977.33
+    },
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "algodao_lubbock_0515_dd60_2200",
+      "cultura": "algodao",
+      "local": "lubbock",
+      "semeadura": "05-15",
+      "alvo_com_teto": {"valor": 2200, "unidade": "F", "tb": 60, "teto": 200},
+      "tb": 15,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1222,
+        "nota": "Texas A&M AgriLife Extension, Crop Management Newsletter Dawson/Lynn (Doederlein): 'Planting to Harvest Ready 130 to 160 [dias] 2200 [heat units]', 'a total of 2200 HU, based on research conducted on the High Plains, for a mature crop'. Semeadura 15/mai = meio da janela de Lubbock (8/mai ao fim de maio, Plains Cotton Growers 2023). 2200 / 1,8 = 1222 °C·dia com Tb 15,56; a diferença impressa inclui a troca de Tb (15,56 -> 15)."
+      }
+    },
+    {
+      "nome": "algodao_lubbock_0515_dd60_2200_conf_tb1556",
+      "cultura": "algodao",
+      "local": "lubbock",
+      "semeadura": "05-15",
+      "alvo_com_teto": {"valor": 2200, "unidade": "F", "tb": 60, "teto": 200},
+      "tb": 15.56,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1222,
+        "nota": "Conferência do método: mesmas datas do cenário anterior, somando com a Tb da fonte (15,56 °C) e sem elevar a Tmin. Deve ficar perto de 2200 / 1,8 = 1222; a diferença é o efeito de o script elevar a Tmin a 60 °F para achar a data."
+      }
+    },
+    {
+      "nome": "algodao_lubbock_0601_dd60_2200",
+      "cultura": "algodao",
+      "local": "lubbock",
+      "semeadura": "06-01",
+      "alvo_com_teto": {"valor": 2200, "unidade": "F", "tb": 60, "teto": 200},
+      "tb": 15,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1222,
+        "nota": "Mesma fonte; semeadura de 1/jun, a do exemplo da newsletter (colheita de 9/out a 8/nov)."
+      }
+    },
+    {
+      "nome": "algodao_lubbock_0515_dd60_2610_peng",
+      "cultura": "algodao",
+      "local": "lubbock",
+      "semeadura": "05-15",
+      "alvo_com_teto": {"valor": 2610, "unidade": "F", "tb": 60, "teto": 200},
+      "tb": 15,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1450,
+        "nota": "Conferência: Peng, Krieg & Hicks 1989 (Field Crops Res. 19:253-262), citado por Howell et al. 2002: no sul do High Plains, 'approximately 2610 °F-days (1450 °C-days)' para produtividade ótima. Citação secundária."
+      }
+    },
+    {
+      "nome": "algodao_tifton_0501_dd60_2700_teto93",
+      "cultura": "algodao",
+      "local": "tifton",
+      "semeadura": "05-01",
+      "alvo_com_teto": {"valor": 2700, "unidade": "F", "tb": 60, "teto": 93},
+      "tb": 15,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1500,
+        "nota": "UGA, 2021 Georgia Cotton Production Guide: DD-60 da semeadura à 'Harvest 2500 to 2700' (140 a 160 dias), com Tmax limitada a 93 °F. 2700 = cultivar mais tardia. 2700 / 1,8 = 1500. Semeadura 1/mai (Ritchie et al., UGA B1252, Tifton)."
+      }
+    },
+    {
+      "nome": "algodao_tifton_0501_dd60_2500_teto93",
+      "cultura": "algodao",
+      "local": "tifton",
+      "semeadura": "05-01",
+      "alvo_com_teto": {"valor": 2500, "unidade": "F", "tb": 60, "teto": 93},
+      "tb": 15,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1389,
+        "nota": "UGA 2021: ponta baixa da faixa 2500-2700 DD-60 até a colheita. 2500 / 1,8 = 1389."
+      }
+    },
+    {
+      "nome": "algodao_tifton_0501_140d_conf_tb1556",
+      "cultura": "algodao",
+      "local": "tifton",
+      "semeadura": "05-01",
+      "dias": 140,
+      "tb": 15.56,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1444,
+        "nota": "Conferência do POWER em Tifton: Ritchie et al., UGA Bulletin 1252 (2007), Tab. 3, média histórica de Tifton (1928-2003) com semeadura em 1/mai: 'Harvest 2600 140' (DD60, dias). 2600 / 1,8 = 1444 °C·dia com Tb 15,56, sem teto."
+      }
+    },
+    {
+      "nome": "algodao_tifton_0501_140d",
+      "cultura": "algodao",
+      "local": "tifton",
+      "semeadura": "05-01",
+      "dias": 140,
+      "tb": 15,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1444,
+        "nota": "Mesma janela (1/mai + 140 dias, UGA B1252) somada com a Tb da linha (15 °C)."
+      }
+    }
+  ]
+}

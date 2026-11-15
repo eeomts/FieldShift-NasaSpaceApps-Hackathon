@@ -1,0 +1,462 @@
+{
+  "id": "soja",
+  "pais": "EUA",
+  "nome": "Soja (soybean)",
+  "nome_cientifico": "Glycine max",
+  "familia_botanica": "Fabaceae",
+  "sistema": "soybean para grão, sequeiro, safra cheia (semeadura de abril-maio; a soja de segunda safra depois do trigo fica fora); Iowa (GM 2-3) e Delta do Arkansas (GM 4-5)",
+  "regiao_referencia": "Iowa; Delta do Arkansas",
+  "valores": {
+    "tipos": "comercial|fixadora_n",
+    "perene": "false",
+    "ciclo_dias_min": "117",
+    "ciclo_dias_max": "133",
+    "graus_dia_ciclo_min": "1200",
+    "graus_dia_ciclo_max": "1860",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "30",
+    "tmax_critica_c": "40",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "500",
+    "agua_ciclo_mm_max": "635",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "0.5",
+    "profundidade_raiz_m": "1.3",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "SOYBEANS",
+    "calendario_usda": "Soybeans",
+    "fontes": "Kessler, Archontoulis & Licht, Soybean Yield and Crop Stage Response to Planting Date and Cultivar Maturity in Iowa, USA, Agron. J. 2020 (manuscrito aceito, ISU Digital Repository; datas de semeadura e R7 medidas em 7 fazendas da ISU, 2014-2016)|Purcell, dos Santos & Salmerón, Soybean Development Stage Predictions, Univ. of Arkansas FSA2194, 2021 (SoyStage: R7 de GM 4.2 em Memphis)|Arkansas Soybean Production Handbook MP197, cap. 2 (atualizado 4/2014; dias até R1, R5 e R7 por GM e época, CropGro) e cap. 8 Irrigation (20-25 in de água para 40-50 bu/acre)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita IA/AR)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/soja_gd.json (graus-dia sem teto, Tb 10, entre as datas de semeadura e R7 das fontes, NASA POWER 2001-2020)|CÁLCULO (conferência da água): scripts/etc_nasa_power.py, cenários eua/cenarios/soja_etc.json|Iowa State University Extension, Understanding interactions between soybean planting date and maturity (ISU FACTS; APSIM com Tb 10, ótima 30 e máxima 40 °C)|ISU Encyclopedia, Crop water use or evapotranspiration (água da soja = milho, 21,5-22,3 in)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.11 (fases, Central USA)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2022 Summary (jan. 2023) (produtividade IA/AR 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (resíduo acima do solo da soja)|Ojekanmi & Johnson, SSSAJ 85, 2021 (USDA-ARS Morris-MN: ~4 Mg/ha/ano de resíduo de soja; conferência)|Ghidey & Alberts, Residue type and placement effects on decomposition, Trans. ASAE 36(6):1611-1617, 1993 (Missouri; perda de massa em 1 ano; lido só o resumo)|Jordon, Klopfenstein & Klemesrud, Comparative Calf Grazing of Corn and Soybean Residues, Nebraska Beef Cattle Report 1998 (OMD da dieta na resteva de soja)|Anderson, UNL BeefWatch, Soybean Stubble for Cows, 2019 (PB de caules e vagens)|Martinez-Feria, Archontoulis & Licht, ISU ICM News, How Fast do Soybeans Dry Down in the Field?, 2017 (secagem depois de R7)|Kellogg Biological Station LTER, tabela do USDA NASS QuickStats (nome do commodity; citação secundária)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "confianca_parametros": "media",
+    "semeadura_inicio": "05-08",
+    "semeadura_fim": "06-02"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Reusada do Brasil (Embrapa Soja CT 48: crescimento 'pequeno ou nulo' com 10 °C ou menos) e conferida nos EUA: o modelo APSIM da ISU (ferramenta de semeadura x maturidade de Iowa) usa 'Base temperature is 50°F (10°C), optimum 86°F (30°C), and maximum 104°F (40°C)'. Kessler et al. 2020 calculam GDD com base 10 °C."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "Semeadura -> R7 (maturação fisiológica), medido em 7 fazendas da ISU (Kessler et al. 2020, 2014-2016, GM 2.2-3.9, média dos anos e GM). Menor valor: Northeast (Nashua), semeadura de meados de maio (mediana 19/mai, DOY 139) -> R7 no DOY 256 = 117 dias. Os outros sítios em meados de maio: 120-125 dias; South Central no início de maio: 118. Handbook 628, Iowa: semeadura 8/mai-2/jun (15-85%)."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Delta: SoyStage (Univ. of Arkansas FSA2194, Fig. 5), GM 4.2 emergindo em 11/abr perto de Memphis: R7 em 16/ago na média de 30 anos = 127 dias da emergência; mais ~6 dias da semeadura à emergência (a fonte dá 4 a 14 dias) = 133 dias (5/abr -> 16/ago). Conferência medida em Iowa: Southwest (Lewis), início de maio, 5/mai -> DOY 258 = 133 dias (Kessler et al. 2020). Semeaduras de março no Arkansas (sistema precoce) chegam a 154 (GM 4) e 170 dias (GM 5) pelo CropGro do Arkansas Soybean Handbook; ficam fora da faixa (ver pendências). A colheita vem depois: R8 cerca de uma semana após R7 (FSA2194) e o grão chega a 13% de umidade ~12 dias depois de R7 (ISU 2017)."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 10), scripts/gd_nasa_power.py com eua/cenarios/soja_gd.json, 2001-2020, entre as datas medidas de semeadura e R7 (Kessler et al. 2020). As fontes não dão uma exigência em GDD 86/50 por GM; por isso o modo é 'fim' (datas), não 'alvo_com_teto'. Menor mediana: Nashua, semeadura 19/mai -> R7 13/set = 1240 (P10 1049, P90 1387; nos anos do ensaio: 2014 1139, 2015 1200, 2016 1282, média 1207). Mínimo = 1200 (arredondado para baixo). Outros sítios de Iowa: 1285-1575."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO no POWER (mesmo script e arquivo). Delta: SoyStage, GM 4.2, semeadura 5/abr -> R7 16/ago (133 dias) em Memphis = mediana 1861 (P10 1683, P90 2013). Máximo = 1860. Em Iowa o maior foi Crawfordsville, início de maio (1575). Conferência no Arkansas (CropGro do Handbook, datas médias de Dumas e Blytheville): semeadura 15/jun, GM 4-5 = 1581-1899; semeadura 15/mar, GM 4 = 1773-2057 e GM 5 = 2044-2358 (sistema precoce, fora da faixa)."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Arkansas Soybean Production Handbook, cap. 8: 'Yields in the 40 to 50 bu/ac range require 20 to 25 inches of available soil moisture during the growing season'. 20 in × 25,4 = 508 -> 500 mm (arredondado para baixo). Iowa (ISU Encyclopedia): soja e milho usam a mesma água, 21,5-22,3 in (546-566 mm). Conferência por cálculo (etc_nasa_power.py, soja_etc.json, Kc FAO-56 × ET0 do POWER, semeadura -> R7): Nashua 19/mai, 118 d = média 437 mm; Ames 6/mai, 126 d = 536 mm; ver pendências."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte do Arkansas: 25 in × 25,4 = 635 mm. Conferência: Memphis 5/abr, 134 d = média 588 mm (P90 683) no cálculo; ISU 22,3 in = 566 mm."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Kc ini do grupo 'e. Legumes (Leguminosae)' = 0,4, que a linha 'Soybeans' herda. Igual ao Brasil."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Soybeans: 1,15 (clima padrão). Abaixo do teto de 1,25. As fases da Tab. 11 para a soja são da região central dos EUA (Central USA, maio)."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Soybeans: 0,50."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Soybeans 0,6-1,3 m; limite superior para sequeiro ('larger values [...] for rainfed conditions'). Igual ao Brasil."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica, tipos, perene, fixa_nitrogenio, raiz_profunda",
+      "valor_brasil": "Glycine max, Fabaceae, comercial|fixadora_n, false, true, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie e mesmo papel (grão comercial anual, fixa N)."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "10",
+      "decisao": "conferido e mantido",
+      "motivo": "APSIM da ISU e Kessler et al. 2020 usam base 50 °F = 10 °C."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
+      "valor_brasil": "20, 30, 40",
+      "decisao": "conferido e mantido",
+      "motivo": "APSIM da ISU: ótima 86 °F (30 °C) e máxima 104 °F (40 °C), iguais ao Brasil. O mínimo de 20 °C não tem fonte americana (ECOCROP, Glycine max: TOPMN 20, TOPMX 33, só conferência)."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "Kessler et al. 2020: 'Fall frost can also be a yield limiting factor for soybean in Iowa' (parcelas danificadas por geada em 2014)."
+    },
+    {
+      "coluna": "kc_inicial, kc_medio, kc_final, profundidade_raiz_m",
+      "valor_brasil": "0.4, 1.15, 0.5, 1.3",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 12 e 22; as fases da Tab. 11 para a soja vêm da região central dos EUA."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "100, 140",
+      "decisao": "trocado",
+      "motivo": "Semeadura -> R7 medido em Iowa (117-133 dias, Kessler 2020) e SoyStage no Delta (133 dias)."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "1600, 2050",
+      "decisao": "trocado",
+      "motivo": "GM 2-3 de Iowa fecham o ciclo com 1240-1575 °C·dia (POWER, sem teto); GM 4.2 no Delta com 1861. Os GM do Corn Belt pedem menos soma térmica que os do Brasil."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "450, 800",
+      "decisao": "trocado",
+      "motivo": "Extensão dos EUA: 20-25 in (Arkansas) e 21,5-22,3 in (Iowa)."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 4,0 t/ha, C/N 26, k 0,0137, PB 5,7, DMO 52,8",
+      "decisao": "trocado",
+      "motivo": "Mesmo método com dados dos EUA: NASS + IPCC (palhada 4,6), k de campo no Missouri (0,0030; inverno do Corn Belt), PB e OMD de Nebraska. C/N sem fonte americana lida (vazio)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "sensivel_geada",
+        "temp_base_c"
+      ],
+      "fonte": "Kessler, A.; Archontoulis, S.V.; Licht, M.A., Soybean Yield and Crop Stage Response to Planting Date and Cultivar Maturity in Iowa, USA, Agronomy Journal, 2020 (manuscrito aceito no ISU Digital Repository), Tab. 1 e Tab. Suplementar 2",
+      "url": "https://dr.lib.iastate.edu/entities/publication/a25f58b7-b5a0-4745-a420-79cb527706a7",
+      "trecho": "Site-years contained four PD with the target PD for 1 May, 20 May, 10 June, and 1 July [...] Physiological Maturity DOY [...] Early May 256 257 253 251 258 244 254 / Mid-May 265 264 256 262 265 260 259 [NW, NC, NE, C, SW, SC, SE] [...] Tab. 1 (Northeast): 5-May, 19-May (2014); 1-May, 19-May (2015); 4-May, 18-May (2016) [...] a base of 10°C. When daily maximum temperatures exceeded 30°C, 30°C was used for Tmax [...] Fall frost can also be a yield limiting factor for soybean in Iowa."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Purcell, L.C.; dos Santos, C.; Salmerón, M., Soybean Development Stage Predictions, University of Arkansas Division of Agriculture FSA2194, 2021",
+      "url": "https://www.uaex.uada.edu/publications/pdf/FSA2194.pdf",
+      "trecho": "the time between planting and emergence may be as few as 4 days under optimum conditions to 14 days or more when the soil is dry or cold [...] Harvest maturity (R8) typically occurs around a week after the predicted date for R7. [Fig. 5, Memphis, Tennessee, MG 4.2, emergence 04/11: R7 30-year average 08/16]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Arkansas Soybean Production Handbook MP197, cap. 2 Soybean Growth and Development (atualizado 4/2014)",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp197/chapter2.pdf",
+      "trecho": "Assuming average temperatures for early plantings on March 15, the time from planting to flowering [...] will be about 60 (May 14) and 70 (May 24) days for MG 4 and 5 [...] about 67 (August 16) and 61 (September 1) days for MG 4 and 5 varieties with an early planting on March 15, and the R7 date is expected to be about 34 (September 20) and 32 (September 28) days after R5 for MG 4 and 5 varieties with a planting date in mid-June."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabela 'Soybean Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Arkansas .......:   3,270    Apr 19 May 5 - Jun 22  Jul 5   Sep 10 Sep 29 - Nov 13 Nov 26 [...] Iowa ...........:   9,530    May 2  May 8 - Jun 2   Jun 16  Sep 21 Sep 28 - Oct 20 Oct 31"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/soja_gd.json (NASA POWER diário, comunidade AG, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "soja_nashua_meados_maio_r7: mediana 1240 (P10 1049, P90 1387; 2014:1139 2015:1200 2016:1282); soja_nashua_inicio_maio_r7: 1285; soja_kanawha: 1336/1341; soja_sutherland: 1419/1411; soja_ames: 1453/1474; soja_chariton: 1445/1526; soja_lewis: 1555/1518; soja_crawfordsville_inicio_maio_r7: 1575; soja_memphis_soystage_mg42_0405_r7: mediana 1861 (P10 1683, P90 2013); Arkansas CropGro: 15/jun GM4-5 1581-1899; 15/mar GM4 1773-2057, GM5 2044-2358"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "Iowa State University Extension, Understanding interactions between soybean planting date and maturity across environments (ISU FACTS, APSIM soybean calibrado para o Meio-Oeste)",
+      "url": "https://facts.extension.iastate.edu/SoybeanYield/",
+      "trecho": "Base temperature is 50°F (10°C), optimum 86°F (30°C), and maximum 104°F (40°C)."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Tacker, P.; Vories, E., Arkansas Soybean Production Handbook MP197, cap. 8 Irrigation",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp197/chapter8.pdf",
+      "trecho": "A soybean crop will produce approximately 2 bu/ac for every inch of water it uses through the season. Yields in the 40 to 50 bu/ac range require 20 to 25 inches of available soil moisture during the growing season."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Iowa State University Extension, Crop water use or evapotranspiration (Encyclopedia)",
+      "url": "https://crops.extension.iastate.edu/encyclopedia/crop-water-use-or-evapotranspiration",
+      "trecho": "The total amount of water used by a corn and a soybean crop would normally be the same (22.3, 21.5, and 22.1 inches in north central, southwestern, and southeastern Iowa, respectively)."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO (conferência): scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/soja_etc.json (Kc FAO-56 × ET0 Penman-Monteith do NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "soja_ames_0506_126d: média 536 mm (P10 439, P90 642); soja_nashua_0519_118d: média 437 (P10 376, P90 529); soja_memphis_0405_134d: média 588 (P10 526, P90 683)"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12 e Tabela 11",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "e. Legumes (Leguminosae) 0.4 1.15 0.55 [...] Soybeans 1.15 0.50 0.5-1.0 [Tab. 11:] Soybeans [...] 20 30/35 60 25 140 May Central USA"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Soybeans 0.6-1.3 0.50 [...] the larger values for modeling soil water stress or for rainfed conditions."
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary (jan. 2026) e Crop Production 2022 Summary (jan. 2023), Soybeans for Beans: yield por estado",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Arkansas ...........:   54.0        55.0        55.0 [...] Iowa ...............:   58.0        60.0        63.5 [bu/acre, 2023-2025]; cropan23: Arkansas ...........:   51.5        52.0        52.0 [...] Iowa ...............:   54.0        63.0        58.5 [2020-2022]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "IPCC 2019 Refinement to the 2006 Guidelines, Vol. 4, Cap. 11, Tabela 11.2 (Updated) e Tabela 11.1a",
+      "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf",
+      "trecho": "Soybeanf 0.93 ± 31% 1.35 ± 49% 0.16 [...] f The average above-ground residue:grain ratio from all data used was 1.9. [Tab. 11.1a: Soybeans [...] 2.1 0.19 (± 45%) 0.91]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "Ojekanmi, A.; Johnson, J.M.F., Quantifying improvements in water-stable aggregation caused by corn stover retention, Soil Sci. Soc. Am. J. 85, 2021 (USDA-ARS, Morris-MN; conferência)",
+      "url": "https://www.mssoy.org/sites/default/files/documents/ojekanmi-johnson-sssaj-85-2021.pdf",
+      "trecho": "During the soybean phase, only the soybean grain was harvested, leaving about 4 Mg ha−1 yr−1 soybean residue in the field."
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ],
+      "fonte": "Ghidey, F.; Alberts, E.E., Residue type and placement effects on decomposition: field study and model evaluation, Transactions of the ASAE 36(6):1611-1617, 1993 (Kingdom City-MO; lido só o resumo no AGRIS)",
+      "url": "https://agris.fao.org/search/en/records/65df443e63b8185d9cabd6ae",
+      "trecho": "Mass losses in one year for above-surface, surface, buried residue, and dead root were 41, 66, 78, and 65% respectively, for corn; 37, 66, 79, and 51% for soybean"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Jordon, D.J.; Klopfenstein, T.J.; Klemesrud, M., Comparative Calf Grazing of Corn and Soybean Residues, Nebraska Beef Cattle Report 1998, UNL (resumo)",
+      "url": "https://digitalcommons.unl.edu/animalscinbcr/345/",
+      "trecho": "Ruminally fistulated steer calves grazing bean stubble consumed diets high in crude protein (12- 25%), but low in organic matter digestibility (40-46%). [...] Calves grazing cornstalks gained (0.17 lb/day) faster (P = .003) than calves consuming soybean stubble (-0.03 lb/day)."
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Anderson, B., Soybean Stubble for Cows, UNL BeefWatch, 01/12/2019",
+      "url": "https://beef.unl.edu/beefwatch/soybean-stubble-cows",
+      "trecho": "Soybean stems and pods contain only about 4 to 6 percent crude protein [...] TDN averages between 35 and 45 percent for leaves, stems, and pods."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Martinez-Feria, R.; Archontoulis, S.; Licht, M., How Fast do Soybeans Dry Down in the Field?, ISU ICM News, 19/09/2017",
+      "url": "https://crops.extension.iastate.edu/cropnews/2017/09/how-fast-do-soybeans-dry-down-field",
+      "trecho": "will reach 13 percent moisture in about 12 days following maturity"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "Kellogg Biological Station LTER (Michigan State Univ.), Agronomic Yields - County, State and Regional, tabela extraída do USDA NASS QuickStats (citação secundária do nome do item)",
+      "url": "https://lter.kbs.msu.edu/datatables/85",
+      "trecho": "MI | SOYBEANS | 2014 | SOYBEANS - YIELD, MEASURED IN BU / ACRE | 46.0 | 3.09"
+    },
+    {
+      "colunas": [
+        "sistema"
+      ],
+      "fonte": "Salmerón, M.; Purcell, L.C.; Earnest, L.; Ross, J., Soybean yield response: planting date and maturity groups in Arkansas, Mid-South Soybean Board, 2016",
+      "url": "https://mssoy.org/sites/default/files/documents/dop-mg-guide-ark-opt.pdf",
+      "trecho": "Under the irrigated conditions common for soybean production in Arkansas, planting date [...] Some studies indicate that the highest yields are achieved with planting dates in April and early May."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats (API), séries por condado baixadas pelo time em 15/11/2026 com data/scripts/baixar_nass_eua.py (saída data/eua/nass/producao_condado.csv: 12616 linhas de 'soja', 2016-2025); conferência do nome da série, não dos números",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "O short_desc é o nome exato da série no Quick Stats (conferido por condado com get_counts). [...] \"SOYBEANS - ACRES PLANTED\", \"SOYBEANS - ACRES HARVESTED\", \"SOYBEANS - PRODUCTION, MEASURED IN BU\""
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Quick Stats API, página de uso (exemplo de resposta do api_GET), lida em 15/11/2026 (formato do short_desc e nomes dos campos)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "\"util_practice_desc\":\"ALL UTILIZATION PRACTICES\" [...] \"short_desc\":\"CORN - ACRES PLANTED\" [...] \"Class_desc\":\"ALL CLASSES\" [...] \"commodity_desc\":\"CORN\""
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Iowa'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Iowa [...] Soybeans ...............:   9,530    May 2  May 8 - Jun 2   Jun 16  Sep 21 Sep 28 - Oct 20 Oct 31 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"SOYBEANS - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'SOYBEANS', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 4182, COUNTY 94050"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 4.3,
+      "max": 5.0,
+      "tipico": 4.6
+    },
+    "cn_palhada": {
+      "min": null,
+      "max": null,
+      "tipico": null
+    },
+    "k_dia": {
+      "valor": 0.003,
+      "min": 0.0013,
+      "max": 0.0043
+    },
+    "meia_vida_dias": {
+      "valor": 234
+    },
+    "condicao_decomposicao": "Resíduo de soja em sacolas na superfície do solo, Midwest Claypan Experimental Farm, Kingdom City-MO, 1 ano (Ghidey & Alberts 1993; resumo). Perda de 66% em 1 ano. Mês de instalação não informado no resumo.",
+    "pb_pct": 5.0,
+    "digestibilidade_pct": {
+      "valor": 43.0,
+      "tipo": "OMD",
+      "n": null,
+      "medicao": "medida",
+      "nota": "Digestibilidade da matéria orgânica da dieta de bezerros fistulados pastejando resteva de soja, Nebraska, inverno 1996-97: 40-46% (Jordon et al. 1998, resumo); ponto médio 43. A fonte não informa o n. A dieta selecionada tem PB de 12-25% (o animal escolhe folhas e grão caído); por isso a PB da linha é a de caules e vagens (4-6%, Anderson 2019), não a da dieta."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Resteva de soja depois da colheita do grão (caules, vagens vazias, folhas caídas e grão perdido), pastejada no outono-inverno. PB = ponto médio de 4-6% (caules e vagens, Anderson 2019). Os bezerros na resteva perderam peso (-0,03 lb/dia) e a extensão recomenda suplementar. O grão (farelo) não conta como forragem da rotação.",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo depois da colheita, pela Tab. 11.2 do IPCC 2019: AGDM = 0,93 × Crop + 1,35 (t MS/ha), com Crop = produtividade × 0,0673 (bu/acre -> t/ha, 60 lb/bu) × 0,91 (DRY, Tab. 11.1a). Produtividade NASS de IA e AR em 2021-2025 (10 estado-anos: IA 63,0; 58,5; 58,0; 60,0; 63,5 e AR 52,0; 52,0; 54,0; 55,0; 55,0 bu/acre): mediana 56,5 -> Crop 3,46 t MS/ha -> 4,6 t/ha (típico). Mínimo = AR 2021/2022 (52,0) -> 4,3; máximo = IA 2025 (63,5) -> 5,0. Conferência: ~4 Mg/ha/ano medidos em Morris-MN (Ojekanmi & Johnson 2021). Não desconta o pastejo. C/N: não achei medição americana lida para o resíduo inteiro (a K-State cita 15:1 e o Manitoba 65:1, só vistos em resultados de busca); ficou vazio.",
+      "decomposicao": "k = -ln(fração restante)/dias, com 1 ano = 365 d (Ghidey & Alberts 1993): superfície 66% de perda -> -ln(0,34)/365 = 0,0030/dia (valor), T½ = 0,693/0,00296 = 234 d; acima da superfície (em pé) 37% -> 0,0013 (mín.); enterrado 79% -> 0,0043 (máx., outra posição, só referência). No mesmo ensaio o milho perdeu a mesma fração na superfície (66%), e o k do milho em Ames (Al-Kaisi & Guzman 2013, linha do milho) é 0,0027: no inverno do Corn Belt a soja não decompõe muito mais rápido que o milho, ao contrário do Cerrado (k 0,0137 no Brasil). Palhada que sobra em 60 dias: 4,6 × e^(-0,0030×60) = 3,8 t/ha.",
+      "colheita": "Handbook 628 (2010): colheita em Iowa 28/set-20/out e no Arkansas 29/set-13/nov (15-85%). R8 ~1 semana depois de R7 (FSA2194); grão a 13% ~12 dias depois de R7 (ISU 2017). Não entra no ciclo.",
+      "codigos": "codigo_nass 'SOYBEANS' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'SOYBEANS - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'SOYBEANS', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 4182, COUNTY 94050. Série de produção: 'SOYBEANS - PRODUCTION, MEASURED IN BU'."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.6,
+      "ms_remanescente_t_ha": 3.84,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "",
+      "depois": "05-08 / 06-02",
+      "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Iowa, lida em data/eua/nass/datas_plantio.csv (linha soja,Soybeans,IA)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'SOYBEANS' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc e... | observacoes.codigos: codigo_nass 'SOYBEANS'. short_desc 'SOYBEANS - ...' = commodity_desc 'SOYBEANS', sem classe nem utilização no nome. Conf...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'SOYBEANS - ACRES PLANTED', registros SURVEY: STATE 4182, COUNTY 94050; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    }
+  ],
+  "pendencias": [
+    "Sistema: no Delta do Arkansas a soja é em boa parte irrigada (Salmerón et al., Mid-South Soybean Board, guia GM x época do Arkansas: 'Under the irrigated conditions common for soybean production in Arkansas'; o ensaio foi 'under fully irrigated conditions'). A linha é sequeiro; a água do Arkansas (20-25 in) vale para a demanda da cultura, não para a chuva necessária. Se o motor tratar irrigação, a soja do Delta deveria entrar como variante irrigada.",
+    "graus_dia: as fontes não publicam exigência em GDD 86/50 por grupo de maturação para R7 em Iowa ou no Arkansas (achei só a NDSU, até R8, para GM 00-1, fora da região). Usei o modo 'fim' com as datas medidas (Kessler 2020) e as do SoyStage. A soja depende do fotoperíodo: o GD do ciclo só vale para o GM adaptado à latitude (GM 2-3 em Iowa; 4-5 no Delta). Sugestão: guardar GD por GM ou por faixa de latitude no motor.",
+    "graus_dia_max e ciclo_dias_max: vêm de um só ponto do SoyStage (GM 4.2, emergência 11/abr, Memphis-TN, do outro lado do rio do Arkansas) e da hipótese de 6 dias da semeadura à emergência (a fonte dá 4-14). Resolveria: tabela do SoyStage para Stuttgart-AR ou Keiser-AR (GM 4-5, semeaduras de abril e maio), ou os dados de campo de Salmerón et al. 2014/2016 (Rohwer e Keiser). Semeaduras de março (sistema precoce do Arkansas) dão 154-170 dias e 1773-2358 °C·dia; ficaram fora.",
+    "ciclo_dias: da semeadura a R7, em dias corridos (data de R7 - data de semeadura; o script de graus-dia conta os dois extremos, 1 dia a mais). As datas de Iowa são médias de 3 anos e de 2-3 GM por sítio (Tab. Suplementar 2); o manuscrito do repositório da ISU foi o lido, não a versão final da Agron. J. (doi 10.1002/agj2.20053).",
+    "agua_ciclo_mm_min: 500 mm (20 in) é do Arkansas para 40-50 bu/acre; em Iowa a ISU dá 21,5-22,3 in (546-566). A conferência Kc × ET0 deu menos no norte de Iowa (Nashua, ciclo de 118 dias: média 437 mm, P90 529) e mais no Delta (588). Se o coordenador preferir o cálculo, a faixa seria ~430-590 mm (origem: calculo).",
+    "temp_otima_min_c = 20 sem fonte americana (APSIM só dá base, ótima e máxima).",
+    "regua: C/N vazio (sem medição americana lida). O k vem de um só ensaio (Missouri, 1993), lido só no resumo do AGRIS (sem o mês de instalação); o Chatterjee & Acharya 2020 (Vale do Red River, ND/MN: soja com 74% da massa depois de 1 ano) só foi visto em resultado de busca. A digestibilidade é da dieta selecionada (OMD), sem n. Resolveria: Kochsiek et al. 2013 (SSSAJ, Mead-NE, sacolas de soja e milho por 3 anos) ou o texto completo de Ghidey & Alberts.",
+    "calendario_usda: 'Soybeans' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto. A tabela de 2010 do Arkansas (semeadura 5/mai-22/jun) inclui a soja depois do trigo e já está defasada: o Handbook do Arkansas (2014) diz que a semeadura antecipa ~1 dia por ano desde 1985.",
+    "semeadura_inicio/fim (05-08 a 06-02) = 'most active' do Handbook 628 (2010) em Iowa (início 2/mai, fim 16/jun). Delta do Arkansas, a outra região de referência: 'most active' 5/mai-22/jun (início 19/abr, fim 5/jul), com a soja depois do trigo junto. DIVERGÊNCIA com cenarios/soja_gd.json (graus-dia e ciclo NÃO mudados): os cenários 'início de maio' de Iowa semeiam em 4-6/mai, poucos dias antes da janela (dentro do início de 2/mai); os do Arkansas semeiam em 15/mar e 5/abr (antes do início de 19/abr do Handbook, que está defasado, ver o Handbook do Arkansas de 2014) e em 15/jun (dentro)."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
+}

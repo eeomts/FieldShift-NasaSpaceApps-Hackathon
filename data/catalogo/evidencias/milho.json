@@ -21,6 +21,8 @@
     "cobertura_solo": "media",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "baixo",
+    "codigo_pam": "40122",
+    "nome_zarc": "Milho 1ª Safra|Milho 2ª Safra",
     "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Clima e solo (água; tmax crítica; geada)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Cultivares (classes de ciclo)|Cruz & Magalhães, Embrapa Milho e Sorgo, Cultivares superprecoces surpreendem produtores, Campo & Negócios jan/2010 (grupos de ciclo MAPA/ZARC em dias; geada)|Borghi, Magalhães & Pereira Filho, Embrapa Milho e Sorgo Documentos 273, 2023 (ciclo em dias após emergência)|Magalhães & Durães, Embrapa Milho e Sorgo Circular Técnica 76, 2006 (fenologia: floração 65 DAE, R6 50-60 dias após polinização; água ~600 mm)|Avelar, Embrapa CNPMS, Manual técnico Cultura do Milho, cap. 1 Fatores climáticos (temp base; temp ótima)|Oliveira & Kluthcouski, Embrapa Arroz e Feijão, Fundamentos para uma agricultura sustentável, cap. 8 Palhada de cobertura do solo no SPD, 2009 (biomassa; persistência da palhada)|Resende et al., Embrapa Gado de Leite Circular Técnica 114, 2017 (valor forrageiro)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
     "confianca_parametros": "media",
     "graus_dia_ciclo_min": "1500",

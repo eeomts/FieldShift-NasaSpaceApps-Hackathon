@@ -5,13 +5,14 @@ feijao,Feijão|Feijão 2ª Safra,O 1º nome é a safra das águas; o 2º é a sa
 trigo,Trigo,"""Trigo - Duplo Propósito"" (forragem + grão) é outra linha e fica de fora."
 arroz,Arroz,"Tem linhas de sequeiro e irrigado (coluna Nome_Outros_Manejos). O motor é de sequeiro: filtrar ""Sequeiro"" ao gerar as janelas. O arroz irrigado também aparece na tábua de perenes/sem safra."
 algodao,Algodão Herbáceo,
-mandioca,,Não está na tábua 2025/2026 nem na de perenes/olerícolas/sem safra.
+mandioca,"Mandioca (aipim, macaxeira)","Não está na tábua por safra; está na de perenes/olerícolas/sem safra (safra ""PERENE"", ciclo ""Perene"", sequeiro, solos tipo 1 a 3; portarias 5 a 31 de 12/02/2020). O nome cita aipim e macaxeira, mas é o único ZARC de mandioca."
 sorgo,Sorgo Granífero|Sorgo Granífero 2ª Safra,"O sorgo da base é o granífero. ""Sorgo Forrageiro"" (1ª e 2ª safra) fica de fora."
-milheto,,Não está no ZARC.
+milheto,Milheto,"Não está na tábua por safra; está na de perenes/olerícolas/sem safra (safra ""SEM SAFRA"", sequeiro, grupos I a III, solos tipo 1 a 3; portarias 324 a 350 de 23/10/2020)."
 feijao_caupi,Feijão Caupi,Só sequeiro.
 girassol,Girassol,
 crotalaria,,Não está no ZARC (planta de cobertura).
 nabo_forrageiro,,Não está no ZARC (planta de cobertura).
-aveia,Aveia,"O dicionário não diz a espécie; a base é aveia-preta (Avena strigosa). Tem linhas de sequeiro e irrigado: filtrar ""Sequeiro""."
+aveia,,"Fora do ZARC de propósito (15/11, decisão do usuário): o ZARC tem ""Aveia"" (o dicionário não diz a espécie; janela de aveia de grão), e a aveia da base é a aveia-preta (Avena strigosa) de cobertura. Usar a janela de grão para a cobertura enganaria o produtor."
 guandu,,Não está no ZARC.
 pastagem,,"Não há ZARC de braquiária sozinha; ela só aparece em ""Milho 1ª Safra consorciado com Braquiária"" e ""Milho 2ª Safra consorciado com Braquiária"" (integração lavoura-pecuária)."
+arroz_irrigado,Arroz,"Linhas ""Irrigado"" (coluna Nome_Outros_Manejos) do mesmo nome ""Arroz"": nas tábuas por safra para PR, RS e SC (portarias de 2025 e 2026) e na de perenes/olerícolas/sem safra (safra ""SEM SAFRA"", clima ""Tropical"", grupo I, solos tipo 1 a 3; portarias 374 a 398 de 09/12/2020) para as outras UFs. Por município, vale a safra mais recente que tiver aquele município (ver data/brasil/zarc/README.md)."

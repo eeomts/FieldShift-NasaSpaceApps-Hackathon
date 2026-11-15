@@ -1,5 +1,5 @@
 {
-  "_leia": "Cenários de graus-dia do milho (corn for grain, sequeiro, Corn Belt) para scripts/gd_nasa_power.py. Cada cenário refaz, na régua do NASA POWER (GD = soma de max(0, Tmed - 10), sem teto), uma exigência da literatura americana dada em GDD 86/50 °F (Tmax limitada a 86 °F, Tmin elevada a 50 °F). 'referencia.valor' = GDD °F da fonte / 1,8 (mesma Tb: 50 °F = 10 °C), ainda com teto; a diferença impressa pelo script é o efeito conjunto do teto e do POWER. Datas de semeadura e dias até a maturação fisiológica (R6) são os da fonte. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "_leia": "Cenários de graus-dia do milho (corn for grain, sequeiro, Corn Belt) para scripts/gd_nasa_power.py. Cada cenário refaz, na régua do NASA POWER (GD = soma de max(0, Tmed - 10), sem teto), uma exigência da literatura americana dada em GDD 86/50 °F (Tmax limitada a 86 °F, Tmin elevada a 50 °F). 'referencia.valor' = GDD °F da fonte / 1,8 (mesma Tb: 50 °F = 10 °C), ainda com teto; a diferença impressa pelo script é o efeito conjunto do teto e do POWER. Datas de semeadura e dias até a maturação fisiológica (R6) são os da fonte. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa. Cenários 'milho_clima_*' (revisão do lote 3, 15/11): convenção do mínimo de graus-dia, com 'dias' = ciclo_dias_min (123); 'milho_clima_nashua_0516_123d' define graus_dia_ciclo_min e o de 25/abr é conferência.",
   "locais": {
     "nashua": {
       "nome": "Nashua-IA (ISU Northeast Research Farm)",
@@ -122,6 +122,32 @@
         "valor": 1514,
         "nota": "Nafziger 2013: híbridos de ciclo médio do centro de Illinois precisam de 2700-2750 GDD da semeadura à maturação; os semeados em meados de maio 'should mature by September 20 or so' (2013). Ponto médio 2725 / 1,8 = 1514 °C·dia (com teto)."
       }
+    },
+    {
+      "nome": "milho_clima_nashua_0516_123d",
+      "cultura": "milho",
+      "local": "nashua",
+      "semeadura": "05-16",
+      "dias": 123,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Convenção do mínimo (evidencias/README.md, graus-dia; revisão do lote 3, 15/11): mediana 2001-2020 do cenário de menor soma da região de referência = local mais frio com ensaio ou recomendação, data de semeadura usada ali e ciclo_dias_min. Nashua (nordeste de Iowa) = local mais frio das fontes de milho da linha (Elmore 2011, Tab. 1: Nashua e Lewis-IA; Champaign-IL); 16/mai = semeadura mais tardia da tabela em Nashua (o ciclo mais curto, 123 d, também vem de semeadura tardia: Lewis 9/mai); 123 d = ciclo_dias_min. DEFINE graus_dia_ciclo_min."
+    },
+    {
+      "nome": "milho_clima_nashua_0425_123d",
+      "cultura": "milho",
+      "local": "nashua",
+      "semeadura": "04-25",
+      "dias": 123,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência, não usado: semeadura cedo da mesma tabela (25/abr) + ciclo_dias_min. Combinação que a fonte não mostra: semeado em 25/abr, o híbrido de Nashua leva 140 d até R6 (Elmore 2011), e em Lewis a semeadura cedo alonga o ciclo de 123 para 129 d. Serve para ver se o mínimo novo elimina o milho nessa leitura (corte de 90%)."
     }
   ]
 }

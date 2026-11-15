@@ -21,10 +21,21 @@
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "medio",
-    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (guandu cv. Kaki em Senador Canedo-GO: 50% do florescimento aos 137/124/94 dias com semeadura em 12/nov, 7/jan e 4/mar; sensível ao fotoperíodo, dias curtos; 46,6 t/ha de fitomassa verde na semeadura de novembro)|Matta, Oliveira, Verzignassi, Castro, Novo & Godoy, Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026 (92 DAE ao início e 97 DAE a 50% do florescimento; 120 dias ao florescimento e 180 dias à semente com plantio em fevereiro; Guatã cerca de 30 dias mais precoce que a BRS Mandarim; 15 t/ha MS e ~380 kg/ha N na parte aérea com semeadura em novembro, 7 t/ha e ~180 kg/ha N em janeiro; ciclo anual/bianual; geada: suscetível; déficit hídrico: alta tolerância; aptidão para cobertura do solo: média; aptidão para pastagem: forte; raiz pivotante)|Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim, s.d. (FBN até 280 kg/ha/ano de N; biodescompactador natural; vida útil de até 4 anos em pasto; ~20% de proteína; resiste à escassez de água; não tolera encharcamento)|Pereira, J., Embrapa-CPAC (Cerrados), Circular Técnica 20, O feijão guandu: uma opção para a agropecuária brasileira, 1985 (anual ou semiperene, 2-3 anos; ciclo total 150-360 dias; bom desenvolvimento até 40 °C; suporta geadas leves, perdas a -3,3 °C e morte a -4,14 °C; cultivado com 500-1.000 mm/ano; raiz pivotante penetra solos compactados; crescimento inicial lento)|Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, Consorciação com guandu na recuperação de pastagens degradadas, 2017 (roçada anual; florescimento no início da estação seca; palatável só após o florescimento; 18-20% de proteína bruta; estande dura cerca de três anos)|FAO ECOCROP Cajanus cajan, código 576 (ótimo 18-38 °C, absoluto 10-45 °C; chuva ótima 600-1.500 mm/ano; ciclo 90-365 d; perene, muitas vezes cultivado como anual; não tolera geada) — números lidos na cópia do banco EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial estava fora do ar; notas da ficha lidas no Wayback Machine (cropView?id=576, 2018)|Cook et al., Tropical Forages (tropicalforages.info), Cajanus cajan (raiz pivotante até 2 m; geralmente cultivado entre 18 e 30 °C e tolera mais de 35 °C; não tolera geada; tolera seca; florescimento 60 dias nas cultivares precoces e 180-250 dias nas arbóreas; pouco palatável até os animais se acostumarem)|Deshmukh & Mankar, Dr. PDKV Akola / PoCRA, Determination of crop coefficients for major crops by lysimetric studies, Phase X Final Report, 2021-2024, e Phase VIII Part II, 2023 (Kc do guandu cv. PDKV Ashlesha em lisímetro de pesagem, kharif 2022 e 2023: inicial 0,53, desenvolvimento 0,81, médio 1,10 e final 0,79; Kc FAO modificado para Akola 1,08 na fase média; Kc semanal de 1,10 a 1,14 nas semanas 13-17, no florescimento; altura 1,6-2,2 m; lido no Wayback Machine porque mahapocra.gov.in recusa conexão)|Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (ET em lisímetro de pesagem, cv. GT-100, Anand, Índia: 437-458 mm da emergência a 50% da floração, cerca de 83 dias; 800-839 mm no ciclo de 147 dias até a maturação; pico de 8,6 mm/dia; usado só como conferência da água)|Mahendraraj et al., Experimental Results 2:e39, 2021, doi:10.1017/exp.2021.31 (Tb de 8,4 °C para germinação e 10,8 °C para emergência; cita Carberry et al. com Tb de 9,9 °C para germinação) (PROXY: temperatura base da germinação e emergência, não do ciclo todo)|Câmara & Godoy, Nativa 7(4):343-348, 2019 (raízes de guandu amostradas até 1 m, 64% nos primeiros 20 cm; até 8,98 t/ha MS na parte aérea)|Alvarenga, Costa, Moura Filho & Regazzi, R. Bras. Ci. Solo 20:319-326, 1996 (em casa de vegetação, as raízes do guandu foram reduzidas dentro e abaixo da camada compactada)|FAO-56 Tab.12, grupo e. Legumes (Leguminosae): Kc ini 0.4 (PROXY: grupo das leguminosas; o Kc ini medido em Akola, 0,53 com molhamento de monção, bate com o 0,50 que o método gráfico da FAO-56 dá para esse molhamento)|FAO-56 eq. 62 (padronização do Kc médio medido em Akola: 1,10 + 0,07 = 1,17) e cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao florescimento (água)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: guandu_min_senadorcanedo_0403_94d, guandu_min_senadorcanedo_0403_94d_kcini053, guandu_max_rioverde_1510_150d, guandu_max_planaltina_0111_150d_kcini053, guandu_conferencia_eq62_akola)",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (guandu cv. Kaki em Senador Canedo-GO: 50% do florescimento aos 137/124/94 dias com semeadura em 12/nov, 7/jan e 4/mar; sensível ao fotoperíodo, dias curtos; 46,6 t/ha de fitomassa verde na semeadura de novembro)|Matta, Oliveira, Verzignassi, Castro, Novo & Godoy, Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026 (92 DAE ao início e 97 DAE a 50% do florescimento; 120 dias ao florescimento e 180 dias à semente com plantio em fevereiro; Guatã cerca de 30 dias mais precoce que a BRS Mandarim; 15 t/ha MS e ~380 kg/ha N na parte aérea com semeadura em novembro, 7 t/ha e ~180 kg/ha N em janeiro; ciclo anual/bianual; geada: suscetível; déficit hídrico: alta tolerância; aptidão para cobertura do solo: média; aptidão para pastagem: forte; raiz pivotante)|Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim, s.d. (FBN até 280 kg/ha/ano de N; biodescompactador natural; vida útil de até 4 anos em pasto; ~20% de proteína; resiste à escassez de água; não tolera encharcamento)|Pereira, J., Embrapa-CPAC (Cerrados), Circular Técnica 20, O feijão guandu: uma opção para a agropecuária brasileira, 1985 (anual ou semiperene, 2-3 anos; ciclo total 150-360 dias; bom desenvolvimento até 40 °C; suporta geadas leves, perdas a -3,3 °C e morte a -4,14 °C; cultivado com 500-1.000 mm/ano; raiz pivotante penetra solos compactados; crescimento inicial lento)|Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, Consorciação com guandu na recuperação de pastagens degradadas, 2017 (roçada anual; florescimento no início da estação seca; palatável só após o florescimento; 18-20% de proteína bruta; estande dura cerca de três anos)|FAO ECOCROP Cajanus cajan, código 576 (ótimo 18-38 °C, absoluto 10-45 °C; chuva ótima 600-1.500 mm/ano; ciclo 90-365 d; perene, muitas vezes cultivado como anual; não tolera geada) — números lidos na cópia do banco EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial estava fora do ar; notas da ficha lidas no Wayback Machine (cropView?id=576, 2018)|Cook et al., Tropical Forages (tropicalforages.info), Cajanus cajan (raiz pivotante até 2 m; geralmente cultivado entre 18 e 30 °C e tolera mais de 35 °C; não tolera geada; tolera seca; florescimento 60 dias nas cultivares precoces e 180-250 dias nas arbóreas; pouco palatável até os animais se acostumarem)|Deshmukh & Mankar, Dr. PDKV Akola / PoCRA, Determination of crop coefficients for major crops by lysimetric studies, Phase X Final Report, 2021-2024, e Phase VIII Part II, 2023 (Kc do guandu cv. PDKV Ashlesha em lisímetro de pesagem, kharif 2022 e 2023: inicial 0,53, desenvolvimento 0,81, médio 1,10 e final 0,79; Kc FAO modificado para Akola 1,08 na fase média; Kc semanal de 1,10 a 1,14 nas semanas 13-17, no florescimento; altura 1,6-2,2 m; lido no Wayback Machine porque mahapocra.gov.in recusa conexão)|Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (ET em lisímetro de pesagem, cv. GT-100, Anand, Índia: 437-458 mm da emergência a 50% da floração, cerca de 83 dias; 800-839 mm no ciclo de 147 dias até a maturação; pico de 8,6 mm/dia; usado só como conferência da água)|Mahendraraj et al., Experimental Results 2:e39, 2021, doi:10.1017/exp.2021.31 (Tb de 8,4 °C para germinação e 10,8 °C para emergência; cita Carberry et al. com Tb de 9,9 °C para germinação) (PROXY: temperatura base da germinação e emergência, não do ciclo todo)|Câmara & Godoy, Nativa 7(4):343-348, 2019 (raízes de guandu amostradas até 1 m, 64% nos primeiros 20 cm; até 8,98 t/ha MS na parte aérea)|Alvarenga, Costa, Moura Filho & Regazzi, R. Bras. Ci. Solo 20:319-326, 1996 (em casa de vegetação, as raízes do guandu foram reduzidas dentro e abaixo da camada compactada)|FAO-56 Tab.12, grupo e. Legumes (Leguminosae): Kc ini 0.4 (PROXY: grupo das leguminosas; o Kc ini medido em Akola, 0,53 com molhamento de monção, bate com o 0,50 que o método gráfico da FAO-56 dá para esse molhamento)|FAO-56 eq. 62 (padronização do Kc médio medido em Akola: 1,10 + 0,07 = 1,17) e cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao florescimento (água)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: guandu_min_senadorcanedo_0403_94d, guandu_min_senadorcanedo_0403_94d_kcini053, guandu_max_rioverde_1510_150d, guandu_max_planaltina_0111_150d_kcini053, guandu_conferencia_eq62_akola)|Pereira, J., Embrapa-CPAC, Circular Técnica 20, 1985, itens de semeadura e adubação verde (Cerrados: plantio do início das chuvas, outubro, a meados de dezembro; enterrio de meados de março a abril, com cerca de 50% da floração) (janela)|Matta et al., Embrapa Pecuária Sudeste, Comunicado Técnico 120, 2026, quadro de indicações técnicas (época de semeadura setembro a março; rotação após milho, soja, sorgo, trigo; manejo mecânico com rolo-faca ou roçadora na floração; pico do florescimento em meados do outono no Sudeste e Centro-Oeste) (janela)|Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1), 2000, introdução e métodos (semeadura em sucessão à cultura no final da estação chuvosa; épocas de início, meados e final da estação chuvosa em Senador Canedo-GO) (janela)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "1200",
-    "graus_dia_ciclo_max": "2350"
+    "graus_dia_ciclo_max": "2350",
+    "semeadura_inicio": "10-01",
+    "semeadura_fim": "03-31",
+    "manejo_inicio": "03-15",
+    "manejo_fim": "06-30",
+    "tipo_manejo": "rolagem",
+    "condicao_semeadura": "apos_colheita_graos",
+    "estados_validos": "GO|DF|MT|MS|MG|SP",
+    "lacuna_informacao": "Não há medição no Brasil de quanta água o guandu usa nem da temperatura em que ele começa a crescer. Usamos um cálculo com o clima e um ensaio feito na Índia. A soma de calor até a flor também é cálculo: no guandu, a época de plantio pesa mais que a temperatura.",
+    "risco_revisao_local": "Planta de dias curtos: semeado de outubro a dezembro dá mais massa; semeado depois da colheita, até março, floresce mais cedo e rende bem menos. Role ou roce na flor. Sofre com geada e com encharcamento. Confirme a época e a cultivar com a assistência técnica."
   },
   "mudancas": [
     {
@@ -194,6 +205,42 @@
       "antes": "(coluna nova)",
       "depois": "1200-2350",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "semeadura_inicio / semeadura_fim",
+      "antes": "(vazio)",
+      "depois": "10-01 / 03-31",
+      "motivo": "REVISÃO 15/11 (pacote 9): Cerrado (região dos números da linha). Início: 'início do período chuvoso (outubro)' (Embrapa-CPAC, CT 20, 1985); o CT 120 da BRS Guatã aceita setembro, mas no Cerrado setembro ainda é seco. Fim: 'Época de semeadura Setembro a março' (CT 120, 2026) e semeadura 'no final da estação chuvosa, em sucessão à cultura' (Amabile 2000, ensaio de 4/mar). A janela cruza a virada do ano (outubro a março), por isso inicio (10-01) > fim (03-31). Junta a época favorável (out-dez, mais massa) e a de sucessão (jan-mar, que dá o ciclo mínimo de 94 d e a água mínima da linha)."
+    },
+    {
+      "coluna": "manejo_inicio / manejo_fim / tipo_manejo",
+      "antes": "(vazio)",
+      "depois": "03-15 / 06-30 / rolagem",
+      "motivo": "REVISÃO 15/11 (pacote 9): Início: enterrio 'de meados de março a abril, quando apresentar cerca de 50% da floração' (CPAC 1985), para as semeaduras de out-dez. Fim DERIVADO: a semeadura de 4/mar floresceu aos 94 d, em 6/jun (Amabile 2000); a última semeadura da janela (31/mar) + ciclo mínimo de 90 d = 29/jun. Tipo: 'Rolo-faca ou roçadora tratorizada, devendo ser efetuada durante a floração' (CT 120); escolhi rolagem (rolo-faca, o primeiro citado, que deixa a palha no plantio direto); a roçada (corte) é a alternativa."
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "(vazio)",
+      "depois": "apos_colheita_graos",
+      "motivo": "REVISÃO 15/11 (pacote 9): CT 120: 'Rotação de culturas: Após milho, soja, sorgo, trigo'; Amabile 2000: 'semeadura no final da estação chuvosa, em sucessão à cultura'. Nenhuma fonte trata de sobressemeadura a lanço na lavoura em pé para o guandu."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "(vazio)",
+      "depois": "GO|DF|MT|MS|MG|SP",
+      "motivo": "REVISÃO 15/11 (pacote 9): UFs do Cerrado e do Sudeste com ensaio ou cálculo dos números da linha: GO (Amabile; Braz; Pacheco), DF e MT (cálculo de água em Planaltina e Sorriso), MS (Selvíria), MG (Uberaba, Torres 2005), SP (São Carlos, BRS Guatã; Jaboticabal). O CT 120 diz que o florescimento cai em meados do outono 'na região Sudeste e Centro-Oeste'. RJ e ES ficaram fora por falta de ensaio; RS e BA ficaram fora (ver pendências)."
+    },
+    {
+      "coluna": "lacuna_informacao / risco_revisao_local",
+      "antes": "(vazio)",
+      "depois": "(textos para o produtor)",
+      "motivo": "REVISÃO 15/11 (pacote 9): Confiança baixa. Lacunas da origem: temp_base_c (proxy), agua_ciclo_mm_min/max (cálculo), kc_inicial (proxy), kc_medio (estudo único na Índia), graus_dia (cálculo; o fotoperíodo controla o florescimento). Risco: época (dias curtos, CPAC 1985 e Amabile 2000), manejo na flor (CT 120), geada e encharcamento (CT 120: geada suscetível; encharcamento baixa tolerância)."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista anterior)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "REVISÃO 15/11 (pacote 9): Entraram os trechos de janela da CPAC (1985), do CT 120 (2026) e de Amabile (2000)."
     }
   ],
   "evidencias": [
@@ -610,6 +657,41 @@
       "fonte": "CONFERÊNCIA (não usado): WOFOST pigeonpea.yaml (Van Heemst 1988)",
       "url": "https://github.com/ajwdewit/WOFOST_crop_parameters",
       "trecho": "TSUMEM 70, TSUM1 700 °C·d; DTSMTB Tb 11, ótimo 25 °C; 55 d até a antese a 25 °C; IDSL 0 (sem fotoperíodo) -> incompatível com o guandu brasileiro (90-150 d)"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "manejo_inicio",
+        "manejo_fim",
+        "estados_validos"
+      ],
+      "fonte": "Pereira, J., O feijão guandu: uma opção para a agropecuária brasileira, Embrapa-CPAC Circular Técnica 20, 1985, p. 8 e item 5.3 Semeadura",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/549433/1/cirtec20.pdf",
+      "trecho": "Na região dos Cerrados, o plantio ocorre do início do período chuvoso (outubro) a meados de dezembro (EMBRAPA/CPAC. 1982). Para a adubação verde o enterrio deverá ocorrer de meados de março a abril, quando apresentar cerca de 50% da floração. [...] na região do Brasil Central o plantio ocorre de outubro a dezembro. Nessa mesma região os plantios realizados após dezembro têm crescimento e desenvolvimento reduzidos, por falta de chuvas no período crítico de crescimento da planta e por fotoperíodo adverso."
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "condicao_semeadura",
+        "tipo_manejo",
+        "manejo_inicio",
+        "manejo_fim",
+        "estados_validos"
+      ],
+      "fonte": "Matta et al., BRS Guatã - nova cultivar de Cajanus cajan, Embrapa Pecuária Sudeste, Comunicado Técnico 120, 2026, quadro de características e indicações técnicas e item Produção agronômica",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "Época de semeadura Setembro a março [...] Rotação de culturas Após milho, soja, sorgo, trigo [...] Manejo mecânico Rolo-faca ou roçadora tratorizada, devendo ser efetuada durante a floração e em primeiro ano. [...] O pico do florescimento da BRS Guatã ocorrerá em meados do outono na região Sudeste e Centro-Oeste do Brasil, quando o período do dia (luz solar) começa a ficar menor."
+    },
+    {
+      "colunas": [
+        "semeadura_fim",
+        "condicao_semeadura",
+        "manejo_fim"
+      ],
+      "fonte": "Amabile, Fancelli & Carvalho, Comportamento de espécies de adubos verdes em diferentes épocas de semeadura e espaçamentos na região dos Cerrados, Pesq. agropec. bras. 35(1):47-54, 2000 (introdução, métodos e Tabela 3)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/5695/2799/20586",
+      "trecho": "Seu uso pode ser viabilizado com a semeadura no final da estação chuvosa, em sucessão à cultura (Pereira et al., 1992). [...] semeadas em três épocas: início (12/11/1991); meados (7/1/1992) e final da estação chuvosa (4/3/1992). [Tabela 3: guandu com 50% do florescimento aos 137, 124 e 94 dias -> 29/mar, 11/mai e 6/jun]"
     }
   ],
   "pendencias": [
@@ -628,7 +710,11 @@
     "graus-dia: Guandu é de dias curtos: a soma até o florescimento depende da época de semeadura (no mesmo local, 1241 em março contra 1939 em novembro, com Tmed quase igual). O filtro de graus-dia não prevê bem o ciclo; vale mais a época. Sugestão: eliminar só abaixo do mínimo (1200) e tratar 1200-2350 como 'no limite'. Para semeaduras de outubro-novembro, a exigência real fica perto do máximo.",
     "graus-dia: Tb 10 é PROXY (germinação/emergência). O WOFOST usa Tb 11 com ótimo em 25 °C e queda acima disso; o motor (sem teto) acumula mais em locais quentes.",
     "graus-dia: Não há dado brasileiro para cultivares tardias de porte alto (Mandarim, ~30 dias mais tardia que a Guatã) semeadas em outubro; a soma pode passar de 2350.",
-    "graus-dia: O WOFOST (55 d até a antese) não serve: ignora o fotoperíodo."
+    "graus-dia: O WOFOST (55 d até a antese) não serve: ignora o fotoperíodo.",
+    "JANELA (pacote 9): a linha junta duas épocas do Cerrado: out-dez (a favorável, 12,7 t/ha de MS na semeadura de 12/nov) e jan-mar, em sucessão à soja ou ao milho (marginal, 5,8 t/ha em 4/mar; Amabile 2000). Os números da linha (ciclo 90-150, água 280-520, graus-dia 1200-2350) já cobrem as duas, por isso não criei arranjo. Se o time quiser separar 'guandu de verão' e 'guandu em sucessão', a de sucessão iria para regua.arranjos com semeadura 01-01 a 03-31.",
+    "JANELA x CICLO (pacote 9): semeadura em 1/out + ciclo_dias_max 150 = 28/fev, antes do manejo de 'meados de março a abril' da CPAC. É o fotoperíodo: semeado cedo, o guandu só floresce quando os dias encurtam. Reforça a pendência de que ciclo_dias_max = 150 é curto para semeaduras de outubro. Não mudei o ciclo nesta tarefa.",
+    "JANELA (pacote 9): semeadura_fim 03-31 vem do CT 120 ('setembro a março', BRS Guatã). O último ensaio do Cerrado com dado é de 4/mar (Amabile 2000); semeadura no fim de março não tem ensaio, e a CPAC (1985) diz que plantios após dezembro crescem menos. manejo_fim 06-30 é DERIVADO (31/mar + 90 d).",
+    "estados_validos (pacote 9): GO entra; RS e BA (pontos da demo) ficam fora. RS: os números são do Cerrado e do Sudeste, o guandu é suscetível à geada (CT 120) e não achei fonte gaúcha de época e ciclo. BA: o oeste baiano é Cerrado, mas não há ensaio; em Irecê (semiárido) a Embrapa Semiárido indica o guandu Petrolina para grão, outra cultivar e outro uso, sem janela de cobertura publicada. Fonte gaúcha (Embrapa Clima Temperado) ou do Semiárido resolveria, num arranjo regional."
   ],
   "pendencias_resolvidas": [
     "Kc: não há Kc medido para o guandu. Os Kc 0.4 e 1.15 são PROXY do grupo Legumes do FAO-56. Os relatórios de Kc em lisímetro de pigeonpea da PDKV Akola (mahapocra.gov.in, Phase VIII-X) recusaram conexão, e o artigo de Vidarbha (core.ac.uk/outputs/690753542) caiu no bloqueio da Cloudflare. Vale tentar de outra rede. kc_final ficou vazio pela convenção (corte na floração).",

@@ -34,7 +34,7 @@ REGRAS (valem sempre, em qualquer idioma):
 
 FERRAMENTAS (use antes de responder; pode usar mais de uma):
 - ver_ficha: o que o produtor respondeu no cadastro da fazenda (culturas, irrigação, solo, perfil).
-- info_cultura: parâmetros de uma cultura da base (ciclo, temperatura, geada, água). Cultura fora da base: diga que não está na base.
+- info_cultura: parâmetros de uma cultura da base (ciclo, temperatura, geada, água). Cultura fora da base: diga que não está na base. Se voltar "ambigua" (ex.: só arroz ou só batata), pergunte ao produtor qual é antes de dar números.
 - buscar_conhecimento: conceitos e explicações (ex.: o que é veranico, como a geada é medida).
 - consultar_clima: clima mensal da fazenda no NASA POWER: média de 1991–2020 ou um ano específico.
 - comparar_estrategias: compara a rotação atual com as 2 melhores alternativas calculadas pelo AgroIA (notas, por que, onde piora). Use em pergunta de "o que plantar", rotação ou "o que pôr no vão"; explique as notas, o "por que" e o "onde piora", e lembre que é comparação, não decisão: confirme com o técnico e a cooperativa.

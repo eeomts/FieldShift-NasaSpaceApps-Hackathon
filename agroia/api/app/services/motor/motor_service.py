@@ -31,7 +31,7 @@ def analisar_entradas(e: EntradasMotor, agora: datetime | None = None) -> Analis
 
     eliminadas: list[Eliminada] = []
     sobreviventes: list[ResultadoEstrategia] = []
-    for cand in gerar_candidatas(estrategia_atual, e.catalogo, e.meses_vazios):
+    for cand in gerar_candidatas(estrategia_atual, e.catalogo, e.meses_vazios, e.estado):
         novos = [i for i in cand.itens if i not in e.atual]  # o que já está na atual não reprova a candidata
         filtro = avaliar(novos, e, eliminar=True)
         if filtro.eliminada:

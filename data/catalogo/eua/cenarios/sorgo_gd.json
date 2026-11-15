@@ -1,0 +1,237 @@
+{
+  "_leia": "Cenários de graus-dia do sorgo granífero (grain sorghum, sequeiro, Kansas e oeste do Texas) para scripts/gd_nasa_power.py. Cada cenário converte a exigência de Gerik et al. (B-6137, GDU °F com base 50 °F, teto 100 °F e Tmin elevada a 50 °F) para a régua do catálogo: o script acha, ano a ano, o dia em que o GDU da fonte é atingido no POWER e soma nas mesmas datas o GD sem teto com Tb 10 °C (50 °F). A saída dá os dias até a camada preta (maturação fisiológica) e o GD convertido. 'referencia.valor' = GDU °F / 1,8, ainda com teto e piso. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa. Cenários 'sorgo_clima_*' (revisão do lote 3, 15/11): convenção do mínimo de graus-dia, modo 'dias' com ciclo_dias_min (84 d, Diawara 2012); 'sorgo_clima_manhattan_0525_84d' define graus_dia_ciclo_min e os outros são conferência.",
+  "locais": {
+    "manhattan": {
+      "nome": "Manhattan-KS (K-State Agronomy North Farm)",
+      "lat": 39.21,
+      "lon": -96.59,
+      "elevacao_m": 389.95
+    },
+    "hays": {
+      "nome": "Hays-KS (K-State Agricultural Research Center)",
+      "lat": 38.85,
+      "lon": -99.33,
+      "elevacao_m": 637.87
+    },
+    "hutchinson": {
+      "nome": "Hutchinson-KS (K-State South Central Experiment Field)",
+      "lat": 37.93,
+      "lon": -98.03,
+      "elevacao_m": 497.36
+    },
+    "lubbock": {
+      "nome": "Lubbock-TX (Texas A&M AgriLife Research and Extension Center)",
+      "lat": 33.69,
+      "lon": -101.82,
+      "elevacao_m": 977.33
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "sorgo_manhattan_0520_curto",
+      "cultura": "sorgo",
+      "local": "manhattan",
+      "semeadura": "05-20",
+      "alvo_com_teto": {
+        "valor": 2673,
+        "unidade": "F",
+        "tb": 50,
+        "teto": 100
+      },
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1485,
+        "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo curto ('Short Season Hybrid'), camada preta (black layer) a 2673 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 2673 / 1,8 = 1485 °C·dia com teto e piso. Semeadura em 20/mai: dentro da janela sugerida pela K-State (zonas 1-3: 15/mai-10 ou 20/jun) e do 'most active' do Kansas (15/mai-20/jun, Handbook 628)."
+      }
+    },
+    {
+      "nome": "sorgo_manhattan_0520_longo",
+      "cultura": "sorgo",
+      "local": "manhattan",
+      "semeadura": "05-20",
+      "alvo_com_teto": {
+        "valor": 3360,
+        "unidade": "F",
+        "tb": 50,
+        "teto": 100
+      },
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1867,
+        "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo longo ('Long Season Hybrid'), camada preta a 3360 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 3360 / 1,8 = 1867 °C·dia com teto e piso. Mesma data; híbrido de ciclo cheio do leste do Kansas."
+      }
+    },
+    {
+      "nome": "sorgo_hays_0601_curto",
+      "cultura": "sorgo",
+      "local": "hays",
+      "semeadura": "06-01",
+      "alvo_com_teto": {
+        "valor": 2673,
+        "unidade": "F",
+        "tb": 50,
+        "teto": 100
+      },
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1485,
+        "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo curto ('Short Season Hybrid'), camada preta (black layer) a 2673 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 2673 / 1,8 = 1485 °C·dia com teto e piso. Semeadura em 1/jun: meio da janela da K-State e do Handbook 628 no oeste do Kansas."
+      }
+    },
+    {
+      "nome": "sorgo_hays_0601_longo",
+      "cultura": "sorgo",
+      "local": "hays",
+      "semeadura": "06-01",
+      "alvo_com_teto": {
+        "valor": 3360,
+        "unidade": "F",
+        "tb": 50,
+        "teto": 100
+      },
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1867,
+        "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo longo ('Long Season Hybrid'), camada preta a 3360 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 3360 / 1,8 = 1867 °C·dia com teto e piso. Mesma data; híbrido longo (pouco usado no sequeiro do oeste: a K-State recomenda híbridos mais precoces onde falta água)."
+      }
+    },
+    {
+      "nome": "sorgo_lubbock_0601_longo",
+      "cultura": "sorgo",
+      "local": "lubbock",
+      "semeadura": "06-01",
+      "alvo_com_teto": {
+        "valor": 3360,
+        "unidade": "F",
+        "tb": 50,
+        "teto": 100
+      },
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1867,
+        "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo longo ('Long Season Hybrid'), camada preta a 3360 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 3360 / 1,8 = 1867 °C·dia com teto e piso. Semeadura em 1/jun: antes da última data recomendada para híbrido longo no condado de Lubbock (15/jun, Texas A&M AgriLife 2026)."
+      }
+    },
+    {
+      "nome": "sorgo_lubbock_0620_curto",
+      "cultura": "sorgo",
+      "local": "lubbock",
+      "semeadura": "06-20",
+      "alvo_com_teto": {
+        "valor": 2673,
+        "unidade": "F",
+        "tb": 50,
+        "teto": 100
+      },
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1485,
+        "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo curto ('Short Season Hybrid'), camada preta (black layer) a 2673 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 2673 / 1,8 = 1485 °C·dia com teto e piso. Semeadura em 20/jun: meados/fim de junho é a época preferida para sorgo de sequeiro no South Plains (Texas A&M AgriLife 2026)."
+      }
+    },
+    {
+      "nome": "sorgo_hutchinson_0701_curto",
+      "cultura": "sorgo",
+      "local": "hutchinson",
+      "semeadura": "07-01",
+      "alvo_com_teto": {
+        "valor": 2673,
+        "unidade": "F",
+        "tb": 50,
+        "teto": 100
+      },
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1485,
+        "nota": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137 (2003), Tab. 1: híbrido de ciclo curto ('Short Season Hybrid'), camada preta (black layer) a 2673 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50). 2673 / 1,8 = 1485 °C·dia com teto e piso. DOUBLE-CROP depois do trigo: semeadura em 1/jul, logo após a colheita do trigo no centro-sul do Kansas (colheita 'most active' 20/jun-5/jul, Handbook 628); híbrido precoce, como a K-State recomenda para semeaduras tardias. Não entra na faixa da linha (plantio cheio); fica para comparação."
+      }
+    },
+    {
+      "nome": "sorgo_clima_manhattan_0525_84d",
+      "cultura": "sorgo",
+      "local": "manhattan",
+      "semeadura": "05-25",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Convenção do mínimo (evidencias/README.md, graus-dia; revisão do lote 3, 15/11): mediana 2001-2020 do cenário de menor soma da região de referência = local mais frio com ensaio ou recomendação, data de semeadura usada ali e ciclo_dias_min. Manhattan = local de menor soma entre os locais da linha com ensaio ou recomendação no Kansas (com 84 d: Manhattan 25/mai < Hutchinson 26/mai < Hays 1/jun); 25/mai = semeadura do ensaio de 2010 em Manhattan (Diawara 2012, Tab. 3.7), onde o híbrido precoce DKS 28-05 levou 85 d; 84 d = ciclo_dias_min (DKS 28-05, Hutchinson, 26/mai/2010). DEFINE graus_dia_ciclo_min."
+    },
+    {
+      "nome": "sorgo_clima_manhattan_0520_84d",
+      "cultura": "sorgo",
+      "local": "manhattan",
+      "semeadura": "05-20",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência, não usado: data dos cenários de Gerik et al. em Manhattan (20/mai, não é data de ensaio) + ciclo_dias_min."
+    },
+    {
+      "nome": "sorgo_clima_hutchinson_0526_84d",
+      "cultura": "sorgo",
+      "local": "hutchinson",
+      "semeadura": "05-26",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência: semeadura do ensaio de 2010 em Hutchinson (Diawara 2012, Tab. 3.8, 26/mai), onde foram medidos os 84 d."
+    },
+    {
+      "nome": "sorgo_clima_hays_0601_84d",
+      "cultura": "sorgo",
+      "local": "hays",
+      "semeadura": "06-01",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência: Hays (oeste do Kansas, sem ensaio de Diawara), data dos cenários de Gerik et al. (1/jun) + ciclo_dias_min."
+    }
+  ]
+}

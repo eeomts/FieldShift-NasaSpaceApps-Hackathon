@@ -20,7 +20,7 @@ def cultura(id: str = "c", **mudancas) -> CulturaMotor:
         "temp_otima_max_c": None, "tmax_critica_c": None, "sensivel_geada": False, "agua_ciclo_mm_min": 300,
         "agua_ciclo_mm_max": 500, "kc_inicial": 0.5, "kc_medio": 1.0, "kc_final": 0.5, "profundidade_raiz_m": 1.0,
         "fixa_nitrogenio": False, "raiz_profunda": False, "cobertura_solo": "media", "aporte_biomassa": "medio",
-        "valor_forrageiro": "baixo", "confianca_parametros": "alta",
+        "valor_forrageiro": "baixo", "confianca_parametros": "alta", "estados_validos": (),
     }  # fmt: skip
     base.update(mudancas)
     assert set(base) == {f.name for f in fields(CulturaMotor)} - {"fontes", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda", "extras"}

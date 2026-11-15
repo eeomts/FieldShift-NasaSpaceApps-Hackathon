@@ -62,7 +62,8 @@ DECLARACOES = [
             _declaracao(
                 "info_cultura",
                 "Parâmetros agronômicos de uma cultura da base do AgroIA: ciclo, temperaturas, sensibilidade à geada, "
-                "água, Kc, raiz. Se a cultura não estiver na base, avisa.",
+                "água, Kc, raiz. Se a cultura não estiver na base, avisa. Se o nome for ambíguo (ex.: só arroz ou só batata), "
+                "devolve as opções para perguntar ao produtor, sem parâmetros.",
                 {"cultura": types.Schema(type="STRING", description="Nome da cultura como o produtor disse (ex.: sorgo, feijão, macaxeira).")},
                 ["cultura"],
             ),
@@ -230,6 +231,16 @@ class Ferramentas:
             )
         cultura_id = achado[0]["id"]
         item = itens[cultura_id]
+        opcoes = catalogo.alternativas(cultura_id, str(cultura))
+        if opcoes:  # nome dito sozinho (ex.: só "arroz" ou "batata"): quem escolhe o tipo é o produtor, não o país nem o modelo
+            return Resultado(
+                {
+                    "encontrada": True,
+                    "ambigua": True,
+                    "opcoes": [{"id": o, "nome": catalogo.nome_exibicao(itens[o])} for o in opcoes],
+                    "mensagem": item["ambiguo"]["pergunta"],
+                }
+            )
         nome = catalogo.nome_exibicao(item)
         dados = {
             "encontrada": True,

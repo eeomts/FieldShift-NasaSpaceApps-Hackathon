@@ -1,0 +1,190 @@
+{
+  "_leia": "Cenários de água do nabo forrageiro (forage/tillage radish, cobertura semeada no fim do verão e morta pelo inverno, Corn Belt) para scripts/etc_nasa_power.py. ETc da semeadura à morte pelo frio (o 'manejo' desta cobertura), no vegetativo (roseta; o nabo não floresce no outono). 'fases_dias' = inicial, desenvolvimento, média, final. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "sutherland": {
+      "nome": "Sutherland-IA (ISU Northwest Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -95.54,
+      "elevacao_m": 422.49
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU Ag Engineering/Agronomy Farm; sítio de Sawyer et al. e de Jha & Yadav)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    },
+    "lafayette": {
+      "nome": "West Lafayette-IN (Purdue ACRE; sítio de Cavadini & Kladivko, AY-359-W)",
+      "lat": 40.47,
+      "lon": -86.99,
+      "elevacao_m": 221.92
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "nabo_forrageiro_nashua_0915_61d",
+      "cultura": "nabo_forrageiro",
+      "local": "nashua",
+      "semeadura": "09-15",
+      "fases_dias": [
+        10,
+        15,
+        36,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 0.9,
+        "end": 0.9
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura tardia (15/set), fim cedo (14/nov), NE de Iowa. Curva FAO-56 do rabanete (Tab. 12: grupo a. Small Vegetables Kc ini 0,7; linha Radish Kc mid 0,90, a mesma ordem do Kc medido no vegetativo do nabo, 0,91 de E a BB em Fietz et al. 2008); fase inicial de 10 d (Tab. 11, Radish de inverno) e desenvolvimento de 15 d (dossel fechado em 3 a 4 semanas, UMD FS 824); fase média até a morte pelo frio (fase final 0). Datas: semeadura de 1/ago a 15/set (NRCS/ISU, CROP 3203; Purdue AY-359-W na última semana de agosto); fim de 14/nov a 5/dez.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 101,
+        "nota": "agua_ciclo_mm_min = 100: média 101 mm (P10 75, P90 122), arredondada para baixo. Sutherland no mesmo cenário: 121."
+      }
+    },
+    {
+      "nome": "nabo_forrageiro_sutherland_0915_61d",
+      "cultura": "nabo_forrageiro",
+      "local": "sutherland",
+      "semeadura": "09-15",
+      "fases_dias": [
+        10,
+        15,
+        36,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 0.9,
+        "end": 0.9
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura tardia (15/set), fim cedo (14/nov), NW de Iowa. Curva FAO-56 do rabanete (Tab. 12: grupo a. Small Vegetables Kc ini 0,7; linha Radish Kc mid 0,90, a mesma ordem do Kc medido no vegetativo do nabo, 0,91 de E a BB em Fietz et al. 2008); fase inicial de 10 d (Tab. 11, Radish de inverno) e desenvolvimento de 15 d (dossel fechado em 3 a 4 semanas, UMD FS 824); fase média até a morte pelo frio (fase final 0). Datas: semeadura de 1/ago a 15/set (NRCS/ISU, CROP 3203; Purdue AY-359-W na última semana de agosto); fim de 14/nov a 5/dez."
+    },
+    {
+      "nome": "nabo_forrageiro_ames_0825_88d",
+      "cultura": "nabo_forrageiro",
+      "local": "ames",
+      "semeadura": "08-25",
+      "fases_dias": [
+        10,
+        15,
+        63,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 0.9,
+        "end": 0.9
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura em 25/ago, fim em 20/nov, centro de Iowa. Curva FAO-56 do rabanete (Tab. 12: grupo a. Small Vegetables Kc ini 0,7; linha Radish Kc mid 0,90, a mesma ordem do Kc medido no vegetativo do nabo, 0,91 de E a BB em Fietz et al. 2008); fase inicial de 10 d (Tab. 11, Radish de inverno) e desenvolvimento de 15 d (dossel fechado em 3 a 4 semanas, UMD FS 824); fase média até a morte pelo frio (fase final 0). Datas: semeadura de 1/ago a 15/set (NRCS/ISU, CROP 3203; Purdue AY-359-W na última semana de agosto); fim de 14/nov a 5/dez.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 199,
+        "nota": "Cenário típico (conferência; não define a faixa). Lafayette-IN no mesmo cenário: 193."
+      }
+    },
+    {
+      "nome": "nabo_forrageiro_lafayette_0825_88d",
+      "cultura": "nabo_forrageiro",
+      "local": "lafayette",
+      "semeadura": "08-25",
+      "fases_dias": [
+        10,
+        15,
+        63,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 0.9,
+        "end": 0.9
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura em 25/ago (Purdue), fim em 20/nov, Indiana. Curva FAO-56 do rabanete (Tab. 12: grupo a. Small Vegetables Kc ini 0,7; linha Radish Kc mid 0,90, a mesma ordem do Kc medido no vegetativo do nabo, 0,91 de E a BB em Fietz et al. 2008); fase inicial de 10 d (Tab. 11, Radish de inverno) e desenvolvimento de 15 d (dossel fechado em 3 a 4 semanas, UMD FS 824); fase média até a morte pelo frio (fase final 0). Datas: semeadura de 1/ago a 15/set (NRCS/ISU, CROP 3203; Purdue AY-359-W na última semana de agosto); fim de 14/nov a 5/dez."
+    },
+    {
+      "nome": "nabo_forrageiro_crawfordsville_0801_127d",
+      "cultura": "nabo_forrageiro",
+      "local": "crawfordsville",
+      "semeadura": "08-01",
+      "fases_dias": [
+        10,
+        15,
+        102,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 0.9,
+        "end": 0.9
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura cedo (1/ago), fim tardio (5/dez), SE de Iowa. Curva FAO-56 do rabanete (Tab. 12: grupo a. Small Vegetables Kc ini 0,7; linha Radish Kc mid 0,90, a mesma ordem do Kc medido no vegetativo do nabo, 0,91 de E a BB em Fietz et al. 2008); fase inicial de 10 d (Tab. 11, Radish de inverno) e desenvolvimento de 15 d (dossel fechado em 3 a 4 semanas, UMD FS 824); fase média até a morte pelo frio (fase final 0). Datas: semeadura de 1/ago a 15/set (NRCS/ISU, CROP 3203; Purdue AY-359-W na última semana de agosto); fim de 14/nov a 5/dez.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 316,
+        "nota": "agua_ciclo_mm_max = 315: média 316 mm (P10 263, P90 366), a maior entre os cenários de máximo (Lafayette-IN: 295)."
+      }
+    },
+    {
+      "nome": "nabo_forrageiro_lafayette_0801_127d",
+      "cultura": "nabo_forrageiro",
+      "local": "lafayette",
+      "semeadura": "08-01",
+      "fases_dias": [
+        10,
+        15,
+        102,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 0.9,
+        "end": 0.9
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura cedo (1/ago), fim tardio (5/dez), Indiana. Curva FAO-56 do rabanete (Tab. 12: grupo a. Small Vegetables Kc ini 0,7; linha Radish Kc mid 0,90, a mesma ordem do Kc medido no vegetativo do nabo, 0,91 de E a BB em Fietz et al. 2008); fase inicial de 10 d (Tab. 11, Radish de inverno) e desenvolvimento de 15 d (dossel fechado em 3 a 4 semanas, UMD FS 824); fase média até a morte pelo frio (fase final 0). Datas: semeadura de 1/ago a 15/set (NRCS/ISU, CROP 3203; Purdue AY-359-W na última semana de agosto); fim de 14/nov a 5/dez."
+    }
+  ]
+}

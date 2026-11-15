@@ -1,0 +1,483 @@
+{
+  "id": "algodao",
+  "pais": "EUA",
+  "nome": "Algodão (upland cotton)",
+  "nome_cientifico": "Gossypium hirsutum",
+  "familia_botanica": "Malvaceae",
+  "sistema": "Upland cotton, sequeiro (fibra), oeste do Texas (Southern High Plains, Lubbock) e sul da Geórgia (Coastal Plain). Uma linha para as duas regiões: a faixa vai do High Plains (estação curta, menos graus-dia, mais demanda de água) à Geórgia (estação longa, menos demanda de água).",
+  "regiao_referencia": "Lubbock-TX; Tifton-GA",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "130",
+    "ciclo_dias_max": "160",
+    "graus_dia_ciclo_min": "1270",
+    "graus_dia_ciclo_max": "1590",
+    "temp_base_c": "15",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "30",
+    "tmax_critica_c": "38",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "420",
+    "agua_ciclo_mm_max": "690",
+    "kc_inicial": "0.35",
+    "kc_medio": "1.15",
+    "kc_final": "0.5",
+    "profundidade_raiz_m": "1.7",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "baixo",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "COTTON, UPLAND",
+    "calendario_usda": "Cotton, all",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, All Cotton (janela de semeadura e colheita GA/TX)|Texas A&M AgriLife Extension, Crop Management Newsletter Dawson/Lynn Counties (Doederlein), tabela de dias e heat units do algodão no High Plains (130-160 dias e 2200 DD60 até 'harvest ready')|Ritchie, Bednarz, Jost & Brown, UGA Bulletin 1252 Cotton Growth and Development, rev. 2007 (DD60 e dias em Tifton)|UGA, 2021 Georgia Cotton Production Guide (DD-60 2500-2700 e 140-160 dias até a colheita; teto 93 °F; UGA Checkbook de água)|Plains Cotton Growers / PhytoGen (Lege), When Should We Plant Cotton?, 2023 (janela de semeadura em Lubbock; data final do seguro)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/algodao_gd.json (DD60 da fonte convertido para Tb 15 sem teto na régua do NASA POWER)|Porter, Texas A&M AgriLife Extension, Irrigation Management Decisions 2022, Lubbock (27 in de demanda plena)|Howell, Evett, Tolk & Schneider, Evapotranspiration of full-, deficit-irrigated and dryland cotton on the northern Texas High Plains, USCID/EWRI 2002 (ET medida em lisímetro, conferência; Peng et al. 1989 por citação secundária)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/algodao_etc.json|Peabody et al., Texas J. Agric. Nat. Resour. 15, 2002 (geada no High Plains)|FAO-56 Tab.11, Tab.12 (Kc) e Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade de pluma GA/TX 2023-2025)|USDA-ARS WEPS, arquivo de cultura NRCS 'Cotton, stripper' (razão resíduo:pluma 2,6 do RUSLE, citação secundária)|Lachnicht et al., Applied Soil Ecology 27:135-142, 2004 (decomposição de restos de algodão no inverno; só o resumo)|Feedipedia, Cotton straw (PB e DMO; valores pontuais)|Beck, OSU Cow-Calf Corner, Cotton Stalk Residue as a Winter Feed Resource, 2022 (pastejo de restos na Geórgia; via Oklahoma Farm Report)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "confianca_parametros": "media",
+    "semeadura_inicio": "04-08",
+    "semeadura_fim": "06-07"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Reusada do Brasil (Tb 15 °C: Beltrão, Embrapa; Antonini et al.) e conferida nos EUA: o método americano é o DD60, 'The number 60 is subtracted from this average, because 60 degrees F is generally accepted as the lowest temperature at which cotton growth occurs' (Ritchie et al., UGA B1252). 60 °F = 15,6 °C, 0,6 °C acima da Tb do Brasil. Mantida 15 para o motor usar a mesma régua nos dois países; as exigências em DD60 foram convertidas para Tb 15 no POWER (ver graus_dia)."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Semeadura -> algodão pronto para colher ('harvest ready', capulhos abertos e desfolha), a fase usada como 'maturação' no algodão (no Brasil, 90% dos capulhos abertos). Texas A&M AgriLife (newsletter de Dawson/Lynn, High Plains): 'Planting to Harvest Ready 130 to 160' dias. Mínimo = 130. Conferência na Geórgia: UGA 2021, 'Harvest [...] 140 to 160' dias; UGA B1252, 140 dias (Tifton, semeadura 1/mai). A newsletter avisa que cultivares precoces podem encurtar a estação em ~2 semanas. No POWER, os 2200 DD60 do Texas são atingidos em mediana 111 dias (86-144) a partir de 15/mai em Lubbock: o 'harvest ready' da extensão inclui a abertura dos capulhos e a desfolha."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Texas A&M (High Plains) e UGA 2021 (Geórgia): até 160 dias da semeadura à colheita. A colheita (Handbook 628, 'most active'): Geórgia 10/out-2/dez; Texas (estado todo) 13/set-21/dez. Em Lubbock, com semeadura em 15/mai, 160 dias = 22/out."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (Tb 15, sem teto), scripts/gd_nasa_power.py com eua/cenarios/algodao_gd.json, 2001-2020. Fonte: 2200 DD60 da semeadura ao 'harvest ready' no High Plains (Texas A&M, 'based on research conducted on the High Plains, for a mature crop'); como a Tb da fonte (15,56) não é a da linha (15), não basta dividir por 1,8 (2200/1,8 = 1222). Lubbock, semeadura 15/mai, data em que 2200 DD60 são atingidos (mediana 111 dias) -> GD Tb 15 = mediana 1274 (P10 1266, P90 1286); semeadura 1/jun -> 1279. Conferência do método: nas mesmas datas, com Tb 15,56, o POWER soma 1211 (-0,9% contra 1222; o script eleva a Tmin a 60 °F para achar a data). Mínimo = 1274 arredondado para baixo = 1270."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO no POWER (mesmo script e arquivo). Fonte: UGA 2021, DD-60 da semeadura à colheita '2500 to 2700', com Tmax limitada a 93 °F; 2700 = cultivar mais tardia. Tifton, semeadura 1/mai, até atingir 2700 DD60 com teto 93 (mediana 142 dias, 126-175) -> GD Tb 15 sem teto = mediana 1591 (P10 1564, P90 1625). Máximo = 1590. Conferências: 2500 DD60 -> 1475; UGA B1252 (2600 DD60 em 140 dias, Tifton 1928-2003) -> POWER 1/mai + 140 d com Tb 15,56 = 1492 (+3,3% contra 1444) e com Tb 15 = 1570; Peng et al. 1989 (2610 °F-dias para produtividade ótima no sul do High Plains, citação secundária) em Lubbock -> 1505."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Geórgia (clima de menor demanda): UGA 2021 Georgia Cotton Production Guide, Table 1 'UGA Checkbook Cotton Irrigation for Full Season', 'developed from 2001-2016 historical average evapotranspiration data': soma das 25 semanas = 16,59 in = 421 mm, arredondado para baixo = 420. É a necessidade de água da lavoura plena (chuva + irrigação), não o mínimo para colher algo. Conferência: Kc x ET0 do POWER em Tifton (1/mai + 140 d, Kc FAO-56) = 585 mm (mediana; +39% contra o checkbook)."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Lubbock (clima de maior demanda): Porter, Texas A&M AgriLife Extension 2022: 'full water demand in an \"average\" year is approximately 27 inches' para o algodão (Texas High Plains ET Network); 27 × 25,4 = 686 mm -> 690. A mesma fonte: abaixo de 75% (21 in = 533 mm) há perda de produtividade; ~13 in (330 mm) é o mínimo 'to achieve harvestable yield' (não usado: o critério é produtividade plena). Conferências: lisímetro de Bushland (norte do High Plains, irrigação plena) mediu 775 mm (2000) e 739 mm (2001) (Howell et al. 2002); Kc x ET0 do POWER em Lubbock (15/mai + 150 d) = 838 mm (+22%) e em Bushland nos mesmos anos e datas 1051 e 981 mm (+36% e +33%): o POWER superestima a ET0 no High Plains."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Kc ini do grupo 'g. Fibre Crops' = 0,35, herdado pela linha 'Cotton'. Igual ao Brasil."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Cotton 1,15-1,20; ponta baixa, igual ao Brasil (clima padrão). No High Plains seco e com vento, a eq. 62 sobe o Kc mid para ~1,22 (conta do etc_nasa_power.py com h = 1,2 m); o motor ajusta no local."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Cotton 0,70-0,50; ponta baixa (algodão de sequeiro que seca no campo e é desfolhado antes da colheita). Igual ao Brasil."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Cotton 1,0-1,7 m; limite superior (sequeiro, solo sem impedimento). Igual ao Brasil. Em Bushland, Howell et al. 2002 tratam 2,0 m como o limite da extração de água no Pullman."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica, tipos, perene",
+      "valor_brasil": "Gossypium hirsutum, Malvaceae, comercial, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie (upland cotton) e mesmo papel (fibra comercial, anual): 'Most United States cotton is Upland cotton' (NASS 2010)."
+    },
+    {
+      "coluna": "fixa_nitrogenio, raiz_profunda",
+      "valor_brasil": "false, false",
+      "decisao": "reusado",
+      "motivo": "Botânica (Malvaceae) e raiz de 1,7 m do FAO-56, a mesma. O catálogo do app marca 'raiz_profunda' em algodao; a linha segue o Brasil (1,7 m não passa do critério)."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "15",
+      "decisao": "conferido e mantido",
+      "motivo": "DD60 americano = Tb 15,6 °C. Mantida 15 (decisão do README dos EUA); graus-dia convertidos no POWER."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
+      "valor_brasil": "20, 30, 38",
+      "decisao": "conferido e mantido",
+      "motivo": "A UGA (2021) limita a Tmax do DD60 em 93 °F (33,9 °C), 'since growth probably does not increase at higher temperatures', acima do ótimo máximo de 30 °C do Brasil. Não achei fonte americana para 20 °C nem para 38 °C; mantidos do Brasil."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "Peabody et al. 2002 (Texas Tech): 'Freezing temperatures in late spring and early fall in these northern counties require that cotton be planted in late May and mature before mid-October'."
+    },
+    {
+      "coluna": "kc_inicial, kc_medio, kc_final, profundidade_raiz_m",
+      "valor_brasil": "0.35, 1.15, 0.5, 1.7",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 12 e 22. A Tab. 11 tem uma linha do Texas ('Cotton 30 50 55 45 180 April Texas'), usada nas fases dos cenários de água."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "140, 190",
+      "decisao": "trocado",
+      "motivo": "Calendário dos EUA: 130-160 dias da semeadura ao algodão pronto para colher (Texas A&M; UGA)."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "1400, 1750",
+      "decisao": "trocado",
+      "motivo": "Exigências americanas em DD60 (2200 no High Plains; 2500-2700 na Geórgia) refeitas no POWER com Tb 15 sem teto: 1270-1590. As cultivares e a estação dos EUA (sobretudo no High Plains) são mais curtas que as tardias do Cerrado."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "700, 1300",
+      "decisao": "trocado",
+      "motivo": "O Brasil usa a faixa genérica da FAO (Manual 3). Nos EUA há números da extensão: 420 mm (UGA Checkbook, Geórgia) a 690 mm (Texas A&M, Lubbock)."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 5,5 t/ha, C/N 44 (estimada), k null, PB 6,4, DMO 37,2, exceção de destruição dos restos (vazio sanitário)",
+      "decisao": "trocado",
+      "motivo": "Mesmo método com dados dos EUA: produtividade NASS x razão do RUSLE, decomposição medida nos EUA (Lachnicht et al. 2004). A exceção do vazio sanitário do bicudo é lei brasileira e não foi transferida (ver pendências)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabela 'All Cotton Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Most United States cotton is Upland cotton [...] Georgia ........:    990.0   Apr 23 May 2 - May 31  Jun 11  Sep 23 Oct 10 - Dec 2  Dec 18 [...] Texas ..........:  3,517.8   Mar 22 Apr 8 - Jun 7   Jun 20  Aug 10 Sep 13 - Dec 21 Jan 11"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "temp_base_c"
+      ],
+      "fonte": "Doederlein, T. (Extension Agent - IPM), Texas A&M AgriLife Extension, Crop Management Newsletter, Dawson and Lynn Counties (cabeçalho 'July 6, 2015 - Volume XXIII - Number 7'), cópia do Internet Archive",
+      "url": "https://web.archive.org/web/2020/https://dawson.agrilife.org/files/2018/04/No.-3-July-28.pdf",
+      "trecho": "For cotton, the threshold temperature is 60 F [...] There are no negative HU's [...] Planting to Harvest Ready 130 to 160 2200 [...] a total of 2200 HU, based on research conducted on the High Plains, for a mature crop. [...] if you planted one of the \"faster\" or early maturing varieties you might expect to compress the season by about 2 weeks."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_max",
+        "temp_base_c"
+      ],
+      "fonte": "Ritchie, G.L.; Bednarz, C.W.; Jost, P.H.; Brown, S.M., Cotton Growth and Development, University of Georgia Cooperative Extension Bulletin 1252, revisado em junho de 2007, Tabela 3 (cópia hospedada pela Texas A&M)",
+      "url": "https://cotton.tamu.edu/wp-content/uploads/sites/27/legacy-files/General%20Production/Georgia%20Cotton%20Growth%20and%20Development%20B1252-1.pdf",
+      "trecho": "60 degrees F is generally accepted as the lowest temperature at which cotton growth occurs [...] based on historical data from Tifton, Ga. [...] First Flower 950 59 [...] Open Boll 2150 116 [...] Harvest 2600 140 [...] assuming a May 1 planting date."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "graus_dia_ciclo_max",
+        "temp_otima_max_c"
+      ],
+      "fonte": "University of Georgia, 2021 Georgia Cotton Production Guide, seção Plant and Fiber Development (cópia do escritório de extensão de Colquitt County)",
+      "url": "https://site.extension.uga.edu/colquittag/files/2021/03/2021-Cotton-Production-Guide-final.pdf",
+      "trecho": "Temperatures above 93o F should be entered in the formula at only 93o F since growth probably does not increase at higher temperatures. [...] First open boll 2150 115 to 120 [...] Harvest 2500 to 2700 140 to 160"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min"
+      ],
+      "fonte": "University of Georgia, 2021 Georgia Cotton Production Guide, seção de irrigação, Table 1 'UGA Checkbook Cotton Irrigation for Full Season'",
+      "url": "https://site.extension.uga.edu/colquittag/files/2021/03/2021-Cotton-Production-Guide-final.pdf",
+      "trecho": "It is encouraged that producers follow the UGA Checkbook method developed from 2001-2016 historical average evapotranspiration data (Table 1 and Figure 1). [...] Inches per Week: 0.04 0.18 0.29 0.41 0.56 0.71 0.85 1.08 1.28 1.47 1.52 1.48 1.42 1.30 1.16 0.88 0.69 0.51 0.35 0.22 0.12 0.05 0.02 0.00 0.00 [soma = 16,59 in = 421 mm]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "graus_dia_ciclo_min"
+      ],
+      "fonte": "Lege, K.E. (PhytoGen), When Should We Plant Cotton?, Plains Cotton Growers, maio de 2023 (material de empresa; só para a janela de semeadura)",
+      "url": "https://www.plainscotton.org/wp-content/uploads/2023/05/When-Should-We-Plant-Cotton.pdf",
+      "trecho": "For Lubbock county and southward, the data indicate yield potential is maintained when cotton is planted from May 8 through the last week of May [...] the final date for Cochran, Crosby, most of Floyd, Gaines, Hale, Hockley, Lubbock, Terry and Yoakum counties is June 5."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/algodao_gd.json (NASA POWER diário, comunidade AG, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "algodao_lubbock_0515_dd60_2200: dias mediana 111 (86-144); GD Tb 15 mediana 1274 (P10 1266, P90 1286); conferência Tb 15,56: 1211 contra 1222 (-0,9%); algodao_lubbock_0601_dd60_2200: 1279; algodao_lubbock_0515_dd60_2610_peng: 1505; algodao_tifton_0501_dd60_2700_teto93: dias mediana 142 (126-175), GD mediana 1591 (P10 1564, P90 1625); algodao_tifton_0501_dd60_2500_teto93: 1475; algodao_tifton_0501_140d_conf_tb1556: 1492 contra 1444 (+3,3%); algodao_tifton_0501_140d (Tb 15): 1570"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Porter, D., Irrigation Management Decisions, 2022, Texas A&M AgriLife Extension (Lubbock; adaptado de Porter 2011), escritório de Hockley County, cópia do Internet Archive",
+      "url": "https://web.archive.org/web/2023/https://hockley.agrilife.org/files/2022/07/Irrigation-Management-Decisions-2022.pdf",
+      "trecho": "Literature indicates cotton and sorghum require a minimum of approximately 13 inches of available water from stored soil moisture, rainfall and/or irrigation to achieve harvestable yield; full water demand in an \"average\" year is approximately 27 inches and 24 inches for cotton and sorghum, respectively. Water less than about 75% of this value, or 21 inches for cotton, would be expected to result in yield loss."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max",
+        "graus_dia_ciclo_max",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Howell, T.A.; Evett, S.R.; Tolk, J.A.; Schneider, A.D., Evapotranspiration of full-, deficit-irrigated and dryland cotton on the northern Texas High Plains, USCID/EWRI Conference, San Luis Obispo, 2002 (USDA-ARS Bushland), Tab. 1 e 4; Peng et al. 1989 lido só por esta citação",
+      "url": "https://mountainscholar.org/bitstream/10217/206909/1/121_2002-USCID_Howell.pdf",
+      "trecho": "Measured ET, mm 775 622 397 739 578 386 [FULL, DEF., DRY em 2000 e 2001] [...] Plant May 17 [...] Harvest Nov. 14 [...] Peng et al. (1989) indicated in the Southern Texas High Plains, a heat unit accumulation of approximately 2610 OF-days (1450 °C-days) with a total water supply rainfall plus irrigation of 22 in. (550 mm) are needed to achieve optimum yields"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO (conferência): scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/algodao_etc.json (Kc FAO-56, sem eq. 62)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "algodao_conf_tifton_0501_140d: ETc mediana 585 (P10 491, P90 646), referência 421 (+38,9%); algodao_conf_lubbock_0515_150d: mediana 838 (P10 768, P90 965), referência 686 (+22,1%); algodao_conf_bushland_2000_0517_182d: 1051 contra 775 medido (+35,6%); algodao_conf_bushland_2001_0516_168d: 981 contra 739 (+32,7%)"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Peabody, P.J.; Johnson, P.N.; Auld, D.L.; Bechere, E., Profitability of Short Season Cotton Genotypes on the High Plains of Texas, Texas Journal of Agriculture and Natural Resources 15, 2002 (Texas Tech, Lubbock)",
+      "url": "https://txjanr.agintexas.org/index.php/txjanr/article/download/148/135",
+      "trecho": "Freezing temperatures in late spring and early fall in these northern counties require that cotton be planted in late May and mature before mid-October."
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabelas 11 e 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "g. Fibre Crops 0.35 Cotton 1.15-1.20 0.70-0.50 1.2-1.5 [...] Cotton 30 50 55 45 180 April Texas"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Cotton 1.0-1.7 0.65"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, 'Cotton Area Planted and Harvested, Yield, and Production by Type', Upland, yield per acre (pounds de pluma por acre colhido)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Upland [...] Georgia .........:    949       858     1,047 [...] Texas ...........:    618       656       600 [2023, 2024, 2025]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA-ARS, WEPS crop database, arquivo NRCS 'Cotton, stripper' (notas da cultura; a razão 2,6 do RUSLE é citação secundária)",
+      "url": "https://infosys.ars.usda.gov/svn/code/weps1/branches/weps.install-cligendiff/db/crops/NRCS/Cotton,%20stripper.crop",
+      "trecho": "Created from RUSLE values MAS 9/20/06. Grown in the dryland area of western TX on the plains. [...] Adjusted the Res:Yied factor (2.6 was the multiplyer) to match RUSLE with the added seed trash to the harvest mass [...] hyldunits lb/ac lint"
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ],
+      "fonte": "Lachnicht, S.L.; Hendrix, P.F.; Potter, R.L.; Coleman, D.C.; Crossley, D.A. Jr., Winter decomposition of transgenic cotton residue in conventional-till and no-till systems, Applied Soil Ecology 27(2):135-142, 2004 (lido só o resumo, via AGRIS/FAO)",
+      "url": "https://agris.fao.org/search/fr/records/65df4e630f3e94b9e5d735d9",
+      "trecho": "mass loss with subsurface decomposition in the CT reached 55% [...] surface decomposition in the NT reached only 25% [...] 20-week winter period"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "cn_palhada"
+      ],
+      "fonte": "Feedipedia (INRAE, CIRAD, AFZ, FAO), Cotton straw, tabela de composição (valores pontuais)",
+      "url": "https://www.feedipedia.org/node/12019",
+      "trecho": "Crude protein % DM 6.4 [SD 2.3, min 3.5, max 9.6, n 7] [...] OM digestibility, ruminants % 37.2 [n 1, sem asterisco]"
+    },
+    {
+      "colunas": [
+        "uso_forrageiro"
+      ],
+      "fonte": "Beck, P. (Oklahoma State University, Beef Cattle Nutrition Specialist), Cow-Calf Corner: Cotton Stalk Residue as a Winter Feed Resource, publicado no Oklahoma Farm Report, 09/11/2022 (pista; pesquisa da Geórgia citada sem referência)",
+      "url": "https://www.oklahomafarmreport.com/2022/11/09/cotton-stalk-residue-as-a-winter-feed-resource/",
+      "trecho": "Research in Georgia showed that dry pregnant cows can be maintained on cotton stalk residue [...] were over 20% crude protein and 62% total digestible nutrients and comprised 30 to 50% of the total standing residue [...] Total hay fed was decreased by 67% for cows grazing cotton stalks"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats (API), séries por condado baixadas pelo time em 15/11/2026 com data/scripts/baixar_nass_eua.py (saída data/eua/nass/producao_condado.csv: 3021 linhas de 'algodao', 2016-2025); conferência do nome da série, não dos números",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "O short_desc é o nome exato da série no Quick Stats (conferido por condado com get_counts). [...] \"COTTON, UPLAND - ACRES PLANTED\", \"COTTON, UPLAND - ACRES HARVESTED\", \"COTTON, UPLAND - PRODUCTION, MEASURED IN 480 LB BALES\""
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Quick Stats API, página de uso (exemplo de resposta do api_GET), lida em 15/11/2026 (formato do short_desc e nomes dos campos)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "\"util_practice_desc\":\"ALL UTILIZATION PRACTICES\" [...] \"short_desc\":\"CORN - ACRES PLANTED\" [...] \"Class_desc\":\"ALL CLASSES\" [...] \"commodity_desc\":\"CORN\""
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Texas'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Texas [...] Cotton, all ............: 3,517.8    Mar 22 Apr 8 - Jun 7   Jun 20  Aug 10 Sep 13 - Dec 21 Jan 11 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"COTTON, UPLAND - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'COTTON', class_desc 'UPLAND', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 2153, COUNTY 37082"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 1.7,
+      "max": 3.1,
+      "tipico": 2.2
+    },
+    "cn_palhada": {
+      "min": null,
+      "max": null,
+      "tipico": 44
+    },
+    "k_dia": {
+      "valor": 0.0021,
+      "min": 0.0021,
+      "max": 0.0057
+    },
+    "meia_vida_dias": {
+      "valor": 330
+    },
+    "condicao_decomposicao": "Restos de algodão transgênico em sacolas, inverno (dezembro a maio, 20 semanas), na superfície em plantio direto (25% de perda de massa) e enterrados no preparo convencional (55%); Lachnicht et al. 2004 (só o resumo; o local não aparece no resumo, os autores são da Univ. of Georgia).",
+    "pb_pct": 6.4,
+    "digestibilidade_pct": {
+      "valor": 37.2,
+      "tipo": "OMD",
+      "n": 1,
+      "medicao": "medida",
+      "nota": "DMO (OMD) em ruminantes da palha de algodão (Cotton straw), Feedipedia, sem asterisco (medida), n = 1; o mesmo valor usado no Brasil. Não achei digestibilidade de restos de algodão medida nos EUA. A OSU (Beck 2022) cita que a parte comestível dos restos (folhas, capulhos, pluma e caroço; 30-50% da massa em pé) passa de 20% de PB e 62% de NDT na Geórgia, mas NDT não é digestibilidade e o colmo quase não é comido."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Restos culturais do algodão de sequeiro depois da colheita (caule, ramos, carpelos, folhas caídas, capulhos e pluma que sobram), pastejados por vacas secas no outono e inverno. PB 6,4% (Feedipedia, Cotton straw, n = 7). O caroço é vendido pela algodoeira e não entra. Não li os rótulos dos desfolhantes usados na colheita (podem restringir o pastejo).",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Palhada = restos acima do solo depois da colheita da pluma, pela razão resíduo:pluma 2,6 do RUSLE (citada no arquivo NRCS 'Cotton, stripper' do WEPS, algodão de sequeiro do oeste do Texas; a produtividade nesse arquivo é em lb/acre de pluma). t MS/ha = pluma (lb/acre) × 2,6 × 1,121 / 1000. NASS (upland, por acre colhido), 2023-2025: Texas 618, 656, 600 -> 1,80, 1,91, 1,75 t/ha; Geórgia 949, 858, 1047 -> 2,77, 2,50, 3,05 t/ha. Típico = mediana dos 6 estado-ano = (1,91 + 2,50)/2 = 2,2 t/ha; mínimo = Texas 2025 (1,7); máximo = Geórgia 2025 (3,1). A produtividade do Texas é do estado todo e inclui lavoura irrigada; o sequeiro de Lubbock produz menos (e o abandono de área é grande: em 2023, 5,55 milhões de acres plantados e 2,1 milhões colhidos). Só 3 anos no relatório lido (o milho usou o mesmo período). C/N: sem medida nos EUA; 44 = ESTIMATIVA pela PB da palha (6,4% -> N 1,02%) com C = 45%, a mesma conta do Brasil.",
+      "decomposicao": "k = -ln(fração restante)/dias: superfície em plantio direto, 75% restantes em 20 semanas (140 dias) -> k = -ln(0,75)/140 = 0,0021 por dia (T½ = 0,693/0,0021 = 330 d); enterrado no convencional, 45% restantes -> 0,0057. O valor da régua é o da superfície (palhada que cobre o solo). Palhada que sobra em 60 dias: 2,2 × e^(-0,0021×60) = 1,9 t/ha.",
+      "colheita": "Handbook 628 (NASS 2010), All Cotton, 'most active': Geórgia, semeadura 2/mai-31/mai e colheita 10/out-2/dez; Texas (estado todo, inclui o sul do Texas), semeadura 8/abr-7/jun e colheita 13/set-21/dez. Em Bushland (norte do High Plains), Howell et al. 2002 colheram em 14/nov (2000) e 30/out (2001).",
+      "destruicao_de_restos": "No Brasil a linha tem exceção (vazio sanitário do bicudo). Nos EUA não li norma que obrigue destruir os restos em Lubbock ou na Geórgia (não pesquisei os prazos estaduais de destruição de soqueira). Triturar a soqueira não tira a massa do campo. Sem fonte, não há exceção.",
+      "codigos": "codigo_nass 'COTTON, UPLAND' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'COTTON, UPLAND - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'COTTON', class_desc 'UPLAND', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 2153, COUNTY 37082. Série de produção: 'COTTON, UPLAND - PRODUCTION, MEASURED IN 480 LB BALES'. O Pima (class PIMA) fica de fora."
+    },
+    "resultado": {
+      "aporte_biomassa": "baixo",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 2.2,
+      "ms_remanescente_t_ha": 1.94,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "arranjos": {
+      "georgia": {
+        "estados": "GA",
+        "semeadura_inicio": "05-02",
+        "semeadura_fim": "05-31",
+        "origem": {
+          "semeadura": "publicado"
+        },
+        "nota": "Handbook 628 (2010), tabela da Georgia, 'most active'; linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv; os cenários de Tifton semeiam em 1/mai"
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "baixa",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "calendario_usda",
+      "antes": "All Cotton",
+      "depois": "Cotton, all",
+      "motivo": "Conferência de 15/11 (pedido do coordenador): o nome passa a ser o da linha nas tabelas por estado do Handbook 628, o mesmo de data/eua/nass/datas_plantio.csv (coluna nome_nass). 'All Cotton' é o título da tabela nacional."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "",
+      "depois": "04-08 / 06-07",
+      "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Texas, lida em data/eua/nass/datas_plantio.csv (linha algodao,Cotton, all,TX)."
+    },
+    {
+      "coluna": "regua.arranjos.georgia",
+      "antes": "",
+      "depois": "GA: semeadura 05-02 a 05-31 (origem publicado)",
+      "motivo": "Revisão 'eua-nass-janelas 15_11_26', M-06 (decisão do usuário): janela 'most active' do Handbook 628 (2010) para a Geórgia, conferida na linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv (pico 05-02 a 05-31). A linha fica com o Texas; estados_validos continua vazio. Números da linha não mudados."
+    },
+    {
+      "coluna": "pendencias (duas regiões; semeadura)",
+      "antes": "Uma linha cobre duas regiões muito diferentes (Lubbock: estação curta, sequeiro com pouca chuva, alta demanda de ET; sul ...",
+      "depois": "pendência 'uma linha com duas regiões; separar quando o motor ler arranjos regionais'; pendência da semeadura aponta para regua.arranjos.georgia",
+      "motivo": "Revisão 'eua-nass-janelas 15_11_26', M-06 (decisão do usuário): manter a mistura Texas/Geórgia nos números da linha e documentá-la."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'COTTON, UPLAND' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_... | observacoes.codigos: codigo_nass 'COTTON, UPLAND'. short_desc 'COTTON, UPLAND - ...' = commodity_desc 'COTTON' + class_desc 'UPLAND' (o Pima ...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'COTTON, UPLAND - ACRES PLANTED', registros SURVEY: STATE 2153, COUNTY 37082; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    }
+  ],
+  "pendencias": [
+    "UMA LINHA COM DUAS REGIÕES; separar quando o motor ler arranjos regionais (decisão do usuário, 15/11: manter assim e documentar). Os números da linha misturam o Texas (Lubbock, Southern High Plains: estação curta, sequeiro com pouca chuva, alta demanda de ET) e a Geórgia (Tifton, Coastal Plain: estação longa e úmida): ciclo_dias (130-160) e graus_dia_ciclo_min vêm do Texas; graus_dia_ciclo_max e agua_ciclo_mm_min vêm da Geórgia; agua_ciclo_mm_max vem do Texas. A semeadura da linha é a do Texas; a da Geórgia está em regua.arranjos.georgia. estados_validos fica vazio de propósito: com 'TX', Tifton passaria a ver 'sem dado para sua região'.",
+    "temp_base_c = 15 (Brasil) contra 15,6 (DD60 americano). As exigências foram convertidas no POWER (Tb 15, sem teto); com Tb 15 a soma fica ~4-6% acima do DD60/1,8 da fonte.",
+    "ciclo_dias 130-160 vem de uma newsletter de extensão do Texas (tabela sem referência primária) e do guia da UGA; é semeadura -> 'harvest ready' (capulhos abertos, desfolha), não maturação fisiológica de grão. No POWER, os 2200 DD60 do High Plains chegam em mediana 111 dias (86-144) a partir de 15/mai em Lubbock, bem antes de 130 dias. Faltou uma fonte com dias até 60-90% de capulhos abertos por cultivar em Lubbock (ensaios RACE da Texas A&M).",
+    "graus_dia_min (1270) vem de 2200 DD60 'based on research conducted on the High Plains' sem a referência primária; Peng et al. 1989 (citação secundária) dá 2610 °F-dias para produtividade ótima no sul do High Plains (-> 1505). Se o motor tratar o mínimo como 'colheita plena', o mínimo seria ~1500. Resolveria: ler Peng, Krieg & Hicks 1989 (Field Crops Res. 19:253-262) ou os relatórios RACE com DD60 por cultivar.",
+    "graus_dia: o POWER em Tifton soma 3% mais DD60 que a média histórica de Tifton (1928-2003) nos mesmos 140 dias (1492 contra 1444); o Texas não tem conferência equivalente.",
+    "agua: valores publicados de extensão (UGA Checkbook 16,6 in; Texas A&M 27 in). O Kc x ET0 do POWER dá 39% mais em Tifton e 22% mais em Lubbock, e 33-36% mais que o lisímetro de Bushland nos mesmos anos: se o motor calcular a água no local com o POWER, a demanda do algodão no High Plains sai inflada. Recomendo testar o POWER contra o lisímetro de Bushland antes de confiar no cálculo local no oeste do Texas.",
+    "agua_min (420) é da Geórgia, onde o sequeiro recebe ~535 mm de chuva no ciclo (POWER); em Lubbock a chuva do ciclo é ~315 mm (POWER) e o algodão de sequeiro vive da água guardada no solo. Com a regra 'abaixo do mínimo elimina', o motor pode eliminar algodão de sequeiro em Lubbock; o mínimo 'para colher algo' do Texas é 13 in (330 mm).",
+    "tmax_critica_c = 38 e temp_otima_min_c = 20 sem fonte americana (mantidos do Brasil). A UGA limita a Tmax do DD60 em 93 °F (33,9 °C).",
+    "regua: razão resíduo:pluma 2,6 lida por citação secundária (nota do arquivo do WEPS); conferir no banco do RUSLE2. A produtividade do Texas é do estado todo. C/N estimada (sem medida nos EUA). Decomposição de um estudo, lido só no resumo (local não informado no resumo). Digestibilidade com n = 1 (Feedipedia).",
+    "calendario_usda: 'Cotton, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). O Handbook não separa o upland ('Cotton, all').",
+    "semeadura_inicio/fim (04-08 a 06-07) = 'most active' do Handbook 628 (2010) no Texas, a região de referência principal (início 22/mar, fim 20/jun). É o estado inteiro: inclui o sul do Texas (março-abril); em Lubbock a semeadura é em maio-junho. A janela do sul da Geórgia ('most active' 2/mai-31/mai; início 23/abr, fim 11/jun; linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv) está em regua.arranjos.georgia (15/11, decisão do usuário, M-06). Conferência com cenarios/algodao_gd.json (graus-dia e ciclo NÃO mudados): Lubbock 15/mai e 1/jun dentro da janela do Texas; Tifton 1/mai fica 1 dia antes do 'most active' da Geórgia (dentro do início de 23/abr). O motor ainda não lê regua.arranjos nem a janela dos grãos: hoje nenhuma das duas janelas filtra Tifton; quando o motor passar a ler, Tifton deve usar a da Geórgia."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
+}

@@ -21,6 +21,8 @@
     "cobertura_solo": "baixa",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "baixo",
+    "codigo_pam": "40124",
+    "nome_zarc": "Soja",
     "fontes": "Embrapa Soja Circular Técnica 48 (2007) (temperatura e água)|Embrapa Soja Documentos 284 e 309 (ciclo)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes)|FAO-56 Tab.22 (raiz)|IBGE PAM tabela 5457 (código)",
     "confianca_parametros": "media",
     "graus_dia_ciclo_min": "1600",
