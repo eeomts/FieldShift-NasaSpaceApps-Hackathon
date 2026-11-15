@@ -8,8 +8,8 @@ Last updated: 2026-11-15
 
 ```
 1. Questionnaire  ->  2. Data collection  ->  3. Analysis engine  ->  4. Dashboard + comparison  ->  5. Chat
-   (farm, crops,       (NASA + soil +         (soil portrait,         (what the farmer sees)        ("what if"
-    soil, priorities)   climate, by location)  rotation scoring)                                     questions)
+   (farm, crops,       (NASA + soil +         (soil portrait,         (what the farmer sees)        (plain-language
+    soil, priorities)   climate, by location)  rotation scoring)                                     answers)
 ```
 
 1. **Questionnaire.** The farmer marks the farm on a map and answers about crops and planting months, soil observations (with reference photos), equipment, irrigation, animals and up to 3 priorities. "I don't know" is always a valid answer.
@@ -51,6 +51,7 @@ Last updated: 2026-11-15
 | Purpose | Real use | Demo for the judges |
 | Sign-in | E-mail and password | Name only |
 | Questionnaire | Blank | Pre-filled with a Corn Belt (Iowa) farm, with a **Skip All** button |
+| Online | https://agroai.mateusmoreira.dev | https://demo-agroai.mateusmoreira.dev |
 
 Both use the same API and database.
 

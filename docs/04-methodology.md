@@ -65,7 +65,7 @@ A candidate is **eliminated** (with the reason shown) when:
 - the crop needs flooded (irrigated) rice conditions the farm does not have;
 - a **new** suggestion gets rain for less than half of its water demand and the farm has no irrigation.
 
-A cover crop is only suggested inside its own sowing window.
+A cover crop is only suggested inside its own sowing window. In the US, a cash crop is only suggested in a month of its usual planting window (USDA Handbook 628, "most active" dates in the reference state).
 
 **Heat only warns:** when the daily maximum passes the crop's limit for 3 days in a row in the middle third of the cycle in more than 30 % of the years.
 
@@ -96,10 +96,6 @@ For each strategy, the app shows what the challenge asks for:
 - **Confidence:** the lowest confidence among the crops in the rotation.
 - **Gaps:** what is missing and needs local review.
 
-## Scenarios ("what if")
-
-A scenario is the same engine running with a different input: less rain, higher temperature, another crop, irrigation in part of the field. It is a **sensitivity test, not a forecast**, and the app says so.
-
 ## Why not machine learning
 
 There is no dataset of real rotation outcomes to train a model, and a model would be a black box. Rules and formulas are explainable to the farmer, and every score can be traced back to its source.
@@ -112,5 +108,5 @@ Thresholds and weights live in one file (`agroai/api/app/services/motor/parametr
 
 - FAO-56, Crop evapotranspiration (ET0 and Kc): https://www.fao.org/4/x0490e/x0490e00.htm
 - SoilGrids (ISRIC): https://soilgrids.org
-- Embrapa relief classes (slope): Embrapa, *Sistema Brasileiro de Classificacao de Solos*
-- Crop parameters and their sources: `data/catalogo/culturas.csv` and `data/catalogo/evidencias/`
+- Embrapa relief classes (slope): Embrapa, *Sistema Brasileiro de Classificação de Solos* (in Portuguese)
+- Crop parameters and their sources: `data/catalogo/culturas.csv`, `data/catalogo/evidencias/` (Brazil) and `data/catalogo/eua/` (US); evidence notes are in Portuguese

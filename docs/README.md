@@ -19,10 +19,10 @@ Start here. AgroAI is a crop-rotation decision-support tool for small and mid-si
 | Criterion | Where to look |
 |---|---|
 | **Impact** | [Overview](01-overview.md): the farmer's problem and why it matters |
-| **Creativity** | [How It Works](02-how-it-works.md): an assistant that answers "what if" with the farm's own data; explainable rotation comparison |
+| **Creativity** | [How It Works](02-how-it-works.md): an assistant that explains the results with the farm's own data and cites every source; explainable rotation comparison |
 | **Validity** | [NASA Data](03-nasa-data.md), [Methodology](04-methodology.md), [Limitations](05-limitations-roadmap.md): every number has a source, gaps are shown |
 | **Relevance** | [Overview](01-overview.md), section "How it answers the Field Shift challenge" |
-| **Presentation** | The demo video and the app itself |
+| **Presentation** | The demo video and the app itself (live demo, no password: https://demo-agroai.mateusmoreira.dev) |
 
 ## Writing rules for these documents
 
@@ -30,3 +30,4 @@ Start here. AgroAI is a crop-rotation decision-support tool for small and mid-si
 - Every number has a source, listed in a **Sources** section or linked to the code.
 - Status is honest: `Working`, `Partial` or `Planned`.
 - The team's internal working notes (in Portuguese) are not part of this documentation.
+- A few data files referenced as sources (the crop evidence files and the download log in `data/`) are the team's working records and are in Portuguese; their content is summarized in English in [References](06-references.md).
