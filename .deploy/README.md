@@ -1,4 +1,4 @@
-# Deploy do AgroIA
+# Deploy do AgroAI
 
 ```
 internet :80/:443
@@ -63,7 +63,7 @@ Então:
 
 ## VPS que já tem nginx (outros projetos)
 
-Se um nginx do host já ocupa 80/443, o Caddy não sobe ("address already in use"). Não derrube o nginx: ponha o AgroIA atrás dele.
+Se um nginx do host já ocupa 80/443, o Caddy não sobe ("address already in use"). Não derrube o nginx: ponha o AgroAI atrás dele.
 
 ```
 internet :443 -> nginx do host (TLS pelo certbot) -> 127.0.0.1:8082 -> Caddy (só HTTP) -> API

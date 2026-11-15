@@ -1,6 +1,6 @@
 ---
 name: onde-paramos
-description: Retoma ou registra o andamento do AgroIA. No inicio, cruza git (branches, commits, mudancas nao commitadas), PRs abertos, perguntas abertas do DECISOES.md e tarefas de data/ e diz o que esta feito, pendente e bloqueado e qual o proximo passo. No fim, grava o progresso em docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md. Use em "onde paramos", "o que falta", "retomar", ao comecar a sessao e ao pausar uma tarefa.
+description: Retoma ou registra o andamento do AgroAI. No inicio, cruza git (branches, commits, mudancas nao commitadas), PRs abertos, perguntas abertas do DECISOES.md e tarefas de data/ e diz o que esta feito, pendente e bloqueado e qual o proximo passo. No fim, grava o progresso em docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md. Use em "onde paramos", "o que falta", "retomar", ao comecar a sessao e ao pausar uma tarefa.
 ---
 
 # onde-paramos
@@ -38,7 +38,7 @@ Próximo passo: <uma ação concreta>
 ## Modo registrar (fim de tarefa ou pausa)
 Criar ou atualizar `docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md`:
 ```markdown
-# Andamento - AgroIA
+# Andamento - AgroAI
 
 Atualizado: <DD-MM-AA>
 

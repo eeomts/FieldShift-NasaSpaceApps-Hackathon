@@ -104,7 +104,7 @@ export function Estrategias() {
       )}
 
       <p className="m-0 rounded-2xl bg-creme px-4 py-3 text-[15px] font-bold text-suave">
-        O AgroIA compara. Quem decide é você, com seu técnico e a cooperativa.
+        O AgroAI compara. Quem decide é você, com seu técnico e a cooperativa.
       </p>
     </section>
   );

@@ -9,7 +9,7 @@ const ROTULO_FONTE: Record<TipoFonte, { pt: string; en: string }> = {
   conhecimento: { pt: "Base de conhecimento", en: "Knowledge base" },
   cultura: { pt: "Dados da cultura", en: "Crop data" },
   fazenda: { pt: "Suas respostas no questionário", en: "Your questionnaire answers" },
-  analise: { pt: "Comparação do AgroIA", en: "AgroIA comparison" },
+  analise: { pt: "Comparação do AgroAI", en: "AgroAI comparison" },
 };
 
 function Fontes({ fontes }: { fontes: Fonte[] }) {
@@ -49,7 +49,7 @@ export function Balao({ m }: { m: Mensagem }) {
   );
 }
 
-/** Mensagem da AgroIA que só existe na tela (saudação), sem fonte. */
+/** Mensagem da AgroAI que só existe na tela (saudação), sem fonte. */
 export function BalaoLocal({ texto }: { texto: string }) {
   return <div className="max-w-[88%] self-start rounded-[22px] rounded-bl-md bg-white px-4 py-3 text-base leading-[1.5] shadow-cartao">{texto}</div>;
 }

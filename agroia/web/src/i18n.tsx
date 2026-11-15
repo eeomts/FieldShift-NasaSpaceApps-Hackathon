@@ -26,7 +26,7 @@ export function mensagemErro(e: unknown, idioma: Idioma): string {
   if (status === 401) return t("E-mail ou senha incorretos, ou a sessão acabou. Entre de novo.", "Wrong email or password, or your session ended. Please log in again.");
   if (status === 409) return t("Este e-mail já tem conta. Tente entrar.", "This email already has an account. Try logging in.");
   if (status === 422) return t("Confira os campos e tente de novo.", "Please check the fields and try again.");
-  if (status === 503) return t("A AgroIA está indisponível agora. Tente de novo mais tarde.", "AgroIA is unavailable right now. Please try again later.");
+  if (status === 503) return t("A AgroAI está indisponível agora. Tente de novo mais tarde.", "AgroAI is unavailable right now. Please try again later.");
   if (status >= 500) return t("O servidor teve um problema. Tente de novo em instantes.", "The server had a problem. Please try again in a moment.");
   return t("Algo deu errado. Tente de novo.", "Something went wrong. Please try again.");
 }

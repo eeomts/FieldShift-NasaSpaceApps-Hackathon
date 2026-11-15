@@ -1,6 +1,6 @@
 ---
 name: nova-tabela
-description: Cria tabela nova, coluna nova ou mudanca de estrutura no AgroIA seguindo as convencoes do projeto - model SQLAlchemy em agroia/api/app/models, migration Alembic com upgrade/downgrade completos e migracao de dados, teste em upgrade -> downgrade -> upgrade no banco de teste. Use ao planejar ou implementar qualquer mudanca de estrutura de banco.
+description: Cria tabela nova, coluna nova ou mudanca de estrutura no AgroAI seguindo as convencoes do projeto - model SQLAlchemy em agroia/api/app/models, migration Alembic com upgrade/downgrade completos e migracao de dados, teste em upgrade -> downgrade -> upgrade no banco de teste. Use ao planejar ou implementar qualquer mudanca de estrutura de banco.
 ---
 
 # nova-tabela: model + migration

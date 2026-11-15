@@ -1,6 +1,6 @@
-# AgroIA: contexto do site
+# AgroAI: contexto do site
 
-> **Para a IA que ler este arquivo:** este é o documento de produto do **AgroIA**, a solução da equipe para o desafio *Field Shift: Adapting Farms with NASA Data* (NASA Space Apps Challenge 2026). Use-o como fonte principal sobre **o que construir e com qual stack**.
+> **Para a IA que ler este arquivo:** este é o documento de produto do **AgroAI**, a solução da equipe para o desafio *Field Shift: Adapting Farms with NASA Data* (NASA Space Apps Challenge 2026). Use-o como fonte principal sobre **o que construir e com qual stack**.
 >
 > **Documentos relacionados** (repositório da equipe `FieldShift-NasaSpaceApps-Hackatnon`, pasta `docs/NasaSpaceApps-FieldShift/v1/`):
 > | Arquivo | O que tem |
@@ -11,7 +11,7 @@
 > | `context/BANCO_DE_DADOS_NASA.md` | Lista de datasets e ferramentas |
 > | `application/ONBOARDING.md` | **Questionário do primeiro acesso: fonte oficial do onboarding** |
 > | `tools/*.md` | Uma nota por fonte do núcleo da D-009 (NASA POWER, SMAP L4, GPM IMERG, MODIS, HLS, SRTM, SoilGrids, GLDAS, ERA5, AppEEARS, earthaccess etc.) com acesso, variáveis, latência e limitações |
-> | `tools/ARQUITETURA-COMPLETA.md` | Fluxo "Analisar meu campo" passo a passo (coleta, harmonização, diagnóstico, filtro, mercado, estratégias, chat com MCP). O AgroIA usa esse fluxo e acrescenta o Dashboard diário e o chat |
+> | `tools/ARQUITETURA-COMPLETA.md` | Fluxo "Analisar meu campo" passo a passo (coleta, harmonização, diagnóstico, filtro, mercado, estratégias, chat com MCP). O AgroAI usa esse fluxo e acrescenta o Dashboard diário e o chat |
 > | `tools/NASA_HARVEST_PORTAL_*.md` | API e MCP do NASA Harvest Portal (dados de mercado por país) |
 > | `application/DOR-DO-AGRICULTOR-E-CASO-DE-USO.md` | Dor do produtor e persona Dona Marta |
 >
@@ -35,12 +35,12 @@
 
 ## 1. Visão do produto
 
-O **AgroIA** é um site em que o produtor:
+O **AgroAI** é um site em que o produtor:
 1. **Faz login e responde o questionário da fazenda** (`ONBOARDING.md`): local, o que planta e quando, o que sabe do solo, perdas que já teve e prioridades.
 2. **Acessa o Dashboard**: informações da região dele, atualizadas diariamente com dados da NASA. Inclui previsão do tempo, condição do solo, saúde da lavoura, alertas e a comparação de estratégias de rotação.
-3. **Conversa com a AgroIA**: um assistente (Gemini) que conhece a fazenda dele (perfil, indicadores do dia e base de conhecimento) e responde em linguagem simples, citando a fonte de cada dado.
+3. **Conversa com a AgroAI**: um assistente (Gemini) que conhece a fazenda dele (perfil, indicadores do dia e base de conhecimento) e responde em linguagem simples, citando a fonte de cada dado.
 
-**Duas abas principais:** `Dashboard` e `AgroIA`.
+**Duas abas principais:** `Dashboard` e `AgroAI`.
 
 **Pitch em uma frase:** *"Os dados de satélite da NASA, traduzidos para a fazenda de cada produtor, num painel diário e num assistente que conversa com ele, em qualquer lugar do mundo."*
 
@@ -55,7 +55,7 @@ O **AgroIA** é um site em que o produtor:
 ### 1.2 Alinhamento com o desafio
 O núcleo do desafio é **comparar pelo menos 3 estratégias de rotação, incluindo a atual**, explicando para cada uma: **por que foi sugerida, evidência, benefícios, lacunas e riscos para revisão local**. Dashboard e chat sozinhos não cumprem isso. Por isso existem o **card "Estratégias de rotação"** (5.2, card 9) e o **comando no chat** (6.5).
 
-| Requisito do desafio | Onde aparece no AgroIA |
+| Requisito do desafio | Onde aparece no AgroAI |
 |---|---|
 | Dados de observação da Terra da NASA | Todos os cards + contexto do chat |
 | Solo, características das culturas | Onboarding (bloco 4) + SoilGrids + base de culturas |
@@ -73,7 +73,7 @@ O núcleo do desafio é **comparar pelo menos 3 estratégias de rotação, inclu
 
 Perfis definidos em `ONBOARDING.md`:
 
-| Perfil | Quem é | Efeito no AgroIA |
+| Perfil | Quem é | Efeito no AgroAI |
 |---|---|---|
 | **A: Experiência** | Pequeno produtor, sem técnico frequente, só observa o solo | Linguagem mais simples; usa dados globais; sugere testes simples |
 | **B: Observador** | Já fez algum teste ou sabe a textura | Combina o que informa com os dados globais |
@@ -124,7 +124,7 @@ Ao terminar, a API dispara o **processamento inicial** da fazenda (seção 7). O
 3. **Cards** em grade (uma coluna no celular).
 4. Rodapé fixo: *"Informações para apoiar sua decisão. Confirme com um técnico agrícola e com a sua experiência."*
 
-Cada card tem: valor principal em frase simples · mini gráfico (se fizer sentido) · **"O que isso significa?"** · **"De onde vem?"** (dataset, data do dado, resolução, confiança) · **"Perguntar à AgroIA"** (abre o chat com a pergunta já escrita).
+Cada card tem: valor principal em frase simples · mini gráfico (se fizer sentido) · **"O que isso significa?"** · **"De onde vem?"** (dataset, data do dado, resolução, confiança) · **"Perguntar à AgroAI"** (abre o chat com a pergunta já escrita).
 
 ### 5.2 Cards (todos globais)
 
@@ -163,7 +163,7 @@ Prioridade: risco à lavoura atual > risco ao solo > oportunidades. Para o Hemis
 
 ---
 
-## 6. Aba 2: AgroIA (chat com Gemini)
+## 6. Aba 2: AgroAI (chat com Gemini)
 
 ### 6.1 Contexto de cada resposta
 Perfil e indicadores de **uma** fazenda são pequenos e **entram direto no prompt**. A **busca (RAG)** é usada para a **base de conhecimento**.
@@ -214,7 +214,7 @@ Pequena e bem escolhida (20 a 50 documentos), respeitando licenças. Indexar por
 ### 6.5 Exemplo
 > **Dona Marta:** o que posso plantar depois da soja?
 >
-> **AgroIA:** Seu campo fica sem nada de abril a outubro. No satélite (NASA MODIS, 2001–2025) ele aparece sem cobertura nesses meses quase todo ano, e as chuvas fortes de novembro (NASA POWER) chegam com a terra exposta.
+> **AgroAI:** Seu campo fica sem nada de abril a outubro. No satélite (NASA MODIS, 2001–2025) ele aparece sem cobertura nesses meses quase todo ano, e as chuvas fortes de novembro (NASA POWER) chegam com a terra exposta.
 >
 > | | Atual (soja → vazio) | Soja → milheto | Soja → milho + capim |
 > |---|---|---|---|
@@ -308,7 +308,7 @@ GET  /chat/{conversa_id}                                          → histórico
 agroia/
 ├── web/                     # React
 │   └── src/
-│       ├── pages/           # Login, Cadastro, Onboarding, Dashboard, AgroIA, Fazenda
+│       ├── pages/           # Login, Cadastro, Onboarding, Dashboard, AgroAI, Fazenda
 │       ├── components/      # Card, AlertBar, StrategyCard, Calendar12, MapPicker, ChatBox
 │       ├── api/             # cliente REST
 │       └── i18n/            # pt.json, en.json, es.json
@@ -376,7 +376,7 @@ Detalhe em `Field Shift Brasil — Documentação do Projeto.md` (Metodologia):
 2. Onboarding com os blocos 1, 2, 3 e 6 completos (bloco 4 e 5 simplificados, se faltar tempo) e interpretação por Gemini na pergunta 8.
 3. **2 ou 3 fazendas de demonstração** em países diferentes, com dados em cache.
 4. Dashboard com os cards **1, 2, 3, 4, 5 e 9**.
-5. Chat AgroIA com perfil + snapshot + base pequena, citando fontes, em PT e EN.
+5. Chat AgroAI com perfil + snapshot + base pequena, citando fontes, em PT e EN.
 6. Comparação de 3 rotações no Dashboard **e** no chat.
 7. Aviso "apoio, não substituição" visível.
 

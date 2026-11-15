@@ -227,7 +227,7 @@ export function Onboarding() {
             );
           })}
         </ol>
-        <span className="mt-auto self-start rounded-full bg-sol-claro px-3 py-1.5 text-xs font-bold text-sol-texto">{t("A AgroIA apoia. Quem decide é você.", "AgroIA helps. You decide.")}</span>
+        <span className="mt-auto self-start rounded-full bg-sol-claro px-3 py-1.5 text-xs font-bold text-sol-texto">{t("A AgroAI apoia. Quem decide é você.", "AgroAI helps. You decide.")}</span>
       </aside>
 
       <div className="flex min-h-0 flex-1 flex-col">

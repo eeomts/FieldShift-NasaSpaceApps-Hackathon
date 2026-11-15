@@ -793,7 +793,7 @@ perguntas:
       en: "I have a small tractor and a planter; we harvest by hand"
     tipo: texto_livre
     obrigatoria: false
-    botao_ia: { pt: "Separar com a AgroIA", en: "Sort it with AgroIA" }
+    botao_ia: { pt: "Separar com a AgroAI", en: "Sort it with AgroAI" }
     interpretacao:
       ia: true                    # casa com agroia/base/equipamentos.json
       catalogo: equipamento

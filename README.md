@@ -1,4 +1,4 @@
-# Field Shift · AgroIA
+# Field Shift · AgroAI
 
 Projeto da equipe para o **NASA Space Apps Challenge 2026**, desafio **[Field Shift: Adapting Farms with NASA Data](docs/NasaSpaceApps-FieldShift/v1/desafio-oficial-nasa-field-shift.md)**.
 
@@ -6,13 +6,13 @@ Projeto da equipe para o **NASA Space Apps Challenge 2026**, desafio **[Field Sh
 
 Clima mudando, chuva irregular, falta de água e solo se desgastando tornam difícil escolher **o que plantar e quando**. O desafio pede uma ferramenta de apoio à decisão que use dados de satélite da NASA, o solo local, as características das culturas e as prioridades do produtor. Ela deve **comparar pelo menos 3 estratégias de rotação de culturas, incluindo a atual**, e explicar para cada uma o porquê, a evidência, os benefícios, as lacunas e os riscos.
 
-## A solução: AgroIA
+## A solução: AgroAI
 
 Um site, pensado primeiro para o celular, em que o produtor:
 
 1. **Responde um questionário curto** sobre a fazenda: local, o que planta e quando, o que sabe do solo e suas prioridades.
 2. **Acompanha um Dashboard** com clima, umidade do solo, saúde da lavoura, alertas e a comparação de estratégias de rotação, tudo a partir de dados da NASA.
-3. **Conversa com a AgroIA**, um assistente que conhece a fazenda dele e explica os dados em linguagem simples, citando a fonte.
+3. **Conversa com a AgroAI**, um assistente que conhece a fazenda dele e explica os dados em linguagem simples, citando a fonte.
 
 > A ferramenta **apoia, não decide**. A palavra final é do produtor e do técnico local.
 
@@ -24,7 +24,7 @@ Um site, pensado primeiro para o celular, em que o produtor:
 | 2 | Questionário do produtor (onboarding) | ✅ Pronta |
 | 3 | Coleta dos dados da NASA e Dashboard | ⏳ A fazer (hoje a tela é provisória) |
 | 4 | Comparação de 3 estratégias de rotação | ⏳ A fazer |
-| 5 | Chat AgroIA (RAG) | ⏳ A fazer |
+| 5 | Chat AgroAI (RAG) | ⏳ A fazer |
 
 O banco de produção é um PostgreSQL 17 numa VPS da equipe, com as tabelas das partes 1 e 2 já criadas.
 
@@ -68,7 +68,7 @@ npm run dev                       # abre em http://localhost:5173
     │   ├── CONTEXTO-DESAFIO.md     # requisitos, conceitos e indicadores
     │   └── BANCO_DE_DADOS_NASA.md  # datasets e ferramentas
     ├── application/                # o produto
-    │   ├── site-contexto.md        # especificação do AgroIA (telas, chat, API, dados)
+    │   ├── site-contexto.md        # especificação do AgroAI (telas, chat, API, dados)
     │   ├── ONBOARDING.md           # questionário do primeiro acesso (implementado na parte 2)
     │   ├── DOR-DO-AGRICULTOR-E-CASO-DE-USO.md   # dores do produtor + caso da Dona Marta
     │   ├── architecture/           # coleta, integração de dados, motor, dashboard/chat, banco

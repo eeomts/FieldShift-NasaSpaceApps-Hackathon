@@ -85,7 +85,7 @@ interface Analise {
 }
 ```
 - Cálculo na hora (sem cache da análise); a 1ª vez numa região baixa o NASA POWER (10–30 s).
-- Chat: ferramenta `comparar_estrategias()` (sem argumentos) lê a análise; fonte nova do chat com `tipo: "analise"` (rótulo na tela: "Comparação do AgroIA"); `fontes_status`: SRTM passa a "usado" (declividade na comparação).
+- Chat: ferramenta `comparar_estrategias()` (sem argumentos) lê a análise; fonte nova do chat com `tipo: "analise"` (rótulo na tela: "Comparação do AgroAI"); `fontes_status`: SRTM passa a "usado" (declividade na comparação).
 - Front (autorizado): tipos em `api/tipos.ts` (+ `"analise"` em `TipoFonte`), `api/estrategias.ts`, `components/estrategias/`, seção "Suas estratégias" no `Dashboard.tsx` no lugar do card provisório, rótulo no `components/chat/Mensagens.tsx`.
 
 ## Dados que faltam
