@@ -1,6 +1,6 @@
 # O que mede cada satélite e cada base de dados
 
-Cada seção explica uma fonte de dados usada pelo Field Shift: o que ela vê, em linguagem simples, e até onde dá para confiar nela.
+Cada seção explica uma fonte de dados: o que ela vê, em linguagem simples, e até onde dá para confiar nela. Nesta versão, o Field Shift usa o NASA POWER, o SRTM e o SoilGrids. O GPM IMERG, o SMAP L4 e o MODIS/VIIRS (NDVI) estão explicados aqui só como referência: o app não usa esses três nesta versão.
 
 ## NASA POWER: clima do lugar
 
@@ -8,29 +8,29 @@ O NASA POWER é um serviço da NASA que entrega dados de clima para qualquer pon
 
 O Field Shift usa o NASA POWER para quase todos os indicadores de clima: risco de geada, dias de calor, veranico, balanço de água, graus-dia e cenários.
 
-O limite do NASA POWER é o tamanho do quadrado: cada valor representa uma área de uns 50 por 60 km. A fazenda inteira, e às vezes o município, cai num quadrado só. Ele não enxerga a baixada fria nem a chuva que caiu só no vizinho. Além disso, o NASA POWER não é um termômetro instalado no campo: é um modelo que junta observações de satélites e estações para estimar o clima. A chuva é o ponto mais fraco, por isso o app compara com o GPM IMERG. Os dados dos últimos meses ainda podem ser corrigidos.
+O limite do NASA POWER é o tamanho do quadrado: cada valor representa uma área de uns 50 por 60 km. A fazenda inteira, e às vezes o município, cai num quadrado só. Ele não enxerga a baixada fria nem a chuva que caiu só no vizinho. Além disso, o NASA POWER não é um termômetro instalado no campo: é um modelo que junta observações de satélites e estações para estimar o clima. A chuva é o ponto mais fraco: ela é estimada por modelo e satélite, não medida no campo, e o app não tem outra fonte de chuva nesta versão para conferir. Os dados dos últimos meses ainda podem ser corrigidos.
 
 Como o produtor costuma dizer: o tempo, o clima da região, a temperatura, a chuva do ano, o inverno, o verão.
 
 Fonte: NASA Langley Research Center, projeto POWER.
 
-## GPM IMERG: chuva vista do espaço
+## GPM IMERG: chuva vista do espaço (não usado nesta versão)
 
 O GPM IMERG é o produto de chuva da missão GPM, feita pela NASA com a agência espacial do Japão. Ele junta vários satélites que enxergam a chuva por micro-ondas e infravermelho e, na versão final, corrige o resultado com pluviômetros no chão. Entrega a chuva a cada meia hora, em quadrados de uns 10 km, desde 2000.
 
-O Field Shift usa o GPM IMERG para veranicos, chuva forte, início e fim da época das águas e risco de erosão. Como ele mede a chuva de meia em meia hora, dá para saber se a chuva veio forte e de uma vez, que é a que mais leva terra. Ele também serve para conferir a chuva do NASA POWER: quando os dois concordam, a confiança sobe.
+O Field Shift não usa o GPM IMERG nesta versão. A chuva do app (veranico, chuva forte e balanço de água) vem do NASA POWER. Em uma versão futura, o IMERG poderia servir para conferir a chuva do NASA POWER, porque mede a chuva de meia em meia hora e mostra se ela veio forte e de uma vez.
 
-Os limites do GPM IMERG: é uma estimativa feita do espaço, não um pluviômetro no campo. A pancada de verão bem localizada fica "espalhada" no quadrado de 10 km. Em serras, o acerto é menor. Onde há poucos pluviômetros, a correção é mais fraca. E a versão corrigida demora uns 3 meses e meio para sair; antes disso, o app usa uma versão provisória e avisa.
+Os limites do GPM IMERG: é uma estimativa feita do espaço, não um pluviômetro no campo. A pancada de verão bem localizada fica "espalhada" no quadrado de 10 km. Em serras, o acerto é menor. Onde há poucos pluviômetros, a correção é mais fraca. E a versão corrigida demora uns 3 meses e meio para sair; antes disso só existe uma versão provisória.
 
 Como o produtor costuma dizer: chuva, aguaceiro, chuva de pedra, pancada, chuva fina, quanto choveu.
 
 Fonte: NASA e JAXA, missão GPM, produto IMERG versão 07.
 
-## SMAP L4: água dentro do solo
+## SMAP L4: água dentro do solo (não usado nesta versão)
 
 O SMAP é um satélite da NASA que mede a umidade dos primeiros 5 cm do solo. O SMAP L4 junta essa medição com um modelo de computador e estima a umidade também na zona das raízes, até cerca de 1 metro de fundura. Entrega dados a cada 3 horas, em quadrados de 9 km, desde 2015.
 
-O Field Shift usa o SMAP L4 para responder "como está a água no pé da planta nesta safra?". O app compara a umidade de agora com o normal da época e conta os dias de estresse, em que a terra ficou mais seca do que quase sempre fica. Com isso dá para dizer quantos dias sem chuva bastam para a água nas raízes ficar crítica naquela região.
+O Field Shift não usa o SMAP L4 nesta versão. O app não mede a umidade do solo por satélite e não mostra "água nas raízes". A água do solo que o app mostra é uma aproximação pelo clima: a chuva contra a evapotranspiração calculada com o NASA POWER. Se o produtor perguntar da umidade do solo, a resposta é que ela ficou fora desta versão.
 
 Os limites do SMAP L4: só a camada de cima é medida; a parte da raiz é calculada. O quadrado de 9 km dá um valor regional, não do talhão, e o modelo usa um solo genérico, que pode ser diferente da terra do produtor. Em mata fechada e na Amazônia, a medição perde qualidade. E a série é curta, começa em 2015, então não serve para olhar décadas.
 
@@ -38,13 +38,13 @@ Como o produtor costuma dizer: umidade da terra, terra molhada, terra seca, o ch
 
 Fonte: NASA, missão SMAP, produto SPL4SMGP (nível 4).
 
-## MODIS e VIIRS: o verde da lavoura
+## MODIS e VIIRS: o verde da lavoura (NDVI, não usado nesta versão)
 
 O MODIS e o VIIRS são sensores em satélites da NASA e da NOAA que fotografam a Terra todo dia. Com essas imagens, eles calculam o NDVI, um número que mostra quanto de planta verde existe no lugar. A cada 16 dias sai uma imagem limpa, juntando os melhores dias sem nuvem. O MODIS tem dados desde 2000, em quadradinhos de 250 metros; o VIIRS continua o trabalho com quadradinhos de 500 metros.
 
-O Field Shift usa o NDVI para montar a curva do ano: quando a lavoura sobe, quando chega ao máximo, quando é colhida e quanto tempo o campo fica sem verde. É daí que saem os meses de solo descoberto e a comparação entre anos bons e ruins.
+O Field Shift não usa o NDVI nesta versão. O app não monta a curva do verde do ano nem mede o solo descoberto por satélite. Os meses sem planta vêm do calendário que o produtor confirma: o que planta, de que mês a que mês.
 
-Os limites: um quadradinho de 250 metros pode misturar lavoura, estrada e mata. Nuvem persistente atrapalha. A imagem de 16 dias atrasa eventos curtos. Palhada no chão aparece quase igual a terra pelada. E os satélites antigos do MODIS estão sendo desligados entre 2026 e 2027; o histórico continua valendo e os dados novos vêm do VIIRS.
+Os limites, para quem quiser saber o que o NDVI mostraria: um quadradinho de 250 metros pode misturar lavoura, estrada e mata. Nuvem persistente atrapalha. A imagem de 16 dias atrasa eventos curtos. Palhada no chão aparece quase igual a terra pelada. E os satélites antigos do MODIS estão sendo desligados entre 2026 e 2027; o histórico continua valendo e os dados novos vêm do VIIRS.
 
 Como o produtor costuma dizer: lavoura verde, lavoura bonita, a roça fechou, a planta amarelou, a lavoura murchou.
 
@@ -78,7 +78,7 @@ Fonte: ISRIC World Soil Information, SoilGrids 2.0.
 
 ## Tamanho do quadrado: escala dos dados
 
-Todo dado de satélite ou de modelo vem em quadrados, e cada quadrado tem um só valor. Esse tamanho é a escala, ou resolução. No Field Shift, os quadrados vão de 30 metros a mais de 50 km: o SRTM tem 30 metros; o MODIS, 250 metros; o SoilGrids, 250 metros; o VIIRS, 500 metros; o SMAP L4, 9 km; o GPM IMERG, cerca de 10 km; o NASA POWER, cerca de 50 km.
+Todo dado de satélite ou de modelo vem em quadrados, e cada quadrado tem um só valor. Esse tamanho é a escala, ou resolução. No Field Shift, os quadrados vão de 30 metros a uns 50 km: o SRTM tem 30 metros; o SoilGrids, 250 metros; o NASA POWER, cerca de 50 km. Para comparar, as fontes que o app não usa nesta versão têm o MODIS com 250 metros, o VIIRS com 500 metros, o SMAP L4 com 9 km e o GPM IMERG com cerca de 10 km.
 
 Isso importa porque um quadrado grande mostra a média da região, não o que acontece num canto do sítio. O clima de 50 km não sabe da baixada fria nem da chuva que caiu só no vizinho. O app sempre diz de que tamanho é o quadrado de cada número, e trata o dado grande como "contexto da região".
 
@@ -90,7 +90,7 @@ Fonte: Field Shift, glossário científico (escala espacial); notas técnicas de
 
 ## Por que o app compara várias fontes
 
-O Field Shift não confia em uma fonte só. Para cada pergunta importante, ele procura pelo menos duas pistas diferentes e compara. A chuva do NASA POWER é comparada com a do GPM IMERG. A umidade do SMAP L4 é comparada com o balanço de água calculado pelo clima. O solo do SoilGrids é comparado com o que o produtor observa e com a análise de laboratório. O relevo do SRTM é comparado com a resposta sobre o terreno.
+O Field Shift não confia em uma fonte só. Para cada pergunta importante, ele procura pelo menos duas pistas diferentes e compara. Nesta versão, isso vale para o solo e o relevo; a chuva e a temperatura vêm só do NASA POWER, sem outra fonte para conferir. O solo do SoilGrids é comparado com o que o produtor observa e com a análise de laboratório. O relevo do SRTM é comparado com a resposta sobre o terreno.
 
 Quando as fontes concordam, a confiança sobe. Quando discordam, o app não esconde: mostra os dois resultados lado a lado e explica a diferença. Muitas vezes a diferença vem da escala, porque o satélite vê a região e o produtor vê o campo.
 
