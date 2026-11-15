@@ -184,7 +184,7 @@ Pergunta do produtor
 ### 6.2 Base de conhecimento (para indexar)
 | Conteúdo | Fonte |
 |---|---|
-| Fichas de culturas (com sinônimos PT/EN/ES), plantas de cobertura, rotação, manejo do solo | FAO ECOCROP, FAO-56, FAO GAEZ, extensão rural (Embrapa, USDA NRCS, etc.) |
+| Fichas de culturas (com sinônimos PT/EN), plantas de cobertura, rotação, manejo do solo | FAO ECOCROP, FAO-56, FAO GAEZ, extensão rural (Embrapa, USDA NRCS, etc.) |
 | Explicação dos dados e termos | `tools/*.md`, glossário da equipe, `CONTEXTO-DESAFIO.md` |
 | Limitações de cada dataset | Seções "limitações" de `tools/*.md` |
 
@@ -209,7 +209,7 @@ Pequena e bem escolhida (20 a 50 documentos), respeitando licenças. Indexar por
 - "Em 2021 perdi o milho por seca, os dados mostram isso?"
 - "O que é NDVI?"
 - "Os últimos anos foram mais secos aqui?"
-- Em inglês/espanhol: "Should I add a cover crop after harvest?" / "¿Cuándo es mejor sembrar aquí?"
+- Em inglês: "Should I add a cover crop after harvest?"
 
 ### 6.5 Exemplo
 > **Dona Marta:** o que posso plantar depois da soja?
@@ -273,7 +273,7 @@ Credenciais (Earthdata, Gemini) só em variáveis de ambiente no back-end.
 ### 8.1 Stack
 | Camada | Escolha |
 |---|---|
-| Front-end | **React + Vite + TypeScript**, React Router, Tailwind, **Leaflet** (mapa), **Recharts** (gráficos), **i18next** (PT/EN/ES) |
+| Front-end | **React + Vite + TypeScript**, React Router, Tailwind, **Leaflet** (mapa), **Recharts** (gráficos), **i18next** (PT/EN) |
 | API | **FastAPI** (Python 3.11+), Pydantic, Uvicorn |
 | Dados científicos | pandas, xarray, numpy, `earthaccess`, httpx |
 | Banco | **PostgreSQL + pgvector** (para o hackathon, SQLite + vetores em memória/FAISS também serve **[decidir]**) |
@@ -324,7 +324,7 @@ agroia/
 │   └── models/              # SQLAlchemy/Pydantic
 ├── jobs/                    # processamento inicial e diário
 ├── conhecimento/            # documentos da base RAG
-├── base/                    # culturas.json (com sinônimos PT/EN/ES), equipamentos.json
+├── base/                    # culturas.json (com sinônimos PT/EN), equipamentos.json
 └── dados_demo/              # cache das fazendas de demonstração
 ```
 
@@ -381,7 +381,7 @@ Detalhe em `Field Shift Brasil — Documentação do Projeto.md` (Metodologia):
 7. Aviso "apoio, não substituição" visível.
 
 ### Se sobrar tempo
-Cards 6, 7, 8 e 10 · job diário em produção · function calling · cruzamento das perdas lembradas · espanhol · enriquecimento por país (Brasil: ZARC/MapBiomas) · simulador "e se chover menos?" · exportar relatório.
+Cards 6, 7, 8 e 10 · job diário em produção · function calling · cruzamento das perdas lembradas · enriquecimento por país (Brasil: ZARC/MapBiomas) · simulador "e se chover menos?" · exportar relatório.
 
 ### Fora do escopo
 App nativo · vários talhões por fazenda · polígono do talhão · sensores em campo · preços de mercado · dosagem de insumos.
@@ -390,7 +390,7 @@ App nativo · vários talhões por fazenda · polígono do talhão · sensores e
 
 ## 12. Pendências e conflitos
 0. **Aprovar a Open-Meteo** como fonte de previsão (S-7). É a única fonte fora da D-009.
-1. **Registrar D-010 "Escopo: mundo todo"** em `DECISOES.md`, substituindo a D-008. Consequências: D-003 deixa de ser "fora" e vira "enriquecimento só para os EUA"; as fontes brasileiras da D-009 (MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM) viram enriquecimento só para o Brasil; a demo usa pontos em países diferentes; base de culturas e textos em PT/EN/ES.
+1. **Registrar D-010 "Escopo: mundo todo"** em `DECISOES.md`, substituindo a D-008. Consequências: D-003 deixa de ser "fora" e vira "enriquecimento só para os EUA"; as fontes brasileiras da D-009 (MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM) viram enriquecimento só para o Brasil; a demo usa pontos em países diferentes; base de culturas e textos em PT/EN.
 2. **Confirmar se "Rest" = React** (S-1).
 3. **Modelo Gemini e de embeddings:** escolher e verificar nomes atuais e limites da cota gratuita.
 4. **Fonte de solo (Q-07):** este documento assume **SoilGrids** (global, API por ponto) + GAEZ para aptidão. Fecha a inconsistência I-1.

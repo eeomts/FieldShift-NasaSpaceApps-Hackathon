@@ -91,7 +91,7 @@ Depois de todos os cartões, aparece o **calendário completo** do ano para uma 
 | Consórcio (juntas no mesmo campo) | "milho com feijão junto" | Marcar `consorcio_com` e confirmar |
 | Mesma cultura duas vezes no ano | "feijão das águas e feijão da seca" | Dois cartões com períodos diferentes |
 | Cultura perene | café, capim, frutíferas | Marcar perene: ocupa o ano todo, sem rotação clássica |
-| Nome local ou regional | macaxeira = aipim = mandioca; *cassava*, *yuca* | Base de culturas com sinônimos em vários idiomas |
+| Nome local ou regional | macaxeira = aipim = mandioca; *cassava* | Base de culturas com sinônimos em português e inglês |
 | Cultura fora da nossa base | uma planta que não temos cadastrada | Manter o nome e marcar "sem parâmetros". Ela entra no calendário, mas não na pontuação |
 | Época não informada | "planto mandioca" | Período vazio no cartão; o produtor preenche |
 | Ciclo com mais de um ano | "rotação de 2 anos" | Fica para depois do MVP; registrar como lacuna |
@@ -201,7 +201,7 @@ texto livre → IA extrai uma lista estruturada → casa com a base (culturas / 
 - O texto original é sempre guardado junto, para rastreabilidade.
 - Se a IA estiver fora do ar, o produtor escolhe da lista com ícones. O app continua funcionando.
 
-**Dependência:** a base de culturas precisa de **sinônimos e nomes locais em vários idiomas** (PT, EN, ES pelo menos). Ela é a peça central do casamento.
+**Dependência:** a base de culturas precisa de **sinônimos e nomes locais em português e inglês** (PT e EN, os idiomas do app). Ela é a peça central do casamento.
 
 ---
 

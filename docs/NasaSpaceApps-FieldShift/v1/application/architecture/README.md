@@ -72,7 +72,7 @@ O chat vem depois de propósito: sem o motor, ele não tem o que consultar.
 
 | Item | Para quê |
 |---|---|
-| Base de culturas com parâmetros e sinônimos (PT, EN, ES) | Casar o texto livre; calcular as estratégias |
+| Base de culturas com parâmetros e sinônimos (PT, EN) | Casar o texto livre; calcular as estratégias |
 | Lista de equipamentos (categorias) | Pergunta 26b; filtro de culturas viáveis |
 | 12 fotos de solo com origem e licença | Pergunta 19 |
 | Glossário em linguagem simples | Dashboard e chat |
