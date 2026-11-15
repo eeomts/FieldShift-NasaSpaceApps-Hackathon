@@ -96,16 +96,41 @@ export interface Indicador {
   numero?: number | null;
 }
 
+export type FonteSolo = "laudo" | "teste_campo" | "produtor" | "soilgrids";
+
+export interface EvidenciaSolo { fonte: FonteSolo; valor: string; peso: number; texto: string }
+
+export interface AtributoSolo {
+  atributo: "textura" | "materia_organica" | "acidez";
+  valor: string | null;
+  confianca: "alta" | "media" | "baixa" | null;
+  evidencias: EvidenciaSolo[];
+  divergencia: string | null;
+}
+
+export interface SoloPonto {
+  argila_pct: number | null; areia_pct: number | null; silte_pct: number | null;
+  carbono_g_kg: number | null; materia_organica_g_kg: number | null; ph: number | null;
+  ctc_cmol_kg: number | null; densidade_g_cm3: number | null;
+  classe_textural: string | null; k_usle: number | null;
+  incerteza: Record<string, number | null>;
+  camada: "0–30 cm"; fonte: string;
+  sem_dado: boolean;
+}
+
 export interface Fazenda {
   id: string;
   respostas: Respostas;
   passo_atual: number;
   onboarding_concluido: boolean;
-  status_processamento: string;
+  status_processamento: "pendente" | "processando" | "pronto" | "erro";
   perfil: "A" | "B" | "C" | null;
   papel: "produtor" | "tecnico" | null;
   modificadores: { irrigacao: string | null; animais: boolean | null };
   retrato_solo: {
+    fonte?: string;
+    sintese?: AtributoSolo[];
+    soilgrids?: SoloPonto | null;
     indicadores?: Indicador[];
     figuras?: { cor: string | null; jeito: string | null; leitura: string; confianca: string; atributos: Indicador[] } | null;
   };

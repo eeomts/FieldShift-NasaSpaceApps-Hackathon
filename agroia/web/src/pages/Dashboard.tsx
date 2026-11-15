@@ -7,6 +7,7 @@ import { Logo } from "../components/Logo";
 import { Calendario } from "../onboarding/Calendario";
 import { Brilho, Painel, Sair } from "../components/icones";
 import { Estrategias } from "../components/estrategias/Estrategias";
+import { SuaTerra } from "../components/solo/SuaTerra";
 import { Cartao, cx, Selo, Titulo } from "../components/ui";
 
 function Abas({ className }: { className?: string }) {
@@ -71,6 +72,7 @@ export function Dashboard() {
             </Cartao>
           )}
         </div>
+        {fazenda?.onboarding_concluido && <SuaTerra inicial={fazenda} />}
         {fazenda?.onboarding_concluido && <Estrategias />}
       </main>
 
