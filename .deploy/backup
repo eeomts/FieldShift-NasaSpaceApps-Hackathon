@@ -12,7 +12,7 @@ exigir DB_HOST DB_NAME DB_USER DB_PASSWORD
 PASTA=".deploy/backups"
 mkdir -p "$PASTA"
 
-NOME="agroia-$AMBIENTE-$(date '+%Y-%m-%d_%H%M%S').sql.gz"
+NOME="agroai-$AMBIENTE-$(date '+%Y-%m-%d_%H%M%S').sql.gz"
 ARQUIVO="$PASTA/$NOME"
 
 echo "gerando o dump de $DB_NAME ($AMBIENTE)"
@@ -32,7 +32,7 @@ mv "$ARQUIVO.parcial" "$ARQUIVO"
 echo "ok: $ARQUIVO ($(du -h "$ARQUIVO" | cut -f1), $(gzip -dc "$ARQUIVO" | grep -c '^CREATE TABLE') tabelas)"
 
 # limpeza local
-find "$PASTA" -name "agroia-$AMBIENTE-*.sql.gz" -mtime +"${BACKUP_DIAS:-14}" -delete
+find "$PASTA" -name "agroai-$AMBIENTE-*.sql.gz" -mtime +"${BACKUP_DIAS:-14}" -delete
 
 # copia remota opcional (rclone configurado na máquina)
 if [ -n "${BACKUP_REMOTO:-}" ]; then

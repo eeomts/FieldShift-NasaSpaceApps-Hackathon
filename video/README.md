@@ -2,10 +2,13 @@
 
 Vídeo de apresentação do Field Shift (NASA Space Apps 2026), em cartoon 2D com as cores do app.
 O roteiro e a estética estão em [`../video-30s-prompt.md`](../video-30s-prompt.md).
+O vídeo de pitch mais novo (29,5s, no formato oficial do Space Apps) está em [`../video-new/`](../video-new/README.md).
+
+Volta para o [README principal](../README.md).
 
 | Arquivo | O que é |
 |---|---|
-| `agroia-30s.mp4` | **O vídeo final** (1920×1080, 24 fps, 30s, com vozes e música) |
+| `agroai-30s.mp4` | **O vídeo final** (1920×1080, 24 fps, 30s, com vozes e música) |
 | `index.html` | A animação. Abrindo no navegador dá para dar play e arrastar a linha do tempo. O MP4 é gerado dela |
 | `music.py` | Gera a trilha leve (violão + piano) só com numpy, sem direitos autorais |
 | `voz/l1..l4.wav` | Falas da Dona Marta (voz sintética "Ava") |
@@ -22,7 +25,7 @@ Precisa de Python 3 com numpy, ffmpeg, Node 20+ e Chromium.
 cd video
 ./mix.sh                                   # gera music.wav (se faltar) e soundtrack.wav
 npm i --no-save puppeteer-core@23.11.1     # só na primeira vez
-node render.js index.html agroia-30s.mp4 soundtrack.wav 24
+node render.js index.html agroai-30s.mp4 soundtrack.wav 24
 ```
 
 Para trocar uma voz (por exemplo, uma gravação real), substitua o `.wav` em `voz/` mantendo o nome e rode os dois comandos de novo.

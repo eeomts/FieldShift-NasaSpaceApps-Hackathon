@@ -96,3 +96,7 @@ O motor ainda não lê `janelas.csv`. Antes de ligar, seguir estas regras (propo
 - Na demo de Irecê (BA, 2914604, rotação milho + feijão) não há linha de sequeiro de milho 1ª, feijão nem feijão-caupi em nenhuma das duas safras; só sorgo granífero (1ª e 2ª), sorgo forrageiro, amendoim e mamona. Pela regra Z7(c), a demo dirá "o ZARC não indica".
 - Mandioca, milheto e o arroz irrigado tropical vêm de portarias de 2020 (sem safra); "Mandioca (aipim, macaxeira)" é o único ZARC de mandioca.
 - O ZARC é de sequeiro (salvo o arroz irrigado), municipal e simulado: ver `docs/NasaSpaceApps-FieldShift/v1/tools/ZARC.md`.
+
+---
+
+Volta para o [`data/README.md`](../../README.md).

@@ -1,15 +1,17 @@
 # data — dados preparados pelo time
 
+Volta para o [README principal](../README.md). As tarefas de cada pessoa, com o passo a passo, estão em [`ToDo/`](../ToDo/README.md).
+
 Aqui ficam os dados que o time prepara à mão ou baixa uma vez, antes de o app funcionar. O passo a passo de cada tarefa está no guia `docs/NasaSpaceApps-FieldShift/v1/application/dados/GUIA-PREPARACAO-DADOS.md`.
 
 ## Fonte única do catálogo
 
-O catálogo de culturas e equipamentos **mora no app**, em `agroia/base/`:
+O catálogo de culturas e equipamentos **mora no app**, em `agroai/base/`:
 
 | O quê | Onde | Quem mexe |
 |---|---|---|
-| Ids, nomes e **sinônimos em PT/EN**, família, grupo, perene, tipos (fixadora de N, cobertura, raiz profunda, tolerante à seca) | `agroia/base/culturas.json` | Pessoa 3 (sinônimos), por PR |
-| Categorias de equipamento e seus sinônimos | `agroia/base/equipamentos.json` | Pessoa 2, só se faltar categoria |
+| Ids, nomes e **sinônimos em PT/EN**, família, grupo, perene, tipos (fixadora de N, cobertura, raiz profunda, tolerante à seca) | `agroai/base/culturas.json` | Pessoa 3 (sinônimos), por PR |
+| Categorias de equipamento e seus sinônimos | `agroai/base/equipamentos.json` | Pessoa 2, só se faltar categoria |
 | **Parâmetros agronômicos** (ciclo, temperatura, água, Kc, raiz, cobertura, código da PAM) | `data/catalogo/culturas.csv` | Pessoa 1 |
 
 O `culturas.csv` usa **os mesmos ids** do `culturas.json` e não repete o que já está lá. Para criar uma cultura nova, ela entra primeiro no `culturas.json`.
@@ -27,7 +29,7 @@ O caminho crítico do projeto: o motor inteiro depende dela.
 | 1. Parâmetros agronômicos das 17 culturas do motor | `catalogo/culturas.csv` | Alto |
 | 7. Código da PAM de cada cultura (coluna `codigo_pam`) | `catalogo/culturas.csv` | Baixo |
 
-As 17 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 10 delas (as outras não têm produto próprio na PAM, e a aveia da base é a aveia-preta de cobertura, que a PAM não conta; `arroz` e `arroz_irrigado` dividem o mesmo código). A produção por município sai em `brasil/pam/producao_municipal.csv` (`scripts/baixar_pam.py`). A coluna `nome_zarc` é copiada do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6) e um teste da API confere que os dois batem.
+As 17 culturas (os mesmos `id` do `agroai/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 10 delas (as outras não têm produto próprio na PAM, e a aveia da base é a aveia-preta de cobertura, que a PAM não conta; `arroz` e `arroz_irrigado` dividem o mesmo código). A produção por município sai em `brasil/pam/producao_municipal.csv` (`scripts/baixar_pam.py`). A coluna `nome_zarc` é copiada do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6) e um teste da API confere que os dois batem.
 
 ### Pessoa 2 — Dados da NASA e do Brasil (perfil: dados) · Augusto
 
@@ -36,7 +38,7 @@ As 17 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os par
 | 4. Pontos da demo (decidir com o time e testar no SoilGrids) | `demo/pontos_demo.csv` | Baixo |
 | 5. Pedido no AppEEARS (NDVI + SMAP dos pontos) | `demo/appeears/<id_da_tarefa>/` | Médio (espera) |
 | 6. ZARC: baixar a tábua de risco e mapear os nomes das culturas | bruto em `brutos/zarc/`; mapa em `brasil/zarc/mapa_culturas_zarc.csv`; janelas em `brasil/zarc/janelas.csv` (GO, RS e BA; `scripts/preparar_zarc.py`) | Médio |
-| 3. O que cada cultura exige de equipamento (ids do `agroia/base/equipamentos.json`) | `catalogo/cultura_equipamentos.csv` | Baixo |
+| 3. O que cada cultura exige de equipamento (ids do `agroai/base/equipamentos.json`) | `catalogo/cultura_equipamentos.csv` | Baixo |
 | Registro de tudo que baixar | `FONTES.md` | — |
 
 **Começar pela tarefa 4**: o AppEEARS só pode ser pedido depois que os pontos existirem, e ele demora.
@@ -46,27 +48,29 @@ As 17 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os par
 | Tarefa | Arquivo | Esforço |
 |---|---|---|
 | 8. Textos do RAG | `rag/*.md` (lista em `rag/README.md`) | Médio |
-| 2. Revisar e ampliar os sinônimos e nomes regionais das culturas | campo `nomes` do `agroia/base/culturas.json` | Baixo |
+| 2. Revisar e ampliar os sinônimos e nomes regionais das culturas | campo `nomes` do `agroai/base/culturas.json` | Baixo |
 | 10. 12 fotos de solo com créditos ✅ feito | `onboarding/fotos-solo/` + `CREDITOS.md` | Baixo |
 
-O questionário (antiga tarefa 9) já está implementado nas telas do app (`agroia/web/src/onboarding/`), então não precisa mais do `perguntas.yaml`.
-
-**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`, com o porquê de cada mudança em `onboarding/relatorio-revisao-questionario.md`. Ela serve de especificação para as telas: o que o código ainda precisa fazer está no fim do relatório.
+**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`, com o porquê de cada mudança em `onboarding/relatorio-revisao-questionario.md`. O `perguntas.yaml` é a especificação; as telas que o implementam estão em `agroai/web/src/onboarding/` (e na cópia de apresentação, `agroai/web-demo/src/onboarding/`).
 
 ## Estrutura
 
-```
+```text
 data/
 ├── README.md                       # este arquivo
 ├── FONTES.md                       # registro de todo download (todos escrevem aqui)
 ├── catalogo/
-│   ├── culturas.csv                # Pessoa 1 (parâmetros; ids do agroia/base/culturas.json)
-│   └── cultura_equipamentos.csv    # Pessoa 2
+│   ├── culturas.csv                # Pessoa 1 (parâmetros; ids do agroai/base/culturas.json)
+│   ├── cultura_equipamentos.csv    # Pessoa 2
+│   ├── cultura_sinonimos.md        # notas dos sinônimos das culturas
+│   ├── evidencias/                 # origem de cada número do culturas.csv (ver evidencias/README.md)
+│   ├── eua/                        # catálogo dos EUA no mesmo formato (ver eua/README.md)
+│   └── scripts/                    # graus-dia, cenários de água, régua e montagem do CSV
 ├── demo/
 │   ├── pontos_demo.csv             # Pessoa 2
 │   ├── appeears/<id_da_tarefa>/    # Pessoa 2 (CSVs como vieram)
 │   ├── pontos_demo_eua.csv         # Pessoa 2 (pontos dos EUA)
-│   └── appeears_eua/<id_da_tarefa>/  # Pessoa 2 (AppEEARS dos pontos dos EUA)
+│   └── appeears_eua/<id_da_tarefa>/  # Pessoa 2 (AppEEARS dos pontos dos EUA; ainda não gerado)
 ├── brasil/
 │   ├── municipios/                 # Pessoa 2 (malha do IBGE)
 │   ├── pam/
@@ -84,7 +88,11 @@ data/
 │       └── producao_condado.csv    # produção por condado (no lugar da PAM; precisa de NASS_API_KEY)
 ├── rag/                            # Pessoa 3 (textos .md)
 ├── onboarding/
+│   ├── perguntas.yaml              # especificação do questionário (23 perguntas)
+│   ├── relatorio-revisao-questionario.md
+│   ├── perguntas-antes-e-depois.md
 │   └── fotos-solo/                 # Pessoa 3 (+ CREDITOS.md)
+├── scripts/                        # downloads e preparação (PAM, ZARC, malhas, AppEEARS, NASS)
 └── brutos/                         # downloads grandes: FORA do Git
 ```
 
@@ -104,14 +112,14 @@ Para gerar: `python data/scripts/baixar_condados_eua.py`, `python data/scripts/p
 
 ## Dependências entre as pessoas
 
-```
+```text
 Pessoa 1: ids das 17 culturas (já prontos) ───► todos usam os mesmos ids
 Pessoa 2: pontos_demo.csv ──► pedido no AppEEARS ──► CSVs em demo/appeears/
 Pessoa 2: mapa_culturas_zarc.csv ──► nome_zarc em culturas.csv; janelas.csv
 Pessoa 1: culturas.csv completo ──► Pessoa 3 escreve fichas-culturas.md
 ```
 
-Se precisar de uma cultura nova, ela entra primeiro no `agroia/base/culturas.json` (por PR) e só depois nos arquivos de `data/`.
+Se precisar de uma cultura nova, ela entra primeiro no `agroai/base/culturas.json` (por PR) e só depois nos arquivos de `data/`.
 
 ## Regras de formato (resumo)
 

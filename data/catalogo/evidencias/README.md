@@ -45,7 +45,7 @@ O motor ainda não lê este catálogo. Ao implementar, siga estas regras, que v�
 5. **Valor forrageiro vazio ("não sei"):** ignorar o critério "Comida pros animais" para aquela cultura, redistribuir o peso entre os outros critérios e mostrar "sem dado". Não usar padrão regional.
 6. **Palhada local:** para soja, milho, trigo, arroz e sorgo, escalar a massa de palhada pela produtividade da PAM do município (média de 3 a 5 anos), com a regressão da Tabela 11.2 do IPCC; para o feijão, a razão R_AG da Tabela 11.1a (IPCC 2019). Marcar a origem como cálculo. Nas demais culturas, usar o típico do bloco `regua`.
 7. **Teste de sensibilidade:** para culturas de confiança `baixa`, rodar a comparação com o Kc no mínimo e no máximo plausíveis. Se a ordem das estratégias não mudar, o cartão pode dizer que a recomendação é robusta.
-8. **Arroz irrigado:** só é candidato se o produtor tiver várzea ou irrigação, e não passa pelo filtro de chuva. O id `arroz_irrigado` está em `agroia/base/culturas.json` desde o commit f910193. Quando o produtor escreve só "arroz" ou "rice", o app não escolhe: pede para o produtor dizer se é irrigado ou de terras altas (não decide pelo país).
+8. **Arroz irrigado:** só é candidato se o produtor tiver várzea ou irrigação, e não passa pelo filtro de chuva. O id `arroz_irrigado` está em `agroai/base/culturas.json` desde o commit f910193. Quando o produtor escreve só "arroz" ou "rice", o app não escolhe: pede para o produtor dizer se é irrigado ou de terras altas (não decide pelo país).
 9. **Mandioca:** o filtro de graus-dia serve só como teste de frio (eliminar abaixo do mínimo); não eliminar pelo máximo.
 10. **Confiança baixa na tela:** mostrar a faixa em vez de um número e explicar em linguagem simples, com os textos de `lacuna_informacao` e `risco_revisao_local`. Exemplo: "Ainda não existem medições no Brasil de quanta água esta cobertura usa. Usamos valores de outros países, por isso a estimativa pode errar. Confirme com seu agrônomo."
 11. **Calor (`tmax_critica_c`):** vale só na fase sensível dita na evidência e gera **aviso** de risco de calor naquela fase; nunca elimina. Vazio = sem aviso.
@@ -149,3 +149,7 @@ Calculada por `../scripts/regua.py` a partir do bloco `regua` de cada arquivo (`
 - `arranjos` regionais (ex.: `regua.arranjos.sudeste` da ervilhaca, `regua.arranjos.michigan` do feijão nos EUA): a linha vale para a região de referência; o arranjo guarda os números de outra região (ciclo, graus-dia, água e palhada, quando houver, com `origem` de cada número pelos mesmos tipos da tabela de Confiança) e `estados` como texto com `|` (ex.: `"MI"`, `"GA|AL"`), no mesmo formato de `estados_validos`, para o motor usar quando o ponto estiver nela, quando ele passar a ler arranjos (ainda não lê).
 - `avisos`: texto curto (até 200 caracteres, linguagem do produtor) por coluna qualitativa, ex.: `{"valor_forrageiro": "Atenção: ..."}`. É para um risco que a classe sozinha esconde (ex.: o fungo da festuca, que intoxica o gado, numa forragem "alta"). O `regua.py` não mexe nesta chave. Ver a regra 16.
 - `detalhe.depende_da_epoca`: `true` quando o mínimo e o máximo da faixa caem em classes diferentes. Na tela, mostre a classe **junto com a faixa** e o aviso "depende da época" (não só no detalhe).
+
+---
+
+Volta para o [`data/README.md`](../../README.md).

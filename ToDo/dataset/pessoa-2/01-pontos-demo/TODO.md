@@ -22,7 +22,7 @@ A apresentação mostra 2 ou 3 produtores concretos em regiões contrastantes, o
 2. Para cada uma, um ponto **em lavoura, não em cidade**: confira no Google Maps (satélite).
 3. Teste no SoilGrids (cole no navegador, trocando lat/lon). Se `mean` vier preenchido, `soilgrids_ok = true`:
    `https://rest.isric.org/soilgrids/v2.0/properties/query?lon=-50.92&lat=-17.80&property=clay&depth=0-5cm&value=mean`
-4. Escreva a história e a rotação atual usando culturas da base (`agroia/base/culturas.json`).
+4. Escreva a história e a rotação atual usando culturas da base (`agroai/base/culturas.json`).
 
 ## Pronto quando
 - [ ] 2 ou 3 pontos, todos com `soilgrids_ok = true`.

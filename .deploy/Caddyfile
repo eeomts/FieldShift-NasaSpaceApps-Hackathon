@@ -3,11 +3,11 @@
 	admin off
 }
 
-# O endereço vem do SITE do .deploy/env/<ambiente>.env, pelo ./.deploy/agroia.
+# O endereço vem do SITE do .deploy/env/<ambiente>.env, pelo ./.deploy/agroai.
 # https://dominio -> certificado emitido e renovado sozinho
 # http://localhost -> HTTP puro, sem certificado
 # :80 -> atrás do nginx do host (PROXY), que cuida do certificado
-{$AGROIA_SITE} {
+{$AGROAI_SITE} {
 	encode zstd gzip
 
 	# arquivo oculto nunca é servido

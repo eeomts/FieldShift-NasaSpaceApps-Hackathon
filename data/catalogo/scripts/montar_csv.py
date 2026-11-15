@@ -14,7 +14,7 @@ Uso (na raiz do repositório):
 Não rode --apply no catálogo do Brasil: as evidências de lá não têm nome,
 nome_cientifico e familia_botanica, e o CSV do Brasil é sincronizado à mão.
 
-Validações: id existe em agroia/base/culturas.json; todas as colunas presentes
+Validações: id existe em agroai/base/culturas.json; todas as colunas presentes
 (as de janela, região e texto para o produtor são opcionais: ausente = vazio);
 números válidos; mínimo <= máximo; kc_medio <= 1,25; categorias da régua;
 tipos coerentes com fixa_nitrogenio e raiz_profunda; fontes preenchidas; nenhum
@@ -34,7 +34,7 @@ import re
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 BASE_BR = os.path.join(ROOT, "data", "catalogo", "culturas.csv")
-CATALOGO_APP = os.path.join(ROOT, "agroia", "base", "culturas.json")
+CATALOGO_APP = os.path.join(ROOT, "agroai", "base", "culturas.json")
 EXTRAS = ["codigo_nass", "calendario_usda"]
 FIXAS = {"id", "nome", "nome_cientifico", "familia_botanica"}
 NUM = ["ciclo_dias_min", "ciclo_dias_max", "graus_dia_ciclo_min", "graus_dia_ciclo_max", "temp_base_c",
@@ -192,7 +192,7 @@ def main():
             problemas.append(f"{cid}: {msg}")
 
         if cid not in ids_app:
-            erro("id não existe em agroia/base/culturas.json")
+            erro("id não existe em agroai/base/culturas.json")
         faltam = [c for c in colunas if c not in ev.get("valores", {}) and c not in FIXAS | OPCIONAIS and c not in EXTRAS]
         if faltam:
             erro(f"valores sem {faltam}")

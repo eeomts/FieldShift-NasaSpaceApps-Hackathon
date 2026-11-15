@@ -1,6 +1,6 @@
 # Plano do chat v1
 
-> 15/11/2026. Decisão de base: **D-011** (Gemini pelo `google-genai`, embeddings `gemini-embedding-001` em 768 dimensões, sem framework de agentes, RAG no próprio Postgres). Estrutura: `agroia/api` em camadas (PR #22).
+> 15/11/2026. Decisão de base: **D-011** (Gemini pelo `google-genai`, embeddings `gemini-embedding-001` em 768 dimensões, sem framework de agentes, RAG no próprio Postgres). Estrutura: `agroai/api` em camadas (PR #22).
 
 ## O que o chat v1 faz
 1 agente com 4 ferramentas, que só respondem com dado do nosso banco ou da base de conhecimento:
@@ -8,7 +8,7 @@
 | Ferramenta | De onde vem |
 |---|---|
 | `ver_ficha` | Fazenda do usuário: respostas, perfil, papel, retrato do solo, calendário |
-| `info_cultura` | `agroia/base/culturas.json` + parâmetros de `data/catalogo/culturas.csv` |
+| `info_cultura` | `agroai/base/culturas.json` + parâmetros de `data/catalogo/culturas.csv` |
 | `buscar_conhecimento` | RAG (textos de `data/rag/`) |
 | `consultar_clima` | NASA POWER agregado por mês, com cache por célula |
 
@@ -62,8 +62,8 @@ Recuperar o protótipo: `git stash show --include-untracked --name-only stash@{0
 - **Testes:** modelo falso com chamadas de ferramenta roteirizadas; 5 casos do Sr. José (`application/prompts/examples/tests/TESTES_CHAT_SR_JOSE.md`) contra o Gemini real, só quando houver chave.
 
 ## Ajustes antes de começar
-1. **Banco de teste sem `vector`:** o container `agroia-teste` usa `postgres:17`. Trocar por imagem com pgvector (ex.: `pgvector/pgvector:pg17`) e atualizar a instrução do `agroia/README.md`.
-2. **`data/catalogo/culturas.csv` dentro da imagem da API:** o build da API (`.deploy/compose.yml`) só enxerga `agroia/`. Incluir o `data/catalogo/` no build.
+1. **Banco de teste sem `vector`:** o container `agroai-teste` usa `postgres:17`. Trocar por imagem com pgvector (ex.: `pgvector/pgvector:pg17`) e atualizar a instrução do `agroai/README.md`.
+2. **`data/catalogo/culturas.csv` dentro da imagem da API:** o build da API (`.deploy/compose.yml`) só enxerga `agroai/`. Incluir o `data/catalogo/` no build.
 3. **Banco de produção** (em aberto): Postgres atual da VPS (instalar `vector`, exige admin) ou o do compose (já tem; mover os dados com `.deploy/backup` + `.deploy/restaurar`).
 
 ## Perguntas em aberto para retomar

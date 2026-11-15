@@ -112,7 +112,7 @@
       "coluna": "todas",
       "valor_brasil": "(não existe)",
       "decisao": "trocado",
-      "motivo": "A ervilhaca não está no catálogo do Brasil (está em agroia/base/culturas.json como cobertura fixadora de N). Tudo vem de fontes dos EUA, do ECOCROP e do FAO-56. A Tb 4 °C é a da própria espécie (Teasdale et al. 2004), não herdada do Brasil."
+      "motivo": "A ervilhaca não está no catálogo do Brasil (está em agroai/base/culturas.json como cobertura fixadora de N). Tudo vem de fontes dos EUA, do ECOCROP e do FAO-56. A Tb 4 °C é a da própria espécie (Teasdale et al. 2004), não herdada do Brasil."
     }
   ],
   "evidencias": [

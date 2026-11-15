@@ -674,7 +674,7 @@
     }
   ],
   "pendencias": [
-    "BLOQUEIO DE CARGA (revisão 14/11, P-01): o id arroz_irrigado ainda não existe em agroia/base/culturas.json, que é a fonte única de ids. Não carregar esta linha no banco antes de incluir o id lá, com sinônimos (arroz irrigado, arroz de várzea, arroz inundado).",
+    "BLOQUEIO DE CARGA (revisão 14/11, P-01): o id arroz_irrigado ainda não existe em agroai/base/culturas.json, que é a fonte única de ids. Não carregar esta linha no banco antes de incluir o id lá, com sinônimos (arroz irrigado, arroz de várzea, arroz inundado).",
     "codigo_pam 40102 é o mesmo da linha arroz: a PAM do IBGE não separa arroz irrigado de arroz de terras altas. Qualquer cruzamento com a PAM (área, produção) mistura os dois sistemas; no RS e em SC quase toda a área é irrigada, no Centro-Norte predomina terras altas.",
     "Água: agua_ciclo 580-720 mm é CONSUMO (ET), estimado como ET média de 7,2 mm/dia (SOSBAI) × período de irrigação de 80-100 dias (SOSBAI). Bate com os ~650 mm de Mota et al. 1990 (citado pela Embrapa BPD 313; não li o original). A conta cobre só o período inundado: a ET entre a semeadura e o início da irrigação em V3/V4 (~15 dias após a emergência) e a da fase final após a supressão ficam de fora, então 720 pode subestimar ciclos longos (tardias de SC, 145 d).",
     "Água: o volume de irrigação é outra coisa e NÃO entrou na coluna: 6.000-12.000 m³/ha (600-1.200 mm, SOSBAI) ou 8-10 mil m³/ha (Embrapa BPD 313), porque inclui saturação do solo, formação da lâmina, percolação, fluxo lateral e perdas em canais. A pendência da linha arroz citava 688-1.210 mm da Embrapa; isso também é lâmina aplicada (1,0-1,4 L/s/ha por 80-100 d), não ET.",

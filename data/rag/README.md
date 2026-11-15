@@ -16,3 +16,7 @@ Cada arquivo `.md` desta pasta vira trechos que o agente busca para explicar as 
 3. Uma linha **"Como o produtor costuma dizer:"** com os jeitos populares de falar do assunto.
 4. Fonte no fim de cada seção.
 5. Nada de URL de API, parâmetro ou código.
+
+---
+
+Volta para o [`data/README.md`](../README.md).
