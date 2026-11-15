@@ -26,7 +26,7 @@ agroia/
 │   ├── app/                  # em camadas: routers -> services -> repositories -> models
 │   │   ├── main.py           # cria a API, liga as rotas e trata os erros de negócio
 │   │   ├── core/             # config.py (.env), db.py (PostgreSQL), security.py (senha e JWT), erros.py
-│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (conversa, mensagem, busca_log), clima.py (clima_celula, clima_mensal)
+│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (conversa, mensagem, busca_log), clima.py (clima_celula, clima_mensal), relevo.py (relevo_ponto)
 │   │   ├── schemas/          # entrada e saída das rotas: auth.py, fazenda.py, onboarding.py (respostas), chat.py
 │   │   ├── repositories/     # acesso ao banco: usuario, fazenda, conhecimento (busca híbrida), clima, conversa
 │   │   ├── services/         # regras de negócio
@@ -37,8 +37,9 @@ agroia/
 │   │   │   ├── rag/                 # base de conhecimento: chunker, embeddings (Gemini), fontes, ingestao
 │   │   │   ├── conversa_service.py  # conversas do usuário (criar, listar, abrir, apagar)
 │   │   │   ├── agente/              # o chat: agente_service.py (laço do Gemini), ferramentas.py, prompt.py, modelo.py, busca_conhecimento_service.py
-│   │   │   ├── clima/               # célula da grade, ET0 (FAO-56), limites, agregação mensal, clima_service.py
-│   │   │   └── integracao/          # nasa_power.py (cliente HTTP do NASA POWER)
+│   │   │   ├── clima/               # célula da grade, ET0 (FAO-56), limites, agregação mensal, graus_dia.py, clima_service.py
+│   │   │   ├── motor/               # base do motor de rotação: catalogo.py (CSV do BR e dos EUA), local.py (país e município/condado), relevo_service.py
+│   │   │   └── integracao/          # nasa_power.py (NASA POWER), srtm.py (declividade, OpenTopoData)
 │   │   ├── cli/              # comandos: rag.py (ingerir, buscar), clima.py (baixar, mostrar, demo)
 │   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding, chat
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
@@ -144,7 +145,7 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | Tabela | Guarda |
 |---|---|
 | `usuario` | Nome, e-mail, hash da senha, idioma |
-| `fazenda` | Uma por usuário. Todas as respostas em JSONB (`respostas`), mais as colunas que o resto do sistema consulta: local, perfil, irrigação, animais, terreno, prioridades, culturas excluídas, equipamentos, retrato do solo |
+| `fazenda` | Uma por usuário. Todas as respostas em JSONB (`respostas`), mais as colunas que o resto do sistema consulta: local, `pais` (`BR`/`US`) e `codigo_local` (município IBGE de 7 dígitos ou condado FIPS de 5, calculados ao salvar o local; `NULL` fora das malhas), perfil, irrigação, animais, terreno, prioridades, culturas excluídas, equipamentos, retrato do solo |
 | `calendario_item` | Cada cultura que o produtor confirmou, com os meses de plantio e colheita |
 | `documento` | Cada texto da base de conhecimento (glossário, metodologia, culturas, satélites), com fonte, caminho de origem e hash do conteúdo |
 | `trecho` | Pedaços de um documento com embedding (`vector(768)`) e busca textual em português |
@@ -152,7 +153,8 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | `mensagem` | Cada turno do Gemini (`papel` `user`/`model`), com o `Content` completo em JSONB (inclui as chamadas de ferramenta, que voltam no histórico), `visivel` (só a pergunta e a resposta final), texto, fontes, ferramentas usadas e tokens |
 | `busca_log` | Cada busca na base de conhecimento: conversa, palavras do produtor, consulta, trechos devolvidos e descartados |
 | `clima_celula` | Uma célula da grade do NASA POWER (0,5° × 0,625°, ~50 km): centro, elevação, período baixado, limite de chuva forte (P95 de 1991–2020) e fonte. Fazendas vizinhas dividem a mesma linha |
-| `clima_mensal` | Por célula, ano e mês: chuva, ET0, temperaturas (média, média das máximas e mínimas, extremos), dias de geada (Tmin < 2 °C), de calor (Tmax > 35 °C) e de chuva forte, maior sequência seca (< 1 mm) e dias válidos. Sem dado fica `NULL`, nunca 0 |
+| `clima_mensal` | Por célula, ano e mês: chuva, ET0, temperaturas (média, média das máximas e mínimas, extremos), dias de geada (Tmin < 2 °C), de calor (Tmax > 35 °C) e de chuva forte, maior sequência seca (< 1 mm) e dias válidos. Sem dado fica `NULL`, nunca 0. `gd_por_tb`: graus-dia do mês para cada temperatura-base inteira de 0 a 20 °C (JSONB, sem teto); `{}` = mês sem temperatura completa, `NULL` = célula baixada antes da coluna (é baixada de novo) |
+| `relevo_ponto` | Cache da declividade do SRTM por ponto (lat/lon com 4 casas): `declividade_pct`, classe da Embrapa e fonte |
 
 ## Base de conhecimento (RAG)
 
@@ -189,6 +191,14 @@ uv run python -m app.cli.clima demo                          # baixa e mostra os
 ```
 
 Os testes do clima usam respostas simuladas: não acessam a rede.
+
+## Base do motor de rotação
+
+- **Catálogo:** `app/services/motor/catalogo.py` lê `data/catalogo/culturas.csv` (Brasil) e, se existir, `data/catalogo/eua/culturas.csv`; sem o arquivo dos EUA o catálogo do país vem vazio, com aviso. `cultura_equipamentos.csv` dá os equipamentos de plantio e colheita de cada cultura.
+- **País e local:** `app/services/motor/local.py` acha o município (`data/brasil/municipios/municipios.geojson`) ou o condado (`data/eua/condados/condados.geojson`) do ponto com `shapely` (dependência nova, índice STRtree). Fora das duas malhas: sem país.
+- **Graus-dia:** `app/services/clima/graus_dia.py`, GD = soma de max(0, Tmed − Tb), sem teto, com Tmed = (Tmax + Tmin) / 2, a mesma conta de `data/catalogo/scripts/gd_nasa_power.py`. Gravado por mês para Tb de 0 a 20 °C; Tb fracionária é interpolada entre as inteiras vizinhas.
+- **Declividade:** SRTM 30 m pelo OpenTopoData (sem chave, 1 chamada por segundo), grade 3×3 de ~30 m e método de Horn; classes da Embrapa. Se falhar, vale a resposta da pergunta 7, com a fonte marcada.
+- Fazendas que já existiam ganham `pais` e `codigo_local` na migration `0006` (ou no próximo salvar, se as malhas não estiverem no disco).
 
 Para mudar uma tabela, altere o model em `app/models/` e gere uma migração:
 

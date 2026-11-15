@@ -409,7 +409,7 @@ def test_info_cultura(client, auth, conversa, modelo):
     sorgo = ferramentas[0]["response"]
     assert sorgo["encontrada"] and sorgo["id"] == "sorgo"
     assert sorgo["parametros"]["ciclo_dias_min"] == 90 and sorgo["parametros"]["sensivel_geada"] is True
-    assert sorgo["parametros"]["confianca_parametros"] == "media"
+    assert sorgo["parametros"]["confianca_parametros"] == "alta"
     # fonte repetida entra uma vez só; a ferramenta também
     assert len(r.json()["fontes"]) == 1 and r.json()["fontes"][0]["tipo"] == "cultura"
     assert r.json()["fontes"][0]["titulo"] == "Base de culturas: Sorgo"
