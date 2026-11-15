@@ -10,3 +10,6 @@ data/brutos/*
 # Python compilado
 __pycache__/
 *.pyc
+
+# Chaves locais (NASS_API_KEY etc.); nunca no Git
+.env
