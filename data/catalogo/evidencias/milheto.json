@@ -4,25 +4,25 @@
     "tipos": "cobertura|forrageira|raiz_profunda|tolerante_seca",
     "perene": "false",
     "ciclo_dias_min": "45",
-    "ciclo_dias_max": "105",
+    "ciclo_dias_max": "60",
     "temp_base_c": "13",
     "temp_otima_min_c": "25",
     "temp_otima_max_c": "35",
     "tmax_critica_c": "40",
     "sensivel_geada": "true",
-    "agua_ciclo_mm_min": "450",
-    "agua_ciclo_mm_max": "650",
+    "agua_ciclo_mm_min": "100",
+    "agua_ciclo_mm_max": "260",
     "kc_inicial": "0.3",
     "kc_medio": "1.0",
-    "kc_final": "0.3",
+    "kc_final": "1.0",
     "profundidade_raiz_m": "2.0",
     "fixa_nitrogenio": "false",
     "raiz_profunda": "true",
     "cobertura_solo": "alta",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "alto",
-    "fontes": "Embrapa Milho e Sorgo, Cultivo do Milheto, Sistema de Produção 3, 5a ed. 2016 (ciclo por cultivar e uso, raiz, reciclagem de nutrientes, descompactação, biomassa, forragem, tmax, água 440 mm)|Embrapa Milho e Sorgo, Cultivo do Milheto - Clima, Sistema de Produção 3, 2009 (temp. base ~13 °C, ótimo 31-34 °C, não tolera geada, tolerância à seca)|Embrapa Milho e Sorgo, Circular Técnica 29 Manejo da Cultura do Milheto, 2003 (cobertura: dessecação na pré-floração, seca, raiz profunda)|FAO ECOCROP Pennisetum glaucum id 8418 (temperatura ótima 25-35, absoluta 12-40)|FAO Irrigation Water Management Training Manual 3, Tab.5 (água 450-650 mm, linha Sorghum/Millet)|FAO-56 Tab.12 (Kc, linha Millet, Kc ini do grupo Cereals)|FAO-56 Tab.22 (raiz 1.0-2.0 m, limite superior = sequeiro)|Silva & Rosolem, RBCS 25:253-260, 2001 (raiz do milheto atravessa camada compactada)",
-    "confianca_parametros": "alta"
+    "fontes": "Embrapa Milho e Sorgo, Cultivo do Milheto, Sistema de Produção 3, 5a ed. 2016 (florescimento das cultivares 43-58 dias, raiz, reciclagem de nutrientes, descompactação, biomassa, forragem, estresse térmico em FC 2)|Embrapa Milho e Sorgo, Cultivo do Milheto - Clima, Sistema de Produção 3, 2009 (temp. base ~13 °C, ótimo 31-34 °C, não tolera geada, tolerância à seca)|Embrapa Milho e Sorgo, Circular Técnica 29 Manejo da Cultura do Milheto, 2003 (cobertura: 45-55 dias da germinação ao manejo, manejo com 5-10% de emissão do pendão aos 50-60 DAE, dessecação na pré-floração; semeadura em safrinha de fim de janeiro a meados de abril ou em agosto-setembro; 282-302 g de água por g de matéria seca; seca, raiz profunda)|FAO ECOCROP Pennisetum glaucum id 8418 (temperatura ótima 25-35, absoluta 12-40; o máximo absoluto de 40 °C é o tmax no uso como cobertura)|FAO-56 Tab.11 (Millet: fases de 15/25/40/25 dias, a fase média começa aos 40 dias)|FAO-56 Tab.12 (Kc, linha Millet, Kc ini do grupo Cereals)|FAO-56 cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|FAO-56 Tab.22 (raiz 1.0-2.0 m, limite superior = sequeiro)|Silva & Rosolem, RBCS 25:253-260, 2001 (raiz do milheto atravessa camada compactada)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao manejo aos 45-60 dias (água)",
+    "confianca_parametros": "media"
   },
   "mudancas": [
     {
@@ -54,6 +54,42 @@
       "antes": "media",
       "depois": "alta",
       "motivo": "Todas as colunas preenchidas têm fonte primária lida (Embrapa, FAO, ECOCROP, RBCS)."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "105",
+      "depois": "60",
+      "motivo": "A linha agora representa só o uso como cobertura. A Circ. Téc. 29 dá de 45 a 55 dias da germinação ao manejo e manda manejar com 5-10% de emissão do pendão, 'ao redor de 50 a 60 dias após a emergência'. O SP3 dá florescimento de 43 a 58 dias nas cultivares. Os 105 dias eram a colheita de grão. O mínimo de 45 continua."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "450",
+      "depois": "100",
+      "motivo": "Não achei ETc medida do milheto até o manejo como cobertura. Calculei ETc = Kc × ET0 com ET0 FAO-56 Penman-Monteith diário do NASA POWER (2001-2020, média dos anos). Curva de Kc da FAO-56 (ini 0.3 por 15 d, desenvolvimento por 25 d, Kc mid 1.0 corrigido pela eq. 62 com u2 e RHmin locais, h = 1,5 m), cortada no manejo. Na safrinha (semeadura 1/fev a 1/abr, ET0 3,6-4,3 mm/d), o manejo aos 45 dias dá 91-103 mm em GO/DF e 83-87 mm em Sorriso-MT. Com Kc ini 0.6, para molhamento frequente da estação chuvosa, dá 113-139 mm. Arredondei para 100. Os 450 mm eram a faixa FAO 'Sorghum/Millet' até o grão."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "650",
+      "depois": "260",
+      "motivo": "Mesmo cálculo, com manejo aos 60 dias. Safrinha: 124-157 mm (155-193 mm com Kc ini 0.6). Semeadura de primavera antes da soja, em ago-set (Circ. 29), com ET0 de 5,3-6,4 mm/d em GO/DF: 203-218 mm para semeadura em 15/set e 236-264 mm para 15/ago. Usei 260 para cobrir o pior caso (15/ago em GO). Conferência: a Circ. 29 cita 282-302 g de água por g de MS, e Salton et al. (na Circ. 29) mediram 5,5 t/ha aos 57 dias. Isso dá cerca de 155-165 mm, dentro da faixa."
+    },
+    {
+      "coluna": "kc_final",
+      "antes": "0.3",
+      "depois": "1.0",
+      "motivo": "0.3 é o Kc end do milheto colhido seco (grão). A cobertura é manejada no início do florescimento (50-60 DAE), quando a curva da FAO-56 Tab.11 já está na fase média (começa aos 40 dias). O FAO-56 manda encerrar a curva no corte precoce, então o Kc no manejo é o Kc mid. Regra do time: kc_final = kc_medio = 1.0. Não achei Kc medido do milheto logo após o florescimento."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista da rodada 1)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Saiu o FAO IWM Manual 3, porque a faixa 450-650 mm era até o grão. O SP3 deixa de ser fonte da água (440 mm era para produtividade de grão). A Circ. 29 passa a cobrir o ciclo de cobertura e a conferência da água. Entraram a FAO-56 Tab.11, o cap. 6 (Kc end) e o cálculo com NASA POWER."
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Ciclo, temperaturas, raiz, Kc ini/mid e as colunas qualitativas seguem com fonte primária. A água agora é um cálculo próprio (FAO-56 + NASA POWER), não uma medição, e o kc_final vem de convenção. Pela regra, 'alta' só vale quando todas as colunas têm fonte primária conferida."
     }
   ],
   "evidencias": [
@@ -231,13 +267,106 @@
       "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Apresentação",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
       "trecho": "É uma gramínea anual de verão, cespitosa, de crescimento ereto"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Circular Técnica 29 - Manejo da Cultura do Milheto, 2003, item 12 'Manejo do milheto para cobertura do solo'",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487545/1/Circ29.pdf",
+      "trecho": "Para um bom aproveitamento do potencial de cobertura do solo pelo milheto, o intervalo entre a germinação e o manejo varia de 45 a 55 dias."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Circular Técnica 29, 2003, item 12",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487545/1/Circ29.pdf",
+      "trecho": "O manejo pode ser iniciado quando a cultura estiver com 5 a 10% de emissão do pendão floral, ainda incluso (charuto). Esse estádio ocorre quando as plantas estão ao redor de 50 a 60 dias após a emergência"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Circular Técnica 29, 2003, item 4 'Época de semeadura'",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487545/1/Circ29.pdf",
+      "trecho": "pode-se realizar a semeadura, como safrinha, após a colheita do milho ou da soja, no período que compreende do final de janeiro até meados de abril. [...] Outra opção de plantio para produção de massa seca para cobertura do solo é o período que vai de agosto a setembro, antes da semeadura do milho ou da soja em novembro"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Circular Técnica 29, 2003 (conferência da ordem de grandeza da água)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487545/1/Circ29.pdf",
+      "trecho": "para cada 1g de matéria seca produzida pelo milheto são necessários 282 a 302g de H2O [...] o milheto foi a cultura que mais massa produziu aos 57 e aos 72 dias após a semesdura, atingindo 5,5 e 9,0 t ha-¹"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Tab.11 (duração das fases)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Millet 15 25 40 25 105"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Cálculo próprio: ETc = Kc × ET0, com ET0 FAO-56 Penman-Monteith diário a partir do NASA POWER (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN), média de 2001-2020; RHmin = ea/es(Tmax); Kc mid corrigido pela eq. 62 com h = 1,5 m. Script: /tmp/claude-1000/-home-yuryturatti-Documentos-programacao-NASA-SPACE-APPS/9584014b-e866-48e9-a25c-7646b51ef42b/scratchpad/rodada2/scripts/et0_calc.py",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&start=20010101&end=20201231",
+      "trecho": "ETc acumulada (mm), manejo aos 45 / 60 dias. Rio Verde-GO: safrinha 1/fev 103/157, 1/mar 97/151, 1/abr 94/144; primavera 15/ago 166/255, 15/set 147/218. Sorriso-MT: 87/133, 86/133, 83/124; 89/143, 94/146. Planaltina-DF: 102/154, 95/147, 91/138; 149/236, 140/203. Senador Canedo-GO: 101/154, 96/149, 92/140; 173/264, 148/214. Com Kc ini 0.6 na safrinha: 113-139 (45 d) e 155-193 (60 d)."
+    },
+    {
+      "colunas": [
+        "kc_final"
+      ],
+      "fonte": "Allen et al., FAO-56, cap. 6, 'Crop coefficient for the end of the late season stage (Kc end)'",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "If the crop is irrigated frequently until harvested fresh, the topsoil remains wet and the K c end value will be relatively high. [...] For premature harvest, the user can construct a K c curve using the K c end value provided in Table 12 and a late season length typical of a normal harvest date; but can then terminate the application of the constructed curve early, corresponding to the time of the early harvest."
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Tab.12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Millet 1.00 0.30 1.5"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto (SP3), 2016, Ecofisiologia",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "A germinação do milheto aumenta linearmente com a temperatura, com valores ótimos entre 20 ºC e 35 ºC, e declina para zero entre 45 ºC e 47 ºC. O estresse gerado pela exposição a baixas (≤ 15 ºC) ou elevadas (≥ 40 ºC) temperaturas durante FC 1 e/ou FC 3 têm pouco efeito no número de panículas produtivas"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "FAO ECOCROP, data sheet Pennisetum glaucum (id 8418)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=8418",
+      "trecho": "Temperat. requir. Optimal 25 35, Absolute 12 40"
     }
   ],
   "pendencias": [
-    "Ciclo mistura dois usos de propósito: ciclo_dias_min=45 é o manejo da COBERTURA (dessecação na pré-floração, florescimento das cultivares 43-58 dias); ciclo_dias_max=105 é a colheita de GRÃO (maturidade fisiológica 97-104 DAE; ADR 500/ADR 7010 100 dias). Se o integrador preferir só o uso de cobertura, usar 45-60; só grão, usar 76-105 (ENA 1 76 dias no plantio das secas). O ZARC agrupa cultivares em Grupo I até 110 dias, II 110-130 e III acima de 130 dias (emergência-maturação), mas as cultivares descritas no SP3 ficam em 76-104 dias.",
-    "Água 450-650 mm é a faixa FAO conjunta 'Sorghum/Millet' para ciclo completo até grão; não achei valor Embrapa específico para a cobertura (ciclo ~45-60 dias), que deve consumir menos. Embrapa cita 440 mm para alta produtividade de grão e tolerância a menos de 400 mm, coerente com o limite inferior.",
-    "tmax_critica_c=40: a Embrapa diz que estresse térmico em FC 2 (formação da panícula, inclui o florescimento) reduz a fertilidade das espiguetas e cita >=40 °C como temperatura elevada; não há limiar específico para antese no texto. 40 coincide com o máximo absoluto do ECOCROP.",
+    "agua_ciclo (100-260 mm) é cálculo próprio (FAO-56 + NASA POWER), não medição. Não achei ETc medida do milheto até o manejo. O valor depende da época: safrinha 83-157 mm, primavera (ago-set, seca) 140-264 mm. Depende também do Kc ini: 0.3 é o da FAO-56 para molhamento pouco frequente; com chuva frequente, 0.6 soma cerca de 35 mm.",
+    "tmax_critica_c = 40 continua, mas o motivo mudou. A esterilidade de espiguetas por calor em FC 2 não importa para a cobertura, que é manejada antes de formar grão. No uso como cobertura, 40 °C é o máximo absoluto de crescimento do ECOCROP. A Embrapa diz que calor >= 40 °C em FC 1 tem pouco efeito, e a germinação só zera entre 45 e 47 °C. Não há limiar medido de dano vegetativo.",
+    "kc_final = kc_medio = 1.0 vem da convenção do time para cobertura cortada no florescimento (FAO-56 cap. 6). Não achei Kc do milheto medido logo após o florescimento.",
+    "Uso para grão fica fora desta linha. Se o app modelar milheto-grão: ciclo 76-105 dias (SP3: maturidade 97-104 DAE; ADR 300/500 92/100 dias; FAO-56 Tab.11 105 dias), água 450-650 mm (FAO IWM Manual 3, Tab.5) e kc_final 0.3.",
     "cobertura_solo=alta: cobertura rápida e densa, mas a palhada dessecada na pré-floração tem baixa C/N e decomposição rápida (Circ. 29), ou seja, persiste menos que a de braquiária.",
     "Grão de milheto tem mercado (ração), mas é secundário e sem código PAM; por isso 'comercial' não entrou em tipos."
+  ],
+  "pendencias_resolvidas": [
+    "Ciclo mistura dois usos de propósito: ciclo_dias_min=45 é o manejo da COBERTURA (dessecação na pré-floração, florescimento das cultivares 43-58 dias); ciclo_dias_max=105 é a colheita de GRÃO (maturidade fisiológica 97-104 DAE; ADR 500/ADR 7010 100 dias). Se o integrador preferir só o uso de cobertura, usar 45-60; só grão, usar 76-105 (ENA 1 76 dias no plantio das secas). O ZARC agrupa cultivares em Grupo I até 110 dias, II 110-130 e III acima de 130 dias (emergência-maturação), mas as cultivares descritas no SP3 ficam em 76-104 dias.",
+    "Água 450-650 mm é a faixa FAO conjunta 'Sorghum/Millet' para ciclo completo até grão; não achei valor Embrapa específico para a cobertura (ciclo ~45-60 dias), que deve consumir menos. Embrapa cita 440 mm para alta produtividade de grão e tolerância a menos de 400 mm, coerente com o limite inferior.",
+    "tmax_critica_c=40: a Embrapa diz que estresse térmico em FC 2 (formação da panícula, inclui o florescimento) reduz a fertilidade das espiguetas e cita >=40 °C como temperatura elevada; não há limiar específico para antese no texto. 40 coincide com o máximo absoluto do ECOCROP."
   ]
 }

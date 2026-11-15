@@ -5,23 +5,23 @@
     "perene": "false",
     "ciclo_dias_min": "56",
     "ciclo_dias_max": "160",
-    "temp_base_c": "",
+    "temp_base_c": "16",
     "temp_otima_min_c": "20",
     "temp_otima_max_c": "30",
     "tmax_critica_c": "40",
     "sensivel_geada": "true",
     "agua_ciclo_mm_min": "226",
-    "agua_ciclo_mm_max": "",
+    "agua_ciclo_mm_max": "770",
     "kc_inicial": "0.34",
-    "kc_medio": "1.41",
-    "kc_final": "",
+    "kc_medio": "1.36",
+    "kc_final": "1.36",
     "profundidade_raiz_m": "0.6",
     "fixa_nitrogenio": "true",
     "raiz_profunda": "true",
     "cobertura_solo": "alta",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "baixo",
-    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (dias a 50% do florescimento por época de semeadura: 118/88/67; fotoperíodo de dias curtos)|Carvalho et al., Embrapa Cerrados, Circular Técnica 4 Manejo de adubos verdes no Cerrado, 1999 (florescimento ~90 dias no período chuvoso e 60 dias no fim das chuvas; 17,6 t/ha MS; 443,5 kg/ha N na parte aérea; corte pode anteceder a floração)|Pereira, A.J., tese UFRRJ/Embrapa Agrobiologia, Caracterização agronômica de espécies de Crotalaria L., 2007 (50% de flores aos 57-163 DAS conforme época/local; 50% de cobertura aos 15 DAS; 17,6 Mg/ha MS; 418,7 kg/ha N da FBN)|Araújo et al., Embrapa Agrobiologia, Boletim de P&D 66, 2010 (espécie herbácea anual; FBN 67%; 105,9 kg/ha N via FBN; pleno florescimento 114 dias após semeadura de 08/12)|FAO ECOCROP Crotalaria juncea id 801 (temperatura ótima 20-30, absoluta 4-40; temp. letal -1 °C no início do crescimento e -2 °C em repouso; ciclo 60-160 d; anual; sementes tóxicas a mamíferos)|Sampaio et al., Irriga 21(2):211-225, 2016, DOI 10.15809/irriga.2016v21n2p211-225 (Kc medido em lisímetro de pesagem: 0,34 inicial e 1,41 floração; ETc 225,89 mm até o pleno florescimento aos 56 DAS; Mossoró-RN)|Silva et al., Embrapa Semi-Árido, Caracterização de sistemas radiculares de leguminosas sob irrigação no Vale do São Francisco, 2002 (raízes até ~0,6 m aos 60 dias; 80% das raízes até 0,4 m)|Medina et al., Semina Ciênc. Agrár. 34(2):675-682, 2013 (profundidade efetiva 0,40 m, a maior entre as coberturas, amostragem até 1,0 m)|Foloni, Lima & Büll, RBCS 30:49-57, 2006 (raízes de C. juncea formam bioporos na camada compactada)|Cook et al., Tropical Forages (tropicalforages.info), Crotalaria juncea (raiz pivotante longa; alcaloides pirrolizidínicos tóxicos; animais não comem verde; tolera geadas leves)",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (dias a 50% do florescimento por época de semeadura: 118/88/67; fotoperíodo de dias curtos)|Carvalho et al., Embrapa Cerrados, Circular Técnica 4 Manejo de adubos verdes no Cerrado, 1999 (florescimento ~90 dias no período chuvoso e 60 dias no fim das chuvas; 17,6 t/ha MS; 443,5 kg/ha N na parte aérea; corte pode anteceder a floração)|Pereira, A.J., tese UFRRJ/Embrapa Agrobiologia, Caracterização agronômica de espécies de Crotalaria L., 2007 (50% de flores aos 57-163 DAS conforme época/local; 50% de cobertura aos 15 DAS; 17,6 Mg/ha MS; 418,7 kg/ha N da FBN; curva de Gompertz da altura da C. juncea, usada para h na eq. 62: ~1,7 m aos 56 DAS e ~3,3 m aos 118 DAS)|Araújo et al., Embrapa Agrobiologia, Boletim de P&D 66, 2010 (espécie herbácea anual; FBN 67%; 105,9 kg/ha N via FBN; pleno florescimento 114 dias após semeadura de 08/12)|FAO ECOCROP Crotalaria juncea id 801 (temperatura ótima 20-30, absoluta 4-40; temp. letal -1 °C no início do crescimento e -2 °C em repouso; ciclo 60-160 d; anual; sementes tóxicas a mamíferos)|Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016, Épocas de semeadura e temperatura base em crotalária juncea (cv. IAC KR1, Santa Maria-RS, 10 épocas de semeadura; Tb do subperíodo emergência-florescimento = 16,0 °C pelo método da menor variabilidade; 106-135 dias da emergência ao florescimento; altura no florescimento 2,86-3,51 m)|Sampaio et al., Irriga 21(2):211-225, 2016, DOI 10.15809/irriga.2016v21n2p211-225 (Kc medido em lisímetro de pesagem: 0,34 inicial e 1,41 floração, este padronizado para 1,36 pela eq. 62 do FAO-56 com u2 = 1,82 m/s e URmín = 27,94% do próprio artigo; ETc 225,89 mm até o pleno florescimento aos 56 DAS; Mossoró-RN)|Allen et al., FAO Irrigation and Drainage Paper 56, cap. 6, 1998 (eq. 62 de ajuste do Kc mid ao clima; Kc end alto para cultura colhida/cortada verde, usado em kc_final = kc_medio)|Daniel, Dallacort, Barbieri, Tieppo, Carvalho & Fenner, Research, Society and Development 9(8):e890986196, 2020, DOI 10.33448/rsd-v9i8.6196 (C. juncea solteira em lisímetro de pesagem, Tangará da Serra-MT: ETc 436,16 mm em 123 dias, da semeadura até perto da maturação, para ETo de 331,28 mm, ou seja, ETc/ETo de 1,32 no ciclo; usado como checagem)|ESTIMATIVA: cálculo FAO-56 (ETc = Kc x ET0 Penman-Monteith diária com NASA POWER 2000-2020) para agua_ciclo_mm_max; mediana de 21 anos do cenário de 163 dias até o florescimento (semeadura em 22/11, Seropédica-RJ, Pereira 2007)|Silva et al., Embrapa Semi-Árido, Caracterização de sistemas radiculares de leguminosas sob irrigação no Vale do São Francisco, 2002 (raízes até ~0,6 m aos 60 dias; 80% das raízes até 0,4 m)|Medina et al., Semina Ciênc. Agrár. 34(2):675-682, 2013 (profundidade efetiva 0,40 m, a maior entre as coberturas, amostragem até 1,0 m)|Foloni, Lima & Büll, RBCS 30:49-57, 2006 (raízes de C. juncea formam bioporos na camada compactada)|Cook et al., Tropical Forages (tropicalforages.info), Crotalaria juncea (raiz pivotante longa; alcaloides pirrolizidínicos tóxicos; animais não comem verde; tolera geadas leves)",
     "confianca_parametros": "media"
   },
   "mudancas": [
@@ -84,6 +84,36 @@
       "antes": "baixa",
       "depois": "media",
       "motivo": "Os campos preenchidos têm fonte primária lida. Ficaram vazios temp_base_c, agua_ciclo_mm_max e kc_final, e o Kc vem de um único estudo."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "",
+      "depois": "16",
+      "motivo": "Tb medida para a própria C. juncea (cv. IAC KR1, a mais usada no Brasil) e para o subperíodo emergência-florescimento, que é exatamente o ciclo de cobertura do catálogo: 16,0 °C pelo método da menor variabilidade, com 10 épocas de semeadura em Santa Maria-RS (Cargnelutti Filho et al. 2016). Refiz a conta com os dados da Tabela 2 do artigo (NDEF e Tm) e o desvio padrão mínimo cai mesmo em 16 °C (7,53 dias, contra 8,06 dias com Tb = 10 °C). Os autores lembram que o valor é próximo ao de outras leguminosas tropicais pelo mesmo método (Mucuna aterrima 15,7 °C e soja 14,0 °C). O candidato anterior, 10 °C (Qi et al. 1999), continua sem confirmação: o resumo dá Tb comum de 10 °C ao grupo de dias curtos para o aparecimento de folhas, não para o florescimento, e o texto completo segue inacessível. Ver a ressalva sobre fotoperíodo em pendencias."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "1.41",
+      "depois": "1.36",
+      "motivo": "Padronizado para a condição do FAO-56 (URmín de 45%, u2 de 2 m/s) pela eq. 62, com os dados da estação automática ao lado do ensaio que o próprio artigo publica: u2 = 1,82 m/s e URmín média = 27,94%. A altura h não foi publicada. Usei 1,68 m da curva de Gompertz da C. juncea de Pereira (2007) aos 56 DAS. Conta: Kc_padrão = 1,41 − [0,04 (1,82 − 2) − 0,004 (27,94 − 45)] (1,68/3)^0,3 = 1,41 − [−0,0072 + 0,0682] × 0,840 = 1,41 − 0,0610 × 0,840 = 1,41 − 0,051 = 1,359 ≈ 1,36. O resultado quase não depende de h: com h de 1,0, 1,5, 2,0 e 3,0 m sai 1,366, 1,360, 1,356 e 1,349."
+    },
+    {
+      "coluna": "kc_final",
+      "antes": "",
+      "depois": "1.36",
+      "motivo": "Regra do time: cobertura manejada no florescimento, sem fase de senescência. Sampaio et al. (2016) pararam no pleno florescimento e não há Kc medido depois dele. Pelo FAO-56 (cap. 6), o Kc end de cultura colhida verde é alto, então kc_final = kc_medio padronizado (1,36)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "",
+      "depois": "770",
+      "motivo": "Não achei medição até o florescimento em ciclo longo. Fiz um cálculo transparente: ETc = Σ Kc × ET0 diária, com ET0 FAO Penman-Monteith calculada a partir do NASA POWER diário (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN). A curva de Kc usa 18 d com 0,34, depois 18 d de subida linear e o Kc mid de 1,36 reajustado ao clima local pela eq. 62 (h = 3 m), até o florescimento. Cenários (mediana de 2000 a 2020, com mínimo e máximo): semeadura em 22/11 em Seropédica-RJ, 163 d até o florescimento (Pereira 2007): 766 mm (673-944), com ET0 de 688 mm; semeadura em 12/11 em Planaltina-DF, 118 d (Amabile 2000): 549 mm (490-620); semeadura em 08/12 em Seropédica, 114 d (Araújo 2010): 532 mm (464-698). Usei o cenário de ciclo mais longo arredondado: 770 mm. Checagem independente: em lisímetro em Tangará da Serra-MT, a C. juncea consumiu 436 mm em 123 dias no outono-inverno, com ETo de só 331 mm (Daniel et al. 2020)."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista anterior)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Entraram Cargnelutti Filho 2016 (Tb), FAO-56 cap. 6 (eq. 62 e Kc end), Daniel et al. 2020 (ETc em lisímetro, como checagem) e a ESTIMATIVA NASA POWER/FAO-56 (água máxima). Ajustei os parênteses de Sampaio 2016 (Kc padronizado) e de Pereira 2007 (altura de Gompertz usada para h)."
     }
   ],
   "evidencias": [
@@ -203,17 +233,80 @@
       "fonte": "Cook et al., Tropical Forages: an interactive selection tool, Crotalaria juncea (CIAT/ACIAR)",
       "url": "https://tropicalforages.info/text/entities/crotalaria_juncea.htm",
       "trecho": "Vigorous lateral roots and long taproot that can exploit deeply stored soil moisture ... can tolerate light frosts ... Animals are reported not to eat C. juncea when it is green ... contains poisonous glucosides (pyrrolizidine alkaloids)"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Cargnelutti Filho, Follmann, Bem, Pezzini, Schabarum, Silveira, Uliana & Chaves, Épocas de semeadura e temperatura base em crotalária juncea na região da depressão central do Rio Grande do Sul, Revista Agrarian 9(34):312-318, 2016",
+      "url": "https://ojs.ufgd.edu.br/agrarian/article/download/4574/3671/19848",
+      "trecho": "Calculou-se a temperatura base por meio do método da menor variabilidade ... A temperatura base para o subperíodo emergência-florescimento é 16,0ºC. ... Tabela 2 ... NDEF 135 ... 106; Tm 23,66 ... 25,09 ... Essa temperatura base foi próxima ao encontrado em outras leguminosas, como a Mucuna aterrima ... e Glycine max ... cujos valores foram 15,7ºC e 14,0ºC"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Qi, Wheeler, Keatinge, Ellis, Summerfield & Craufurd, Modelling the effects of temperature on the rates of seedling emergence and leaf appearance in legume cover crops, Exp. Agric. 35:327-344, 1999 (só o resumo, registro CGSpace 10568/98028)",
+      "url": "https://hdl.handle.net/10568/98028",
+      "trecho": "Common values of Tb were found within each photoperiod response group: 9 °C and 1 °C for 1/t50%, and 10 °C and -2 °C for leaves d-1 for short-day and long-day species respectively. (Símbolos corrigidos da extração do PDF, que traz '9 8C', '10 8C' e '72 8C'. O resumo não lista as 12 espécies. Não consegui o texto completo para confirmar a C. juncea. Mantido só como alternativa.)"
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "Sampaio, Miranda, Medeiros, Lima & Santos, Necessidade hídrica da Crotalaria juncea L. em resposta à salinidade residual do solo, Irriga 21(2):211-225, 2016",
+      "url": "https://doi.org/10.15809/irriga.2016v21n2p211-225",
+      "trecho": "A umidade relativa do ar apresentou amplitude das médias diárias entre 44,54 e 71,78% ... tendo a média de umidade máxima atingindo 80,45% e a mínima de 27,94% (Figura 2) ... A velocidade média do vento apresentou média de 1,82 m s-1 com valores diários variando entre 0,64 e 2,36 m s-1 ... estação climatológica automática localizada ao lado do experimento ... velocidade do vento a dois metros de altura ... Floração 14 [d] 1,41. CONTA (eq. 62): 1,41 − [0,04(1,82−2) − 0,004(27,94−45)](1,68/3)^0,3 = 1,41 − 0,0610 × 0,840 = 1,359 → 1,36. Na Figura 2, a URmín diária fica em torno de 20-45% no ciclo e de ~20-33% na floração (42-56 DAP). Com URmín ≈ 25% e u2 ≈ 1,7 m/s na floração, o resultado continua 1,36."
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "Pereira, A.J., tese UFRRJ, 2007, Tabela 2 (Gompertz da altura)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/630008/1/CaracterizacaoagronomicadeespeciesdeCrotalariaL.emdiferentescondicoesedafoclimaticas.pdf",
+      "trecho": "Parâmetros estimados a partir da função de Gompertz, para as alturas ... C. juncea 385,0457 4,0149 0,02812 ... Altura = A × e(-B × e(-C × DAS)). Aos 56 DAS: 385 × exp(−4,0149 × exp(−0,02812 × 56)) = 168 cm (h usado na eq. 62)"
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "Allen, Pereira, Raes & Smith, FAO-56, cap. 6 (Kc mid e Kc end)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "TABLE 12. ... for non stressed, well-managed crops in subhumid climates (RH min » 45%, u 2 » 2 m/s) ... Equation 62 is valid for mean plant heights up to 10 m ... the presence of the 0.3 exponent in Equation 62 makes these equations relatively insensitive to small errors in the value used for h. || [Kc end] If the crop is irrigated frequently until harvested fresh, the topsoil remains wet and the K c end value will be relatively high. || The length of the late season period may be relatively short (less than 10 days) ... for agricultural crops that are harvested fresh"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "ESTIMATIVA própria: ET0 FAO-56 Penman-Monteith diária com NASA POWER (comunidade AG, 2000-2020) × curva de Kc (0,34 por 18 d; subida linear em 18 d; Kc mid = 1,36 ajustado pela eq. 62 com u2 e URmín locais e h = 3 m) até o florescimento. Script: scratchpad/scripts_crot/etc.py",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&latitude=-22.76&longitude=-43.68&start=20000101&end=20211231&format=JSON",
+      "trecho": "Seropédica, semeadura em 22/11, 163 d: ET0 mediana de 688 mm; ETc mediana de 766 mm (mín. 673, máx. 944); Kc mid local de 1,28; u2 de 2,25 m/s; URmín de 69%. Planaltina-DF, semeadura em 12/11, 118 d: ETc mediana de 549 mm (490-620). Seropédica, semeadura em 08/12, 114 d: ETc mediana de 532 mm (464-698)."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max",
+        "kc_medio"
+      ],
+      "fonte": "Daniel, Dallacort, Barbieri, Tieppo, Carvalho & Fenner, Evapotranspiração e produtividade de milho safrinha consorciado com crotalária, Research, Society and Development 9(8):e890986196, 2020",
+      "url": "https://rsdjournal.org/index.php/rsd/article/download/6196/5982",
+      "trecho": "Para a C. juncea a ETc acumulada durante o ciclo foi de 436,16 mm, com valores de 0,94, 3,94 e 5,94 mm dia-1 ... ETo ... totalizando 331,28 mm ... a crotalária se encontrava aos 120 DAE ... em plena maturidade fisiológica (semeadura em 12/04/2018, Tangará da Serra-MT, lisímetros de 1,5 x 1,5 m)"
     }
   ],
   "pendencias": [
-    "temp_base_c: sem valor medido para a C. juncea. O resumo de Qi et al. (Exp. Agric. 35:327-344, 1999) dá Tb comum de 10 °C (aparecimento de folhas) e 9 °C (emergência) para as leguminosas de cobertura de dias curtos. Não consegui confirmar no texto completo (acesso restrito) que a C. juncea estava entre as espécies. Um artigo da Agronomy (MDPI) de 2024 sobre sunn hemp usa GDD com base de 10 °C, mas não consegui abri-lo (403). Candidato: 10 °C, com baixa confiança.",
-    "kc_medio 1,41: vem de um único estudo (3 lisímetros de 1,5 x 1,5 m, semiárido irrigado em Mossoró, plantio em fileiras duplas espaçadas de 1,8 m). Está acima do teto usual do FAO-56 e pode superestimar a ETc em regiões úmidas. Se o grupo preferir conservador: PROXY do grupo Legumes do FAO-56, Kc mid 1,15.",
-    "kc_final: vazio. Como cobertura, a crotalária é manejada no pleno florescimento e não tem fase final de senescência. O estudo de Kc também parou na floração. Se o modelo exigir valor, pode-se repetir o kc_medio (corte na floração) ou usar o PROXY do grupo Legumes do FAO-56 (0,55), declarando isso.",
-    "agua_ciclo_mm_max: sem fonte de exigência hídrica para ciclos longos. Os 226 mm do mínimo são a ETc medida em 56 dias. Para ciclos de 120-160 dias o consumo será maior. O ECOCROP só dá chuva ANUAL ótima de 500-1500 mm (absoluta 200-4300), que não é água do ciclo.",
+    "temp_base_c 16: é a única Tb medida para a C. juncea que achei, mas vem de um único local (Santa Maria-RS), de uma única cultivar (IAC KR1) e de uma faixa estreita de temperatura média (23,7-25,3 °C). A curva do método é achatada: o desvio vai de 7,53 dias com Tb = 16 °C a 8,06 dias com Tb = 10 °C. Como a C. juncea é de dias curtos, o encurtamento do ciclo nas semeaduras tardias também vem do fotoperíodo, o que pode inflar a Tb. Os graus-dia até o florescimento não se transferem entre latitudes: ~1086 °C·d em Santa Maria (Tb 16) contra ~582 °C·d em Mossoró (56 d × (26,39 − 16)). O filtro de graus-dia é fraco para esta cultura e o ciclo depende mais da época e da latitude. Alternativa conservadora: 10 °C (resumo de Qi et al. 1999, grupo de dias curtos, aparecimento de folhas, sem confirmação de que a C. juncea estava no estudo). Com Tb = 16, a cultura tende a ser eliminada em semeaduras de outono-inverno no Sul, o que bate com a recomendação de semear na primavera-verão, mas o time deve decidir.",
+    "kc_medio 1,36 (padronizado de 1,41): vem de um único estudo (3 lisímetros de 1,5 x 1,5 m, irrigação localizada, fileiras duplas a 1,8 m, fator de cobertura de só 0,50 aos 56 DAS). Lisímetros pequenos podem superestimar a ETc (efeito oásis). A checagem em Tangará da Serra (ETc/ETo de 1,32 no ciclo todo, também em lisímetro de 1,5 x 1,5 m) apoia um Kc alto para a C. juncea. A alternativa conservadora seria o PROXY do grupo Legumes do FAO-56 (Kc mid 1,15). A altura h não foi publicada por Sampaio: usei a curva de Pereira (2007), e o resultado é insensível a h (1,35-1,37 para h de 1 a 3 m). Se o RHmin de 27,94% fosse o mínimo absoluto, e não a média das mínimas diárias (a Figura 2 indica média), o Kc padrão ficaria em ~1,38. O NASA POWER para o mesmo período em Mossoró dá u2 = 5,0 m/s, URmín de 40% e ET0 média de 7,3 mm/d, contra 1,82 m/s e 5,33 mm/d da estação ao lado do ensaio. Mantive os dados locais do artigo, como manda o BRIEF2.",
+    "kc_final 1,36: não é medido. Aplica a regra do time de cortar no florescimento (Kc end ≈ Kc mid, FAO-56 cap. 6). Se a cultura for deixada até a semente, o Kc end real deve cair bastante.",
+    "agua_ciclo_mm_max 770: é ESTIMATIVA (cálculo), não medição. Depende do Kc mid de 1,36, de um único estudo. Com o Kc do grupo Legumes do FAO-56 (1,15), daria uns 15% menos (~650-660 mm). O cálculo usa a ET0 do NASA POWER, que pode diferir de estação local (em Mossoró superestimou). Nos ciclos de 114-118 d, a água fica em ~530-550 mm. 770 mm representa o extremo de ~160 d no Sudeste, semeado em novembro.",
     "tmax_critica_c 40: é o máximo absoluto do ECOCROP, não um limiar de calor medido na floração.",
     "profundidade_raiz_m 0,6: máximo medido aos 60 dias com lençol freático a 0,9 m, o que pode ter limitado a raiz. O real em sequeiro e em ciclo completo pode ser maior. A profundidade efetiva (80% das raízes) é 0,4 m. Não há valor no FAO-56.",
-    "ciclo: a amplitude (56-160) reflete a época de semeadura e a latitude (planta de dias curtos), mais do que diferenças entre cultivares. Na semeadura típica de primavera no Cerrado (novembro) o florescimento ocorre aos ~90-120 dias.",
+    "ciclo: a amplitude (56-160) reflete a época de semeadura e a latitude (planta de dias curtos), mais do que diferenças entre cultivares. Na semeadura típica de primavera no Cerrado (novembro) o florescimento ocorre aos ~90-120 dias. Em Santa Maria-RS, semeaduras de outubro a dezembro levaram 106-135 dias da emergência ao florescimento (Cargnelutti Filho et al. 2016).",
     "tolerante_seca: não incluída. O Tropical Forages diz 'Drought tolerant, adapted to hot, semi-arid and arid areas', mas não achei fonte Embrapa específica para a C. juncea: a frase 'resistente à seca' em Amabile 2000 refere-se ao guandu.",
     "sensivel_geada=true: o ECOCROP dá temperatura letal de -1 °C no início do crescimento. O Tropical Forages diz que 'can tolerate light frosts'. É sensível a geadas moderadas e fortes."
+  ],
+  "pendencias_resolvidas": [
+    "temp_base_c: sem valor medido para a C. juncea. O resumo de Qi et al. (Exp. Agric. 35:327-344, 1999) dá Tb comum de 10 °C (aparecimento de folhas) e 9 °C (emergência) para as leguminosas de cobertura de dias curtos. Não consegui confirmar no texto completo (acesso restrito) que a C. juncea estava entre as espécies. Um artigo da Agronomy (MDPI) de 2024 sobre sunn hemp usa GDD com base de 10 °C, mas não consegui abri-lo (403). Candidato: 10 °C, com baixa confiança.",
+    "kc_final: vazio. Como cobertura, a crotalária é manejada no pleno florescimento e não tem fase final de senescência. O estudo de Kc também parou na floração. Se o modelo exigir valor, pode-se repetir o kc_medio (corte na floração) ou usar o PROXY do grupo Legumes do FAO-56 (0,55), declarando isso.",
+    "agua_ciclo_mm_max: sem fonte de exigência hídrica para ciclos longos. Os 226 mm do mínimo são a ETc medida em 56 dias. Para ciclos de 120-160 dias o consumo será maior. O ECOCROP só dá chuva ANUAL ótima de 500-1500 mm (absoluta 200-4300), que não é água do ciclo."
   ]
 }

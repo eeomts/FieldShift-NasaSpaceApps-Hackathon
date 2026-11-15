@@ -4,7 +4,7 @@
     "tipos": "comercial|fixadora_n",
     "perene": "false",
     "ciclo_dias_min": "60",
-    "ciclo_dias_max": "100",
+    "ciclo_dias_max": "110",
     "temp_base_c": "10",
     "temp_otima_min_c": "18",
     "temp_otima_max_c": "25",
@@ -21,7 +21,7 @@
     "cobertura_solo": "baixa",
     "aporte_biomassa": "baixo",
     "valor_forrageiro": "baixo",
-    "fontes": "Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 2 Clima (temperatura ótima; calor no pré-florescimento/florescimento)|Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 8 Irrigação (água no ciclo 250-400 mm)|Embrapa Arroz e Feijão Circular Técnica 89 2011 (ciclo das cultivares 70-90 d; água 300-400 mm)|Embrapa Agropecuária Oeste Circular Técnica 45 2018 (ciclo superprecoce 60-65 d BRS FC104; Tmax >30 °C na fase reprodutiva; demanda hídrica 243.8 mm)|MAPA ZARC Feijão 2ª safra PR Portaria SPA/MAPA 251/2024 (abscisão de flores >30 °C dia e >25 °C noite; risco de geada Tmin <=3 °C; grupos de ciclo)|Del Peloso et al. Embrapa Arroz e Feijão 2009 cap. 4 (classes de ciclo: precoce <75 d a tardio >90 d)|Embrapa Tabuleiros Costeiros Circular Técnica 21 2001 (ótimo 18-30 °C; fixação simbiótica de N 30-120 kg/ha)|FAO ECOCROP Phaseolus vulgaris (ótimo 16-25 °C)|Medeiros et al. 2000 Pesq. Agropec. Bras. 35(9) (Tb 10 °C)|Tisot et al. 2005 Rev. Bras. Agrometeorologia 13(1) (Tb 10 °C)|FAO-56 Tab.11 (duração total 95-110 d)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "fontes": "Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 2 Clima (temperatura ideal ~29 °C de dia e 21 °C de noite; calor no pré-florescimento/florescimento)|Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 8 Irrigação (água no ciclo 250-400 mm)|Embrapa Arroz e Feijão Circular Técnica 89 2011 (ciclo das cultivares 70-90 d; água 300-400 mm)|Embrapa Agropecuária Oeste Circular Técnica 45 2018 (ciclo superprecoce 60-65 d BRS FC104; Tmax >30 °C na fase reprodutiva; demanda hídrica 243.8 mm)|MAPA ZARC Feijão 2ª safra PR Portaria SPA/MAPA 251/2024 (abscisão de flores >30 °C dia e >25 °C noite; <12 °C retarda o crescimento; risco de geada Tmin <=3 °C; grupos de ciclo; +30 d no ciclo em regiões frias do Sul)|Del Peloso et al. Embrapa Arroz e Feijão 2009 cap. 4 (classes de ciclo: precoce <75 d a tardio >90 d)|Embrapa Arroz e Feijão Catálogo de cultivares de feijão 2012 (classe tardio >95 d; BRS Vereda tardia)|Otsubo et al. Embrapa Agropecuária Oeste Comunicado Técnico 113 2005 BRS Vereda (93 d da emergência à maturação fisiológica)|Souza Filho & Andrade PESAGRO-RIO nº 124 2018 (VCU feijão preto ciclo normal: 98 d emergência-colheita)|Tisot et al. 2005 Rev. Bras. Agrometeorologia 13(1) (Tb 10 °C; 1158 GD da semeadura a R9 aos 96 DAS; colheita aos 110 DAS)|Medeiros et al. 2000 Pesq. Agropec. Bras. 35(9) (Tb 10 °C; 1155 GD da emergência à colheita)|Miranda & Campelo Júnior 2010 Pesq. Agropec. Trop. 40(2) (978-1262 GD da semeadura à maturação com Tb 10 °C)|Arruda, Tubelis & Nascimento 1980 Pesq. Agropec. Bras. 15(4) (21 °C aceito como ótimo; limiar térmico de produtividade 19-20 °C de média diária)|Justino, Heinemann et al. Embrapa Arroz e Feijão Anais XXII CBAGRO 2023 (temperaturas cardinais 12/21/29 °C)|Embrapa Tabuleiros Costeiros Circular Técnica 21 2001 (ótimo 18-30 °C, ideal ~20 °C; fixação simbiótica de N 30-120 kg/ha)|FAO ECOCROP Phaseolus vulgaris (ótimo 16-25 °C)|Farinelli et al. 2010 Bragantia 69(1) (dano de geada no feijoeiro: 82-98% das plantas afetadas e morte de plantas)|FAO-56 Tab.11 (duração total 95-110 d)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
     "confianca_parametros": "media"
   },
   "mudancas": [
@@ -48,6 +48,18 @@
       "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|...",
       "depois": "(nova lista, ver valores)",
       "motivo": "Saiu o marcador de rascunho. Entraram as fontes primárias que foram lidas, e saiu o FAO Irrigation Water Management Manual 3, que não foi consultado."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "100",
+      "depois": "110",
+      "motivo": "O catálogo de cultivares da Embrapa Arroz e Feijão (2012) define a classe tardia como '> 95 dias' e inclui a BRS Vereda. Somando os ~5 dias da semeadura à emergência (5 dias em Tisot et al. 2005; 5 a 10 dias pelo ZARC) e o intervalo entre maturação fisiológica e colheita, chega-se a cerca de 105 a 110 dias. Há uma medição direta que confirma: a cultivar IAC-Carioca Tybatã, semeada em abril em Piracicaba, chegou a R9 aos 96 DAS e foi colhida aos 110 DAS (Tisot et al. 2005). No VCU de feijão preto de ciclo normal semeado em maio em Macaé-RJ, o ciclo foi de 98 dias da emergência à colheita, ou ~103 da semeadura (PESAGRO-RIO 2018). O FAO-56 Tab.11 vai até 110 dias."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista da rodada 1)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Entraram as fontes do ciclo tardio (catálogo Embrapa, CT 113 BRS Vereda, PESAGRO-RIO), dos graus-dia com Tb 10 °C (Tisot, Medeiros e Miranda, com os números), da faixa ótima (Arruda et al. 1980, IAC; Justino/Heinemann 2023, Embrapa Arroz e Feijão) e do dano de geada (Farinelli et al. 2010)."
     }
   ],
   "evidencias": [
@@ -206,14 +218,108 @@
       "fonte": "Fietz et al., Embrapa Agropecuária Oeste, Circular Técnica 45, 2018",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1101445/1/ID36740.pdf",
       "trecho": "A demanda hídrica total foi de 243,8 mm [...] faixa sugerida por Oliveira et al. (2018), que é de 250 mm a 350 mm por ciclo"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Arroz e Feijão. Catálogo de cultivares de feijão comum, 2012 (2ª impressão abr. 2013)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/992459/1/catalogoFeijao-12jun2013.pdf",
+      "trecho": "BRS Vereda [...] Ciclo: Tardio (> 95 dias) [...] Ciclo: P-precoce (<75 dias); SP-semi-precoce (75-85 dias); N-normal (85-95 dias); T-tardio (>95 dias)."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Otsubo, A.A. et al. BRS Vereda: nova cultivar de feijão do grupo rosinha para Mato Grosso do Sul. Embrapa Agropecuária Oeste, Comunicado Técnico 113, dez. 2005",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/254504/1/COT2005113.pdf",
+      "trecho": "Ciclo da emergência ao florescimento: 47 dias / Ciclo da emergência à maturação fisiológica: 93 dias"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Souza Filho, B.F. de; Andrade, W.E. de B. Avaliação de genótipos de feijão preto em condições de cultivo empresarial (Ensaio VCU Preto ciclo precoce, normal e vitrine tecnológica 2016/2017). PESAGRO-RIO nº 124, maio 2018 (Macaé-RJ, semeadura em 31/05/2017; testemunhas IPR Tuiuiú, BRS Esteio, BRS FP403, IPR Uirapuru)",
+      "url": "https://www.rj.gov.br/pesagro/sites/default/files/arquivos_paginas/online124.pdf",
+      "trecho": "O ciclo dos materiais precoces foi de 84 dias (emergência-colheita) e, nos de ciclo normal e vitrine tecnológica, de 98 dias."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Tisot, D.A. et al. Modelos referentes ao padrão de variação temporal dos componentes de produtividade da cultura de feijão caracterizado por graus-dia. Rev. Bras. Agrometeorologia 13(1):81-89, 2005, Tabela 1 (IAC-Carioca Tybatã, Piracicaba-SP, semeadura 01/04/2002)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/15441/1/2005AP004.pdf",
+      "trecho": "temperatura base inferior (Tb = 10°C), graus-dia acumulados (GDac, °C.dia) [...] 5 DAS Emergência 77,9 [...] 45 DAS R5 630,9 [...] 48 R6 665,9 [...] 53 R7 711,6 [...] 68 R8 844,8 [...] 96 DAS R9 1.157,6 [...] 110 DAS Colheita. [...] utilizou-se a soma calórica (GD) a partir da semeadura."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Medeiros, G.A. de et al. Crescimento vegetativo e coeficiente de cultura do feijoeiro relacionados a graus-dia acumulados. Pesq. Agropec. Bras. 35(9):1733-1742, 2000, Tabela 4 (Carioca 80-SH, Campinas-SP, 1994; GD desde a emergência, Tbase 10 °C)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/5954/3058",
+      "trecho": "TABELA 4. Tempo termal das fases fenológicas do feijoeiro [...] 1ª folha trifoliada 94; 3ª folha trifoliada 246; Início do florescimento 532; Início da formação da vagem 653; Enchimento do grão 812; Colheita 1.155"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Miranda, M.N.; Campelo Júnior, J.H. Soma térmica para o subperíodo semeadura-maturação de feijão cv. Carioca em Colorado do Oeste, Rondônia. Pesq. Agropec. Trop. 40(2):180-185, 2010, Tabelas 2 e 4",
+      "url": "https://www.redalyc.org/pdf/2530/253020107010.pdf",
+      "trecho": "Tabela 2. Graus-dia acumulados no subperíodo semeadura-maturação [...] Tb = 10°C [...] Média 1261,9 (T1, entressafra irrigada, 87 dias); 977,6 (T2, safra normal irrigada, 81 dias); 1236,5 (T3, safra normal sem irrigação, 101 dias)"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Arruda, F.B.; Tubelis, A.; Nascimento, F.J.L. do (IAC/UNESP). Efeito da temperatura média diária do ar na produtividade do feijoeiro. Pesq. Agropec. Bras. 15(4):413-417, 1980",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/16601/10888",
+      "trecho": "O limiar térmico da produtividade foi de 20 °C de temperatura média diária do ar, para os primeiros 50 dias do ciclo, e de 19 °C, para o ciclo todo. [...] englobando o valor de 21°C, aceito como a temperatura ótima para o desenvolvimento"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "Silva, Didonet & Morais, cap. 2 Clima, pergunta 19, em Feijão: o produtor pergunta, a Embrapa responde, 2. ed., Embrapa, 2014",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1015021/1/p25.pdf",
+      "trecho": "para que a cultura do feijoeiro consiga atingir rendimentos potenciais elevados, os valores de temperatura do ar deverão estar em torno de 29 °C, de dia, e 21 °C, de noite."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 251/2024, ZARC Feijão 2ª safra Paraná 2024/2025, Nota Técnica",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2024-2025/parana-pr/PO41831.PDF",
+      "trecho": "A ocorrência de temperaturas do ar inferiores a 12°C na fase vegetativa retarda o crescimento das plantas [...] considerado, para fins de avaliação dos riscos térmicos, um acréscimo proporcional de 30 dias no ciclo da cultura em relação ao ciclo representativo original."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Farinelli, R.; Fornasieri Filho, D.; Bordin, L.; Penariol, F.G.; Volpe, C.A. Efeitos de geada no desenvolvimento do feijoeiro em sucessão a espécies vegetais e adubação nitrogenada. Bragantia 69(1):249-252, 2010 (Jaboticabal-SP, cv. Pérola, geada de 17/7/2000)",
+      "url": "https://scielo.br/pdf/brag/v69n1/31.pdf",
+      "trecho": "sendo atingida temperatura mínima de 2,4 °C com -4,3 °C na relva, culminado com a formação da geada [...] o feijoeiro estava com sintomas característicos da geada, sendo visíveis plantas com poucas folhas, ausência de parte aérea e morte de plantas. [Tabela 1: plantas afetadas 82,7 a 98,0%] [...] a temperatura em que é promovida a formação de geada no feijoeiro está situada em aproximadamente 3 °C"
     }
   ],
   "pendencias": [
+    "Faixa ótima mantida em 18-25 °C, agora com justificativa. O valor central de 21 °C é consenso: IAC (Arruda et al. 1980: '21 °C, aceito como a temperatura ótima'), Embrapa Arroz e Feijão (Justino/Heinemann 2023: cardinais 12/21/29 °C) e Embrapa Tabuleiros (ideal ~20 °C). Piso de 18: em Campinas, a produtividade cai abaixo de 19-20 °C de média diária (Arruda et al. 1980), e a Embrapa Tabuleiros e Vieira (1967, citado por Arruda) usam 18. O piso de 16 do ECOCROP fica abaixo do limiar de produtividade medido no Brasil. Teto de 25: o regime ideal de 29 °C de dia e 21 °C à noite da Embrapa (2014) dá média diária de ~25 °C. O ZARC usa 25 °C noturno como limiar de abscisão, e o ECOCROP também para em 25. O teto de 30 da Embrapa Tabuleiros é o limite do dano por calor no florescimento (já em tmax_critica_c), não da faixa ótima de média diária. Resta conferir se o motor compara a faixa com Tmed diária (premissa adotada aqui).",
+    "ciclo_dias_max (110): o catálogo Embrapa não diz se os '> 95 dias' contam da semeadura ou da emergência. Del Peloso et al. 2009 e o CT 113 contam da emergência, e assumi o mesmo. Os 110 dias de Tisot et al. 2005 incluem 14 dias entre R9 e a colheita. Com dessecação ou colheita mecânica direta, esse intervalo é menor. No Sul de altitude, a 2ª safra pode alongar o ciclo em até 30 dias (ZARC). Esse alongamento é ambiental e deve sair do filtro de graus-dia, não do ciclo_dias_max.",
+    "graus-dia do feijão com Tb 10 °C (para a coluna futura): três fontes brasileiras, com o mesmo cálculo linear do motor (Tmed − Tb). Tisot et al. 2005 (IAC-Carioca Tybatã, Piracicaba, abr-jul): 1.158 GD da semeadura a R9; por fase, 78 até a emergência, 631 até R5 (pré-floração), 712 até R7 (vagens) e 845 até R8. Medeiros et al. 2000 (Carioca 80-SH, Campinas, ago-nov): 1.155 GD da emergência à colheita; 532 até o início do florescimento, 653 até o início da formação da vagem e 812 até o enchimento do grão. Miranda & Campelo Júnior 2010 (Carioca, Rondônia): 978 a 1.262 GD da semeadura à maturação, em 81 a 101 dias. Esses autores também citam Pereira et al. 2002 com 1.000-1.200 GD no ciclo completo (não lido). Sugestão para a coluna: ~1.000 (precoce) a ~1.250 (normal/tardio) GD da semeadura à maturação, típico 1.150. As três fontes usam cultivares do grupo carioca de ciclo normal. Não há medição com Tb 10 para cultivares superprecoces ou tardias.",
+    "tmax_critica_c = 30 °C é a máxima diurna adotada pelo ZARC e pela Embrapa. O ZARC também usa 25 °C para a temperatura noturna, que pesa muito no abortamento, mas a tabela não tem coluna para isso.",
+    "temp_base_c = 10 °C é o valor convencional usado em trabalhos brasileiros (Medeiros 2000, Tisot 2005, Miranda 2010). Em Rondônia, Miranda & Campelo Júnior (2010) encontraram 15 °C para a safra irrigada, então a Tb varia com a época e a cultivar.",
+    "Nenhuma fonte primária foi lida para cobertura_solo (baixa), aporte_biomassa (baixo) e valor_forrageiro (baixo). Esses valores vêm do julgamento agronômico do rascunho (pouca palhada, decomposição rápida, uso forrageiro só da palha).",
+    "sensivel_geada = true agora tem fonte de campo (Farinelli et al. 2010, Bragantia/IAC): uma geada com 2,4 °C no abrigo e −4,3 °C na relva atingiu 82-98% das plantas, com perda da parte aérea e morte de plantas. O feijoeiro brotou de novo e produziu. Ainda falta uma frase da própria Embrapa sobre geada (o cap. 2 do 500 Perguntas só fala em baixas temperaturas que atrasam a germinação e alongam o ciclo)."
+  ],
+  "pendencias_resolvidas": [
     "ciclo_dias_max = 100 é uma estimativa. A Embrapa classifica como tardias as cultivares com mais de 90 dias da emergência à maturação, e somando cerca de 5 a 10 dias da semeadura à emergência o total fica perto de 100. A FAO-56 Tab.11 dá 95 a 110 dias. Nenhuma fonte brasileira lida diz literalmente 100 dias. O ZARC do PR soma 30 dias ao ciclo no feijão de 2ª safra em regiões frias do Sul, mas isso não entrou na faixa.",
     "Na faixa ótima de 18 a 25 °C, o limite inferior vem da Circ. Téc. 21 da Embrapa Tabuleiros (18 a 30 °C) e o superior do ECOCROP (16 a 25 °C). As fontes não coincidem: o ECOCROP começa em 16 °C, e a Embrapa fala em cerca de 29 °C de dia e 21 °C à noite, com ótimo de 21 °C. A faixa de 18 a 24 °C da matéria Epamig/Embrapa é texto de divulgação e não foi usada.",
-    "tmax_critica_c = 30 °C é a máxima diurna adotada pelo ZARC e pela Embrapa. O ZARC também usa 25 °C para a temperatura noturna, que pesa muito no abortamento, mas a tabela não tem coluna para isso.",
-    "temp_base_c = 10 °C é o valor convencional usado em trabalhos brasileiros. Em Rondônia, Miranda & Campelo Júnior (2010) encontraram 15 °C para a safra irrigada, então a Tb varia com a época e a cultivar.",
-    "Nenhuma fonte primária foi lida para cobertura_solo (baixa), aporte_biomassa (baixo) e valor_forrageiro (baixo). Esses valores vêm do julgamento agronômico do rascunho (pouca palhada, decomposição rápida, uso forrageiro só da palha).",
     "Lida em fonte primária, sensivel_geada = true se apoia só no critério de risco do ZARC (Tmin <= 3 °C). Não li um trecho da Embrapa que descreva diretamente o dano por geada."
   ]
 }

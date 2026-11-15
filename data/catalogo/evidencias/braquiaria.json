@@ -6,14 +6,14 @@
     "ciclo_dias_min": "",
     "ciclo_dias_max": "",
     "temp_base_c": "15",
-    "temp_otima_min_c": "30",
+    "temp_otima_min_c": "25",
     "temp_otima_max_c": "35",
     "tmax_critica_c": "",
     "sensivel_geada": "true",
-    "agua_ciclo_mm_min": "",
-    "agua_ciclo_mm_max": "",
+    "agua_ciclo_mm_min": "750",
+    "agua_ciclo_mm_max": "1500",
     "kc_inicial": "0.4",
-    "kc_medio": "0.95",
+    "kc_medio": "0.85",
     "kc_final": "0.85",
     "profundidade_raiz_m": "1.5",
     "fixa_nitrogenio": "false",
@@ -21,7 +21,7 @@
     "cobertura_solo": "alta",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "alto",
-    "fontes": "FAO-56 Tab.12 (Kc, linha Grazing Pasture - Rotated Grazing 0.40/0.85-1.05/0.85; categoria genérica de pastagem, kc_medio = meio da faixa)|FAO-56 Tab.22 (raiz, Grazing Pasture 0.5-1.5 m; limite superior = sequeiro)|Sanches et al., Rev. Bras. Agric. Irrigada 11(2):1291-1301, 2017 (Kc medido em lisímetro de pesagem, Marandu em formação, média 1.07)|Souza et al., IV INOVAGRI 2017, Embrapa Alice doc 1078225 (Kc em lisímetro de pesagem, Marandu irrigado, ciclos de corte outono-inverno, Kc médio 0.60-0.80)|Mendonça & Rassini, Embrapa Pecuária Sudeste Circular Técnica 45, 2006 (temperatura base 15.0 °C, Marandu)|Cruz et al., Pesq. Agropec. Bras. 46(7):675-681, 2011 (temperatura base 17.2 °C, Marandu sequeiro)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Bread grass Brachiaria brizantha, node 490 (temperatura ótima 30-35 °C, geada, raízes até 2 m)|Tropical Forages (CIAT/ILRI), Urochloa brizantha fact sheet (geada, seca de 3-6 meses, chuva 1500-3500 mm/ano, MS 8-20 t/ha/ano, valor nutritivo, cobertura)|Kluthcouski et al., Embrapa Arroz e Feijão Circular Técnica 38, 2000 - Sistema Santa Fé (palhada estável, vedação 30-60 dias pós-colheita, dessecação)|Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2ª ed. 2018 (consórcio com milho safrinha, pastejo pós-colheita, dessecação antes da soja)|Oliveira, Kluthcouski, Vilela et al. (Embrapa Cerrados), Os muitos benefícios da ILP para os solos, A Granja, 2015 (raiz profunda rompe camada compactada, bioporos)|Salton & Tomazi, Embrapa Agropecuária Oeste Comunicado Técnico 198, 2014 (raiz da braquiária estrutura o solo; soja após braquiária com raiz a 70 cm vs 40 cm)|Primavesi et al., Embrapa Pecuária Sudeste, 2002 (raízes vivas de Marandu presentes a 80-100 cm)",
+    "fontes": "FAO-56 Tab.12 (Kc, linha Grazing Pasture - Rotated Grazing 0.40/0.85-1.05/0.85; categoria genérica de pastagem, usada para kc_inicial e kc_final; kc_medio no limite inferior da faixa, confirmado pela medição de Souza et al. 2021)|FAO-56 Tab.22 (raiz, Grazing Pasture 0.5-1.5 m; limite superior = sequeiro)|Sanches et al., Rev. Bras. Agric. Irrigada 11(2):1291-1301, 2017 (Kc medido em lisímetro de pesagem, Marandu em formação, média 1.07)|Souza et al., IV INOVAGRI 2017, Embrapa Alice doc 1078225 (Kc em lisímetro de pesagem, Marandu irrigado, ciclos de corte outono-inverno, Kc médio 0.60-0.80)|Mendonça & Rassini, Embrapa Pecuária Sudeste Circular Técnica 45, 2006 (temperatura base 15.0 °C, Marandu)|Cruz et al., Pesq. Agropec. Bras. 46(7):675-681, 2011 (temperatura base 17.2 °C, Marandu sequeiro)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Bread grass Brachiaria brizantha, node 490 (temperatura ótima 30-35 °C, geada, raízes até 2 m)|Tropical Forages (CIAT/ILRI), Urochloa brizantha fact sheet (geada, seca de 3-6 meses, melhor adaptada a 1500-3500 mm/ano de chuva e cresce com pouco menos de 1000 mm/ano, MS 8-20 t/ha/ano, valor nutritivo, cobertura)|Kluthcouski et al., Embrapa Arroz e Feijão Circular Técnica 38, 2000 - Sistema Santa Fé (palhada estável, vedação 30-60 dias pós-colheita, dessecação)|Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2ª ed. 2018 (consórcio com milho safrinha, pastejo pós-colheita, dessecação antes da soja)|Oliveira, Kluthcouski, Vilela et al. (Embrapa Cerrados), Os muitos benefícios da ILP para os solos, A Granja, 2015 (raiz profunda rompe camada compactada, bioporos)|Salton & Tomazi, Embrapa Agropecuária Oeste Comunicado Técnico 198, 2014 (raiz da braquiária estrutura o solo; soja após braquiária com raiz a 70 cm vs 40 cm)|Primavesi et al., Embrapa Pecuária Sudeste, 2002 (raízes vivas de Marandu presentes a 80-100 cm)|Souza, Sanches, Mendonça, Pezzopane, Amorim & Jesus, Crop coefficient estimated by degree-days for 'Marandu' palisadegrass and mixed forage, Rev. FCA UNCuyo 53(2):71-81, 2021, doi:10.48162/rev.39.041 (ESALQ, lisímetro de pesagem, Marandu irrigado com corte a 0,15 m a cada 28/40 dias; ETo e ETc por ciclo de corte -> Kc médio dos ciclos 0,82 e consumo anual ~1.030 mm; Kc por graus-dia 0,50-0,90 na primavera/verão e 0,67-0,82 no outono/inverno)|Souza, Sanches, Mendonça, Pilau & Jesus, Crop coefficient of Marandu palisade grass: an approach involving leaf area index and canopy height, Irriga 26(4):924-937, 2021, doi:10.15809/irriga.2021v26n4p924-937 (mesmo ensaio: Kc mínimo e máximo por estação 0,45-1,10; altura do dossel até 0,44 m)|FAO ECOCROP, Brachiaria brizantha, código 536 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial está fora do ar (chuva ótima 750-2500 mm/ano, absoluta 500-4000; temperatura ótima 25-35 °C, absoluta 15-38 °C)|EMBRAPA-CNPGC (Nunes, Boock, Penteado & Gomes), Brachiaria brizantha cv. Marandu, Documentos 21, Campo Grande, 1984 (origem com ~700 mm/ano de chuva e ~8 meses de seca; adaptação ao Cerrado, tolerância à seca e ao frio)|NASA POWER (LaRC), dados diários de Piracicaba-SP, fev/2016-jan/2017 (WS2M, T2M_MAX, T2MDEW) -> u2 e UR mínima para a equação 62 do FAO-56 (cálculo próprio, porque os artigos não publicam esses valores)",
     "confianca_parametros": "media"
   },
   "mudancas": [
@@ -78,6 +78,42 @@
       "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 ...|FAO ECOCROP (temperatura)|Embrapa Gado de Corte (braquiária)",
       "depois": "lista nova (ver valores.fontes)",
       "motivo": "Saíram o ECOCROP (não consultado, site fora do ar) e a referência genérica à Embrapa Gado de Corte (nenhum documento específico lido). Entraram as referências de fato lidas."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "",
+      "depois": "750",
+      "motivo": "PERENE: valor ANUAL (mm/ano de chuva), conforme decisão do time, e não água por ciclo. 750 mm/ano é o limite inferior da faixa ótima de chuva do ECOCROP para B. brizantha (ótima 750-2500, absoluta 500-4000). A Tropical Forages diz que a espécie cresce com chuva 'somewhat below 1,000 mm', e a Embrapa Gado de Corte (Documentos 21, 1984) registra que o Marandu vem de uma região com ~700 mm/ano e ~8 meses de seca. A pendência anterior sugeria 1.000 mm/ano. Com o ECOCROP e a Embrapa, 750 tem mais respaldo como mínimo para produção sem forte restrição; 500 seria o limite de sobrevivência."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "",
+      "depois": "1500",
+      "motivo": "PERENE: valor ANUAL (mm/ano). 1500 mm/ano é o início da faixa de melhor adaptação da Tropical Forages ('Best adapted [...] with 1,500–3,500 mm average annual rainfall'), ou seja, a chuva a partir da qual a demanda anual fica coberta. Não usei o 2500 ou o 4000 do ECOCROP, que são tetos de tolerância e não necessidade. Para conferir a ordem de grandeza, o consumo MEDIDO em lisímetro (Marandu irrigado sem déficit, Piracicaba, Souza et al. 2021) somou 895 mm em 9 ciclos de corte (276 dias). Estimando os 80 dias sem dado com Kc 0,75, dá ~1.030 mm em 355 dias, dentro da faixa de 750 a 1.500."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "0.95",
+      "depois": "0.85",
+      "motivo": "Consegui o artigo de 2021 com Kc por graus-dia (Rev. FCA UNCuyo 53(2), DOI 10.48162/rev.39.041) e o companheiro na Irriga 26(4). Os dois são do mesmo ensaio de lisímetro de pesagem na ESALQ: Marandu irrigado, cortado a 0,15 m a cada 28 dias (primavera/verão) e 40 dias (outono/inverno). Pela Tabela 1 (ETo) e Tabela 2 (ETc) por ciclo de corte, o Kc médio dos ciclos (equivalente ao Kc mid 'averaged cutting effects' do FAO-56) é 895,4/1089,3 = 0,82. Nos ciclos de clima seco, com menos dados descartados por chuva, os valores são 0,84, 0,89, 0,79, 0,86, 0,87 e 0,91, média de 0,86. Equação 62: os artigos não publicam u2 nem UR mínima, então calculei com NASA POWER (Piracicaba, fev/2016-jan/2017): u2 = 1,94 m/s, URmin = 51% e h = 0,30 m (dossel de 0,10 a 0,44 m). Isso dá ajuste de -0,014, ou Kc padrão = medido + 0,01. O clima de Piracicaba já é quase o padrão, e a correção é desprezível. Resultado padronizado: ~0,84-0,87, no limite inferior da faixa FAO (0,85-1,05). Troquei o meio da faixa (0,95, escolha arbitrária) por 0,85, que é medido para a espécie e ainda está dentro da faixa FAO. kc_inicial 0,40 e kc_final 0,85 continuam do FAO-56."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "",
+      "depois": "(vazio, mantido)",
+      "motivo": "Confirmado que não se aplica: a coluna mede o calor que prejudica a floração, e a braquiária é usada como forragem e palhada, sem colheita de grão. O limiar de calor para crescimento vegetativo é alto: o ECOCROP dá máximo absoluto de 38 °C, e Souza et al. (2021) citam ótimo de 40 °C e máximo de 45 °C (Pezzopane et al. 2018). Registrado nas pendências caso o motor queira um teto de calor."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista antiga, 13 referências)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Entram Souza et al. 2021 (UNCuyo e Irriga), ECOCROP 536 (cópia OpenCLIM), Embrapa CNPGC Documentos 21 (1984) e o cálculo com NASA POWER. Ajustadas as descrições do FAO-56 Tab.12 e da Tropical Forages."
+    },
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "30",
+      "depois": "25",
+      "motivo": "DECISÃO NA JUNÇÃO: FAO ECOCROP (código 536) dá ótimo de 25 a 35 °C; o ECOCROP é a fonte de temperatura usada nas outras culturas, e o 30 vinha da Feedipedia."
     }
   ],
   "evidencias": [
@@ -241,15 +277,90 @@
       "fonte": "Primavesi, Primavesi, Corrêa, Distribuição radicular de braquiária afetada pela intensidade de manejo em diferentes solos, Embrapa Pecuária Sudeste, 2002",
       "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/41444/1/PROCIOP2002.00049.PDF",
       "trecho": "de 8,9 a 28,4 cm2/2.000 cm2 do perfil na camada de 80 a 100 cm"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "tmax_critica_c",
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, Brachiaria brizantha, código 536 (cópia EcoCrop_DB.csv do OpenCLIM; site oficial ecocrop.apps.fao.org responde 'Error')",
+      "url": "https://raw.githubusercontent.com/OpenCLIM/ecocrop/main/EcoCrop_DB.csv",
+      "trecho": "536, Brachiaria brizantha [...] capim Marandu: TOPMN 25, TOPMX 35, TMIN 15, TMAX 38, ROPMN 750, ROPMX 2500, RMIN 500, RMAX 4000, GMIN 90, GMAX 300"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Tropical Forages (CIAT/ILRI), Urochloa brizantha fact sheet",
+      "url": "https://tropicalforages.info/text/entities/urochloa_brizantha.htm",
+      "trecho": "Best adapted to the humid and sub-humid tropics with 1,500–3,500 mm average annual rainfall, but will also grow in the more arid regions of the tropics with rainfall somewhat below 1,000 mm."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min"
+      ],
+      "fonte": "EMBRAPA-CNPGC, Brachiaria brizantha cv. Marandu, Documentos 21, Campo Grande, 1984",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/317899/1/Brachiariabrizantha.pdf",
+      "trecho": "originária de uma região vulcânica da África, onde os solos geralmente apresentam bons níveis de fertilidade, com precipitação pluviométrica anual ao redor de 700 mm e cerca de 8 meses de seca no inverno"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max",
+        "kc_medio"
+      ],
+      "fonte": "Souza et al., Rev. FCA UNCuyo 53(2):71-81, 2021, Tabelas 1 e 2",
+      "url": "https://revistas.uncu.edu.ar/ojs3/index.php/RFCA/article/download/3651/3871",
+      "trecho": "Tabela 1 ETo (mm/ciclo): 90.6, 101.6, 100.3, 79.6, 97.8, 143.4, 164.5, 118.4, 122.1, 128.2, 120.2. Tabela 2 ETc_sc (mm/ciclo): 74.1, 65.6, 83.9, --, --, 127.6, 129.3, 101.9, 106.8, 116.2, 90.0 (ciclos de 02/11/2016 a 01/31/2017)"
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_inicial"
+      ],
+      "fonte": "Souza et al., Rev. FCA UNCuyo 53(2):71-81, 2021, Resultados",
+      "url": "https://doi.org/10.48162/rev.39.041",
+      "trecho": "During A/W, maximum Kc (Kc max = 0.82) was obtained at an ADD of 160 °C·days [...] whereas in Sp/Su, Kc max reached 0.90 at an ADD of 280 °C·days [...] Mean minimum Kc values (Kc min) determined at the beginning of the study periods were 0.50 for Sp/Ss and 0.67 for A/W."
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "Souza, Sanches, Mendonça, Pilau & Jesus, Irriga 26(4):924-937, 2021 (lido via Wayback Machine, PDF truncado, texto até as referências)",
+      "url": "https://web.archive.org/web/20231125084117/https://irriga.fca.unesp.br/index.php/irriga/article/download/4278/3236",
+      "trecho": "Minimum and maximum Kc values for single cultivation in each season were: 0.61 and 0.97 for spring, 0.45 and 1.10 for summer, 0.47 and 0.74 for autumn, and 0.52 and 0.94 for winter. [...] During the summer, the highest CH was 0.44 m, with a maximum Kc of 1.10."
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "Cálculo próprio: equação 62 do FAO-56 com NASA POWER de Piracicaba (-22.70, -47.63), 11/02/2016 a 31/01/2017; script em scratchpad/rodada2/braq_kc_calc.py",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WS2M,T2M_MAX,T2M_MIN,T2MDEW,RH2M&community=AG&longitude=-47.63&latitude=-22.70&start=20160211&end=20170131&format=JSON",
+      "trecho": "u2 médio 1,94 m/s; URmin (pelo ponto de orvalho e Tmax) 51,3%; h 0,30 m -> [0,04(u2-2) - 0,004(URmin-45)](h/3)^0,3 = -0,014 -> Kc_padrão = Kc_medido + 0,014. Por ciclo, o ajuste vai de -0,050 (verão úmido) a +0,033 (fim do inverno seco). Kc médio dos ciclos medido 0,82 -> padronizado ~0,84."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Souza et al., Rev. FCA UNCuyo 53(2):71-81, 2021, Discussão (citando Pezzopane et al., Field Crops Research 224:13-21, 2018)",
+      "url": "https://doi.org/10.48162/rev.39.041",
+      "trecho": "Literature on tropical pasture reports the optimum and maximum temperatures for vegetative development to be 40 °C, and 45 °C, respectively (24)."
     }
   ],
   "pendencias": [
     "Ciclo vazio por decisão (perene). Se o app precisar de uma janela para encaixar a braquiária como cobertura na ILP, a opção é da semeadura junto com o milho safrinha (fim de fev./início de mar., Broch & Ceccon) até a dessecação antes da soja (set.-out.), cerca de 180 a 230 dias. Esse número é DERIVADO do calendário, não lido numa fonte: nenhuma fonte primária dá dias fixos. Também é DERIVADA a janela de 60 a 150 dias entre a colheita do safrinha e a dessecação. O que a fonte diz: 30 a 60 dias de vedação para rebrota após a colheita (Circ. Téc. 38) e intervalo de 20 a 30 dias entre a dessecação de Marandu/Xaraés/Piatã e a semeadura da soja (Doc 131, Tab. 3).",
+    "agua_ciclo_mm_min/max (750-1500) são exigência ANUAL de CHUVA (mm/ano), não água por ciclo como nas anuais. O motor precisa comparar com a chuva anual (ou de 12 meses) e não com a de uma janela de cultivo. Para usar a braquiária como cobertura de entressafra na ILP (janela de ~180-230 dias), o filtro anual não serve. Nesse caso, uma opção DERIVADA é ETc = Kc 0,85 × ET0 da janela.",
+    "Kc: o kc_medio 0,85 vem de um único ensaio (ESALQ 2016-17, 1 ano, lisímetros de 1,17-1,22 m², corte a 0,15 m, irrigado). As ETc por ciclo podem estar subestimadas, porque leituras com chuva intensa foram descartadas, e os ciclos chuvosos (mar/2016 0,65, jan/2017 0,75) parecem afetados. Em pastejo com resíduo mais alto, o Kc tende a ser maior: os picos no verão chegam a 1,10 (Irriga) e 1,20-1,27 (dado original). O Sanches 2017 (1,07, formação) foi lido só no resumo e o 1,19 só como citação secundária. u2 e URmin da equação 62 vieram do NASA POWER, e não da estação da ESALQ. kc_inicial 0,40 (FAO) ficou abaixo do Kc medido logo após o corte (0,45-0,67), mas este foi irrigado, com solo úmido; mantive o FAO.",
+    "Raiz 1.5 m segue a regra do BRIEF (limite superior da FAO-56 Tab.22 para pastagem). A Feedipedia diz 'down to 2 m' para B. brizantha. Não achei medição de campo publicada de profundidade máxima da brizantha além de 1 m (Primavesi 2002 mediu só até 100 cm). Para B. decumbens adubada há citação de raízes além de 250 cm (Primavesi & Primavesi 1999, citado em Primavesi et al. 2002). Se a equipe aceitar fonte fora da FAO, 2.0 é defensável.",
+    "Guenni, Marín & Baruch 2002 (Plant and Soil 243:229-241), sobre seca e distribuição radicular, foi lido só pelo resumo num resultado de busca. Não está na lista de fontes."
+  ],
+  "pendencias_resolvidas": [
     "agua_ciclo_mm vazio: sem ciclo definido não há água por ciclo. Referência anual (Tropical Forages): ótimo de 1500 a 3500 mm/ano de chuva, cresce com chuva 'somewhat below 1,000 mm' e aguenta 3 a 6 meses de seca. Se o app aceitar valor anual para perenes, um mínimo de 1000 mm/ano tem respaldo; o máximo não é um limite agronômico.",
     "tmax_critica_c vazio: não tem sentido para forrageira sem colheita de grão, e não achei fonte. O ECOCROP (temperatura absoluta máxima) estava fora do ar em ecocrop.apps.fao.org (erro de banco) e em ecocrop.review.fao.org (pede login).",
     "temp_otima 30-35 vem da Feedipedia (base compilada da FAO/INRAE/CIRAD), não do ECOCROP. Vale reconferir no ECOCROP (id provável 538, não confirmado) quando o site voltar.",
-    "Kc: não há trio ini/mid/end específico de U. brizantha publicado de forma padronizada. Os lisímetros brasileiros (ESALQ/Embrapa Pecuária Sudeste) mostram Kc de 0,6 a 0,8 no outono-inverno e cerca de 1,07 a 1,19 no verão/irrigado. O trabalho com Kc por graus-dia (Souza et al., Rev. Fac. Cienc. Agrar. UNCuyo 53(2), 2021, DOI 10.48162/rev.39.041) não abriu (502); seria a melhor fonte para refinar. Os valores de Sanches 2017 (1,07) foram lidos só no resumo da AGRIS, e o 1,19 só na citação secundária de Mombach et al. 2019.",
-    "Raiz 1.5 m segue a regra do BRIEF (limite superior da FAO-56 Tab.22 para pastagem). A Feedipedia diz 'down to 2 m' para B. brizantha. Não achei medição de campo publicada de profundidade máxima da brizantha além de 1 m (Primavesi 2002 mediu só até 100 cm). Para B. decumbens adubada há citação de raízes além de 250 cm (Primavesi & Primavesi 1999, citado em Primavesi et al. 2002). Se a equipe aceitar fonte fora da FAO, 2.0 é defensável.",
-    "Guenni, Marín & Baruch 2002 (Plant and Soil 243:229-241), sobre seca e distribuição radicular, foi lido só pelo resumo num resultado de busca. Não está na lista de fontes."
+    "Kc: não há trio ini/mid/end específico de U. brizantha publicado de forma padronizada. Os lisímetros brasileiros (ESALQ/Embrapa Pecuária Sudeste) mostram Kc de 0,6 a 0,8 no outono-inverno e cerca de 1,07 a 1,19 no verão/irrigado. O trabalho com Kc por graus-dia (Souza et al., Rev. Fac. Cienc. Agrar. UNCuyo 53(2), 2021, DOI 10.48162/rev.39.041) não abriu (502); seria a melhor fonte para refinar. Os valores de Sanches 2017 (1,07) foram lidos só no resumo da AGRIS, e o 1,19 só na citação secundária de Mombach et al. 2019."
   ]
 }

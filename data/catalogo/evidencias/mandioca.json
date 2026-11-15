@@ -5,7 +5,7 @@
     "perene": "true",
     "ciclo_dias_min": "180",
     "ciclo_dias_max": "720",
-    "temp_base_c": "14",
+    "temp_base_c": "15",
     "temp_otima_min_c": "20",
     "temp_otima_max_c": "27",
     "tmax_critica_c": "",
@@ -21,7 +21,7 @@
     "cobertura_solo": "baixa",
     "aporte_biomassa": "baixo",
     "valor_forrageiro": "medio",
-    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc Cassava year 1: 0.3/0.80/0.30)|FAO-56 Tab.22 (raiz Cassava year 1: 0.5-0.8 m; usado limite superior)|FAO-56 Tab.11 (duração Cassava year 1: 210 dias; year 2: 360 dias)|Embrapa Mandioca e Fruticultura/Embrapa Semiárido, Sistema de Produção de Mandioca no Semiárido, Sistema de Produção 12, 2a ed. 2020 (ciclo 6 a 24 meses em sequeiro; temperatura ideal 20-27 °C; chuva 1000-1500 mm/ano; tolerância à seca)|Mattos, Farias & Ferreira Filho (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa 2006 (chuva anual 1000-1500 mm; temp. 20-27 °C; paralisa a ~15 °C; geada; uso da parte aérea e das raízes na alimentação animal; solo descoberto, erosão e pouco resíduo)|Embrapa Amazônia Ocidental, Circular Técnica 23, 2004 (ciclo de cultivares brasileiras 6-8 a 12-16 meses)|Schons et al., Ciência Rural 37(6):1586-1592, 2007 (temperatura base 14 °C para emissão de folhas; cita ZARC-SC com Tb 15 °C)|Alves, Fisiologia da mandioca, EMBRAPA-CNPMF 1990 (não cresce abaixo de 15 °C; arbusto perene)|FAO ECOCROP Manihot esculenta (temp. ótima 20-29 °C, absoluta 10-35 °C; morte a 0 °C no início do crescimento; perene)",
+    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc Cassava year 1: 0.3/0.80/0.30)|FAO-56 Tab.22 (raiz Cassava year 1: 0.5-0.8 m; usado limite superior)|FAO-56 Tab.11 (duração Cassava year 1: 210 dias; year 2: 360 dias)|Embrapa Mandioca e Fruticultura/Embrapa Semiárido, Sistema de Produção de Mandioca no Semiárido, Sistema de Produção 12, 2a ed. 2020 (ciclo 6 a 24 meses em sequeiro; temperatura ideal 20-27 °C; chuva anual ótima 1000-1500 mm/ano, usada em agua_ciclo como aproximação, NÃO é ETc medida; tolerância à seca)|Mattos, Farias & Ferreira Filho (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa 2006 (chuva anual ótima 1000-1500 mm, NÃO é ETc medida; temp. 20-27 °C; paralisa a ~15 °C; geada; uso da parte aérea e das raízes na alimentação animal; solo descoberto, erosão e pouco resíduo)|Embrapa Amazônia Ocidental, Circular Técnica 23, 2004 (ciclo de cultivares brasileiras 6-8 a 12-16 meses)|Schons et al., Ciência Rural 37(6):1586-1592, 2007 (Tb 14 °C estimada para emissão de folhas da cv. RS 13 em vasos no RS; cita ZARC-SC com Tb 15 °C)|Alves, Fisiologia da mandioca, EMBRAPA-CNPMF 1990 (não cresce abaixo de 15 °C, base da Tb adotada; arbusto perene)|FAO ECOCROP Manihot esculenta (temp. ótima 20-29 °C, absoluta 10-35 °C; morte a 0 °C no início do crescimento; perene)|Moreno-Cadena et al., Modeling growth, development and yield of cassava: a review, Field Crops Research 267:108140, 2021 (Tb dos modelos 10-16 °C; GUMCAS 13 °C; LINTUL-Cassava Tb 15 °C e 4320 °C dia ou 360 dias no ótimo)|Ezui et al., Field Crops Research 219:256-272, 2018 e Adiele et al., European Journal of Agronomy 124:126242, 2021, LINTUL-Cassava, parâmetros no pacote R LINTULcassava (TBASE 15 °C; maturidade em TSUMCROP 4320 °C dia; calibrado na Nigéria)|Burgos et al., Rev. FCA UNCuyo 45(1):43-52, 2013 (Tb 16 °C; 2027-2097 °C dia do plantio à maturidade, ~240 dias, Corrientes, Argentina)|Cenóz, Burgos & López, Agrotecnia 15, UNNE, 2005 (Tb 16 °C)|Akparobi, Togun & Ekanayake, African Journal of Root and Tuber Crops 4(1):1-4, 2000 (sem iniciação de folhas a 15/10 °C, IITA)|Silva, N. D., Balanço de energia e evapotranspiração em cultivo de mandioca industrial, tese UFRB 2021 (não há estudo brasileiro de ET da mandioca; ET medida só na formação das raízes, 154-160 mm)|Silva, R. B. et al., Revista Ceres 70(5), 2023 (ETc ESTIMADA por Kc × ETo: 1030 mm em 355 dias, Rio Largo-AL; conferência de agua_ciclo)|Coelho Filho, Irrigação da cultura da mandioca, Embrapa Mandioca e Fruticultura Comunicado Técnico 172, 2020 (Kc 0,55-0,98 por fase em ciclo de 360 dias)",
     "confianca_parametros": "media"
   },
   "mudancas": [
@@ -72,6 +72,18 @@
       "antes": "RASCUNHO A CONFERIR|...",
       "depois": "(ver valores)",
       "motivo": "Fontes primárias conferidas com trechos literais."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "14",
+      "depois": "15",
+      "motivo": "O 14 °C vem de um único estudo: uma cultivar (RS 13), plantada em vasos, com Tb medida pela emissão de folhas (Schons et al. 2007). O 15 °C tem mais apoio independente: a Embrapa diz que a mandioca não cresce abaixo de 15 °C (Alves 1990); o ZARC de SC usa Tb 15 °C (citado por Schons et al.); e o LINTUL-Cassava, calibrado na Nigéria, usa TBASE 15 °C. Os demais valores ficam entre 13 e 16: GUMCAS e CSM-MANIHOT usam 13 °C, os estudos de campo argentinos usam 16 °C, e a revisão de modelos dá 10-16 °C. No IITA, nenhum clone formou folhas a 15/10 °C. O ponto decisivo: só com Tb 15 achei uma exigência de graus-dia do ciclo inteiro publicada com a mesma base (4320 °C dia no LINTUL-Cassava). Com Tb 14 não há soma do ciclo publicada."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista da rodada 1)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Agora diz que agua_ciclo é chuva anual ótima, não ETc medida. Entram as fontes de Tb e graus-dia (revisão de modelos, LINTUL-Cassava, Burgos et al., Cenóz et al., Akparobi et al.) e as de consumo de água usadas para conferir (tese UFRB, Silva et al. 2023, CT 172)."
     }
   ],
   "evidencias": [
@@ -215,15 +227,98 @@
       "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.466 e q.483",
       "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
       "trecho": "A parte aérea de variedades mansas ... pode ser usada in natura e na forma de feno (desidratada) na alimentação animal, ao passo que a de variedades bravas ... pode ser usada na forma de ensilagem. ... um pouco mais de 50% da produção é destinada à alimentação animal."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "gd_exigencia"
+      ],
+      "fonte": "Moreno-Cadena, P. et al., Modeling growth, development and yield of cassava: A review, Field Crops Research 267:108140, 2021",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146721/",
+      "trecho": "The LINTUL model for cassava assumes a determinate growth of the crop with a default maximum age of 4320 thermal units or 360 days under optimal conditions which are defined with an optimum temperature of 27 °C and a base temperature of 15 °C."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Moreno-Cadena et al., 2021 (mesma revisão)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146721/",
+      "trecho": "Below a base temperature, i.e., 10−16 °C depending on the model, crop development ceases. [...] [GUMCAS] Phenology is simulated as development days that depend on the heat sum above a threshold temperature of 13 °C."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "gd_exigencia"
+      ],
+      "fonte": "LINTUL-Cassava (Ezui et al. 2018; calibração de Adiele et al. 2021 na Nigéria), arquivo de parâmetros R/L2C_parsEZAR.R do pacote LINTULcassava",
+      "url": "https://github.com/cropmodels/LINTULcassava/blob/HEAD/R/L2C_parsEZAR.R",
+      "trecho": "TBASE = 15, # deg. C : Base temperature [...] It is assumed that maturity (Development stage = 2) is reached when the TSUMCROP = 4320 Deg. C."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "gd_exigencia"
+      ],
+      "fonte": "Burgos, A. M.; Prause, J.; Argüello, J. A.; Cenóz, P. J., Fenología de los estados vegetativos de mandioca (Manihot esculenta Crantz) en base al tiempo térmico, Rev. FCA UNCuyo 45(1):43-52, 2013",
+      "url": "https://www.redalyc.org/pdf/3828/382837652004.pdf",
+      "trecho": "Los cultivares Palomita y Amarilla requirieron entre 2027 y 2096 GD respectivamente para completar el ciclo total anual de crecimiento (Tb: 16°C). [plantio em setembro, colheita no início de junho; Tabela 2: 00-07 (Madurez) ±240 e ±244 dias, 2027,3 e 2096,7 °C dia]"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Cenóz, P. J.; Burgos, A. M.; López, A. E., La temperatura como factor de crecimiento y rendimiento de raíces en mandioca, Agrotecnia 15, UNNE, 2005",
+      "url": "https://revistas.unne.edu.ar/index.php/agr/article/view/427/364",
+      "trecho": "Considerando que la temperatura base (TB) para que exista actividad biológica en mandioca es de 16 ºC, se realizó el cálculo de acumulación de grados-día"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Akparobi, S.; Togun, A.; Ekanayake, I. J., Temperature effects on leaf growth of cassava (Manihot esculenta Crantz) in controlled environments, African Journal of Root and Tuber Crops 4(1):1-4, 2000 (resumo)",
+      "url": "https://buscador.una.edu.ni/Record/CGSpace92625/Details",
+      "trecho": "none of the clone had leaf initiation at 15/10°C"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Silva, N. D., Balanço de energia e evapotranspiração em cultivo de mandioca industrial, tese de doutorado, UFRB, Cruz das Almas, 2021",
+      "url": "https://www.ufrb.edu.br/pgea/images/Teses/Neilon_Duarte_da_Silva_tese.pdf",
+      "trecho": "Em relação ao Brasil, não há estudos que abordem a evapotranspiração da cultura da mandioca. [...] o total da ET de um cultivo de mandioca industrial em sequeiro, nas condições do recôncavo baiano, foi em média de 160,01 mm na fase de formação dos tubérculos."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Silva, R. B.; Teodoro, I.; Souza, J. L. et al., Water balance and technical-financial performance of irrigation in the cassava cultivation, Revista Ceres 70(5), 2023",
+      "url": "https://scielo.br/j/rceres/a/cdZfswtdP8VsKjGKFBP5Rsr/?lang=en",
+      "trecho": "Crop evapotranspiration (ETC) had a daily mean of 3.0 (± 1.8) mm, and totaled 1,030 mm. [ciclo de 355 dias, plantio em junho/2019, Rio Largo-AL; ETc = Kc × ETo (Penman-Monteith), não medida]"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Coelho Filho, M. A., Irrigação da cultura da mandioca, Embrapa Mandioca e Fruticultura Comunicado Técnico 172, 2020",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1121941/1/ComunicadoTecnico172-Mauricio-Coelho-AINFO-2.pdf",
+      "trecho": "A planta eleva o consumo de água diário (ETc - mm dia-1) na Fase II a partir dos 40 dias após o plantio (Kc = 0,56) até os 120 dias após este (Kc = 0,98) [...] Tabela 2. Cálculos aproximados das necessidades de irrigação (mm), sendo a lâmina de irrigação (LI) a própria evapotranspiração da cultura (ETc). [Kc de 0,55 a 0,98 em 16 períodos até 360 dias]"
     }
   ],
   "pendencias": [
+    "EXIGÊNCIA DE GRAUS-DIA (para as colunas novas), com Tb = 15 °C: a única soma do ciclo publicada com Tb 15 é a do LINTUL-Cassava, 4320 °C dia até a 'maturidade' do modelo. Equivale a 360 dias a 27 °C, ou seja, um ciclo de 12 meses em clima ótimo (África Ocidental). Não é medida de campo no Brasil. A soma de campo mais próxima é a de Burgos et al. (2013): 2027-2097 °C dia do plantio à maturidade (~240 dias, Corrientes, Argentina), mas calculada com Tb 16 °C. Passar para Tb 15 soma cerca de 1 °C dia por dia de ciclo, ou ~2270-2340 °C dia; a conta é minha, aproximada. Sugestão: gd_min ≈ 2300 (colheita precoce, ~8 meses) e gd_max = 4320 (ciclo de 12 meses), as duas marcadas como proxy. A mandioca não tem maturação fixa (colhe-se de 6 a 24 meses), então o filtro de graus-dia deve servir só para eliminar regiões frias demais, não para exigir um ciclo 'completo'.",
+    "agua_ciclo_mm 1000-1500 mantido, mas é CHUVA ANUAL ÓTIMA (Embrapa e ECOCROP), não ETc medida. Não existe ETc medida (lisímetro ou balanço de energia) para o ciclo inteiro de 12 meses no Brasil. A tese da UFRB (2021) diz literalmente que não há estudos brasileiros, e mediu só a fase de formação das raízes (154-160 mm). Na conferência, a ETc estimada por Kc × ETo em Rio Largo-AL foi de 1030 mm em 355 dias (Silva et al. 2023), dentro da faixa. Com a curva de Kc da Embrapa (CT 172, Kc médio ponderado ≈ 0,69 em 360 dias; conta minha), a ETc de 12 meses fica em ~750 mm com ETo de 3 mm/dia e ~1000 mm com 4 mm/dia. O Semiárido produz com 500-700 mm/ano usando variedades adaptadas. Em lavouras de 18-24 meses a necessidade no ciclo será maior.",
+    "Kc da FAO-56 ano 1 (médio 0,80) contra a Embrapa CT 172 (pico 0,98 aos 100-120 dias, irrigada no Recôncavo baiano) e Silva et al. 2023 (1,0 na fase média). Não mexi no Kc (fora do escopo desta rodada), mas o valor brasileiro é maior.",
     "tmax_critica_c deixado vazio: na mandioca a floração não importa para a produção e não achei limite de calor da Embrapa. Há dois limites gerais de crescimento, não de floração: ECOCROP máx. absoluto de 35 °C e Alves (1990), que diz que a planta cresce bem até 38 °C. Se o app precisar de um teto de calor, 35 °C (ECOCROP) é a opção mais conservadora.",
-    "agua_ciclo_mm_min e agua_ciclo_mm_max são CHUVA ANUAL ótima (Embrapa e ECOCROP: 1000-1500 mm/ano), não consumo de água medido no ciclo. Não achei ETc total do ciclo em fonte da Embrapa. Em lavouras de 18-24 meses a necessidade no ciclo será maior. O Semiárido produz com 500-700 mm/ano usando variedades adaptadas.",
     "Kc e raiz usam o ano 1 do FAO-56 (210 dias). Para lavouras de 2 ciclos (18-24 meses) valem os valores do ano 2: Kc ini 0.3, médio 1.10, final 0.50 e raiz 1.0 m. A tabela tem uma linha só, então ficou o ano 1, que vale para as cultivares precoces e semiprecoces (10-16 meses).",
-    "temp_base_c = 14 vem de um único estudo com uma cultivar (RS 13, no RS), feito com a emissão de folhas. A Embrapa (Alves 1990) e o ZARC-SC usam 15 °C, e não li o documento do ZARC-SC diretamente.",
     "temp_otima_max_c: Embrapa 27 °C contra ECOCROP 29 °C. Escolhi a Embrapa. As duas faixas se referem à média do ar (anual na Embrapa).",
     "ciclo_dias_min = 180 (6 meses) vale para aipim/mesa e colheitas precoces. A mandioca industrial raramente é colhida antes de 10-12 meses.",
-    "Não consultei o ZARC da mandioca diretamente."
+    "Não consultei o ZARC da mandioca diretamente; a Tb 15 °C do ZARC-SC vem da citação em Schons et al. (2007)."
+  ],
+  "pendencias_resolvidas": [
+    "temp_base_c = 14 vem de um único estudo com uma cultivar (RS 13, no RS), feito com a emissão de folhas. A Embrapa (Alves 1990) e o ZARC-SC usam 15 °C, e não li o documento do ZARC-SC diretamente.",
+    "agua_ciclo_mm_min e agua_ciclo_mm_max são CHUVA ANUAL ótima (Embrapa e ECOCROP: 1000-1500 mm/ano), não consumo de água medido no ciclo. Não achei ETc total do ciclo em fonte da Embrapa. Em lavouras de 18-24 meses a necessidade no ciclo será maior. O Semiárido produz com 500-700 mm/ano usando variedades adaptadas."
   ]
 }

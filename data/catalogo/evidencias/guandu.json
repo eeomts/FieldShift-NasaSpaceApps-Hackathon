@@ -10,18 +10,18 @@
     "temp_otima_max_c": "38",
     "tmax_critica_c": "40",
     "sensivel_geada": "true",
-    "agua_ciclo_mm_min": "437",
-    "agua_ciclo_mm_max": "839",
+    "agua_ciclo_mm_min": "280",
+    "agua_ciclo_mm_max": "520",
     "kc_inicial": "0.4",
-    "kc_medio": "1.15",
-    "kc_final": "",
+    "kc_medio": "1.17",
+    "kc_final": "1.17",
     "profundidade_raiz_m": "2.0",
     "fixa_nitrogenio": "true",
     "raiz_profunda": "true",
     "cobertura_solo": "media",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "alto",
-    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (guandu cv. Kaki em Senador Canedo-GO: 50% do florescimento aos 137/124/94 dias com semeadura em 12/nov, 7/jan e 4/mar; sensível ao fotoperíodo, dias curtos; 46,6 t/ha de fitomassa verde na semeadura de novembro)|Matta, Oliveira, Verzignassi, Castro, Novo & Godoy, Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026 (92 DAE ao início e 97 DAE a 50% do florescimento; 120 dias ao florescimento e 180 dias à semente com plantio em fevereiro; Guatã cerca de 30 dias mais precoce que a BRS Mandarim; 15 t/ha MS e ~380 kg/ha N na parte aérea com semeadura em novembro, 7 t/ha e ~180 kg/ha N em janeiro; ciclo anual/bianual; geada: suscetível; déficit hídrico: alta tolerância; aptidão para cobertura do solo: média; aptidão para pastagem: forte; raiz pivotante)|Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim, s.d. (FBN até 280 kg/ha/ano de N; biodescompactador natural; vida útil de até 4 anos em pasto; ~20% de proteína; resiste à escassez de água; não tolera encharcamento)|Pereira, J., Embrapa-CPAC (Cerrados), Circular Técnica 20, O feijão guandu: uma opção para a agropecuária brasileira, 1985 (anual ou semiperene, 2-3 anos; ciclo total 150-360 dias; bom desenvolvimento até 40 °C; suporta geadas leves, perdas a -3,3 °C e morte a -4,14 °C; cultivado com 500-1.000 mm/ano; raiz pivotante penetra solos compactados; crescimento inicial lento)|Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, Consorciação com guandu na recuperação de pastagens degradadas, 2017 (roçada anual; florescimento no início da estação seca; palatável só após o florescimento; 18-20% de proteína bruta; estande dura cerca de três anos)|FAO ECOCROP Cajanus cajan, código 576 (ótimo 18-38 °C, absoluto 10-45 °C; chuva ótima 600-1.500 mm/ano; ciclo 90-365 d; perene, muitas vezes cultivado como anual; não tolera geada) — números lidos na cópia do banco EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial estava fora do ar; notas da ficha lidas no Wayback Machine (cropView?id=576, 2018)|Cook et al., Tropical Forages (tropicalforages.info), Cajanus cajan (raiz pivotante até 2 m; geralmente cultivado entre 18 e 30 °C e tolera mais de 35 °C; não tolera geada; tolera seca; florescimento 60 dias nas cultivares precoces e 180-250 dias nas arbóreas; pouco palatável até os animais se acostumarem)|Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (ET em lisímetro de pesagem, cv. GT-100, Anand, Índia: 437-458 mm da emergência a 50% da floração, cerca de 83 dias; 800-839 mm no ciclo de 147 dias até a maturação; pico de 8,6 mm/dia)|Mahendraraj et al., Experimental Results 2:e39, 2021, doi:10.1017/exp.2021.31 (Tb de 8,4 °C para germinação e 10,8 °C para emergência; cita Carberry et al. com Tb de 9,9 °C para germinação) (PROXY: temperatura base da germinação e emergência, não do ciclo todo)|Câmara & Godoy, Nativa 7(4):343-348, 2019 (raízes de guandu amostradas até 1 m, 64% nos primeiros 20 cm; até 8,98 t/ha MS na parte aérea)|Alvarenga, Costa, Moura Filho & Regazzi, R. Bras. Ci. Solo 20:319-326, 1996 (em casa de vegetação, as raízes do guandu foram reduzidas dentro e abaixo da camada compactada)|FAO-56 Tab.12, grupo e. Legumes (Leguminosae): Kc ini 0.4 e Kc mid 1.15 (PROXY: grupo das leguminosas do FAO-56, porque o FAO-56 não traz o guandu)",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (guandu cv. Kaki em Senador Canedo-GO: 50% do florescimento aos 137/124/94 dias com semeadura em 12/nov, 7/jan e 4/mar; sensível ao fotoperíodo, dias curtos; 46,6 t/ha de fitomassa verde na semeadura de novembro)|Matta, Oliveira, Verzignassi, Castro, Novo & Godoy, Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026 (92 DAE ao início e 97 DAE a 50% do florescimento; 120 dias ao florescimento e 180 dias à semente com plantio em fevereiro; Guatã cerca de 30 dias mais precoce que a BRS Mandarim; 15 t/ha MS e ~380 kg/ha N na parte aérea com semeadura em novembro, 7 t/ha e ~180 kg/ha N em janeiro; ciclo anual/bianual; geada: suscetível; déficit hídrico: alta tolerância; aptidão para cobertura do solo: média; aptidão para pastagem: forte; raiz pivotante)|Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim, s.d. (FBN até 280 kg/ha/ano de N; biodescompactador natural; vida útil de até 4 anos em pasto; ~20% de proteína; resiste à escassez de água; não tolera encharcamento)|Pereira, J., Embrapa-CPAC (Cerrados), Circular Técnica 20, O feijão guandu: uma opção para a agropecuária brasileira, 1985 (anual ou semiperene, 2-3 anos; ciclo total 150-360 dias; bom desenvolvimento até 40 °C; suporta geadas leves, perdas a -3,3 °C e morte a -4,14 °C; cultivado com 500-1.000 mm/ano; raiz pivotante penetra solos compactados; crescimento inicial lento)|Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, Consorciação com guandu na recuperação de pastagens degradadas, 2017 (roçada anual; florescimento no início da estação seca; palatável só após o florescimento; 18-20% de proteína bruta; estande dura cerca de três anos)|FAO ECOCROP Cajanus cajan, código 576 (ótimo 18-38 °C, absoluto 10-45 °C; chuva ótima 600-1.500 mm/ano; ciclo 90-365 d; perene, muitas vezes cultivado como anual; não tolera geada) — números lidos na cópia do banco EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial estava fora do ar; notas da ficha lidas no Wayback Machine (cropView?id=576, 2018)|Cook et al., Tropical Forages (tropicalforages.info), Cajanus cajan (raiz pivotante até 2 m; geralmente cultivado entre 18 e 30 °C e tolera mais de 35 °C; não tolera geada; tolera seca; florescimento 60 dias nas cultivares precoces e 180-250 dias nas arbóreas; pouco palatável até os animais se acostumarem)|Deshmukh & Mankar, Dr. PDKV Akola / PoCRA, Determination of crop coefficients for major crops by lysimetric studies, Phase X Final Report, 2021-2024, e Phase VIII Part II, 2023 (Kc do guandu cv. PDKV Ashlesha em lisímetro de pesagem, kharif 2022 e 2023: inicial 0,53, desenvolvimento 0,81, médio 1,10 e final 0,79; Kc FAO modificado para Akola 1,08 na fase média; Kc semanal de 1,10 a 1,14 nas semanas 13-17, no florescimento; altura 1,6-2,2 m; lido no Wayback Machine porque mahapocra.gov.in recusa conexão)|Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (ET em lisímetro de pesagem, cv. GT-100, Anand, Índia: 437-458 mm da emergência a 50% da floração, cerca de 83 dias; 800-839 mm no ciclo de 147 dias até a maturação; pico de 8,6 mm/dia; usado só como conferência da água)|Mahendraraj et al., Experimental Results 2:e39, 2021, doi:10.1017/exp.2021.31 (Tb de 8,4 °C para germinação e 10,8 °C para emergência; cita Carberry et al. com Tb de 9,9 °C para germinação) (PROXY: temperatura base da germinação e emergência, não do ciclo todo)|Câmara & Godoy, Nativa 7(4):343-348, 2019 (raízes de guandu amostradas até 1 m, 64% nos primeiros 20 cm; até 8,98 t/ha MS na parte aérea)|Alvarenga, Costa, Moura Filho & Regazzi, R. Bras. Ci. Solo 20:319-326, 1996 (em casa de vegetação, as raízes do guandu foram reduzidas dentro e abaixo da camada compactada)|FAO-56 Tab.12, grupo e. Legumes (Leguminosae): Kc ini 0.4 (PROXY: grupo das leguminosas; o Kc ini medido em Akola, 0,53 com molhamento de monção, bate com o 0,50 que o método gráfico da FAO-56 dá para esse molhamento)|FAO-56 eq. 62 (padronização do Kc médio medido em Akola: 1,10 + 0,07 = 1,17) e cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao florescimento (água)",
     "confianca_parametros": "media"
   },
   "mudancas": [
@@ -114,6 +114,36 @@
       "antes": "baixa",
       "depois": "media",
       "motivo": "Ciclo, temperaturas, geada, N, biomassa e as colunas qualitativas têm fonte primária, a maioria da Embrapa. Kc e Tb são PROXY. A água vem de um único estudo na Índia."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "1.15",
+      "depois": "1.17",
+      "motivo": "Achei Kc medido. Lisímetro de pesagem da PDKV Akola (PoCRA), cv. PDKV Ashlesha, kharif 2022 e 2023: Kc médio de 1,10 em 60 dias. O relatório não publica u2, RHmin nem h da fase média. Publica o Kc 'FAO modificado' para Akola, que é a eq. 62 aplicada ao 1,15 da FAO-56 com o u2, a RHmin e a altura do local: 1,08. O termo da eq. 62 no ensaio é então 1,08 - 1,15 = -0,07. Kc padrão = 1,10 - (-0,07) = 1,17. Conferência com o NASA POWER em Akola (11/set-10/nov, 2001-2020: u2 = 1,66 m/s e RHmin = 53%, com h = 2,0 m das medições do próprio relatório): o termo dá -0,04, ou seja, Kc padrão de 1,14. Usei 1,17 porque vem dos dados do próprio ensaio. Deixa de ser PROXY."
+    },
+    {
+      "coluna": "kc_final",
+      "antes": "",
+      "depois": "1.17",
+      "motivo": "Regra de cobertura: o guandu é cortado no florescimento, antes da senescência, e o FAO-56 manda encerrar a curva no corte precoce. Em Akola há Kc medido no florescimento: não havia flores aos 90 DAS e havia 44,5 flores/planta aos 120 DAS. O Kc semanal das semanas 13-17 (85-119 dias) foi de 1,10-1,14, no patamar da fase média. Logo, kc_final = kc_medio = 1,17."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "839",
+      "depois": "520",
+      "motivo": "839 era a ET até a maturação do grão (147 d, Anand). Para a água até o florescimento em ciclo longo, calculei ETc = Kc × ET0 com ET0 FAO-56 PM diário do NASA POWER (2001-2020). Curva de Kc: ini 0.4 por 23% do ciclo, desenvolvimento por 50% (proporções de Akola até o florescimento) e Kc mid 1,17 corrigido pela eq. 62 local (h = 2 m). Semeadura de 12/nov com 137 d até o florescimento (Amabile 2000): 433-445 mm em GO/DF, 369 em Sorriso. Semeadura de 1/nov com 150 d (Guatã de novembro, florescida em abril): 477-491 mm. Semeadura de 15/out com 150 d: 495-511 mm. Com o Kc ini medido de 0,53, os valores sobem para 470-556 mm. Usei 520."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "437",
+      "depois": "280",
+      "motivo": "Mudança proposta para manter a faixa coerente com o cálculo do máximo; o integrador pode recusar. O mínimo de 437 é a ET de lisímetro em Anand (semiárido indiano, irrigado). Lá a ET medida foi maior que a própria ET0 do período (458 mm contra 378 mm de ET0 do NASA POWER em 1992), o que dá um Kc médio acima de 1 já na fase vegetativa. O mesmo cálculo com Kc FAO e POWER dá 286-336 mm para Anand. No Cerrado, o ciclo curto até o florescimento é a semeadura de 4/mar com 94 d (Amabile 2000): 260-272 mm em GO/DF com Kc ini 0.4 e 283-295 mm com 0,53. A semeadura de fev com 120 d (Guatã) dá 346-391 mm. Usei 280. Se o time preferir ficar com a medição, volte a 437."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista da rodada 1)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Entraram os relatórios de lisímetro da PDKV Akola (Kc medido), a eq. 62 e o cap. 6 da FAO-56 e o cálculo com NASA POWER. O Kc mid deixou de ser PROXY. A referência de Patel et al. ficou só como conferência."
     }
   ],
   "evidencias": [
@@ -257,19 +287,108 @@
       "fonte": "Allen et al., FAO-56, Tabela 12 (PROXY)",
       "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
       "trecho": "e. Legumes (Leguminosae) 0.4 1.15 0.55"
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_inicial"
+      ],
+      "fonte": "Deshmukh & Mankar, Dr. PDKV Akola / PoCRA, Determination of crop coefficients for major crops by lysimetric studies, Phase X Final Report (2021-2024), Table 15 e texto",
+      "url": "http://web.archive.org/web/20240901171255/https://mahapocra.gov.in/assets/docs/Determination%20of%20Crop%20Coefficient%20for%20Major%20Crops%20by%20Lysimetric%20Studies/Dr.%20Panjabrao%20Deshmukh%20Krishi%20Vidyapeeth,%20Akola/Phase-X.pdf",
+      "trecho": "comprehensive average stage wise Kc values for initial (24 Days), development (52 Days), mid-season (60 Days) and late season stage (46 Days) were 0.53, 0.81, 1.10 and 0.79 respectively."
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "PDKV Akola / PoCRA, Phase X Final Report, Table 16",
+      "url": "http://web.archive.org/web/20240901171255/https://mahapocra.gov.in/assets/docs/Determination%20of%20Crop%20Coefficient%20for%20Major%20Crops%20by%20Lysimetric%20Studies/Dr.%20Panjabrao%20Deshmukh%20Krishi%20Vidyapeeth,%20Akola/Phase-X.pdf",
+      "trecho": "Table 16. Comparison between lysimetric and FAO modified Kc values for pigeon pea [...] Initial season stage 0.53 0.40 0.50 | Development stage 0.81 - 0.78 | Midseason stage 1.10 1.15 1.08 | Late season stage 0.79 0.55 0.76"
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "PDKV Akola / PoCRA, Phase X Final Report e Phase III, 'Determination of Crop coefficient for the mid stage (Kc mid)'",
+      "url": "http://web.archive.org/web/20240901091648/https://mahapocra.gov.in/assets/docs/Determination%20of%20Crop%20Coefficient%20for%20Major%20Crops%20by%20Lysimetric%20Studies/Dr.%20Panjabrao%20Deshmukh%20Krishi%20Vidyapeeth,%20Akola/Phase-III.pdf",
+      "trecho": "The mean plant height and mean relative humidity during the mid-season stage for all four crops were collected from previous experimental data of university for determining Kc mid as well as Kc End. [...] KC mid = KC mid (FAO) + [0.04(u2 – 2) – 0.004 (RHmin – 45)] (h/3)0.3"
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "PDKV Akola / PoCRA, Phase VIII Part II Status Report (kharif 2023), Table 4 'Average plant growth parameters pigeon pea from Lysimeter 1 and 2'",
+      "url": "http://web.archive.org/web/20240901091534/https://mahapocra.gov.in/assets/docs/Determination%20of%20Crop%20Coefficient%20for%20Major%20Crops%20by%20Lysimetric%20Studies/Dr.%20Panjabrao%20Deshmukh%20Krishi%20Vidyapeeth,%20Akola/Phase-VIII-PII.pdf",
+      "trecho": "30 DAS 60 DAS 90 DAS 120 DAS 150 DAS At Harvest | Height (cm) 24.17 100.43 158.06 198.69 219.75 220.98 | Flowers 0.00 0.00 0.00 44.49 45.58 26.13"
+    },
+    {
+      "colunas": [
+        "kc_final"
+      ],
+      "fonte": "PDKV Akola / PoCRA, Phase X Final Report, Kc semanal médio de 2022 e 2023",
+      "url": "http://web.archive.org/web/20240901171255/https://mahapocra.gov.in/assets/docs/Determination%20of%20Crop%20Coefficient%20for%20Major%20Crops%20by%20Lysimetric%20Studies/Dr.%20Panjabrao%20Deshmukh%20Krishi%20Vidyapeeth,%20Akola/Phase-X.pdf",
+      "trecho": "The comprehensive average weekly Kc values for pigeon pea for the growing period of 26 weeks were found 0.51, 0.52, 0.54, 0.59, 0.64, 0.70, 0.77, 0.84, 0.91, 0.97, 1.02, 1.07, 1.10, 1.13, 1.14, 1.14, 1.13, 1.10, 1.06, 1.01, 0.94, 0.87, 0.80, 0.71, 0.63 and 0.56 respectively."
+    },
+    {
+      "colunas": [
+        "kc_final"
+      ],
+      "fonte": "Allen et al., FAO-56, cap. 6, 'Crop coefficient for the end of the late season stage (Kc end)'",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "If the crop is irrigated frequently until harvested fresh, the topsoil remains wet and the K c end value will be relatively high. [...] For premature harvest, the user can construct a K c curve using the K c end value provided in Table 12 and a late season length typical of a normal harvest date; but can then terminate the application of the constructed curve early, corresponding to the time of the early harvest."
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "Conferência própria do termo da eq. 62 em Akola com NASA POWER (20,70 N, 77,03 E), 11/set-10/nov, 2001-2020. Script: /tmp/claude-1000/-home-yuryturatti-Documentos-programacao-NASA-SPACE-APPS/9584014b-e866-48e9-a25c-7646b51ef42b/scratchpad/rodada2/scripts/et0_calc.py",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&latitude=20.70&longitude=77.03&start=20010101&end=20201231",
+      "trecho": "u2 = 1,66 m/s; RHmin = 53,4%; h = 2,0 m -> termo = -0,042 (contra -0,07 implícito no relatório)."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Cálculo próprio: ETc = Kc × ET0, com ET0 FAO-56 Penman-Monteith diário a partir do NASA POWER, média de 2001-2020; Kc ini 0.4 por 23% dos dias e desenvolvimento por 50% (proporções de Akola até o florescimento), Kc mid 1,17 corrigido pela eq. 62 com u2 e RHmin locais e h = 2 m. Script: /tmp/claude-1000/-home-yuryturatti-Documentos-programacao-NASA-SPACE-APPS/9584014b-e866-48e9-a25c-7646b51ef42b/scratchpad/rodada2/scripts/et0_calc.py",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&start=20010101&end=20201231",
+      "trecho": "ETc até o florescimento (mm; Rio Verde-GO / Sorriso-MT / Planaltina-DF / Senador Canedo-GO): 15/out 150 d 511/411/499/495; 1/nov 150 d 491/406/481/477; 12/nov 137 d 445/369/436/433; 7/jan 124 d 383/329/374/374; 1/fev 120 d 359/309/346/349; 4/mar 94 d 272/236/260/264. Com Kc ini 0,53: 1/nov 150 d 534/442/521/518; 15/out 150 d 556/447/541/538; 4/mar 94 d 295/258/283/287."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (durações usadas no cálculo)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/5695/2799/20586",
+      "trecho": "TABELA 3. Número de dias para atingir 50% do florescimento ... Guandu 137Aa 124Bb 94Cc [12 de novembro, 7 de janeiro, 4 de março]"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min"
+      ],
+      "fonte": "Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (conferência)",
+      "url": "https://epubs.icar.org.in/index.php/AAZ/article/download/65240/27553/163934",
+      "trecho": "Tabela 1 (ET mm, P1-P5 até 50% flowering): 1992 30.7+54.4+86.9+136.1+150.3; 1993 21.9+44.5+90.5+206.4+74.1 | P1 8, P2 18, P3 25, P4 19, P5 13 dias. Recalculado com NASA POWER: ET0 do mesmo período = 378 mm (1992) e 406 mm (1993); ETc pelo método FAO-56 = 286-336 mm."
     }
   ],
   "pendencias": [
-    "Kc: não há Kc medido para o guandu. Os Kc 0.4 e 1.15 são PROXY do grupo Legumes do FAO-56. Os relatórios de Kc em lisímetro de pigeonpea da PDKV Akola (mahapocra.gov.in, Phase VIII-X) recusaram conexão, e o artigo de Vidarbha (core.ac.uk/outputs/690753542) caiu no bloqueio da Cloudflare. Vale tentar de outra rede. kc_final ficou vazio pela convenção (corte na floração).",
+    "Kc mid/end medido vem de um só local e cultivar (Akola, PDKV Ashlesha de 180 dias, monção). A padronização usa o termo da eq. 62 que o próprio relatório deixa implícito (-0,07, porque não publica u2, RHmin nem h). Com o NASA POWER o termo dá -0,04, então o Kc padrão fica entre 1,14 e 1,17. O artigo de Vidarbha sobre Kc e IAF (core.ac.uk/outputs/690753542) continuou bloqueado (403), mas os relatórios da PDKV Akola foram lidos no Wayback Machine.",
+    "kc_inicial = 0.4 continua como PROXY do grupo Legumes da FAO-56. O Kc ini depende mais do molhamento do solo que da cultura, e a eq. 62 não se aplica a ele. Akola mediu 0,53 com molhamento de monção, e o método gráfico da FAO-56 deu 0,50 para esse molhamento; os dois valores batem.",
+    "agua_ciclo (280-520 mm) é cálculo próprio (FAO-56 + NASA POWER), não medição no Brasil. O mínimo de 280 é uma proposta que substitui a medição de Anand (437 mm): lá a ET de lisímetro ficou acima da ET0 do período, sinal de superestimativa ou de condição de oásis. Se o time preferir ficar com a medição, volte a 437. Em Sorriso-MT (ET0 menor) os valores são cerca de 15% mais baixos.",
     "temp_base_c = 10 vem de PROXY da germinação e emergência (Mahendraraj 2021: 8,4 e 10,8 °C) e do mínimo absoluto do ECOCROP. Não achei Tb fenológica da floração. O artigo de Omanga et al. (Quênia) não estava acessível.",
     "temp_otima_max_c: o ECOCROP dá 38 °C, mas a Tropical Forages dá a faixa usual de 18-30 °C. Escolhi 38 para seguir o padrão das outras culturas (ECOCROP). Se o app pontuar pela média do ar, 30 é mais conservador.",
     "Os números do ECOCROP vieram da cópia EcoCrop_DB.csv (OpenCLIM). O site oficial (ecocrop.apps.fao.org) deu erro de banco em todas as tentativas. Conferi a cópia com os valores que outros agentes leram no site oficial (Crotalaria 20-30/4-40, Helianthus 17-34/5-45, Sorghum 22-35): bateram.",
     "tmax_critica_c = 40 diz que o guandu 'se desenvolve bem até 40 °C' (CPAC 1985). Não é um limiar de aborto floral medido. Não achei esse limiar específico do guandu.",
-    "agua_ciclo: o único dado medido é de um estudo indiano (Anand, cv. GT-100 precoce, semiárido, irrigado). Os 437 mm cobrem cerca de 83 dias até a floração; ciclos brasileiros de 90 a 150 dias tendem a gastar mais. Os 839 mm são do ciclo completo até o grão.",
     "profundidade_raiz_m = 2.0 vem da Tropical Forages ('taproot to 2 m'). O livreto de botânica do ICRISAT ('may extend down more than 2 m, but extensive development ... upper 60 cm') só apareceu em trecho de busca: o PDF (oar.icrisat.org/10485) deu 401, então não entra como evidência. A medição brasileira (Nativa 2019) só foi até 1 m.",
     "raiz_profunda = true segue a Embrapa ('biodescompactador natural', CPAC 1985, Mandarim). Ressalva: em vaso, Alvarenga et al. (1996) viram as raízes do guandu reduzidas dentro e abaixo da camada compactada.",
     "perene = false pressupõe o uso em rotação, manejado no florescimento. No consórcio com pastagem (BRS Mandarim) ele fica 3 a 4 anos com roçada anual. Se o app modelar esse uso, perene seria true.",
     "ciclo_dias_max = 150 pode ser curto para cultivares tardias de porte alto semeadas cedo na primavera. A Tropical Forages cita 180-250 dias até a floração nas arbóreas, mas não achei número brasileiro para a Mandarim semeada em outubro. Não achei fonte oficial do IDR-Paraná para o ciclo da IAPAR 43 Aratã (anão). Só uma página comercial, que não usei, cita 120-150 dias até a floração.",
     "O Comunicado Técnico 119 da Embrapa (BRS Guatã, 2025) deu 'Identificador inválido' no ainfo e não foi lido."
+  ],
+  "pendencias_resolvidas": [
+    "Kc: não há Kc medido para o guandu. Os Kc 0.4 e 1.15 são PROXY do grupo Legumes do FAO-56. Os relatórios de Kc em lisímetro de pigeonpea da PDKV Akola (mahapocra.gov.in, Phase VIII-X) recusaram conexão, e o artigo de Vidarbha (core.ac.uk/outputs/690753542) caiu no bloqueio da Cloudflare. Vale tentar de outra rede. kc_final ficou vazio pela convenção (corte na floração).",
+    "agua_ciclo: o único dado medido é de um estudo indiano (Anand, cv. GT-100 precoce, semiárido, irrigado). Os 437 mm cobrem cerca de 83 dias até a floração; ciclos brasileiros de 90 a 150 dias tendem a gastar mais. Os 839 mm são do ciclo completo até o grão."
   ]
 }

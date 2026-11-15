@@ -4,7 +4,7 @@
     "tipos": "comercial",
     "perene": "false",
     "ciclo_dias_min": "105",
-    "ciclo_dias_max": "165",
+    "ciclo_dias_max": "175",
     "temp_base_c": "0",
     "temp_otima_min_c": "15",
     "temp_otima_max_c": "23",
@@ -21,7 +21,7 @@
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "baixo",
-    "fontes": "FAO-56 Tab.12 linha Spring Wheat + grupo Cereals (Kc)|FAO-56 Tab.22 Spring Wheat 1.0-1.5 m (raiz; limite superior)|Embrapa 2016 Trigo: o produtor pergunta Cap.2 (trigos de primavera no Brasil; geada no espigamento-floração)|Silva et al. 2008 PAB 43(10) Embrapa Trigo (geada no espigamento)|ZARC trigo MAPA Portarias 385/2022 RS e 02/2021 GO e 434/2025 BA (ciclo por grupo; geada no espigamento)|Embrapa Cerrados Circular Técnica 49 2021 BRS 264 (ciclo mínimo)|Embrapa Trigo Comunicado Técnico 324 2013 (temperatura base 0 °C)|FAO ECOCROP Triticum aestivum (temperatura ótima)|Porter & Gawith 1999 Eur J Agron via Jacott & Boden 2020 J Exp Bot (tmax na antese)|FAO Irrigation Water Management Training Manual 3 Tab.14 (água)",
+    "fontes": "FAO-56 Tab.12 linha Spring Wheat + grupo Cereals (Kc)|FAO-56 Tab.22 Spring Wheat 1.0-1.5 m (raiz; limite superior)|Embrapa 2016 Trigo: o produtor pergunta Cap.2 (trigos de primavera no Brasil; geada no espigamento-floração)|Silva et al. 2008 PAB 43(10) Embrapa Trigo (geada no espigamento)|ZARC trigo MAPA Portarias 385/2022 RS e 02/2021 GO e 434/2025 BA (ciclo por grupo; geada no espigamento; calor como limitante na região tropical)|Embrapa Cerrados Circular Técnica 49 2021 BRS 264 (ciclo mínimo)|Embrapa Trigo folheto Cultivares Embrapa 2021 (ciclo das tardias de duplo propósito: BRS Tarumã 160-165 d e BRS Tarumaxi 162-167 d até a maturação)|Embrapa Trigo folder BRS Tarumã 2016 (maturação fisiológica 162 d)|Fontaneli et al. 2019 Revista Plantio Direto 29(168) BRS Pastoreio (156 d da emergência à maturação; BRS Tarumã cerca de uma semana mais longo)|Embrapa Trigo Comunicado Técnico 324 2013 (temperatura base 0 °C; soma térmica ET-ANT 388-512 GD)|Walter et al. 2009 Ciência Rural 39(8) (soma térmica emergência-maturidade fisiológica 1964-2504 °C dia com Tb 0 °C)|Embrapa Trigo Sistema de Produção 4 Cultivo de Trigo 2ª ed. 2014 (filocrono ~100 GD com Tb 0 °C; critério ZARC SP de Tmax média na floração <= 28 °C)|FAO ECOCROP Triticum aestivum (temperatura ótima)|Ferris et al. 1998 Ann. Bot. 82(5):631-639 (tmax na antese: perda de rendimento acima da base de 31 °C)|Porter & Gawith 1999 Eur J Agron 10:23-36 via Jacott & Boden 2020 J Exp Bot (tmax na antese 31 °C; original de acesso fechado, não lido)|FAO Irrigation Water Management Training Manual 3 Tab.14 (água)|Antonini et al. 2024 Embrapa Cerrados Boletim de P&D 416 (lâmina irrigada 445-498 mm no ciclo do BRS 264 no DF)",
     "confianca_parametros": "media"
   },
   "mudancas": [
@@ -48,6 +48,18 @@
       "antes": "RASCUNHO A CONFERIR|...",
       "depois": "(ver valores)",
       "motivo": "Troquei por referências conferidas e tirei o marcador de rascunho."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "165",
+      "depois": "175",
+      "motivo": "As cultivares tardias de trigo em uso no Sul (duplo propósito, também colhidas para grão) têm ciclo documentado até a maturação de 160-165 d (BRS Tarumã) e 162-167 d (BRS Tarumaxi), segundo o folheto de cultivares da Embrapa Trigo (2021). O BRS Pastoreio tem 156 d da emergência à maturação, e o BRS Tarumã cerca de uma semana a mais (Fontaneli et al. 2019). O valor de 153-158 d que o folheto dá ao BRS Pastoreio coincide com os 156 d 'da emergência' do artigo, o que indica que o folheto conta a partir da emergência. Somando 5 a 10 d da semeadura à emergência (critério do ZARC), o teto fica em 172 a 177 d. Adotei 175."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista da rodada 1)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Entraram as fontes do ciclo tardio, Ferris et al. 1998 (fonte primária do limiar de 31 °C), o Sistema de Produção da Embrapa Trigo (critério de calor do ZARC SP e filocrono), Walter et al. 2009 (graus-dia com Tb 0 °C) e Antonini et al. 2024 (água no trigo irrigado do Cerrado). A citação de Porter & Gawith ficou marcada como lida de forma indireta."
     }
   ],
   "evidencias": [
@@ -161,14 +173,95 @@
       "fonte": "Brouwer & Heibloem, FAO Irrigation Water Management Training Manual 3, Tab.14, 1986",
       "url": "https://www.fao.org/4/s2022e/s2022e07.htm",
       "trecho": "Table 14 INDICATIVE VALUES OF CROP WATER NEEDS AND SENSITIVITY TO DROUGHT ... Barley/Oats/Wheat 450-650 low-medium"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Ferris, R. et al. Effect of high temperature stress at anthesis on grain yield and biomass of field-grown crops of wheat. Annals of Botany 82(5):631-639, 1998 (resumo, lido via OpenAlex; DOI 10.1006/anbo.1998.0740)",
+      "url": "https://doi.org/10.1006/anbo.1998.0740",
+      "trecho": "Grain yield was also negatively related to thermal time accumulated above a base temperature of 31 °C (over 8 d of the treatment from 5 d before to 2 d after 50% anthesis). Thus, grain fertilization and grain set was most sensitive to the maximum temperature at mid-anthesis."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Embrapa Trigo. Cultivo de Trigo. Sistema de Produção 4, 2ª ed., abr. 2014, tópico Zoneamento agrícola",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1155370/1/Cultivo-de-Trigo.pdf",
+      "trecho": "Na região tropical, para trigo cultivado em regime sequeiro, os critérios utilizados [...] para o Estado de São Paulo foram: ocorrência de temperatura máxima média do ar, na fase de floração, igual ou abaixo de 28 ºC"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Trigo. Folheto Cultivares Embrapa (trigo e aveia), 2021",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1133636/1/FLYER-CULTIVARES-EMBRAPA-2021-03.08.21-b.pdf",
+      "trecho": "BRS TARUMÃ / BRS PASTOREIO / BRS TARUMAXI — Ciclo: Tardio / Tardio / Tardio — Dias até espigamento: 108-113 / 100-105 / 110-115 — Dias até maturação: 160-165 / 153-158 / 162-167 (BRS Reponte, precoce: média de 125; BRS Belajoia, médio: média de 135)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Fontaneli, R.S.; Cunha, G.R. da; Caierão, E. et al. BRS Pastoreio: cultivar de trigo de múltiplos propósitos para o sul do Brasil. Revista Plantio Direto 29(168), 2019",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1109640/1/ID445792019v29n168p33PlantioDireto.pdf",
+      "trecho": "possui ciclo de aproximadamente 156 dias da emergência a maturação (sem cortes). [...] BRS Tarumã [...] Essa cultivar possui o ciclo mais longo, cerca de uma semana, do que BRS Pastoreio, na região de Passo Fundo, RS."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Trigo. Folder BRS Tarumã — trigo de duplo propósito, 2016",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1049703/1/ID437182016FD0395Taruma.pdf",
+      "trecho": "Ciclo — Espigamento – 110 dias — Maturação fisiológica – 162 dias — Adaptação: RS, SC e PR — Semeadura: março a maio"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Walter, L.C.; Streck, N.A.; Rosa, H.T.; Alberto, C.M.; Oliveira, F.B. de. Desenvolvimento vegetativo e reprodutivo de cultivares de trigo e sua associação com a emissão de folhas. Ciência Rural 39(8):2320-2326, 2009 (Santa Maria, RS; 13 datas de semeadura, 2005-2007)",
+      "url": "https://www.redalyc.org/pdf/331/33117308018.pdf",
+      "trecho": "Considerou-se Tb=0°C, Tot=22ºC e TB=35ºC [...] A duração (média das datas de semeadura) do ciclo total de desenvolvimento (EM-MF) das cultivares usadas no estudo variou de 1963,5°C dia a 2503,6°C dia (Tabela 1). [Tabela 1: BRS Louro 1963,5; CEP 52 1993,1; BRS 177 2073,7; CEP 51 2083,9; Nova Era 2183,9; BRS Tarumã 2503,6]"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Rodrigues, O. et al. Caracterização ontogenética de cultivares brasileiras de trigo. Embrapa Trigo, Comunicado Técnico 324, 2013, Tabela 1",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/988430/1/2013comunicadotecnicoonline324.pdf",
+      "trecho": "A duração das respectivas fases foi quantificada em soma térmica utilizando-se a temperatura basal de zero grau. [...] Tabela 1. Duração do sub-período ET-ANT em soma térmica (GD) [...] FN: 443,9 a 510,6 [...] FN+6: 388,2 a 512,0"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Embrapa Trigo. Cultivo de Trigo. Sistema de Produção 4, 2ª ed., 2014, tópico sobre crescimento e desenvolvimento",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1155370/1/Cultivo-de-Trigo.pdf",
+      "trecho": "as demais surgem em intervalos mais ou menos regulares de 100 graus-dia (de 70 a 160 graus-dia, admitindo temperatura base de 0 °C), chamados de filocronos."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Antonini, J.C. dos A. et al. Estabelecimento do momento de irrigação do trigo de inverno (BRS 264) para as condições edafoclimáticas do Cerrado do Brasil Central. Embrapa Cerrados, Boletim de Pesquisa e Desenvolvimento 416, 2024, Tabela 2 (Planaltina-DF, semeadura em maio, safras 2021-2023)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1170016/1/Bolpd-416-CPAC.pdf",
+      "trecho": "O plantio ocorreu no início da estação seca, no mês de maio [...] Fator de disponibilidade de água (f) / Lâmina de água (mm): 0,2 498,23; 0,4 486,40; 0,6 459,17; 0,8 444,68"
     }
   ],
   "pendencias": [
-    "tmax_critica_c (31): a fonte lida é uma revisão secundária (Jacott & Boden 2020) que cita Porter & Gawith 1999. Não li o original e não achei limiar numérico em documento da Embrapa.",
-    "ciclo_dias_max (165): o Grupo III do ZARC da Região 1 do RS não tem teto (≥160 dias da emergência à colheita). 165 soma cerca de 5 dias até a emergência. Cultivares tardias ou de duplo propósito semeadas 20 a 40 dias antes podem passar disso. Não achei uma ficha de cultivar tardia com o número de dias.",
+    "tmax_critica_c (31) agora tem fonte primária: Ferris et al. 1998 (experimento de campo; a perda de rendimento acompanha a soma térmica acima da base de 31 °C em torno da antese). Só li o resumo. O Porter & Gawith 1999 original é de acesso fechado e não foi lido; o valor dele continua citado via Jacott & Boden 2020. O único critério brasileiro achado é do ZARC SP (Sistema de Produção Embrapa Trigo 2014): Tmax MÉDIA na floração <= 28 °C. Esse número é uma média do período, não o limiar de um dia, e por isso não substitui o 31. Se o motor comparar a Tmax média da fase (e não a Tmax diária), 28 °C é o valor mais coerente para o Brasil.",
+    "ciclo_dias_max (175): a base dos 'dias até maturação' do folheto Embrapa 2021 não vem escrita. Concluí que conta a partir da emergência porque os 153-158 d do BRS Pastoreio batem com os 156 d 'da emergência' do artigo de Fontaneli et al. O teto vem de cultivares de duplo propósito semeadas cedo (março a maio). Para trigo só de grão, o máximo documentado é o Grupo III do ZARC RS (>=160 d da emergência), sem teto. Com pastejo o ciclo pode passar de 175 d.",
     "ciclo_dias_min (105): o Grupo I do ZARC de GO (≤/<100 dias da emergência à colheita) pode dar algo perto de 100 da semeadura à colheita. Escolhi 105 com base na BRS 264, a cultivar mais curta que encontrei documentada.",
-    "agua_ciclo_mm: o valor 450–650 mm é genérico da FAO para cevada/aveia/trigo. Não achei um total por ciclo da Embrapa para o Brasil.",
-    "cobertura_solo (media), aporte_biomassa (medio), valor_forrageiro (baixo), raiz_profunda (false): julgamento qualitativo, sem fonte primária com números. Observação: a Embrapa recomenda trigo de duplo propósito (pastejo + grão) no Sul (Informações Técnicas Trigo e Triticale, 2023, item 7). Se o app considerar isso, valor_forrageiro poderia subir para 'medio'.",
-    "temp_otima (15–23) vem do ECOCROP, que é genérico para a espécie. Não achei faixa ótima da Embrapa para cultivares brasileiras."
+    "agua_ciclo_mm (450-650, mantido): no trigo irrigado do Cerrado (BRS 264, DF, estação seca, Antonini et al. 2024) a lâmina aplicada foi de 445 a 498 mm por ciclo. Isso confirma o piso de 450 para cultivar superprecoce em clima de alta demanda. A lâmina aplicada não inclui a chuva (13% do total anual cai de maio a setembro), então a ETc real pode ser um pouco maior. Para o RS e o PR não achei total de ETc por ciclo só do trigo: Carazinho-RS tem ETc medida por eddy covariance, mas só somada com a soja. O teto de 650 continua vindo só da FAO.",
+    "graus-dia do trigo com Tb 0 °C (para a coluna futura): a melhor fonte brasileira é Walter et al. 2009 (Santa Maria-RS), com 1964 a 2504 °C dia da emergência à maturidade fisiológica (de BRS Louro a BRS Tarumã). Ressalva: o cálculo usa Tb 0 com Tot 22 °C e TB 35 °C (função que corta acima de 22 °C), e não o max(0, Tmed − Tb) linear do motor. No inverno gaúcho a Tmed raramente passa de 22 °C, e aí os dois métodos quase coincidem. A média inclui semeaduras fora de época, com desvio-padrão de 141 a 419 °C dia. Por fase, só achei ET-ANT de 388 a 512 GD (Embrapa CT 324, em casa de vegetação) e o filocrono de ~100 GD (70 a 160). Não achei soma térmica com Tb 0 °C para o Cerrado. A Revista Cultivar (2025) cita 1.450 °C dia até a maturação no Brasil Central, sem dizer a Tb; é só pista. Noreto 2013 (Unioeste-PR, 1.487 GD) usa Tb 5 °C e não serve. Sugestão para a coluna: 2000 (precoce/médio) a 2500 (tardio) °C dia da emergência à maturação, com Tb 0.",
+    "cobertura_solo (media), aporte_biomassa (medio), valor_forrageiro (baixo), raiz_profunda (false): julgamento qualitativo, sem fonte primária com números. Observação: a Embrapa recomenda trigo de duplo propósito (pastejo + grão) no Sul (Informações Técnicas Trigo e Triticale, 2023, item 7; folheto Embrapa 2021: BRS Tarumã, Pastoreio, Tarumaxi). Se o app considerar isso, valor_forrageiro poderia subir para 'medio'.",
+    "temp_otima (15–23) vem do ECOCROP, que é genérico para a espécie. Não achei faixa ótima da Embrapa para cultivares brasileiras. Walter et al. 2009 usam Tot = 22 °C no cálculo térmico, o que é coerente com o teto de 23."
+  ],
+  "pendencias_resolvidas": [
+    "tmax_critica_c (31): a fonte lida é uma revisão secundária (Jacott & Boden 2020) que cita Porter & Gawith 1999. Não li o original e não achei limiar numérico em documento da Embrapa.",
+    "ciclo_dias_max (165): o Grupo III do ZARC da Região 1 do RS não tem teto (≥160 dias da emergência à colheita). 165 soma cerca de 5 dias até a emergência. Cultivares tardias ou de duplo propósito semeadas 20 a 40 dias antes podem passar disso. Não achei uma ficha de cultivar tardia com o número de dias."
   ]
 }
