@@ -3,15 +3,17 @@
 services:
 
   web:
+    # os dois sites (web e web-demo) no mesmo Caddy, com a mesma API e o mesmo banco
     build:
-      context: ../agroai/web
-      dockerfile: ../../.deploy/web.Dockerfile
+      context: ../agroai
+      dockerfile: ../.deploy/web.Dockerfile
     restart: always
     depends_on:
       api:
         condition: service_healthy
     environment:
       AGROAI_SITE: ${AGROAI_SITE:?suba pelo ./.deploy/agroai}
+      AGROAI_SITE_DEMO: ${AGROAI_SITE_DEMO:?suba pelo ./.deploy/agroai}
     ports:
       - "${AGROAI_PORTA_HTTP:?suba pelo ./.deploy/agroai}:80"
       - "${AGROAI_PORTA_HTTPS:-443}:443"

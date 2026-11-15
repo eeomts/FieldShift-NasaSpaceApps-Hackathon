@@ -2,14 +2,22 @@
 
 Como subir o AgroAI com Docker, no seu computador ou na VPS. Para desenvolver com recarga na hora, use o [`agroai/README.md`](../agroai/README.md).
 
-> O deploy sobe só a versão completa do site (`agroai/web`). A versão de apresentação (`agroai/web-demo`, entrada só com o nome) não está no `compose.yml`: ela roda com `npm run dev`, como explica o [`agroai/web-demo/README.md`](../agroai/web-demo/README.md).
+O deploy sobe **os dois sites**, com **a mesma API e o mesmo banco**:
+
+| | `SITE` | `SITE_DEMO` |
+|---|---|---|
+| Front | `agroai/web` (completo) | `agroai/web-demo` (apresentação, entrada só com o nome) |
+| Produção | https://agroai.mateusmoreira.dev | https://demo-agroai.mateusmoreira.dev |
+| Local | http://localhost:9090 | http://demo.localhost:9090 |
 
 ```text
 internet :80/:443
-  -> web   Caddy: TLS, serve o build do React e repassa /api/* para a API
+  -> web   Caddy: TLS, separa os dois sites pelo domínio, serve o build e repassa /api/* para a API
        -> api   FastAPI (uvicorn): aplica as migrations e responde
             -> db    Postgres 17 + pgvector + PostGIS (opcional: DB_HOST=db)
 ```
+
+Os dois builds (`web` e `web-demo`) entram na mesma imagem do `web`. O `SITE_DEMO` precisa do mesmo esquema e da mesma porta do `SITE`; só o domínio muda (o script confere).
 
 Três regras que explicam o resto:
 
@@ -27,13 +35,13 @@ cp .deploy/env/exemplo.env .deploy/env/local.env
 ./.deploy/agroai local up -d --build
 ```
 
-- Site: http://localhost:9090 · API: http://localhost:9090/api/saude · docs da API: http://localhost:9090/api/docs
+- Site: http://localhost:9090 · demo: http://demo.localhost:9090 (o navegador já resolve `*.localhost`) · API: http://localhost:9090/api/saude · docs da API: http://localhost:9090/api/docs
 - Banco: `127.0.0.1:5434` (usuário e senha do `local.env`), para DBeaver/psql.
 - Não há bind mount: mudou código, rode `up -d --build` de novo. Para mexer no código com recarga na hora, use o `uv run uvicorn` e o `npm run dev` do `agroai/README.md`.
 
 ## Primeira subida na VPS
 
-Precisa de Docker e do domínio já apontando para o IP da VPS (o Caddy pede o certificado sozinho, mas só se o DNS já resolver).
+Precisa de Docker e dos **dois** domínios já apontando para o IP da VPS (o Caddy, ou o certbot no caso do nginx, pede o certificado sozinho, mas só se o DNS já resolver).
 
 ```bash
 git clone <repo> ~/agroai && cd ~/agroai
@@ -44,7 +52,8 @@ nano .deploy/env/producao.env
 No `producao.env`:
 
 ```bash
-SITE=https://agroai.SEU-DOMINIO.com
+SITE=https://agroai.mateusmoreira.dev
+SITE_DEMO=https://demo-agroai.mateusmoreira.dev
 JWT_SECRET=<gerado, 48+ caracteres>
 ```
 
@@ -73,17 +82,18 @@ Se um nginx do host já ocupa 80/443, o Caddy não sobe ("address already in use
 internet :443 -> nginx do host (TLS pelo certbot) -> 127.0.0.1:8082 -> Caddy (só HTTP) -> API
 ```
 
-No `producao.env`: `PROXY=127.0.0.1:8082`. O script troca o Caddy para `:80` sem certificado, publicado só em `127.0.0.1`.
+No `producao.env`: `PROXY=127.0.0.1:8082`. O script troca os dois sites do Caddy para HTTP sem certificado, publicado só em `127.0.0.1`; o Caddy separa o completo e a demo pelo `Host` que o nginx repassa.
 
 ```bash
 ./.deploy/agroai producao up -d --build
-curl -I -H 'Host: agroai.SEU-DOMINIO.com' http://127.0.0.1:8082/   # 200
+curl -I -H 'Host: agroai.mateusmoreira.dev' http://127.0.0.1:8082/        # 200
+curl -I -H 'Host: demo-agroai.mateusmoreira.dev' http://127.0.0.1:8082/   # 200
 
 sudo cp .deploy/nginx-agroai.conf /etc/nginx/sites-available/agroai
-sudo nano /etc/nginx/sites-available/agroai        # server_name e porta
+sudo nano /etc/nginx/sites-available/agroai        # confira server_name e porta
 sudo ln -s /etc/nginx/sites-available/agroai /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d agroai.SEU-DOMINIO.com
+sudo certbot --nginx -d agroai.mateusmoreira.dev -d demo-agroai.mateusmoreira.dev
 ```
 
 A porta tem de estar livre: `sudo ss -ltnp | grep 8082` sem saída.

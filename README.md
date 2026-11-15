@@ -37,9 +37,9 @@ O andamento detalhado, com PRs e pendências, fica em [`ANDAMENTO.md`](docs/Nasa
 | Entrada | E-mail e senha | Só o nome |
 | Questionário | Em branco | Já preenchido (fazenda de exemplo em Iowa), com o botão **Skip All** |
 | Endereço local | http://localhost:5173 | http://localhost:5174 |
-| Deploy na VPS | Sim (`.deploy/`) | Não, roda local |
+| Deploy na VPS (`.deploy/`) | https://agroai.mateusmoreira.dev | https://demo-agroai.mateusmoreira.dev |
 
-As duas usam a mesma API e o mesmo banco. Detalhes da versão de apresentação em [`agroai/web-demo/README.md`](agroai/web-demo/README.md).
+As duas usam a mesma API e o mesmo banco, também no deploy (o mesmo Caddy serve os dois domínios). Detalhes da versão de apresentação em [`agroai/web-demo/README.md`](agroai/web-demo/README.md).
 
 ## Rodar o app
 
