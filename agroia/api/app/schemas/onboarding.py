@@ -10,6 +10,7 @@ from app.services import catalogo
 from app.services.interpretacao import Campo
 
 SNS = Literal["sim", "nao", "nao_sei"]
+Correcao = Literal["calcario", "gesso", "outra", "nao", "nao_sei"]
 Mes = int
 
 
@@ -17,6 +18,17 @@ class Local(BaseModel):
     lat: float = Field(ge=-90, le=90)
     lon: float = Field(ge=-180, le=180)
     nome: str | None = Field(default=None, max_length=200)
+    pais: str | None = Field(default=None, min_length=2, max_length=2)  # ISO 3166-1 alfa-2 maiúsculo (ex.: BR)
+    zona_climatica: str | None = Field(default=None, max_length=4)  # Köppen-Geiger (ex.: Aw, BSh, Cfa)
+
+    @field_validator("pais")
+    @classmethod
+    def pais_maiusculo(cls, v: str | None) -> str | None:
+        if v is None:
+            return None
+        if not (v.isascii() and v.isalpha()):
+            raise ValueError("país deve ser um código ISO de 2 letras")
+        return v.upper()
 
 
 class ItemCalendario(BaseModel):
@@ -64,6 +76,9 @@ class Perdas(BaseModel):
     chuva_forte: Perda = Perda()
     calor: Perda = Perda()
     seca: Perda = Perda()
+    alagamento: Perda = Perda()
+    granizo: Perda = Perda()
+    salinidade: Perda = Perda()
 
 
 class CulturaExcluida(BaseModel):
@@ -126,7 +141,8 @@ class Respostas(BaseModel):
     q19_cor: Cor | None = None
     q19_jeito: Jeito | None = None
     q20_partes_piores: SNS | None = None
-    q21_calcario: SNS | None = None
+    q21_correcao: list[Correcao] = Field(default_factory=list, max_length=5)
+    q21_correcao_outra: str | None = Field(default=None, max_length=200)
     q22_adubo: SNS | None = None
     # Bloco 5: clima
     q23_chuva_mudou: SNS | None = None
@@ -137,6 +153,26 @@ class Respostas(BaseModel):
     q26a_excluidas: list[CulturaExcluida] = Field(default_factory=list, max_length=20)
     q26b_texto: str | None = Field(default=None, max_length=1000)
     q26b_equipamentos: list[Equipamento] = Field(default_factory=list, max_length=20)
+
+    @model_validator(mode="before")
+    @classmethod
+    def formato_antigo(cls, dados):
+        """Respostas salvas antes tinham q21_calcario (sim/nao/nao_sei); viram a lista nova."""
+        if isinstance(dados, dict) and "q21_calcario" in dados:
+            dados = dict(dados)
+            antigo = dados.pop("q21_calcario")
+            if not dados.get("q21_correcao"):
+                dados["q21_correcao"] = {"sim": ["calcario"], "nao": ["nao"], "nao_sei": ["nao_sei"]}.get(antigo, [])
+        return dados
+
+    @field_validator("q21_correcao")
+    @classmethod
+    def correcao_valida(cls, v: list[str]) -> list[str]:
+        if len(set(v)) != len(v):
+            raise ValueError("correções repetidas")
+        if len(v) > 1 and ({"nao", "nao_sei"} & set(v)):
+            raise ValueError('"nao" e "nao_sei" não combinam com outras opções')
+        return v
 
     @model_validator(mode="after")
     def prioridades_unicas(self) -> "Respostas":
@@ -149,3 +185,5 @@ class Respostas(BaseModel):
 class Interpretar(BaseModel):
     campo: Campo
     texto: str = Field(max_length=1000)
+    hemisferio: Literal["N", "S"] = "S"
+    idioma: Literal["pt", "en"] = "pt"

@@ -403,6 +403,25 @@ def test_instrucao_tem_data_idioma_e_resumo(client, auth, conversa, fazenda, mod
     assert "-11" not in instrucao  # sem coordenada
 
 
+def test_idioma_da_mensagem_vai_para_o_prompt(client, auth, conversa, fazenda, modelo):
+    m = modelo([fala("ok"), fala("ok"), fala("ok")])
+    perguntar(client, auth, conversa, "oi")  # sem idioma: vale o da conta (pt)
+    r = client.post(f"/chat/conversas/{conversa}/mensagens", headers=auth, json={"mensagem": "hi", "idioma": "en"})
+    assert r.status_code == 200
+    assert "Responda em português do Brasil" in m.chamadas[0]["instrucao"]
+    assert "(en)" in m.chamadas[1]["instrucao"] and "Responda em inglês" in m.chamadas[1]["instrucao"]
+    # a escolha da mensagem não muda a conta: sem idioma, volta ao da conta
+    client.patch("/me", headers=auth, json={"idioma": "en"})
+    perguntar(client, auth, conversa, "again")
+    assert "Responda em inglês" in m.chamadas[2]["instrucao"]
+
+
+def test_idioma_da_mensagem_invalido(client, auth, conversa, modelo):
+    modelo([fala("ok")])
+    r = client.post(f"/chat/conversas/{conversa}/mensagens", headers=auth, json={"mensagem": "oi", "idioma": "fr"})
+    assert r.status_code == 422
+
+
 def test_info_cultura(client, auth, conversa, modelo):
     m = modelo([chamada("info_cultura", cultura="sorgo"), chamada("info_cultura", cultura="Sorgo"), fala("ok")])
     r = perguntar(client, auth, conversa, "vale a pena plantar sorgo?")
