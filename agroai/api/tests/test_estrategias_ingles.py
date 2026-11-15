@@ -126,6 +126,8 @@ def test_frases_soltas(pt, en):
         "Plantar Centeio logo depois da colheita (out–abr)",
         "Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita.",
         "Trevo: a semeadura é em março, logo depois da colheita de Soja; depende da data da sua colheita.",
+        # M8: nenhuma cobertura serve para o período sem planta
+        "Nenhuma planta de cobertura da nossa base serve para o seu período sem planta (jul–set) na sua região, pela época de semear ou pelo clima. Confirme com seu agrônomo.",
         # renda: frase acrescentada à explicação
         "A rotação tem 2 cultura(s) para vender: Milho, Feijão. Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota.",
         # regra 12 (candidatas): lacunas da janela de semeadura
@@ -150,6 +152,9 @@ def test_frases_novas_da_revisao_em_ingles_exatas():
     )
     assert traduzir("Arroz irrigado: o frio na florada foi checado em só 24 dos 30 anos, por falta de temperatura mínima do local; poucos para decidir.") == (
         "Irrigated rice: the cold during flowering was checked in only 24 of 30 years, for lack of the local minimum temperature; too few to decide."
+    )
+    assert traduzir("Nenhuma planta de cobertura da nossa base serve para o seu período sem planta (jul–set) na sua região, pela época de semear ou pelo clima. Confirme com seu agrônomo.") == (
+        "No cover crop in our database fits your period without plants (Jul–Sep) in your region, because of sowing time or climate. Check with your agronomist."
     )
 
 

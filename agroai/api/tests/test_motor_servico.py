@@ -313,3 +313,38 @@ def test_analise_cita_a_fonte_do_k_e_a_lacuna_quando_falta():
     sem = analisar_entradas(montar(fazenda(retrato_solo={})))
     assert "SoilGrids 2.0 (ISRIC)" not in sem.fontes
     assert any("erodibilidade" in l for l in sem.atual.lacunas)
+
+
+# --- M8: nenhuma cobertura serve para o período sem planta
+LACUNA_SEM_COBERTURA = (
+    "Nenhuma planta de cobertura da nossa base serve para o seu período sem planta (jul–set) na sua região, "
+    "pela época de semear ou pelo clima. Confirme com seu agrônomo."
+)
+
+
+def test_sem_cobertura_para_o_periodo_vazio_a_atual_ganha_a_lacuna():
+    so_venda = {c.id: c for c in CULTURAS if c.tem_tipo("comercial")}
+    a = analisar_entradas(montar(fazenda(), so_venda))  # vazio: jul-set; só culturas de venda no catálogo
+    assert LACUNA_SEM_COBERTURA in a.atual.lacunas
+    assert all(LACUNA_SEM_COBERTURA not in r.lacunas for r in a.melhores)
+
+
+def test_com_cobertura_no_periodo_vazio_nao_ha_a_lacuna():
+    a = analisar_entradas(montar(fazenda()))  # milheto e crotalária entram em jul-set
+    assert LACUNA_SEM_COBERTURA not in a.atual.lacunas
+
+
+def test_cobertura_que_so_entra_como_troca_nao_resolve_o_periodo_vazio():
+    milheto = cultura(
+        "milheto", tipos=("cobertura", "tolerante_seca"), ciclo_dias_min=45,
+        semeadura_inicio="01-21", semeadura_fim="04-15", condicao_semeadura="apos_colheita_graos",
+    )  # época de fevereiro (troca do milho), nunca de jul-set
+    cat = {c.id: c for c in CULTURAS if c.tem_tipo("comercial")} | {"milheto": milheto}
+    a = analisar_entradas(montar(fazenda(), cat))
+    assert LACUNA_SEM_COBERTURA in a.atual.lacunas
+
+
+def test_sem_meses_vazios_nao_ha_lacuna_de_cobertura():
+    so_venda = {c.id: c for c in CULTURAS if c.tem_tipo("comercial")}
+    a = analisar_entradas(montar(fazenda(calendario=(("soja", 1, 6), ("milho", 7, 12))), so_venda))
+    assert not any("planta de cobertura" in l for l in a.atual.lacunas)

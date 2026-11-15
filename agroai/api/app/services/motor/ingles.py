@@ -190,6 +190,8 @@ _REGRAS: list[_Regra] = [
         (r"^(.+?): a semeadura é em (\w+), logo depois da colheita de (.+?); depende da data da sua colheita\.$",
          lambda m: f"{m.group(1)}: sowing is in {_MES_POR_EXTENSO_EN.get(m.group(2), m.group(2))}, right after the harvest of "
                    f"{m.group(3).replace(' e ', ' and ')}; it depends on your harvest date."),
+        (r"^Nenhuma planta de cobertura da nossa base serve para o seu período sem planta \((.+?)\) na sua região, pela época de semear ou pelo clima\. Confirme com seu agrônomo\.$",
+         r"No cover crop in our database fits your period without plants (\1) in your region, because of sowing time or climate. Check with your agronomist."),
         # critérios: animais
         (r"^(.+?): valor forrageiro desconhecido \((.+?)\)\.$", r"\1: unknown forage value (\2)."),
         (r"^Sem dado de comida para os animais nas culturas desta rotação\.$", "No animal-feed data for the crops in this rotation."),
