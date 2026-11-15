@@ -18,7 +18,9 @@ data/catalogo/eua/
 
 Cada agente escreve **só os arquivos da sua cultura**. O CSV é montado depois, por script, sem conflito entre agentes.
 
-Colunas: as 30 do Brasil + `codigo_nass` (commodity no USDA NASS QuickStats, no lugar do `codigo_pam`) e `calendario_usda` (nome da cultura no USDA Agricultural Handbook 628, no lugar do `nome_zarc`). No CSV dos EUA, `codigo_pam` e `nome_zarc` ficam vazios.
+Colunas: as do Brasil + `codigo_nass` (commodity no USDA NASS QuickStats, no lugar do `codigo_pam`) e `calendario_usda` (nome da cultura no USDA Agricultural Handbook 628, no lugar do `nome_zarc`). No CSV dos EUA, `codigo_pam` e `nome_zarc` ficam vazios. As colunas de janela, região e texto para o produtor (`semeadura_*`, `manejo_*`, `tipo_manejo`, `condicao_semeadura`, `estados_validos`, `lacuna_informacao`, `risco_revisao_local`) são as mesmas do Brasil e estão descritas em `../evidencias/README.md`; nos EUA, `estados_validos` usa siglas USPS.
+
+Nas **coberturas**, `codigo_nass` e `calendario_usda` ficam **vazios**: os códigos do NASS e o Handbook 628 descrevem o grão (ex.: aveia de primavera semeada em março), não a cobertura. A explicação fica em `regua.observacoes.codigos`. Os códigos NASS das demais culturas **ainda não foram conferidos no QuickStats** (falta a `NASS_API_KEY`): quem carregar o CSV deve tratar o nome como provável, não confirmado.
 
 ## Culturas e sistemas
 
@@ -31,15 +33,15 @@ Os sistemas seguem os testes de chat do produtor americano (`docs/NasaSpaceApps-
 | 1 | `trigo` | **Hard red winter wheat** (trigo de inverno; o de primavera fica em pendência) | Kansas |
 | 1 | `sorgo` | Grain sorghum, incluindo o double-crop depois do trigo | Kansas; oeste do Texas |
 | 1 | `algodao` | Upland cotton, sequeiro | Oeste do Texas (Lubbock); sul da Geórgia |
-| 1 | `arroz_irrigado` | Rice, inundado | Delta do Arkansas |
+| 1 | `arroz_irrigado` | Rice, inundado (só candidato com várzea ou irrigação, regra 8) | Delta do Arkansas |
 | 1 | `girassol` | Oilseed sunflower | Dakota do Norte |
 | 1 | `amendoim` | Peanut (runner), em rotação com algodão | Sul da Geórgia |
 | 1 | `centeio` | Cereal rye, cobertura de inverno depois do milho/soja | Iowa |
 | 2 | `aveia` | Oats (*Avena sativa*), cobertura | Corn Belt |
-| 2 | `ervilhaca` | Hairy vetch (*Vicia villosa*), cobertura | Corn Belt; Sudeste |
+| 2 | `ervilhaca` | Hairy vetch (*Vicia villosa*), cobertura de inverno antes do milho | Corn Belt (o Sudeste fica em `regua.arranjos.sudeste`) |
 | 2 | `trevo` | Crimson clover (*Trifolium incarnatum*), cobertura | Sudeste |
 | 2 | `nabo_forrageiro` | Forage/tillage radish, cobertura | Corn Belt |
-| 2 | `alfafa` | Alfalfa hay, perene | Nebraska; Califórnia |
+| 2 | `alfafa` | Alfalfa hay, perene forrageira: sem ciclo nem graus-dia (padrão da pastagem); água anual | Nebraska (a Califórnia fica em pendência) |
 | 3 | `pastagem` | Tall fescue (*Lolium arundinaceum*), pasto perene | Missouri; Kentucky |
 | 3 | `feijao` | Dry edible bean | Dakota do Norte; Michigan |
 | 3 | `canola` | Canola de primavera | Dakota do Norte |
@@ -47,7 +49,9 @@ Os sistemas seguem os testes de chat do produtor americano (`docs/NasaSpaceApps-
 
 Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no Brasil. Isso vale para `aveia` (*A. strigosa* no Brasil, *A. sativa* nos EUA), `pastagem` (braquiária no Brasil, festuca nos EUA) e `trigo` (trigo de primavera no Brasil, de inverno nos EUA). Diga isso em `sistema` e em `nome_cientifico`.
 
-**Bloqueio:** `arroz_irrigado` ainda não existe em `agroia/base/culturas.json`. O agente pode preparar a evidência, mas o `montar_csv.py` acusa o id até ele entrar no catálogo do app.
+`arroz_irrigado` entrou em `agroia/base/culturas.json` no commit f910193 (antes era bloqueio do `montar_csv.py`). Quando o produtor escreve só "arroz" ou "rice", o app pede que ele diga se é irrigado ou de terras altas; não decide pelo país.
+
+**Uma linha, uma região.** Quando a mesma espécie tem sistemas diferentes em regiões distantes (ex.: ervilhaca no Corn Belt e no Sudeste), a linha fica com a região de referência e a outra vai para `regua.arranjos.<regiao>` com `estados`, ou para as pendências. `estados_validos` diz onde a linha vale (ex.: trevo-encarnado só no Sudeste).
 
 ## O que reaproveitar do Brasil
 
@@ -85,9 +89,9 @@ Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no B
 ## Fluxo do coordenador
 1. Conferir se os ids do lote existem em `agroia/base/culturas.json`.
 2. Chamar o agente `agroia-dataset-eua` em **lotes de até 4 em paralelo**, cada um com 1 ou 2 culturas, dizendo o id, a prioridade e o sistema desta tabela.
-3. Depois de cada lote, na raiz do repositório:
+3. Depois de cada lote, na raiz do repositório. O `regua.py` lê as culturas do CSV já gravado, por isso o CSV é montado **antes** (para entrar a cultura nova) e **depois** (para levar as classes e a confiança):
    ```
-   python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua          # valida
+   python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua --apply  # valida e grava (cultura nova entra no CSV)
    python3 -I data/catalogo/scripts/regua.py --catalogo data/catalogo/eua --apply
    python3 -I data/catalogo/scripts/confianca.py --catalogo data/catalogo/eua --apply
    python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua --apply  # grava o CSV

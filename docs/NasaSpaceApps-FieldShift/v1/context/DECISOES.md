@@ -105,7 +105,17 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - Novo catálogo `data/catalogo/eua/`, no mesmo formato do Brasil, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc`. Guia em `data/catalogo/eua/README.md`; construído pelo agente `agroia-dataset-eua`.
   - Para o catálogo dos EUA, entram fontes que a D-003 deixava de fora: USDA NASS QuickStats (no lugar da PAM), USDA Agricultural Handbook 628 e RMA (no lugar do ZARC), extensão das universidades land-grant e USDA-ARS/NRCS (no lugar da Embrapa).
   - A régua das colunas qualitativas, a regra de confiança e as regras do motor são as mesmas do Brasil (`data/catalogo/evidencias/README.md`), para as notas serem comparáveis.
-  - **Em aberto com a equipe:** se a D-003 cai também para solo (SSURGO), histórico de culturas (CDL) e clima (PRISM) nos pontos dos EUA, e se o id `arroz_irrigado` entra no `agroia/base/culturas.json`.
+  - **Em aberto com a equipe:** se a D-003 cai também para solo (SSURGO), histórico de culturas (CDL) e clima (PRISM) nos pontos dos EUA.
+  - **Resolvido (15/11):** o id `arroz_irrigado` entrou no `agroia/base/culturas.json` (commit f910193). "arroz irrigado", "arroz de várzea", "flooded rice" e afins casam com ele; "arroz" e "rice" sozinhos ficam ambíguos e o app pede que o produtor escolha (não decide pelo país).
+  - **Decisões da revisão dos lotes 1 e 2 dos EUA (15/11, `reviews/lotes-1-2-eua 15_11_26/`), valem para os dois catálogos:**
+    - a água não elimina cultura de sequeiro, só marca "água no limite" (regra 1 do motor); só o arroz irrigado sem várzea ou irrigação é eliminado;
+    - graus-dia: o motor compara a mediana local; nas coberturas não elimina;
+    - `tmax_critica_c` só gera aviso na fase sensível; vazio nas coberturas que morrem ou são manejadas antes de florescer;
+    - perenes forrageiras (`pastagem`, `alfafa`) não usam ciclo nem graus-dia (`vazio_nao_se_aplica`); água anual;
+    - colunas novas de janela, região e texto para o produtor (`semeadura_*`, `manejo_*`, `tipo_manejo`, `condicao_semeadura`, `estados_validos`, `lacuna_informacao`, `risco_revisao_local`); no Brasil entram vazias até haver fonte;
+    - aveia e nabo dos EUA continuam com semeadura em agosto e setembro: a janela e a condição impedem que sejam sugeridos depois do milho ou da soja colhidos em outubro;
+    - critério de `estudo_unico` escrito (1 local, 1 ano ou 1 cultivar); o sorgo dos EUA fica `media`;
+    - ervilhaca dos EUA só no Corn Belt (Sudeste em arranjo regional); centeio com palhada típica 0,97 t/ha; girassol e amendoim com a palhada medida na região.
 
 ---
 

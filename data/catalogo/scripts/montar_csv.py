@@ -10,16 +10,20 @@ Uso (na raiz do repositório):
     python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua            # só valida
     python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua --apply    # grava o CSV
 
-Validações: id existe em agroia/base/culturas.json; todas as colunas presentes;
+Validações: id existe em agroia/base/culturas.json; todas as colunas presentes
+(as de janela, região e texto para o produtor são opcionais: ausente = vazio);
 números válidos; mínimo <= máximo; kc_medio <= 1,25; categorias da régua;
 tipos coerentes com fixa_nitrogenio e raiz_profunda; fontes preenchidas; nenhum
-caminho temporário.
+caminho temporário; datas MM-DD e listas das colunas de janela; janela de
+semeadura obrigatória nas coberturas (sem `comercial`); lacuna_informacao e
+risco_revisao_local obrigatórios com confiança `baixa`.
 """
 import argparse
 import csv
 import glob
 import json
 import os
+import re
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 BASE_BR = os.path.join(ROOT, "data", "catalogo", "culturas.csv")
@@ -36,6 +40,14 @@ ENUMS = {"perene": {"true", "false"}, "sensivel_geada": {"true", "false"}, "fixa
          "aporte_biomassa": {"baixo", "medio", "alto", ""}, "valor_forrageiro": {"nenhum", "baixo", "medio", "alto", ""},
          "confianca_parametros": {"baixa", "media", "alta"}}
 TIPOS = {"comercial", "cobertura", "forrageira", "fixadora_n", "raiz_profunda", "tolerante_seca"}
+# Colunas de janela, região e texto para o produtor (README de evidências): opcionais na leitura.
+DATAS = ["semeadura_inicio", "semeadura_fim", "manejo_inicio", "manejo_fim"]
+TEXTOS = ["lacuna_informacao", "risco_revisao_local"]
+OPCIONAIS = set(DATAS + TEXTOS + ["tipo_manejo", "condicao_semeadura", "estados_validos"])
+TIPO_MANEJO = {"dessecacao", "morte_pelo_frio", "rolagem", "corte", ""}
+CONDICOES = {"apos_colheita_graos", "apos_cereal_inverno", "apos_silagem", "a_lanco_lavoura_em_pe"}
+MM_DD = re.compile(r"^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$")
+SIGLA = re.compile(r"^[A-Z]{2}$")
 
 
 def main():
@@ -65,7 +77,7 @@ def main():
 
         if cid not in ids_app:
             erro("id não existe em agroia/base/culturas.json")
-        faltam = [c for c in colunas if c not in ev.get("valores", {}) and c not in FIXAS and c not in EXTRAS]
+        faltam = [c for c in colunas if c not in ev.get("valores", {}) and c not in FIXAS | OPCIONAIS and c not in EXTRAS]
         if faltam:
             erro(f"valores sem {faltam}")
         for c in NUM:
@@ -95,6 +107,24 @@ def main():
             erro("tipos x fixa_nitrogenio incoerentes")
         if ("raiz_profunda" in tipos) != (r["raiz_profunda"] == "true"):
             erro("tipos x raiz_profunda incoerentes")
+        for c in DATAS:
+            if r[c] and not MM_DD.match(r[c]):
+                erro(f"{c} fora do formato MM-DD: {r[c]!r}")
+        if r["tipo_manejo"] not in TIPO_MANEJO:
+            erro(f"tipo_manejo inválido: {r['tipo_manejo']!r}")
+        condicoes = set(filter(None, r["condicao_semeadura"].split("|")))
+        if not condicoes <= CONDICOES:
+            erro(f"condicao_semeadura inválida: {sorted(condicoes - CONDICOES)}")
+        estados = list(filter(None, r["estados_validos"].split("|")))
+        if any(not SIGLA.match(e) for e in estados):
+            erro(f"estados_validos com sigla inválida: {estados}")
+        if "comercial" not in tipos and not (r["semeadura_inicio"] and r["semeadura_fim"]):
+            erro("cobertura sem janela de semeadura (semeadura_inicio/fim)")
+        for c in TEXTOS:
+            if len(r[c]) > 300:
+                erro(f"{c} com mais de 300 caracteres")
+            if r["confianca_parametros"] == "baixa" and not r[c]:
+                erro(f"confiança baixa sem {c}")
         if not r["fontes"] or "RASCUNHO" in r["fontes"]:
             erro("fontes vazia ou rascunho")
         if "scratchpad" in texto or "/tmp/" in texto:
