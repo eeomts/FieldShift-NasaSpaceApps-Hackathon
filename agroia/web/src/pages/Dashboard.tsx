@@ -6,7 +6,8 @@ import type { CulturaBase, Fazenda } from "../api/tipos";
 import { Logo } from "../components/Logo";
 import { Calendario } from "../onboarding/Calendario";
 import { Brilho, Painel, Sair } from "../components/icones";
-import { Cartao, cx, Selo, Texto, Titulo } from "../components/ui";
+import { Estrategias } from "../components/estrategias/Estrategias";
+import { Cartao, cx, Selo, Titulo } from "../components/ui";
 
 function Abas({ className }: { className?: string }) {
   return (
@@ -58,12 +59,6 @@ export function Dashboard() {
 
         <div className={cx("grid gap-4 lg:gap-6", temCalendario && "lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:items-start")}>
           <div className="flex flex-col gap-4">
-            <Cartao className="bg-sol-claro lg:p-6">
-              <span className="font-bold lg:text-lg">Preparando os dados da sua fazenda…</span>
-              <Texto>
-                Seu questionário está salvo. A busca dos dados da NASA para o seu ponto entra na próxima parte do projeto.
-              </Texto>
-            </Cartao>
             <Link to="/chat" className="flex h-14 items-center justify-center gap-2 rounded-[20px] bg-folha px-5 text-[17px] font-bold text-white shadow-degrau">
               <Brilho /> Conversar com o assistente
             </Link>
@@ -76,6 +71,7 @@ export function Dashboard() {
             </Cartao>
           )}
         </div>
+        {fazenda?.onboarding_concluido && <Estrategias />}
       </main>
 
       {/* Celular: abas embaixo */}

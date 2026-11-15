@@ -19,6 +19,8 @@ FONTES: list[FonteStatus] = [
     FonteStatus("base de culturas do AgroIA", "parâmetros de 17 culturas no Brasil, com fontes", True),
     FonteStatus("textos da base de conhecimento do AgroIA", "explicações de conceitos", True),
     FonteStatus("respostas do produtor no cadastro da fazenda", "ficha da fazenda", True),
+    FonteStatus("comparação de rotações do AgroIA", "notas de água, terra, erosão, pragas, renda e animais para a rotação atual e alternativas", True),
+    FonteStatus("SRTM", "declividade do terreno, usada na comparação de rotações", True),
     FonteStatus("GPM IMERG", "chuva de satélite de ~10 km", False),
     FonteStatus("SoilGrids", "solo por ponto", False),
     FonteStatus("SMAP", "umidade do solo", False),
@@ -26,7 +28,6 @@ FONTES: list[FonteStatus] = [
     FonteStatus("IBGE PAM", "produção agrícola por município", False),
     FonteStatus("ZARC", "janelas de plantio", False),
     FonteStatus("USDA NASS", "produção nos EUA", False),
-    FonteStatus("SRTM", "relevo; o motor de rotação já usa, mas o chat ainda não mostra", False),
 ]
 
 

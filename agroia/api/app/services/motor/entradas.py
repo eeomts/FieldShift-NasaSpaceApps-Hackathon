@@ -18,7 +18,7 @@ from app.services.onboarding.perfil import meses_sem_cobertura
 MSG_SEM_LOCAL = "Marque o local da fazenda para comparar rotações."
 MSG_PAIS = "Ainda só comparamos rotações no Brasil e nos Estados Unidos; o local da fazenda está fora deles."
 MSG_SEM_CATALOGO = "Ainda não temos as culturas desta região na base."
-MSG_SEM_ROTACAO = "Conte o que você planta e em que meses para comparar rotações."
+MSG_SEM_ROTACAO = "Cadastre o que você planta para comparar rotações."
 
 
 @dataclass
