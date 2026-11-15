@@ -6,7 +6,7 @@ import pytest
 from app.core.erros import ErroDeNegocio
 from app.models import CalendarioItem, Fazenda
 from app.services.clima.agregacao import LinhaMensal
-from app.services.motor.catalogo import ArranjoRegional, FaixaPalhada
+from app.services.motor.catalogo import ArranjoRegional, FaixaPalhada, catalogo_do_pais
 from app.services.motor.entradas import ClimaDoServico, clima_de_linhas, montar_entradas
 from app.services.motor.motor_service import analisar_entradas
 from motor_helpers import PLANO, clima, cultura, entradas, item
@@ -132,11 +132,26 @@ def test_arranjo_regional_do_estado_vale_nas_entradas_e_a_fonte_da_evidencia_diz
     assert e.estado == "GO" and e.catalogo["soja"].arranjo_aplicado == "goiano" and e.catalogo["soja"].ciclo_dias_min == 120
     assert e.catalogo["soja"].aporte_biomassa == "alto" and e.catalogo["milho"].arranjo_aplicado is None
     palha = next(ev for ev in analisar_entradas(e).atual.notas["terra"].evidencias if ev.texto.startswith("Palha"))
-    assert palha.valor == "alto" and palha.fonte == "Base de culturas do Field Shift (números para GO, arranjo goiano)"
+    assert palha.valor == "5,0–9,0" and palha.unidade == "t/ha" and palha.fonte == "Base de culturas do Field Shift (números para GO, arranjo goiano)"
     sem_estado = montar(fazenda(codigo_local=None), cs)  # sem estado, nada é aplicado
     assert sem_estado.catalogo["soja"].arranjo_aplicado is None and sem_estado.catalogo["soja"].ciclo_dias_min == 100
     outro = montar(fazenda(pais="US", codigo_local="19169"), cs)  # Iowa: fora do arranjo
     assert outro.catalogo["soja"].arranjo_aplicado is None
+
+
+def test_aviso_da_regua_e_textos_de_confianca_baixa_chegam_ao_resultado():
+    past = replace(catalogo_do_pais("US")["pastagem"], estados_validos=())
+    cs = {c.id: c for c in CULTURAS}
+    cs["pastagem"] = past
+    cs["milheto"] = replace(cs["milheto"], lacuna_informacao="Falta medição.", risco_revisao_local="Confirme com o agrônomo.")
+    com = analisar_entradas(montar(fazenda(calendario=(("milho", 10, 2), ("pastagem", 3, 9), ("milheto", 3, 4))), cs))
+    aviso = next(a for a in com.atual.alertas if a.codigo == "aviso_valor_forrageiro")
+    assert aviso.texto.startswith("Festuca alta (tall fescue): a maioria dos pastos")  # alerta sem o "Atenção"
+    assert "(Atenção: a maioria dos pastos" in com.atual.notas["animais"].explicacao  # a explicação mantém o prefixo
+    assert com.atual.lacunas[com.atual.lacunas.index("Milheto: Falta medição.") + 1] == "Milheto: Confirme com o agrônomo."
+    sem = analisar_entradas(montar(fazenda(), cs))  # soja e milho, sem pastagem: nada de aviso
+    assert not any(a.codigo.startswith("aviso_") for a in sem.atual.alertas)
+    assert not any(a.codigo.startswith("aviso_") for r in sem.melhores for a in r.alertas)
 
 
 def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():

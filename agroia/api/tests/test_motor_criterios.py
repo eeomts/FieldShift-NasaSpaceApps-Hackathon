@@ -1,6 +1,7 @@
 """Seis critérios 0-1: fórmula, limites 0 e 1, explicação, evidências e lacunas."""
 import pytest
 
+from app.services.motor.catalogo import FaixaPalhada, catalogo_do_pais
 from app.services.motor.criterios import calcular_notas, classe_do_k
 from app.services.motor.entradas import Erodibilidade
 from app.services.motor.modelo import Estrategia
@@ -255,3 +256,62 @@ def test_erosao_evidencia_do_k_com_valor_unidade_e_fonte():
     k = n["erosao"].evidencias[-1]
     assert k.valor == 0.0145 and k.unidade == "t·ha·h/(ha·MJ·mm)" and k.fonte == "SoilGrids 2.0 (ISRIC)"
     assert "baixa" in k.texto and "erodibilidade baixa" in n["erosao"].explicacao
+
+
+# --- regra 15: a classe da palhada vem com a faixa quando depende da época
+def palha(n):
+    return next(ev for ev in n["terra"].evidencias if ev.texto.startswith(("Palha ", "Palhada ")))
+
+
+def test_palha_que_depende_da_epoca_mostra_a_classe_com_a_faixa():
+    milho = cultura("milho", aporte_biomassa="medio", faixa_palhada=FaixaPalhada(2.1, 6.0, 9.8), depende_da_epoca={"aporte_biomassa": True})
+    n, _ = notas([item("milho", 1, 3)], [milho])
+    ev = palha(n)
+    assert ev.texto == "Palhada de Milho: palhada média, de 2,1 a 9,8 t/ha conforme a data de manejo (depende da época)"
+    assert (ev.valor, ev.unidade, ev.fonte) == ("2,1–9,8", "t/ha", "Base de culturas do Field Shift")
+    assert "(palhada média, de 2,1 a 9,8 t/ha conforme a data de manejo)" in n["terra"].explicacao
+
+
+@pytest.mark.parametrize("depende", [False, None])
+def test_palha_que_nao_depende_da_epoca_fica_como_antes(depende):
+    milho = cultura("milho", aporte_biomassa="medio", faixa_palhada=FaixaPalhada(2.1, 6.0, 9.8), depende_da_epoca={"aporte_biomassa": depende})
+    n, _ = notas([item("milho", 1, 3)], [milho])
+    ev = palha(n)
+    assert ev.texto == "Palha que fica no campo (maior da rotação: Milho)" and (ev.valor, ev.unidade) == ("média", "classe")
+    assert "t/ha" not in n["terra"].explicacao and "(classe média)" in n["terra"].explicacao
+
+
+def test_palha_que_depende_da_epoca_sem_faixa_completa_fica_como_antes():
+    milho = cultura("milho", aporte_biomassa="medio", faixa_palhada=FaixaPalhada(None, 6.0, None), depende_da_epoca={"aporte_biomassa": True})
+    assert palha(notas([item("milho", 1, 3)], [milho])[0]).unidade == "classe"
+
+
+def test_palha_do_catalogo_real_milho_do_brasil_mostra_a_faixa():
+    milho = catalogo_do_pais("BR")["milho"]  # depende_da_epoca verdadeiro, faixa 3,9 a 14,5 t/ha
+    ev = palha(notas([item("milho", 1, 3)], [milho])[0])
+    assert ev.valor == "3,9–14,5" and ev.unidade == "t/ha"
+
+
+# --- regra 16: o aviso da régua vai junto da explicação do critério
+def test_aviso_da_pastagem_dos_eua_aparece_na_explicacao_de_animais_sem_duplicar_atencao():
+    past = catalogo_do_pais("US")["pastagem"]
+    n, _ = notas([item("pastagem", 1, 12, perene=True)], [past])
+    aviso = past.avisos["valor_forrageiro"]
+    assert n["animais"].explicacao.endswith(f"(classe alto). ({aviso})") and "Atenção: Atenção" not in n["animais"].explicacao
+    assert n["animais"].explicacao.count("Atenção") == 1
+
+
+def test_aviso_sem_atencao_no_inicio_ganha_o_prefixo_e_sem_aviso_nada_muda():
+    c = cultura("c", valor_forrageiro="alto", avisos={"valor_forrageiro": "A variedade pode intoxicar o gado."})
+    assert notas([item("c", 1, 3)], [c])[0]["animais"].explicacao.endswith("(Atenção: A variedade pode intoxicar o gado.)")
+    sem = notas([item("c", 1, 3)], [cultura("c", valor_forrageiro="alto")])[0]["animais"].explicacao
+    assert sem == "A melhor comida para os animais da rotação é a de C (classe alto)."
+
+
+def test_classes_aparecem_em_portugues_de_produtor_no_texto_e_na_evidencia():
+    for chave, exibida in (("baixo", "baixa"), ("medio", "média"), ("alto", "alta")):
+        n, _ = notas([item("c", 1, 3)], [cultura("c", aporte_biomassa=chave)])
+        assert f"(classe {exibida})" in n["terra"].explicacao and palha(n).valor == exibida
+    for chave, exibida in (("nenhum", "nenhum"), ("baixo", "baixo"), ("medio", "médio"), ("alto", "alto")):
+        n, _ = notas([item("c", 1, 3)], [cultura("c", valor_forrageiro=chave)])
+        assert n["animais"].explicacao.endswith(f"(classe {exibida}).") and n["animais"].evidencias[0].valor == exibida

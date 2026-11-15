@@ -299,6 +299,14 @@ def test_palhada_do_arranjo_sem_tipico_mantem_a_classe_da_linha():
     assert r.aporte_biomassa == "baixo" and r.faixa_palhada.maximo == 8
 
 
+def test_arranjo_recalcula_se_a_classe_da_palhada_depende_da_epoca():
+    base = replace(catalogo_do_pais("BR")["soja"], depende_da_epoca={"aporte_biomassa": False, "cobertura_solo": True})
+    larga = replace(base, arranjos=(ArranjoRegional("a", ("GO",), palhada=FaixaPalhada(2.0, 4.0, 7.0)),))  # baixo a alto
+    estreita = replace(base, arranjos=(ArranjoRegional("a", ("GO",), palhada=FaixaPalhada(3.0, 4.0, 5.0)),))  # tudo médio
+    assert cultura_no_estado(larga, "GO").depende_da_epoca == {"aporte_biomassa": True, "cobertura_solo": True}
+    assert cultura_no_estado(estreita, "GO").depende_da_epoca["aporte_biomassa"] is False
+
+
 def test_cultura_vale_no_estado_do_arranjo_mesmo_fora_de_estados_validos():
     us = catalogo_do_pais("US")
     for id_, estado in (("cevada", "MT"), ("feijao", "MI"), ("ervilhaca", "GA"), ("trevo", "AL"), ("trevo", "TN")):

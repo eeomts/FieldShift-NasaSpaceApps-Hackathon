@@ -1,7 +1,7 @@
 """Seis critérios de 0 a 1 (água, terra, erosão, pragas, renda, animais), cada um com explicação e evidências."""
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.entradas import EntradasMotor
-from app.services.motor.formatos import num, pct
+from app.services.motor.formatos import classe_da_palha_texto, classe_forrageira_texto, num, pct
 from app.services.motor.hidrico import etc_mensal
 from app.services.motor.modelo import CRITERIOS, Estrategia, Evidencia, ItemRotacao, NotaCriterio
 from app.services.motor.parametros import (
@@ -32,6 +32,23 @@ def fonte_da_base(c: CulturaMotor, e: EntradasMotor) -> str:
     if c.arranjo_aplicado is None:
         return FONTE_BASE
     return f"{FONTE_BASE} (números para {e.estado}, arranjo {c.arranjo_aplicado})"
+
+
+def _faixa_da_palha(c: CulturaMotor) -> tuple[str, str] | None:
+    """Regra 15: ('2,1–9,8', '2,1 a 9,8') quando a classe da palha depende da época e a faixa é conhecida."""
+    f = c.faixa_palhada
+    if not c.depende_da_epoca.get("aporte_biomassa") or f is None or f.minimo is None or f.maximo is None:
+        return None
+    return f"{num(f.minimo, 1)}–{num(f.maximo, 1)}", f"{num(f.minimo, 1)} a {num(f.maximo, 1)}"
+
+
+def _com_avisos(texto: str, pares: list[Par], coluna: str) -> str:
+    """Regra 16: o aviso da régua junto da explicação (sem repetir o "Atenção" que o próprio texto já traz)."""
+    for c in dict.fromkeys(c for _, c in pares):
+        aviso = c.avisos.get(coluna)
+        if aviso and getattr(c, coluna) is not None:
+            texto += f" ({aviso})" if aviso.startswith("Atenção") else f" (Atenção: {aviso})"
+    return texto
 
 
 def classe_do_k(k: float) -> str:
@@ -110,10 +127,18 @@ def nota_terra(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMoto
         lac.append("Algumas culturas sem informação se fixam nitrogênio.")
     nota = _limita(TERRA_PESO_COBERTURA * cobertos / 12 + TERRA_PESO_BIOMASSA * biomassa + TERRA_PESO_FIXADORA * (1 if fixadoras else 0))
     fix_texto = f"tem {_lista_nomes([(i, c) for i, c in pares if c in fixadoras])}, que fixa nitrogênio" if fixadoras else "não tem planta que fixa nitrogênio"
-    texto = f"O campo tem planta em {cobertos} dos 12 meses, a maior palhada é a de {cultura_palha.nome} (classe {classe}) e a rotação {fix_texto}."
+    faixa = _faixa_da_palha(cultura_palha)
+    palha_texto = classe_da_palha_texto(classe)
+    classe_texto = f"palhada {palha_texto}, de {faixa[1]} t/ha conforme a data de manejo" if faixa else f"classe {palha_texto}"
+    texto = f"O campo tem planta em {cobertos} dos 12 meses, a maior palhada é a de {cultura_palha.nome} ({classe_texto}) e a rotação {fix_texto}."
+    texto = _com_avisos(texto, pares, "aporte_biomassa")
+    if faixa:  # regra 15: a classe vem junto da faixa
+        palha = Evidencia(f"Palhada de {cultura_palha.nome}: palhada {palha_texto}, de {faixa[1]} t/ha conforme a data de manejo (depende da época)", faixa[0], "t/ha", fonte_da_base(cultura_palha, e), None)
+    else:
+        palha = Evidencia(f"Palha que fica no campo (maior da rotação: {cultura_palha.nome})", palha_texto, "classe", fonte_da_base(cultura_palha, e), None)
     evid = [
         Evidencia("Meses do ano com planta no campo", cobertos, "meses", FONTE_CALENDARIO, None),
-        Evidencia(f"Palha que fica no campo (maior da rotação: {cultura_palha.nome})", classe, "classe", fonte_da_base(cultura_palha, e), None),
+        palha,
         Evidencia("Planta que fixa nitrogênio na rotação", "sim" if fixadoras else "não", None, FONTE_BASE, None),
     ]
     return NotaCriterio("terra", nota, texto, evid), lac
@@ -203,8 +228,8 @@ def nota_animais(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMo
     if not valores:
         return _sem_dado("animais", "Sem dado de comida para os animais nas culturas desta rotação.", lac + ["Sem valor forrageiro: critério de animais ignorado."])
     nota, c, classe = max(valores, key=lambda x: x[0])
-    texto = f"A melhor comida para os animais da rotação é a de {c.nome} (classe {classe})."
-    return NotaCriterio("animais", nota, texto, [Evidencia(f"Valor forrageiro (maior da rotação: {c.nome})", classe, "classe", fonte_da_base(c, e), None)]), lac
+    texto = _com_avisos(f"A melhor comida para os animais da rotação é a de {c.nome} (classe {classe_forrageira_texto(classe)}).", pares, "valor_forrageiro")
+    return NotaCriterio("animais", nota, texto, [Evidencia(f"Valor forrageiro (maior da rotação: {c.nome})", classe_forrageira_texto(classe), "classe", fonte_da_base(c, e), None)]), lac
 
 
 def calcular_notas(estrategia: Estrategia, e: EntradasMotor) -> tuple[dict[str, NotaCriterio], list[str]]:

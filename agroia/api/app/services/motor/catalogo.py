@@ -181,6 +181,8 @@ def cultura_no_estado(c: CulturaMotor, estado: str | None) -> CulturaMotor:
         mudancas["condicao_semeadura"] = a.condicao_semeadura
     if a.palhada is not None:
         mudancas["faixa_palhada"] = a.palhada
+        if a.palhada.minimo is not None and a.palhada.maximo is not None:  # regra 15: depende da época se min e max caem em classes diferentes
+            mudancas["depende_da_epoca"] = {**c.depende_da_epoca, "aporte_biomassa": classe_da_palhada(a.palhada.minimo) != classe_da_palhada(a.palhada.maximo)}
         if a.palhada.tipico is not None:  # sem típico, a classe da linha fica
             mudancas["aporte_biomassa"] = classe_da_palhada(a.palhada.tipico)
     if c.estados_validos and estado not in c.estados_validos:

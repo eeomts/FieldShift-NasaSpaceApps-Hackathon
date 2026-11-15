@@ -8,7 +8,7 @@ from app.services.clima.clima_service import ClimaService
 from app.services.motor.candidatas import gerar_candidatas
 from app.services.motor.criterios import FONTE_BASE, FONTE_CALENDARIO, calcular_notas
 from app.services.motor.entradas import ClimaDoServico, EntradasMotor, montar_entradas
-from app.services.motor.explicacao import confianca, onde_piora, por_que
+from app.services.motor.explicacao import avisos_da_regua, confianca, onde_piora, por_que
 from app.services.motor.filtro import ResultadoFiltro, avaliar
 from app.services.motor.modelo import Analise, Eliminada, Estrategia, ResultadoEstrategia
 from app.services.motor.pontuacao import melhores, nota_final, pesos_das_prioridades
@@ -20,7 +20,8 @@ def _resultado(estrategia: Estrategia, e: EntradasMotor, pesos: dict[str, float]
     nota, efetivos = nota_final(notas, pesos)
     conf, lac_conf = confianca(estrategia.itens, e.catalogo)
     lacunas = list(dict.fromkeys(filtro.lacunas + lac_notas + lac_conf))
-    alertas = filtro.alertas + [a for a in estrategia.alertas if a not in filtro.alertas]  # avisos da montagem da candidata
+    alertas = list(filtro.alertas)
+    alertas += [a for a in (*estrategia.alertas, *avisos_da_regua(estrategia.itens, e.catalogo)) if a not in alertas]  # montagem da candidata e avisos da régua (regra 16)
     return ResultadoEstrategia(estrategia, notas, nota, efetivos, [], alertas, conf, lacunas)
 
 
