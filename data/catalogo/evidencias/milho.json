@@ -23,10 +23,14 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40122",
     "nome_zarc": "Milho 1ª Safra|Milho 2ª Safra",
-    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Clima e solo (água; tmax crítica; geada)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Cultivares (classes de ciclo)|Cruz & Magalhães, Embrapa Milho e Sorgo, Cultivares superprecoces surpreendem produtores, Campo & Negócios jan/2010 (grupos de ciclo MAPA/ZARC em dias; geada)|Borghi, Magalhães & Pereira Filho, Embrapa Milho e Sorgo Documentos 273, 2023 (ciclo em dias após emergência)|Magalhães & Durães, Embrapa Milho e Sorgo Circular Técnica 76, 2006 (fenologia: floração 65 DAE, R6 50-60 dias após polinização; água ~600 mm)|Avelar, Embrapa CNPMS, Manual técnico Cultura do Milho, cap. 1 Fatores climáticos (temp base; temp ótima)|Oliveira & Kluthcouski, Embrapa Arroz e Feijão, Fundamentos para uma agricultura sustentável, cap. 8 Palhada de cobertura do solo no SPD, 2009 (biomassa; persistência da palhada)|Resende et al., Embrapa Gado de Leite Circular Técnica 114, 2017 (valor forrageiro)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Clima e solo (água; tmax crítica; geada)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Cultivares (classes de ciclo)|Cruz & Magalhães, Embrapa Milho e Sorgo, Cultivares superprecoces surpreendem produtores, Campo & Negócios jan/2010 (grupos de ciclo MAPA/ZARC em dias; geada)|Borghi, Magalhães & Pereira Filho, Embrapa Milho e Sorgo Documentos 273, 2023 (ciclo em dias após emergência)|Magalhães & Durães, Embrapa Milho e Sorgo Circular Técnica 76, 2006 (fenologia: floração 65 DAE, R6 50-60 dias após polinização; água ~600 mm)|Avelar, Embrapa CNPMS, Manual técnico Cultura do Milho, cap. 1 Fatores climáticos (temp base; temp ótima)|Oliveira & Kluthcouski, Embrapa Arroz e Feijão, Fundamentos para uma agricultura sustentável, cap. 8 Palhada de cobertura do solo no SPD, 2009 (biomassa; persistência da palhada)|Resende et al., Embrapa Gado de Leite Circular Técnica 114, 2017 (valor forrageiro)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|Nielsen, Purdue Corny News Network, set. 2002 (killing frost: ar a 28 °F = -2 °C; tmin_critica_c, fisiologia da espécie)|Staggenborg et al., K-State MF-2234, 1996 (folhas do milho sofrem abaixo de 29 °F)|Embrapa Milho e Sorgo Documentos 273, 2023 (frio no florescimento e enchimento de grãos)|MAPA, Portaria SPA/MAPA nº 230/2026, ZARC milho 1ª safra PR (conferência: Tmin < 2 °C no abrigo nas fases I a III)",
     "confianca_parametros": "media",
     "graus_dia_ciclo_min": "1500",
-    "graus_dia_ciclo_max": "1900"
+    "graus_dia_ciclo_max": "1900",
+    "tmin_critica_c": "-2",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.51",
+    "fase_frio_fim_frac": "1.00"
   },
   "mudancas": [
     {
@@ -94,6 +98,30 @@
       "antes": "alta",
       "depois": "media",
       "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (calculo), graus_dia_ciclo_max (calculo)"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-2",
+      "motivo": "REVISÃO 15/11 (dano por frio): limiar de morte de folhas e planta do milho no ar a 2 m, 28 °F = -2,2 °C (Purdue 2002; K-State MF-2234: folhas sofrem abaixo de 29 °F)"
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao",
+      "motivo": "REVISÃO 15/11 (dano por frio): dano à produção no florescimento e enchimento de grãos (Embrapa Doc. 273; Purdue: perda até R6)"
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.51",
+      "motivo": "REVISÃO 15/11 (dano por frio): floração aos 65 DAE (Embrapa CT 76) / ciclo médio 127,5 d"
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): fim em R6 = fim do ciclo da linha"
     }
   ],
   "evidencias": [
@@ -387,6 +415,49 @@
       "fonte": "Souza, L.S.B. et al. Caracterização térmica do feijão-caupi e do milho em sistema de plantio consorciado nas condições do Semi-Árido nordestino. Embrapa Semi-Árido (Petrolina-PE, semeadura 20/10/2006; Tb 10, média simples)",
       "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/160416/1/OPB1569.pdf",
       "trecho": "requerimento térmico para conclusão do ciclo do milho foi 1.866 graus-dia, com duração de 103 dias"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Nielsen, R.L., Risk of Fall Frost Injury to Immature Corn Grain, Purdue University Corny News Network, set. 2002",
+      "url": "https://www.agry.purdue.edu/Ext/corn/news/articles.02/Grain_Maturation_Frost-0910.pdf",
+      "trecho": "Many agronomists define a “killing fall frost” in terms of air temperature at 28 degrees F (-2 degrees C) or less that causes complete death of whole plants. Frost damage that occurs at slightly warmer temperatures will injure leaves, but will not necessarily kill the whole plant. [...] Yield losses from total plant death prior to kernel black layer are estimated to be 55, 41, and 12 % for soft dough, full dent, and half-milk line stages of development"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Staggenborg, S.; Fjell, D.; Dhuyvetter, K.; Vanderlip, R., Fall Freeze Damage in Summer Grain Crops, K-State Research and Extension MF-2234, agosto de 1996",
+      "url": "https://bookstore.ksre.ksu.edu/pubs/MF2234.pdf",
+      "trecho": "The minimum temperature required to cause freeze injury in corn is similar to that of grain sorghum. Field observations from Canada indicate corn leaves are not seriously damaged at temperatures near 32°F. A conclusion of this study was that damage to corn leaves begins to occur at temperatures below 29°F."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Borghi, E.; Magalhães, P. C.; Pereira Filho, I. A., Ecofisiologia do milho segunda safra para alta produtividade, Embrapa Milho e Sorgo Documentos 273, 2023",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1156268/1/Ecofisiologia-do-milho-segunda-safra-para-alta-produtividade.pdf",
+      "trecho": "Com a redução da temperatura abaixo de 12 °C, condição que pode ocorrer com frequência nos estados do Mato Grosso do Sul e Paraná na fase de florescimento e enchimento de grãos, por exemplo, haverá comprometimento da produção, diminuindo a massa de grãos. Em situações extremas, quando ocorre perda de área foliar, como nas geadas, toda a produtividade é afetada."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Magalhães, P. C.; Durães, F. O. M., Fisiologia da produção de milho, Embrapa Milho e Sorgo Circular Técnica 76, 2006",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/490408/1/Circ76.pdf",
+      "trecho": "material de ciclo normal, cuja floração acontece aos 65 dias após a emergência [...] Estádio R6 (Maturidade Fisiológica) [...] ocorre cerca de 50 a 60 dias após a polinização"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (alternativa)"
+      ],
+      "fonte": "CONFERÊNCIA (critério alternativo, não usado no valor): MAPA, Portaria SPA/MAPA nº 230, de 30/06/2026, ZARC milho 1ª safra no Paraná, ano-safra 2026/2027, itens 1.11 e 1.13 (o mesmo texto nas portarias de milho 2ª safra e milho com braquiária de 2026)",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/parana/POB3831.PDF",
+      "trecho": "c) O risco de ocorrência de temperaturas muito baixas e deletérias à cultura, por meio da probabilidade de ocorrência de temperaturas mínimas menores que 2°C observadas no abrigo meteorológico nas fases 1, 2 e 3; [...] Grupo II 110 a 130 [...] 20 40 40 20 [dias das Fases I a IV] [...] Fase III: Reprodução, da primeira flor, incluindo floração e frutificação, até o enchimento dos grãos; e Fase IV: Maturação, do enchimento dos grãos até a maturação fisiológica."
     }
   ],
   "pendencias": [
@@ -397,7 +468,8 @@
     "cobertura_solo=media mantido (coluna = efeito no fator C da erosão). A palhada do milho persiste bem (30% de cobertura após 90 dias contra 7% da soja), mas durante o ciclo a lavoura em linhas cobre menos que as plantas de cobertura, que estão como 'alta'.",
     "graus-dia: Não achei fonte brasileira com GD (Tb 10) da semeadura à maturidade fisiológica por classe de ciclo; a soma é CÁLCULO a partir de duas fontes por fase.",
     "graus-dia: As classes Embrapa usam teto (Tmax 30, Tmin 10). O motor sem teto soma mais GD em dia quente: com Tmax 33 e Tmin 20, Embrapa dá 15 e o motor 16,5 GD. Em locais quentes o motor vai considerar o ciclo fechado alguns dias antes.",
-    "graus-dia: Semeadura->emergência é CÁLCULO (70-90 GD). WOFOST (TSUMEM 70, Tb 10) confere."
+    "graus-dia: Semeadura->emergência é CÁLCULO (70-90 GD). WOFOST (TSUMEM 70, Tb 10) confere.",
+    "DANO POR FRIO (15/11): tmin_critica_c = -2 (ar a 2 m) no enchimento, do florescimento a R6 (frações 0,51-1,00), é o limiar de morte de folhas e planta da extensão americana (Purdue: 28 °F = -2,2 °C; K-State MF-2234: folhas abaixo de 29 °F), reusado como fisiologia da espécie. DECISÃO para o coordenador: o ZARC do milho (Port. 230/2026 PR e as de 2ª safra) usa um critério mais conservador, Tmin < 2 °C no abrigo nas fases I a III (da semeadura ao enchimento; no Grupo II, 0 a 100/120 = 0,83 do ciclo), que é o indicador de geada comum a várias culturas do ZARC, não um limiar fisiológico do milho. Com 2 °C o milho safrinha do PR e do sul do MS fica mais restrito. O Doc. 273 da Embrapa cita queda da massa de grãos com temperatura abaixo de 12 °C no florescimento e enchimento (efeito gradual, não eliminatório; não usado)."
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -495,6 +567,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "semeadura -> maturação fisiológica; Tb 10; Classes de ciclo da Embrapa (Tb 10, Tmax limitada a 30 °C e Tmin elevada a 10 °C = TETO), da EMERGÊNCIA ao início da polinização: superprecoce 780-830, precoce 831-890, normal 890-1200 GD. Para o ciclo inteiro (CÁLCULO): soma-se a fase florescimento feminino->maturidade fisiológica (camada preta) medida por Oliveira, Fornasieri Filho & Santos no milho safrinha de Campo Grande-MS (mesmo método Embrapa, Tb 10): médias de 636 a 697 GD por cultivar (extremos 450-798, os baixos em semeadura de abril com déficit hídrico). Florescimento masculino->feminino: 27-79 GD (mesma fonte). Semeadura->emergência: a fonte não dá; 5-7 d × (24 − 10) = 70-98 GD (CÁLCULO). Mínimo (superprecoce, safrinha): 780 + 650 + 70 = 1500. Máximo (normal, verão): 950 (normal típico; a classe vai até 1200) + 40 + 750 + 90 = 1830 ≈ 1900. Com o extremo da classe normal (1200) daria 1200 + 40 + 790 + 90 ≈ 2100. | plausibilidade: Verão no Cerrado, Tmed ~23,5 °C → 13,5 GD/dia: 1500/13,5 = 111 dias e 1900/13,5 = 141 dias, contra ciclo_dias 110-145 do CSV. No Sul (Tmed ~21,5): 1900/11,5 = 165 dias, acima do CSV, mas o ciclo normal no Sul de fato alonga. Conferência: Circular 76 diz R6 cerca de 50-60 dias após a polinização; 55 × (23 − 10) = 715 GD, dentro dos 636-798 de Oliveira."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Ar a 2 m (abrigo). Limiar de dano da espécie na extensão americana, reusado como fisiologia do milho: 'killing fall frost' = ar a 28 °F (-2 °C) ou menos (Purdue, Nielsen 2002); folhas começam a sofrer abaixo de 29 °F (-1,7 °C) (K-State MF-2234, observações de campo no Canadá). 28 °F = (28 - 32)/1,8 = -2,2 °C -> -2. Com a morte de folhas ou da planta antes de R6 a perda é de 12 a 55% (Carter & Hesterman 1990, via Purdue). O ZARC brasileiro usa 2 °C no abrigo (risco de geada) nas fases I a III: critério mais conservador, ver pendências."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Fase: do florescimento (espigamento) à maturação fisiológica (R6). Embrapa Doc. 273 (2023): o frio compromete a produção 'na fase de florescimento e enchimento de grãos'; Purdue: a perda vai até R6. Ciclo da linha da emergência à maturação (110-145 d, médio 127,5). Embrapa CT 76: floração aos 65 dias após a emergência -> 65/127,5 = 0,51. Fim = R6 = fim do ciclo = 1,00 (CT 76: R6 50-60 dias após a polinização; 65 + 55 = 120 d, dentro da faixa). Frio na fase vegetativa não entra: o ponto de crescimento fica abaixo do solo e a planta recupera folhas."
     }
   },
   "confianca_calculo": {

@@ -43,7 +43,11 @@
     "condicao_semeadura": "apos_cereal_inverno|apos_colheita_graos|a_lanco_lavoura_em_pe",
     "estados_validos": "IA|IL|NE",
     "lacuna_informacao": "Não achamos medição de quanta água a ervilhaca usa no Corn Belt; usamos a de plantas parecidas. A massa medida foi pequena (0,8 a 1,8 t/ha) com dessecação em abril; dessecar em maio rende mais massa e mais nitrogênio.",
-    "risco_revisao_local": "Confirme com a extensão a data de semeadura (até meados de setembro) e a de dessecação antes do milho. No norte frio, sem neve, ela pode morrer no inverno. É difícil de matar só com glifosato, e a semente dura pode virar planta daninha."
+    "risco_revisao_local": "Confirme com a extensão a data de semeadura (até meados de setembro) e a de dessecação antes do milho. No norte frio, sem neve, ela pode morrer no inverno. É difícil de matar só com glifosato, e a semente dura pode virar planta daninha.",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "origem": {
     "temp_base_c": {
@@ -93,6 +97,14 @@
     "tmax_critica_c": {
       "tipo": "vazio_nao_se_aplica",
       "nota": "Vazio (revisão de 15/11, M-04): a ervilhaca é dessecada antes da floração plena (abril a meados de maio, no vegetativo ou no início da floração), então não atravessa a fase sensível ao calor no sistema. O 28 °C era o TMAX do ECOCROP (limite de crescimento, não limiar de dano); fica só na evidência. Não é coluna do filtro de confiança."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: a ervilhaca tolera o frio do sistema da linha (Iowa, Illinois, leste do Nebraska). SARE MCCP: 'winter hardy through Hardiness Zone 4 and into Zone 3 (with snow cover)'; NRCS/ISU Iowa (CROP 3279) a recomenda para Iowa, com 'Cold temperature tolerance: -20° F' (-28,9 °C). O limiar publicado depende da neve (SARE: 'less than 5° F may kill hairy vetch if there is no snow cover'), que a mínima do ar a 2 m não enxerga. Conferência, 01/08 a 16/05 de 2001-2019, conferência própria com o NASA POWER (T2M_MIN diária, ar a 2 m, mesma medida do motor), arquivos do cache data/brutos/nasa_power, contando os anos com pelo menos um dia abaixo do limiar: abaixo de -15 °C (5 °F) em 19 de 19 anos em Nashua-IA e Ames-IA, 19/19 em Mead-NE, 18/19 em Urbana-IL e 9/19 em Carbondale-IL; abaixo de -28,9 °C (-20 °F) em 7/19 em Nashua, 3/19 em Ames, 1/19 em Mead e 0 em Urbana e Carbondale. Pela regra 17 (mais de 30% dos anos), o limiar de 5 °F eliminaria a ervilhaca em quase todo o Corn Belt e o de -20 °F no nordeste de Iowa, onde a extensão a recomenda. Não é coluna do filtro de confiança."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: sem limiar do ar que valha no sistema, não há fase sensível (ver tmin_critica_c)."
     }
   },
   "reuso_brasil": [
@@ -292,6 +304,17 @@
       "fonte": "Pessotto, M.V.; Roberts, T.; Bertucci, M.B.; dos Santos, C.; Ross, J.; Savin, M.C., Determining cardinal temperatures for eight cover crop species, Agrosystems, Geosciences & Environment 6(3):e20393, 2023 (resumo lido via Crossref; o texto completo não abriu, HTTP 403)",
       "url": "https://doi.org/10.1002/agg2.20393",
       "trecho": "eight cover crop species, including [...] hairy vetch (Vicia villosa), using a growth chamber experiment. [...] base and optimum temperatures were −4.5 and 24.8°C for cereal rye, 3.9 and 26.6°C for crimson clover, and the base temperature was 3.4°C for balansa clover. [sem a Tb da ervilhaca no resumo]"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Clark, A. (ed.), Managing Cover Crops Profitably, 3ª edição, SARE Handbook 9, 2007, capítulo Hairy Vetch (já citado); e USDA NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet for Iowa (CROP 3279), 2025 (já citado)",
+      "url": "https://www.sare.org/wp-content/uploads/Managing-Cover-Crops-Profitably.pdf",
+      "trecho": "Widely adapted and winter hardy through Hardiness Zone 4 and into Zone 3 (with snow cover) [...] A severe freeze with temperatures less than 5° F may kill hairy vetch if there is no snow cover | NRCS/ISU: Cold temperature tolerance: -20° F [vazio justificado: tolera o frio do sistema; o limiar depende da neve]"
     }
   ],
   "regua": {
@@ -508,6 +531,12 @@
       "antes": "",
       "depois": "{\"ms_palhada_t_ha\": \"publicado\", \"ciclo_dias\": \"publicado\", \"graus_dia_ciclo\": \"calculo\", \"agua_ciclo_mm\": \"calculo\"}",
       "motivo": "Revisão de 15/11 (pacote 4, B-03): o arranjo não tinha a origem de cada número (evidencias/README.md, arranjos regionais). Números não mudaram. ciclo_dias = publicado (semeadura da Tab. 5.4 do SARE Southeast e manejo = semeadura do milho do Handbook 628 menos 10-14 dias do NRCS, mesma classe do ciclo da linha); graus_dia_ciclo = calculo (gd_nasa_power.py, eua/cenarios/ervilhaca_gd.json); agua_ciclo_mm = calculo (etc_nasa_power.py, eua/cenarios/ervilhaca_etc.json, curva de Kc PROXY como na linha); ms_palhada_t_ha = publicado (UGA C1077, Tab. 1: tabela oficial da extensão com a média e a máxima de biomassa relatadas para a ervilhaca por região do Sudeste; não é um ensaio com locais e anos declarados, por isso não é medido, e não é estudo único). Mesmo padrão de trevo.json (alabama, tennessee) e feijao.json (michigan)."
+    },
+    {
+      "coluna": "tmin_critica_c/fase_sensivel_frio/fase_frio_inicio_frac/fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): tolera o frio do Corn Belt (SARE: rústica até a zona 4; NRCS/ISU recomenda em Iowa, -20 °F). Os limiares publicados dependem da neve: no POWER, 5 °F eliminaria em quase todo o Corn Belt e -20 °F no nordeste de Iowa (7 de 19 anos). Origem vazio_nao_se_aplica."
     }
   ],
   "pendencias": [
@@ -522,7 +551,8 @@
     "tmax_critica_c vazio (revisão de 15/11, M-04): dessecada antes da floração plena, não atravessa a fase sensível ao calor. O TMAX 28 °C do ECOCROP fica só na evidência.",
     "regua: k de dois estudos do Corn Belt com resultados muito diferentes (0,0087-0,0338/dia); nenhum do Sudeste.",
     "sensivel_geada: no norte do Corn Belt (zonas 3-4) há risco de morte no inverno sem neve; a Feedipedia confirma que a geada é mais tolerada com cobertura de neve.",
-    "codigo_nass e calendario_usda vazios (sem commodity no NASS e sem linha no Handbook 628); QuickStats não conferido por falta de NASS_API_KEY."
+    "codigo_nass e calendario_usda vazios (sem commodity no NASS e sem linha no Handbook 628); QuickStats não conferido por falta de NASS_API_KEY.",
+    "Dano por frio (15/11): colunas vazias. A ervilhaca é recomendada no Corn Belt e a morte no inverno depende da neve, que a mínima do ar não mostra. Um limiar do ar (5 °F ou -20 °F) eliminaria a cultura onde a extensão a recomenda. Resolveria: ensaio de sobrevivência no inverno em Iowa com a mínima do ar e a cobertura de neve, ou um teste do motor que leve em conta a neve."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

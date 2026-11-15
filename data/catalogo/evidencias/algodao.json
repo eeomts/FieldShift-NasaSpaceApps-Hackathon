@@ -23,10 +23,14 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40099",
     "nome_zarc": "Algodão Herbáceo",
-    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc ini grupo Fibre Crops 0.35; Kc mid 1.15-1.20; Kc end 0.70-0.50) e cap.6 (criterio Kc end para cultura que seca no campo)|FAO-56 Tab.22 (raiz 1.0-1.7 m; limite superior)|FAO Irrigation Water Management Training Manual 3, Brouwer & Heibloem 1986, Tab. crop water needs (agua 700-1300 mm; sensibilidade a seca baixa)|MAPA Portaria SPA/MAPA n.285/2025 ZARC algodao herbaceo BA 2025/2026, nota tecnica (agua 700-1300 mm; >38 C prejudicial; grupos de ciclo; semeadura-emergencia 5-10 dias)|Embrapa Algodao Boletim de Pesquisa 39, Amorim Neto et al. 1999, Zoneamento algodao herbaceo no Nordeste (otima 20-30 C; >38 C reduz rendimento)|Beltrao N.E.M. (Embrapa Algodao), Clima regula producao e qualidade da fibra do algodoeiro, Visao Agricola n.6 ESALQ 2006 (inativo <15 C; nao suporta geada; shedding >38 C; resistencia a seca; sensivel a compactacao; anual)|Antonini et al., Eng. Agric. (Embrapa Cerrados) Modelagem espacotemporal da duracao do ciclo do algodoeiro em GO (graus-dia com Tb 15 C)|Embrapa Algodao Circular Tecnica 93, Morello et al. 2006, Cultivares do algodoeiro para o Cerrado (classes de ciclo 100-180 dias emergencia-colheita)|Embrapa Agropecuaria Oeste Documentos 148, Lamas et al. 2022, Panorama do algodoeiro em MT (1a safra nov-dez, 2a safra jan-fev; solo com pouca cobertura; destruicao de restos culturais)|Embrapa Algodao Comunicado Tecnico 377, Ferreira et al. 2016 (restos culturais com baixa MS residual)",
+    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc ini grupo Fibre Crops 0.35; Kc mid 1.15-1.20; Kc end 0.70-0.50) e cap.6 (criterio Kc end para cultura que seca no campo)|FAO-56 Tab.22 (raiz 1.0-1.7 m; limite superior)|FAO Irrigation Water Management Training Manual 3, Brouwer & Heibloem 1986, Tab. crop water needs (agua 700-1300 mm; sensibilidade a seca baixa)|MAPA Portaria SPA/MAPA n.285/2025 ZARC algodao herbaceo BA 2025/2026, nota tecnica (agua 700-1300 mm; >38 C prejudicial; grupos de ciclo; semeadura-emergencia 5-10 dias)|Embrapa Algodao Boletim de Pesquisa 39, Amorim Neto et al. 1999, Zoneamento algodao herbaceo no Nordeste (otima 20-30 C; >38 C reduz rendimento)|Beltrao N.E.M. (Embrapa Algodao), Clima regula producao e qualidade da fibra do algodoeiro, Visao Agricola n.6 ESALQ 2006 (inativo <15 C; nao suporta geada; shedding >38 C; resistencia a seca; sensivel a compactacao; anual)|Antonini et al., Eng. Agric. (Embrapa Cerrados) Modelagem espacotemporal da duracao do ciclo do algodoeiro em GO (graus-dia com Tb 15 C)|Embrapa Algodao Circular Tecnica 93, Morello et al. 2006, Cultivares do algodoeiro para o Cerrado (classes de ciclo 100-180 dias emergencia-colheita)|Embrapa Agropecuaria Oeste Documentos 148, Lamas et al. 2022, Panorama do algodoeiro em MT (1a safra nov-dez, 2a safra jan-fev; solo com pouca cobertura; destruicao de restos culturais)|Embrapa Algodao Comunicado Tecnico 377, Ferreira et al. 2016 (restos culturais com baixa MS residual)|Lange & Hake, Cotton Physiology Today 2(7), National Cotton Council, jun. 1991 (geada só queima folha; congelamento do ar abaixo de 32 °F por várias horas para a abertura e apodrece o capulho imaturo)|Ribeiro et al., Embrapa Meio-Norte Comunicado Técnico 168, 2005 (floração inicial 60-61 dias e primeiros capulhos 115-119 dias após a emergência; fase de frio)",
     "confianca_parametros": "media",
     "graus_dia_ciclo_min": "1400",
-    "graus_dia_ciclo_max": "1750"
+    "graus_dia_ciclo_max": "1750",
+    "tmin_critica_c": "0",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.41",
+    "fase_frio_fim_frac": "1.00"
   },
   "mudancas": [
     {
@@ -100,6 +104,18 @@
       "antes": "alta",
       "depois": "media",
       "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (estudo_unico), graus_dia_ciclo_max (estudo_unico)"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "0",
+      "motivo": "REVISÃO 15/11 (dano por frio): congelamento do ar abaixo de 32 °F (0 °C) por várias horas estraga o capulho imaturo (National Cotton Council, Cotton Physiology Today, 1991); limiar da espécie, fonte dos EUA. Origem: publicado"
+    },
+    {
+      "coluna": "fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao, 0.41, 1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): da primeira flor (60,5 dias após a emergência, Embrapa CT 168, + 7,5 dias até a emergência = 68 dias) ao fim do ciclo; 68 / 165 = 0,41. Origem: medido"
     }
   ],
   "evidencias": [
@@ -348,6 +364,24 @@
       "fonte": "Morello et al., Cultivares do algodoeiro para o Cerrado, Embrapa Algodão Circular Técnica 93, 2006",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/276778/1/CIRTEC93.pdf",
       "trecho": "P: Precoce (100 a 130 dias da emergência à colheita); M: mediano (131 a 160 dias da emergência à colheita); T : Tardio (161 a 180 dias da emergência à colheita)"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Lange, M.; Hake, K., Late Planted Cotton, Cotton Physiology Today v.2 n.7, National Cotton Council (Cotton Physiology Education Program), junho de 1991, seção 'Frost and Freeze Damage to Cotton' (PDF escaneado; texto lido por OCR)",
+      "url": "https://www.cotton.org/tech/physiology/cpt/variety/upload/CPT-June91-REPOP.pdf",
+      "trecho": "Frost injury to cotton occurs when air temperature drops to 36 to 3[ilegível no OCR] depending on microclimate effects [...] Frost damage will injure the leaves, often only the outside leaves, but cause little boll damage. Freeze damage brings a halt to further boll opening and occurs when the air temperature drops below 32°F [no OCR: '320f'] for several hours. A freeze will cause immature watery bolls to turn mushy the following day and eventually rot."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Ribeiro, J.L.; Freire, E.C.; Morello, C.L. et al., BRS Camaçari, BRS Peroba e BRS Itaúba: cultivares de algodoeiro herbáceo recomendadas para os Cerrados do Meio-Norte do Brasil, Embrapa Meio-Norte, Comunicado Técnico 168, setembro de 2005, texto e Tabela 1",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/68072/1/Comunicado168BRSCamacariBRSPerobaeBRSItaubaCultivaresdeAlgodoeiro.pdf",
+      "trecho": "as plantas dessa cultivar iniciam o florescimento em média aos 61 dias, os primeiros capulhos aparecem em média aos 117 dias após a emergência [...] Floração inicial (dia) 61 60 60 61 [...] Primeiros capulhos (dia) 117 119 116 115 [...] Dados obtidos na Região Meio-Norte do Brasil."
     }
   ],
   "pendencias": [
@@ -361,7 +395,8 @@
     "DECISÃO NA JUNÇÃO: tolerante_seca não entrou em tipos, porque o ZARC aponta sensibilidade ao déficit hídrico de 60 a 100 DAE e o motor não deve sugerir algodão como alternativa para seca.",
     "graus-dia: Um só estudo com Tb 15 e ciclo completo (Antonini 2011, GO). Mínimo para cultivares precoces é CÁLCULO; o valor de Bolonhezi (1085 GD Tb 15, CNPA Precoce 2) é até o 1º capulho e foi lido só via Antonini.",
     "graus-dia: Fim da fase = 90% dos capulhos abertos (ponto de desfolha/colheita), não 'maturação fisiológica' no sentido de grãos.",
-    "graus-dia: Algodão 2ª safra do MT (semeado jan-fev) cruza o inverno com Tmin < 15; o piso da fonte (Tmin elevada a 15) faz ela somar mais GD que o motor nesses dias."
+    "graus-dia: Algodão 2ª safra do MT (semeado jan-fev) cruza o inverno com Tmin < 15; o piso da fonte (Tmin elevada a 15) faz ela somar mais GD que o motor nesses dias.",
+    "dano por frio: o limiar (0 °C) vem de fonte dos EUA (National Cotton Council, 1991) e pede 'várias horas' abaixo de 32 °F; o motor usa a mínima diária, então uma noite com mínima pouco abaixo de 0 °C conta como risco mesmo sem várias horas de frio (lado conservador). Fonte brasileira com número (Embrapa Algodão, ZARC de MS/PR/SP) resolveria. A plântula também morre com congelamento, mas sem fonte com número; a semeadura na janela recomendada evita o frio da emergência."
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -471,6 +506,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "estudo_unico",
       "nota": "semeadura -> maturação fisiológica (90% dos capulhos abertos); Tb 15; Antonini et al. 2011 (Embrapa Cerrados, lavouras comerciais em GO), Tb 15 (a mesma do CSV), da EMERGÊNCIA a 90% de capulhos abertos: ciclo médio (Delta Opal, Nu Opal) 1519 ± 35; tardio (BRS 269 Buriti, Fibermax 993, FMT 701) 1609 ± 69. Semeadura->emergência (CÁLCULO): o ZARC algodão usa 5 a 10 dias; 7 d × (25 − 15) = 70 GD. Médio: 1519 + 70 = 1589. Máximo: tardio + 1 desvio = 1609 + 69 + 70 = 1748 ≈ 1750. Mínimo (CÁLCULO, sem medição): cultivar precoce (ZARC Grupo I, < 131 dias da emergência), ciclo_dias_min 140 × (25 − 15) = 1400. MÉTODO DA FONTE: Tmin abaixo de 15 °C é elevada a 15 e Tmax acima de 40 é limitada a 40 antes da média. Com Tmin < 15 (safrinha do MT em junho-julho) a fonte soma um pouco MAIS que o motor; com Tmax > 40 (raro), um pouco menos. | plausibilidade: GO, Tmed ~24 °C → 9 GD/dia: 1589/9 = 177 dias (ciclos observados pela fonte: 146-190 dias). 1750/(24,5 − 15) = 184 dias; 1400/(25 − 15) = 140 dias. Contra ciclo_dias 140-190 do CSV. Coerente."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Limiar da espécie, de fonte dos EUA (National Cotton Council, Cotton Physiology Today, 1991): congelamento quando o AR fica abaixo de 32 °F (0 °C) por várias horas para a abertura dos capulhos e faz o capulho imaturo apodrecer; a geada de 36 °F (2 °C) só queima folha, com pouco dano ao capulho, e não conta. 32 °F = 0 °C. Temperatura do ar (a fonte diz 'air temperature'), comparável à mínima do abrigo. Nenhuma fonte brasileira com número foi achada: Beltrão (Embrapa Algodão, 2006) só diz 'Não suporta geada'; o ZARC BA (Port. 285/2025) não tem critério de geada."
+    },
+    "fase_frio_frac": {
+      "tipo": "medido",
+      "nota": "Fase = capulhos em formação, da primeira flor ao fim do ciclo da linha (maturação, capulhos abertos): o congelamento estraga o capulho imaturo que estiver na planta. Início: floração inicial aos 60-61 dias após a emergência (Embrapa CT 168, 2005, 4 cultivares em 7 ensaios de 2002-2004 no PI e no MA; média 60,5) + 7,5 dias da semeadura à emergência (ZARC BA: 5 a 10 dias) = 68 dias; 68 / 165 (ciclo médio da linha, (140 + 190) / 2) = 0,41. Fim: 165 / 165 = 1,00. Conferência: primeiros capulhos aos 115-119 dias após a emergência (CT 168)."
     }
   },
   "confianca_calculo": {

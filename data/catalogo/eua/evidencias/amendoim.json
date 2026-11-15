@@ -38,7 +38,11 @@
     "lacuna_informacao": "A soma de calor até o ponto de arrancar vem de um estudo só, na Carolina do Sul, com três cultivares; não há medida na Geórgia. A água no ano de maior demanda é calculada, não medida no campo. Os tipos Virgínia e Spanish não foram avaliados.",
     "risco_revisao_local": "Confirme com a extensão local o ponto de arrancar da sua cultivar. Antes de dar a rama ou o feno ao gado, leia o rótulo dos inseticidas usados: vários proíbem esse uso. Calor acima de 34 °C na floração pode reduzir o número de vagens.",
     "semeadura_inicio": "05-06",
-    "semeadura_fim": "05-31"
+    "semeadura_fim": "05-31",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "origem": {
     "temp_base_c": {
@@ -84,6 +88,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Groundnut (Peanut) 0,5-1,0 m; limite superior (sequeiro, solo sem impedimento)."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "O dano por frio que tira produção no amendoim da Geórgia é no amendoim recém-arrancado, na leira (grão congelado, lote rebaixado para 'Seg 2'), quando a geada vem até 48 horas (UGA) ou 96 horas (NC State) depois do arranquio. Na terra as vagens ficam protegidas: 'If there is a risk of a frost/freeze the best thing to do is leave the peanuts in the ground. They are insulated in the ground.' (UGA, Bulloch, 2022). Esse período fica depois do fim do ciclo da linha (o ciclo termina no arranquio), fora das frações de 0 a 1. A UGA fala em 'middle 30's' °F (1-2 °C) de previsão, sem limiar de dano medido."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_sei",
+      "nota": "A fase de risco (leira, 0 a 4 dias depois do arranquio) não cabe nas fases da coluna (emergencia a enchimento_grao) nem nas frações de 0 a 1 do ciclo."
     }
   },
   "reuso_brasil": [],
@@ -370,6 +382,12 @@
       "antes": "pendência: codigo_nass: 'PEANUTS' continua NÃO conferido no QuickStats (15/11): a série baixada pelo time (data/scripts/baixar_nass_eua.py, data/eua/nass/producao_condado.... | observacoes.codigos: (não existia)",
       "depois": "evidência da API do QuickStats (15/11/2026): 'PEANUTS - ACRES PLANTED', registros SURVEY: STATE 1696, COUNTY 5828; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio)",
+      "motivo": "REVISÃO 15/11 (dano por frio): mantidas vazias: na terra as vagens ficam protegidas; o dano é no amendoim recém-arrancado, na leira, depois do fim do ciclo da linha (UGA 2013 e 2022; NC State). Não há limiar de dano medido no abrigo."
     }
   ],
   "pendencias": [
@@ -382,7 +400,8 @@
     "regua: digestibilidade da Feedipedia calculada por equação (n = 8, global, não dos EUA). uso_forrageiro = com_restricao pelos rótulos de inseticidas (UGA SB 28-24).",
     "Tipo comercial: a linha é do runner da Geórgia. O tipo Virginia (Carolina do Norte e Virgínia) pede menos graus-dia pela NC State (2650-2700 °F-dias -> 1489 em Tifton) e o Spanish/Valencia do Texas e do Novo México não foi avaliado.",
     "calendario_usda: 'Peanuts' = nome da linha nas tabelas por estado do Handbook 628 (2010); a cultura não está em data/eua/nass/datas_plantio.csv (o mapa do time não a inclui).",
-    "semeadura_inicio/fim (05-06 a 05-31) = 'most active' do Handbook 628 (2010) na Geórgia (início 27/abr, fim 7/jun), lido direto no texto do Handbook: o amendoim não está em data/eua/nass/datas_plantio.csv (o mapa do time não o inclui). Bate com cenarios/amendoim_gd.json (semeadura de 10/mai em Tifton) e com a UGA (fim de abril a fim de maio, de preferência depois de 10/mai)."
+    "semeadura_inicio/fim (05-06 a 05-31) = 'most active' do Handbook 628 (2010) na Geórgia (início 27/abr, fim 7/jun), lido direto no texto do Handbook: o amendoim não está em data/eua/nass/datas_plantio.csv (o mapa do time não o inclui). Bate com cenarios/amendoim_gd.json (semeadura de 10/mai em Tifton) e com a UGA (fim de abril a fim de maio, de preferência depois de 10/mai).",
+    "Frio (15/11): tmin_critica_c e fase ficaram vazias. Fontes: UGA Extension, Bulloch County, 'Peanuts and Frost/Freeze Damage' (17/10/2022, https://site.extension.uga.edu/bullochag/2022/10/peanuts-and-frost-freeze-damage/): 'They are insulated in the ground. [...] Inverted peanuts less than 48 hours before a frost or freeze — there is a higher risk for frost damage.'; UGA Extension, Colquitt County, 'URGENT- Low Temperature and Peanut Harvest' (23/10/2013, https://site.extension.uga.edu/colquittag/2013/10/urgent-low-temperature-and-peanut-harvest): 'Once we start approaching the 35-36 degree range, frost can occur [...] If a field is dug on Friday afternoon and we approach the middle 30's in temperature the next morning, freeze damage can occur.' Sugestão para o motor: em vez da fase, avisar quando a mínima prevista no arranquio e nos 4 dias seguintes cair abaixo de ~2 °C (35-36 °F, previsão do tempo), sem eliminar. Pela regra 17 atual, a linha vazia usa 2 °C no terço do meio do ciclo (julho na Geórgia), o que não representa o risco real."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

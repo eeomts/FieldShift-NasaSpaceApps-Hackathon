@@ -33,10 +33,14 @@
     "nome_zarc": "",
     "codigo_nass": "COTTON, UPLAND",
     "calendario_usda": "Cotton, all",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, All Cotton (janela de semeadura e colheita GA/TX)|Texas A&M AgriLife Extension, Crop Management Newsletter Dawson/Lynn Counties (Doederlein), tabela de dias e heat units do algodão no High Plains (130-160 dias e 2200 DD60 até 'harvest ready')|Ritchie, Bednarz, Jost & Brown, UGA Bulletin 1252 Cotton Growth and Development, rev. 2007 (DD60 e dias em Tifton)|UGA, 2021 Georgia Cotton Production Guide (DD-60 2500-2700 e 140-160 dias até a colheita; teto 93 °F; UGA Checkbook de água)|Plains Cotton Growers / PhytoGen (Lege), When Should We Plant Cotton?, 2023 (janela de semeadura em Lubbock; data final do seguro)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/algodao_gd.json (DD60 da fonte convertido para Tb 15 sem teto na régua do NASA POWER)|Porter, Texas A&M AgriLife Extension, Irrigation Management Decisions 2022, Lubbock (27 in de demanda plena)|Howell, Evett, Tolk & Schneider, Evapotranspiration of full-, deficit-irrigated and dryland cotton on the northern Texas High Plains, USCID/EWRI 2002 (ET medida em lisímetro, conferência; Peng et al. 1989 por citação secundária)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/algodao_etc.json|Peabody et al., Texas J. Agric. Nat. Resour. 15, 2002 (geada no High Plains)|FAO-56 Tab.11, Tab.12 (Kc) e Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade de pluma GA/TX 2023-2025)|USDA-ARS WEPS, arquivo de cultura NRCS 'Cotton, stripper' (razão resíduo:pluma 2,6 do RUSLE, citação secundária)|Lachnicht et al., Applied Soil Ecology 27:135-142, 2004 (decomposição de restos de algodão no inverno; só o resumo)|Feedipedia, Cotton straw (PB e DMO; valores pontuais)|Beck, OSU Cow-Calf Corner, Cotton Stalk Residue as a Winter Feed Resource, 2022 (pastejo de restos na Geórgia; via Oklahoma Farm Report)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, All Cotton (janela de semeadura e colheita GA/TX)|Texas A&M AgriLife Extension, Crop Management Newsletter Dawson/Lynn Counties (Doederlein), tabela de dias e heat units do algodão no High Plains (130-160 dias e 2200 DD60 até 'harvest ready')|Ritchie, Bednarz, Jost & Brown, UGA Bulletin 1252 Cotton Growth and Development, rev. 2007 (DD60 e dias em Tifton)|UGA, 2021 Georgia Cotton Production Guide (DD-60 2500-2700 e 140-160 dias até a colheita; teto 93 °F; UGA Checkbook de água)|Plains Cotton Growers / PhytoGen (Lege), When Should We Plant Cotton?, 2023 (janela de semeadura em Lubbock; data final do seguro)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/algodao_gd.json (DD60 da fonte convertido para Tb 15 sem teto na régua do NASA POWER)|Porter, Texas A&M AgriLife Extension, Irrigation Management Decisions 2022, Lubbock (27 in de demanda plena)|Howell, Evett, Tolk & Schneider, Evapotranspiration of full-, deficit-irrigated and dryland cotton on the northern Texas High Plains, USCID/EWRI 2002 (ET medida em lisímetro, conferência; Peng et al. 1989 por citação secundária)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/algodao_etc.json|Peabody et al., Texas J. Agric. Nat. Resour. 15, 2002 (geada no High Plains)|FAO-56 Tab.11, Tab.12 (Kc) e Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade de pluma GA/TX 2023-2025)|USDA-ARS WEPS, arquivo de cultura NRCS 'Cotton, stripper' (razão resíduo:pluma 2,6 do RUSLE, citação secundária)|Lachnicht et al., Applied Soil Ecology 27:135-142, 2004 (decomposição de restos de algodão no inverno; só o resumo)|Feedipedia, Cotton straw (PB e DMO; valores pontuais)|Beck, OSU Cow-Calf Corner, Cotton Stalk Residue as a Winter Feed Resource, 2022 (pastejo de restos na Geórgia; via Oklahoma Farm Report)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Lange & Hake, Cotton Physiology Today 2(7), National Cotton Council, jun. 1991 (geada só queima folha; congelamento do ar abaixo de 32 °F por várias horas para a abertura e apodrece o capulho imaturo)",
     "confianca_parametros": "media",
     "semeadura_inicio": "04-08",
-    "semeadura_fim": "06-07"
+    "semeadura_fim": "06-07",
+    "tmin_critica_c": "0",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.41",
+    "fase_frio_fim_frac": "1.00"
   },
   "origem": {
     "temp_base_c": {
@@ -82,6 +86,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Cotton 1,0-1,7 m; limite superior (sequeiro, solo sem impedimento). Igual ao Brasil. Em Bushland, Howell et al. 2002 tratam 2,0 m como o limite da extração de água no Pullman."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "National Cotton Council, Cotton Physiology Today (1991), texto dos especialistas de extensão do Mid-South: congelamento quando o AR fica abaixo de 32 °F (0 °C) por várias horas para a abertura dos capulhos e faz o capulho imaturo apodrecer; a geada de 36 °F (2 °C) só queima folha, com pouco dano ao capulho, e não conta. 32 °F = 0 °C. Temperatura do ar ('air temperature'), comparável à mínima do abrigo. Coerente com Peabody et al. (2002): no High Plains o algodão precisa amadurecer antes do congelamento de meados de outubro."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Fase = capulhos em formação, da primeira flor ao fim do ciclo da linha ('harvest ready'). Início: 'First Flower' aos 59 dias da semeadura (UGA Bulletin 1252, Tab. 3, Tifton, semeadura em 1/mai); 59 / 145 (ciclo médio da linha, (130 + 160) / 2) = 0,41. Fim: 145 / 145 = 1,00. Conferência: 'Open Boll' aos 116 dias."
     }
   },
   "reuso_brasil": [
@@ -344,6 +356,24 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"COTTON, UPLAND - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'COTTON', class_desc 'UPLAND', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 2153, COUNTY 37082"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Lange, M.; Hake, K., Late Planted Cotton, Cotton Physiology Today v.2 n.7, National Cotton Council (Cotton Physiology Education Program), junho de 1991, seção 'Frost and Freeze Damage to Cotton' (PDF escaneado; texto lido por OCR)",
+      "url": "https://www.cotton.org/tech/physiology/cpt/variety/upload/CPT-June91-REPOP.pdf",
+      "trecho": "Frost injury to cotton occurs when air temperature drops to 36 to 3[ilegível no OCR] depending on microclimate effects [...] Frost damage will injure the leaves, often only the outside leaves, but cause little boll damage. Freeze damage brings a halt to further boll opening and occurs when the air temperature drops below 32°F [no OCR: '320f'] for several hours. A freeze will cause immature watery bolls to turn mushy the following day and eventually rot."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Ritchie, G.L.; Bednarz, C.W.; Jost, P.H.; Brown, S.M., Cotton Growth and Development, University of Georgia Cooperative Extension Bulletin 1252, revisado em junho de 2007, Tabela 3 (cópia hospedada pela Texas A&M)",
+      "url": "https://cotton.tamu.edu/wp-content/uploads/sites/27/legacy-files/General%20Production/Georgia%20Cotton%20Growth%20and%20Development%20B1252-1.pdf",
+      "trecho": "based on historical data from Tifton, Ga. [...] First Flower 950 59 [...] Open Boll 2150 116 [...] Harvest 2600 140 [...] assuming a May 1 planting date."
     }
   ],
   "regua": {
@@ -457,6 +487,18 @@
       "antes": "pendência: codigo_nass: 'COTTON, UPLAND' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_... | observacoes.codigos: codigo_nass 'COTTON, UPLAND'. short_desc 'COTTON, UPLAND - ...' = commodity_desc 'COTTON' + class_desc 'UPLAND' (o Pima ...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'COTTON, UPLAND - ACRES PLANTED', registros SURVEY: STATE 2153, COUNTY 37082; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "0",
+      "motivo": "REVISÃO 15/11 (dano por frio): congelamento do ar abaixo de 32 °F (0 °C) por várias horas estraga o capulho imaturo (National Cotton Council, Cotton Physiology Today, 1991). Origem: publicado"
+    },
+    {
+      "coluna": "fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao, 0.41, 1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): da primeira flor (59 dias, UGA B1252) ao fim do ciclo; 59 / 145 = 0,41. Origem: publicado"
     }
   ],
   "pendencias": [
@@ -470,7 +512,8 @@
     "tmax_critica_c = 38 e temp_otima_min_c = 20 sem fonte americana (mantidos do Brasil). A UGA limita a Tmax do DD60 em 93 °F (33,9 °C).",
     "regua: razão resíduo:pluma 2,6 lida por citação secundária (nota do arquivo do WEPS); conferir no banco do RUSLE2. A produtividade do Texas é do estado todo. C/N estimada (sem medida nos EUA). Decomposição de um estudo, lido só no resumo (local não informado no resumo). Digestibilidade com n = 1 (Feedipedia).",
     "calendario_usda: 'Cotton, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). O Handbook não separa o upland ('Cotton, all').",
-    "semeadura_inicio/fim (04-08 a 06-07) = 'most active' do Handbook 628 (2010) no Texas, a região de referência principal (início 22/mar, fim 20/jun). É o estado inteiro: inclui o sul do Texas (março-abril); em Lubbock a semeadura é em maio-junho. A janela do sul da Geórgia ('most active' 2/mai-31/mai; início 23/abr, fim 11/jun; linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv) está em regua.arranjos.georgia (15/11, decisão do usuário, M-06). Conferência com cenarios/algodao_gd.json (graus-dia e ciclo NÃO mudados): Lubbock 15/mai e 1/jun dentro da janela do Texas; Tifton 1/mai fica 1 dia antes do 'most active' da Geórgia (dentro do início de 23/abr). O motor ainda não lê regua.arranjos nem a janela dos grãos: hoje nenhuma das duas janelas filtra Tifton; quando o motor passar a ler, Tifton deve usar a da Geórgia."
+    "semeadura_inicio/fim (04-08 a 06-07) = 'most active' do Handbook 628 (2010) no Texas, a região de referência principal (início 22/mar, fim 20/jun). É o estado inteiro: inclui o sul do Texas (março-abril); em Lubbock a semeadura é em maio-junho. A janela do sul da Geórgia ('most active' 2/mai-31/mai; início 23/abr, fim 11/jun; linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv) está em regua.arranjos.georgia (15/11, decisão do usuário, M-06). Conferência com cenarios/algodao_gd.json (graus-dia e ciclo NÃO mudados): Lubbock 15/mai e 1/jun dentro da janela do Texas; Tifton 1/mai fica 1 dia antes do 'most active' da Geórgia (dentro do início de 23/abr). O motor ainda não lê regua.arranjos nem a janela dos grãos: hoje nenhuma das duas janelas filtra Tifton; quando o motor passar a ler, Tifton deve usar a da Geórgia.",
+    "dano por frio: o limiar (0 °C) pede 'várias horas' abaixo de 32 °F; o motor usa a mínima diária, então uma noite com mínima pouco abaixo de 0 °C conta como risco (lado conservador). Não achei texto da Texas A&M com o limiar em °F (as notas de campo de 2012-2019 relatam o dano no capulho imaturo sem número); uma publicação da extensão com limiar e duração resolveria. A fase usa a data da primeira flor de Tifton-GA; no High Plains a floração começa em dia parecido em dias, mas não achei tabela de Lubbock com a data."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

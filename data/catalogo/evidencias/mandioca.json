@@ -28,7 +28,11 @@
     "graus_dia_ciclo_min": "1250",
     "graus_dia_ciclo_max": "4280",
     "lacuna_informacao": "Não há medição no Brasil de quanta água a mandioca usa no ciclo: usamos a chuva por ano recomendada para a cultura. O calor que ela precisa foi calculado com o clima de dois ensaios e serve só para ver se a região é fria demais, não para dizer quando colher.",
-    "risco_revisao_local": "Confirme com o agrônomo ou a Emater a época de plantio, que muda de região para região, e a variedade. A colheita vai de 6 a 24 meses e você escolhe: isso muda a água e o calor que a lavoura usa. No Sul, o frio de maio a agosto para o crescimento e a geada danifica a parte de cima da planta."
+    "risco_revisao_local": "Confirme com o agrônomo ou a Emater a época de plantio, que muda de região para região, e a variedade. A colheita vai de 6 a 24 meses e você escolhe: isso muda a água e o calor que a lavoura usa. No Sul, o frio de maio a agosto para o crescimento e a geada danifica a parte de cima da planta.",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "mudancas": [
     {
@@ -150,6 +154,12 @@
       "antes": "(vazio)",
       "depois": "Confirme com o agrônomo ou a Emater a época de plantio, que muda de região para região, e a variedade. A colheita vai de 6 a 24 meses e você escolhe: isso muda a água e o calor que a lavoura usa. No Sul, o frio de maio a agosto para o crescimento e a geada danifica a parte de cima da planta.",
       "motivo": "REVISÃO 15/11 (pacote 9): riscos com fonte em Mattos et al. 2006 (500 Perguntas: Mandioca): frio no Sul e outras regiões de maio a agosto (q.26-27), geada na parte aérea (q.185), época de plantio por região e variedade (q.193 e q.199); colheita de 6 a 24 meses (Embrapa SP 12, 2020)."
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, revisado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): não há fonte com o limiar de dano à raiz no ar a 2 m; a geada queima a parte de cima e a planta rebrota. Origem: vazio_nao_sei. Ver pendências"
     }
   ],
   "evidencias": [
@@ -570,7 +580,9 @@
     "graus-dia: Sugestão: o filtro de graus-dia faz sentido só como teste de FRIO. Use apenas o mínimo (1250) para eliminar regiões/janelas frias demais; não use o máximo para eliminar. A janela de colheita deve vir do usuário (aipim 6-10 meses, indústria 12-18 meses), e o motor pode comparar a soma da janela escolhida com o mínimo.",
     "graus-dia: Tb 15 e Tb 14: a UFSM usa 14 (emissão de folhas); com 14 o 1º ano de Santa Maria dá 1487 em vez de 1268. Não misture.",
     "graus-dia: O mínimo foi calculado com o POWER (coerente com o motor), mas o POWER esfriou Santa Maria em 1-2 °C em outros ensaios (crotalária 2014/15, aveia 2014); com estação a soma seria maior. Não há soma de campo brasileira publicada para confirmar.",
-    "graus-dia: O máximo é PROXY (modelo calibrado na Nigéria) e só serve de referência para 'ciclo de 12 meses no ótimo'."
+    "graus-dia: O máximo é PROXY (modelo calibrado na Nigéria) e só serve de referência para 'ciclo de 12 meses no ótimo'.",
+    "dano por frio (15/11), colunas vazias: (1) a única temperatura com fonte é 2 °C de mínima NO ABRIGO, usada por Caldana et al., Revista Brasileira de Climatologia v. 30, jan./jun. 2022, p. 549 em diante (https://ojs.ufgd.edu.br/rbclima/article/download/14941/8586/52895), 'Considerou-se como crítica as temperaturas mínimas de 2°C, observadas no interior do abrigo meteorológico para calcular os riscos de geadas. Foram calculadas as probabilidades de ocorrência anual' (o mesmo texto usa depois 1,0 °C no método). É critério de zoneamento para a ocorrência de geada, avaliado no ano todo (o que sustentaria ciclo_todo), não medição de dano à raiz. (2) O dano à raiz não tem número: a Embrapa (Mattos et al. 2006, q.25) diz que baixas temperaturas 'diminuem [...] o peso seco das raízes', e que a poda da parte aérea (que a geada faz) 'pode provocar redução na produção de raízes e no teor de amido' (q.175), mas sem limiar. (3) O sistema de indústria do Paraná atravessa o inverno de propósito: 'é comum a colheita ser realizada com dois ciclos (2 anos) de crescimento, ocorrendo a poda ao final do primeiro ciclo' (IDR-Paraná, folder Cultivo da Mandioca, https://www.idrparana.pr.gov.br/system/files/publico/pesquisa/publicacoes/folder/cultivares-de-mandioca/Folder%20Cultivo%20da%20Mandioca.pdf). Com 2 °C e ciclo_todo, a regra 17 eliminaria a mandioca no PR, SC e RS, onde ela é plantada; isso contradiz a regra 'queima de folha que a planta recupera não conta'.",
+    "dano por frio, DECISÃO para o coordenador: (a) manter vazio (hoje o motor cai no padrão: 2 °C no terço do meio do ciclo, porque sensivel_geada = true; com o ciclo médio de 450 dias, o terço do meio vai do dia 150 ao 300 e pega o inverno, então o padrão TAMBÉM elimina a mandioca no Sul); ou (b) adotar por convenção 2 / ciclo_todo / 0.00 / 1.00 (convencao_com_fonte, Caldana 2022) como AVISO, sem eliminar. Em qualquer caso, vale rever sensivel_geada ou fazer o motor não eliminar a mandioca pela geada. Fonte que resolveria: ensaio de geada em mandioca no Sul (IDR-Paraná, Epagri, Embrapa Clima Temperado) com perda de raiz ou morte da haste x mínima do abrigo."
   ],
   "pendencias_resolvidas": [
     "temp_base_c = 14 vem de um único estudo com uma cultivar (RS 13, no RS), feito com a emissão de folhas. A Embrapa (Alves 1990) e o ZARC-SC usam 15 °C, e não li o documento do ZARC-SC diretamente.",
@@ -689,6 +701,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "Régua NASA POWER: mínimo Tironi 2015 (Santa Maria, 1268 e 1663, colheita de um ciclo); máximo Silva R.B. 2023 (Rio Largo-AL, 355 dias, 4275-4279). Atenção: em Rio Largo o POWER fica ~2 °C mais quente que a estação (com a Tmed da estação seria ~3590)."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem limiar de dano à PRODUÇÃO (raiz) com fonte. A geada queima a parte de cima (Embrapa 2006, q.185), mas a planta rebrota e no Paraná a mandioca de indústria é colhida com dois ciclos, passando o inverno no campo (IDR-Paraná). O 2 °C no abrigo de Caldana et al. (RBClima 2022) é critério de zoneamento para a ocorrência de geada no ano, não medição de perda de raiz. Ver pendências."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem limiar, a fase fica vazia (o validador pede fase só quando há limiar). Se o time adotar o limiar do zoneamento, a fase seria ciclo_todo (0 e 1): a fonte avalia a geada no ano todo, em qualquer fase."
     }
   },
   "confianca_calculo": {

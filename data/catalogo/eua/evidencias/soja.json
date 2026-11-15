@@ -33,10 +33,16 @@
     "nome_zarc": "",
     "codigo_nass": "SOYBEANS",
     "calendario_usda": "Soybeans",
-    "fontes": "Kessler, Archontoulis & Licht, Soybean Yield and Crop Stage Response to Planting Date and Cultivar Maturity in Iowa, USA, Agron. J. 2020 (manuscrito aceito, ISU Digital Repository; datas de semeadura e R7 medidas em 7 fazendas da ISU, 2014-2016)|Purcell, dos Santos & Salmerón, Soybean Development Stage Predictions, Univ. of Arkansas FSA2194, 2021 (SoyStage: R7 de GM 4.2 em Memphis)|Arkansas Soybean Production Handbook MP197, cap. 2 (atualizado 4/2014; dias até R1, R5 e R7 por GM e época, CropGro) e cap. 8 Irrigation (20-25 in de água para 40-50 bu/acre)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita IA/AR)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/soja_gd.json (graus-dia sem teto, Tb 10, entre as datas de semeadura e R7 das fontes, NASA POWER 2001-2020)|CÁLCULO (conferência da água): scripts/etc_nasa_power.py, cenários eua/cenarios/soja_etc.json|Iowa State University Extension, Understanding interactions between soybean planting date and maturity (ISU FACTS; APSIM com Tb 10, ótima 30 e máxima 40 °C)|ISU Encyclopedia, Crop water use or evapotranspiration (água da soja = milho, 21,5-22,3 in)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.11 (fases, Central USA)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2022 Summary (jan. 2023) (produtividade IA/AR 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (resíduo acima do solo da soja)|Ojekanmi & Johnson, SSSAJ 85, 2021 (USDA-ARS Morris-MN: ~4 Mg/ha/ano de resíduo de soja; conferência)|Ghidey & Alberts, Residue type and placement effects on decomposition, Trans. ASAE 36(6):1611-1617, 1993 (Missouri; perda de massa em 1 ano; lido só o resumo)|Jordon, Klopfenstein & Klemesrud, Comparative Calf Grazing of Corn and Soybean Residues, Nebraska Beef Cattle Report 1998 (OMD da dieta na resteva de soja)|Anderson, UNL BeefWatch, Soybean Stubble for Cows, 2019 (PB de caules e vagens)|Martinez-Feria, Archontoulis & Licht, ISU ICM News, How Fast do Soybeans Dry Down in the Field?, 2017 (secagem depois de R7)|Kellogg Biological Station LTER, tabela do USDA NASS QuickStats (nome do commodity; citação secundária)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "fontes": "Kessler, Archontoulis & Licht, Soybean Yield and Crop Stage Response to Planting Date and Cultivar Maturity in Iowa, USA, Agron. J. 2020 (manuscrito aceito, ISU Digital Repository; datas de semeadura e R7 medidas em 7 fazendas da ISU, 2014-2016)|Purcell, dos Santos & Salmerón, Soybean Development Stage Predictions, Univ. of Arkansas FSA2194, 2021 (SoyStage: R7 de GM 4.2 em Memphis)|Arkansas Soybean Production Handbook MP197, cap. 2 (atualizado 4/2014; dias até R1, R5 e R7 por GM e época, CropGro) e cap. 8 Irrigation (20-25 in de água para 40-50 bu/acre)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita IA/AR)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/soja_gd.json (graus-dia sem teto, Tb 10, entre as datas de semeadura e R7 das fontes, NASA POWER 2001-2020)|CÁLCULO (conferência da água): scripts/etc_nasa_power.py, cenários eua/cenarios/soja_etc.json|Iowa State University Extension, Understanding interactions between soybean planting date and maturity (ISU FACTS; APSIM com Tb 10, ótima 30 e máxima 40 °C)|ISU Encyclopedia, Crop water use or evapotranspiration (água da soja = milho, 21,5-22,3 in)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.11 (fases, Central USA)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2022 Summary (jan. 2023) (produtividade IA/AR 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (resíduo acima do solo da soja)|Ojekanmi & Johnson, SSSAJ 85, 2021 (USDA-ARS Morris-MN: ~4 Mg/ha/ano de resíduo de soja; conferência)|Ghidey & Alberts, Residue type and placement effects on decomposition, Trans. ASAE 36(6):1611-1617, 1993 (Missouri; perda de massa em 1 ano; lido só o resumo)|Jordon, Klopfenstein & Klemesrud, Comparative Calf Grazing of Corn and Soybean Residues, Nebraska Beef Cattle Report 1998 (OMD da dieta na resteva de soja)|Anderson, UNL BeefWatch, Soybean Stubble for Cows, 2019 (PB de caules e vagens)|Martinez-Feria, Archontoulis & Licht, ISU ICM News, How Fast do Soybeans Dry Down in the Field?, 2017 (secagem depois de R7)|Kellogg Biological Station LTER, tabela do USDA NASS QuickStats (nome do commodity; citação secundária)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Hurburgh, Vittetoe & Anderson, ISU Integrated Crop Management, Frost Damage to Soybeans, 2019 (geada que mata: 28 °F)|Kandel & Endres, NDSU A1172 North Dakota Soybean Production Field Guide, 2023 (28 °F mata a planta; perda por geada até R6, maior em R5; dias entre estádios de Fehr & Caviness)|NDSU Extension, Fall Frost Damage to Field Crops (32 °F na estação = 28-29 °F nas baixadas)|CÁLCULO: fase_frio_inicio_frac = (ciclo médio 125 - 33 dias de R5-R7)/125|FAO Frost Protection vol. 1, Tab. 4.5 (Ventskevich 1958; soja -2/-3 °C na floração e na frutificação, no abrigo; conferência)",
     "confianca_parametros": "media",
     "semeadura_inicio": "05-08",
-    "semeadura_fim": "06-02"
+    "semeadura_fim": "06-02",
+    "tmin_critica_c": "-2.2",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.74",
+    "fase_frio_fim_frac": "1.00",
+    "tmin_dias_seguidos": "",
+    "tmin_efeito": ""
   },
   "origem": {
     "temp_base_c": {
@@ -82,6 +88,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Soybeans 0,6-1,3 m; limite superior para sequeiro ('larger values [...] for rainfed conditions'). Igual ao Brasil."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Geada que mata a planta, o mesmo valor e a mesma fonte principal nas linhas do Brasil e dos EUA (decisão do usuário de 15/11: dano medido nos dois países). 28 °F = (28 - 32) × 5/9 = -2.2 °C. Fonte principal: 'A killing freeze is considered to be 28°F for soybeans' (ISU, Hurburgh et al. 2019). Apoio: 'Temperatures of 28 F for several hours can completely kill soybean plants' (NDSU A1172); Kessler et al. 2020 (artigo revisado, Iowa) usam 'typical killing frost (-2.22°C)'. É dano à produção: planta morta antes de R7 perde grão (NDSU A1172). tmin_efeito vazio (= elimina): a fonte fala em morte da planta. tmin_dias_seguidos vazio: a NDSU fala em 'several hours', não em dias. Conferência no abrigo: FAO Frost Protection, Tab. 4.5 (Ventskevich 1958), soja -2/-3 °C na floração e na frutificação, temperaturas críticas 'measured in standard instrument shelters'. As fontes americanas não dizem a altura da medida (a data climatológica da geada que mata, em Kessler, é de estação meteorológica); a NDSU lembra que 32 °F na estação podem ser 28-29 °F nas baixadas da lavoura. Abaixo de 30 °F (-1.1 °C) por muito tempo já há dano a hastes, vagens e grãos (ISU), mas o motor só tem a mínima diária, sem duração, por isso ficou o limiar de morte. Na linha do Brasil, os 3 °C do ZARC (critério de risco, não de dano) ficam só como conferência."
+    },
+    "fase_frio_frac": {
+      "tipo": "calculo",
+      "nota": "Fase = R5 a R7 (NDSU A1172: perda por geada até R6, maior em R5; nenhuma depois de R7). Duração R5-R7 = 15 + 18 = 33 dias (Fehr & Caviness 1977, tabela da NDSU A1172). Ciclo médio da linha = (117 + 133)/2 = 125 dias, semeadura -> R7. Início = (125 - 33)/125 = 0,736 -> 0.74; fim = R7 = fim do ciclo = 1.00. Conferências: Carrington-ND, R5-R7 = 36 dias (NDSU A1172) -> 0,71; Arkansas, GM 4 semeado em 15/jun, R5 -> R7 = 34 dias (MP197 cap. 2). Semeaduras de março no Arkansas (fora da faixa da linha) têm R5-R7 de 61-67 dias."
     }
   },
   "reuso_brasil": [
@@ -355,6 +369,49 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"SOYBEANS - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'SOYBEANS', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 4182, COUNTY 94050"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Hurburgh, C.R.; Vittetoe, R.; Anderson, M., Frost Damage to Soybeans, Iowa State University Integrated Crop Management, 17/10/2019",
+      "url": "https://crops.extension.iastate.edu/post/frost-damage-soybeans",
+      "trecho": "Temperatures below 32°F can damage soybean leaves [...] temperatures below 30°F for an extended time periods can damage the stems, pods, and seeds. [...] A killing freeze is considered to be 28°F for soybeans."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Kessler, A.; Archontoulis, S.V.; Licht, M.A., Soybean Yield and Crop Stage Response to Planting Date and Cultivar Maturity in Iowa, USA, Agronomy Journal, 2020 (manuscrito aceito no ISU Digital Repository), Resultados",
+      "url": "https://dr.lib.iastate.edu/entities/publication/a25f58b7-b5a0-4745-a420-79cb527706a7",
+      "trecho": "Fall frost can also be a yield limiting factor for soybean in Iowa. The typical killing frost (-2.22°C) date for Iowa falls in mid-October [...] several plots at North Central were damaged by a killing frost in 2014."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Kandel & Endres (eds.), NDSU Extension, North Dakota Soybean Production Field Guide A1172, rev. jan. 2023, p. 7 (dias entre estádios) e p. 132-133 (Frost Damage)",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2023-01/a1172.pdf",
+      "trecho": "Temperatures of 28 F for several hours can completely kill soybean plants (stems and leaves). [...] Yield loss with frost occurs through the R6 stage with greatest lost at the R5 stage. [...] A frost will not hurt soybean yields if the soybean growth stage is beyond R7. [...] R5 to R6 15 11-20 / R6 to R7 18 9-30 [...] From Fehr and Caviness [...] R5 to R7 36 32-44 [Carrington]"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "NDSU Extension, Fall Frost Damage to Field Crops (página da NDSU Agriculture, sem autor nem data na página; lida em 15/11/2026)",
+      "url": "https://www.ndsu.edu/agriculture/ag-hub/fall-frost-damage-field-crops",
+      "trecho": "SOYBEAN: Easily damaged by light frosts in the 28-32 degree range. [...] Remember temperatures of 32 degrees at weather stations or farmsteads may result in temperatures of 28 to 29 degrees in low lying areas of fields."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "FAO, Frost Protection: fundamentals, practice and economics, vol. 1, Tabela 4.5 ('SOURCE: After Ventskevich, 1958') e, para a medida no abrigo, o capítulo sobre dano por geada (https://www.fao.org/4/y7223e/y7223e07.htm); CONFERÊNCIA, lida em 15/11/2026",
+      "url": "https://www.fao.org/4/y7223e/y7223e0a.htm",
+      "trecho": "A range of critical damage temperatures (°C) for grain, forage and silage crops [...] GERMINATION FLOWERING FRUITING [...] Soybeans -3, -4 -2, -3 -2, -3 [...] SOURCE: After Ventskevich, 1958. || This damaging plant tissue temperature is correlated with air temperatures called \"critical temperatures\" measured in standard instrument shelters."
     }
   ],
   "regua": {
@@ -438,6 +495,36 @@
       "antes": "pendência: codigo_nass: 'SOYBEANS' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc e... | observacoes.codigos: codigo_nass 'SOYBEANS'. short_desc 'SOYBEANS - ...' = commodity_desc 'SOYBEANS', sem classe nem utilização no nome. Conf...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'SOYBEANS - ACRES PLANTED', registros SURVEY: STATE 4182, COUNTY 94050; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-2.2",
+      "motivo": "REVISÃO 15/11 (dano por frio): 28 °F, geada que mata a soja (ISU 2019; NDSU A1172; Kessler et al. 2020: -2.22 °C). Origem: publicado."
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao",
+      "motivo": "REVISÃO 15/11 (dano por frio): perda por geada até R6, maior em R5, nenhuma depois de R7 (NDSU A1172)."
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.74",
+      "motivo": "REVISÃO 15/11 (dano por frio): R5 = (125 - 33)/125, com R5-R7 de 33 dias (Fehr & Caviness, NDSU A1172) e ciclo médio da linha de 125 dias. Origem: calculo."
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): R7 = fim do ciclo da linha (semeadura -> R7)."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "-2.2",
+      "depois": "-2.2",
+      "motivo": "REVISÃO 15/11 (revisão do frio): mantido; decisão do usuário, dano medido e o mesmo valor nos dois países (a linha do Brasil passou de 3 a -2.2). Acrescentada a FAO Tab. 4.5 (-2/-3 °C no abrigo) como conferência. tmin_efeito e tmin_dias_seguidos vazios (morte da planta; a fonte fala em horas, não em dias)."
     }
   ],
   "pendencias": [
@@ -449,7 +536,8 @@
     "temp_otima_min_c = 20 sem fonte americana (APSIM só dá base, ótima e máxima).",
     "regua: C/N vazio (sem medição americana lida). O k vem de um só ensaio (Missouri, 1993), lido só no resumo do AGRIS (sem o mês de instalação); o Chatterjee & Acharya 2020 (Vale do Red River, ND/MN: soja com 74% da massa depois de 1 ano) só foi visto em resultado de busca. A digestibilidade é da dieta selecionada (OMD), sem n. Resolveria: Kochsiek et al. 2013 (SSSAJ, Mead-NE, sacolas de soja e milho por 3 anos) ou o texto completo de Ghidey & Alberts.",
     "calendario_usda: 'Soybeans' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto. A tabela de 2010 do Arkansas (semeadura 5/mai-22/jun) inclui a soja depois do trigo e já está defasada: o Handbook do Arkansas (2014) diz que a semeadura antecipa ~1 dia por ano desde 1985.",
-    "semeadura_inicio/fim (05-08 a 06-02) = 'most active' do Handbook 628 (2010) em Iowa (início 2/mai, fim 16/jun). Delta do Arkansas, a outra região de referência: 'most active' 5/mai-22/jun (início 19/abr, fim 5/jul), com a soja depois do trigo junto. DIVERGÊNCIA com cenarios/soja_gd.json (graus-dia e ciclo NÃO mudados): os cenários 'início de maio' de Iowa semeiam em 4-6/mai, poucos dias antes da janela (dentro do início de 2/mai); os do Arkansas semeiam em 15/mar e 5/abr (antes do início de 19/abr do Handbook, que está defasado, ver o Handbook do Arkansas de 2014) e em 15/jun (dentro)."
+    "semeadura_inicio/fim (05-08 a 06-02) = 'most active' do Handbook 628 (2010) em Iowa (início 2/mai, fim 16/jun). Delta do Arkansas, a outra região de referência: 'most active' 5/mai-22/jun (início 19/abr, fim 5/jul), com a soja depois do trigo junto. DIVERGÊNCIA com cenarios/soja_gd.json (graus-dia e ciclo NÃO mudados): os cenários 'início de maio' de Iowa semeiam em 4-6/mai, poucos dias antes da janela (dentro do início de 2/mai); os do Arkansas semeiam em 15/mar e 5/abr (antes do início de 19/abr do Handbook, que está defasado, ver o Handbook do Arkansas de 2014) e em 15/jun (dentro).",
+    "Frio (15/11): a regra 17 conta os meses que tocam a fase. Em Iowa, R5-R7 cai em agosto e setembro; o mês de setembro inteiro entra mesmo com R7 em meados do mês, o que superestima o risco. Geada de primavera (semeadura cedo) fica fora da janela: a ISU recomenda atrasar a semeadura para fugir dela."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
@@ -458,5 +546,8 @@
       "graus_dia_ciclo_min",
       "graus_dia_ciclo_max"
     ]
-  }
+  },
+  "pendencias_resolvidas": [
+    "Frio (15/11): -2.2 °C é a geada que mata a planta. A ISU diz que abaixo de 30 °F (-1.1 °C) 'por muito tempo' já há dano a hastes, vagens e grãos; o motor só tem a mínima diária, sem duração, por isso ficou o limiar de morte. A linha do Brasil usa 3 °C (critério de geada do ZARC no abrigo): o coordenador decide se unifica. (Resolvida. Motivo: 15/11: decisão do usuário, dano medido nos dois países.)"
+  ]
 }

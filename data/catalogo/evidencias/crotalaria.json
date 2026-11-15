@@ -23,7 +23,7 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "",
     "nome_zarc": "",
-    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (dias a 50% do florescimento por época de semeadura: 118/88/67; fotoperíodo de dias curtos)|Carvalho et al., Embrapa Cerrados, Circular Técnica 4 Manejo de adubos verdes no Cerrado, 1999 (florescimento ~90 dias no período chuvoso e 60 dias no fim das chuvas; 17,6 t/ha MS; 443,5 kg/ha N na parte aérea; corte pode anteceder a floração)|Pereira, A.J., tese UFRRJ/Embrapa Agrobiologia, Caracterização agronômica de espécies de Crotalaria L., 2007 (50% de flores aos 57-163 DAS conforme época/local; 50% de cobertura aos 15 DAS; 17,6 Mg/ha MS; 418,7 kg/ha N da FBN; curva de Gompertz da altura da C. juncea, usada para h na eq. 62: ~1,7 m aos 56 DAS e ~3,3 m aos 118 DAS)|Araújo et al., Embrapa Agrobiologia, Boletim de P&D 66, 2010 (espécie herbácea anual; FBN 67%; 105,9 kg/ha N via FBN; pleno florescimento 114 dias após semeadura de 08/12)|FAO ECOCROP Crotalaria juncea id 801 (temperatura ótima 20-30, absoluta 4-40; temp. letal -1 °C no início do crescimento e -2 °C em repouso; ciclo 60-160 d; anual; sementes tóxicas a mamíferos)|Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016, Épocas de semeadura e temperatura base em crotalária juncea (cv. IAC KR1, Santa Maria-RS, 10 épocas de semeadura; Tb do subperíodo emergência-florescimento = 16,0 °C pelo método da menor variabilidade; 106-135 dias da emergência ao florescimento; altura no florescimento 2,86-3,51 m)|Sampaio et al., Irriga 21(2):211-225, 2016, DOI 10.15809/irriga.2016v21n2p211-225 (Kc medido em lisímetro de pesagem: 0,34 inicial e 1,41 floração, este padronizado para 1,36 pela eq. 62 do FAO-56 com u2 = 1,82 m/s e URmín = 27,94% do próprio artigo; ETc 225,89 mm até o pleno florescimento aos 56 DAS; Mossoró-RN)|Allen et al., FAO Irrigation and Drainage Paper 56, cap. 6, 1998 (eq. 62 de ajuste do Kc mid ao clima; Kc end alto para cultura colhida/cortada verde, usado em kc_final = kc_medio)|Daniel, Dallacort, Barbieri, Tieppo, Carvalho & Fenner, Research, Society and Development 9(8):e890986196, 2020, DOI 10.33448/rsd-v9i8.6196 (C. juncea solteira em lisímetro de pesagem, Tangará da Serra-MT: ETc 436,16 mm em 123 dias, da semeadura até perto da maturação, para ETo de 331,28 mm, ou seja, ETc/ETo de 1,32 no ciclo; usado como checagem)|ESTIMATIVA: cálculo FAO-56 (ETc = Kc x ET0 Penman-Monteith diária com NASA POWER 2000-2020) para agua_ciclo_mm_max; mediana de 21 anos do cenário de 163 dias até o florescimento (semeadura em 22/11, Seropédica-RJ, Pereira 2007)|Silva et al., Embrapa Semi-Árido, Caracterização de sistemas radiculares de leguminosas sob irrigação no Vale do São Francisco, 2002 (raízes até ~0,6 m aos 60 dias; 80% das raízes até 0,4 m)|Medina et al., Semina Ciênc. Agrár. 34(2):675-682, 2013 (profundidade efetiva 0,40 m, a maior entre as coberturas, amostragem até 1,0 m)|Foloni, Lima & Büll, RBCS 30:49-57, 2006 (raízes de C. juncea formam bioporos na camada compactada)|Cook et al., Tropical Forages (tropicalforages.info), Crotalaria juncea (raiz pivotante longa; alcaloides pirrolizidínicos tóxicos; animais não comem verde; tolera geadas leves)|DECISÃO DO TIME: Kc padronizado limitado a 1.25 (FAO-56 eq. 72: Kc max = max(1.2; Kcb + 0.05) no clima padrão) (medido 1.36 mantido como evidência)|CÁLCULO: água máxima recalculada com Kc 1.25 (NASA POWER 2000-2020, Seropédica, semeadura 22/11, 163 dias)|PROXY: kc_medio 1.25 = limite do FAO-56 eq. 72 (medido padronizado 1.36)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: crotalaria_max_seropedica_2211_163d, crotalaria_hist_seropedica_2211_163d_kc136)|Embrapa Agrobiologia, Crotalária júncea (catálogo de inoculantes, lâmina A5), 2017 (semeadura a partir de outubro no Sul, Sudeste e Centro-Oeste, estendida até março ou abril em áreas sem risco de geada; entressafra ou antes da cultura comercial)|Garcia & Staut, Como inserir crotalária em sistemas de produção de grãos, Embrapa Agropecuária Oeste, Circular Técnica 44, 2018 (entressafra depois da soja em Dourados-MS, semeaduras de fevereiro e abril)|Concenço & Silva, Dessecação de espécies de crotalária visando à implantação de canaviais em sucessão, Embrapa Agropecuária Oeste, Comunicado Técnico 210, 2015 (C. juncea a mais tolerante aos herbicidas no florescimento)",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (dias a 50% do florescimento por época de semeadura: 118/88/67; fotoperíodo de dias curtos)|Carvalho et al., Embrapa Cerrados, Circular Técnica 4 Manejo de adubos verdes no Cerrado, 1999 (florescimento ~90 dias no período chuvoso e 60 dias no fim das chuvas; 17,6 t/ha MS; 443,5 kg/ha N na parte aérea; corte pode anteceder a floração)|Pereira, A.J., tese UFRRJ/Embrapa Agrobiologia, Caracterização agronômica de espécies de Crotalaria L., 2007 (50% de flores aos 57-163 DAS conforme época/local; 50% de cobertura aos 15 DAS; 17,6 Mg/ha MS; 418,7 kg/ha N da FBN; curva de Gompertz da altura da C. juncea, usada para h na eq. 62: ~1,7 m aos 56 DAS e ~3,3 m aos 118 DAS)|Araújo et al., Embrapa Agrobiologia, Boletim de P&D 66, 2010 (espécie herbácea anual; FBN 67%; 105,9 kg/ha N via FBN; pleno florescimento 114 dias após semeadura de 08/12)|FAO ECOCROP Crotalaria juncea id 801 (temperatura ótima 20-30, absoluta 4-40; temp. letal -1 °C no início do crescimento e -2 °C em repouso; ciclo 60-160 d; anual; sementes tóxicas a mamíferos)|Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016, Épocas de semeadura e temperatura base em crotalária juncea (cv. IAC KR1, Santa Maria-RS, 10 épocas de semeadura; Tb do subperíodo emergência-florescimento = 16,0 °C pelo método da menor variabilidade; 106-135 dias da emergência ao florescimento; altura no florescimento 2,86-3,51 m)|Sampaio et al., Irriga 21(2):211-225, 2016, DOI 10.15809/irriga.2016v21n2p211-225 (Kc medido em lisímetro de pesagem: 0,34 inicial e 1,41 floração, este padronizado para 1,36 pela eq. 62 do FAO-56 com u2 = 1,82 m/s e URmín = 27,94% do próprio artigo; ETc 225,89 mm até o pleno florescimento aos 56 DAS; Mossoró-RN)|Allen et al., FAO Irrigation and Drainage Paper 56, cap. 6, 1998 (eq. 62 de ajuste do Kc mid ao clima; Kc end alto para cultura colhida/cortada verde, usado em kc_final = kc_medio)|Daniel, Dallacort, Barbieri, Tieppo, Carvalho & Fenner, Research, Society and Development 9(8):e890986196, 2020, DOI 10.33448/rsd-v9i8.6196 (C. juncea solteira em lisímetro de pesagem, Tangará da Serra-MT: ETc 436,16 mm em 123 dias, da semeadura até perto da maturação, para ETo de 331,28 mm, ou seja, ETc/ETo de 1,32 no ciclo; usado como checagem)|ESTIMATIVA: cálculo FAO-56 (ETc = Kc x ET0 Penman-Monteith diária com NASA POWER 2000-2020) para agua_ciclo_mm_max; mediana de 21 anos do cenário de 163 dias até o florescimento (semeadura em 22/11, Seropédica-RJ, Pereira 2007)|Silva et al., Embrapa Semi-Árido, Caracterização de sistemas radiculares de leguminosas sob irrigação no Vale do São Francisco, 2002 (raízes até ~0,6 m aos 60 dias; 80% das raízes até 0,4 m)|Medina et al., Semina Ciênc. Agrár. 34(2):675-682, 2013 (profundidade efetiva 0,40 m, a maior entre as coberturas, amostragem até 1,0 m)|Foloni, Lima & Büll, RBCS 30:49-57, 2006 (raízes de C. juncea formam bioporos na camada compactada)|Cook et al., Tropical Forages (tropicalforages.info), Crotalaria juncea (raiz pivotante longa; alcaloides pirrolizidínicos tóxicos; animais não comem verde; tolera geadas leves)|DECISÃO DO TIME: Kc padronizado limitado a 1.25 (FAO-56 eq. 72: Kc max = max(1.2; Kcb + 0.05) no clima padrão) (medido 1.36 mantido como evidência)|CÁLCULO: água máxima recalculada com Kc 1.25 (NASA POWER 2000-2020, Seropédica, semeadura 22/11, 163 dias)|PROXY: kc_medio 1.25 = limite do FAO-56 eq. 72 (medido padronizado 1.36)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: crotalaria_max_seropedica_2211_163d, crotalaria_hist_seropedica_2211_163d_kc136)|Embrapa Agrobiologia, Crotalária júncea (catálogo de inoculantes, lâmina A5), 2017 (semeadura a partir de outubro no Sul, Sudeste e Centro-Oeste, estendida até março ou abril em áreas sem risco de geada; entressafra ou antes da cultura comercial)|Garcia & Staut, Como inserir crotalária em sistemas de produção de grãos, Embrapa Agropecuária Oeste, Circular Técnica 44, 2018 (entressafra depois da soja em Dourados-MS, semeaduras de fevereiro e abril)|Concenço & Silva, Dessecação de espécies de crotalária visando à implantação de canaviais em sucessão, Embrapa Agropecuária Oeste, Comunicado Técnico 210, 2015 (C. juncea a mais tolerante aos herbicidas no florescimento)|Warren, Wilson & Edwards, Using Sunn Hemp as a Cover Crop in Oklahoma, Oklahoma Cooperative Extension Service PSS-2273, 2014 (morta abaixo de 28 °F = -2,2 °C; usado em tmin_critica_c, fase ciclo_todo)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "420",
     "graus_dia_ciclo_max": "910",
@@ -35,7 +35,11 @@
     "condicao_semeadura": "apos_colheita_graos",
     "estados_validos": "DF|ES|GO|MG|MS|MT|RJ|SP",
     "lacuna_informacao": "Quase tudo da crotalária vem de um só ensaio: a temperatura em que ela começa a crescer, a água no início e a raiz. A água do ciclo longo e o calor até florescer vêm de um cálculo com o clima. O ciclo muda muito com a data de semeadura, porque ela floresce com dias curtos.",
-    "risco_revisao_local": "Quanto mais tarde semear, mais cedo floresce e menos palha dá; depois da soja rende bem menos. Corte no florescimento: o herbicida controla mal esta espécie. É tóxica, não sirva ao gado. Confirme a data e o manejo com o agrônomo ou a Emater."
+    "risco_revisao_local": "Quanto mais tarde semear, mais cedo floresce e menos palha dá; depois da soja rende bem menos. Corte no florescimento: o herbicida controla mal esta espécie. É tóxica, não sirva ao gado. Confirme a data e o manejo com o agrônomo ou a Emater.",
+    "tmin_critica_c": "-2.2",
+    "fase_sensivel_frio": "ciclo_todo",
+    "fase_frio_inicio_frac": "0.00",
+    "fase_frio_fim_frac": "1.00"
   },
   "mudancas": [
     {
@@ -223,6 +227,24 @@
       "antes": "(vazio)",
       "depois": "textos para o produtor",
       "motivo": "REVISÃO 15/11 (pacote 9): confiança baixa (8 lacunas); textos de 273 e 241 caracteres"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-2.2",
+      "motivo": "REVISÃO 15/11 (dano por frio): 'Sunn hemp is killed by temperatures less than 28 F' (OSU PSS-2273, 2014), 28 °F = -2,2 °C; ECOCROP (letal -1 °C no crescimento inicial, -2 °C em repouso) confere. Origem publicado."
+    },
+    {
+      "coluna": "fase_sensivel_frio/fase_frio_inicio_frac/fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "ciclo_todo / 0.00 / 1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): a geada mata a planta em qualquer fase até o corte no florescimento; ciclo_todo = 0 e 1 (README). Origem convencao_com_fonte."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista anterior)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "REVISÃO 15/11 (dano por frio): entrou a fonte do limiar de frio: Warren, Wilson & Edwards, Using Sunn Hemp as a Cover Crop in Oklahoma, Oklahoma Cooperative Extension Service PSS-2273, 2014 (morta abaixo de 28 °F = -2,2 °C; usado em tmin_critica_c, fase ciclo_todo)"
     }
   ],
   "evidencias": [
@@ -696,6 +718,33 @@
       "fonte": "Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016 (Santa Maria-RS, cv. IAC KR1, 10 épocas em 2014/15)",
       "url": "https://ojs.ufgd.edu.br/agrarian/article/download/4574/3671/19848",
       "trecho": "A massa de matéria verde reduz com o atraso da época de semeadura. A primeira quinzena de outubro é a melhor época de semeadura. [...] Tabela 2 [...] 1 01/10/2014 07/10/2014 19/02/2015 135 23,66 [...] 10 03/12/2014 09/12/2014 25/03/2015 106 25,09"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Warren, J.; Wilson, T.; Edwards, J., Using Sunn Hemp as a Cover Crop in Oklahoma, Oklahoma Cooperative Extension Service, PSS-2273, 2014",
+      "url": "https://pods.okstate.edu/fact-sheets/PSS-2273.pdf",
+      "trecho": "Sunn hemp is killed by temperatures less than 28 F, so it is important to plant at least 45 days prior to the first killing freeze in the fall. [28 °F = -2,2 °C]"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "FAO ECOCROP, Crotalaria juncea (id 801); números conferidos na cópia EcoCrop_DB.csv (OpenCLIM, colunas KTMP = -1 e KTMPR = -2)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=801",
+      "trecho": "Killing temp. during rest -2 Killing temp. early growth -1 [conferência do limiar; não usado como valor]"
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Embrapa Agrobiologia, Crotalária júncea, catálogo de inoculantes (lâmina A5), 2017 (já citado)",
+      "url": "https://www.embrapa.br/documents/1355054/19774764/INT_2017_CATALOGO+INOCULACAO_CROTALARIA+JUNCEA_LAMINA+A5.pdf/8ed1bf65-2810-b979-82c6-051a0a1666ee",
+      "trecho": "É espécie de primavera e verão [...] podendo ser estendida até março ou abril em áreas sem risco de geadas."
     }
   ],
   "pendencias": [
@@ -713,7 +762,8 @@
     "Janela (15/11): a linha usa a janela da Embrapa Agrobiologia (outubro a março, Sul, Sudeste e Centro-Oeste, até março ou abril só sem risco de geada), que cobre os ensaios dos números da linha: Senador Canedo-GO (novembro a março), Seropédica-RJ (novembro) e Dourados-MS (fevereiro). Ela junta dois usos: semeadura no início das chuvas antes da cultura comercial (área em pousio ou reforma) e semeadura de entressafra depois da soja (fevereiro-março), que dá bem menos palha (Amabile 2000: 17,3 t/ha em novembro, 6,0 em março; CT 44: queda de mais de 50% da semeadura de fevereiro para a de abril, em 2017). Como o ciclo depende da data (dias curtos), o motor deveria estimar o florescimento pela data da semeadura e não usar a faixa 56-160 inteira.",
     "estados_validos = DF|ES|GO|MG|MS|MT|RJ|SP (Sudeste e Centro-Oeste da Embrapa Agrobiologia). RS fica fora da linha: a extensão até março vale só sem risco de geada, e o único dado do RS (Cargnelutti 2016, Santa Maria) testou só outubro a dezembro; ele foi para regua.arranjos.sul. PR e SC (Sul, com geada) ficaram sem linha e sem arranjo por falta de fonte de época. BA: nenhuma fonte de época para crotalária de sequeiro no Nordeste (Silva 2002, Embrapa Semiárido, é irrigado); falta uma fonte da Embrapa Semiárido ou da Bahia.",
     "tipo_manejo = corte: CT 4 (Embrapa Cerrados) fala em 'corte' e em manejo no florescimento, e o COT 210 (Embrapa Agropecuária Oeste) mostra que o glifosato controla mal a C. juncea no florescimento (até 67,5%). Não achei fonte primária da Embrapa que diga rolo-faca para a C. juncea (só reportagem), por isso não usei 'rolagem'.",
-    "manejo_fim = 06-06 é conta (fim da janela 31/03 + 67 dias, o ciclo da semeadura de 4/março em Senador Canedo); a fonte não testou o fim de março. No Cerrado, o florescimento de maio-junho cai na seca."
+    "manejo_fim = 06-06 é conta (fim da janela 31/03 + 67 dias, o ciclo da semeadura de 4/março em Senador Canedo); a fonte não testou o fim de março. No Cerrado, o florescimento de maio-junho cai na seca.",
+    "Dano por frio (15/11): tmin_critica_c = -2,2 °C no ciclo todo (OSU PSS-2273: morta abaixo de 28 °F). Não achei limiar da Embrapa nem do IAPAR/IDR; nenhuma fonte diz a altura da medição. No POWER, de março a julho (semeaduras tardias), conferência própria com o NASA POWER (T2M_MIN diária, ar a 2 m, mesma medida do motor), arquivos do cache data/brutos/nasa_power, contando os anos com pelo menos um dia abaixo do limiar, nenhum ano de 2001-2019 fica abaixo de -2,2 °C em Goiânia, Rio Verde, Brasília, Seropédica, Sinop, Dourados (mínimo absoluto -0,3 °C) ou Londrina (-1,8 °C). Pela regra antiga (2 °C) Londrina teria mínima abaixo de 2 °C em 9 de 19 anos e Dourados em 4 de 15: o limiar novo é menos restritivo. A grade do POWER suaviza as mínimas extremas e, na relva, a geada é alguns graus mais fria. Se o time quiser margem, o candidato conservador é -1 °C (ECOCROP, crescimento inicial)."
   ],
   "pendencias_resolvidas": [
     "temp_base_c: sem valor medido para a C. juncea. O resumo de Qi et al. (Exp. Agric. 35:327-344, 1999) dá Tb comum de 10 °C (aparecimento de folhas) e 9 °C (emergência) para as leguminosas de cobertura de dias curtos. Não consegui confirmar no texto completo (acesso restrito) que a C. juncea estava entre as espécies. Um artigo da Agronomy (MDPI) de 2024 sobre sunn hemp usa GDD com base de 10 °C, mas não consegui abri-lo (403). Candidato: 10 °C, com baixa confiança.",
@@ -848,6 +898,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "Régua NASA POWER nas datas e locais dos ensaios: Cargnelutti 2016 (Santa Maria, 10 épocas, 795-909) e Amabile 2000 (Senador Canedo: 810 nov, 546 jan, 424 mar). Literatura (estação) dava 480-1220."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Extensão da Oklahoma State (Warren, Wilson & Edwards, PSS-2273, 2014), para a própria espécie: 'Sunn hemp is killed by temperatures less than 28 F'. Conversão: (28 - 32) × 5/9 = -2,2 °C. É a morte da planta, que acaba a cobertura antes do corte. Conferência: ECOCROP id 801 dá temperatura letal de -1 °C no crescimento inicial e -2 °C em repouso. Nenhuma fonte diz a altura da medição; tratada como temperatura do ar (abrigo), como nas previsões de geada da extensão. Não achei limiar da Embrapa: as fontes brasileiras só dizem para semear até março ou abril 'em áreas sem risco de geadas' (Embrapa Agrobiologia 2017). Não é coluna do filtro de confiança."
+    },
+    "fase_frio_frac": {
+      "tipo": "convencao_com_fonte",
+      "nota": "fase ciclo_todo = frações 0 e 1 (evidencias/README, 'Dano por frio'). As fontes dão a morte da planta sem fase (OSU: semeada em agosto-setembro e morta pela primeira geada forte; ECOCROP: letal no crescimento inicial e em repouso), e todo o ciclo da linha, da semeadura ao corte no florescimento, é crescimento vegetativo que forma a palhada. Ciclo médio da linha (56 + 160)/2 = 108 dias: início 0/108 = 0,00; fim 108/108 = 1,00."
     }
   },
   "confianca_calculo": {

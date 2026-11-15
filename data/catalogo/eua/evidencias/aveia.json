@@ -43,7 +43,11 @@
     "lacuna_informacao": "Esta linha é a aveia branca, a mesma do grão, usada como cobertura nos Estados Unidos. Não há dado lá da aveia-preta usada no Brasil. Também não há medição de quanta água ela usa no outono nem do seu ritmo de crescimento; usamos um cálculo com o clima da NASA.",
     "risco_revisao_local": "Só funciona semeada de meados de agosto a meados de setembro, depois de trigo ou silagem, ou a lanço na soja ainda em pé. Depois do milho ou da soja colhidos em outubro rende quase nada. Morre no inverno. Confirme a data com a extensão.",
     "fontes": "USDA NRCS Iowa & ISU Extension, Oats Cover Crop Fact Sheet for Iowa (CROP 3243), maio 2025 (janela de semeadura de outono do MCCC, morte pelo inverno, tolerância ao frio 25 °F, C/N 33:1, massa 1.000-4.000 lb/acre, qualidade de pastejo)|SARE, Managing Cover Crops Profitably, 3ª ed., capítulo Oats (semeadura no fim do verão para cobertura morta pelo inverno; 6 a 10 semanas de crescimento; 2.000-4.000 lb/acre de MS)|Lenssen et al., Improved Cover Crop Options for Corn Belt Farmers, SARE LNC13-352, ISU (amostragem de outono na 2ª semana de novembro em Iowa; a aveia morreu no inverno)|Johnson, Kaspar, Kohler, Corak & Logsdon, Oat and rye overseeded into soybean as fall cover crops in the Upper Midwest, J. Soil Water Conserv. 53(3):276-279, 1998 (massa de outono em Iowa; lido no resumo)|Lenz, Cox-O'Neill, Hales & Drewnoski, Nutritive value change during the fall of late-summer-planted oats, radishes, and turnips, Crop Forage Turfgrass Manage., 2019 (PB e IVOMD da aveia; lido no resumo)|Nebraska Beef Cattle Report 2018, Late Summer Planted Oat-Brassica Forage Quality Changes during Winter Grazing (Clay Center-NE; resumo)|Drewnoski, MacDonald, Ulmer & Cox, Value of Oats and Brassicas for Fall Forage, UNL CropWatch, 01/12/2016 (semeadura depois do trigo e da silagem; massa de misturas; PB e IVDMD)|Mantai et al., Rev. Bras. Eng. Agríc. Ambient. 21(1):3-8, 2017 (temperatura mínima cardinal 4 °C da aveia branca, Avena sativa)|UC IPM, Wild oats phenology model (Cudney et al. 1989; limiar inferior 5 °C para Avena fatua; só conferência)|FAO ECOCROP Avena sativa (cópia OpenCLIM/ecocrop: TOPMN 16, TOPMX 20; TMAX 30 só registro)|Primavesi, Rodrigues & Godoy, Embrapa Pecuária Sudeste BP 6, 2000 (acima de 32 °C no florescimento: esterilidade; só registro, tmax_critica_c vazio porque a aveia de outono não floresce)|FAO-56 Tab. 12 (Oats Kc mid 1,15; Kc ini 0,3 do grupo Cereals), Tab. 11 (fases de cereais a 35-45° de latitude) e Tab. 22 (Oats 1,0-1,5 m)|FAO-56 cap. 6 (Kc end alto em cultura colhida verde; convenção para cobertura que morre verde)|USDA NRCS Plant Materials Program, Evaluation of Cool Season Cover Crops in the North Central Region, 2020 (aveia de semente preta Cosaque, A. sativa, sobreviveu ao inverno em 2016-17)|Hartzler, ISU ICM News, Herbicide options for grazing cover crops, 09/12/2015 (restrição de pastejo pelos rótulos de herbicidas)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/aveia_gd.json (graus-dia sem teto, Tb 4, da semeadura à morte pelo frio, NASA POWER 2001-2020)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/aveia_etc.json (Kc FAO-56 da aveia × ET0 do NASA POWER, 2001-2020)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (Iowa: Oats, spring e Corn for silage)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (tabela Oats: área plantada x colhida)|SARE, Managing Cover Crops Profitably, capítulo Oats, caso de Iowa (morte pelo inverno 'usually in December')|University of Illinois Extension, Quick Guide to Cover Crops for Forage, 2019 (aveia semeada de agosto a setembro, 'will likely winterkill')|MCCC, Indiana Cover Crop Recipe: Post Wheat, Use Oats and Radish Mix, 2022 (semeadura em agosto depois do trigo)",
-    "confianca_parametros": "baixa"
+    "confianca_parametros": "baixa",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "origem": {
     "temp_base_c": {
@@ -93,6 +97,14 @@
     "tmax_critica_c": {
       "tipo": "vazio_nao_se_aplica",
       "nota": "Vazio: nesta linha a aveia é semeada em agosto-setembro e morre no inverno em roseta/perfilhamento, sem florescer (NRCS/ISU: 'Oats usually winter kill in Iowa'). O tmax_critica_c só vale numa fase sensível que a cultura atravessa no sistema (evidencias/README, regra 11); o 32 °C da Embrapa (esterilidade no florescimento) e o TMAX 30 do ECOCROP ficam só como registro nas evidências. Não é coluna do filtro de confiança."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: tipo_manejo = morte_pelo_frio. O fim desta cobertura É a morte pelo frio ('Oats usually winter kill in Iowa, so do not require spring termination', NRCS/ISU CROP 3243; tolerância a 25 °F); a aveia morre no inverno sem espigar. Um limiar de dano não se aplica: o frio é o manejo, não um risco à produção."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Sem fase sensível: a cultura morre no frio, em perfilhamento, antes de florescer."
     }
   },
   "reuso_brasil": [
@@ -513,6 +525,12 @@
       "antes": "",
       "depois": "Só funciona semeada de meados de agosto a meados de setembro, depois de trigo ou silagem, ou a lanço na soja ainda em pé. Depois do milho ou da soja colhidos em outubro rende quase nada. Morre no inverno. Confirme a data com a extensão.",
       "motivo": "Revisão dos lotes 1 e 2 (15/11), M-11: texto para o produtor (confiança baixa)"
+    },
+    {
+      "coluna": "tmin_critica_c / fase_sensivel_frio / fase_frio_inicio_frac / fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): tipo_manejo = morte_pelo_frio: o frio é o fim planejado da cobertura (NRCS/ISU CROP 3243), não dano. Origem: vazio_nao_se_aplica."
     }
   ],
   "pendencias": [
@@ -527,7 +545,8 @@
     "tmax_critica_c vazio (revisão de 15/11, M-04): a aveia de outono morre no inverno sem florescer, então não atravessa a fase sensível ao calor. O 32 °C da Embrapa (esterilidade no florescimento) e o TMAX 30 do ECOCROP ficam só como registro nas evidências.",
     "Janela (manejo_inicio 11-14, manejo_fim 12-05): convenção com fonte, as mesmas datas do ciclo. Resolveria: série da data da primeira noite abaixo de ~25 °F (-4 °C) por local, ou um ensaio de Iowa com a data da morte.",
     "condicao_semeadura: o vocabulário não tem 'depois de cereal de primavera'; a aveia colhida para grão (jul-ago) foi tratada como apos_cereal_inverno. Se o motor precisar distinguir, criar o valor.",
-    "estados_validos = IA|IL|IN|NE: IL e IN só com fonte da janela e da morte pelo inverno (University of Illinois Extension 2019; MCCC Indiana), sem cálculo de graus-dia e água nesses estados (o cálculo usou só locais de Iowa). MN, WI, MO e KS ficaram de fora por falta de fonte lida da janela."
+    "estados_validos = IA|IL|IN|NE: IL e IN só com fonte da janela e da morte pelo inverno (University of Illinois Extension 2019; MCCC Indiana), sem cálculo de graus-dia e água nesses estados (o cálculo usou só locais de Iowa). MN, WI, MO e KS ficaram de fora por falta de fonte lida da janela.",
+    "Dano por frio (15/11): colunas vazias de propósito (vazio_nao_se_aplica), porque a aveia de cobertura dos EUA termina morta pelo frio (tipo_manejo = morte_pelo_frio). A data da morte já está em manejo_inicio/fim."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

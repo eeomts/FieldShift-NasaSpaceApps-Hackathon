@@ -35,7 +35,11 @@
     "condicao_semeadura": "apos_colheita_graos",
     "estados_validos": "GO|DF|MT|MS|MG|SP",
     "lacuna_informacao": "Não há medição no Brasil de quanta água o guandu usa nem da temperatura em que ele começa a crescer. Usamos um cálculo com o clima e um ensaio feito na Índia. A soma de calor até a flor também é cálculo: no guandu, a época de plantio pesa mais que a temperatura.",
-    "risco_revisao_local": "Planta de dias curtos: semeado de outubro a dezembro dá mais massa; semeado depois da colheita, até março, floresce mais cedo e rende bem menos. Role ou roce na flor. Sofre com geada e com encharcamento. Confirme a época e a cultivar com a assistência técnica."
+    "risco_revisao_local": "Planta de dias curtos: semeado de outubro a dezembro dá mais massa; semeado depois da colheita, até março, floresce mais cedo e rende bem menos. Role ou roce na flor. Sofre com geada e com encharcamento. Confirme a época e a cultivar com a assistência técnica.",
+    "tmin_critica_c": "-3.3",
+    "fase_sensivel_frio": "ciclo_todo",
+    "fase_frio_inicio_frac": "0.00",
+    "fase_frio_fim_frac": "1.00"
   },
   "mudancas": [
     {
@@ -241,6 +245,18 @@
       "antes": "(lista anterior)",
       "depois": "(ver valores.fontes)",
       "motivo": "REVISÃO 15/11 (pacote 9): Entraram os trechos de janela da CPAC (1985), do CT 120 (2026) e de Amabile (2000)."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-3.3",
+      "motivo": "REVISÃO 15/11 (dano por frio): Embrapa-CPAC CT 20 (1985, citando Seifert & Thiago 1983): 'sofre perdas a -3,3 °C e morte total a -4,14 °C'; usado o início das perdas. Origem publicado."
+    },
+    {
+      "coluna": "fase_sensivel_frio/fase_frio_inicio_frac/fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "ciclo_todo / 0.00 / 1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): a fonte não dá fase e a geada tira massa em qualquer fase até a rolagem no florescimento; ciclo_todo = 0 e 1 (README). Origem convencao_com_fonte."
     }
   ],
   "evidencias": [
@@ -692,6 +708,25 @@
       "fonte": "Amabile, Fancelli & Carvalho, Comportamento de espécies de adubos verdes em diferentes épocas de semeadura e espaçamentos na região dos Cerrados, Pesq. agropec. bras. 35(1):47-54, 2000 (introdução, métodos e Tabela 3)",
       "url": "https://apct.sede.embrapa.br/pab/article/download/5695/2799/20586",
       "trecho": "Seu uso pode ser viabilizado com a semeadura no final da estação chuvosa, em sucessão à cultura (Pereira et al., 1992). [...] semeadas em três épocas: início (12/11/1991); meados (7/1/1992) e final da estação chuvosa (4/3/1992). [Tabela 3: guandu com 50% do florescimento aos 137, 124 e 94 dias -> 29/mar, 11/mai e 6/jun]"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Pereira, J., O feijão guandu: uma opção para a agropecuária brasileira, Embrapa-CPAC Circular Técnica 20, 1985 (cita Seifert & Thiago 1983) (já citado)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/549433/1/cirtec20.pdf",
+      "trecho": "Sobre os limites climáticos, Seifert & Thiago (1983) citam que a cultura se desenvolve bem até a 40 °C e suporta geadas leves sem ocorrer desfolha, mas sofre perdas a -3,3 °C e morte total a -4,14 °C."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Matta et al., BRS Guatã - nova cultivar de Cajanus cajan, Embrapa Pecuária Sudeste, Comunicado Técnico 120, 2026 (já citado)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "Ciclo vegetativo Anual/Bianual | Geada Suscetível"
     }
   ],
   "pendencias": [
@@ -714,7 +749,8 @@
     "JANELA (pacote 9): a linha junta duas épocas do Cerrado: out-dez (a favorável, 12,7 t/ha de MS na semeadura de 12/nov) e jan-mar, em sucessão à soja ou ao milho (marginal, 5,8 t/ha em 4/mar; Amabile 2000). Os números da linha (ciclo 90-150, água 280-520, graus-dia 1200-2350) já cobrem as duas, por isso não criei arranjo. Se o time quiser separar 'guandu de verão' e 'guandu em sucessão', a de sucessão iria para regua.arranjos com semeadura 01-01 a 03-31.",
     "JANELA x CICLO (pacote 9): semeadura em 1/out + ciclo_dias_max 150 = 28/fev, antes do manejo de 'meados de março a abril' da CPAC. É o fotoperíodo: semeado cedo, o guandu só floresce quando os dias encurtam. Reforça a pendência de que ciclo_dias_max = 150 é curto para semeaduras de outubro. Não mudei o ciclo nesta tarefa.",
     "JANELA (pacote 9): semeadura_fim 03-31 vem do CT 120 ('setembro a março', BRS Guatã). O último ensaio do Cerrado com dado é de 4/mar (Amabile 2000); semeadura no fim de março não tem ensaio, e a CPAC (1985) diz que plantios após dezembro crescem menos. manejo_fim 06-30 é DERIVADO (31/mar + 90 d).",
-    "estados_validos (pacote 9): GO entra; RS e BA (pontos da demo) ficam fora. RS: os números são do Cerrado e do Sudeste, o guandu é suscetível à geada (CT 120) e não achei fonte gaúcha de época e ciclo. BA: o oeste baiano é Cerrado, mas não há ensaio; em Irecê (semiárido) a Embrapa Semiárido indica o guandu Petrolina para grão, outra cultivar e outro uso, sem janela de cobertura publicada. Fonte gaúcha (Embrapa Clima Temperado) ou do Semiárido resolveria, num arranjo regional."
+    "estados_validos (pacote 9): GO entra; RS e BA (pontos da demo) ficam fora. RS: os números são do Cerrado e do Sudeste, o guandu é suscetível à geada (CT 120) e não achei fonte gaúcha de época e ciclo. BA: o oeste baiano é Cerrado, mas não há ensaio; em Irecê (semiárido) a Embrapa Semiárido indica o guandu Petrolina para grão, outra cultivar e outro uso, sem janela de cobertura publicada. Fonte gaúcha (Embrapa Clima Temperado) ou do Semiárido resolveria, num arranjo regional.",
+    "Dano por frio (15/11): tmin_critica_c = -3,3 °C no ciclo todo (Embrapa-CPAC CT 20, que cita Seifert & Thiago 1983, fonte original não lida; altura da medição não dita). A Tropical Forages diz 'Leaf cannot tolerate frost', mas a CT 20 diz que geada leve não desfolha; queima de folha que a planta recupera não conta como dano. No POWER, de março a julho, conferência própria com o NASA POWER (T2M_MIN diária, ar a 2 m, mesma medida do motor), arquivos do cache data/brutos/nasa_power, contando os anos com pelo menos um dia abaixo do limiar, nenhum ano de 2001-2019 fica abaixo de -3,3 °C em Goiânia, Rio Verde, Brasília, Dourados ou Londrina: na região da linha o limiar quase não elimina, e é menos restritivo que a regra antiga (2 °C: 4 de 15 anos em Dourados). Resolveria: a fonte original (Seifert & Thiago 1983, Embrapa Gado de Corte) ou ensaio brasileiro de geada no guandu."
   ],
   "pendencias_resolvidas": [
     "Kc: não há Kc medido para o guandu. Os Kc 0.4 e 1.15 são PROXY do grupo Legumes do FAO-56. Os relatórios de Kc em lisímetro de pigeonpea da PDKV Akola (mahapocra.gov.in, Phase VIII-X) recusaram conexão, e o artigo de Vidarbha (core.ac.uk/outputs/690753542) caiu no bloqueio da Cloudflare. Vale tentar de outra rede. kc_final ficou vazio pela convenção (corte na floração).",
@@ -815,6 +851,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "semeadura -> manejo no florescimento; Tb 10; Não achei soma térmica publicada para o guandu no Brasil. CÁLCULO com Tb 10 (a do CSV): (1) Amabile et al. 2000, Senador Canedo-GO, cv. Kaki, dias até 50% do florescimento 137 (12/nov), 124 (7/jan), 94 (4/mar); Tmed = (Tmax + Tmin)/2 da Tabela 1 = 24,15; 23,65; 23,2 °C. GD = 137×14,15 = 1939; 124×13,65 = 1693; 94×13,2 = 1241. Com POWER diário nas mesmas datas: 1753, 1522, 1141 (Tmed POWER ~1 °C abaixo). (2) BRS Guatã, São Carlos-SP (Matta et al. 2026): semeadura em novembro/2024 com pleno florescimento em abril; semeadura em 17/01/2025 com 50% do florescimento 'após quatro meses'. POWER diário: 15/11/2024 -> 15/04/2025 = 2367 °C dia (151 d, Tmed 25,7); 17/01/2025 -> 17/05/2025 = 1880 °C dia (120 d). As datas exatas de novembro e do florescimento são aproximadas (o texto dá só o mês). Faixa: 1200 (semeadura de março no Cerrado) a 2350 (semeadura de novembro no Sudeste). | plausibilidade: Tmed 22-25 °C. 1200/(23 − 10) = 92 d; 2350/(25 − 10) = 157 d. CSV: ciclo_dias 90-150. Bate. Mas a soma até o florescimento quase DOBRA da semeadura de março para a de novembro, com a mesma temperatura: é o fotoperíodo, não a temperatura, que controla."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Embrapa-CPAC, Circular Técnica 20 (Pereira 1985), lida no PDF; o número é citação de Seifert & Thiago (1983), não lida: 'suporta geadas leves sem ocorrer desfolha, mas sofre perdas a -3,3 °C e morte total a -4,14 °C'. Usei o início das perdas (-3,3 °C), não a morte total: perda de massa antes da rolagem já é dano à cobertura. A fonte não diz a altura da medição; tratada como temperatura do ar (abrigo). Não é coluna do filtro de confiança."
+    },
+    "fase_frio_frac": {
+      "tipo": "convencao_com_fonte",
+      "nota": "fase ciclo_todo = frações 0 e 1 (evidencias/README, 'Dano por frio'). A CT 20 e a CT 120 (BRS Guatã: 'Geada Suscetível') não dão fase, e todo o ciclo da linha, da semeadura à rolagem com ~50% de flores, é crescimento vegetativo que forma a palhada. Ciclo médio da linha (90 + 150)/2 = 120 dias: início 0/120 = 0,00; fim 120/120 = 1,00."
     }
   },
   "confianca_calculo": {

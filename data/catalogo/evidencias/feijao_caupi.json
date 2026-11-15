@@ -26,7 +26,11 @@
     "fontes": "Allen et al. FAO-56 1998 Tab.12 (Kc; linha Green Gram and Cowpeas; Kc ini do grupo Legumes; Kc end 0.35 = colhido seco)|Allen et al. FAO-56 1998 Tab.22 (raiz 0.6-1.0 m; limite superior = sequeiro)|MAPA Portaria SPA/MAPA 128/2026 ZARC feijão caupi MT 2026/2027 (temperatura ótima 18-34 °C; água mínima 300 mm; Tmin decendial >18 °C; raiz efetiva superficial 45 cm; grupos de ciclo)|Ribeiro (ed.) Embrapa Meio-Norte Sistemas de Produção 2 Cultivo do Feijão-caupi 2002 (ciclo por cultivar 60-90 d; temperatura base 8-11 °C; água 300-450 mm/ciclo; fixação de N; usos forrageiro e adubação verde)|Andrade Júnior, Bastos & Cardoso Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Clima (florescimento prejudicado acima de 35 °C; 300 mm de chuva)|Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Irrigação (consumo 250-400 mm/ciclo; Kc medidos no Brasil)|FAO ECOCROP Vigna unguiculata ssp. unguiculata (temperatura ótima 20-35 °C e absoluta 10-40 °C; apoio a temp_base e sensibilidade ao frio)",
     "confianca_parametros": "alta",
     "graus_dia_ciclo_min": "1150",
-    "graus_dia_ciclo_max": "1550"
+    "graus_dia_ciclo_max": "1550",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "mudancas": [
     {
@@ -82,6 +86,12 @@
       "antes": "(coluna nova)",
       "depois": "1150-1550",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio)",
+      "motivo": "REVISÃO 15/11 (dano por frio): mantidas vazias: não há limiar de dano em mínima diária com fonte. O ZARC usa a média decendial da mínima > 18 °C em todo o ciclo; a Embrapa Meio-Norte (2017) só diz que < 19 °C atrasa a floração. O motor segue com o comportamento atual (regra 17)."
     }
   ],
   "evidencias": [
@@ -349,7 +359,8 @@
     "cobertura_solo=media, aporte_biomassa=baixo e valor_forrageiro=medio: qualitativos sem número em fonte primária. A Embrapa cita uso como forragem, adubação verde e proteção do solo, e porte prostrado a semi-ereto, mas não dá produção de matéria seca. Pode-se considerar 'cobertura' em tipos (cultivares de grão preto usadas como adubo verde no RS/SC).",
     "graus-dia: Tavares 2009 e Souza (Petrolina) contam até a COLHEITA, um pouco depois da maturidade fisiológica; Cardoso 2001 conta da emergência e usa teto.",
     "graus-dia: Todas as medições são do Nordeste quente (Teresina, Petrolina). Não há medição para o caupi de safrinha do MT, onde a Tmed é menor.",
-    "graus-dia: Moura et al. (Piauí, BR 17 Gurguéia, 1103,5 GD da semeadura ao fim do ciclo, citado no resumo de busca) não foi lido."
+    "graus-dia: Moura et al. (Piauí, BR 17 Gurguéia, 1103,5 GD da semeadura ao fim do ciclo, citado no resumo de busca) não foi lido.",
+    "Frio (15/11): tmin_critica_c e fase ficaram vazias. O ZARC do caupi (Port. SPA/MAPA 128/2026, MT, https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/mato-grosso/PORTN128FEIJOCAUPIMT.pdf) exige 'temperatura mínima média decendial superior a 18°C, em todos os decêndios do ciclo'; a Embrapa Meio-Norte (Sistema de Produção 2017, cap. Clima, https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1071686/1/SistemaProducaoCaupiCapituloClima.pdf): 'Temperaturas baixas (<19 °C) influenciam negativamente a produtividade do feijão-caupi, retardando o aparecimento de flores e aumentando o ciclo'. Nenhuma das duas é limiar de dano numa mínima diária. Sugestão para o motor: implementar o critério do ZARC (média de 10 dias da mínima > 18 °C em todo o ciclo) como teste próprio do caupi."
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -445,6 +456,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "medido",
       "nota": "semeadura -> maturação fisiológica; Tb 10; (1) Cardoso et al. 2001 (Embrapa Meio-Norte, Teresina, jul-set, irrigado, 6 cultivares), Tb 10 com TETO (Tmax ≤ 30, Tmin ≥ 10), da EMERGÊNCIA à maturidade (70% das vagens amarelo-palha): 1041 (Vita 7) a 1368 (BR 7). Em Teresina a Tmax passa de 30, então o motor sem teto somaria ~12% mais por dia (Tmed real ~28 contra ~26 limitada: 18/16 = 1,125, CÁLCULO). Mais semeadura->emergência ~80 GD (5 d × 16, CÁLCULO): 1120-1450 com teto, ~1250-1620 sem teto. (2) Tavares et al. 2009 (UFPI/Embrapa Meio-Norte, Teresina, BR 17 Gurguéia), Tb 11, média simples, da SEMEADURA à colheita: 1128 GD em 73 dias. Conversão Tb 11 -> 10 (exata, Tmin mínima foi 19,6 °C): 1128 + 1 × 73 = 1201. (3) Souza et al. (Embrapa Semi-Árido, Petrolina, cv. Guaribas em consórcio), Tb 10, média simples, semeadura->colheita de grãos secos: 1442 GD em 78 dias. Faixa adotada: 1150 (precoce) a 1550 (ciclo médio, ajustado pelo teto). | plausibilidade: Nordeste/Norte, Tmed ~28 °C → 18 GD/dia: 1150/18 = 64 dias e 1550/18 = 86 dias, contra ciclo_dias 60-90 do CSV. Em local mais frio (Tmed 24, safrinha MT) o máximo levaria 1550/14 = 111 dias."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Não achei limiar de dano por geada ou frio em mínima diária para o caupi. O ZARC (Port. SPA/MAPA 128/2026, MT) usa outra medida: 'temperatura mínima média decendial superior a 18°C, em todos os decêndios do ciclo' (média de 10 dias, critério de aptidão, não de dano num dia). A Embrapa Meio-Norte (2017) diz que temperaturas abaixo de 19 °C atrasam a floração e alongam o ciclo (não é dano). Comparar 18 °C com a mínima diária seria outra regra, mais rigorosa que a do ZARC."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem limiar, sem fase. O ZARC aplica o critério térmico 'em todos os decêndios do ciclo'."
     }
   },
   "confianca_calculo": {

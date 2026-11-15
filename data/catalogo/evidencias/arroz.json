@@ -23,12 +23,18 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40102",
     "nome_zarc": "Arroz",
-    "fontes": "SISTEMA: arroz de terras altas (sequeiro); não representa o arroz irrigado por inundação (RS/SC)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Clima (faixa ótima 20-35 °C; esterilidade >35 °C na floração; sensibilidade ao frio)|Embrapa Arroz e Feijão, Catálogo de cultivares de arroz, 2013 (ciclo das cultivares de terras altas 102-115 d)|Embrapa Roraima, Circular Técnica 08, 2011 (ciclo das cultivares de terras altas 95-115 d)|Embrapa Agrossilvipastoril, Jornada Científica 2024, citando Crusciol et al. 2013 Agronomy Journal 105:237 (água 400-600 mm, terras altas só com chuva)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Irrigação (necessidade total ~600 mm do terras altas por aspersão)|Embrapa Arroz e Feijão, Comunicado Técnico 214, 2013 (Kc decendial de lisímetro do terras altas, ciclo 110 d; conferência de Kc médio)|FAO-56 Tab.12 (Kc médio 1.20 e final 0.60 de Rice; Kc ini 0.3 herdado do grupo Cereals, pois o 1.05 de Rice é para arroz inundado)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite superior = sequeiro)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C; medida em arroz irrigado, mesma espécie)|Embrapa Arroz e Feijão CT 214 2013 (kc_inicial 0.60 e kc_final 0.90, curva decendial do terras altas)",
+    "fontes": "SISTEMA: arroz de terras altas (sequeiro); não representa o arroz irrigado por inundação (RS/SC)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Clima (faixa ótima 20-35 °C; esterilidade >35 °C na floração; sensibilidade ao frio)|Embrapa Arroz e Feijão, Catálogo de cultivares de arroz, 2013 (ciclo das cultivares de terras altas 102-115 d)|Embrapa Roraima, Circular Técnica 08, 2011 (ciclo das cultivares de terras altas 95-115 d)|Embrapa Agrossilvipastoril, Jornada Científica 2024, citando Crusciol et al. 2013 Agronomy Journal 105:237 (água 400-600 mm, terras altas só com chuva)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Irrigação (necessidade total ~600 mm do terras altas por aspersão)|Embrapa Arroz e Feijão, Comunicado Técnico 214, 2013 (Kc decendial de lisímetro do terras altas, ciclo 110 d; conferência de Kc médio)|FAO-56 Tab.12 (Kc médio 1.20 e final 0.60 de Rice; Kc ini 0.3 herdado do grupo Cereals, pois o 1.05 de Rice é para arroz inundado)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite superior = sequeiro)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C; medida em arroz irrigado, mesma espécie)|Embrapa Arroz e Feijão CT 214 2013 (kc_inicial 0.60 e kc_final 0.90, curva decendial do terras altas)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, pergunta 7 (frio: emborrachamento 14-7 dias antes da emissão das panículas e floração; esterilidade abaixo de 15 °C ou 20 °C)|MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado RS (Tmin ≤ 15 °C na pré-floração; convenção do limiar)|Breseghello et al., Embrapa Arroz e Feijão Comunicado Técnico 150, 2007 (plantio à floração 76 d nos Cerrados)|Planeta Arroz, Terras altas: o salto de qualidade, 2005 (reportagem com a Embrapa Arroz e Feijão; cultivares antigas de terras altas do grupo japônica tropical; BRS Primavera do tipo de planta moderno; grupo de cultivar não confirmado)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "1300",
     "graus_dia_ciclo_max": "1500",
     "lacuna_informacao": "Não achamos medição, no arroz de terras altas, da temperatura em que ele para de crescer nem do calor que precisa no ciclo: usamos o dado do arroz irrigado e um cálculo com o clima. A água mínima vem de um único estudo.",
-    "risco_revisao_local": "Confirme com o agrônomo a cultivar e a época de semeadura da sua região. O arroz é planta de dia curto: fora da época recomendada, o ciclo muda. Falta de chuva ou calor acima de 35 °C na floração deixam grãos vazios. Prefira a época com menos risco de seca na floração."
+    "risco_revisao_local": "Confirme com o agrônomo a cultivar e a época de semeadura da sua região. O arroz é planta de dia curto: fora da época recomendada, o ciclo muda. Falta de chuva ou calor acima de 35 °C na floração deixam grãos vazios. Prefira a época com menos risco de seca na floração.",
+    "tmin_critica_c": "15",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.59",
+    "fase_frio_fim_frac": "0.72",
+    "tmin_dias_seguidos": "3",
+    "tmin_efeito": "aviso"
   },
   "mudancas": [
     {
@@ -132,6 +138,42 @@
       "antes": "(vazio)",
       "depois": "Confirme com o agrônomo a cultivar e a época de semeadura da sua região. O arroz é planta de dia curto: fora da época recomendada, o ciclo muda. Falta de chuva ou calor acima de 35 °C na floração deixam grãos vazios. Prefira a época com menos risco de seca na floração.",
       "motivo": "REVISÃO 15/11 (pacote 9): riscos com fonte na Embrapa Arroz e Feijão, 500 Perguntas: Arroz (2013), cap. Clima: dia curto e época (q.2 e q.5), seca na floração e esterilidade de espiguetas (q.15, q.16 e q.19), calor acima de 35 °C na floração (tmax_critica_c). Cultivar: ciclo varia entre cultivares (pendências)."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "15",
+      "motivo": "REVISÃO 15/11 (dano por frio): esterilidade por frio abaixo de 15 °C ou 20 °C conforme a cultivar (Embrapa 500 Perguntas); 15 = limite de baixo e Tmin do ZARC do arroz (Port. 66/2026)"
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "floracao",
+      "motivo": "REVISÃO 15/11 (dano por frio): emborrachamento (14 a 7 dias antes da emissão das panículas) e floração (Embrapa 500 Perguntas)"
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.59",
+      "motivo": "REVISÃO 15/11 (dano por frio): floração aos 76 dias do plantio nos Cerrados (Embrapa CT 150, 28 ensaios) menos 14 dias = 62 / ciclo médio 105 d"
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "0.72",
+      "motivo": "REVISÃO 15/11 (dano por frio): floração média 76 d / ciclo médio 105 d"
+    },
+    {
+      "coluna": "tmin_dias_seguidos",
+      "antes": "(vazio)",
+      "depois": "3",
+      "motivo": "REVISÃO 15/11 (revisão do frio): X-01, opção a: critério casado da fonte emprestada (ZARC arroz irrigado RS, 3 ou mais dias seguidos de Tmin ≤ 15 °C); sem fonte para o grupo japônica tropical das cultivares de terras altas"
+    },
+    {
+      "coluna": "tmin_efeito",
+      "antes": "(vazio)",
+      "depois": "aviso",
+      "motivo": "REVISÃO 15/11 (revisão do frio): esterilidade de espiguetas (Embrapa 500 Perguntas), perda parcial, o mesmo dano do arroz irrigado; decisão do usuário: aviso"
     }
   ],
   "evidencias": [
@@ -386,6 +428,44 @@
       "fonte": "Silva, S. C. Clima. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, perguntas 15, 16 e 19 (estresse hídrico e época de semeadura)",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964838/1/CNPAF2013500PR6.pdf",
       "trecho": "o arroz é muito sensível ao estresse hídrico na fase reprodutiva, especialmente durante o florescimento. [...] esses sintomas resultam em alta esterilidade de espiguetas. [...] observando as épocas de semeadura que proporcionam menor risco de ocorrência de estresse hídrico durante o ciclo da cultura, principalmente durante a fase reprodutiva"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac",
+        "tmin_efeito"
+      ],
+      "fonte": "Silva, S. C. Clima. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, pergunta 7",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964838/1/CNPAF2013500PR6.pdf",
+      "trecho": "A planta é mais sensível a baixas temperaturas no estádio de pré-floração. Para fins práticos, pode-se considerar o período do emborrachamento, que vai de 14 a 7 dias antes da emissão das panículas, como o mais sensível. A floração é o segundo estádio mais sensível a baixas temperaturas. Dependendo da sensibilidade das cultivares, temperaturas inferiores a 15°C ou 20°C induzem à esterilidade das espiguetas."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "tmin_dias_seguidos"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 66, de 14/04/2026, ZARC arroz irrigado subtropical RS, ano-safra 2026/2027, itens 1.2, 1.10.1 e 1.10.2",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/rio-grande-do-sul/PORTN62.PDF",
+      "trecho": "As fases mais críticas da planta às baixas temperaturas do ar são a pré-floração (microsporogênese) e a floração [...] Foram restringidos os decêndios com risco de ocorrência de três ou mais dias consecutivos temperaturas mínimas do ar ≤ 15 °C na fase de pré-floração da cultura [...] Fase III – Diferenciação da panícula até o início da floração (R4)"
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Breseghello, F. et al., BRS Pepita: cultivar de arroz de terras altas produtiva e precoce, Embrapa Arroz e Feijão Comunicado Técnico 150, 2007, Tabela 3 (ensaios de 2001/02 a 2003/04)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/67452/1/comt150.pdf",
+      "trecho": "Região Cerrados (GO, TO, MG, RR) [...] Ciclo do plantio à floração (dias) 28 76 76 ns [nº de ensaios, BRS Primavera, BRS Pepita]; Região Noroeste (PA, MT, RO) 29 71 72; Região Meio Norte (MA, PI) 14 71 72"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Planeta Arroz, Terras altas: o salto de qualidade, 2005 (reportagem sobre a Embrapa Arroz e Feijão, no acervo Infoteca-e; grupo de cultivar do arroz de terras altas)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/213533/1/Planeta-Arroz-2005-Terra-Altas.pdf",
+      "trecho": "Tais cultivares, assim como a maioria dos lançamentos subseqüentes, possuíam tipo de planta tradicional (alta estatura, folhas longas e decumbentes, grãos longos e largos), característico do grupo japônica tropical. [...] o programa de melhoramento da Embrapa, em parceria com o Ciat, Cirad e empresas estaduais de pesquisa, concentrou seus esforços no tipo de planta moderno (estatura e perfilhamento intermediários, folhas eretas) e priorizou fortemente o tipo de grão longo fino [...] As primeiras cultivares \"agulhinha de sequeiro\", BRS Primavera e BRS Maravilha, lançadas em 1996"
     }
   ],
   "pendencias": [
@@ -400,7 +480,8 @@
     "graus-dia: Sem medição de GD com Tb 11 para terras altas. A Embrapa Arroz e Feijão calcula graus-dia com Tb 8 / ótimo 30 / máximo 42 (função não linear) e só mostra o efeito na produtividade em gráfico (Heinemann et al. 2024), sem o total por ciclo em texto.",
     "graus-dia: A conversão de Wrege depende da Tmed do PR (premissa de 23,5 °C) e dos 30 dias fixos de floração->colheita.",
     "graus-dia: Fenner et al. 2013 (Eng. Agric. 21(6), Tangará da Serra-MT) dão 1506 GD (Tb 10) da emergência à maturação completa em ~103 dias, mas é simulação feita com exigências do arroz irrigado do RS, não medição; não usado.",
-    "graus-dia: O arroz é planta de dia curto; em semeaduras tardias a fase vegetativa encurta (Fenner 2013; Steinmetz 2021), o que o GD sozinho não capta."
+    "graus-dia: O arroz é planta de dia curto; em semeaduras tardias a fase vegetativa encurta (Fenner 2013; Steinmetz 2021), o que o GD sozinho não capta.",
+    "FRIO, grupo de cultivar (revisão 15/11, X-01): o limiar 15 °C/3 dias é emprestado do arroz irrigado do RS, cujas cultivares são índicas. Não achei fonte que diga o grupo das cultivares atuais de terras altas (BRS Primavera, BRS Esmeralda): a Embrapa chama de japônica tropical as tradicionais e de 'tipo de planta moderno' as novas (Planeta Arroz 2005). Se uma fonte confirmar japônica tropical com tolerância ao frio igual à do Arkansas, trocar para 10 °C/2 dias (MP192). Na região da linha (Cerrado) o risco é baixo com qualquer dos dois critérios."
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -496,6 +577,18 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "semeadura -> maturação fisiológica; Tb 11; Não achei soma térmica medida com Tb 11 para arroz de terras altas. Duas estimativas independentes: (A) Wrege et al. 2001 (IAPAR, arroz de sequeiro no PR, Tb 10): emergência->floração 1000 GD (precoce) e 1100 GD (médio); semeadura->emergência fixada em 7 dias; floração->colheita fixada em 30 dias. Conversão para Tb 11 (CÁLCULO): dias E->F = GD/(Tmed − 10) com Tmed ~23,5 °C (nov-jan, premissa) = 74 d (precoce) e 81 d (médio); GD11 = 1000 − 74 = 926 e 1100 − 81 = 1019. Total = 7 × (22 − 11) + GD11 + 30 × (24 − 11) = 77 + 926 + 390 = 1393 (precoce) e 77 + 1019 + 390 = 1486 (médio). (B) Mesma espécie, arroz irrigado (Steinmetz et al. 2021, Tb 11, da emergência a R9): os subgrupos com o mesmo número de dias do terras altas (95-115 d) são MP2 (1216) a P2 (1382). Somando semeadura->emergência no Cerrado, 7 × (25 − 11) = 98: 1314 a 1480. As duas dão ~1300-1500. Se a fonte usar teto: Steinmetz 2021 limita Tx a 34 e Tn a 21 °C; Wrege usa a média simples, sem teto. | plausibilidade: Cerrado (GO/MT, nov-mar), Tmed ~24,5 °C → 13,5 GD/dia: 1300/13,5 = 96 dias e 1500/13,5 = 111 dias, contra ciclo_dias 95-115 do CSV. Coerente."
+    },
+    "tmin_critica_c": {
+      "tipo": "convencao_com_fonte",
+      "nota": "Esterilidade de espiguetas por frio no emborrachamento e na floração. Embrapa Arroz e Feijão (500 Perguntas, 2013): 'temperaturas inferiores a 15°C ou 20°C induzem à esterilidade', conforme a sensibilidade da cultivar, sem dizer se é mínima ou média. Escolha do time (revisão do frio 15/11, opção a): 15 °C com 3 dias seguidos, o par casado do ZARC arroz irrigado RS (Port. 66/2026, item 1.10.1: 3 ou mais dias seguidos de Tmin do ar ≤ 15 °C na pré-floração), que é também o limite de baixo da Embrapa para o terras altas. A opção b (10 °C/2 noites do Arkansas, MP192) ficou de fora: nenhuma fonte lida diz que as cultivares atuais de terras altas (BRS Primavera, BRS Esmeralda) são japônica tropical nem que toleram o frio como a japônica do sul dos EUA; a Embrapa (Planeta Arroz 2005) chama de japônica tropical as cultivares tradicionais (Guarani, Rio Paranaíba) e diz que a BRS Primavera já é do tipo de planta moderno, e a própria Embrapa dá 15-20 °C para o terras altas. tmin_efeito = aviso: o dano é esterilidade de espiguetas (perda parcial), como no arroz irrigado. Mesma espécie; outra fonte e outro sistema, por isso convenção com fonte."
+    },
+    "fase_frio_frac": {
+      "tipo": "medido",
+      "nota": "Fase: emborrachamento (14 a 7 dias antes da emissão das panículas, a mais sensível) e floração (a segunda), Embrapa 500 Perguntas. Ciclo da linha 95-115 d (médio 105), do plantio à maturação de colheita. Embrapa CT 150 (Tab. 3, região Cerrados GO/TO/MG/RR, 28 ensaios, 2001/02 a 2003/04): plantio à floração 76 dias (BRS Primavera e BRS Pepita). Início = 76 - 14 = 62 -> 62/105 = 0,59. Fim = floração média, 76/105 = 0,72."
+    },
+    "tmin_dias_seguidos": {
+      "tipo": "convencao_com_fonte",
+      "nota": "3 dias seguidos = critério do ZARC arroz irrigado RS (Port. 66/2026, item 1.10.1), casado com o limiar de 15 °C emprestado da mesma fonte (opção a da revisão do frio 15/11). Não há critério de dias seguidos publicado para o arroz de terras altas."
     }
   },
   "confianca_calculo": {
@@ -509,6 +602,7 @@
     ]
   },
   "pendencias_resolvidas": [
-    "kc_inicial e kc_final: resolvido com a curva da Embrapa CT 214 (0,60 e 0,90), decisão de 14/11."
+    "kc_inicial e kc_final: resolvido com a curva da Embrapa CT 214 (0,60 e 0,90), decisão de 14/11.",
+    "DANO POR FRIO (15/11): tmin_critica_c = 15 é convenção do time: a Embrapa diz 'inferiores a 15°C ou 20°C' conforme a cultivar e não diz se é mínima ou média; usei o limite de baixo, que é o Tmin no abrigo do ZARC do arroz irrigado do RS. Cultivares mais sensíveis podem sofrer com 17-20 °C. Na região da linha o risco é baixo: conferência no NASA POWER em Santo Antônio de Goiás (2001-2019, semeaduras de 15/10, 15/11 e 15/12, janela de 62 a 76 dias) deu 0 de 19 anos com Tmin < 15 °C. A regra 17 conta um dia só; o ZARC do irrigado pede 3 dias seguidos (ver arroz_irrigado). Resolveria: limiar de esterilidade por frio medido em cultivar de terras altas, com Tmin no abrigo. -> RESOLVIDA 15/11 (revisão do frio): opção a: 15 °C com tmin_dias_seguidos = 3 (par casado do ZARC do irrigado) e tmin_efeito = aviso; a regra 17 revista conta N dias seguidos só nos dias da fase. A conferência no NASA POWER (Santo Antônio de Goiás, 0 de 19 anos com Tmin < 15 °C na fase) segue valendo."
   ]
 }

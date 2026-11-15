@@ -37,7 +37,11 @@
     "confianca_parametros": "baixa",
     "estados_validos": "ND|MN",
     "lacuna_informacao": "Não há medição na Dakota do Norte de quanta água a canola usa; usamos um cálculo com dados de clima de satélite. O calor mínimo para amadurecer foi calculado com 20 anos de clima no lugar mais frio dos ensaios do estado.",
-    "risco_revisao_local": "Quase todo ano, julho (a floração) tem dias acima de 30 graus, e calor forte com seca na floração derruba a produção. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido e a data de semeadura (de preferência até meados de maio) e se amadurece antes da geada."
+    "risco_revisao_local": "Quase todo ano, julho (a floração) tem dias acima de 30 graus, e calor forte com seca na floração derruba a produção. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido e a data de semeadura (de preferência até meados de maio) e se amadurece antes da geada.",
+    "tmin_critica_c": "-2.8",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.67",
+    "fase_frio_fim_frac": "1.00"
   },
   "origem": {
     "temp_base_c": {
@@ -83,6 +87,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Rapeseed, Canola 1,0-1,5 m; limite superior (sequeiro). A NDSU (medição com minirrizotron em Mandan, 1995-1997, na apresentação de Ransom) classifica a raiz da canola como 'medium', como a do trigo de primavera, e menos profunda que a do girassol."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "NDSU Extension A1280 (2011), 'Frost Tolerance and Frost Damage': 'A 27 F frost is enough to kill immature seeds containing 50 to 60 percent moisture', e a geada depois da floração dá 'significant yield reductions and grade loss'. 27 °F = (27 - 32) x 5/9 = -2,8 °C. Na floração a geada só aborta as flores abertas, com 'only minor yield reductions', e a plântula aguenta 22 a 24 °F: nenhuma das duas entra. A fonte fala de temperatura da geada (do ar), não de relva ou tecido."
+    },
+    "fase_frio_frac": {
+      "tipo": "medido",
+      "nota": "Enchimento = do fim da floração ('Ripening begins when the petal on the last formed flower on the main stem falls', A1280) à maturação, quando a semente com ~35% de umidade 'normally will escape damage'. Fim da floração = 'Days to Flower' + 'Flower Duration' das médias dos ensaios NDSU nos locais da linha: Langdon 2023 LL 44 + 19 = 63; Minot 2023 LL 40 + 22 = 62; Langdon 2024 RR 41 + 21 = 62; Langdon 2025 LL 39,4 + 25,0 = 64,4; Carrington 2025 LL 48 + 21 = 69; Minot 2025 LL 48 + 18 = 66; média 64,4 dias (maturação média desses ensaios 94,3 dias). 64,4 / 95,5 (ciclo médio da linha, (83 + 108) / 2) = 0,67. Fim: 1,00 (maturação)."
     }
   },
   "reuso_brasil": [
@@ -297,6 +309,24 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"CANOLA - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'CANOLA', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 438, COUNTY 1244"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Kandel, H.; Berglund, D.R., Frost Tolerance and Frost Damage, em Kandel, H. (ed.), Canola Production Field Guide, NDSU Extension A1280, 2011",
+      "url": "https://www.library.nd.gov/statedocs/NDSUExtensionService/a128020110825.pdf",
+      "trecho": "Frost at flowering will delay maturity but results in only minor yield reductions. Frost after flowering, however, can result in significant yield reductions and grade loss. [...] The amount of fall frost damage to canola depends on the stage of maturity. A 27 F frost is enough to kill immature seeds containing 50 to 60 percent moisture, while those ready to swath at about 35 percent moisture normally will escape damage."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "NDSU Extension A1124-23, A1124-24 e A1124-25, North Dakota Canola Hybrid/Variety Trial Results, linhas 'Mean' das tabelas de Langdon, Minot e Carrington (Days to Flower, Flower Duration, Days to Maturity); e A1280, 'Ripening'",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2025-12/a1125-25.pdf",
+      "trecho": "2025 Minot Liberty Link: Mean -- 48 18 107 [...] Planting date: May 9, 2025 [...] 2025 Langdon Liberty Link: Mean 39.4 25.0 95.5 [...] Planting Date: May 30 [...] 2025 Carrington Liberty Link: Trial Mean 48 21 92 [...] Planting Date = May 7 [2023 Langdon LL: Mean 44 19 87, A1124-23; 2023 Minot LL: Mean 40 22 95, A1124-23; 2024 Langdon RR: 41 21 89, A1124-24] [A1280:] Ripening begins when the petal on the last formed flower on the main stem falls."
     }
   ],
   "regua": {
@@ -404,6 +434,18 @@
       "antes": "pendência: codigo_nass: 'CANOLA' continua NÃO conferido no QuickStats (15/11): a série baixada pelo time (data/scripts/baixar_nass_eua.py, data/eua/nass/producao_condado.c... | observacoes.codigos: codigo_nass 'CANOLA' = nome da tabela do Crop Production (sem classe). calendario_usda vazio: a única tabela de canola d...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'CANOLA - ACRES PLANTED', registros SURVEY: STATE 438, COUNTY 1244; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-2.8",
+      "motivo": "REVISÃO 15/11 (dano por frio): 27 °F mata a semente imatura depois da floração (NDSU A1280). Origem: publicado"
+    },
+    {
+      "coluna": "fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao, 0.67, 1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): fim da floração aos 64,4 dias (média de 6 ensaios NDSU 2023-2025) sobre o ciclo médio de 95,5 dias. Origem: medido"
     }
   ],
   "pendencias": [
@@ -413,7 +455,8 @@
     "tmax_critica_c = 29,5 °C na floração (Morrison & Stewart 2002, Ottawa, lido pelo resumo); o número fica, é o da fonte. A NDSU (A686) não dá número, só diz que a canola é 'very susceptible to heat and drought stress during flowering'. Frequência no clima de ND (T2M_MAX do NASA POWER, cache data/brutos/nasa_power, 2001-2020, dias de julho com máxima acima de 29,5 °C; contagem do arquiteto conferida no mesmo cache): mediana Langdon 7,5, Carrington 11,5, Minot 11 dias; pelo menos 1 dia em 19 (Langdon) e 20 (Carrington, Minot) de 20 anos; 5 dias ou mais em 14 (Langdon), 18 (Carrington) e 17 (Minot) de 20 anos. O limiar é passado quase todo ano: se o motor eliminar ou rebaixar por 'Tmax acima do crítico', a canola cai em toda a ND. DECISÃO do usuário (fora deste pacote): como o motor lê o calor (contar dias acima do limiar na fase sensível e mostrar a frequência, ou usar a média).",
     "raiz_profunda: DECISÃO do usuário (revisão do lote 3): manter os dois. O catálogo dos EUA fica false (NDSU: raiz 'medium', como a do trigo) e agroia/base/culturas.json continua com 'raiz_profunda' nos tipos da canola. A divergência fica registrada aqui, sem mudar nenhum dos dois.",
     "regua: C/N (Saskatchewan) e k (Alberta, canola polonesa B. rapa) são PROXY canadenses, um estudo cada, k lido pelo resumo. A palhada usa a razão de Mandan medida em 1999/2000. Sem digestibilidade da palha.",
-    "semeadura_inicio/fim VAZIOS: o Handbook 628 (2010) não tem canola na Dakota do Norte (só a de inverno de Oklahoma) e data/eua/nass/datas_plantio.csv não traz canola. A NDSU (A1280, 2011) recomenda semear 'in April to early May' e diz que semear depois de 5/mai no sudoeste, 15/mai na maior parte do estado e 31/mai no nordeste pode reduzir a produtividade; não virou janela porque o início ('April') não tem data. Os cenários de graus-dia (cenarios/canola_gd.json) usam as semeaduras dos ensaios da NDSU, de 6/mai a 1/jun. Resolveria: data final de plantio do seguro (USDA RMA) para a canola em ND ou o progresso de semeadura do NASS (Crop Progress, ND)."
+    "semeadura_inicio/fim VAZIOS: o Handbook 628 (2010) não tem canola na Dakota do Norte (só a de inverno de Oklahoma) e data/eua/nass/datas_plantio.csv não traz canola. A NDSU (A1280, 2011) recomenda semear 'in April to early May' e diz que semear depois de 5/mai no sudoeste, 15/mai na maior parte do estado e 31/mai no nordeste pode reduzir a produtividade; não virou janela porque o início ('April') não tem data. Os cenários de graus-dia (cenarios/canola_gd.json) usam as semeaduras dos ensaios da NDSU, de 6/mai a 1/jun. Resolveria: data final de plantio do seguro (USDA RMA) para a canola em ND ou o progresso de semeadura do NASS (Crop Progress, ND).",
+    "dano por frio: a linha é a canola de PRIMAVERA da Dakota do Norte; o limiar e a fase são os do A1280 (NDSU), não os da canola de inverno de Kansas/Oklahoma (dano no inverno e na rebrota da primavera), que fica de fora com o resto dessa canola. As frações usam a média de 6 ensaios (Langdon, Minot e Carrington, 2023-2025, sem Carrington 2024, com granizo); a tabela de Minot 2025 RR traz os cabeçalhos 'Days to Flowering' e 'Flowering Duration' trocados (18-20 e 46-51 dias) e ficou fora."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
