@@ -6,7 +6,7 @@
 
 O questionário faz duas coisas ao mesmo tempo:
 
-1. **Descobre o perfil do produtor** (A, B, C ou D) e quanto ele sabe do próprio solo.
+1. **Descobre o perfil do produtor** (A, B ou C), quem está respondendo (produtor ou técnico) e quanto ele sabe do próprio solo.
 2. **Coleta o mínimo para a análise funcionar**: local, o que planta e quando, sinais do solo, histórico de perdas e prioridades.
 
 ## Regras de desenho
@@ -26,14 +26,15 @@ O questionário faz duas coisas ao mesmo tempo:
 | **A: Experiência** | Pequeno, sem irrigação, sem técnico frequente | Só observação | Usa dados globais e as respostas do questionário. Sugere testes simples para subir a confiança |
 | **B: Observador** | Pequeno ou médio; já fez algum teste ou sabe a textura | Observação e teste de campo | Combina o que ele informa com os dados globais |
 | **C: Com laudo** | Médio, tem técnico, faz análise a cada 2–3 anos | Laudo de laboratório | Os valores do laudo substituem os modelados. Confiança mais alta |
-| **D: Técnico** | Extensionista ou cooperativa que preenche pelo produtor | Varia | Mesmo fluxo, com mais detalhe técnico na tela |
+
+**Papel** (quem respondeu), separado do perfil: `produtor` ou `tecnico` (pergunta 1). Um técnico da extensão também tem um perfil A, B ou C, conforme o que se sabe do solo daquele campo; o papel só muda o nível de detalhe técnico na tela. *(Antes existia um perfil "D: Técnico", que misturava as duas coisas e apagava a informação do laudo.)*
 
 **Modificadores** (mudam prioridades e culturas possíveis, não o perfil): irrigação e criação de animais.
 
 **Regra inicial de classificação:**
-- **D** se a pergunta 1 = "técnico".
-- **C** se a pergunta 12 = "sim" **e** tem o resultado em mãos.
-- **B** se respondeu a textura (13) **ou** pelo menos 6 perguntas do bloco 4 sem "não sei".
+- **Papel:** `tecnico` se a pergunta 1 = "técnico"; senão `produtor`.
+- **C** se a pergunta 12 = "sim", tem o resultado em mãos **e** informou pelo menos 2 valores do laudo. Só dizer que tem o laudo não basta: sem números, o app sugere digitá-los como próximo passo.
+- **B** se respondeu a textura (13) **ou** pelo menos 5 das 8 perguntas de **observação** do solo sem "não sei" (13 a 18, 20 e a 19, que vale uma quando tem cor e jeito). As perguntas de manejo (12, 21 e 22) não contam: "nunca usei calcário" não diz nada sobre como o solo é.
 - **A** nos demais casos.
 
 ---
@@ -106,7 +107,7 @@ Respostas: **Sim / Não / Não sei**, exceto onde indicado.
 
 | # | Pergunta | Para quê |
 |---|---|---|
-| 12 | Já fez análise de solo em laboratório? *(se sim: tem o resultado? de quando?)* | Nível de dado; abre o caminho do laudo (perfil C) |
+| 12 | Já fez análise de solo em laboratório? *(se sim: tem o resultado? de quando? se tem: os valores do laudo, todos opcionais: pH em água, argila %, matéria orgânica g/dm³, fósforo e potássio mg/dm³, CTC cmolc/dm³, saturação por bases %)* | Nível de dado; abre o caminho do laudo (perfil C). Os valores entram no retrato do solo com fonte "laudo" e confiança alta |
 | 13 | A terra é mais arenosa, argilosa ou meio-termo? *(escolha + Não sei)* | Textura. Cruza com SoilGrids |
 | 14 | Depois de chuva forte, a água fica empoçada mais de um dia? | Drenagem e infiltração |
 | 15 | Quando seca, a terra forma uma casca na superfície? | Encrostamento |
@@ -206,7 +207,7 @@ texto livre → IA extrai uma lista estruturada → casa com a base (culturas / 
 
 ## O que sai do questionário
 
-1. **Perfil** (A, B, C ou D) + modificadores (irrigação, animais).
+1. **Perfil** (A, B ou C) + papel (produtor ou técnico) + modificadores (irrigação, animais).
 2. **Calendário atual** confirmado: culturas, meses, consórcios e meses sem cobertura.
 3. **Retrato do solo provisório**: cada resposta vira um indicador marcado como "informado pelo produtor", que o app cruza com SoilGrids, SRTM e NASA POWER. Quando concordam, a confiança sobe; quando discordam, o app mostra a diferença.
 4. **Histórico de perdas**, com ano quando houver, para cruzar com os dados da NASA.

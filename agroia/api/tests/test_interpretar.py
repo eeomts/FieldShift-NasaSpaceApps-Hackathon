@@ -1,5 +1,5 @@
-from app import base
-from app.llm import interpretar as mod
+from app.services import catalogo as base
+from app.services import interpretacao as mod
 
 
 def test_casamento_por_sinonimos():

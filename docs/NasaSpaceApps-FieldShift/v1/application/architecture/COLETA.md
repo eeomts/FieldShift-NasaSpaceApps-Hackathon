@@ -31,7 +31,7 @@ texto livre → IA extrai uma lista estruturada (JSON validado) → casa com a b
 
 | Parte da ficha | De onde vem | Como é calculada |
 |---|---|---|
-| **Perfil** (A, B, C, D) + modificadores | Perguntas 1, 3, 4, 6, 12, 13 | Regras simples (ver [MOTOR-DE-ANALISE.md](MOTOR-DE-ANALISE.md#cálculo-1-perfil)) |
+| **Perfil** (A, B, C) + papel + modificadores | Perguntas 1, 3, 4, 6, 12, 13 | Regras simples (ver [MOTOR-DE-ANALISE.md](MOTOR-DE-ANALISE.md#cálculo-1-perfil)) |
 | **Calendário atual** | Pergunta 8 confirmada, 10 e 11 | Meses ocupados, consórcios e meses descobertos |
 | **Retrato do solo** | Perguntas 13–22 + SoilGrids + SRTM | Fusão de evidências com peso por fonte |
 | **Histórico de perdas × dados** | Perguntas 23–24 + NASA POWER | Procura o evento no ano informado; confirma ou registra a diferença |

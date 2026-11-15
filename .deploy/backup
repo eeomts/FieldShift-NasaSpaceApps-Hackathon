@@ -1,0 +1,44 @@
+#!/bin/sh
+# Dump do banco do ambiente, conferido, em .deploy/backups/: ./.deploy/backup <local|producao>
+
+set -eu
+
+cd "$(dirname "$0")/.."
+. .deploy/lib.sh
+
+carregar_env "${1:-}"
+exigir DB_HOST DB_NAME DB_USER DB_PASSWORD
+
+PASTA=".deploy/backups"
+mkdir -p "$PASTA"
+
+NOME="agroia-$AMBIENTE-$(date '+%Y-%m-%d_%H%M%S').sql.gz"
+ARQUIVO="$PASTA/$NOME"
+
+echo "gerando o dump de $DB_NAME ($AMBIENTE)"
+
+# --clean --if-exists: o restaurar recria tudo por cima do banco atual
+pg pg_dump --no-owner --no-privileges --clean --if-exists | gzip -9 > "$ARQUIVO.parcial"
+
+gzip -t "$ARQUIVO.parcial" 2>/dev/null || { rm -f "$ARQUIVO.parcial"; echo "erro: o dump saiu corrompido" >&2; exit 1; }
+
+if ! gzip -dc "$ARQUIVO.parcial" | tail -n 5 | grep -q 'PostgreSQL database dump complete'; then
+    rm -f "$ARQUIVO.parcial"
+    echo "erro: o dump parou no meio (sem a marca de fim do pg_dump)" >&2
+    exit 1
+fi
+
+mv "$ARQUIVO.parcial" "$ARQUIVO"
+echo "ok: $ARQUIVO ($(du -h "$ARQUIVO" | cut -f1), $(gzip -dc "$ARQUIVO" | grep -c '^CREATE TABLE') tabelas)"
+
+# limpeza local
+find "$PASTA" -name "agroia-$AMBIENTE-*.sql.gz" -mtime +"${BACKUP_DIAS:-14}" -delete
+
+# copia remota opcional (rclone configurado na máquina)
+if [ -n "${BACKUP_REMOTO:-}" ]; then
+    if command -v rclone >/dev/null 2>&1; then
+        rclone copyto "$ARQUIVO" "${BACKUP_REMOTO%/}/$NOME" && echo "ok: copiado para $BACKUP_REMOTO"
+    else
+        echo "aviso: BACKUP_REMOTO preenchido, mas o rclone nao esta instalado" >&2
+    fi
+fi

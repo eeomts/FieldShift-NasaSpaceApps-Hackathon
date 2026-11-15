@@ -121,9 +121,7 @@ Decisões que a equipe ainda precisa tomar:
 - **Escopo:** Brasil inteiro (D-008) ou mundo todo (`site-contexto.md`)? O código já aceita qualquer ponto do mapa.
 - **IA:** o código usa Gemini, mas o `architecture/README.md` fala em Claude. Falta registrar a escolha no `DECISOES.md`.
 - **Previsão do tempo:** aprovar a Open-Meteo (única fonte fora da D-009).
-- **Catálogo de culturas duplicado:** o app usa `agroia/base/culturas.json` (40 culturas com sinônimos em PT/EN/ES). Em paralelo, `data/catalogo/` tem 16 culturas com parâmetros agronômicos. É preciso juntar os dois numa fonte só.
 - **Tabelas antigas no banco:** a VPS tem `propriedades` e `questionario_respostas`, que não são usadas pelo código. É preciso decidir se elas saem.
-- **Questionário:** as perguntas estão escritas direto nas telas. O `data/onboarding/perguntas.yaml` propõe tirá-las de um arquivo.
 - **Demo:** quais regiões e fazendas de exemplo (Q-01 a Q-03)?
 - **Pendências do questionário:** fotos reais de solo (pergunta 19), validar as faixas de área (pergunta 2) e a tabela cor × jeito da terra.
 

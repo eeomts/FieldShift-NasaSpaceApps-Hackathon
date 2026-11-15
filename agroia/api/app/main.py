@@ -1,10 +1,19 @@
-from fastapi import FastAPI
+"""Cria a API, liga as rotas e trata os erros de negócio."""
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
-from app.config import get_settings
+from app.core.config import get_settings
+from app.core.erros import ErroDeNegocio
 from app.routers import auth, fazenda, onboarding
 
 app = FastAPI(title="AgroIA API", version="0.1.0")
+
+
+@app.exception_handler(ErroDeNegocio)
+def erro_de_negocio(_: Request, erro: ErroDeNegocio) -> JSONResponse:
+    """Mesmo formato do HTTPException: {"detail": "<mensagem>"}."""
+    return JSONResponse(status_code=erro.status_code, content={"detail": erro.mensagem})
 
 app.add_middleware(
     CORSMiddleware,

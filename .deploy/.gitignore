@@ -1,0 +1,5 @@
+# configuração real de cada ambiente (tem senha): só o exemplo vai para o Git
+env/*.env
+!env/exemplo.env
+
+backups/
