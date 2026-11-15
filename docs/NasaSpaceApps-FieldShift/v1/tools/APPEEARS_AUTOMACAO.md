@@ -3,6 +3,10 @@
 Complemento a `APPEEARS.md`, `EARTHDATA_SEARCH.md` e `comparative/COMPARATIVO_FINAL.md`. Explica como baixar os dados da NASA de forma automática e sempre atualizada, sem pedido manual e sem manutenção de token.
 
 > **Situação (14/11/2026):** proposta. O script descrito aqui **ainda não está no repositório** e **nunca foi executado**. Alguns nomes de campo foram escritos de memória e estão listados em [Pontos a confirmar](#pontos-a-confirmar).
+>
+> **O que já existe:** o script que baixa os pontos da demo é `data/scripts/baixar_appeears.py` (tarefa `ToDo/dataset/pessoa-2/03-script-appeears`). Ele usa as variáveis `EARTHDATA_TOKEN` ou `EARTHDATA_USER`/`EARTHDATA_PASS`, ou o `~/.netrc`. O `appeears_sync.py` e as variáveis `EDL_USER`/`EDL_PASS` abaixo são o desenho futuro da coleta agendada; se ele for feito, deve usar os mesmos nomes de variável do script existente.
+>
+> **Não faça `logout` no AppEEARS:** a API devolve o mesmo token a todas as sessões da conta, e um `POST /logout` invalida esse token para todo mundo (outros scripts passam a receber 403). Confirmado em 14/11/2026.
 
 ## Resumo
 

@@ -148,9 +148,9 @@ Fonte: Field Shift, motor de análise (análise multicritério).
 
 ## Graus-dia e janela de plantio
 
-Graus-dia é uma forma de medir o calor acumulado que a planta recebe até fechar o ciclo. Cada cultura tem uma temperatura base, abaixo da qual ela praticamente para de crescer: 10 °C para o milho e a soja, 0 °C para o trigo, por exemplo. Cada dia mais quente que essa base soma graus-dia. O Field Shift soma os graus-dia com a temperatura do NASA POWER para saber se uma cultura consegue fechar o ciclo dentro da janela livre do campo.
+Graus-dia é uma forma de medir o calor acumulado que a planta recebe até fechar o ciclo. Cada cultura tem uma temperatura base, abaixo da qual ela praticamente para de crescer: 10 °C para o milho e a soja, 0 °C para o trigo, por exemplo. A conta de cada dia é a temperatura média do dia menos a temperatura base; se der negativo, conta zero. O Field Shift soma os graus-dia com a temperatura do NASA POWER e compara com quanto cada cultura precisa: o milho, por exemplo, precisa de 1.500 a 1.900 graus-dia. Nas plantas de cobertura, a conta vai até o corte na floração, e não até o grão.
 
-Por exemplo: se o campo fica vazio de abril a julho, o app verifica se uma planta de cobertura ou uma safrinha consegue crescer nesse tempo com o frio daquela época. Se não fecha o ciclo, a estratégia é descartada antes da comparação.
+Por exemplo: se o campo fica vazio de abril a julho, o app verifica se uma planta de cobertura ou uma safrinha consegue crescer nesse tempo com o frio daquela época. Se a soma ficar abaixo de 90% do mínimo da cultura, a estratégia é descartada antes da comparação; entre 90% e 100%, ela fica marcada como "no limite", para conferir no local.
 
 A janela de plantio também considera o risco de geada e de falta de chuva nas fases sensíveis, e os dados do ZARC, o zoneamento de risco climático do Ministério da Agricultura, quando disponíveis. A conta de graus-dia é feita pelo clima da região; variedades precoces ou tardias podem mudar o resultado, por isso o produtor confirma as datas.
 
