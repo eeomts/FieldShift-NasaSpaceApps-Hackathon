@@ -166,6 +166,7 @@ Cada fonte passa pelos mesmos quatro passos: baixar e guardar o bruto intacto, l
 | `perene` | false | Separa o caso do café |
 | `ciclo_dias_min`, `ciclo_dias_max` | 100, 130 | Encaixe no calendário |
 | `temp_base_c` | 10 | **Graus-dia** do ciclo (filtro do motor) |
+| `graus_dia_ciclo_min`, `graus_dia_ciclo_max` | 1600, 2050 | Exigência de graus-dia da semeadura à maturação (ou ao manejo, nas coberturas), com a `temp_base_c` da linha e sem teto; a cultura que não alcança o mínimo na janela é eliminada, entre mínimo e máximo é "no limite" |
 | `kc_inicial`, `kc_medio`, `kc_final` | valores da FAO-56 | Demanda de água: ETc = Kc × ET0 |
 | `profundidade_raiz_m` | 1,0 | Tamanho do "balde" do balanço hídrico |
 | `agua_ciclo_mm_min`, `agua_ciclo_mm_max` | 450, 700 | Filtro "precisa de mais água do que há" |
@@ -336,7 +337,7 @@ Nenhuma fonte sozinha responde à pergunta do produtor; cada indicador da ferram
 | Rotação provável | NDVI (picos por ano), PAM (culturas do município) | Um pico = safra única; dois picos = safra e safrinha; amplitude baixa = pasto ou perene; a PAM diz quais culturas são plausíveis | Conferir a rotação informada |
 | Sensibilidade à seca | PAM (anomalia de rendimento), POWER (déficit nos meses críticos) | Correlação entre quebras de rendimento e déficit hídrico dentro da janela da cultura | Evidência no cartão |
 | Relevância da cultura | PAM, ZARC, entrada do produtor | Cultura zoneada, com área no município e com mercado para o produtor | Filtro das alternativas |
-| Graus-dia na janela | POWER (Tmed diária), base de culturas (`temp_base_c`, ciclo), ZARC (janela) | Soma dos graus-dia do plantio ao fim do ciclo; a cultura que não completa o ciclo na janela é eliminada | Filtro das alternativas |
+| Graus-dia na janela | POWER (Tmed diária), base de culturas (`temp_base_c`, `graus_dia_ciclo_min/max`), ZARC (janela) | Soma dos graus-dia do plantio ao fim do ciclo; a cultura que não completa o ciclo na janela é eliminada | Filtro das alternativas |
 | Evidência de renda | PAM (valor por hectare, área no município) | Valor deflacionado por hectare e presença da cultura na microrregião | Critério renda |
 | Nitrogênio, forragem, raiz | Base de culturas | Atributos fixos da cultura | Notas por critério |
 
