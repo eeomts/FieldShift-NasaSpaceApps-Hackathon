@@ -22,12 +22,14 @@ CAMPOS_NUMERICOS = (
     "ciclo_dias_min", "ciclo_dias_max", "graus_dia_ciclo_min", "graus_dia_ciclo_max",
     "temp_base_c", "temp_otima_min_c", "temp_otima_max_c", "tmax_critica_c",
     "agua_ciclo_mm_min", "agua_ciclo_mm_max", "kc_inicial", "kc_medio", "kc_final", "profundidade_raiz_m",
+    "tmin_critica_c", "fase_frio_inicio_frac", "fase_frio_fim_frac",
 )  # fmt: skip
+CAMPOS_INTEIROS = ("tmin_dias_seguidos",)
 CAMPOS_BOOLEANOS = ("perene", "sensivel_geada", "fixa_nitrogenio", "raiz_profunda")
 CAMPOS_TEXTO = (
     "nome", "nome_cientifico", "familia_botanica", "cobertura_solo", "aporte_biomassa", "valor_forrageiro",
     "confianca_parametros", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
-    "tipo_manejo", "lacuna_informacao", "risco_revisao_local",
+    "tipo_manejo", "lacuna_informacao", "risco_revisao_local", "fase_sensivel_frio", "tmin_efeito",
 )  # fmt: skip
 CAMPOS_MES_DIA = ("semeadura_inicio", "semeadura_fim", "manejo_inicio", "manejo_fim")  # "MM-DD" no CSV
 CAMPOS_LISTA = ("tipos", "fontes", "estados_validos", "condicao_semeadura")  # separados por |
@@ -118,6 +120,13 @@ class CulturaMotor:
     faixa_palhada: FaixaPalhada | None = None  # regua.ms_palhada_t_ha
     arranjos: tuple[ArranjoRegional, ...] = ()  # regua.arranjos
     arranjo_aplicado: str | None = None  # nome do arranjo regional cujos números substituíram os da linha (regra 13)
+    # Dano por frio (regra 17): limiar da mínima do ar, fase do ciclo, dias seguidos e efeito. O arranjo regional não mexe nisto.
+    tmin_critica_c: float | None = None
+    fase_sensivel_frio: str | None = None  # emergencia | vegetativo | floracao | enchimento_grao | ciclo_todo
+    fase_frio_inicio_frac: float | None = None  # 0 a 1, fração do ciclo
+    fase_frio_fim_frac: float | None = None
+    tmin_dias_seguidos: int | None = None  # vazio = 1 dia
+    tmin_efeito: str | None = None  # elimina | aviso; vazio = elimina
     extras: dict[str, str] = field(default_factory=dict, compare=False)  # colunas novas do CSV, sem tipo
 
     def tem_tipo(self, tipo: str) -> bool:
@@ -200,6 +209,11 @@ def _numero(v: str | None) -> float | None:
     return None if v is None else float(v.replace(",", "."))
 
 
+def _inteiro(v: str | None) -> int | None:
+    n = _numero(v)
+    return None if n is None else int(n)
+
+
 def _booleano(v: str | None) -> bool | None:
     v = (_texto(v) or "").lower()
     return {"true": True, "false": False}.get(v)
@@ -274,10 +288,11 @@ def _campos_da_regua(regua: dict[str, Any], contexto: str) -> dict[str, Any]:
 
 
 def _linha_para_cultura(linha: dict[str, str], pais: str, regua: dict[str, Any] | None = None) -> CulturaMotor:
-    conhecidas = {"id", *CAMPOS_LISTA, *CAMPOS_MES_DIA, *CAMPOS_NUMERICOS, *CAMPOS_BOOLEANOS, *CAMPOS_TEXTO}
+    conhecidas = {"id", *CAMPOS_LISTA, *CAMPOS_MES_DIA, *CAMPOS_NUMERICOS, *CAMPOS_INTEIROS, *CAMPOS_BOOLEANOS, *CAMPOS_TEXTO}
     id_ = linha["id"].strip()
     contexto = f"Cultura {id_} ({pais})"
     valores = {c: _numero(linha.get(c)) for c in CAMPOS_NUMERICOS}
+    valores |= {c: _inteiro(linha.get(c)) for c in CAMPOS_INTEIROS}
     valores |= {c: _booleano(linha.get(c)) for c in CAMPOS_BOOLEANOS}
     valores |= {c: _texto(linha.get(c)) for c in CAMPOS_TEXTO}
     valores |= {c: _mes_dia(linha.get(c), f"{contexto}, {c}") for c in CAMPOS_MES_DIA}

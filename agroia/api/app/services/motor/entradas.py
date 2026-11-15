@@ -5,7 +5,7 @@ from typing import Protocol
 
 from app.core.erros import ErroDeNegocio
 from app.models import Fazenda
-from app.services.clima.agregacao import LinhaMensal
+from app.services.clima.agregacao import LinhaMensal, SerieDoAno
 from app.services.clima.clima_service import ClimaService, media_por_mes
 from app.services.clima.limiares import BASE_FIM, BASE_INICIO
 from app.services.motor.catalogo import CulturaMotor, catalogo_do_pais, cultura_no_estado, equipamentos_por_cultura
@@ -33,18 +33,16 @@ class ClimaDoLocal:
     dias_chuva_forte: dict[int, float | None]  # média de dias por ano
     geada_por_ano: dict[int, dict[int, int | None]]  # ano -> mês -> dias de geada (1991–2020)
     gd_por_tb_ano: dict[int, dict[int, dict[str, float]]]  # ano -> mês -> Tb inteira ("0".."20") -> GD; 2001–2021, só mês completo
-    tmax_absoluta_por_ano: dict[int, dict[int, float | None]] = field(default_factory=dict)  # ano -> mês -> máxima do mês °C (1991–2020)
+    serie_diaria: dict[int, SerieDoAno] = field(default_factory=dict)  # ano -> Tmin/Tmax de cada dia (1991–2021, o último fecha safras que cruzam o ano)
 
 
-def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str) -> ClimaDoLocal:
-    """Monta o clima a partir das linhas (ano, mês) da célula: climatologia, geada e máxima do mês por ano e GD mensal por Tb de cada ano."""
+def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str, series: dict[int, SerieDoAno] | None = None) -> ClimaDoLocal:
+    """Monta o clima a partir das linhas (ano, mês) da célula: climatologia, geada por ano, GD mensal por Tb de cada ano e a série diária."""
     meses = {m.mes: m for m in media_por_mes(linhas)}
     base = [l for l in linhas if BASE_INICIO <= l.ano <= BASE_FIM]
     geada: dict[int, dict[int, int | None]] = {}
-    tmax: dict[int, dict[int, float | None]] = {}
     for l in base:
         geada.setdefault(l.ano, {})[l.mes] = l.dias_geada
-        tmax.setdefault(l.ano, {})[l.mes] = l.tmax_absoluta_c
     gd: dict[int, dict[int, dict[str, float]]] = {}
     for l in linhas:
         # o ano seguinte ao fim entra para fechar a safra que atravessa o ano; {} e None: mês sem temperatura completa
@@ -58,7 +56,7 @@ def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str) -> Clim
         dias_chuva_forte={m: meses[m].dias_chuva_forte for m in range(1, 13)},
         geada_por_ano=geada,
         gd_por_tb_ano=gd,
-        tmax_absoluta_por_ano=tmax,
+        serie_diaria={a: x for a, x in (series or {}).items() if BASE_INICIO <= a <= BASE_FIM + 1},
     )
 
 
@@ -79,7 +77,7 @@ class ClimaDoServico:
     def do_local(self, lat: float, lon: float) -> ClimaDoLocal:
         celula = self.clima.obter(lat, lon)
         climatologia = self.clima.climatologia(celula)
-        return clima_de_linhas(self.clima.linhas(celula), climatologia.fonte, climatologia.periodo)
+        return clima_de_linhas(self.clima.linhas(celula), climatologia.fonte, climatologia.periodo, self.clima.series_diarias(celula))
 
 
 @dataclass(frozen=True)

@@ -10,6 +10,7 @@ from app.services.clima.limiares import BASE_FIM, BASE_INICIO
 from app.services.motor.calendario import meses_do_terco_medio
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.entradas import ClimaDoLocal, EntradasMotor
+from app.services.motor.fases import anos_com_sequencia, meses_da_fase
 from app.services.motor.formatos import MESES, inteiro, num, pct
 from app.services.motor.hidrico import chuva_do_periodo, etc_mensal
 from app.services.motor.modelo import Alerta, ItemRotacao
@@ -17,7 +18,9 @@ from app.services.motor.parametros import (
     AGUA_ALERTA_ABAIXO,
     AGUA_ELIMINA_SUGESTAO_ABAIXO,
     AGUA_MUITO_ABAIXO,
-    CALOR_FASE_SENSIVEL,
+    CALOR_DIAS_SEGUIDOS,
+    CALOR_FASE_FIM_FRAC,
+    CALOR_FASE_INICIO_FRAC,
     CALOR_MAX_FRACAO_DE_ANOS,
     GD_ALERTA_ABAIXO,
     GD_ANO_FIM,
@@ -81,11 +84,6 @@ def _fracao_de_anos(meses: list[int], por_ano: dict[int, dict[int, Any]], conta:
 def fracao_de_anos_com_geada(meses: list[int], clima: ClimaDoLocal) -> float | None:
     """Parcela dos anos (com dado em todos os meses do período) em que algum mês teve dias de geada."""
     return _fracao_de_anos(meses, clima.geada_por_ano, lambda dias: dias >= GEADA_MIN_DIAS_NO_ANO)
-
-
-def fracao_de_anos_com_calor(meses: list[int], limite_c: float, clima: ClimaDoLocal) -> float | None:
-    """Parcela dos anos (com dado em todos os meses do período) em que a máxima de algum mês passou de `limite_c`."""
-    return _fracao_de_anos(meses, clima.tmax_absoluta_por_ano, lambda tmax: tmax > limite_c)
 
 
 def _equipamento(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
@@ -192,25 +190,62 @@ def _fase_sensivel(item: ItemRotacao, meses: list[int], modo: str) -> list[int]:
 
 
 def _calor(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
-    """Regra 11: só avisa; tmax_critica_c vazio = sem aviso e sem lacuna."""
+    """Regra 11 (revista): só avisa; tmax_critica_c vazio = sem aviso e sem lacuna. O ano conta com CALOR_DIAS_SEGUIDOS dias quentes seguidos."""
     limite = c.tmax_critica_c
     if limite is None:
         return
-    fase = _fase_sensivel(item, meses, CALOR_FASE_SENSIVEL)
-    fracao = fracao_de_anos_com_calor(fase, limite, e.clima)
-    if fracao is None:
-        lac.append(f"{c.nome}: sem dados de temperatura máxima do local para a floração, não checamos o risco de calor.")
-    elif fracao > CALOR_MAX_FRACAO_DE_ANOS:
+    if not e.clima.serie_diaria:
+        lac.append(f"{c.nome}: sem dados diários de temperatura máxima do local, não checamos o risco de calor.")
+        return
+    contam, com_dado = anos_com_sequencia(item, c, e.clima.serie_diaria, "tmax_c", CALOR_FASE_INICIO_FRAC, CALOR_FASE_FIM_FRAC, lambda t: t > limite, CALOR_DIAS_SEGUIDOS)
+    if com_dado < GD_MIN_SAFRAS:
+        lac.append(f"{c.nome}: sem anos suficientes de clima para checar o risco de calor.")
+        return
+    fracao = contam / com_dado
+    if fracao > CALOR_MAX_FRACAO_DE_ANOS:
         graus = num(limite, 0 if limite == int(limite) else 1)
-        fase_txt = "ao longo do ano" if item.perene else f"na floração ({_meses_a(fase)})"
-        achados.append(Achado("calor_floracao", f"{c.nome}: em {pct(fracao)} dos anos ({BASE_INICIO}–{BASE_FIM}) a temperatura passou de {graus} °C {fase_txt}; o calor nessa fase pode reduzir a produção.", False))
+        perene = item.perene or c.perene
+        onde = "ao longo do ano" if perene else f"na floração ({meses_da_fase(item, c, CALOR_FASE_INICIO_FRAC, CALOR_FASE_FIM_FRAC)})"
+        achados.append(Achado("calor_floracao", f"{c.nome}: em {pct(fracao)} dos anos ({BASE_INICIO}–{BASE_FIM}) a temperatura passou de {graus} °C por {CALOR_DIAS_SEGUIDOS} dias seguidos {onde}; o calor nessa fase pode reduzir a produção.", False))
 
 
-def _meses_a(fase: list[int]) -> str:
-    return MESES[fase[0] - 1] if len(fase) == 1 else f"{MESES[fase[0] - 1]} a {MESES[fase[-1] - 1]}"
+FASE_DO_FRIO = {
+    "emergencia": "na emergência",
+    "vegetativo": "no crescimento",
+    "floracao": "na floração",
+    "enchimento_grao": "no enchimento dos grãos",
+    "ciclo_todo": "durante o ciclo",
+}
+
+
+def _frio(c: CulturaMotor, item: ItemRotacao, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    """Regra 17: limiar da cultura só nos dias da fase sensível; o ano conta com tmin_dias_seguidos dias seguidos abaixo dele."""
+    limiar, seguidos = c.tmin_critica_c, c.tmin_dias_seguidos or 1
+    contam, com_dado = anos_com_sequencia(item, c, e.clima.serie_diaria, "tmin_c", c.fase_frio_inicio_frac, c.fase_frio_fim_frac, lambda t: t < limiar, seguidos)
+    if com_dado < GD_MIN_SAFRAS:
+        lac.append(f"{c.nome}: sem anos suficientes de clima para checar o frio.")
+        return
+    fracao = contam / com_dado
+    if fracao <= GEADA_MAX_FRACAO_DE_ANOS:
+        return
+    graus = num(limiar, 0 if limiar == int(limiar) else 1)
+    duracao = f" por {seguidos} dias seguidos" if seguidos > 1 else ""
+    if item.perene or c.perene:
+        onde = "ao longo do ano"
+    else:
+        fase = FASE_DO_FRIO.get(c.fase_sensivel_frio or "", "na fase sensível")
+        onde = f"{fase} ({meses_da_fase(item, c, c.fase_frio_inicio_frac, c.fase_frio_fim_frac)})"
+    codigo, dano = ("geada", "a geada") if limiar <= 0 else ("frio", "o frio")  # "geada" só quando o limiar é de geada
+    texto = f"{c.nome}: em {pct(fracao)} dos anos ({BASE_INICIO}–{BASE_FIM}) a mínima ficou abaixo de {graus} °C{duracao} {onde}; {dano} nessa fase tira produção."
+    achados.append(Achado(codigo, texto, c.tmin_efeito != "aviso"))  # efeito aviso (dano parcial) nunca elimina
 
 
 def _geada(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    if c.tmin_critica_c is not None:
+        if e.clima.serie_diaria and c.fase_frio_inicio_frac is not None and c.fase_frio_fim_frac is not None:
+            _frio(c, item, e, achados, lac)
+            return
+        lac.append(f"{c.nome}: sem dados diários de temperatura mínima do local ou sem a fase do frio na base: usamos o teste de geada por mês.")
     if not c.sensivel_geada:
         return
     fase = _fase_sensivel(item, meses, GEADA_FASE_SENSIVEL)

@@ -9,7 +9,7 @@ from app.services.clima.agregacao import LinhaMensal
 from app.services.motor.catalogo import ArranjoRegional, FaixaPalhada, catalogo_do_pais
 from app.services.motor.entradas import ClimaDoServico, clima_de_linhas, montar_entradas
 from app.services.motor.motor_service import analisar_entradas
-from motor_helpers import PLANO, clima, cultura, entradas, item
+from motor_helpers import PLANO, clima, cultura, entradas, item, serie_diaria
 
 # Fazenda de Rio Verde (GO): dentro da malha do IBGE
 LAT, LON = -17.644301, -51.080503
@@ -182,11 +182,13 @@ def test_clima_de_linhas_gd_por_ano_geada_por_ano_e_ignora_fora_da_base():
     todos = [{str(tb): float(max(0, 20 - tb)) for tb in range(21)}, {str(tb): float(max(0, 24 - tb)) for tb in range(21)}]
     linhas = [linha(1991, 1, todos[0], 0), linha(1992, 1, todos[1], 2), linha(1993, 1, {}, None), linha(2021, 1, todos[1], 9, chuva=999.0)]
     linhas += [linha(2001, 1, todos[0], 0), linha(2002, 1, {}, None), linha(2020, 12, todos[1], 0), linha(2021, 3, todos[0], 0), linha(2022, 1, todos[0], 0)]
-    c = clima_de_linhas(linhas, "fonte", "1991–2020")
+    series = serie_diaria(anos=range(1990, 2024))  # 1990 e 2022 em diante ficam fora: só 1991 a 2021 (2021 fecha a safra de 2020)
+    c = clima_de_linhas(linhas, "fonte", "1991–2020", series)
+    assert sorted(c.serie_diaria) == list(range(1991, 2022)) and c.serie_diaria[2020].tmin_c[0] == 15.0
+    assert clima_de_linhas(linhas, "fonte", "1991–2020").serie_diaria == {}  # sem série, vazio
     # GD só de 2001 em diante (o ano seguinte a 2020 fecha a safra que atravessa o ano); {} e 2022 ficam fora
     assert c.gd_por_tb_ano == {2001: {1: todos[0]}, 2020: {12: todos[1]}, 2021: {1: todos[1], 3: todos[0]}}
     assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}, 2001: {1: 0}, 2002: {1: None}, 2020: {12: 0}}  # 2021 está fora de 1991–2020
-    assert c.tmax_absoluta_por_ano == {a: {m: 35.0} for a, m in [(1991, 1), (1992, 1), (1993, 1), (2001, 1), (2002, 1), (2020, 12)]}  # máxima do mês, 1991–2020
     assert c.chuva_mm[1] == 100.0 and c.chuva_mm[2] is None and c.et0_mm[1] == 50.0 and c.dias_chuva_forte[1] == 2.0
 
 
@@ -204,8 +206,11 @@ def test_clima_do_servico_monta_do_servico_de_clima():
         def linhas(self, celula):
             return []
 
+        def series_diarias(self, celula):
+            return serie_diaria(anos=[2020, 2022])  # 2022 fica fora da janela de 1991 a 2021
+
     c = ClimaDoServico(ServicoFalso()).do_local(LAT, LON)
-    assert c.fonte == "NASA POWER, média" and c.gd_por_tb_ano == {} and c.chuva_mm[1] is None
+    assert c.fonte == "NASA POWER, média" and c.gd_por_tb_ano == {} and c.chuva_mm[1] is None and sorted(c.serie_diaria) == [2020]
 
 
 # --- análise

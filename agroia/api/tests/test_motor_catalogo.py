@@ -331,3 +331,23 @@ def test_dados_reais_nao_repetem_estado_entre_arranjos_regionais():
         for c in catalogo_do_pais(pais).values():
             estados = [e for a in c.arranjos_regionais for e in a.estados]
             assert len(estados) == len(set(estados)), c.id
+
+
+# --- regra 17: campos do dano por frio lidos do CSV (saem de extras)
+def test_campos_do_frio_do_csv_real_sao_tipados_e_nao_ficam_em_extras():
+    br, us = catalogo_do_pais("BR"), catalogo_do_pais("US")
+    trigo = br["trigo"]
+    assert (trigo.tmin_critica_c, trigo.fase_sensivel_frio, trigo.fase_frio_inicio_frac, trigo.fase_frio_fim_frac) == (1.0, "floracao", 0.59, 0.73)
+    assert trigo.tmin_dias_seguidos is None and trigo.tmin_efeito is None  # vazio = 1 dia e elimina
+    arroz = br["arroz"]
+    assert arroz.tmin_critica_c == 15.0 and arroz.tmin_dias_seguidos == 3 and isinstance(arroz.tmin_dias_seguidos, int) and arroz.tmin_efeito == "aviso"
+    assert us["arroz_irrigado"].tmin_dias_seguidos == 2 and br["crotalaria"].fase_sensivel_frio == "ciclo_todo"
+    assert br["mandioca"].tmin_critica_c is None and br["mandioca"].fase_frio_inicio_frac is None  # vazio = não sei
+    for c in (*br.values(), *us.values()):
+        assert not {"tmin_critica_c", "fase_sensivel_frio", "fase_frio_inicio_frac", "fase_frio_fim_frac", "tmin_dias_seguidos", "tmin_efeito"} & set(c.extras)
+
+
+def test_arranjo_regional_nao_mexe_nos_campos_do_frio():
+    erv = catalogo_do_pais("US")["ervilhaca"]
+    ga = cultura_no_estado(replace(erv, tmin_critica_c=-8.0, fase_sensivel_frio="ciclo_todo"), "GA")
+    assert ga.arranjo_aplicado == "sudeste" and ga.tmin_critica_c == -8.0 and ga.fase_sensivel_frio == "ciclo_todo"

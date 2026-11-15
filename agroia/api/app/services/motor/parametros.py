@@ -30,9 +30,15 @@ GEADA_MAX_FRACAO_DE_ANOS = 0.30
 GEADA_MIN_DIAS_NO_ANO = 1  # o ano conta se algum mês da fase sensível teve pelo menos 1 dia de geada
 GEADA_FASE_SENSIVEL = "terco_medio"  # ok como reserva para cultura sem tmin_critica_c (FAO Frost protection, Tab. 4.5; FAO-56 cap. 6); a regra 17 substitui quando houver limiar
 
-# Calor na fase sensível (regra 11; validado com o Yury em 15/11): só avisa, nunca elimina
-CALOR_MAX_FRACAO_DE_ANOS = 0.30  # acima de 30 % dos anos com a máxima do mês acima de tmax_critica_c
-CALOR_FASE_SENSIVEL = "terco_medio"  # a mesma fase da geada
+# Fases do ciclo em dias (regra 17 do README do catálogo; decisões do usuário em 15/11)
+DIA_DA_SEMEADURA = 15  # a semeadura é no dia 15 do mês de início do item
+# Frio por cultura (regra 17): com tmin_critica_c, a fase e os dias seguidos vêm do catálogo; > 30 % dos anos = GEADA_MAX_FRACAO_DE_ANOS
+
+# Calor na fase sensível (regra 11 revista; decisão do usuário em 15/11, validar com o Yury): só avisa, nunca elimina
+CALOR_MAX_FRACAO_DE_ANOS = 0.30  # acima de 30 % dos anos com a sequência de dias quentes
+CALOR_DIAS_SEGUIDOS = 3  # o ano conta com 3 dias seguidos de máxima acima de tmax_critica_c
+CALOR_FASE_INICIO_FRAC = 1 / 3  # fase = terço do meio do ciclo, em dias a partir da semeadura (perene: o ano todo)
+CALOR_FASE_FIM_FRAC = 2 / 3
 
 # Pesos das prioridades (decisão do usuário, 15/11)
 PESOS_PRIORIDADE = (0.5, 0.3, 0.2)  # 1ª, 2ª e 3ª escolha, reescalados para sobrar PESO_NAO_ESCOLHIDO aos demais
