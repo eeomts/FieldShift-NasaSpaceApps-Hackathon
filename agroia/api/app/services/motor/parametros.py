@@ -25,6 +25,10 @@ GEADA_MAX_FRACAO_DE_ANOS = 0.30
 GEADA_MIN_DIAS_NO_ANO = 1  # o ano conta se algum mês da fase sensível teve pelo menos 1 dia de geada
 GEADA_FASE_SENSIVEL = "terco_medio"  # proposta, validar com o Yury (floração): o terço do meio do ciclo, onde o Kc é médio
 
+# Calor na fase sensível (regra 11; validado com o Yury em 15/11): só avisa, nunca elimina
+CALOR_MAX_FRACAO_DE_ANOS = 0.30  # acima de 30 % dos anos com a máxima do mês acima de tmax_critica_c
+CALOR_FASE_SENSIVEL = "terco_medio"  # a mesma fase da geada
+
 # Pesos das prioridades (decisão do usuário, 15/11)
 PESOS_PRIORIDADE = (0.5, 0.3, 0.2)  # 1ª, 2ª e 3ª escolha, reescalados para sobrar PESO_NAO_ESCOLHIDO aos demais
 PESO_NAO_ESCOLHIDO = 0.05

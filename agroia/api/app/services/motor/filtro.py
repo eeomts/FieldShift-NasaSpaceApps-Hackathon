@@ -1,10 +1,12 @@
-"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada e arroz irrigado eliminam; a água só avisa. Cada um com o motivo."""
-from collections.abc import Iterable
+"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada e arroz irrigado eliminam; água e calor só avisam. Cada um com o motivo."""
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
+from typing import Any
 
 from app.services import catalogo as base
 from app.services.clima.agregacao import percentil
 from app.services.clima.graus_dia import gd_para_tb
+from app.services.clima.limiares import BASE_FIM, BASE_INICIO
 from app.services.motor.calendario import meses_do_terco_medio
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.entradas import ClimaDoLocal, EntradasMotor
@@ -14,6 +16,8 @@ from app.services.motor.modelo import Alerta, ItemRotacao
 from app.services.motor.parametros import (
     AGUA_ALERTA_ABAIXO,
     AGUA_MUITO_ABAIXO,
+    CALOR_FASE_SENSIVEL,
+    CALOR_MAX_FRACAO_DE_ANOS,
     GD_ALERTA_ABAIXO,
     GD_ANO_FIM,
     GD_ANO_INICIO,
@@ -64,13 +68,22 @@ def gd_das_safras(meses: list[int], tb: float, clima: ClimaDoLocal) -> list[floa
     return safras
 
 
-def fracao_de_anos_com_geada(meses: list[int], clima: ClimaDoLocal) -> float | None:
-    """Parcela dos anos (com dado em todos os meses do período) em que algum mês teve dias de geada."""
-    anos = [a for a, por_mes in clima.geada_por_ano.items() if all(por_mes.get(m) is not None for m in meses)]
+def _fracao_de_anos(meses: list[int], por_ano: dict[int, dict[int, Any]], conta: Callable[[Any], bool]) -> float | None:
+    """Parcela dos anos (com dado em todos os meses do período) em que algum mês satisfaz `conta`."""
+    anos = [a for a, por_mes in por_ano.items() if all(por_mes.get(m) is not None for m in meses)]
     if not anos or not meses:
         return None
-    com_geada = sum(any(clima.geada_por_ano[a][m] >= GEADA_MIN_DIAS_NO_ANO for m in meses) for a in anos)
-    return com_geada / len(anos)
+    return sum(any(conta(por_ano[a][m]) for m in meses) for a in anos) / len(anos)
+
+
+def fracao_de_anos_com_geada(meses: list[int], clima: ClimaDoLocal) -> float | None:
+    """Parcela dos anos (com dado em todos os meses do período) em que algum mês teve dias de geada."""
+    return _fracao_de_anos(meses, clima.geada_por_ano, lambda dias: dias >= GEADA_MIN_DIAS_NO_ANO)
+
+
+def fracao_de_anos_com_calor(meses: list[int], limite_c: float, clima: ClimaDoLocal) -> float | None:
+    """Parcela dos anos (com dado em todos os meses do período) em que a máxima de algum mês passou de `limite_c`."""
+    return _fracao_de_anos(meses, clima.tmax_absoluta_por_ano, lambda tmax: tmax > limite_c)
 
 
 def _equipamento(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
@@ -163,11 +176,34 @@ def _agua(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor
     achados.append(Achado("agua_no_limite", f"{c.nome}: água no limite, {resumo}{deficit}{complemento}.", False))
 
 
+def _fase_sensivel(item: ItemRotacao, meses: list[int], modo: str) -> list[int]:
+    """Fase sensível = floração: o terço do meio do ciclo (perene: o ano todo)."""
+    return meses_do_terco_medio(meses) if modo == "terco_medio" and not item.perene else meses
+
+
+def _calor(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    """Regra 11: só avisa; tmax_critica_c vazio = sem aviso e sem lacuna."""
+    limite = c.tmax_critica_c
+    if limite is None:
+        return
+    fase = _fase_sensivel(item, meses, CALOR_FASE_SENSIVEL)
+    fracao = fracao_de_anos_com_calor(fase, limite, e.clima)
+    if fracao is None:
+        lac.append(f"{c.nome}: sem dados de temperatura máxima do local para a floração, não checamos o risco de calor.")
+    elif fracao > CALOR_MAX_FRACAO_DE_ANOS:
+        graus = num(limite, 0 if limite == int(limite) else 1)
+        fase_txt = "ao longo do ano" if item.perene else f"na floração ({_meses_a(fase)})"
+        achados.append(Achado("calor_floracao", f"{c.nome}: em {pct(fracao)} dos anos ({BASE_INICIO}–{BASE_FIM}) a temperatura passou de {graus} °C {fase_txt}; o calor nessa fase pode reduzir a produção.", False))
+
+
+def _meses_a(fase: list[int]) -> str:
+    return MESES[fase[0] - 1] if len(fase) == 1 else f"{MESES[fase[0] - 1]} a {MESES[fase[-1] - 1]}"
+
+
 def _geada(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
     if not c.sensivel_geada:
         return
-    # fase sensível = floração: o terço do meio do ciclo (perene: o ano todo)
-    fase = meses_do_terco_medio(meses) if GEADA_FASE_SENSIVEL == "terco_medio" and not item.perene else meses
+    fase = _fase_sensivel(item, meses, GEADA_FASE_SENSIVEL)
     fracao = fracao_de_anos_com_geada(fase, e.clima)
     if fracao is None:
         lac.append(f"{c.nome}: sem dados de geada do local para a floração, não checamos o risco de geada.")
@@ -192,6 +228,7 @@ def achados_do_item(item: ItemRotacao, c: CulturaMotor, e: EntradasMotor, da_atu
     _graus_dia(c, meses, e, achados, lac)
     _agua(c, item, meses, e, achados, lac)
     _geada(c, item, meses, e, achados, lac)
+    _calor(c, item, meses, e, achados, lac)
     return achados, lac
 
 

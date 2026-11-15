@@ -32,10 +32,11 @@ def cultura(id: str = "c", **mudancas) -> CulturaMotor:
 ANOS_GD = range(2001, 2022)  # 2001–2020 mais 2021, que fecha a safra de 2020 que atravessa o ano
 
 
-def clima(chuva=100.0, et0=100.0, tmed=25.0, forte=1.0, geada: dict[int, int] | None = None, tmed_por_ano: dict | None = None) -> ClimaDoLocal:
+def clima(chuva=100.0, et0=100.0, tmed=25.0, forte=1.0, geada: dict[int, int] | None = None, tmed_por_ano: dict | None = None, calor: dict[int, int] | None = None) -> ClimaDoLocal:
     """Cada argumento aceita um número (todos os meses) ou uma lista de 12.
 
     `geada` = {mês: nº de anos (dos 30) com dia de geada nesse mês}. GD do mês = (tmed - Tb) x 30, sem teto.
+    `calor` = {mês: nº de anos (dos 30) em que a máxima do mês fica em 45 °C; nos demais anos e meses é 30 °C}.
     `tmed_por_ano` = {ano: tmed (número ou lista de 12)} troca a temperatura desse ano; None no lugar do ano tira o ano do GD.
     """
 
@@ -45,6 +46,7 @@ def clima(chuva=100.0, et0=100.0, tmed=25.0, forte=1.0, geada: dict[int, int] | 
     ch, e0, tm, fo = doze(chuva), doze(et0), doze(tmed), doze(forte)
     geada = geada or {}
     por_ano = tmed_por_ano or {}
+    calor = calor or {}
 
     def gd_do_ano(ano):
         t = doze(por_ano[ano]) if ano in por_ano else tm
@@ -57,6 +59,7 @@ def clima(chuva=100.0, et0=100.0, tmed=25.0, forte=1.0, geada: dict[int, int] | 
         et0_mm={m: e0[m - 1] for m in range(1, 13)},
         dias_chuva_forte={m: fo[m - 1] for m in range(1, 13)},
         geada_por_ano={a: {m: int(i < geada.get(m, 0)) for m in range(1, 13)} for i, a in enumerate(ANOS)},
+        tmax_absoluta_por_ano={a: {m: 45.0 if i < calor.get(m, 0) else 30.0 for m in range(1, 13)} for i, a in enumerate(ANOS)},
         gd_por_tb_ano={a: gd_do_ano(a) for a in ANOS_GD if por_ano.get(a, 0) is not None},
     )
 

@@ -1,5 +1,5 @@
 """Filtro: cada regra elimina com o motivo certo; a atual nunca é eliminada."""
-from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada, gd_das_safras
+from app.services.motor.filtro import avaliar, fracao_de_anos_com_calor, fracao_de_anos_com_geada, gd_das_safras
 from motor_helpers import clima, cultura, entradas, item
 
 RESP = (10, 12)  # outubro a dezembro: 3 meses
@@ -203,6 +203,52 @@ def test_perene_forrageira_nao_tem_filtro_de_graus_dia_nem_lacuna():
     assert not r.eliminada and not any("graus-dia" in l or "calor" in l for l in r.lacunas) and not r.alertas
     com_minimo = cultura("alfafa", perene=True, tipos=("comercial", "forrageira"), graus_dia_ciclo_min=9000)
     assert not avaliar([it], entradas([it], [com_minimo], clima=clima(tmed=FRIO)), True).eliminada
+
+
+# --- calor na fase sensível (regra 11): período out-dez, floração = novembro; só avisa
+def test_calor_acima_de_30_por_cento_dos_anos_avisa_e_nao_elimina():
+    c = cultura("milho", tmax_critica_c=33)
+    r = rodar(c, e_com(c, clima=clima(calor={11: 12})))  # 12 de 30 anos = 40 %
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["calor_floracao"]
+    assert r.alertas[0].texto == "Milho: em 40% dos anos (1991–2020) a temperatura passou de 33 °C na floração (nov); o calor nessa fase pode reduzir a produção."
+    assert not avaliar([item("milho", *RESP)], e_com(c, clima=clima(calor={11: 12})), False).eliminada  # na atual também só avisa
+
+
+def test_calor_em_30_por_cento_exato_nao_avisa():
+    c = cultura("milho", tmax_critica_c=33)
+    assert not rodar(c, e_com(c, clima=clima(calor={11: 9}))).alertas  # 9 de 30 = 30 %: não passa de 30 %
+
+
+def test_calor_fora_da_floracao_nao_conta_e_fase_de_varios_meses_vira_intervalo():
+    c = cultura("milho", tmax_critica_c=33.5)
+    assert not rodar(c, e_com(c, clima=clima(calor={10: 30, 12: 30}))).alertas  # calor só no começo e no fim do ciclo
+    it = item("milho", 6, 10)  # 5 meses: a floração toca jul, ago e set
+    r = avaliar([it], entradas([it], [c], clima=clima(calor={8: 30})), True)
+    assert "33,5 °C na floração (jul a set)" in r.alertas[0].texto
+
+
+def test_tmax_critica_vazia_nao_avisa_nem_cria_lacuna():
+    c = cultura("c", tmax_critica_c=None)
+    r = rodar(c, e_com(c, clima=clima(calor={10: 30, 11: 30, 12: 30})))
+    assert not r.alertas and not r.eliminada and not any("calor" in l for l in r.lacunas)
+
+
+def test_calor_em_perene_olha_o_ano_todo():
+    p = cultura("alfafa", perene=True, tmax_critica_c=33, graus_dia_ciclo_min=None)
+    it = item("alfafa", 1, 12, perene=True)
+    r = avaliar([it], entradas([it], [p], clima=clima(calor={7: 15})), True)  # calor em julho, metade dos anos
+    assert [a.codigo for a in r.alertas] == ["calor_floracao"] and "ao longo do ano" in r.alertas[0].texto
+
+
+def test_ano_com_mes_sem_dado_de_tmax_fica_de_fora_e_sem_dado_nenhum_vira_lacuna():
+    c = cultura("milho", tmax_critica_c=33)
+    cl = clima(calor={11: 12})  # 12 de 30 anos quentes
+    for ano in list(cl.tmax_absoluta_por_ano)[12:]:  # os 18 anos sem calor ficam sem dado em novembro: sobram os 12 quentes
+        cl.tmax_absoluta_por_ano[ano][11] = None
+    assert fracao_de_anos_com_calor([11], 33, cl) == 1.0
+    cl.tmax_absoluta_por_ano = {}
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.alertas and any("temperatura máxima" in l for l in r.lacunas)
 
 
 # --- água: ET0 de 100 mm/mês e Kc 1,0 dão ETc de 300 mm nos 3 meses do período

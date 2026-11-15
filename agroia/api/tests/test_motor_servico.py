@@ -131,6 +131,7 @@ def test_clima_de_linhas_gd_por_ano_geada_por_ano_e_ignora_fora_da_base():
     # GD só de 2001 em diante (o ano seguinte a 2020 fecha a safra que atravessa o ano); {} e 2022 ficam fora
     assert c.gd_por_tb_ano == {2001: {1: todos[0]}, 2020: {12: todos[1]}, 2021: {1: todos[1], 3: todos[0]}}
     assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}, 2001: {1: 0}, 2002: {1: None}, 2020: {12: 0}}  # 2021 está fora de 1991–2020
+    assert c.tmax_absoluta_por_ano == {a: {m: 35.0} for a, m in [(1991, 1), (1992, 1), (1993, 1), (2001, 1), (2002, 1), (2020, 12)]}  # máxima do mês, 1991–2020
     assert c.chuva_mm[1] == 100.0 and c.chuva_mm[2] is None and c.et0_mm[1] == 50.0 and c.dias_chuva_forte[1] == 2.0
 
 
