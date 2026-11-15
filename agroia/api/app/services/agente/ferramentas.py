@@ -32,7 +32,7 @@ MAX_FONTES_CULTURA = 3
 MAX_CHARS_FONTE = 150
 MAX_TRECHOS_CONHECIMENTO = 3  # os mais bem ordenados da busca: vão ao modelo e às fontes
 FONTE_FICHA = "Respostas da sua fazenda"
-FONTE_ANALISE = "Comparação de rotações do AgroIA"
+FONTE_ANALISE = "Comparação de rotações do AgroAI"
 MAX_MOTIVOS_ELIMINADAS = 3
 _CENTRO_DA_CELULA = re.compile(r",? centrada em [-\d., ]+")  # a coordenada da célula não vai ao modelo
 
@@ -61,7 +61,7 @@ DECLARACOES = [
             ),
             _declaracao(
                 "info_cultura",
-                "Parâmetros agronômicos de uma cultura da base do AgroIA: ciclo, temperaturas, sensibilidade à geada, "
+                "Parâmetros agronômicos de uma cultura da base do AgroAI: ciclo, temperaturas, sensibilidade à geada, "
                 "água, Kc, raiz. Se a cultura não estiver na base, avisa. Se o nome for ambíguo (ex.: só arroz ou só batata), "
                 "devolve as opções para perguntar ao produtor, sem parâmetros.",
                 {"cultura": types.Schema(type="STRING", description="Nome da cultura como o produtor disse (ex.: sorgo, feijão, macaxeira).")},
@@ -69,7 +69,7 @@ DECLARACOES = [
             ),
             _declaracao(
                 "buscar_conhecimento",
-                "Busca na base de conhecimento do AgroIA (glossário, metodologia, culturas, satélites) para explicar conceitos.",
+                "Busca na base de conhecimento do AgroAI (glossário, metodologia, culturas, satélites) para explicar conceitos.",
                 {
                     "consulta": types.Schema(type="STRING", description="O que buscar, em termos técnicos e claros (reescreva a pergunta)."),
                     "expressao_original": types.Schema(type="STRING", description="As palavras do produtor, se forem regionais ou informais (ex.: veranico, terra pelada)."),
@@ -85,7 +85,7 @@ DECLARACOES = [
             ),
             _declaracao(
                 "comparar_estrategias",
-                "Compara a rotação atual da fazenda com as 2 melhores alternativas que o AgroIA calculou (água, terra, erosão, pragas, "
+                "Compara a rotação atual da fazenda com as 2 melhores alternativas que o AgroAI calculou (água, terra, erosão, pragas, "
                 "renda e animais, com o peso das prioridades do produtor), com o 'por que' e o 'onde piora'. Usa a ficha e o clima da fazenda. Sem parâmetros.",
             ),
         ]
@@ -224,7 +224,7 @@ class Ferramentas:
             return Resultado(
                 {
                     "encontrada": False,
-                    "mensagem": f"A cultura '{str(cultura)[:60]}' não está na base do AgroIA, então não há parâmetros. "
+                    "mensagem": f"A cultura '{str(cultura)[:60]}' não está na base do AgroAI, então não há parâmetros. "
                     "Diga isso ao produtor; não invente valores.",
                     "culturas_na_base": [catalogo.nome_exibicao(c).lower() for c in itens.values()],
                 }
@@ -274,7 +274,7 @@ class Ferramentas:
         trechos = self.busca().buscar(consulta, expressao_original, conversa_id=self.conversa_id)[:MAX_TRECHOS_CONHECIMENTO]
         if not trechos:
             return Resultado(
-                {"trechos": [], "mensagem": "A base de conhecimento do AgroIA não tem nada sobre isso. Diga ao produtor que não encontrou; não invente."}
+                {"trechos": [], "mensagem": "A base de conhecimento do AgroAI não tem nada sobre isso. Diga ao produtor que não encontrou; não invente."}
             )
         dados = {"trechos": [{"documento": t.documento_titulo, "secao": t.secao, "texto": t.conteudo} for t in trechos]}
         fontes = [Fonte(tipo="conhecimento", titulo=t.documento_titulo, detalhe=t.secao) for t in trechos]
@@ -413,7 +413,7 @@ def _nome_da_cultura(cultura_id: str | None, texto: str) -> str:
 def _analise_compacta(a: Analise) -> dict:
     motivos = Counter(m for e in a.eliminadas for m in e.motivos).most_common(MAX_MOTIVOS_ELIMINADAS)
     return {
-        "aviso": "Comparação calculada pelo AgroIA, não é decisão: o produtor confirma com o técnico e a cooperativa. Notas de 0 a 100; use só estes números.",
+        "aviso": "Comparação calculada pelo AgroAI, não é decisão: o produtor confirma com o técnico e a cooperativa. Notas de 0 a 100; use só estes números.",
         "atual": _estrategia_compacta(a.atual),
         "melhores": [_estrategia_compacta(r) for r in a.melhores],
         "atual_e_a_melhor": a.atual_e_a_melhor,

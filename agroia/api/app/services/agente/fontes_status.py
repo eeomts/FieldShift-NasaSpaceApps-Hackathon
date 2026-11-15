@@ -13,13 +13,13 @@ FONTES: list[FonteStatus] = [
     FonteStatus(
         "NASA POWER",
         "clima mensal da célula de ~50 km desde 1991: chuva, temperatura, geada, calor, chuva forte e sequência seca; "
-        "a evapotranspiração (ET0) é calculada pelo AgroIA com o método FAO-56",
+        "a evapotranspiração (ET0) é calculada pelo AgroAI com o método FAO-56",
         True,
     ),
-    FonteStatus("base de culturas do AgroIA", "parâmetros de 17 culturas no Brasil, com fontes", True),
-    FonteStatus("textos da base de conhecimento do AgroIA", "explicações de conceitos", True),
+    FonteStatus("base de culturas do AgroAI", "parâmetros de 17 culturas no Brasil, com fontes", True),
+    FonteStatus("textos da base de conhecimento do AgroAI", "explicações de conceitos", True),
     FonteStatus("respostas do produtor no cadastro da fazenda", "ficha da fazenda", True),
-    FonteStatus("comparação de rotações do AgroIA", "notas de água, terra, erosão, pragas, renda e animais para a rotação atual e alternativas", True),
+    FonteStatus("comparação de rotações do AgroAI", "notas de água, terra, erosão, pragas, renda e animais para a rotação atual e alternativas", True),
     FonteStatus("SRTM", "declividade do terreno, usada na comparação de rotações", True),
     FonteStatus("GPM IMERG", "chuva de satélite de ~10 km", False),
     FonteStatus("SoilGrids", "solo por ponto", False),

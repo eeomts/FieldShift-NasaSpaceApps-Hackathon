@@ -1,4 +1,4 @@
-# Front do AgroIA: build do React servido pelo Caddy. Contexto do build: agroia/web/.
+# Front do AgroAI: build do React servido pelo Caddy. Contexto do build: agroia/web/.
 FROM node:22-alpine AS build
 
 WORKDIR /web

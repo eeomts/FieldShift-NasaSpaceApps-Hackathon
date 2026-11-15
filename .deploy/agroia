@@ -1,5 +1,5 @@
 #!/bin/sh
-# Sobe o AgroIA com Docker: ./.deploy/agroia <local|producao> <comando do docker compose>
+# Sobe o AgroAI com Docker: ./.deploy/agroia <local|producao> <comando do docker compose>
 
 set -eu
 

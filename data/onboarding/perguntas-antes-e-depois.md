@@ -288,7 +288,7 @@
 **8. Conte do seu jeito o que você planta, e quando.**  
 🇺🇸 *Tell us in your own words what you plant, and when.*  
 <sub>Campos no app: `q8_texto`, `q8_culturas` (cartões)</sub>  
-- Campo de texto livre + botão “Separar com a AgroIA” (ex.: “planto milho na estação das chuvas e, depois da colheita, deixo o campo parado”)  
+- Campo de texto livre + botão “Separar com a AgroAI” (ex.: “planto milho na estação das chuvas e, depois da colheita, deixo o campo parado”)  
 - *⏸️ Em espera até a nova base de culturas. Exemplo muda conforme a zona climática.*  
 
 **9. Nos períodos sem plantio, a terra fica descoberta?**  
@@ -387,14 +387,14 @@
 **22. Tem alguma cultura que você não plantaria? Por quê?**  
 🇺🇸 *Is there any crop you would not grow? Why?*  
 <sub>Campos no app: `q26a_texto`</sub>  
-- Campo de texto livre + botão “Separar com a AgroIA” (ex.: “não planto soja, não tenho onde vender”)  
+- Campo de texto livre + botão “Separar com a AgroAI” (ex.: “não planto soja, não tenho onde vender”)  
 - *⏸️ Em espera até a nova base de culturas. Motivos: Mercado · Costume · Já deu errado · Outro.*  
 
 **23. Que máquinas e equipamentos você tem ou consegue utilizar?**  
 🇺🇸 *What machinery or equipment do you have or can get access to?*  
 <sub>Campos no app: `q26b_texto`</sub>  
-- Campo de texto livre + botão “Separar com a AgroIA” (ex.: “tenho um trator pequeno e uma plantadeira; a colheita é na mão”)  
-- *Botão “Separar com a AgroIA”; os equipamentos viram etiquetas removíveis e também podem ser adicionados por uma lista.*  
+- Campo de texto livre + botão “Separar com a AgroAI” (ex.: “tenho um trator pequeno e uma plantadeira; a colheita é na mão”)  
+- *Botão “Separar com a AgroAI”; os equipamentos viram etiquetas removíveis e também podem ser adicionados por uma lista.*  
 
 
 ### Resumo final

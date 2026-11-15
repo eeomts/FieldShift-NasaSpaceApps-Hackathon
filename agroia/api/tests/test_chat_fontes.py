@@ -9,7 +9,7 @@ _USUARIO = SimpleNamespace(idioma="pt", fazenda=None)
 
 
 def _trechos(texto: str) -> tuple[str, str]:
-    inicio = texto.index("Dados que o AgroIA usa hoje:")
+    inicio = texto.index("Dados que o AgroAI usa hoje:")
     meio = texto.index("Ainda não usa:", inicio)
     fim = texto.index("Se a base de conhecimento falar", meio)
     return texto[inicio:meio], texto[meio:fim]
@@ -17,7 +17,7 @@ def _trechos(texto: str) -> tuple[str, str]:
 
 def test_regra_das_fontes_existe():
     texto = montar_instrucao(_USUARIO, date(2026, 1, 1))
-    assert "Se a base de conhecimento falar de uma fonte que o AgroIA ainda não usa" in texto
+    assert "Se a base de conhecimento falar de uma fonte que o AgroAI ainda não usa" in texto
     assert "Nunca diga que um número veio de uma fonte que o app não usa." in texto
     assert "{fontes_" not in texto
 

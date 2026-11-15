@@ -6,7 +6,7 @@ export function Logo() {
       <div className="flex h-[34px] w-[34px] items-center justify-center rounded-xl bg-folha text-white">
         <Broto />
       </div>
-      <span className="font-titulo text-[22px] font-extrabold tracking-[-0.02em]">AgroIA</span>
+      <span className="font-titulo text-[22px] font-extrabold tracking-[-0.02em]">AgroAI</span>
     </div>
   );
 }

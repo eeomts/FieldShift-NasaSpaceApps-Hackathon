@@ -1,4 +1,4 @@
-// Aba AgroIA (visual v3): conversa com o assistente, lista de conversas da equipe (/chat/conversas),
+// Aba AgroAI (visual v3): conversa com o assistente, lista de conversas da equipe (/chat/conversas),
 // resposta no idioma escolhido e pergunta vinda do Dashboard por /agroia?q=<pergunta>.
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router";
@@ -164,7 +164,7 @@ export function Chat() {
     }
   }
 
-  // "Perguntar à AgroIA" no Dashboard: /agroia?q=<pergunta> abre uma conversa nova e envia sozinho.
+  // "Perguntar à AgroAI" no Dashboard: /agroia?q=<pergunta> abre uma conversa nova e envia sozinho.
   useEffect(() => {
     const q = params.get("q");
     if (!q || perguntaDaUrl.current) return;
@@ -248,13 +248,13 @@ export function Chat() {
         </aside>
 
         <section className="relative mx-auto flex min-h-0 w-full max-w-[760px] flex-1 flex-col">
-          {/* Cabeçalho da AgroIA */}
+          {/* Cabeçalho da AgroAI */}
           <header className="flex items-center gap-3 border-b-2 border-linha px-4 py-3.5 lg:px-0 lg:pt-7">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-folha text-sol shadow-[0_3px_0_#14532D]">
               <Brilho size={24} />
             </span>
             <div className="min-w-0 flex-1">
-              <h1 className="m-0 font-titulo text-[21px] leading-tight font-extrabold tracking-[-0.02em]">AgroIA</h1>
+              <h1 className="m-0 font-titulo text-[21px] leading-tight font-extrabold tracking-[-0.02em]">AgroAI</h1>
               <p className="m-0 line-clamp-2 text-[13px] leading-snug text-suave lg:line-clamp-none">
                 {t("Conhece o seu campo · cita a fonte de cada dado", "Knows your field · cites the source of every number")}
               </p>
@@ -312,7 +312,7 @@ export function Chat() {
           {/* Mensagens */}
           <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-4 py-4 lg:px-4" aria-live="polite">
             <span className="self-center rounded-full bg-sol-claro px-3 py-1 text-xs font-bold text-sol-texto">
-              {t("A AgroIA apoia. Quem decide é você.", "AgroIA supports. You decide.")}
+              {t("A AgroAI apoia. Quem decide é você.", "AgroAI supports. You decide.")}
             </span>
             {aviso && <Aviso>{aviso}</Aviso>}
             {abrindo && <Texto>{t("Abrindo a conversa…", "Opening the chat…")}</Texto>}

@@ -7,7 +7,7 @@ from app.core.config import get_settings
 from app.core.erros import ErroDeNegocio
 from app.routers import auth, chat, estrategias, fazenda, local, onboarding, previsao, satelite
 
-app = FastAPI(title="AgroIA API", version="0.1.0")
+app = FastAPI(title="AgroAI API", version="0.1.0")
 
 
 @app.exception_handler(ErroDeNegocio)

@@ -169,7 +169,7 @@ export function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; cultura
         </Secao>
       </div>
 
-      <span className="self-center rounded-full bg-sol-claro px-3 py-1.5 text-xs font-bold text-sol-texto">{t("A AgroIA apoia. Quem decide é você.", "AgroIA helps. You decide.")}</span>
+      <span className="self-center rounded-full bg-sol-claro px-3 py-1.5 text-xs font-bold text-sol-texto">{t("A AgroAI apoia. Quem decide é você.", "AgroAI helps. You decide.")}</span>
     </div>
   );
 }

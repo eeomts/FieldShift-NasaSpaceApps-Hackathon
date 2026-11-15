@@ -1,6 +1,6 @@
-# AgroIA: código
+# AgroAI: código
 
-Este é o código do app: login, questionário do produtor, Dashboard e a aba AgroIA (chat), em português e inglês.
+Este é o código do app: login, questionário do produtor, Dashboard e a aba AgroAI (chat), em português e inglês.
 O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpaceApps-FieldShift/v1/application/ONBOARDING.md).
 
 ## O que já funciona
@@ -19,7 +19,7 @@ O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpace
   - Sem chave do Gemini, ou se ele falhar, uma reserva sem IA casa os nomes, os meses, as estações e os consórcios.
 - **Resumo final:** perfil do produtor (A, B ou C) e papel (produtor ou técnico), calendário, retrato do solo e próximos passos.
 - **Dashboard:** o que vem do questionário é real, e a comparação de rotações ("Suas estratégias") é calculada com dados da NASA. Previsão, umidade e NDVI ainda são **exemplo**, e a tela avisa.
-- **Aba AgroIA (`/agroia`):** chat com a lista de conversas. "Perguntar à AgroIA" no Dashboard abre o chat e já envia a pergunta.
+- **Aba AgroAI (`/agroia`):** chat com a lista de conversas. "Perguntar à AgroAI" no Dashboard abre o chat e já envia a pergunta.
 
 ## Como rodar
 
@@ -29,7 +29,7 @@ Há dois jeitos. Para desenvolver, use o **A**: tudo roda no seu computador, nã
 
 ### A. Tudo no seu computador (recomendado)
 
-Usa um PostgreSQL local (container `agroia-dev`, porta 55432) e o arquivo `api/.env.dev`, que **vence o `.env`**: o banco é o local e o Gemini fica desligado (sem custo). O chat, então, responde "AgroIA indisponível". O resto do app funciona inteiro.
+Usa um PostgreSQL local (container `agroia-dev`, porta 55432) e o arquivo `api/.env.dev`, que **vence o `.env`**: o banco é o local e o Gemini fica desligado (sem custo). O chat, então, responde "AgroAI indisponível". O resto do app funciona inteiro.
 
 **Só na primeira vez**, suba o banco:
 
@@ -225,7 +225,7 @@ Confira o arquivo gerado em `migrations/versions/` antes de rodar `alembic upgra
 | `ModuleNotFoundError: No module named 'app'` | Os comandos da API precisam rodar de dentro de `agroia/api` |
 | `type "vector" does not exist` no `alembic upgrade head` | O banco não tem a extensão pgvector (é o caso da VPS hoje). Use o jeito A, ou peça para instalar o pgvector na VPS |
 | `Conflict. The container name "/agroia-dev" is already in use` | O banco local já existe. Rode `docker start agroia-dev` |
-| Chat diz "A AgroIA está indisponível agora" | Sem `GEMINI_API_KEY` (normal no jeito A) ou o Gemini falhou |
+| Chat diz "A AgroAI está indisponível agora" | Sem `GEMINI_API_KEY` (normal no jeito A) ou o Gemini falhou |
 | Erro de conexão com o banco | Seu IP precisa estar liberado no firewall e no `pg_hba.conf` da VPS. Fale com quem cuida dela |
 
 ## Decisões desta parte

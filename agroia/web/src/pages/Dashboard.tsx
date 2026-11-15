@@ -214,7 +214,7 @@ export function Dashboard() {
           <p className="m-0 text-sm leading-snug">{alerta}</p>
           <Link to={perguntar(t("O que fazer com a chuva forte no meu campo?", "What should I do about heavy rain on my field?"))}
             className="inline-flex h-11 items-center gap-2 self-start rounded-[14px] bg-tinta px-4 text-sm font-bold text-white no-underline">
-            <Brilho size={16} /> {t("Perguntar à AgroIA", "Ask AgroIA")}
+            <Brilho size={16} /> {t("Perguntar à AgroAI", "Ask AgroAI")}
           </Link>
         </div>
 
@@ -302,7 +302,7 @@ export function Dashboard() {
         </div>
 
         <p className="m-0 px-2 text-center text-xs leading-snug text-suave lg:col-span-12">
-          {t("A AgroIA apoia. Quem decide é você.", "AgroIA helps. You decide.")}{" "}
+          {t("A AgroAI apoia. Quem decide é você.", "AgroAI helps. You decide.")}{" "}
           {t("Informações para apoiar sua decisão. Confirme com um técnico agrícola e com a sua experiência.", "Information to support your decision. Check with an agronomist and your own experience.")}
         </p>
       </div>

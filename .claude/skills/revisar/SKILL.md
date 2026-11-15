@@ -1,6 +1,6 @@
 ---
 name: revisar
-description: "Revisao de codigo do AgroIA com tres revisores independentes (revisor-cetico, revisor-purista, revisor-negocio) coordenados pela sessao principal: rodada 1 em paralelo, giro em que cada um responde aos achados dos outros, resumo consolidado, depois (se o usuario quiser) proposta do agroia-arquiteto e implementacao pelo agroia-backend/agroia-frontend. Grava tudo em reviews/. Uso: /revisar [alvo] [regra de negocio]."
+description: "Revisao de codigo do AgroAI com tres revisores independentes (revisor-cetico, revisor-purista, revisor-negocio) coordenados pela sessao principal: rodada 1 em paralelo, giro em que cada um responde aos achados dos outros, resumo consolidado, depois (se o usuario quiser) proposta do agroia-arquiteto e implementacao pelo agroia-backend/agroia-frontend. Grava tudo em reviews/. Uso: /revisar [alvo] [regra de negocio]."
 argument-hint: "[alvo: vazio = diff atual | #<pr> | <hash> | <de>..<ate>] [regra de negocio]"
 disable-model-invocation: true
 ---
