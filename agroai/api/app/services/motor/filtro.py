@@ -1,4 +1,4 @@
-"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada/frio e arroz irrigado eliminam; a água só avisa. Cada um com o motivo."""
+"""Filtro de viabilidade: excluída, equipamento, graus-dia (só culturas de venda), geada/frio e arroz irrigado eliminam; a água só avisa. Cada um com o motivo."""
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 from datetime import date, timedelta
@@ -149,7 +149,11 @@ def _graus_dia(c: CulturaMotor, meses: list[int], e: EntradasMotor, achados: lis
         return
     razao = gd / minimo  # só o mínimo conta (regra 9: a mandioca nunca é cortada pelo máximo)
     if razao < GD_ELIMINA_ABAIXO:
-        achados.append(Achado("graus_dia", f"{c.nome}: o calor do período dá {num(gd, 0)} graus-dia e ela precisa de pelo menos {num(minimo, 0)}; não fecha o ciclo.", True))
+        calor = f"{c.nome}: o calor do período dá {num(gd, 0)} graus-dia e ela precisa de pelo menos {num(minimo, 0)}"
+        if c.tem_tipo("comercial"):
+            achados.append(Achado("graus_dia", f"{calor}; não fecha o ciclo.", True))
+        else:  # cobertura: o produtor corta antes do fim do ciclo, então só avisa
+            achados.append(Achado("graus_dia", f"{calor}; pode não completar o ciclo antes do manejo.", False))
     elif razao < GD_ALERTA_ABAIXO:
         achados.append(Achado("limite_termico", f"{c.nome}: no limite térmico ({num(gd, 0)} de {num(minimo, 0)} graus-dia), validar localmente.", False))
 

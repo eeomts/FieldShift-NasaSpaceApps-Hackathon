@@ -103,6 +103,8 @@ _REGRAS: list[_Regra] = [
         (r"^(.+?): sem exigência de graus-dia na base, não checamos o calor do ciclo\.$", r"\1: no degree-day requirement in our database, so we did not check the season's heat."),
         (r"^(.+?): sem graus-dia do clima do local para o período, não checamos o calor do ciclo\.$", r"\1: no local degree-days for this period, so we did not check the season's heat."),
         (r"^(.+?): o calor do período dá (\S+) graus-dia e ela precisa de pelo menos (\S+); não fecha o ciclo\.$", r"\1: the period's heat gives \2 degree-days and it needs at least \3; it can't finish its cycle."),
+        (r"^(.+?): o calor do período dá (\S+) graus-dia e ela precisa de pelo menos (\S+); pode não completar o ciclo antes do manejo\.$",
+         r"\1: the period's heat gives \2 degree-days and it needs at least \3; it may not finish its cycle before termination."),
         (r"^(.+?): no limite térmico \((\S+) de (\S+) graus-dia\), validar localmente\.$", r"\1: at its heat limit (\2 of \3 degree-days); check locally."),
         # filtro: água
         (r"^(.+?): sem chuva do clima do local para o período, não checamos a água\.$", r"\1: no local rainfall for this period, so we did not check water."),

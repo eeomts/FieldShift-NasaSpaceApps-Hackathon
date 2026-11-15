@@ -114,6 +114,8 @@ def test_frases_soltas(pt, en):
         "Pasto: em 60% dos anos houve geada ao longo do ano (mínima abaixo de -3 °C) e ela é sensível.",
         "Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio.",
         "Milho: sem a mínima diária do local para a fase todo o ciclo, não checamos o frio.",
+        # regra 2 na cobertura: só aviso
+        "Centeio: o calor do período dá 800 graus-dia e ela precisa de pelo menos 1.200; pode não completar o ciclo antes do manejo.",
         # A1: cobertura semeada no mês da colheita
         "Plantar Centeio logo depois da colheita (out–abr)",
         "Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita.",

@@ -82,6 +82,19 @@ def test_graus_dia_entre_90_e_100_so_alerta():
     assert "validar localmente" in r.alertas[0].texto
 
 
+def test_graus_dia_na_cobertura_so_avisa_e_nao_elimina():
+    c = cultura("c", tipos=("cobertura",), graus_dia_ciclo_min=1501)  # 89,9 %: numa cultura de venda eliminaria
+    r = rodar(c, e_com(c))
+    assert not r.eliminada and r.motivos == []
+    assert [a.codigo for a in r.alertas] == ["graus_dia"]
+    assert "1501" in r.alertas[0].texto and "pode não completar o ciclo antes do manejo" in r.alertas[0].texto
+    assert "não fecha o ciclo" not in r.alertas[0].texto
+    forrageira = cultura("c", tipos=("forrageira", "cobertura"), graus_dia_ciclo_min=1501)
+    assert not rodar(forrageira, e_com(forrageira)).eliminada
+    mista = cultura("c", tipos=("comercial", "cobertura"), graus_dia_ciclo_min=1501)  # tem `comercial`: elimina
+    assert rodar(mista, e_com(mista)).eliminada
+
+
 def test_graus_dia_suficiente_passa_sem_alerta():
     c = cultura("c", graus_dia_ciclo_min=1350)
     r = rodar(c, e_com(c))
