@@ -19,6 +19,7 @@ _CLASSES = {
     "baixo": "low", "baixa": "low", "medio": "medium", "media": "medium", "médio": "medium", "média": "medium",
     "alto": "high", "alta": "high", "nenhum": "none", "sim": "yes", "não": "no", "nao": "no",
 }  # fmt: skip
+_ERODIBILIDADE = {"baixa": "low", "média": "medium", "alta": "high"}
 _RELEVO = {
     "plano": "flat", "suave ondulado": "gently rolling", "ondulado": "rolling",
     "forte ondulado": "steep", "montanhoso": "mountainous",
@@ -120,8 +121,12 @@ _REGRAS: list[_Regra] = [
         (r"^Sem declividade do terreno: usamos um valor médio para a erosão\.$", "No slope data: we used an average value for erosion."),
         (r"^Classe de declive desconhecida \((.+?)\): usamos um valor médio para a erosão\.$", r"Unknown slope class (\1): we used an average value for erosion."),
         (r"(\S+) dos dias de chuva forte caem em meses com planta no campo; ", r"\1 of heavy-rain days fall in months with plants in the field; "),
-        (r"sem dado de declive\.$", "no slope data."),
-        (r"terreno ([a-z ]+)\.$", lambda m: f"{_RELEVO.get(m.group(1), m.group(1))} terrain."),
+        (r" O solo tem erodibilidade (baixa|média|alta)\.$", lambda m: f" The soil has {_ERODIBILIDADE[m.group(1)]} erodibility."),
+        (r"sem dado de declive\.(?=\s|$)", "no slope data."),
+        (r"terreno ([a-z ]+)\.(?=\s|$)", lambda m: f"{_RELEVO.get(m.group(1), m.group(1))} terrain."),
+        (r"^Sem a erodibilidade do solo \(mapa global de solo\): contamos um valor médio para a erosão\.$",
+         "No soil erodibility (global soil map): we used an average value for erosion."),
+        (r"^Erodibilidade do solo \(K da USLE, classe (baixa|média|alta)\)$", lambda m: f"Soil erodibility (USLE K, {_ERODIBILIDADE[m.group(1)]} class)"),
         (r"^Dias de chuva forte que caem em meses com planta$", "Heavy-rain days that fall in months with plants"),
         (r"^Declividade do terreno$", "Slope of the land"),
         # critérios: pragas
