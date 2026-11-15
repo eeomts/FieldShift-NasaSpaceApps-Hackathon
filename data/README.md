@@ -27,7 +27,7 @@ O caminho crítico do projeto: o motor inteiro depende dela.
 | 1. Parâmetros agronômicos das 16 culturas do motor | `catalogo/culturas.csv` | Alto |
 | 7. Código da PAM de cada cultura (coluna `codigo_pam`) | `catalogo/culturas.csv` | Baixo |
 
-Os 16 `id` (os mesmos do `agroia/base/culturas.json`) e os nomes científicos **já estão preenchidos**, e o milho tem uma linha de exemplo a conferir. O nome no ZARC fica no arquivo da Pessoa 2.
+As 16 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 9 delas (as outras não aparecem na PAM ou falta conferir). A coluna `nome_zarc` não é preenchida à mão: ela vem do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6, Pessoa 2) na carga.
 
 ### Pessoa 2 — Dados da NASA e do Brasil (perfil: dados) · Augusto
 
@@ -47,9 +47,11 @@ Os 16 `id` (os mesmos do `agroia/base/culturas.json`) e os nomes científicos **
 |---|---|---|
 | 8. Textos do RAG | `rag/*.md` (lista em `rag/README.md`) | Médio |
 | 2. Revisar e ampliar os sinônimos e nomes regionais das culturas | campo `nomes` do `agroia/base/culturas.json` | Baixo |
-| 10. 12 fotos de solo com créditos | `onboarding/fotos-solo/` + `CREDITOS.md` | Baixo |
+| 10. 12 fotos de solo com créditos ✅ feito | `onboarding/fotos-solo/` + `CREDITOS.md` | Baixo |
 
 O questionário (antiga tarefa 9) já está implementado nas telas do app (`agroia/web/src/onboarding/`), então não precisa mais do `perguntas.yaml`.
+
+**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`, com o porquê de cada mudança em `onboarding/relatorio-revisao-questionario.md`. Ela serve de especificação para as telas: o que o código ainda precisa fazer está no fim do relatório.
 
 ## Estrutura
 
@@ -62,16 +64,39 @@ data/
 │   └── cultura_equipamentos.csv    # Pessoa 2
 ├── demo/
 │   ├── pontos_demo.csv             # Pessoa 2
-│   └── appeears/<id_da_tarefa>/    # Pessoa 2 (CSVs como vieram)
+│   ├── appeears/<id_da_tarefa>/    # Pessoa 2 (CSVs como vieram)
+│   ├── pontos_demo_eua.csv         # Pessoa 2 (pontos dos EUA)
+│   └── appeears_eua/<id_da_tarefa>/  # Pessoa 2 (AppEEARS dos pontos dos EUA)
 ├── brasil/
+│   ├── municipios/                 # Pessoa 2 (malha do IBGE)
 │   └── zarc/
 │       ├── mapa_culturas_zarc.csv  # Pessoa 2 (cultura_id → nome no ZARC)
 │       └── <recortes>.csv          # Pessoa 2 (só as 16 culturas)
+├── eua/                            # Pessoa 2 (o mesmo papel do brasil/, ver abaixo)
+│   ├── condados/                   # condados.csv + condados.geojson (Censo, TIGERweb)
+│   └── nass/
+│       ├── mapa_culturas_nass.csv  # cultura_id → nome no NASS
+│       ├── datas_plantio.csv       # datas usuais de plantio/colheita por estado (no lugar do ZARC)
+│       └── producao_condado.csv    # produção por condado (no lugar da PAM; precisa de NASS_API_KEY)
 ├── rag/                            # Pessoa 3 (textos .md)
 ├── onboarding/
 │   └── fotos-solo/                 # Pessoa 3 (+ CREDITOS.md)
 └── brutos/                         # downloads grandes: FORA do Git
 ```
+
+## EUA: o que substitui cada fonte brasileira
+
+Os dados da NASA (AppEEARS, SMAP, POWER) e o SoilGrids cobrem os EUA do mesmo jeito. O que muda são as fontes nacionais:
+
+| Brasil | EUA | Diferença que o motor precisa saber |
+|---|---|---|
+| Município (IBGE, 7 dígitos) | Condado (Censo, FIPS de 5 dígitos), `eua/condados/` | `condado_id` em vez de `municipio_id` |
+| ZARC: janelas por município, solo, ciclo e risco (20/30/40 %) | NASS: datas **usuais** de plantio e colheita **por estado**, `eua/nass/datas_plantio.csv` | Mais grosso (estado), sem risco em %, sem solo e ciclo; edição de 2010 |
+| PAM: produção por município | NASS Quick Stats: produção por condado, `eua/nass/producao_condado.csv` | Sem valor da produção; números escondidos pelo NASS ficam vazios |
+
+Culturas da base sem dado nos EUA: mandioca, milheto, feijão-caupi e as de cobertura (ver as observações em `eua/nass/mapa_culturas_nass.csv`).
+
+Para gerar: `python data/scripts/baixar_condados_eua.py`, `python data/scripts/preparar_datas_plantio_eua.py`, `NASS_API_KEY=... python data/scripts/baixar_nass_eua.py` e `python data/scripts/baixar_appeears.py --pontos data/demo/pontos_demo_eua.csv --saida data/demo/appeears_eua`.
 
 ## Dependências entre as pessoas
 

@@ -1,15 +1,18 @@
-"""As 4 ferramentas do agente: declaradas para o Gemini e executadas aqui; cada uma devolve dados e as fontes que os geraram."""
+"""As 5 ferramentas do agente: declaradas para o Gemini e executadas aqui; cada uma devolve dados e as fontes que os geraram."""
 import csv
 import inspect
 import logging
+import re
+from collections import Counter
 from collections.abc import Callable
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from functools import lru_cache
 
 from google.genai import types
 
 from app.core.caminhos import RAIZ_REPO
+from app.core.erros import ErroDeNegocio
 from app.models import Fazenda, Usuario
 from app.schemas.chat import Fonte
 from app.schemas.onboarding import Respostas
@@ -18,6 +21,8 @@ from app.services.agente.busca_conhecimento_service import BuscaConhecimentoServ
 from app.services.clima.clima_service import ClimaService
 from app.services.clima.limiares import BASE_INICIO, CHUVA_DIA_SECO_MM, TMAX_CALOR_C, TMIN_GEADA_C
 from app.services.integracao.nasa_power import ErroNasaPower
+from app.services.motor.modelo import Analise, ResultadoEstrategia
+from app.services.motor.motor_service import MotorService
 from app.services.onboarding import perfil
 
 log = logging.getLogger(__name__)
@@ -27,6 +32,9 @@ MAX_FONTES_CULTURA = 3
 MAX_CHARS_FONTE = 150
 MAX_TRECHOS_CONHECIMENTO = 3  # os mais bem ordenados da busca: vão ao modelo e às fontes
 FONTE_FICHA = "Respostas da sua fazenda"
+FONTE_ANALISE = "Comparação de rotações do AgroIA"
+MAX_MOTIVOS_ELIMINADAS = 3
+_CENTRO_DA_CELULA = re.compile(r",? centrada em [-\d., ]+")  # a coordenada da célula não vai ao modelo
 
 
 @dataclass
@@ -74,6 +82,11 @@ DECLARACOES = [
                 "dias de risco de geada, calor, chuva forte e maior sequência seca. Sem 'ano': média de 1991–2020. "
                 "Com 'ano': aquele ano. Usa o local da ficha; não passe coordenada. Não é previsão do tempo.",
                 {"ano": types.Schema(type="INTEGER", description="Ano específico (de 1991 ao último ano completo). Omita para a média histórica.")},
+            ),
+            _declaracao(
+                "comparar_estrategias",
+                "Compara a rotação atual da fazenda com as 2 melhores alternativas que o AgroIA calculou (água, terra, erosão, pragas, "
+                "renda e animais, com o peso das prioridades do produtor), com o 'por que' e o 'onde piora'. Usa a ficha e o clima da fazenda. Sem parâmetros.",
             ),
         ]
     )
@@ -129,6 +142,7 @@ class Ferramentas:
         self,
         usuario: Usuario,
         clima: ClimaService,
+        motor: MotorService,
         busca: Callable[[], BuscaConhecimentoService],
         conversa_id: int,
         hoje: date,
@@ -136,6 +150,7 @@ class Ferramentas:
     ):
         self.usuario = usuario
         self.clima = clima
+        self.motor = motor
         self.busca = busca
         self.conversa_id = conversa_id
         self.hoje = hoje
@@ -147,6 +162,7 @@ class Ferramentas:
             "info_cultura": self.info_cultura,
             "buscar_conhecimento": self.buscar_conhecimento,
             "consultar_clima": self.consultar_clima,
+            "comparar_estrategias": self.comparar_estrategias,
         }.get(nome)
         if funcao is None:
             return Resultado({"erro": f"Ferramenta desconhecida: {nome}."})
@@ -351,3 +367,57 @@ class Ferramentas:
         }
         detalhe = fonte.removeprefix("NASA POWER, ")  # período e escala, como vêm do serviço
         return Resultado(_poda(dados), [Fonte(tipo="clima", titulo="NASA POWER", detalhe=detalhe)])
+
+    # --- 5. comparação de rotações ---
+
+    def comparar_estrategias(self) -> Resultado:
+        f: Fazenda | None = self.usuario.fazenda
+        if f is None:
+            return Resultado({"erro": "sem_fazenda", "mensagem": "O produtor ainda não preencheu a ficha da fazenda. Diga isso."})
+        try:
+            analise = self.motor.analisar(f)
+        except ErroDeNegocio as e:  # falta local, culturas da região ou calendário
+            return Resultado({"erro": "sem_comparacao", "mensagem": f"{e.mensagem} Diga isso ao produtor."})
+        except ErroNasaPower:
+            return Resultado({"erro": "Não consegui o clima do NASA POWER agora. Diga isso ao produtor, sem inventar números."})
+        analise = replace(analise, fontes=[_CENTRO_DA_CELULA.sub("", s) for s in analise.fontes])
+        detalhe = _corta("; ".join(analise.fontes), 250)
+        return Resultado(_poda(_analise_compacta(analise)), [Fonte(tipo="analise", titulo=FONTE_ANALISE, detalhe=detalhe)])
+
+
+def _pontos(v: float | None) -> int | None:
+    return None if v is None else round(v * 100)
+
+
+def _estrategia_compacta(r: ResultadoEstrategia) -> dict:
+    return {
+        "nome": r.estrategia.nome,
+        "itens": [
+            {"cultura": _nome_da_cultura(i.cultura_id, i.texto), "inicio_mes": i.inicio_mes, "fim_mes": i.fim_mes, "perene": i.perene or None}
+            for i in r.estrategia.itens
+        ],
+        "nota_final_0_a_100": _pontos(r.nota_final),
+        "notas_0_a_100": {c: _pontos(n.nota) for c, n in r.notas.items()},
+        "por_que": r.por_que,
+        "onde_piora": r.onde_piora,
+        "alertas": [a.texto for a in r.alertas],
+        "confianca": r.confianca,
+    }
+
+
+def _nome_da_cultura(cultura_id: str | None, texto: str) -> str:
+    item = catalogo.culturas().get(cultura_id) if cultura_id else None
+    return catalogo.nome_exibicao(item).lower() if item else texto
+
+
+def _analise_compacta(a: Analise) -> dict:
+    motivos = Counter(m for e in a.eliminadas for m in e.motivos).most_common(MAX_MOTIVOS_ELIMINADAS)
+    return {
+        "aviso": "Comparação calculada pelo AgroIA, não é decisão: o produtor confirma com o técnico e a cooperativa. Notas de 0 a 100; use só estes números.",
+        "atual": _estrategia_compacta(a.atual),
+        "melhores": [_estrategia_compacta(r) for r in a.melhores],
+        "atual_e_a_melhor": a.atual_e_a_melhor,
+        "eliminadas": {"quantas": len(a.eliminadas), "motivos_mais_comuns": [m for m, _ in motivos]},
+        "pesos_das_prioridades_0_a_100": {c: _pontos(p) for c, p in a.pesos.items()},
+        "fontes": a.fontes,
+    }

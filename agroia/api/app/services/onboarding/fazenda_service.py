@@ -6,6 +6,7 @@ from app.models import CalendarioItem, Fazenda, Usuario
 from app.repositories.fazenda_repository import FazendaRepository
 from app.schemas.fazenda import FazendaOut, SalvarFazenda
 from app.schemas.onboarding import Respostas
+from app.services.motor.local import pais_e_codigo
 from app.services.onboarding import perfil
 
 
@@ -26,6 +27,16 @@ def fazenda_para_saida(f: Fazenda) -> FazendaOut:
     )
 
 
+def _atualiza_local(f: Fazenda, local) -> None:
+    """Grava lat/lon e, quando o ponto muda ou ainda não tem país, calcula país e código; sem local, limpa tudo."""
+    if local is None:
+        f.lat = f.lon = f.pais = f.codigo_local = None
+        return
+    if (f.lat, f.lon) != (local.lat, local.lon) or f.pais is None:
+        f.pais, f.codigo_local = pais_e_codigo(local.lat, local.lon)
+    f.lat, f.lon = local.lat, local.lon
+
+
 class FazendaService:
     def __init__(self, fazendas: FazendaRepository = Depends()):
         self.fazendas = fazendas
@@ -44,8 +55,7 @@ class FazendaService:
         f = u.fazenda or Fazenda(usuario=u)
         f.respostas = r.model_dump(mode="json")
         f.passo_atual = dados.passo_atual
-        f.lat = r.q5_local.lat if r.q5_local else None
-        f.lon = r.q5_local.lon if r.q5_local else None
+        _atualiza_local(f, r.q5_local)
         f.nome_local = r.q5_local.nome if r.q5_local else None
         f.irrigacao = r.q6_irrigacao
         f.animais = None if r.q4_animais is None else r.q4_animais == "sim"

@@ -31,7 +31,7 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Motivo:** os obrigatórios cobrem os indicadores básicos (clima, chuva, umidade, cobertura do solo, relevo e aptidão das culturas). Os complementares melhoram a precisão e o nível de confiança.
 
 ### D-003 — Datasets só dos EUA ficam fora
-- **Status:** Decidido (consequência direta de D-001, mantida em D-008; equivalentes revistos na D-009)
+- **Status:** **Alterada pela D-010** (15/11/2026): continua valendo para as fazendas do Brasil; para as dos EUA, o Census (condados), o CDL e o NASS QuickStats entram. Antes: decidido (consequência direta de D-001, mantida em D-008; equivalentes revistos na D-009)
 - **Itens:** Web Soil Survey, SSURGO/STATSGO2, CDL, PRISM, NAIP, NLCD, CoCoRaHS, NWIS, AMS Market News, NASS QuickStats, OpenET, LANDFIRE
 - **Equivalentes brasileiros usados (D-009):** MapBiomas (histórico de culturas), IBGE PAM (estatísticas e valor da produção, que também serve ao critério de renda), INMET/CEMADEN (estações), ZARC (calendário e risco por cultura) e, como opcional, Embrapa Solos (solo). Ver `BANCO_DE_DADOS_NASA.md`.
 
@@ -54,7 +54,7 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Alternativa:** um modelo de aprendizado de máquina que recomenda direto. É mais difícil de explicar e de validar em 48 h.
 
 ### D-008 — Escopo geográfico: Brasil inteiro
-- **Status:** Decidido (equipe, 14/11/2026)
+- **Status:** **Ampliada pela D-010** (15/11/2026): o Brasil inteiro continua no escopo, e os EUA entram. Antes: decidido (equipe, 14/11/2026)
 - **Substitui:** D-001
 - **Motivo:** [a equipe deve registrar aqui o motivo da mudança]. A análise das ferramentas existentes mostra o que muda com o escopo nacional: ver `docs/NasaSpaceApps-FieldShift/v1/others/Field_Shift_Brasil_Analise_Ferramentas_Existentes.md`.
 - **Consequências:**
@@ -84,6 +84,20 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
 - **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess e o AppEEARS cobrem), NASA Harvest e ARSET (referência e estudo, não fonte). **O NASA Harvest está em revisão: ver a proposta abaixo.**
 - **Consequência:** as notas das fontes que saíram foram apagadas e as citações a elas foram tiradas dos documentos do projeto. Os documentos que descrevem a lista oficial do desafio continuam citando todos os datasets dela.
 
+
+### D-010 — O app também aceita fazendas nos EUA
+- **Status:** Decidido (Augusto, 15/11/2026; avisar a equipe)
+- **Amplia:** D-008 (escopo) · **Altera:** D-003 (datasets só dos EUA)
+- **Motivo:** o desafio Field Shift é da NASA, e os dados da NASA (POWER, SMAP, MODIS/VIIRS pelo AppEEARS) e o SoilGrids cobrem os EUA do mesmo jeito que o Brasil. Muda só a parte das fontes nacionais.
+- **Fontes dos EUA, no lugar das brasileiras** (detalhes em `data/README.md`, seção "EUA"):
+  - **Município (IBGE)** → **condado** (Census TIGERweb), `data/eua/condados/`, chave `condado_id` (FIPS de 5 dígitos).
+  - **ZARC** → datas usuais de plantio e colheita do **USDA NASS** por estado, `data/eua/nass/datas_plantio.csv`. É mais grosso: por estado, sem risco em %, sem tipo de solo nem ciclo, edição de 2010.
+  - **IBGE PAM** → **NASS QuickStats** por condado, `data/eua/nass/producao_condado.csv`, sem o valor da produção.
+  - **MapBiomas** → **CDL** (Cropland Data Layer), usado para conferir a rotação dos pontos da demo.
+- **Consequências:**
+  - O backend liga a fazenda ao condado nos EUA (`condado_id`) e ao município no Brasil (`municipio_id`).
+  - Mandioca, milheto, feijão-caupi e as plantas de cobertura não têm datas nem produção nos EUA: a ferramenta precisa dizer isso, em vez de mostrar zero.
+  - A demo ganha três pontos nos EUA (`data/demo/pontos_demo_eua.csv`): Story County (IA), Ness County (KS) e Tift County (GA).
 
 #### Revisão proposta da D-009 — NASA Harvest volta ao projeto
 - **Status:** Proposto (14/11/2026). Falta confirmar com a equipe.
@@ -181,4 +195,5 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 14/11/2026 | **D-008:** escopo muda para o Brasil inteiro e substitui a D-001. Atualizados D-003, D-005, I-1, I-2, Q-01 a Q-03 e Q-07; I-3 resolvido; I-7 criado. Arquivos renomeados de `-minas` para `-brasil`. |
 | 14/11/2026 | **D-009:** fontes do MVP definidas (17 no núcleo, 3 opcionais, 19 fora). Substitui D-002 e D-005; D-003, D-008 e I-2 ajustados. |
 | 14/11/2026 | Proposta de revisão da D-009: NASA Harvest volta como contexto de mercado (Harvest Portal), no chat (MCP) e na detecção de ciclos (`crop-cycle-detection`). A confirmar com a equipe. |
+| 15/11/2026 | **D-010:** o app também aceita fazendas nos EUA. Amplia a D-008 e altera a D-003 (Census, CDL e NASS QuickStats entram para as fazendas dos EUA). |
 | 15/11/2026 | **D-010:** catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |

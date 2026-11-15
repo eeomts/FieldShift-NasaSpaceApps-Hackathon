@@ -6,7 +6,7 @@ for linha in (Path(__file__).parents[1] / ".env.test").read_text().splitlines():
     if "=" in linha and not linha.startswith("#"):
         k, v = linha.split("=", 1)
         os.environ[k] = v
-os.environ.pop("GEMINI_API_KEY", None)
+os.environ["GEMINI_API_KEY"] = ""  # vazio vence o .env (o pop deixava a chave real vazar para os testes)
 
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
@@ -21,7 +21,7 @@ assert os.environ["DB_HOST"] in ("127.0.0.1", "localhost"), "testes só rodam em
 @pytest.fixture(autouse=True)
 def limpa_banco():
     with get_engine().begin() as c:
-        c.execute(text("TRUNCATE usuario, documento, busca_log, clima_celula CASCADE"))  # trecho e clima_mensal caem em cascata
+        c.execute(text("TRUNCATE usuario, documento, busca_log, clima_celula, relevo_ponto CASCADE"))  # trecho e clima_mensal caem em cascata
     yield
 
 

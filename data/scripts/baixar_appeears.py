@@ -4,6 +4,8 @@ Uso, da raiz do repositório:
 
     python data/scripts/baixar_appeears.py           # envia (ou reaproveita) os pedidos, espera e baixa
     python data/scripts/baixar_appeears.py --novo    # força pedidos novos (ex.: para trazer dados mais recentes)
+    python data/scripts/baixar_appeears.py --pontos data/demo/pontos_demo_eua.csv --saida data/demo/appeears_eua
+                                                     # outro conjunto de pontos (ex.: EUA), com pasta e tarefas.json próprios
 
 Dependências fora da biblioteca padrão: requests
 
@@ -24,7 +26,8 @@ O que o script faz:
     - espera cada pedido terminar e baixa o bundle inteiro, sem editar, em data/demo/appeears/<id_da_tarefa>/
       (sobrescreve, não duplica). Um pedido só conta como baixado se a pasta existir com todos os arquivos.
 
-Só rode uma instância por vez: duas instâncias disputam o tarefas.json.
+Só rode uma instância por vez para a mesma --saida: duas instâncias disputam o tarefas.json.
+Com --saida diferentes (Brasil e EUA) elas não se misturam.
 
 Detalhes em docs/NasaSpaceApps-FieldShift/v1/tools/APPEEARS_AUTOMACAO.md e ToDo/dataset/pessoa-2/03-script-appeears.
 """
@@ -238,7 +241,7 @@ def enviar(api, estado, pontos, forcar_novo):
 
         corpo = {
             "task_type": "point",
-            "task_name": f"fieldshift_demo_{nome}_{hoje.isoformat()}",
+            "task_name": f"fieldshift_{PONTOS.stem.removeprefix('pontos_')}_{nome}_{hoje.isoformat()}",
             "params": {
                 "dates": [{"startDate": inicio.strftime("%m-%d-%Y"),  # formato americano MM-DD-AAAA
                            "endDate": hoje.strftime("%m-%d-%Y")}],
@@ -315,9 +318,14 @@ def esperar_e_baixar(api, estado):
 
 
 def main():
+    global PONTOS, SAIDA, ESTADO
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--novo", action="store_true", help="envia pedidos novos mesmo que já existam")
+    parser.add_argument("--pontos", type=Path, default=PONTOS, help="CSV de pontos (padrão: os do Brasil)")
+    parser.add_argument("--saida", type=Path, default=SAIDA, help="pasta dos bundles e do tarefas.json")
     args = parser.parse_args()
+    PONTOS, SAIDA = args.pontos.resolve(), args.saida.resolve()
+    ESTADO = SAIDA / "tarefas.json"
     sys.stdout.reconfigure(line_buffering=True)  # mostra o andamento na hora, mesmo rodando no cron
 
     pontos = ler_pontos()

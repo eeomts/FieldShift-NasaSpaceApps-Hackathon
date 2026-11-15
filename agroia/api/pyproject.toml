@@ -17,6 +17,7 @@ dependencies = [
     "google-genai>=1.0",
     "pgvector>=0.3",
     "httpx>=0.28",
+    "shapely>=2.2.0",
 ]
 
 [dependency-groups]

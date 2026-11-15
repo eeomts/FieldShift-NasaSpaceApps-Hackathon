@@ -78,7 +78,7 @@ def test_figura_so_com_cor_ou_nao_sei():
 
 def test_perguntas_de_manejo_nao_contam_como_conhecimento_do_solo():
     # 3 observações + 3 respostas de manejo ("nunca fiz análise", "nunca usei calcário", "não uso adubo")
-    manejo = dict(q12_analise="nao", q21_calcario="nao", q22_adubo="nao",
+    manejo = dict(q12_analise="nao", q21_correcao=["nao"], q22_adubo="nao",
                   q14_encharca="sim", q15_casca="nao", q16_erosao="sim")
     assert calcula_perfil(Respostas(**manejo)) == "A"
 

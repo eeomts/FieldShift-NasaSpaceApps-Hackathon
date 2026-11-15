@@ -30,15 +30,19 @@ O banco de produção é um PostgreSQL 17 numa VPS da equipe, com as tabelas das
 
 ## Rodar o app
 
-Precisa de Python 3.12+, [uv](https://docs.astral.sh/uv/) e Node 20+. O passo a passo completo, os testes e a solução de problemas comuns estão em **[`agroia/README.md`](agroia/README.md)**.
+Precisa de Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 20+ e Docker. O jeito abaixo roda tudo no seu computador, com um banco local e sem gastar o Gemini. O passo a passo completo (inclusive contra a VPS), os testes e a solução de problemas estão em **[`agroia/README.md`](agroia/README.md)**.
 
 ```bash
+# 0. Banco local (só na primeira vez; depois, `docker start agroia-dev`)
+docker run -d --name agroia-dev -p 127.0.0.1:55432:5432 \
+  -e POSTGRES_USER=agricultura_app -e POSTGRES_PASSWORD=dev -e POSTGRES_DB=agricultura \
+  pgvector/pgvector:pg17
+
 # 1. API (terminal 1)
 cd agroia/api
-cp .env.example .env              # só na primeira vez; peça a senha do banco a quem cuida da VPS
 uv sync
-uv run alembic upgrade head
-uv run uvicorn app.main:app --reload --port 8000
+env $(grep -v '^#' .env.dev) uv run alembic upgrade head
+env $(grep -v '^#' .env.dev) uv run uvicorn app.main:app --reload --port 8000
 
 # 2. Site (terminal 2)
 cd agroia/web

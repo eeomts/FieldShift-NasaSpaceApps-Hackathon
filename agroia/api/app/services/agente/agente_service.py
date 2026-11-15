@@ -18,6 +18,7 @@ from app.services.agente.modelo import ModeloIA, get_modelo
 from app.services.agente.prompt import montar_instrucao
 from app.services.clima.clima_service import ClimaService
 from app.services.conversa_service import ConversaService, mensagem_para_saida, titulo_da_pergunta
+from app.services.motor.motor_service import MotorService
 from app.services.rag.embeddings import get_embedder
 
 log = logging.getLogger(__name__)
@@ -74,21 +75,23 @@ class AgenteService:
         repositorio: ConversaRepository = Depends(),
         modelo: ModeloIA = Depends(get_modelo),
         clima: ClimaService = Depends(),
+        motor: MotorService = Depends(),
         busca: Callable[[], BuscaConhecimentoService] = Depends(provedor_de_busca),
     ):
         self.conversas = conversas
         self.repositorio = repositorio
         self.modelo = modelo
         self.clima = clima
+        self.motor = motor
         self.busca = busca
 
-    def responder(self, usuario: Usuario, conversa_id: int, texto: str) -> MensagemOut:
+    def responder(self, usuario: Usuario, conversa_id: int, texto: str, idioma: str | None = None) -> MensagemOut:
         """Roda o agente e grava a rodada inteira de uma vez; se o assistente falhar, não grava nada (503)."""
         conversa = self.conversas.obter_do_usuario(usuario, conversa_id)
         agora = datetime.now(UTC)
         hoje = _hoje()
-        instrucao = montar_instrucao(usuario, hoje)
-        ferramentas = Ferramentas(usuario, self.clima, self.busca, conversa.id, hoje, ao_falhar=self.repositorio.db.rollback)
+        instrucao = montar_instrucao(usuario, hoje, idioma)
+        ferramentas = Ferramentas(usuario, self.clima, self.motor, self.busca, conversa.id, hoje, ao_falhar=self.repositorio.db.rollback)
 
         historico = _comeca_na_pergunta(self.repositorio.para_historico(conversa.id, HISTORICO_VISIVEIS))
         contents = [de_json(m.conteudo) for m in historico]

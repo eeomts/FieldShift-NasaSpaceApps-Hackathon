@@ -1,1 +1,17 @@
 cultura_id,nome_zarc,observacao
+soja,Soja,
+milho,Milho 1ª Safra|Milho 2ª Safra,"O ZARC separa as safras: o 1º nome é o milho de verão e o 2º é a safrinha. ""Milho 1ª/2ª Safra consorciado com Braquiária"" são linhas próprias e ficam de fora (ver pastagem)."
+feijao,Feijão|Feijão 2ª Safra,O 1º nome é a safra das águas; o 2º é a safra da seca.
+trigo,Trigo,"""Trigo - Duplo Propósito"" (forragem + grão) é outra linha e fica de fora."
+arroz,Arroz,"Tem linhas de sequeiro e irrigado (coluna Nome_Outros_Manejos). O motor é de sequeiro: filtrar ""Sequeiro"" ao gerar as janelas. O arroz irrigado também aparece na tábua de perenes/sem safra."
+algodao,Algodão Herbáceo,
+mandioca,,Não está na tábua 2025/2026 nem na de perenes/olerícolas/sem safra.
+sorgo,Sorgo Granífero|Sorgo Granífero 2ª Safra,"O sorgo da base é o granífero. ""Sorgo Forrageiro"" (1ª e 2ª safra) fica de fora."
+milheto,,Não está no ZARC.
+feijao_caupi,Feijão Caupi,Só sequeiro.
+girassol,Girassol,
+crotalaria,,Não está no ZARC (planta de cobertura).
+nabo_forrageiro,,Não está no ZARC (planta de cobertura).
+aveia,Aveia,"O dicionário não diz a espécie; a base é aveia-preta (Avena strigosa). Tem linhas de sequeiro e irrigado: filtrar ""Sequeiro""."
+guandu,,Não está no ZARC.
+pastagem,,"Não há ZARC de braquiária sozinha; ela só aparece em ""Milho 1ª Safra consorciado com Braquiária"" e ""Milho 2ª Safra consorciado com Braquiária"" (integração lavoura-pecuária)."

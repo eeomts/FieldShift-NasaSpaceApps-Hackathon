@@ -15,7 +15,7 @@ router = APIRouter(tags=["onboarding"])
 
 @router.post("/onboarding/interpretar")
 async def interpretar_texto(dados: Interpretar, _: Usuario = Depends(usuario_atual)) -> dict:
-    return await run_in_threadpool(interpretar, dados.campo, dados.texto)
+    return await run_in_threadpool(interpretar, dados.campo, dados.texto, dados.hemisferio, dados.idioma)
 
 
 @router.get("/culturas")
@@ -25,5 +25,5 @@ def listar_culturas(idioma: Literal["pt", "en", "es"] = "pt") -> list[dict]:
 
 
 @router.get("/equipamentos")
-def listar_equipamentos() -> list[dict]:
-    return catalogo.listar_equipamentos()
+def listar_equipamentos(idioma: Literal["pt", "en"] = "pt") -> list[dict]:
+    return catalogo.listar_equipamentos(idioma)

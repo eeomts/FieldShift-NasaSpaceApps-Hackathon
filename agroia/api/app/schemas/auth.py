@@ -16,6 +16,10 @@ class Login(BaseModel):
     senha: str = Field(max_length=128)
 
 
+class AtualizarUsuario(BaseModel):
+    idioma: Literal["pt", "en"]
+
+
 class UsuarioOut(BaseModel):
     id: str
     nome: str
