@@ -1,0 +1,140 @@
+{
+  "_leia": "Cenários de etc_nasa_power.py para a canola de primavera (Brassica napus, sequeiro, Dakota do Norte). Kc do FAO-56 Tab. 12 (ini 0,35 do grupo Oil crops; Rapeseed, Canola: mid 1,0-1,15, usado 1,15 porque a NDSU recomenda estande denso de 600 mil sementes/acre em linhas de 6-7 pol.; end 0,35; altura 0,6 m), mid ajustado ao clima local pela eq. 62. O FAO-56 Tab. 11 não dá as fases da canola: fases 21/23/26/30% do ciclo, montadas com as durações da NDSU A1280 (germinação 4-10 dias; vegetativo 40-60 dias até a 1ª flor, nos ensaios A1124 a 1ª flor veio aos 35-56 dias; floração 14-21 dias; enchimento completo 35-45 dias depois do início da floração; folhas caem no fim da floração). Ciclo = semeadura -> maturação dos ensaios da NDSU (83-108 dias). Sem 'referencia': não há medida de consumo da canola em ND para comparar; a 'nota' de cada cenário diz por que ele foi escolhido. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER.",
+  "locais": {
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    },
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "minot": {
+      "nome": "Minot-ND (NDSU North Central Research Extension Center)",
+      "lat": 48.18,
+      "lon": -101.3,
+      "elevacao_m": 570.25
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "canola_min_langdon_0525_83d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "fases_dias": [
+        17,
+        19,
+        22,
+        25
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.6,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Menor demanda: norte de ND (Langdon), semeadura tardia (25/mai) e híbrido precoce de 83 dias (o mais curto dos ensaios da NDSU de 2023-2025, Langdon 2023)."
+    },
+    {
+      "nome": "canola_med_langdon_0510_95d",
+      "cultura": "canola",
+      "local": "langdon",
+      "semeadura": "05-10",
+      "fases_dias": [
+        20,
+        22,
+        25,
+        28
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.6,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Cenário típico: híbrido de 95 dias (A686: 'about 95 days to reach maturity'), semeadura no início de maio."
+    },
+    {
+      "nome": "canola_med_carrington_0507_95d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-07",
+      "fases_dias": [
+        20,
+        22,
+        25,
+        28
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.6,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Cenário típico: híbrido de 95 dias (A686: 'about 95 days to reach maturity'), semeadura no início de maio."
+    },
+    {
+      "nome": "canola_max_minot_0509_108d",
+      "cultura": "canola",
+      "local": "minot",
+      "semeadura": "05-09",
+      "fases_dias": [
+        23,
+        25,
+        28,
+        32
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.6,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Maior demanda: híbrido de 108 dias (o mais longo dos ensaios, Minot 2025), semeadura cedo (7-9/mai), centro-oeste de ND."
+    },
+    {
+      "nome": "canola_max_carrington_0507_108d",
+      "cultura": "canola",
+      "local": "carrington",
+      "semeadura": "05-07",
+      "fases_dias": [
+        23,
+        25,
+        28,
+        32
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.6,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Maior demanda: híbrido de 108 dias (o mais longo dos ensaios, Minot 2025), semeadura cedo (7-9/mai), centro-oeste de ND."
+    }
+  ]
+}

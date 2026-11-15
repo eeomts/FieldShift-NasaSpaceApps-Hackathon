@@ -1,0 +1,289 @@
+{
+  "_leia": "Cenários de graus-dia da cevada de primavera (Hordeum vulgare, sequeiro, Dakota do Norte) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 0), sem teto (Tb 0 °C = 32 °F do NDAWN). O ciclo (semeadura -> maturação fisiológica) é montado em duas partes, porque nenhuma fonte de ND dá a soma térmica até a maturação: (1) 'cevada_emergencia_*': semeadura -> emergência pelo modelo do NDAWN (176 GDD °F, Tb 32 °F, teto 70 °F antes do Haun 2), com 'alvo_com_teto'; (2) 'cevada_umn_maturacao_*': emergência -> maturação (Zadoks 89) pelo guia da Universidade de Minnesota (2260 GDD °F base 40 °F, sem teto), também com 'alvo_com_teto', começando na data mediana de emergência do cenário (1). Locais da Dakota do Norte (Fargo, Carrington, Langdon), semeadura no início (26/abr) e no fim (25/mai) do período 'most active' do Handbook 628, 2001-2020. 'anos' = anos da semeadura.",
+  "locais": {
+    "fargo": {
+      "nome": "Fargo-ND (NDSU/USDA-ARS)",
+      "lat": 46.89,
+      "lon": -96.81,
+      "elevacao_m": 282.59
+    },
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "cevada_emergencia_fargo_0426",
+      "cultura": "cevada",
+      "local": "fargo",
+      "semeadura": "04-26",
+      "alvo_com_teto": {
+        "valor": 176,
+        "unidade": "F",
+        "tb": 32,
+        "teto": 70
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 98,
+        "nota": "NDAWN Barley GDD (Enz & Vasey 2005, de Bauer et al. 1992): emergência (Haun 0,5) = 176 GDD °F da semeadura, Tb 32 °F, Tmax limitada a 70 °F antes do Haun 2,0, Tmin e Tmax abaixo de 32 °F elevadas a 32 °F. 176 / 1,8 = 98 °C·dia (Tb 0). Semeadura = início (26/abr) e fim (25/mai) do período 'most active' de ND (Handbook 628)."
+      }
+    },
+    {
+      "nome": "cevada_emergencia_fargo_0525",
+      "cultura": "cevada",
+      "local": "fargo",
+      "semeadura": "05-25",
+      "alvo_com_teto": {
+        "valor": 176,
+        "unidade": "F",
+        "tb": 32,
+        "teto": 70
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 98,
+        "nota": "NDAWN Barley GDD (Enz & Vasey 2005, de Bauer et al. 1992): emergência (Haun 0,5) = 176 GDD °F da semeadura, Tb 32 °F, Tmax limitada a 70 °F antes do Haun 2,0, Tmin e Tmax abaixo de 32 °F elevadas a 32 °F. 176 / 1,8 = 98 °C·dia (Tb 0). Semeadura = início (26/abr) e fim (25/mai) do período 'most active' de ND (Handbook 628)."
+      }
+    },
+    {
+      "nome": "cevada_emergencia_carrington_0426",
+      "cultura": "cevada",
+      "local": "carrington",
+      "semeadura": "04-26",
+      "alvo_com_teto": {
+        "valor": 176,
+        "unidade": "F",
+        "tb": 32,
+        "teto": 70
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 98,
+        "nota": "NDAWN Barley GDD (Enz & Vasey 2005, de Bauer et al. 1992): emergência (Haun 0,5) = 176 GDD °F da semeadura, Tb 32 °F, Tmax limitada a 70 °F antes do Haun 2,0, Tmin e Tmax abaixo de 32 °F elevadas a 32 °F. 176 / 1,8 = 98 °C·dia (Tb 0). Semeadura = início (26/abr) e fim (25/mai) do período 'most active' de ND (Handbook 628)."
+      }
+    },
+    {
+      "nome": "cevada_emergencia_carrington_0525",
+      "cultura": "cevada",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "alvo_com_teto": {
+        "valor": 176,
+        "unidade": "F",
+        "tb": 32,
+        "teto": 70
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 98,
+        "nota": "NDAWN Barley GDD (Enz & Vasey 2005, de Bauer et al. 1992): emergência (Haun 0,5) = 176 GDD °F da semeadura, Tb 32 °F, Tmax limitada a 70 °F antes do Haun 2,0, Tmin e Tmax abaixo de 32 °F elevadas a 32 °F. 176 / 1,8 = 98 °C·dia (Tb 0). Semeadura = início (26/abr) e fim (25/mai) do período 'most active' de ND (Handbook 628)."
+      }
+    },
+    {
+      "nome": "cevada_emergencia_langdon_0426",
+      "cultura": "cevada",
+      "local": "langdon",
+      "semeadura": "04-26",
+      "alvo_com_teto": {
+        "valor": 176,
+        "unidade": "F",
+        "tb": 32,
+        "teto": 70
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 98,
+        "nota": "NDAWN Barley GDD (Enz & Vasey 2005, de Bauer et al. 1992): emergência (Haun 0,5) = 176 GDD °F da semeadura, Tb 32 °F, Tmax limitada a 70 °F antes do Haun 2,0, Tmin e Tmax abaixo de 32 °F elevadas a 32 °F. 176 / 1,8 = 98 °C·dia (Tb 0). Semeadura = início (26/abr) e fim (25/mai) do período 'most active' de ND (Handbook 628)."
+      }
+    },
+    {
+      "nome": "cevada_emergencia_langdon_0525",
+      "cultura": "cevada",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "alvo_com_teto": {
+        "valor": 176,
+        "unidade": "F",
+        "tb": 32,
+        "teto": 70
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 98,
+        "nota": "NDAWN Barley GDD (Enz & Vasey 2005, de Bauer et al. 1992): emergência (Haun 0,5) = 176 GDD °F da semeadura, Tb 32 °F, Tmax limitada a 70 °F antes do Haun 2,0, Tmin e Tmax abaixo de 32 °F elevadas a 32 °F. 176 / 1,8 = 98 °C·dia (Tb 0). Semeadura = início (26/abr) e fim (25/mai) do período 'most active' de ND (Handbook 628)."
+      }
+    },
+    {
+      "nome": "cevada_umn_maturacao_fargo_0426",
+      "cultura": "cevada",
+      "local": "fargo",
+      "semeadura": "05-06",
+      "alvo_com_teto": {
+        "valor": 2260,
+        "unidade": "F",
+        "tb": 40,
+        "teto": 150
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1256,
+        "nota": "UMN Extension, Spring barley growth and development guide (Bongard, Oelke & Simmons; revisto em 2021), Fig. 2: maturidade (Zadoks 89, maturação fisiológica aproximada) = 85 dias e 2260 GDD (base 40 °F) depois da EMERGÊNCIA, cultivar intermediária de seis fileiras em St. Paul-MN. Sem teto declarado (teto 150 °F = sem teto). 2260 / 1,8 = 1256 °C·dia na Tb 4,4 °C. Início = semeadura 04-26 + 10 dias (mediana do cenário cevada_emergencia_fargo_0426). GD total do ciclo = este GD + o GD da emergência."
+      }
+    },
+    {
+      "nome": "cevada_umn_maturacao_fargo_0525",
+      "cultura": "cevada",
+      "local": "fargo",
+      "semeadura": "06-01",
+      "alvo_com_teto": {
+        "valor": 2260,
+        "unidade": "F",
+        "tb": 40,
+        "teto": 150
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1256,
+        "nota": "UMN Extension, Spring barley growth and development guide (Bongard, Oelke & Simmons; revisto em 2021), Fig. 2: maturidade (Zadoks 89, maturação fisiológica aproximada) = 85 dias e 2260 GDD (base 40 °F) depois da EMERGÊNCIA, cultivar intermediária de seis fileiras em St. Paul-MN. Sem teto declarado (teto 150 °F = sem teto). 2260 / 1,8 = 1256 °C·dia na Tb 4,4 °C. Início = semeadura 05-25 + 7 dias (mediana do cenário cevada_emergencia_fargo_0525). GD total do ciclo = este GD + o GD da emergência."
+      }
+    },
+    {
+      "nome": "cevada_umn_maturacao_carrington_0426",
+      "cultura": "cevada",
+      "local": "carrington",
+      "semeadura": "05-07",
+      "alvo_com_teto": {
+        "valor": 2260,
+        "unidade": "F",
+        "tb": 40,
+        "teto": 150
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1256,
+        "nota": "UMN Extension, Spring barley growth and development guide (Bongard, Oelke & Simmons; revisto em 2021), Fig. 2: maturidade (Zadoks 89, maturação fisiológica aproximada) = 85 dias e 2260 GDD (base 40 °F) depois da EMERGÊNCIA, cultivar intermediária de seis fileiras em St. Paul-MN. Sem teto declarado (teto 150 °F = sem teto). 2260 / 1,8 = 1256 °C·dia na Tb 4,4 °C. Início = semeadura 04-26 + 11 dias (mediana do cenário cevada_emergencia_carrington_0426). GD total do ciclo = este GD + o GD da emergência."
+      }
+    },
+    {
+      "nome": "cevada_umn_maturacao_carrington_0525",
+      "cultura": "cevada",
+      "local": "carrington",
+      "semeadura": "06-01",
+      "alvo_com_teto": {
+        "valor": 2260,
+        "unidade": "F",
+        "tb": 40,
+        "teto": 150
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1256,
+        "nota": "UMN Extension, Spring barley growth and development guide (Bongard, Oelke & Simmons; revisto em 2021), Fig. 2: maturidade (Zadoks 89, maturação fisiológica aproximada) = 85 dias e 2260 GDD (base 40 °F) depois da EMERGÊNCIA, cultivar intermediária de seis fileiras em St. Paul-MN. Sem teto declarado (teto 150 °F = sem teto). 2260 / 1,8 = 1256 °C·dia na Tb 4,4 °C. Início = semeadura 05-25 + 7 dias (mediana do cenário cevada_emergencia_carrington_0525). GD total do ciclo = este GD + o GD da emergência."
+      }
+    },
+    {
+      "nome": "cevada_umn_maturacao_langdon_0426",
+      "cultura": "cevada",
+      "local": "langdon",
+      "semeadura": "05-07",
+      "alvo_com_teto": {
+        "valor": 2260,
+        "unidade": "F",
+        "tb": 40,
+        "teto": 150
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1256,
+        "nota": "UMN Extension, Spring barley growth and development guide (Bongard, Oelke & Simmons; revisto em 2021), Fig. 2: maturidade (Zadoks 89, maturação fisiológica aproximada) = 85 dias e 2260 GDD (base 40 °F) depois da EMERGÊNCIA, cultivar intermediária de seis fileiras em St. Paul-MN. Sem teto declarado (teto 150 °F = sem teto). 2260 / 1,8 = 1256 °C·dia na Tb 4,4 °C. Início = semeadura 04-26 + 11 dias (mediana do cenário cevada_emergencia_langdon_0426). GD total do ciclo = este GD + o GD da emergência."
+      }
+    },
+    {
+      "nome": "cevada_umn_maturacao_langdon_0525",
+      "cultura": "cevada",
+      "local": "langdon",
+      "semeadura": "06-02",
+      "alvo_com_teto": {
+        "valor": 2260,
+        "unidade": "F",
+        "tb": 40,
+        "teto": 150
+      },
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1256,
+        "nota": "UMN Extension, Spring barley growth and development guide (Bongard, Oelke & Simmons; revisto em 2021), Fig. 2: maturidade (Zadoks 89, maturação fisiológica aproximada) = 85 dias e 2260 GDD (base 40 °F) depois da EMERGÊNCIA, cultivar intermediária de seis fileiras em St. Paul-MN. Sem teto declarado (teto 150 °F = sem teto). 2260 / 1,8 = 1256 °C·dia na Tb 4,4 °C. Início = semeadura 05-25 + 8 dias (mediana do cenário cevada_emergencia_langdon_0525). GD total do ciclo = este GD + o GD da emergência."
+      }
+    }
+  ]
+}

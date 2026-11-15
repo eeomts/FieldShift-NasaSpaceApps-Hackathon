@@ -1,0 +1,401 @@
+{
+  "id": "cevada",
+  "pais": "EUA",
+  "nome": "Cevada de primavera (spring barley)",
+  "nome_cientifico": "Hordeum vulgare",
+  "familia_botanica": "Poaceae",
+  "sistema": "cevada de primavera (Hordeum vulgare, duas ou seis fileiras, para malte ou ração), sequeiro, Dakota do Norte (semeadura de fim de abril a fim de maio, colheita em agosto). Não há linha de cevada no catálogo do Brasil. Montana (parte irrigada, produtividade menor) fica em regua.arranjos.montana.",
+  "regiao_referencia": "Dakota do Norte (Fargo, Carrington, Langdon)",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "81",
+    "ciclo_dias_max": "105",
+    "graus_dia_ciclo_min": "1710",
+    "graus_dia_ciclo_max": "1780",
+    "temp_base_c": "0",
+    "temp_otima_min_c": "15",
+    "temp_otima_max_c": "20",
+    "tmax_critica_c": "",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "370",
+    "agua_ciclo_mm_max": "430",
+    "kc_inicial": "0.3",
+    "kc_medio": "1.15",
+    "kc_final": "0.25",
+    "profundidade_raiz_m": "1.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "BARLEY",
+    "calendario_usda": "Spring barley",
+    "fontes": "SISTEMA: cevada de primavera (Hordeum vulgare, seis ou duas fileiras, malte ou ração), sequeiro, Dakota do Norte; Montana em regua.arranjos.montana; a cevada de outono (Meio-Atlântico, Califórnia, Arizona) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita da cevada de primavera em ND, MN, SD e MT)|NDAWN, Barley Growing Degree Day Information (Enz & Vasey 2005, de Bauer et al. 1992; Tb 32 °F; emergência 176 GDD °F; lido em cópia do Internet Archive de 8/5/2026)|Bongard, Oelke & Simmons, UMN Extension, Spring barley growth and development guide, revisto em 2021 (Fig. 2: maturação 85 dias e 2260 GDD base 40 °F depois da emergência; lido em cópia do Internet Archive de 11/8/2026)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/cevada_gd.json (emergência pelo NDAWN + maturação pela UMN, graus-dia sem teto, Tb 0, NASA POWER 2001-2020, Fargo, Carrington e Langdon)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/cevada_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|NDSU Extension A1049-24, North Dakota Barley, Oat and Rye Variety Trial Results for 2024 (dias até o espigamento das variedades) e NDSU Carrington REC, 2025 Variety Trial Data, Barley - Dryland (semeadura, espigamento e colheita)|Peel, NDSU, Small grain growth stages (maturação fisiológica no grão farináceo duro; temperatura ótima da cevada 70 °F)|McVay et al., MSU Extension EB0186 Montana Barley Production Guide, rev. nov. 2017 (ET da cevada irrigada em Montana 15-20 pol.; maturação fisiológica com ~35% de umidade)|Ransom, NDSU, Crop Water Use & Rooting Depth (apresentação; água da cevada 11-16 pol.)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz da cevada)|FAO ECOCROP Hordeum vulgare id 1232 (temperatura ótima)|Penn State Extension, Will Late Spring Low Temperatures Affect Small Grains?, atualizado em abr. 2026 (geada na floração; cevada a mais sensível dos cereais)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade da cevada em ND e MT 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Barley) e 11.1a (resíduo acima do solo)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão da cevada; conferência)|PROXY: Hangs & Schoenau, Univ. of Saskatchewan, pôster 2018 (C/N do resíduo de cevada, Saskatchewan)|Rogers et al., Agrosystems, Geosciences & Environment 2025, e70229 (C/N e decomposição da palha de cevada, Aberdeen-ID; resumo)|PROXY: k da palha de trigo da linha trigo dos EUA (Schomberg & Steiner 1999; Ghidey & Alberts 1993; Stott et al. 1990; Rogers et al. 2025)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (proteína da palha de cevada)",
+    "confianca_parametros": "baixa",
+    "estados_validos": "ND|MN|SD",
+    "lacuna_informacao": "Não achamos na Dakota do Norte uma medida de quantos dias e de quanto calor a cevada precisa até amadurecer, nem de quanta água ela usa. Calculamos os dois com um guia de Minnesota e dados de clima de satélite, para uma variedade de ciclo médio.",
+    "risco_revisao_local": "Variedades precoces ou tardias podem amadurecer alguns dias antes ou depois. Confirme com a extensão da Universidade Estadual da Dakota do Norte a variedade e a data de semeadura e, na cevada para malte, se o comprador aceita a variedade."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "NDAWN, Barley GDD (Enz & Vasey 2005, a partir de Bauer et al. 1992, NDSU Agric. Exp. Stn. Bull. 523): 'defining the lower threshold temperature as 32 °F (0 °C)'. É a Tb oficial do modelo de estádios da cevada em ND. O NDAWN limita a Tmax (70 °F antes do Haun 2, 95 °F depois) e eleva Tmin e Tmax abaixo de 32 °F; o catálogo é sem teto, por isso as exigências foram refeitas no POWER. Igual à Tb 0 do trigo (Brasil e EUA). Não há linha de cevada no Brasil."
+    },
+    "ciclo_dias_min": {
+      "tipo": "calculo",
+      "nota": "Semeadura -> maturação fisiológica (Zadoks 89). CÁLCULO com scripts/gd_nasa_power.py e eua/cenarios/cevada_gd.json, 2001-2020: dias até a emergência pelo NDAWN (176 GDD °F, Tb 32 °F) + dias da emergência até a maturação pelo guia da Universidade de Minnesota (2260 GDD base 40 °F, cultivar intermediária), refeitos no clima de ND. Mínimo = 81 dias (Fargo, semeadura 25/mai, fim do período 'most active' do Handbook 628: 7 + 74, medianas). Nenhuma fonte de ND dá os dias até a maturação: os ensaios da NDSU (A1049) só trazem os dias até o espigamento (57-66 dias em 2024; 52-54 em Carrington 2025). Conferência: UMN, maturação 85 dias depois da emergência em St. Paul-MN; NDSU Carrington 2025 (sequeiro), semeadura 8/mai e colheita 13/ago (98 dias)."
+    },
+    "ciclo_dias_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo: 105 dias (Langdon, semeadura 26/abr, início do 'most active': 11 + 94, medianas). Outros: Carrington 26/abr 101, Fargo 26/abr 96, Langdon 25/mai 90, Carrington 25/mai 85. A faixa vem do local e da data de semeadura, para UMA cultivar intermediária; a diferença entre variedades não entrou (no A1049-24 o espigamento vai de 57 dias, Conlon, a 66, CDC Fraser). Colheita em ND (Handbook 628): 28/jul-16/set, 'most active' 4/ago-3/set, depois da maturação (grão secando de ~35% para 13-14% de umidade, MSU EB0186)."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (Tb 0, sem teto), scripts/gd_nasa_power.py com eua/cenarios/cevada_gd.json, 2001-2020, soma das medianas de duas etapas: (1) semeadura -> emergência, alvo do NDAWN 176 GDD °F (Tb 32 °F, teto 70 °F) com alvo_com_teto; (2) emergência -> maturação, alvo da UMN 2260 GDD °F base 40 °F, sem teto, com alvo_com_teto. Fargo 26/abr: 10 d + 86 d = 96 d, 101 + 1637 = 1738; Fargo 25/mai: 7 + 74 = 81 d, 115 + 1596 = 1711; Carrington 26/abr: 11 + 90 = 101 d, 101 + 1651 = 1752; Carrington 25/mai: 7 + 78 = 85 d, 113 + 1607 = 1720; Langdon 26/abr: 11 + 94 = 105 d, 104 + 1678 = 1782; Langdon 25/mai: 8 + 82 = 90 d, 113 + 1629 = 1742. Mínimo = 1711 (Fargo, 25/mai) arredondado para baixo = 1710. A conversão sobe a soma: na Tb 4,4 °C a exigência da UMN é 1256 °C·dia; na Tb 0 o POWER soma 1596-1678 da emergência à maturação. A faixa é estreita porque só uma cultivar (intermediária) entrou."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO, mesmo script e arquivo: máximo = 1782 (Langdon, 26/abr) arredondado para baixo = 1780. Semeadura cedo e local frio somam mais na Tb 0 porque levam mais dias para juntar os 2260 GDD da base 40 °F."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/cevada_etc.json, cenário cevada_min_fargo_0525_81d (semeadura 25/mai, ciclo de 81 dias do cálculo de graus-dia; fases 12/15/36/18 = proporção do FAO-56 Tab. 11, Barley/Oats/Wheat semeada em março/abril a 35-45° de latitude, 20/25/60/30; Kc 0,3/1,15/0,25, médio pela eq. 62, h = 1 m), 2001-2020: mediana 374 mm (P10 319, P90 449). Mínimo = 374 arredondado para baixo = 370. Outros de menor demanda: Langdon 25/mai 90 d = 395; Carrington 25/mai 85 d = 402. Conferência: NDSU (Ransom), 'Barley = 11 – 16 inches' (279-406 mm, sem dizer se é sem déficit); MSU EB0186, cevada IRRIGADA em Montana 15-20 pol. (381-508 mm). Consumo sem déficit; regra 1 do motor: não elimina a cevada de sequeiro. Chuva mediana da estação no cenário: 230 mm."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO, mesmo script e arquivo, cenário cevada_max_carrington_0426_101d (semeadura 26/abr, 101 dias): mediana 434 mm (P90 540), arredondado = 430. Langdon 26/abr 105 d = 428; Fargo 26/abr 96 d = 401. Fica entre o topo da NDSU (16 pol. = 406 mm) e o centro da faixa irrigada de Montana (17,5 pol. = 445 mm). Chuva mediana da estação: 268 mm em Carrington (regra 1: só aviso)."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12: Kc ini do grupo 'i. Cereals' = 0,3, herdado pela linha Barley."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Barley 1,15 (clima padrão). Abaixo do teto de 1,25; o cálculo de água ajusta pela eq. 62 (1,18-1,19 em ND)."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Barley 0,25 (grão seco no campo antes da colheita)."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Barley 1,0-1,5 m; limite superior (sequeiro). A NDSU fala em zona efetiva de 36-42 pol. (0,9-1,07 m), com a maior parte da água tirada do topo (resumo de busca de um boletim Water Spouts da NDSU, não lido; ver pendências)."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "todas",
+      "valor_brasil": "",
+      "decisao": "trocado",
+      "motivo": "Não há linha de cevada em data/catalogo/culturas.csv nem evidência em data/catalogo/evidencias/. A Tb 0 °C coincide com a do trigo do Brasil e dos EUA (mesma tribo, mesmo método do NDAWN). Os demais valores vêm de fontes dos EUA e das tabelas internacionais (FAO-56, ECOCROP, IPCC)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "calendario_usda",
+        "estados_validos"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabela 'Spring Barley Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "North Dakota continues to be the largest barley-producing State [...] Spring Barley Usual Planting and Harvesting Dates - States [...] Minnesota ......:     80     Apr 15 Apr 23 - May 25 Jun 3   Jul 26 Aug 1 - Sep 3   Sep 18 [...] Montana ........:    720     Apr 3  Apr 13 - May 11 May 20  Jul 27 Aug 3 - Sep 2   Sep 10 [...] North Dakota ...:  1,130     Apr 19 Apr 26 - May 25 Jun 3   Jul 28 Aug 4 - Sep 3   Sep 16 [...] South Dakota ...:     22     Apr 6  Apr 14 - May 17 May 24  Jul 20 Jul 27 - Aug 19 Aug 27"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDAWN (NDSU), Barley Growing Degree Day Information, Enz, J.W.; Vasey, E.H., 6/6/2005 (o site não respondeu; lido na cópia do Internet Archive de 8/5/2026)",
+      "url": "https://ndawn.ndsu.nodak.edu/help-barley-growing-degree-days.html",
+      "trecho": "Although the lower growth limit for barley is about 42 °F, Bauer et al (1992) found better correlation between accumulated GDD and barley growth stage by defining the lower threshold temperature as 32 °F (0 °C). [...] Prior to Haun stage 2.0, (384 GDD accumulated since planting); If daily Max Temp > 70 °F (21 °C) then it's set equal to 70 °F (21 °C). [...] it takes an average accumulation of 176 GDD (°F) beginning with the day after planting until emergence occurs [...] When planted on the same day in similar soil conditions, Barley typically matures about 10-14 days earlier than spring wheat."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Bongard, P.; Oelke, E.; Simmons, S., Spring barley growth and development guide, University of Minnesota Extension, revisto em 2021, Fig. 2 (imagem; valores lidos na figura) (o site recusou o acesso direto; lido na cópia do Internet Archive de 11/8/2026)",
+      "url": "https://extension.umn.edu/growing-small-grains/spring-barley-growth-and-development-guide",
+      "trecho": "Figure 2: Approximate days after emergence and growing degree days (base 40 F) to reach growth stages, for an intermediate-maturing variety grown in St. Paul. [figura: Head emergence (58) 45 dias, 990 GDD; Maturity (89) 85 dias, 2260 GDD] [...] Hard dough, head losing green color [...] 9 Approximate physiological maturity [...] When kernel moisture has decreased to about 30 to 40 percent, it has reached physiological maturity"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/cevada_gd.json (NASA POWER diário, comunidade AG; Tb 0, sem teto; 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "Emergência (NDAWN, 176 °F): Fargo 26/abr 10 d (GD 101), 25/mai 7 d (115); Carrington 11 d (101), 7 d (113); Langdon 11 d (104), 8 d (113). Emergência -> maturação (UMN, 2260 °F base 40): Fargo 86 d (1637), 74 d (1596); Carrington 90 d (1651), 78 d (1607); Langdon 94 d (1678), 82 d (1629). Totais: Fargo 26/abr: 10 d + 86 d = 96 d, 101 + 1637 = 1738; Fargo 25/mai: 7 + 74 = 81 d, 115 + 1596 = 1711; Carrington 26/abr: 11 + 90 = 101 d, 101 + 1651 = 1752; Carrington 25/mai: 7 + 78 = 85 d, 113 + 1607 = 1720; Langdon 26/abr: 11 + 94 = 105 d, 104 + 1678 = 1782; Langdon 25/mai: 8 + 82 = 90 d, 113 + 1629 = 1742"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "NDSU Extension A1049-24, North Dakota Barley, Oat and Rye Variety Trial Results for 2024 and Selection Guide, Tab. 1 (descrição das variedades; dias até o espigamento)",
+      "url": "https://info.ext.nodak.edu/agriculture/sites/default/files/2025-01/a1049-24.pdf",
+      "trecho": "Table 1. 2024 North Dakota barley variety descriptions. [...] Days to Head [...] Conlon7 M/F ND 1996 S L White 30 57 [...] CDC Fraser M/F CDC 2016 R L White 30 66 [...] Days after planting."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "NDSU Carrington Research Extension Center, 2025 Variety Trial Data, Barley - Dryland, Carrington (conferência)",
+      "url": "https://www.ag.ndsu.edu/varietytrials/carrington-rec/2025%20trial%20results/2025-trial-results-barley-dryland-carrington",
+      "trecho": "Barley - Dryland Carrington [...] Days to Heading [...] Conlon 52 [...] CDC Fraser 54 [...] Trial Mean 53 [...] Planting Date = May 8; Harvest Date = August 13; Previous Crop = Field Pea"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/cevada_etc.json (NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "cevada_min_fargo_0525_81d: ET0 417, chuva 230, Kc mid 1,179, ETc mediana 374 (P10 319, P90 449); cevada_min_carrington_0525_85d: 402; cevada_min_langdon_0525_90d: 395; cevada_max_fargo_0426_96d: 401; cevada_max_carrington_0426_101d: ET0 491, chuva 268, Kc mid 1,192, mediana 434 (P90 540); cevada_max_langdon_0426_105d: 428"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "McVay, K.; Burrows, M.; Jones, C.; Wanner, K.; Menalled, F., Montana Barley Production Guide, MSU Extension EB0186, revisado em novembro de 2017, 'Irrigation Management' e 'Harvesting and Handling Grain'",
+      "url": "https://fdn.montana.edu/extension/Full_HTML_Pubs/EB0186-MontanaBarleyProductionGuide/EB0186_MontanaBarleyProductionGuide.html",
+      "trecho": "Seasonal ET for irrigated barley in Montana ranges from 15 to 20 inches, with peak use occurring at flowering through soft dough stage. [...] Barley is considered to be physiologically mature at approximately 35% moisture."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Ransom, J., Crop Water Use & Rooting Depth - Crop Rotation for a Dry Cycle, NDSU Extension (apresentação; slide atribuído a Scherer)",
+      "url": "https://www.ag.ndsu.edu/smallgrainS/documents/crop-water-use",
+      "trecho": "How much water does a crop need? • Alfalfa = 22 – 24 inches • Sunflower = 18 -21 inches • Corn = 19 – 20 inches • Soybean = 16-17 inches • Spring wheat = 12 - 16 inches • Barley = 11 – 16 inches"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final",
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 11 e Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Barley/Oats/Wheat 15 25 50 30 120 November Central India 20 25 60 30 135 March/Apr 35-45 °L [...] i. Cereals 0.3 1.15 0.4 [...] Barley 1.15 0.25 1"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "i. Cereals Barley 1.0-1.5 0.55"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, ficha Hordeum vulgare (id 1232)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=1232",
+      "trecho": "Temperat. requir. 15 20 2 40 [...] Killing temp. during rest -4 Killing temp. early growth 0 [...] Crop cycle 90 240"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "ciclo_dias_min"
+      ],
+      "fonte": "Peel, M.D., Small grain growth stages, NDSU Extension (página de 1999 do Small Grains Disease Forecasting)",
+      "url": "https://www.ag.ndsu.edu/sgdfs/wheat/growth_stages2.htm",
+      "trecho": "Hard dough is the stage in small grains when physiological maturity (PM) is reached, and occurs at 30 - 35 percent moisture. [...] Crop Base Optimum Maximum Wheat 32 76 90 Barley 32 70 86"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Penn State Extension, Will Late Spring Low Temperatures Affect Small Grains?, atualizado em 7/4/2026 (cita a Universidade de Kentucky)",
+      "url": "https://extension.psu.edu/will-late-spring-low-temperatures-affect-small-grains",
+      "trecho": "Small grains are cold-hardy during tillering and become increasingly susceptible to frost injury as they develop through jointing into boot and flowering, when they are most at risk [...] At Feekes stage 10.5, or flowering (anthers visible), temperatures need only reach 30 degrees for 2 hours for injury to occur. [...] Next in cold hardiness is triticale, followed by wheat, then barley, which is most susceptible."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Bongard, Oelke & Simmons, UMN Extension, Spring barley growth and development guide, revisto em 2021 (proteção do ponto de crescimento até o encanamento)",
+      "url": "https://extension.umn.edu/growing-small-grains/spring-barley-growth-and-development-guide",
+      "trecho": "Until jointing, the plant apex or growing point is below the soil surface where it's somewhat protected from frost, hail or other mechanical damage."
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary (jan. 2026) e Crop Production 2023 Summary (jan. 2024), Barley Area Planted and Harvested, Yield, and Production - States and United States (nome da commodity conferido no relatório oficial; o QuickStats não foi consultado por falta de NASS_API_KEY)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Barley Area Planted and Harvested, Yield, and Production - States and United States: 2023-2025 [...] Montana ..........:    49.0        51.0        54.0 [...] North Dakota .....:    71.0        74.0        78.0 [bushels]; cropan24 (2021-2023): Montana ..........:    38.0        41.0        49.0 [...] North Dakota .....:    51.0        73.0        71.0"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "IPCC 2019 Refinement to the 2006 Guidelines, Vol. 4, Cap. 11, Tabela 11.2 (Updated) e Tabela 11.1a",
+      "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf",
+      "trecho": "AGDM(T) = Crop(T) • Slope(T) + Intercept(T) [...] Barley 0.98 ± 8% 0.59 ± 41% 0.68 [Tab. 11.1a: Barley 0.007 (± 75%) 0.014 (± 75%) 1.2 0.22 (± 33%) 0.89]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA-ARS Northern Great Plains Research Laboratory (Mandan-ND), Crop Sequence Calculator, Crop Production Parameters: Residue to Grain Ratio (1999/2000 Average) (conferência)",
+      "url": "https://ars.usda.gov/ARSUserFiles/30640500/CSC/Web/PhaseII/Production/Crop_Production_Parameters.pdf",
+      "trecho": "Residue production can be calculated by multiplying the residue to grain ratio by seed yield (lb/a). [...] Wheat 2.25 1.76 0.77 1.20 3.25 3.66 1.45 3.84 1.90 0.94 [linha = resíduo anterior; coluna Barley = 0.94; demais linhas da coluna Barley: 1.20, 1.09, 1.03, 1.02, 1.04, 1.15, 0.98, 1.08, 1.05]"
+    },
+    {
+      "colunas": [
+        "cn_palhada"
+      ],
+      "fonte": "Hangs, R.; Schoenau, J., Second-Year Decomposition and Nutrient Release Characteristics of Ten Annual Crop Residues in South-Central Saskatchewan, Canada, pôster, Univ. of Saskatchewan, 2018",
+      "url": "https://harvest.usask.ca/bitstream/10388/8721/1/R.%20Hangs%20and%20J.%20Schoenau%2c%202018c.pdf",
+      "trecho": "Barley Spring Wheat Oats Field Pea Lentil Soybean Faba Bean Canola Flax Hemp [...] C:N 102 127 113 50 37 39 59 86 102 91 [...] Figure 1. Mean (n = 4) initial ratios of total carbon (C) to nitrogen (N) [...] of post-harvest crop residues"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Lardy, G., Alternative Feeds for Ruminants, NDSU Extension AS1182, revisado em fevereiro de 2022, 'Cereal Grain Straw' e tabela 'Nutrient Content of Conventional and Alternative Feeds'",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2022-03/as1182_0.pdf",
+      "trecho": "Straw, the most common crop residue in North Dakota, is useful in maintenance or wintering rations for cows and sheep if properly supplemented with energy, protein, minerals and vitamins. [...] Oat straw is the most palatable and nutritious (especially from hull-less oats), followed by barley straw and wheat straw. [...] Barley Straw 90.0 4.1 25.0 43.0 0.38 0.00 52.0 0.37 0.11 [DM, CP, RUP, TDN, NEm, NEg, ADF, Ca, P]"
+    },
+    {
+      "colunas": [
+        "cn_palhada",
+        "k_dia"
+      ],
+      "fonte": "Rogers, C.W.; Thurgood; Dari; Sihi; Marshall, Barley, corn, and wheat residue decomposition as affected by tillage and nitrogen rate in semi-arid conditions, Agrosystems, Geosciences & Environment 8, 2025, e70229 (Aberdeen-ID, 2018-2020; só o resumo, lido no registro do Crossref). O k usado no bloco é o da palha de trigo da linha trigo dos EUA (PROXY; fontes e trechos em data/catalogo/eua/evidencias/trigo.json); este estudo mostra que a palha de cevada na superfície decompõe tão devagar quanto a de trigo",
+      "url": "https://doi.org/10.1002/agg2.70229",
+      "trecho": "Barley, corn, HRW, and SWW carbon:nitrogen (C:N) ratios were 74, 62, 105, and 87, respectively. [...] Decomposition was greatest from post‐harvest to spring for incorporated corn (37%) and least for surface barley, HRW, and SWW (21%). [...] First‐order decay constants ranged from 0.00075 to 0.00300 day−1 for surface HRW and incorporated corn, respectively."
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.0,
+      "max": 4.25,
+      "tipico": 4.0
+    },
+    "cn_palhada": {
+      "min": 74,
+      "max": 102,
+      "tipico": 88
+    },
+    "k_dia": {
+      "valor": 0.00115,
+      "min": 0.00075,
+      "max": 0.0026
+    },
+    "meia_vida_dias": {
+      "valor": 603
+    },
+    "condicao_decomposicao": "PROXY: k da palha de TRIGO na superfície, em estudos dos EUA (linha trigo dos EUA: Texas, Missouri, Idaho e vários estados). Não achei k da palha de cevada em dia de calendário nos EUA; em Aberdeen-ID (Rogers et al. 2025, resumo) a palha de cevada na superfície perdeu o mesmo que a de trigo da colheita à primavera (21%), e o k do trigo duro vermelho na superfície foi 0,00075 (o mínimo do bloco).",
+    "pb_pct": 4.1,
+    "digestibilidade_pct": {
+      "valor": null,
+      "tipo": "",
+      "n": null,
+      "medicao": "",
+      "nota": "A NDSU (AS1182) dá PB 4,1%, NDT 43% e FDA 52% para a palha de cevada; NDT não é digestibilidade e não entra, e não estimei a digestibilidade pela FDA. Não achei digestibilidade medida da palha de cevada em fonte dos EUA lida. Com uso 'residual' a classe não depende da digestibilidade."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Palha e restolho da cevada para grão depois da colheita (fardo de palha para vacas no inverno, com suplemento, ou pastejo do restolho), cenário de grão (NDSU AS1182). Feno ou silagem de cevada são outro cenário, porque tiram a palhada, e não entram.",
+    "excecoes": {},
+    "arranjos": {
+      "montana": {
+        "estados": "MT",
+        "ms_palhada_t_ha": {
+          "min": 2.4,
+          "max": 3.1,
+          "tipico": 2.9
+        },
+        "semeadura_inicio": "04-13",
+        "semeadura_fim": "05-11",
+        "agua_ciclo_mm": {
+          "min": 381,
+          "max": 508
+        },
+        "nota": "Cevada de primavera de Montana, segundo produtor do país, com parte irrigada (malte nas áreas irrigadas) e parte de sequeiro; não misturada com ND. Semeadura 'most active' 13/abr-11/mai e colheita 3/ago-2/set (Handbook 628). Palhada pela mesma regressão do IPCC com a produtividade NASS de Montana 2021-2025 (38, 41, 49, 51 e 54 bu/acre; mediana 49 -> 2,9 t/ha; mínimo 2021 2,4; máximo 2025 3,1), média estadual que mistura irrigado e sequeiro. Água: 381-508 mm é a ET da cevada IRRIGADA de Montana (MSU EB0186, 15-20 pol.); não há número do sequeiro. Ciclo, graus-dia e Kc não foram calculados para Montana: usar os da linha até haver dado da MSU."
+      }
+    },
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo depois da colheita, pela Tab. 11.2 do IPCC 2019 para Barley: AGDM = 0,98 × Crop + 0,59 (t MS/ha), com Crop = produtividade × 0,0538 (bu/acre -> t/ha, 48 lb/bu) × 0,89 (DRY, Tab. 11.1a). Produtividade NASS da cevada em ND, 2021-2025: 51, 73, 71, 74 e 78 bu/acre; mediana 73 -> Crop 3,50 t MS/ha -> 4,0 t/ha (típico). Mínimo = 2021 (51, ano seco) -> 2,98 -> 3,0; máximo = 2025 (78) -> 4,25. Conferência pela razão de Mandan (0,94 depois de trigo): 2,6-3,9 t/ha, mediana 3,7. Não desconta o enfardamento da palha. C/N: 74 (Aberdeen-ID, Rogers et al. 2025, resumo) e 102 (Saskatchewan, Hangs & Schoenau 2018, pôster); típico = média dos dois = 88.",
+      "decomposicao": "k da linha trigo dos EUA (PROXY): 0,00115 por dia (0,00075-0,0026); T½ = 603 d. Palhada que sobra em 60 dias: 4,0 × e^(-0,00115×60) = 3,7 t/ha.",
+      "colheita": "Handbook 628 (ND): colheita 28/jul-16/set, 'most active' 4/ago-3/set. NDSU Carrington 2025 (sequeiro): semeadura 8/mai, colheita 13/ago. Maturação fisiológica com 30-35% de umidade no grão (NDSU) ou ~35% (MSU); a cevada para malte não pode ser dessecada (MSU EB0186).",
+      "codigos": "codigo_nass 'BARLEY' = nome da tabela do Crop Production (inclui a cevada de outono do Meio-Atlântico, pouca área). calendario_usda 'Spring barley' = tabela 'Spring Barley Usual Planting and Harvesting Dates - States' do Handbook 628 (linha 'Barley, spring' nas tabelas por estado)."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.0,
+      "ms_remanescente_t_ha": 3.73,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    }
+  ],
+  "pendencias": [
+    "SISTEMA e região: cevada de PRIMAVERA de sequeiro da Dakota do Norte. estados_validos = ND|MN|SD (Grandes Planícies do Norte, mesmo calendário no Handbook 628). Montana fica em regua.arranjos.montana (parte irrigada, produtividade 38-54 bu/acre contra 51-78 em ND, semeadura duas semanas antes); Idaho, Washington, Colorado e Wyoming (cevada irrigada do Oeste) e a cevada de outono (Meio-Atlântico, Califórnia, Arizona) ficam sem linha. DECISÃO para o coordenador: incluir MT em estados_validos usando a linha, ou manter só o arranjo.",
+    "ciclo e graus-dia: CÁLCULO montado com duas fontes que não são da cevada de ND: a emergência do NDAWN (176 GDD °F) e a maturação de UMA cultivar intermediária em St. Paul-MN (UMN, 2260 GDD base 40 °F depois da emergência, valor lido numa figura). A faixa 81-105 dias e 1710-1780 °C·dia vem só do local e da data de semeadura; a diferença entre variedades ficou de fora (no espigamento, 57-66 dias no A1049-24). O GD total soma as medianas das duas etapas (não é a mediana da soma). Conferência fraca: o NDAWN diz que a cevada amadurece 10-14 dias antes do trigo de primavera, e a página antiga da NDSU dá ~2400 GDD °F e 83-100 dias para o TRIGO, o que daria menos que 1710 °C·dia para a cevada. Resolveria: Bauer et al. 1992 (NDSU Agric. Exp. Stn. Bull. 523, não achado on-line), ou ensaios da NDSU/MSU com data de maturação fisiológica.",
+    "agua: CÁLCULO (Kc × ET0 do POWER), consumo sem déficit. As fontes de ND (Ransom/Scherer, 11-16 pol.) não dizem se é sem déficit nem de que cultivar; a da MSU (15-20 pol.) é de cevada irrigada em Montana. Um boletim Water Spouts da NDSU (2005) daria 16-18 pol. para cevada de malte irrigada de alta produtividade e outro 18-22 pol. no oeste de ND/leste de MT, mas só vi o resumo da busca (os arquivos do UNT Web Archive não abriram): não usados. A chuva mediana da estação no POWER (209-293 mm) fica abaixo do consumo; regra 1: só aviso.",
+    "tmax_critica_c vazio: não achei limiar numérico de dano por calor na floração ou no enchimento da cevada em fonte dos EUA. A NDSU (Crop & Pest Report, 22/6/2023) fala de calor acima de 75 °F no perfilhamento e de 85 °F na fotorrespiração, mas para o trigo e fora da fase sensível; o teto de 95 °F do NDAWN é teto de fórmula de graus-dia e não entra.",
+    "sensivel_geada = true pela fase sensível (encanamento a floração; 30 °F por 2 h na floração, Penn State citando Kentucky, números do trigo; a cevada é a mais sensível dos cereais). No vegetativo o ponto de crescimento fica protegido abaixo do solo (UMN); o motor não deve eliminar a cevada por geada leve no começo do ciclo.",
+    "profundidade_raiz_m = 1,5 (FAO-56, limite superior). A NDSU (Water Spouts, visto só no resumo da busca) fala em zona efetiva de 36-42 pol. (0,9-1,07 m).",
+    "regua: C/N de dois estudos (Idaho, resumo; Saskatchewan, pôster), k PROXY do trigo, digestibilidade da palha vazia (só PB e NDT na NDSU).",
+    "codigo_nass: 'BARLEY' conferido no Crop Production 2025 Summary; não conferido no QuickStats (sem NASS_API_KEY)."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 6,
+    "colunas": [
+      "ciclo_dias_min",
+      "ciclo_dias_max",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max"
+    ]
+  }
+}

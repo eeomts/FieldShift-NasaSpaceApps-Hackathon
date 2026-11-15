@@ -1,0 +1,485 @@
+{
+  "_leia": "Cenários de graus-dia do feijão (dry edible bean, pinto e navy, sequeiro; Dakota do Norte e Michigan) para scripts/gd_nasa_power.py. As fontes dão DIAS da semeadura à maturação fisiológica (NDSU Carrington REC, ensaios de cultivares em sequeiro, 'Days to PM'/'Days to Maturity' em DAP; NDSU Langdon REC, dias até R9 com 80% das vagens amarelas; MSU/Michigan Bean Commission, 'days after planting to physiological maturity'), não uma exigência em GDD: por isso o modo é 'dias' (GD = soma de max(0, Tmed - 10), sem teto, Tb 10 °C da linha). Cada cenário 'ano a ano' refaz a soma no ANO e no LOCAL do ensaio (anos [Y, Y]), na régua do POWER; os cenários '_clima' repetem a duração em 2001-2020 só como conferência. 'dias' = DAP arredondado para o inteiro mais próximo (a janela vai da semeadura ao dia anterior à maturação). Critério de inclusão: só cultivares liberadas das classes pinto e navy; o mínimo usa a mais precoce do ensaio, o máximo a mais tardia. 'elevacao_m' = elevação da célula do POWER (Carrington e Langdon: geometry da resposta da API, igual a girassol_etc.json; Kawkawlin: célula do POWER na saída do etc_nasa_power.py); nos pontos de Michigan é aproximada e o script de graus-dia não a usa.",
+  "locais": {
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "kawkawlin": {
+      "nome": "Kawkawlin-MI (Bay County; ensaios da MSU/Michigan Bean Commission)",
+      "lat": 43.65,
+      "lon": -83.95,
+      "elevacao_m": 196
+    },
+    "colling": {
+      "nome": "Colling-MI (Tuscola County; ensaios da MSU/Michigan Bean Commission)",
+      "lat": 43.53,
+      "lon": -83.3,
+      "elevacao_m": 200
+    },
+    "pigeon": {
+      "nome": "Pigeon-MI (Huron County; ensaios da MSU/Michigan Bean Commission)",
+      "lat": 43.83,
+      "lon": -83.27,
+      "elevacao_m": 200
+    },
+    "sandusky": {
+      "nome": "Sandusky-MI (Sanilac County; ensaio de 2022 da MSU, fazenda sem coordenada publicada)",
+      "lat": 43.42,
+      "lon": -82.83,
+      "elevacao_m": 230
+    },
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "feijao_carrington_2018_0525_precoce_82d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "dias": 82,
+      "tb": 10,
+      "anos": [
+        2018,
+        2018
+      ],
+      "nota": "NDSU CREC 2018, sequeiro: semeadura 25/mai; Windbreaker (pinto) 81,5 dias até a maturação fisiológica (Days to PM), a mais precoce do ensaio."
+    },
+    {
+      "nome": "feijao_carrington_2018_0525_tardia_88d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "dias": 88,
+      "tb": 10,
+      "anos": [
+        2018,
+        2018
+      ],
+      "nota": "NDSU CREC 2018: T9905 (navy) 88,0 dias, a mais tardia (Palomino, pinto, 87,8)."
+    },
+    {
+      "nome": "feijao_carrington_2019_0529_precoce_86d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-29",
+      "dias": 86,
+      "tb": 10,
+      "anos": [
+        2019,
+        2019
+      ],
+      "nota": "NDSU CREC 2019: semeadura 29/mai; Windbreaker (pinto) 86,0 dias."
+    },
+    {
+      "nome": "feijao_carrington_2019_0529_tardia_93d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-29",
+      "dias": 93,
+      "tb": 10,
+      "anos": [
+        2019,
+        2019
+      ],
+      "nota": "NDSU CREC 2019: StayBright (pinto) 93,3 e ND Falcon (pinto) 93,0 dias, as mais tardias; navy até 91,3."
+    },
+    {
+      "nome": "feijao_carrington_2020_0527_precoce_83d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-27",
+      "dias": 83,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "NDSU CREC 2020: semeadura 27/mai; Cowboy (pinto) 82,8 dias (Windbreaker 84,5)."
+    },
+    {
+      "nome": "feijao_carrington_2020_0527_tardia_93d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-27",
+      "dias": 93,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "NDSU CREC 2020: DR Wood (pinto) 93,3 dias; navy até 89,3."
+    },
+    {
+      "nome": "feijao_carrington_2022_0602_precoce_84d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "06-02",
+      "dias": 84,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "NDSU CREC 2022: semeadura 2/jun; Windbreaker (pinto) 84,3 dias."
+    },
+    {
+      "nome": "feijao_carrington_2022_0602_tardia_96d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "06-02",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "NDSU CREC 2022: ND-Polar (navy) 96,3 dias."
+    },
+    {
+      "nome": "feijao_carrington_2023_0525_precoce_85d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "dias": 85,
+      "tb": 10,
+      "anos": [
+        2023,
+        2023
+      ],
+      "nota": "NDSU CREC 2023: semeadura 25/mai; Windbreaker (pinto) 85 dias (Days to Maturity, DAP)."
+    },
+    {
+      "nome": "feijao_carrington_2023_0525_tardia_96d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2023,
+        2023
+      ],
+      "nota": "NDSU CREC 2023: T9905 (navy) 96 dias."
+    },
+    {
+      "nome": "feijao_carrington_2025_0602_precoce_97d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "06-02",
+      "dias": 97,
+      "tb": 10,
+      "anos": [
+        2025,
+        2025
+      ],
+      "nota": "NDSU CREC 2025: semeadura 2/jun; Windbreaker (pinto) 97 dias; ano frio (34-35 °F em 3-7/set)."
+    },
+    {
+      "nome": "feijao_carrington_2025_0602_tardia_110d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "06-02",
+      "dias": 110,
+      "tb": 10,
+      "anos": [
+        2025,
+        2025
+      ],
+      "nota": "NDSU CREC 2025: ND Rodeo (pinto) e ND Polar (navy) 110 dias."
+    },
+    {
+      "nome": "feijao_langdon_2019_0520_precoce_107d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-20",
+      "dias": 107,
+      "tb": 10,
+      "anos": [
+        2019,
+        2019
+      ],
+      "nota": "NDSU Langdon REC 2019: semeadura 20/mai; a pinto mais precoce, Stampede, 106 dias; Windbreaker 107 dias (Days to Maturity). Uso Windbreaker, a mesma cultivar de Carrington."
+    },
+    {
+      "nome": "feijao_langdon_2019_0520_tardia_111d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-20",
+      "dias": 111,
+      "tb": 10,
+      "anos": [
+        2019,
+        2019
+      ],
+      "nota": "NDSU Langdon REC 2019: T9905 (navy) 111 dias, a mais tardia."
+    },
+    {
+      "nome": "feijao_langdon_2020_0529_precoce_99d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-29",
+      "dias": 99,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "NDSU Langdon REC 2020: semeadura 29/mai; Windbreaker (pinto) 99 dias até R9 ('at least 80% of pods showing yellow and mostly ripe')."
+    },
+    {
+      "nome": "feijao_langdon_2020_0529_tardia_110d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-29",
+      "dias": 110,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "NDSU Langdon REC 2020: Argosy (navy) 110 dias, a mais tardia (ND Falcon, pinto, 109)."
+    },
+    {
+      "nome": "feijao_langdon_2022_0527_precoce_105d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-27",
+      "dias": 105,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "NDSU Langdon REC 2022: semeadura 27/mai; Windbreaker (pinto) 105 dias."
+    },
+    {
+      "nome": "feijao_langdon_2022_0527_tardia_113d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-27",
+      "dias": 113,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "NDSU Langdon REC 2022: HMS Medalist e ND-Polar (navy) 113 dias."
+    },
+    {
+      "nome": "feijao_carrington_clima_0525_85d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "dias": 85,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Conferência: duração típica da pinto precoce (mediana dos ensaios) em 2001-2020."
+    },
+    {
+      "nome": "feijao_carrington_clima_0525_96d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Conferência: duração típica da navy tardia (mediana dos ensaios) em 2001-2020."
+    },
+    {
+      "nome": "feijao_kawkawlin_2020_0607_precoce_96d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-07",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "Michigan Bean Commission 2023 Research Report, ensaio de qualidade 2020-2021: Windbreaker (pinto) 96 dias até a maturação fisiológica (média dos locais e anos); Bay County semeado em 7/jun/2020."
+    },
+    {
+      "nome": "feijao_kawkawlin_2020_0607_tardia_103d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-07",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "Mesmo ensaio: Charro (pinto) 103 dias."
+    },
+    {
+      "nome": "feijao_colling_2020_0606_precoce_96d",
+      "cultura": "feijao",
+      "local": "colling",
+      "semeadura": "06-06",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "Mesmo ensaio, Tuscola County semeado em 6/jun/2020: Windbreaker 96 dias."
+    },
+    {
+      "nome": "feijao_colling_2020_0606_tardia_103d",
+      "cultura": "feijao",
+      "local": "colling",
+      "semeadura": "06-06",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2020,
+        2020
+      ],
+      "nota": "Mesmo ensaio, Tuscola 2020: Charro 103 dias."
+    },
+    {
+      "nome": "feijao_kawkawlin_2021_0531_precoce_96d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "05-31",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2021,
+        2021
+      ],
+      "nota": "Mesmo ensaio, Bay County semeado em 31/mai/2021: Windbreaker 96 dias."
+    },
+    {
+      "nome": "feijao_kawkawlin_2021_0531_tardia_103d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "05-31",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2021,
+        2021
+      ],
+      "nota": "Mesmo ensaio, Bay 2021: Charro 103 dias."
+    },
+    {
+      "nome": "feijao_pigeon_2021_0611_precoce_96d",
+      "cultura": "feijao",
+      "local": "pigeon",
+      "semeadura": "06-11",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2021,
+        2021
+      ],
+      "nota": "Mesmo ensaio, Huron County semeado em 11/jun/2021 (o relatório cita Ruth e Pigeon em Huron sem dizer qual ano; usei Pigeon): Windbreaker 96 dias."
+    },
+    {
+      "nome": "feijao_pigeon_2021_0611_tardia_103d",
+      "cultura": "feijao",
+      "local": "pigeon",
+      "semeadura": "06-11",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2021,
+        2021
+      ],
+      "nota": "Mesmo ensaio, Huron 2021: Charro 103 dias."
+    },
+    {
+      "nome": "feijao_kawkawlin_2022_0615_navy_103d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-15",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "Michigan Bean Commission 2023 Research Report, ensaio estadual de 2022, Tab. 5 (navy): a mais tardia liberada, Merlin, 103 DAP (maturação avaliada a olho, 'for all locations'); Bay County semeado em 15/jun."
+    },
+    {
+      "nome": "feijao_pigeon_2022_0608_navy_103d",
+      "cultura": "feijao",
+      "local": "pigeon",
+      "semeadura": "06-08",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "Mesmo ensaio de 2022, Huron County semeado em 8/jun: Merlin 103 DAP."
+    },
+    {
+      "nome": "feijao_sandusky_2022_0603_navy_103d",
+      "cultura": "feijao",
+      "local": "sandusky",
+      "semeadura": "06-03",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "Mesmo ensaio de 2022, Sanilac County semeado em 3/jun: Merlin 103 DAP."
+    },
+    {
+      "nome": "feijao_colling_2022_0602_navy_103d",
+      "cultura": "feijao",
+      "local": "colling",
+      "semeadura": "06-02",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2022,
+        2022
+      ],
+      "nota": "Mesmo ensaio de 2022, Tuscola County (Rayl Farms) semeado em 2/jun: Merlin 103 DAP."
+    },
+    {
+      "nome": "feijao_kawkawlin_clima_0605_96d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-05",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Conferência: pinto precoce de Michigan (96 dias) na semeadura típica (Handbook 628, Michigan, mais ativa 3-17/jun) em 2001-2020."
+    },
+    {
+      "nome": "feijao_kawkawlin_clima_0605_103d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-05",
+      "dias": 103,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Conferência: pinto/navy tardia de Michigan (103 dias) em 2001-2020."
+    }
+  ]
+}

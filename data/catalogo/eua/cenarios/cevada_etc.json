@@ -1,0 +1,187 @@
+{
+  "_leia": "Cenários de etc_nasa_power.py para a cevada de primavera (Hordeum vulgare, sequeiro, Dakota do Norte). Kc do FAO-56 Tab. 12 (Barley: ini 0,3 do grupo Cereals, mid 1,15, end 0,25; altura 1 m), mid e end ajustados ao clima local pelas eqs. 62 e 65. Fases na proporção do FAO-56 Tab. 11, linha Barley/Oats/Wheat semeada em março/abril a 35-45° de latitude (20/25/60/30 = 135 dias), escaladas para o ciclo da semeadura à maturação fisiológica calculado em cevada_gd.json (81-105 dias, conforme local e data). Semeadura = início (26/abr) e fim (25/mai) do período 'most active' de ND (Handbook 628). 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER.",
+  "locais": {
+    "fargo": {
+      "nome": "Fargo-ND (NDSU/USDA-ARS)",
+      "lat": 46.89,
+      "lon": -96.81,
+      "elevacao_m": 282.59
+    },
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "cevada_min_fargo_0525_81d",
+      "cultura": "cevada",
+      "local": "fargo",
+      "semeadura": "05-25",
+      "fases_dias": [
+        12,
+        15,
+        36,
+        18
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 445,
+        "nota": "Conferência: MSU Extension EB0186 (2017), 'Seasonal ET for irrigated barley in Montana ranges from 15 to 20 inches' (381-508 mm; centro = 17,5 pol. = 445 mm). Ciclo (dias da semeadura à maturação fisiológica) = mediana do cenário de mesmo local e data em cevada_gd.json (emergência + guia da UMN)."
+      }
+    },
+    {
+      "nome": "cevada_min_carrington_0525_85d",
+      "cultura": "cevada",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "fases_dias": [
+        13,
+        16,
+        37,
+        19
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 445,
+        "nota": "Conferência: MSU Extension EB0186 (2017), 'Seasonal ET for irrigated barley in Montana ranges from 15 to 20 inches' (381-508 mm; centro = 17,5 pol. = 445 mm). Ciclo (dias da semeadura à maturação fisiológica) = mediana do cenário de mesmo local e data em cevada_gd.json (emergência + guia da UMN)."
+      }
+    },
+    {
+      "nome": "cevada_min_langdon_0525_90d",
+      "cultura": "cevada",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "fases_dias": [
+        13,
+        17,
+        40,
+        20
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 445,
+        "nota": "Conferência: MSU Extension EB0186 (2017), 'Seasonal ET for irrigated barley in Montana ranges from 15 to 20 inches' (381-508 mm; centro = 17,5 pol. = 445 mm). Ciclo (dias da semeadura à maturação fisiológica) = mediana do cenário de mesmo local e data em cevada_gd.json (emergência + guia da UMN)."
+      }
+    },
+    {
+      "nome": "cevada_max_fargo_0426_96d",
+      "cultura": "cevada",
+      "local": "fargo",
+      "semeadura": "04-26",
+      "fases_dias": [
+        14,
+        18,
+        43,
+        21
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 445,
+        "nota": "Conferência: MSU Extension EB0186 (2017), 'Seasonal ET for irrigated barley in Montana ranges from 15 to 20 inches' (381-508 mm; centro = 17,5 pol. = 445 mm). Ciclo (dias da semeadura à maturação fisiológica) = mediana do cenário de mesmo local e data em cevada_gd.json (emergência + guia da UMN)."
+      }
+    },
+    {
+      "nome": "cevada_max_carrington_0426_101d",
+      "cultura": "cevada",
+      "local": "carrington",
+      "semeadura": "04-26",
+      "fases_dias": [
+        15,
+        19,
+        45,
+        22
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 445,
+        "nota": "Conferência: MSU Extension EB0186 (2017), 'Seasonal ET for irrigated barley in Montana ranges from 15 to 20 inches' (381-508 mm; centro = 17,5 pol. = 445 mm). Ciclo (dias da semeadura à maturação fisiológica) = mediana do cenário de mesmo local e data em cevada_gd.json (emergência + guia da UMN)."
+      }
+    },
+    {
+      "nome": "cevada_max_langdon_0426_105d",
+      "cultura": "cevada",
+      "local": "langdon",
+      "semeadura": "04-26",
+      "fases_dias": [
+        16,
+        19,
+        47,
+        23
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 0.25
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 445,
+        "nota": "Conferência: MSU Extension EB0186 (2017), 'Seasonal ET for irrigated barley in Montana ranges from 15 to 20 inches' (381-508 mm; centro = 17,5 pol. = 445 mm). Ciclo (dias da semeadura à maturação fisiológica) = mediana do cenário de mesmo local e data em cevada_gd.json (emergência + guia da UMN)."
+      }
+    }
+  ]
+}
