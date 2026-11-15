@@ -142,3 +142,32 @@ export interface EquipamentoBase {
   id: string;
   nome: string;
 }
+
+// Chat (espelho de agroia/api/app/schemas/chat.py)
+export type TipoFonte = "clima" | "conhecimento" | "cultura" | "fazenda";
+
+export interface Fonte {
+  tipo: TipoFonte;
+  titulo: string;
+  detalhe: string | null;
+}
+
+export interface Mensagem {
+  id: number;
+  papel: "produtor" | "assistente";
+  texto: string;
+  fontes: Fonte[];
+  ferramentas_usadas: string[];
+  criada_em: string; // ISO 8601 UTC
+}
+
+export interface ConversaResumo {
+  id: number;
+  titulo: string | null;
+  criada_em: string;
+  atualizada_em: string;
+}
+
+export interface Conversa extends ConversaResumo {
+  mensagens: Mensagem[];
+}

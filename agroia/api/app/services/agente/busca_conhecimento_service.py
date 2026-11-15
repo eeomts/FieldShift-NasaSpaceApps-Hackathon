@@ -22,7 +22,11 @@ class BuscaConhecimentoService:
         self.embedder = embedder
 
     def buscar(
-        self, consulta: str, expressao_original: str | None = None, tipo: str | None = None
+        self,
+        consulta: str,
+        expressao_original: str | None = None,
+        tipo: str | None = None,
+        conversa_id: int | None = None,
     ) -> list[TrechoEncontrado]:
         """`consulta` é o texto reescrito pelo agente; `expressao_original` são as palavras do produtor."""
         vetor = self.embedder.consulta(consulta)
@@ -31,6 +35,7 @@ class BuscaConhecimentoService:
 
         self.repositorio.registrar_busca(
             BuscaLog(
+                conversa_id=conversa_id,
                 expressao_original=expressao_original,
                 consulta=consulta,
                 filtros={"tipo": tipo},
