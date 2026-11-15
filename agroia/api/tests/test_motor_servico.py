@@ -298,13 +298,15 @@ def test_criterio_sem_dado_na_atual_sai_dos_pesos_efetivos():
     assert sum(a.atual.pesos.values()) == pytest.approx(1) and a.pesos["animais"] == pytest.approx(0.75)
 
 
-def test_falta_de_agua_nao_elimina_candidata_e_vira_aviso_sem_irrigacao():
+def test_falta_de_agua_elimina_so_a_sugestao_nova_sem_irrigacao_e_a_atual_vira_aviso():
     seco = clima(chuva=1.0)
     sem = analisar_entradas(montar(fazenda(irrigacao="nao"), c=seco))
     com = analisar_entradas(montar(fazenda(irrigacao="sim"), c=seco))
-    assert not any("água" in m for x in sem.eliminadas for m in x.motivos)
-    assert any(a.codigo == "agua_no_limite" for r in [sem.atual, *sem.melhores] for a in r.alertas)
+    assert any("a chuva do período" in m and "sem irrigação não fecha" in m for x in sem.eliminadas for m in x.motivos)
+    assert not sem.melhores  # nenhuma sugestão sobrevive com 1 mm de chuva por mês
+    assert any(a.codigo == "agua_no_limite" for a in sem.atual.alertas)  # a atual só avisa
     assert not any(a.codigo == "agua_no_limite" for r in [com.atual, *com.melhores] for a in r.alertas)
+    assert not any("a chuva do período" in m for x in com.eliminadas for m in x.motivos)
 
 
 def test_analise_com_a_entrada_direta_dos_helpers():

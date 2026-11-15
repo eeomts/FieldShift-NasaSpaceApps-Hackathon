@@ -257,12 +257,35 @@ def agua(chuva_mes, **kc):
     return rodar(c, e_com(c, clima=clima(chuva=chuva_mes)))
 
 
-def test_agua_chuva_abaixo_de_50_por_cento_nao_elimina_e_avisa_o_deficit():
-    r = agua(49.0)  # 147 mm de chuva contra 300 mm: 49 %; o sequeiro não é eliminado pela água (regra 1)
-    assert not r.eliminada and r.motivos == []
-    assert [a.codigo for a in r.alertas] == ["agua_no_limite"]
-    texto = r.alertas[0].texto
-    assert "água no limite" in texto and "49%" in texto and "faltam cerca de 153 mm" in texto  # 300 - 147
+def test_agua_candidata_abaixo_de_50_por_cento_e_eliminada_com_os_mm():
+    r = agua(22.0)  # 66 mm de chuva contra 300 mm: 22 %; sem irrigação a sugestão não fecha
+    assert r.eliminada and r.alertas == []
+    assert r.motivos == ["C: a chuva do período (66 mm) cobre só 22% da água que a cultura usa (300 mm); sem irrigação não fecha."]
+
+
+def test_agua_na_atual_abaixo_de_50_por_cento_so_avisa_com_o_deficit():
+    c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
+    r = rodar(c, e_com(c, clima=clima(chuva=22.0)), eliminar=False)  # a rotação atual nunca é eliminada pela água
+    assert not r.eliminada and r.motivos == [] and [a.codigo for a in r.alertas] == ["agua_no_limite"]
+    assert "água no limite" in r.alertas[0].texto and "22%" in r.alertas[0].texto and "faltam cerca de 234 mm" in r.alertas[0].texto
+
+
+def test_agua_candidata_entre_50_e_80_por_cento_so_avisa():
+    r = agua(60.0)
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"] and "água no limite" in r.alertas[0].texto
+
+
+def test_agua_candidata_sem_irrigacao_informada_tambem_e_eliminada():
+    c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
+    assert rodar(c, e_com(c, clima=clima(chuva=22.0), irrigacao=None)).eliminada
+
+
+def test_agua_reserva_sem_kc_elimina_abaixo_de_50_por_cento_do_minimo_da_base():
+    c = cultura("c", kc_inicial=None, kc_medio=None, kc_final=None, agua_ciclo_mm_min=300, agua_ciclo_mm_max=500)
+    r = rodar(c, e_com(c, clima=clima(chuva=49.0)))  # 147 mm contra 300 mm: 49 %
+    assert r.motivos == ["C: a chuva do período (147 mm) cobre só 49% da água que a cultura precisa (300 mm); sem irrigação não fecha."]
+    assert not rodar(c, e_com(c, clima=clima(chuva=50.0))).eliminada  # 150 mm: 50 % exato só avisa
+    assert not rodar(c, e_com(c, clima=clima(chuva=49.0), irrigacao="sim")).eliminada
 
 
 def test_agua_entre_50_e_80_por_cento_alerta():
@@ -304,9 +327,9 @@ def test_irrigacao_sim_nao_filtra_agua():
     assert not r.eliminada and not r.alertas
 
 
-def test_irrigacao_parte_so_alerta():
+def test_irrigacao_parte_so_alerta_mesmo_na_candidata_muito_seca():
     c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
-    r = rodar(c, e_com(c, clima=clima(chuva=1.0), irrigacao="parte"))
+    r = rodar(c, e_com(c, clima=clima(chuva=1.0), irrigacao="parte"))  # candidata (eliminar=True) a 1 %: com irrigação em parte, só avisa
     assert not r.eliminada and r.alertas[0].codigo == "agua_no_limite" and "irrigada" in r.alertas[0].texto
 
 
@@ -329,8 +352,10 @@ def test_sem_kc_e_sem_faixa_vira_lacuna():
 def test_perene_compara_com_a_chuva_do_ano():
     p = cultura("pastagem", perene=True, kc_medio=1.0)
     it = item("pastagem", 1, 12, perene=True)
-    r = avaliar([it], entradas([it], [p], clima=clima(chuva=40.0)), True)  # 480 mm contra 1200 mm: avisa, não elimina
-    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"] and "faltam cerca de 720 mm" in r.alertas[0].texto
+    r = avaliar([it], entradas([it], [p], clima=clima(chuva=60.0)), True)  # 720 mm contra 1200 mm: 60 %, avisa, não elimina
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"] and "faltam cerca de 480 mm" in r.alertas[0].texto
+    r = avaliar([it], entradas([it], [p], clima=clima(chuva=40.0)), True)  # 480 mm contra 1200 mm: 40 %, a sugestão é eliminada
+    assert r.eliminada and "480 mm" in r.motivos[0] and "1200 mm" in r.motivos[0]
     r = avaliar([it], entradas([it], [p], clima=clima(chuva=100.0)), True)
     assert not r.eliminada and not r.alertas
 

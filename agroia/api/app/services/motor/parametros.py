@@ -20,7 +20,8 @@ GD_ANO_FIM = 2020
 GD_PERCENTIL_ANO_FRIO = 10  # regra 2: P10 das safras; abaixo de 90 % do mínimo avisa "em ano frio"
 GD_MIN_SAFRAS = 10  # proposta, validar com o Yury: com menos safras completas o filtro não decide
 
-# Filtro de água (regra 1): chuva do período ÷ ETc do período. A água nunca elimina: só avisa "água no limite"
+# Filtro de água (regra 1): chuva do período ÷ ETc do período. Entre 50 % e 80 % só avisa "água no limite"; a rotação atual nunca é eliminada
+AGUA_ELIMINA_SUGESTAO_ABAIXO = 0.50  # sugestão nova abaixo disto é eliminada (sem irrigação "sim"); decisão do usuário em 15/11; FAO-56 eq. 90 com Ky do FAO-33: perda esperada acima de ~40 %; validar com o Yury
 AGUA_MUITO_ABAIXO = 0.50  # abaixo disto, com irrigação em parte da área, o aviso diz que só fecha na parte irrigada
 AGUA_ALERTA_ABAIXO = 0.80  # ok pela ordem de grandeza (VALIDACAO-PARAMETROS-MOTOR.md 2.1): FAO-56 eq. 90 e Tab. 24 (Ky do FAO-33), ~15–25 % de perda com 80 % da água
 

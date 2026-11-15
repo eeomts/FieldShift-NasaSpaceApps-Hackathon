@@ -1,4 +1,4 @@
-"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada e arroz irrigado eliminam; água e calor só avisam. Cada um com o motivo."""
+"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada, arroz irrigado e chuva muito curta (só sugestões) eliminam; calor e água no limite avisam."""
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
 from typing import Any
@@ -15,6 +15,7 @@ from app.services.motor.hidrico import chuva_do_periodo, etc_mensal
 from app.services.motor.modelo import Alerta, ItemRotacao
 from app.services.motor.parametros import (
     AGUA_ALERTA_ABAIXO,
+    AGUA_ELIMINA_SUGESTAO_ABAIXO,
     AGUA_MUITO_ABAIXO,
     CALOR_FASE_SENSIVEL,
     CALOR_MAX_FRACAO_DE_ANOS,
@@ -37,6 +38,7 @@ class Achado:
     codigo: str
     texto: str
     grave: bool  # grave elimina a candidata; na rotação atual vira alerta
+    texto_alerta: str | None = None  # texto do alerta na rotação atual, quando difere do motivo de eliminação
 
 
 @dataclass
@@ -158,22 +160,30 @@ def _agua(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor
             return
         razao = chuva / etc
         muito_abaixo, limite = razao < AGUA_MUITO_ABAIXO, razao < AGUA_ALERTA_ABAIXO
+        elimina = razao < AGUA_ELIMINA_SUGESTAO_ABAIXO
+        motivo = f"{c.nome}: a chuva do período ({num(chuva, 0)} mm) cobre só {pct(razao)} da água que a cultura usa ({num(etc, 0)} mm); sem irrigação não fecha."
         falta = etc - chuva
         resumo = f"a chuva do período ({num(chuva, 0)} mm) cobre {pct(razao)} do que ela usa ({num(etc, 0)} mm)"
     elif c.agua_ciclo_mm_min is not None:  # reserva: faixa de água da base
         muito_abaixo = chuva < c.agua_ciclo_mm_min
         falta = c.agua_ciclo_mm_min - chuva
         limite = muito_abaixo or (c.agua_ciclo_mm_max is not None and chuva < c.agua_ciclo_mm_max)
+        elimina = chuva < AGUA_ELIMINA_SUGESTAO_ABAIXO * c.agua_ciclo_mm_min  # sem a conta local: a mesma razão contra o mínimo da base
+        motivo = f"{c.nome}: a chuva do período ({num(chuva, 0)} mm) cobre só {pct(chuva / c.agua_ciclo_mm_min)} da água que a cultura precisa ({num(c.agua_ciclo_mm_min, 0)} mm); sem irrigação não fecha."
         resumo = f"a chuva do período ({num(chuva, 0)} mm) fica abaixo do que ela precisa ({num(c.agua_ciclo_mm_min, 0)} a {num(c.agua_ciclo_mm_max or c.agua_ciclo_mm_min, 0)} mm)"
     else:
         lac.append(f"{c.nome}: sem Kc nem faixa de água na base, não checamos a água.")
         return
     if not limite:
         return
-    # a água nunca elimina (regra 1): a chuva da estação fica abaixo da demanda onde o sequeiro é típico
     deficit = f"; faltam cerca de {num(falta, 0)} mm" if falta > 0 else ""
     complemento = "; só fecha na parte irrigada" if e.irrigacao == "parte" and muito_abaixo else ""
-    achados.append(Achado("agua_no_limite", f"{c.nome}: água no limite, {resumo}{deficit}{complemento}.", False))
+    aviso = f"{c.nome}: água no limite, {resumo}{deficit}{complemento}."
+    # só a sugestão nova é eliminada (a rotação atual vira aviso, em `avaliar`); com irrigação em parte da área, só avisa
+    if elimina and e.irrigacao != "parte":
+        achados.append(Achado("agua_no_limite", motivo, True, aviso))
+    else:
+        achados.append(Achado("agua_no_limite", aviso, False))
 
 
 def _fase_sensivel(item: ItemRotacao, meses: list[int], modo: str) -> list[int]:
@@ -243,7 +253,7 @@ def avaliar(itens: Iterable[ItemRotacao], e: EntradasMotor, eliminar: bool) -> R
         for a in achados:
             if a.grave and eliminar:
                 r.motivos.append(a.texto)
-            elif a.texto not in [x.texto for x in r.alertas]:
-                r.alertas.append(Alerta(a.codigo, a.texto))
+            elif (a.texto_alerta or a.texto) not in [x.texto for x in r.alertas]:
+                r.alertas.append(Alerta(a.codigo, a.texto_alerta or a.texto))
         r.lacunas += [l for l in lac if l not in r.lacunas]
     return r
