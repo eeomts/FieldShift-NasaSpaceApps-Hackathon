@@ -4,7 +4,7 @@
 
 Built for the **NASA Space Apps Challenge 2026**, challenge **Field Shift: Adapting Farms with NASA Data**.
 
-**Demo video:** [TODO: public link]  |  **Documentation:** [`docs/`](docs/README.md)  |  [Leia em portugues](README.pt-BR.md)
+**Live demo (no password):** https://demo-agroai.mateusmoreira.dev  |  **Demo video:** [TODO: public link]  |  **Documentation:** [`docs/`](docs/README.md)
 
 ---
 
@@ -19,7 +19,7 @@ A mobile-first website, in English and Portuguese, for farmers in Brazil and the
 1. **Short questionnaire** about the farm, the crops, what the farmer knows about the soil, and the farmer's priorities.
 2. **Dashboard** with the farm's climate history (NASA POWER), terrain slope (SRTM), a soil portrait (SoilGrids + the farmer's observations) and the forecast.
 3. **Rotation comparison:** the current rotation vs. the 2 best alternatives, each with *why it was suggested, evidence, benefits, risks, confidence and information gaps*.
-4. **Chat assistant** that answers "what if" questions in plain language and cites the source of every number.
+4. **Chat assistant** that explains the comparison, the farm's climate and the crops in plain language, and cites the source and period of every number.
 
 > AgroAI **supports, it does not decide**. Every number has a source, and the AI never computes or invents a number. The final word belongs to the farmer and the local expert.
 
@@ -64,6 +64,8 @@ Optional key (Gemini) and tests: [Run Locally](docs/08-run-locally.md).
 | [Limitations and Roadmap](docs/05-limitations-roadmap.md) | What works, what is partial, what is next |
 | [References](docs/06-references.md) | Other data, libraries, images, licenses |
 | [Use of AI](docs/07-ai-use.md) | AI in the product, in development and in media |
+| [Run Locally](docs/08-run-locally.md) | How to run the app on your computer |
+| [Submission](docs/submission/SUBMISSION.md) | The Space Apps project form, field by field |
 
 ## Tech stack
 
@@ -71,8 +73,8 @@ React, Vite, TypeScript, Tailwind CSS, Leaflet, Python, FastAPI, SQLAlchemy, Ale
 
 ## Use of AI
 
-- **Code:** developed with AI assistance (Claude Code, Anthropic), reviewed and tested by the team.
-- **Demo video:** edited with AI tools, with a visible watermark.
+- **Code and data:** developed with AI assistance (Claude Code, Anthropic): code, tests, data scripts, documentation and the research of the crop-parameter catalog, where every value keeps its cited source. Reviewed and tested by the team.
+- **Demo video:** uses AI-generated clips, made and edited with AI tools [TODO: tool names]; every AI-generated clip has a visible watermark.
 - **Product:** Google Gemini reads free text and powers the chat. It never computes or invents numbers.
 
 Full statement: [Use of AI](docs/07-ai-use.md).
