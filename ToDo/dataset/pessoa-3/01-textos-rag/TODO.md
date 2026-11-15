@@ -1,6 +1,6 @@
 # 01 — Textos da base de conhecimento do agente (RAG)
 
-**Dono:** Pessoa 3 · **Status:** pendente · **Prioridade:** primeira (o chat depende dela)
+**Dono:** Pessoa 3 · **Status:** feito · **Prioridade:** primeira (o chat depende dela)
 
 ## Por quê
 O agente busca nestes textos para explicar as coisas ao produtor. A qualidade da resposta depende diretamente da qualidade e do formato deles.
@@ -26,6 +26,12 @@ Ordem sugerida: glossário → satélites → metodologia → fichas.
 Exemplo de seção pronta: `docs/.../application/dados/GUIA-PREPARACAO-DADOS.md`, seção 8.
 
 ## Pronto quando
-- [ ] Os 4 arquivos em `data/rag/`, seguindo as 5 regras.
+- [x] Os 4 arquivos em `data/rag/`, seguindo as 5 regras.
 - [ ] Alguém leu 3 seções em voz alta e um produtor (ou alguém de fora da área) entenderia.
-- [ ] Nenhum número sem fonte.
+- [x] Nenhum número sem fonte.
+
+## Fechamento (15/11/2026)
+- Os 4 arquivos estão em `data/rag/`: glossário (27 seções), satélites (8), metodologia (14) e fichas (35: 17 culturas do Brasil e 18 dos EUA).
+- Conferido por script: todas as seções têm de 100 a 400 palavras, a linha "Como o produtor costuma dizer:" e a fonte no fim, sem URL nem código.
+- Fichas atualizadas com a base nova do Yury: fatos do ZARC corrigidos, épocas e estados das coberturas e a parte dos EUA.
+- A leitura em voz alta de 3 seções não foi registrada: fica para quem revisar o PR.
