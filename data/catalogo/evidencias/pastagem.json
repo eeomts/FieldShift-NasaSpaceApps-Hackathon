@@ -1,5 +1,5 @@
 {
-  "id": "braquiaria",
+  "id": "pastagem",
   "valores": {
     "tipos": "forrageira|cobertura|raiz_profunda|tolerante_seca",
     "perene": "true",
