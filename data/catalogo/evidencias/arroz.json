@@ -12,17 +12,19 @@
     "sensivel_geada": "true",
     "agua_ciclo_mm_min": "400",
     "agua_ciclo_mm_max": "600",
-    "kc_inicial": "0.3",
+    "kc_inicial": "0.6",
     "kc_medio": "1.2",
-    "kc_final": "0.6",
+    "kc_final": "0.9",
     "profundidade_raiz_m": "1.0",
     "fixa_nitrogenio": "false",
     "raiz_profunda": "false",
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "baixo",
-    "fontes": "SISTEMA: arroz de terras altas (sequeiro); não representa o arroz irrigado por inundação (RS/SC)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Clima (faixa ótima 20-35 °C; esterilidade >35 °C na floração; sensibilidade ao frio)|Embrapa Arroz e Feijão, Catálogo de cultivares de arroz, 2013 (ciclo das cultivares de terras altas 102-115 d)|Embrapa Roraima, Circular Técnica 08, 2011 (ciclo das cultivares de terras altas 95-115 d)|Embrapa Agrossilvipastoril, Jornada Científica 2024, citando Crusciol et al. 2013 Agronomy Journal 105:237 (água 400-600 mm, terras altas só com chuva)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Irrigação (necessidade total ~600 mm do terras altas por aspersão)|Embrapa Arroz e Feijão, Comunicado Técnico 214, 2013 (Kc decendial de lisímetro do terras altas, ciclo 110 d; conferência de Kc médio)|FAO-56 Tab.12 (Kc médio 1.20 e final 0.60 de Rice; Kc ini 0.3 herdado do grupo Cereals, pois o 1.05 de Rice é para arroz inundado)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite superior = sequeiro)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C; medida em arroz irrigado, mesma espécie)",
-    "confianca_parametros": "media"
+    "fontes": "SISTEMA: arroz de terras altas (sequeiro); não representa o arroz irrigado por inundação (RS/SC)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Clima (faixa ótima 20-35 °C; esterilidade >35 °C na floração; sensibilidade ao frio)|Embrapa Arroz e Feijão, Catálogo de cultivares de arroz, 2013 (ciclo das cultivares de terras altas 102-115 d)|Embrapa Roraima, Circular Técnica 08, 2011 (ciclo das cultivares de terras altas 95-115 d)|Embrapa Agrossilvipastoril, Jornada Científica 2024, citando Crusciol et al. 2013 Agronomy Journal 105:237 (água 400-600 mm, terras altas só com chuva)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Irrigação (necessidade total ~600 mm do terras altas por aspersão)|Embrapa Arroz e Feijão, Comunicado Técnico 214, 2013 (Kc decendial de lisímetro do terras altas, ciclo 110 d; conferência de Kc médio)|FAO-56 Tab.12 (Kc médio 1.20 e final 0.60 de Rice; Kc ini 0.3 herdado do grupo Cereals, pois o 1.05 de Rice é para arroz inundado)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite superior = sequeiro)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C; medida em arroz irrigado, mesma espécie)|Embrapa Arroz e Feijão CT 214 2013 (kc_inicial 0.60 e kc_final 0.90, curva decendial do terras altas)",
+    "confianca_parametros": "baixa",
+    "graus_dia_ciclo_min": "1300",
+    "graus_dia_ciclo_max": "1500"
   },
   "mudancas": [
     {
@@ -72,6 +74,48 @@
       "antes": "RASCUNHO A CONFERIR|FAO-56 ...|FAO IWM Manual 3 (água)|FAO ECOCROP (temperatura)|Embrapa Arroz e Feijão (ciclo)",
       "depois": "ver valores.fontes",
       "motivo": "Saem do campo: o manual FAO de água (arroz inundado) e o ECOCROP (não lido). Entram as fontes Embrapa específicas do terras altas."
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 3 coluna(s) do filtro sem medição ou publicação própria: temp_base_c (estudo_unico), agua_ciclo_mm_min (estudo_unico), kc_inicial (proxy)"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "4.3",
+      "depois": "5.6",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL ARROZ PALHA (id 83), n=19, Brasil. O 4,3 anterior era o da Feedipedia (4,2, média mundial)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 37.2, 'tipo': 'NDT'}",
+      "depois": "{'valor': 46.1, 'tipo': 'DMS', 'n': 4, 'medicao': 'medida', 'nota': 'Digestibilidade (aparente, in vivo) da matéria seca da ARROZ PALHA (CQBAL id 83), n=4, desvio 2,06. Outras métricas do mesmo item: DMO 56,12 (n=3), DIVMS 34,51 (n=1). Feedipedia (Rice straw): DMO 49,8 medida (n=15).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT não é digestibilidade (vai para ndt_pct quando o CQBAL tem NDT observado do mesmo material). Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1300-1500",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "kc_inicial",
+      "antes": "0.3",
+      "depois": "0.6",
+      "motivo": "DECISÃO (revisão 14/11): curva da Embrapa (CT 214) no ciclo todo: Kc do 1º decêndio medido em lisímetro no próprio sistema (terras altas), no lugar do 0,3 genérico de Cereals do FAO-56."
+    },
+    {
+      "coluna": "kc_final",
+      "antes": "0.6",
+      "depois": "0.9",
+      "motivo": "DECISÃO (revisão 14/11): curva da Embrapa (CT 214) no ciclo todo: Kc do último decêndio = 0,90. Supõe colheita com a palha ainda verde (usual no arroz de terras altas, colhido com 18-22% de umidade); se a colheita for com a planta senescente, o FAO-56 daria 0,60. O Kc final pesa pouco na água total."
     }
   ],
   "evidencias": [
@@ -186,17 +230,253 @@
       "fonte": "Steinmetz et al., Estádios de desenvolvimento de 10 cultivares de arroz irrigado expressos em graus-dia, XV Congresso Brasileiro de Agrometeorologia, Embrapa Clima Temperado, 2007",
       "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/743981/1/CBAgro152007Estadios2081.pdf",
       "trecho": "temperatura base (Tb) de 11ºC (INFELD et al., 1998), da emergência (i=1) até a data de cada estádio"
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009, Tabela 1 (dados de Aidar et al. 2000)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Matéria seca (t ha-1) [...] Antes da semeadura [do feijão] [...] Arroz 6,02 c [...] Após a colheita 4,22 bc [...] Redução 30%",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "QUADRO 1 [...] Arroz - Palhada - Proporção de Resíduo Em Relação à Planta (%) 62,8",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Silva, C. A. D. et al. (IFMS), Seleção de variedades de arroz de sequeiro para cultivo em Naviraí-MS, revista EIGEDIN (UFMS), citando Maghelly 2020",
+      "url": "https://periodicos.ufms.br/index.php/EIGEDIN/article/download/14231/9625",
+      "trecho": "O sistema de sequeiro foi cultivado em cerca 480 mil ha neste ano, com uma produção estimada em 1,13 milhão toneladas e um rendimento médio de 2,30 t.ha-1 (MAGHELLY, 2020).",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Machado, M. O.; Gomes, A. S.; Turatti, A. L.; Pauletto, E. A.; Silveira Junior, P., Efeito da adubação orgânica e mineral na produção do arroz irrigado e nas propriedades químicas e físicas do solo de Pelotas, Pesq. agropec. bras. 18(6):583-591, 1983, Tabela 1",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/15308/9151/67672",
+      "trecho": "Composição dos adubos de origem orgânica [...] Palha de arroz: N total 0,76%; C orgânico 40,0%; C/N 52,6",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Silva, D. R. B. et al., Dinâmica da decomposição e ciclagem de nutrientes de resíduos vegetais em quatro culturas de relevância agronômica, Salão do Conhecimento Unijuí, 2018, Tabela 2 (citando Figueiró & Graciolli 2011)",
+      "url": "https://www.publicacoeseventos.unijui.edu.br/index.php/salaoconhecimento/article/view/24578/23227",
+      "trecho": "Gramíneas [...] Arroz 44,2 Figueiró e Graciolli (2011)",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Embrapa Arroz e Feijão, Arroz: o produtor pergunta, a Embrapa responde, 2ª ed., 2013, cap. 14 (Sistema plantio direto)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964853/1/CNPAF2013500PR14.pdf",
+      "trecho": "A palhada do arroz apresenta alta relação C/N (carbono/nitrogênio) e acumula quantidades consideráveis de silicato na parede celular",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "QUADRO 6 [...] Arroz (Oryza sativa) [...] Palhas: MS 92,0%; Proteína Bruta 4,3; NDT 37,2 [...] outros [têm uso limitado] pelo alto teor de silica (casca e palhada de arroz)",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009 (citando Seguy et al., 1992, Cerrados do Médio Norte de MT)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "no período de 90 dias após a primeira chuva, as palhadas de milho, arroz e soja foram reduzidas em 63%, 65% e 86%, respectivamente, de sua massa inicial e, nessa mesma ordem e período, resultaram em cobertura do solo de 30%, 38% e 7%",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009 (citando Aidar et al., 2000, Brasil Central, Tabela 1)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Como se tratou de cultivo de inverno do feijoeiro sobre diversas fontes de palhada, no período de maio a setembro, a redução da biomassa variou de 60%, na palhada de soja, a 30%, na palhada de arroz, no período estudado. [Tabela 1, 107 dias:] Soja 4,06 c / 1,62 c / 60; Milho 14,49 bc / 6,30 ab / 57; Arroz 6,02 c / 4,22 bc / 30",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Massoni, P. F. S., Dinâmica do banco de sementes de arroz vermelho e ciclagem de nutrientes em função do manejo pós colheita da palha do arroz, dissertação de mestrado, UFSM, 2011 (Santa Maria, RS), Tabela 2.3 e p. 71-74 (PDF escaneado; lido por imagem) - CONTEXTO (palha de arroz irrigado, mesma espécie)",
+      "url": "https://repositorio.ufsm.br/handle/1/5041",
+      "trecho": "Tabela 2.3 [...] -Sem preparo do solo 45 0,030 0,99 [2009]; -Sem preparo do solo 56 0,015 0,80 [2010] [A (%), Ka (dia-1), R²]",
+      "colunas": []
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 83 'ARROZ PALHA' (FORRAGENS SECAS; espécie cadastrada: Oryza sativa): PB média 5,61 (n 19, desvio 1,036); DMS média 46,12 (n 4, desvio 2,061); DMO média 56,12 (n 3, desvio 1,395); DIVMS média 34,51 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Rice straw",
+      "url": "https://www.feedipedia.org/node/557",
+      "trecho": "Rice straw [...] Crude protein % DM 4.2 (SD 1.1, 2.4-6.8, Nb 237) [...] OM digestibility, Ruminant % 49.8 (SD 2.8, 46.0-56.0, Nb 15)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Wrege, M.S. et al. (IAPAR). Determinação das melhores épocas de semeadura do arroz de sequeiro, Oryza sativa, no Estado do Paraná. Acta Scientiarum 23(5):1179-1183, 2001",
+      "url": "https://periodicos.uem.br/ojs/index.php/ActaSciAgron/article/download/2621/2079",
+      "trecho": "a) período semeadura-emergência – foi fixado em 7 dias; b) período emergência-floração – foi calculado de acordo com os graus-dia acumulados [...] Tbase é a temperatura base inferior, assumida como sendo 10oC. Com base em ensaios com dados de ciclo da cultura para várias regiões e cultivares, obteve-se um valor médio de 1100 graus-dia da emergência à floração para cultivares de ciclo médio e 1000 graus-dia para cultivares de ciclo precoce. [...] c) período floração-colheita - Considerou-se um período fixo de 30 dias."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Steinmetz et al. 2021, Agrometeoros 29:e026815, Tabela 2 (arroz irrigado, mesma espécie e mesma Tb; PROXY de sistema)",
+      "url": "https://apct.sede.embrapa.br/agrometeoros/article/download/26815/14856/128397",
+      "trecho": "Graus-dia (ºC dia) médio da emergência ao estádio [...] R9: Muito Precoce 2 1216 [...] Precoce 2 1382"
+    },
+    {
+      "colunas": [
+        "pendencias"
+      ],
+      "fonte": "Heinemann, A.B. et al. (Embrapa Arroz e Feijão). Climate drivers affecting upland rice yield in the central region of Brazil. Pesq. Agropec. Trop. 54:e77222, 2024 (contexto: a Embrapa usa outra função térmica, sem total publicado em texto)",
+      "url": "https://www.redalyc.org/journal/2530/253076425004/253076425004.pdf",
+      "trecho": "The calculation of effective daily heat units (degree-days) considered the daily mean temperature and three cardinal temperatures: base (8 ºC), optimum (30 ºC) and maximum (42 ºC)"
     }
   ],
   "pendencias": [
     "Decisão de sistema: a linha representa o arroz de TERRAS ALTAS (sequeiro, Cerrado/Centro-Norte). O arroz irrigado por inundação (RS/SC) fica fora, porque não entra em rotação de sequeiro. Se o app precisar dele, crie uma linha separada (Kc ini 1.05-1.20 conforme a FAO-56 Tab.14, água de 688 a 1.210 mm segundo a Embrapa, ciclo até ~150 d). Talvez valha renomear para 'Arroz de terras altas'.",
     "kc_inicial: usei 0.3 (FAO-56, grupo Cereals) para manter o mesmo critério das outras culturas. A Embrapa mediu em lisímetro, no terras altas, Kc de 0.60 no 1º decêndio (CT 214). É uma alternativa local e realista para semeadura na época chuvosa, quando o solo fica úmido com frequência. Quem consolidar decide se o catálogo usa Tab.12 pura ou valores medidos no Brasil.",
-    "kc_final: mantive 0.6 (limite inferior da faixa FAO de 0.90-0.60, colheita com grão seco). O Kc medido pela Embrapa no último decêndio é 0.90. Não achei regra que defina qual ponta da faixa usar para o terras altas.",
     "temp_base_c = 11 °C vem de arroz IRRIGADO no RS (Infeld et al. 1998, via Embrapa Clima Temperado). Não achei Tb publicada para cultivares de terras altas. O 10 °C do rascunho não tinha fonte lida.",
     "temp_otima_max_c = 35 é igual a tmax_critica_c = 35, como no texto Embrapa (ótima 20-35 °C; acima de 35 °C esterilidade). Se o app precisar de ótima < crítica, uma opção com a mesma fonte é usar 33 °C, o teto da faixa ótima na floração (30-33 °C).",
     "Água 400-600 mm: a fonte é um resumo de evento Embrapa (2024) que cita Crusciol et al. 2013 (Agronomy Journal). Não li o artigo original. Conferência que fiz: a média dos Kc decendiais da Embrapa (~1.0) x 110 d x ETo de 4-5 mm/d dá ~440-550 mm. Mas a ETo usada aí é da minha memória, não de fonte.",
     "FAO ECOCROP não abriu (redireciona para login Google), então saiu das fontes. O temp ótima 20-30 do rascunho não foi conferido.",
     "Colunas qualitativas sem fonte primária lida, ficaram como julgamento agronômico: tipos=comercial (não marquei tolerante_seca, porque a Embrapa diz que o arroz é muito sensível ao estresse hídrico na floração), raiz_profunda=false, cobertura_solo=media, aporte_biomassa=medio, valor_forrageiro=baixo (palha). fixa_nitrogenio=false é certo (Poaceae).",
-    "Ciclo 95-115 d é da semeadura/emergência até a maturação de colheita das cultivares Embrapa de terras altas. Cultivares privadas (ex.: AN Cambará) e cultivares antigas de ciclo médio podem passar de 115 d."
+    "Ciclo 95-115 d é da semeadura/emergência até a maturação de colheita das cultivares Embrapa de terras altas. Cultivares privadas (ex.: AN Cambará) e cultivares antigas de ciclo médio podem passar de 115 d.",
+    "graus-dia: Sem medição de GD com Tb 11 para terras altas. A Embrapa Arroz e Feijão calcula graus-dia com Tb 8 / ótimo 30 / máximo 42 (função não linear) e só mostra o efeito na produtividade em gráfico (Heinemann et al. 2024), sem o total por ciclo em texto.",
+    "graus-dia: A conversão de Wrege depende da Tmed do PR (premissa de 23,5 °C) e dos 30 dias fixos de floração->colheita.",
+    "graus-dia: Fenner et al. 2013 (Eng. Agric. 21(6), Tangará da Serra-MT) dão 1506 GD (Tb 10) da emergência à maturação completa em ~103 dias, mas é simulação feita com exigências do arroz irrigado do RS, não medição; não usado.",
+    "graus-dia: O arroz é planta de dia curto; em semeaduras tardias a fase vegetativa encurta (Fenner 2013; Steinmetz 2021), o que o GD sozinho não capta."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.4,
+      "max": 6.0,
+      "tipico": 4.5
+    },
+    "cn_palhada": {
+      "min": 44,
+      "max": 58,
+      "tipico": 53
+    },
+    "k_dia": {
+      "valor": 0.0062,
+      "min": 0.0033,
+      "max": 0.0117
+    },
+    "meia_vida_dias": {
+      "valor": 111,
+      "min": 59,
+      "max": 208
+    },
+    "condicao_decomposicao": "Palhada de arroz de terras altas após a colheita, na superfície, plantio direto no Cerrado. Valor = média geométrica de Seguy (MT, 90 dias após a primeira chuva, estação chuvosa) e Aidar (Brasil Central, maio-setembro, sob feijão de inverno, 107 dias).",
+    "pb_pct": 5.6,
+    "digestibilidade_pct": {
+      "valor": 46.1,
+      "tipo": "DMS",
+      "n": 4,
+      "medicao": "medida",
+      "nota": "Digestibilidade (aparente, in vivo) da matéria seca da ARROZ PALHA (CQBAL id 83), n=4, desvio 2,06. Outras métricas do mesmo item: DMO 56,12 (n=3), DIVMS 34,51 (n=1). Feedipedia (Rice straw): DMO 49,8 medida (n=15)."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Palhada = palha + colmos depois da colheita. Não achei medida direta de palha de arroz de terras altas em lavoura média. Mínimo 3,4 t/ha é conta: rendimento médio 2,30 t/ha a 13% de umidade = 2,0 t MS de grão; resíduo = 2,0 x 62,8/37,2 = 3,4 t/ha (proporção de Cruz 1983). Máximo 6,0 = medida de Aidar (Brasil Central). Típico 4,5 = mesma conta para ~3 t/ha de grão, que é o meio da faixa. C/N: 52,6 medida em palha de arroz (irrigado, Pelotas; mesma espécie); 44,2 citada em fonte secundária; PB 4,3% de Cruz com C 40% daria 58. Típico 53. Uso 'residual': só palha, com sílica e NDT 37,2 (Cruz). A palhada de arroz persiste mais que a de soja (perdeu 30% em 107 dias contra 60% da soja; Aidar).",
+      "decomposicao": "Seguy (65% de perda em 90 d -> fração 0,35): k = -ln(0,35)/90 = 0,0117/dia; T½ = 59 d. Aidar (30% de perda em 107 d -> fração 0,70): k = -ln(0,70)/107 = 0,0033/dia; T½ = 208 d. Valor = média geométrica sqrt(0,0117 x 0,0033) = 0,0062/dia; T½ = 0,693/0,0062 = 111 d (mesma regra da soja: só há essas duas medidas de palhada de arroz de terras altas pós-colheita, uma na chuva e outra no inverno). Contexto: palha de arroz irrigado deixada na superfície sem preparo, no RS (Massoni 2011, ver persist_arroz_irrigado), dá k equivalente de 0,0036-0,0044 em 164 d, perto do mínimo. Não achei estudo com sacolas (litterbags) e k ajustado para palhada de arroz de terras altas no Brasil. Atenção ao comparar com o milho: nos dois estudos pareados o arroz persiste igual ou mais que o milho (Seguy: cobertura 38% contra 30% após 90 d; Aidar: 30% de perda contra 57%), mas o valor do milho aqui vem de Marcelo 2012, que é um sítio mais lento. Comparação homogênea (mesmo local e período em cada estudo, k = -ln(fração)/dias): Seguy, MT, 90 d após a 1ª chuva: milho k = -ln(0,37)/90 = 0,0111 (T½ 63 d); arroz -ln(0,35)/90 = 0,0117 (59 d); soja -ln(0,14)/90 = 0,0218 (32 d). Aidar, Brasil Central, maio-set (inverno, feijão de inverno), 107 d: milho -ln(0,43)/107 = 0,0079 (88 d); arroz -ln(0,70)/107 = 0,0033 (208 d); soja -ln(0,40)/107 = 0,0086 (81 d). Nos dois, a soja é a menos persistente; arroz persiste igual ou mais que o milho. O sítio de Seguy decompõe ~2,4x mais rápido que o de Marcelo 2012 para o milho (0,0111 contra 0,0045), então números de fontes diferentes não são diretamente comparáveis."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.5,
+      "ms_remanescente_t_ha": 3.1,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": false
+      }
+    },
+    "cenario_forragem": "Palha de arroz depois da colheita do grão. O CQBAL não tem NDT observado da palha de arroz."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "estudo_unico",
+      "nota": "Tb 11 °C de Infeld et al. 1998, via Steinmetz et al. 2007 (Embrapa Clima Temperado), medida em arroz IRRIGADO no RS. Pendência: 'Não achei Tb publicada para cultivares de terras altas'. Uma única origem, em condição não comparável ao terras altas do Cerrado."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Roraima CT 08 (2011): BRS Primavera 95 dias; catálogo Embrapa 2013 com 102-115 d."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Catálogo Embrapa Arroz e Feijão 2013 (BRS Bonança 115 d) e CT 08 Roraima (Monarca/Apinajé 115 d); 500 Perguntas: 'Precoces: até 115 dias'."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "estudo_unico",
+      "nota": "400 mm vem só de Crusciol et al. 2013 (Agronomy Journal), citado num resumo de evento Embrapa 2024; o original não foi lido e a conferência feita usou ETo 'da minha memória' (pendências). Nenhuma outra fonte confirma o piso."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Embrapa, 500 Perguntas: Arroz (2013), Irrigação: 'necessidade total de água situa-se em torno de 600 mm' no terras altas; coincide com o teto de Crusciol 2013."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "Embrapa Arroz e Feijão, Comunicado Técnico 214 (2013), Tab. 1: Kc decendial \"obtidos experimentalmente em lisímetro\" para o arroz de terras altas, ciclo de 110 dias: 0,60 0,70 0,91 1,06 1,15 1,17 1,20 1,19 1,15 1,01 0,90. Classificado como publicado (tabela oficial da Embrapa sem o ensaio original citado)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Rice 1.20; Embrapa CT 214 (lisímetro, terras altas) tem pico de 1.20."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "Embrapa Arroz e Feijão, Comunicado Técnico 214 (2013), Tab. 1: Kc decendial \"obtidos experimentalmente em lisímetro\" para o arroz de terras altas, ciclo de 110 dias: 0,60 0,70 0,91 1,06 1,15 1,17 1,20 1,19 1,15 1,01 0,90. Manejo de colheita assumido: palha ainda verde."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Rice 0.5-1.0 m; limite superior, que o texto da FAO indica para sequeiro."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "semeadura -> maturação fisiológica; Tb 11; Não achei soma térmica medida com Tb 11 para arroz de terras altas. Duas estimativas independentes: (A) Wrege et al. 2001 (IAPAR, arroz de sequeiro no PR, Tb 10): emergência->floração 1000 GD (precoce) e 1100 GD (médio); semeadura->emergência fixada em 7 dias; floração->colheita fixada em 30 dias. Conversão para Tb 11 (CÁLCULO): dias E->F = GD/(Tmed − 10) com Tmed ~23,5 °C (nov-jan, premissa) = 74 d (precoce) e 81 d (médio); GD11 = 1000 − 74 = 926 e 1100 − 81 = 1019. Total = 7 × (22 − 11) + GD11 + 30 × (24 − 11) = 77 + 926 + 390 = 1393 (precoce) e 77 + 1019 + 390 = 1486 (médio). (B) Mesma espécie, arroz irrigado (Steinmetz et al. 2021, Tb 11, da emergência a R9): os subgrupos com o mesmo número de dias do terras altas (95-115 d) são MP2 (1216) a P2 (1382). Somando semeadura->emergência no Cerrado, 7 × (25 − 11) = 98: 1314 a 1480. As duas dão ~1300-1500. Se a fonte usar teto: Steinmetz 2021 limita Tx a 34 e Tn a 21 °C; Wrege usa a média simples, sem teto. | plausibilidade: Cerrado (GO/MT, nov-mar), Tmed ~24,5 °C → 13,5 GD/dia: 1300/13,5 = 96 dias e 1500/13,5 = 111 dias, contra ciclo_dias 95-115 do CSV. Coerente."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "semeadura -> maturação fisiológica; Tb 11; Não achei soma térmica medida com Tb 11 para arroz de terras altas. Duas estimativas independentes: (A) Wrege et al. 2001 (IAPAR, arroz de sequeiro no PR, Tb 10): emergência->floração 1000 GD (precoce) e 1100 GD (médio); semeadura->emergência fixada em 7 dias; floração->colheita fixada em 30 dias. Conversão para Tb 11 (CÁLCULO): dias E->F = GD/(Tmed − 10) com Tmed ~23,5 °C (nov-jan, premissa) = 74 d (precoce) e 81 d (médio); GD11 = 1000 − 74 = 926 e 1100 − 81 = 1019. Total = 7 × (22 − 11) + GD11 + 30 × (24 − 11) = 77 + 926 + 390 = 1393 (precoce) e 77 + 1019 + 390 = 1486 (médio). (B) Mesma espécie, arroz irrigado (Steinmetz et al. 2021, Tb 11, da emergência a R9): os subgrupos com o mesmo número de dias do terras altas (95-115 d) são MP2 (1216) a P2 (1382). Somando semeadura->emergência no Cerrado, 7 × (25 − 11) = 98: 1314 a 1480. As duas dão ~1300-1500. Se a fonte usar teto: Steinmetz 2021 limita Tx a 34 e Tn a 21 °C; Wrege usa a média simples, sem teto. | plausibilidade: Cerrado (GO/MT, nov-mar), Tmed ~24,5 °C → 13,5 GD/dia: 1300/13,5 = 96 dias e 1500/13,5 = 111 dias, contra ciclo_dias 95-115 do CSV. Coerente."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 4,
+    "colunas": [
+      "temp_base_c",
+      "agua_ciclo_mm_min",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  },
+  "pendencias_resolvidas": [
+    "kc_inicial e kc_final: resolvido com a curva da Embrapa CT 214 (0,60 e 0,90), decisão de 14/11."
   ]
 }

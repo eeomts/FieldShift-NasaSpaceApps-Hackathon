@@ -67,6 +67,7 @@ O app já conhece 40 culturas (`agroia/base/culturas.json`, com família, grupo,
 | `id` | Id da cultura no `agroia/base/culturas.json` | já preenchido | — |
 | `nome_cientifico` | Espécie usada como referência dos parâmetros | já preenchido | Embrapa |
 | `ciclo_dias_min`, `ciclo_dias_max` | Duração do plantio à colheita | dias | Embrapa, FAO-56 |
+| `graus_dia_ciclo_min`, `graus_dia_ciclo_max` | Graus-dia da semeadura à maturação (coberturas: ao manejo no florescimento), com a `temp_base_c` da linha, sem teto | °C·dia | Ensaios brasileiros de fenologia; WOFOST/AquaCrop só para conferir |
 | `temp_base_c` | Temperatura abaixo da qual não cresce (graus-dia) | °C | Literatura |
 | `temp_otima_min_c`, `temp_otima_max_c` | Faixa ideal | °C | FAO ECOCROP |
 | `tmax_critica_c` | Calor que prejudica a floração | °C | Literatura |
@@ -74,16 +75,17 @@ O app já conhece 40 culturas (`agroia/base/culturas.json`, com família, grupo,
 | `agua_ciclo_mm_min`, `agua_ciclo_mm_max` | Água necessária no ciclo | mm | FAO-56, FAO ECOCROP |
 | `kc_inicial`, `kc_medio`, `kc_final` | Coeficiente de cultura por fase | número (ex.: `1.2`) | **FAO-56, tabela 12** |
 | `profundidade_raiz_m` | Profundidade efetiva das raízes | m | FAO-56 |
-| `cobertura_solo` | Quanto cobre o solo | `baixa`/`media`/`alta` | Embrapa |
-| `aporte_biomassa` | Palha deixada | `baixo`/`medio`/`alto` | Embrapa |
-| `valor_forrageiro` | Serve de comida para animais? | `nenhum`/`baixo`/`medio`/`alto` | — |
+| `cobertura_solo` | Quanto cobre o solo | `baixa`/`media`/`alta` | Calculada pela régua (`data/catalogo/scripts/regua.py`): palhada que sobra 60 dias depois |
+| `aporte_biomassa` | Palha deixada | `baixo`/`medio`/`alto` | Calculada pela régua: < 2,3 / 2,3–6 / ≥ 6 t/ha de MS |
+| `valor_forrageiro` | Serve de comida para animais? | `nenhum`/`baixo`/`medio`/`alto` | Calculada pela régua, pelo uso recomendado e pela digestibilidade |
 | `codigo_pam` | Código da cultura na PAM (ver tarefa 7) | texto | API de agregados do IBGE |
 | `fontes` | De onde vieram os números | texto, várias separadas por `|` | — |
-| `confianca_parametros` | Quão seguro é o conjunto | `baixa`/`media`/`alta` | Julgamento de quem preencheu |
+| `confianca_parametros` | Quão seguro é o conjunto | `baixa`/`media`/`alta` | Regra: conta as colunas do filtro sem medição ou publicação própria (0 = alta, 1–2 = media, 3+ = baixa) |
 
 **Cuidados:**
 - **Faixas, não um número só**, onde houver variação entre cultivares (ciclo, água).
 - Se um parâmetro não foi achado, **deixe vazio** e baixe a `confianca_parametros`.
+- A régua das colunas qualitativas, a regra de confiança e as fontes de cada limite estão em `data/catalogo/evidencias/README.md`.
 - O Kc do FAO-56 é para condições padrão; anote se usou outra fonte.
 
 ---

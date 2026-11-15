@@ -5,24 +5,26 @@
     "perene": "false",
     "ciclo_dias_min": "60",
     "ciclo_dias_max": "120",
-    "temp_base_c": "",
+    "temp_base_c": "5",
     "temp_otima_min_c": "12",
     "temp_otima_max_c": "25",
     "tmax_critica_c": "30",
     "sensivel_geada": "false",
-    "agua_ciclo_mm_min": "160",
-    "agua_ciclo_mm_max": "330",
+    "agua_ciclo_mm_min": "110",
+    "agua_ciclo_mm_max": "350",
     "kc_inicial": "0.7",
-    "kc_medio": "1.15",
-    "kc_final": "0.92",
+    "kc_medio": "1.25",
+    "kc_final": "1.25",
     "profundidade_raiz_m": "2.0",
     "fixa_nitrogenio": "false",
     "raiz_profunda": "true",
-    "cobertura_solo": "alta",
+    "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "medio",
-    "fontes": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995 (cap. 7.2: florescimento pleno 100-120 dias = manejo da cobertura, tolerância à seca e à geada, raiz pivotante profunda, descompactação, reciclagem de nutrientes, ~4,5 t/ha MS no florescimento, cobertura total 50-80 dias, forragem e palatabilidade menor que aveia/azevém)|Fietz, Silva, Comunello & Souza, Water requirement of oilseed radish in Mato Grosso do Sul, CIGR/CONBEA 2008, Embrapa Agropecuária Oeste (Kc medido em lisímetro de pesagem por subperíodo; ETm por subperíodo -> água do ciclo)|FAO ECOCROP Raphanus sativus var. oleiferus id 83541 (temperatura ótima 12-25, absoluta 5-30; ciclo 70-150 dias)|Kochhann, Santos, Voss & Denardin, Embrapa Trigo Comunicado Técnico Online 116, 2003 (nabo como cultura intercalar no RS, dessecado na floração plena; reciclagem de N e K; raiz pivotante descompactadora)|Mascarenhas et al., EPAMIG/Embrapa Milho e Sorgo, XXVII CBCPD 2010 (início do florescimento ~60 DAE; Lima et al. 2007: 50% de florescimento aos 66 dias)|Thorup-Kristensen, Plant and Soil 288:233-248, 2006 (profundidade de raiz do fodder radish ~2,0 m; Dinamarca)|Jacobs, USDA-NRCS Plant Fact Sheet Oilseed radish, 2012 (raiz pivotante até ~1,8 m que rompe camadas compactadas; morre abaixo de -6,7 °C / 20 °F)|FAO-56 Tab.12 (Kc ini 0.7 do grupo a. Small Vegetables, linha Radish) (PROXY: rabanete hortaliça, só para kc_inicial)",
-    "confianca_parametros": "media"
+    "fontes": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995 (cap. 7.2: florescimento pleno 100-120 dias = manejo da cobertura, tolerância à seca e à geada, raiz pivotante profunda, descompactação, reciclagem de nutrientes, ~4,5 t/ha MS no florescimento, cobertura total 50-80 dias, forragem e palatabilidade menor que aveia/azevém)|Fietz, Silva, Comunello & Souza, Water requirement of oilseed radish in Mato Grosso do Sul, CIGR/CONBEA 2008, Embrapa Agropecuária Oeste (Kc medido em lisímetro de pesagem por subperíodo; ETm da emergência ao florescimento pleno = 156 mm, base do agua_ciclo_mm; ET0 da estação usada para checar o viés do NASA POWER)|FAO ECOCROP Raphanus sativus var. oleiferus id 83541 (temperatura ótima 12-25, absoluta 5-30; ciclo 70-150 dias; o máximo absoluto de 30 °C coincide com o limiar de calor na floração das Brassica)|Kochhann, Santos, Voss & Denardin, Embrapa Trigo Comunicado Técnico Online 116, 2003 (nabo como cultura intercalar no RS, dessecado na floração plena; reciclagem de N e K; raiz pivotante descompactadora)|Mascarenhas et al., EPAMIG/Embrapa Milho e Sorgo, XXVII CBCPD 2010 (início do florescimento ~60 DAE; Lima et al. 2007: 50% de florescimento aos 66 dias)|Thorup-Kristensen, Plant and Soil 288:233-248, 2006 (profundidade de raiz do fodder radish ~2,0 m; Dinamarca)|Jacobs, USDA-NRCS Plant Fact Sheet Oilseed radish, 2012 (raiz pivotante até ~1,8 m que rompe camadas compactadas; morre abaixo de -6,7 °C / 20 °F)|FAO-56 Tab.12 (Kc ini 0.7 do grupo a. Small Vegetables, linha Radish) (PROXY: rabanete hortaliça, só para kc_inicial)|Luz, Medeiros, Tomm, Bialozor, Amaral & Pivoto, Temperatura base inferior e ciclo de híbridos de canola, Ciência Rural 42(9):1549-1555, 2012 (UFSM/Embrapa Trigo; Tb medida da emergência ao início da floração -0,8 e 0,3 °C; literatura de canola entre 0 e 5 °C) (PROXY: canola, Brassica napus, para temp_base_c)|Dalmago, Fochesatto, Kovaleski et al., Filocrono e número de folhas da canola em diferentes condições ambientais, Pesq. agropec. bras. 48(6):573-581, 2013 (Embrapa Trigo; temperatura-base de 5 °C adotada para a canola) (PROXY: canola, Brassica napus, para temp_base_c)|van Dam & Lantinga, Leaf CO2 assimilation and leaf dynamics in catch crops during autumn and winter, Netherlands Journal of Agricultural Science 46:249-265, 1998 (fodder radish em Wageningen; soma térmica com base de 0 °C; folhas continuam surgindo com média de ~4 °C)|Morrison & Stewart, Heat stress during flowering in summer Brassica, Crop Science 42(3):797-803, 2002 (limiar de temperatura máxima na floração = 29,5 °C para B. napus, B. rapa e B. juncea, campo em Ottawa) (PROXY: Brassica, para tmax_critica_c)|NASA POWER (LaRC), dados diários 2005-2024 de Dourados-MS, Passo Fundo-RS e Ponta Grossa-PR (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN) -> ET0 FAO-56 Penman-Monteith calculada e ETc até o florescimento pleno (cálculo próprio, DERIVADO, para agua_ciclo_mm_min)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: nabo_min_pontagrossa_0104_60d, nabo_max_dourados_0104_120d, nabo_max_dourados_0105_120d)",
+    "confianca_parametros": "baixa",
+    "graus_dia_ciclo_min": "800",
+    "graus_dia_ciclo_max": "1800"
   },
   "mudancas": [
     {
@@ -96,6 +98,90 @@
       "antes": "baixa",
       "depois": "media",
       "motivo": "Quase todas as colunas têm fonte primária, mas temp_base_c ficou vazia, tmax_critica_c vem do teto absoluto do ECOCROP, kc_inicial é do grupo FAO (proxy) e o Kc medido vem de um único ensaio de congresso (1 ano, 1 local)."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "",
+      "depois": "5",
+      "motivo": "Não existe Tb de crescimento medida para o nabo forrageiro (R. sativus var. oleiferus) nem para R. sativus em geral; o que há é Tb de germinação (rabanete), que não serve. PROXY: canola (Brassica napus, mesma família, cultura de inverno do Sul com Tb estudada no Brasil). A Embrapa Trigo adota Tb = 5 °C para a canola (Dalmago et al. 2013, PAB), que é o limite superior da faixa de 0 a 5 °C citada para a canola (Luz et al. 2012) e coincide com a temperatura mínima absoluta do ECOCROP para o próprio nabo forrageiro (5 °C). Escolhi 5 e não 0 porque é o valor usado nas somas térmicas publicadas da canola no Brasil (o requisito de graus-dia do ciclo, se vier dessas fontes, fica coerente) e porque é conservador. Ressalva: a Tb MEDIDA da emergência ao início da floração da canola em Santa Maria foi perto de 0 °C (-0,8 e 0,3 °C), e o fodder radish continua emitindo folhas com média de ~4 °C (van Dam & Lantinga 1998). Ver pendências."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "160",
+      "depois": "120",
+      "motivo": "O 160 vinha só de Dourados (ETm medida até o florescimento pleno, 48 dias, inverno do MS). Recalculei a água até o florescimento pleno (manejo da cobertura, decisão do time) com ET0 FAO-56 PM a partir do NASA POWER 2005-2024 e a curva de Kc do catálogo (0,7 -> 1,15). Ciclo curto de 60 dias: Ponta Grossa-PR (semeadura 1/abr) mediana 111 mm (P10-P90 102-122); Passo Fundo-RS (15/mar) 150 mm (134-181); Dourados-MS (1/mai) 151 mm (132-188). No Sul, com ET0 de outono/inverno menor, a necessidade fica abaixo de 160. Arredondei para 120 mm para cobrir o planalto do Sul sem descer ao P10. Valor DERIVADO (cálculo próprio), não medido."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "330",
+      "depois": "330 (mantido, nova justificativa)",
+      "motivo": "Antes, 330 era a ETm até a maturação dos grãos (108 dias, Fietz 2008), o que contraria a decisão do time (cobertura = até o florescimento). Com a nova conta, a água até o florescimento pleno do ciclo longo (120 dias, que é o florescimento pleno de 100-120 dias da Embrapa CPAO 1995) em Dourados dá mediana de 345 mm (semeadura 1/abr) a 395 mm (1/mai) com ET0 do NASA POWER. Mas o POWER superestimou a ET0 de Dourados em ~12% no período do ensaio de Fietz (3,24 contra 2,83-2,91 mm/dia da estação). Corrigido, fica ~305-350 mm. O 330 continua dentro da faixa e passa a representar o uso como cobertura. No Sul o ciclo longo pede menos (Passo Fundo 214-234 mm, Ponta Grossa 199 mm)."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "30",
+      "depois": "30 (mantido, agora com limiar de floração)",
+      "motivo": "Não há limiar de calor na floração medido para o nabo. PROXY: Morrison & Stewart (2002) acharam, em campo, 29,5 °C como temperatura máxima na floração a partir da qual há perda de produção de sementes, igual para B. napus, B. rapa e B. juncea. Isso coincide com o máximo absoluto de 30 °C do ECOCROP para o nabo forrageiro. Mantive 30."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista antiga, 8 referências)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Entram Luz et al. 2012 e Dalmago et al. 2013 (PROXY canola, Tb), van Dam & Lantinga 1998 (fodder radish, base 0 °C), Morrison & Stewart 2002 (PROXY Brassica, calor na floração) e o cálculo com NASA POWER. Ajustadas as descrições de Fietz 2008 e do ECOCROP."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "120",
+      "depois": "110",
+      "motivo": "REVISÃO (C-07): o cálculo dá mediana de 111 mm em Ponta Grossa (P10 102); o mínimo foi arredondado para baixo (110), não para cima."
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 7 coluna(s) do filtro sem medição ou publicação própria: temp_base_c (proxy), agua_ciclo_mm_min (calculo), agua_ciclo_mm_max (calculo), kc_inicial (proxy), kc_medio (estudo_unico), kc_final (estudo_unico), profundidade_raiz_m (estudo_unico)"
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 86, 'tipo': 'DIVMO (IVOMD) da parte aérea vegetativa no outono, Nebraska-EUA; não é DIVMS'}",
+      "depois": "{'valor': 86, 'tipo': 'DIVMO', 'n': None, 'medicao': 'medida', 'nota': 'Digestibilidade in vitro da matéria orgânica (IVOMD) da parte aérea vegetativa do nabo no outono, Nebraska-EUA (Lenz et al. 2019); n não informado no trecho. Nem o CQBAL (só NABO FORRAGEIRO GRÃO, TORTA e FARELO) nem a Feedipedia (sem ficha de Raphanus sativus) têm a parte aérea: mantida a fonte atual, só corrigida a sigla.'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Só a sigla no tipo (DIVMO), a descrição foi para a nota. Valor mantido: nenhuma das duas bases tem a parte aérea do nabo. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "800-1800",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "1.15",
+      "depois": "1.25",
+      "motivo": "DECISÃO (revisão 14/11): Kc até o florescimento (manejo da cobertura): o medido de botão floral a florescimento pleno (Fietz et al. 2008) é 1,42, limitado a 1,25 pelo FAO-56 eq. 72, como na crotalária. O 1,15 anterior era média ponderada com o período pós-manejo (contagem dupla do 0,92)."
+    },
+    {
+      "coluna": "kc_final",
+      "antes": "0.92",
+      "depois": "1.25",
+      "motivo": "DECISÃO (revisão 14/11): cobertura cortada no florescimento: kc_final = kc_medio (FAO-56 cap. 6), mesma regra das outras coberturas. O 0,92 medido é do período pós-manejo (florescimento pleno ao início das sementes)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "330",
+      "depois": "350",
+      "motivo": "DECISÃO (revisão 14/11): recalculado com Kc 1,25 (data/catalogo/scripts/etc_nasa_power.py): medianas de 367 e 423 mm em Dourados (semeadura 1/4 e 1/5), menos ~12% do viés da ET0 do POWER em Dourados = 323-372 mm; meio da faixa = 350."
     }
   ],
   "evidencias": [
@@ -200,17 +286,371 @@
       "fonte": "FAO-56, Allen et al. 1998, Tab.12",
       "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
       "trecho": "a. Small Vegetables 0.7 1.05 0.95 ... Radish 0.90 0.85 0.3 (Kc ini herdado do grupo = 0.7)"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Dalmago et al., Filocrono e número de folhas da canola em diferentes condições ambientais, Pesq. agropec. bras. 48(6):573-581, 2013 (Embrapa Trigo)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/14647/12147",
+      "trecho": "A temperatura‑base considerada para a canola foi de 5ºC (Nanda et al., 1995)."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Luz et al., Temperatura base inferior e ciclo de híbridos de canola, Ciência Rural 42(9):1549-1555, 2012",
+      "url": "https://www.redalyc.org/pdf/331/33123213003.pdf",
+      "trecho": "Segundo THOMAS (2003), existe divergência nos resultados de pesquisa quanto à Tb da canola, sendo que a maioria dos trabalhos indica valores entre 0 e 5°C. [...] MORRISON et al. (1989) determinaram a Tb da canola como sendo 5°C [...] Tabela 2: EM-IF Hyola 61 média -0,8; EM-IF Hyola 433 média 0,3; IF-FF 10 e 9,9 °C"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "van Dam & Lantinga, Netherlands Journal of Agricultural Science 46:249-265, 1998",
+      "url": "https://library.wur.nl/ojs/index.php/njas/article/download/482/197/285",
+      "trecho": "the leaf lifespan was related to temperature sum, with an assumed base temperature of 0 °C [...] Leaf appearance rate increased with temperature in fodder radish and rye. (Figura 5a: ~0,05 folha/dia com média de ~4 °C)"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "FAO ECOCROP, Raphanus sativus var. oleiferus, código 83541 (cópia EcoCrop_DB.csv, OpenCLIM)",
+      "url": "https://raw.githubusercontent.com/OpenCLIM/ecocrop/main/EcoCrop_DB.csv",
+      "trecho": "83541, Raphanus sativus var. oleiferus: TOPMN 12, TOPMX 25, TMIN 5, TMAX 30, ROPMN 800, ROPMX 1000, RMIN 500, RMAX 1500"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Morrison & Stewart, Heat stress during flowering in summer Brassica, Crop Science 42(3):797-803, 2002 (resumo via AGRIS)",
+      "url": "https://agris.fao.org/search/es/records/65df01d80f3e94b9e5d3fc8e",
+      "trecho": "The threshold temperature during flowering, which resulted in seed yield losses, was 29.5°C for all Brassica species."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Fietz et al., CIGR/CONBEA 2008 (Embrapa Agropecuária Oeste), Tabela 2 e métodos",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/255674/1/31128.pdf",
+      "trecho": "The variety used in this work was the CATI AL 1000, sown in May 31, 2007 [...] E - BB 27 d, ET0 2,83, ETm 2,59, Kc 0,91; BB – FB 21 d, ET0 2,91, ETm 4,12, Kc 1,42"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Cálculo próprio com NASA POWER (API diária, community AG), 2005-2024; script em data/catalogo/scripts/etc_nasa_power.py (cenários: nabo_min_pontagrossa_0104_60d, nabo_max_dourados_0104_120d, nabo_max_dourados_0105_120d)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,WS2M,ALLSKY_SFC_SW_DWN&community=AG&longitude=-54.80&latitude=-22.22&start=20050101&end=20241231&format=JSON",
+      "trecho": "ET0 FAO-56 PM diária (ea pelo ponto de orvalho, Rs do POWER, G=0); ETc = Σ Kc×ET0 da emergência (semeadura + 5 d) ao florescimento pleno; Kc 0,7 nos primeiros 20% do ciclo, linear até 1,15 nos 35% seguintes, 1,15 no resto (Kc médio 0,98). Medianas: 60 d -> Ponta Grossa 111, Passo Fundo 150, Dourados 151-173 mm; 120 d -> Ponta Grossa 199, Passo Fundo 214-234, Dourados 345-395 mm. Validação: Dourados 5/jun-22/jul/2007 ET0 POWER 3,24 mm/d contra 2,83-2,91 da estação (Fietz), ou seja, POWER ~12% acima; a mesma janela com os Kc medidos dá 178 mm contra 156 mm medidos."
+    },
+    {
+      "fonte": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "Quanto à produção de matéria seca avaliada no florescimento, aveia-preta, centeio e nabo forrageiro atingiram médias anuais de cerca de 4,5 t/ha",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "palha de nabo forrageiro, que devido ter relação C:N relativamente baixa (14:1) apresenta rápida decomposição",
+      "colunas": [
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "Isso o caracteriza como um excelente material forrageiro para pastejo durante o inverno [...] Sua palatabilidade, segundo Costa (1992), é relativamente menor que a da aveia e do azevém.",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Aita & Giacomini, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura de solo solteiras e consorciadas, R. Bras. Ci. Solo 27:601-612, 2003 (Santa Maria-RS; aveia no pleno florescimento, nabo no final do florescimento)",
+      "url": "https://www.redalyc.org/pdf/1802/180214026004.pdf",
+      "trecho": "100 % NF [...] 30,6 [C/N]; [MS adicionada] 100 % NF [...] 3.720 [kg ha-1]; O nabo apresentou um comportamento intermediário [...] 75 % da sua MS inicial ainda estava sobre o solo [ao fim do 1º mês]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Giacomini, Aita, Vendruscolo, Cubilla, Nicoloso & Fries, Matéria seca, relação C/N e acúmulo de nitrogênio, fósforo e potássio em misturas de plantas de cobertura de solo, R. Bras. Ci. Solo 27:325-334, 2003 (Santa Maria-RS, 1998-2000)",
+      "url": "https://www.redalyc.org/pdf/1802/180218485012.pdf",
+      "trecho": "Quadro 1 [...] 100% NF [...] 5,53 a [1998] [...] 3,58 a [1999] [...] 3,86 a [2000] [Mg ha-1]; Quadro 2 [C/N] 100% NF [...] 22,4 a [1998] [...] 22,5 a [1999] [...] 25,5 a [2000]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Acosta, Amado, Silva, Santi & Weber, Decomposição da fitomassa de plantas de cobertura e liberação de nitrogênio em função da quantidade de resíduos aportada ao solo sob sistema plantio direto, Ciência Rural 44(5):801-809, 2014 (Santa Maria-RS)",
+      "url": "https://www.redalyc.org/pdf/331/33130634007.pdf",
+      "trecho": "relações C/N de 11 e 16 nos resíduos de ervilhaca, 44 e 39 nos resíduos de aveia preta e valores intermediários de 32 e 26 nos resíduos de nabo forrageiro; Tabela 1 [...] Nabo forrageiro Média [...] 106 b [t50% dia]",
+      "colunas": [
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Heinzmann, Resíduos culturais de inverno e assimilação de nitrogênio por culturas de verão, Pesq. agropec. bras. 20(9):1021-1030, 1985 (amostragem na época da colheita das culturas de inverno)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/16176/10348",
+      "trecho": "TABELA 2 [...] Nabo-forrageiro 34 101 135 [N total kg/ha] 20 [C/N raízes] 21 [C/N P. aérea]",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Quadros 3 e 4 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "Quadro 4: Nabo forrageiro 4,1 c [MS acumulada Mg ha-1 2007/08] [...] 1,7 b (44) [remanescente] | 2,5 c [2008/09] [...] 0,3 b (23); Quadro 3: Nabo forrageiro [...] C:N 31 [2007/08] [...] 23 [2008/09]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Lenz, Cox-O'Neill, Hales & Drewnoski, Nutritive value change during the fall of late-summer-planted oats, radishes, and turnips, Crop, Forage & Turfgrass Management 5:180097, 2019",
+      "url": "https://doi.org/10.2134/cftm2018.12.0097",
+      "trecho": "The mean in vitro organic matter digestibility (IVOMD) of radish (86%) and turnip (87%) tops were high [...] crude protein (CP) of all forages was high, with oats (16% CP) being less than both radish (27%) and turnip (24%) tops. [...] suggesting that the potential for sulfur toxicity, if grazed alone, persists.",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Acosta, Amado, Silva, Santi & Weber, Decomposição da fitomassa de plantas de cobertura e liberação de nitrogênio em função da quantidade de resíduos aportada ao solo sob sistema plantio direto, Ciência Rural 44(5):801-809, 2014 (Santa Maria-RS; bolsas de outubro a março, entrelinha do milho; médias de 2003 e 2004)",
+      "url": "https://www.redalyc.org/pdf/331/33130634007.pdf",
+      "trecho": "Tabela 1 [...] tempo necessário para decompor 50% (t50%) [...] Nabo forrageiro 3 [...] 115 [...] 6 [...] 113 [...] 9 [...] 90 [...] Média [...] 106 b",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Acosta, Amado, Silva, Santi & Weber, Decomposição da fitomassa de plantas de cobertura e liberação de nitrogênio em função da quantidade de resíduos aportada ao solo sob sistema plantio direto, Ciência Rural 44(5):801-809, 2014 (Santa Maria-RS; bolsas de outubro a março, entrelinha do milho; médias de 2003 e 2004)",
+      "url": "https://www.redalyc.org/pdf/331/33130634007.pdf",
+      "trecho": "Assim, a temperatura média, que variou de 20 a 25°C e as frequentes precipitações favoreceram a decomposição dos resíduos",
+      "colunas": [
+        "condicao"
+      ]
+    },
+    {
+      "fonte": "Aita & Giacomini, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura de solo solteiras e consorciadas, R. Bras. Ci. Solo 27:601-612, 2003 (Santa Maria-RS; outubro de 1999 a março de 2000)",
+      "url": "https://www.redalyc.org/pdf/1802/180214026004.pdf",
+      "trecho": "Quadro 5 [...] Matéria seca remanescente (MSR) [...] 100 % NF 66,3 a 0,01507 c [...] 46 a [...] MSR = A e(-kat) + (100-A) nos tratamentos 100 % AP e 100 % NF",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Figura 3 e Quadro 2 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "Figura 3. Constantes (K0) das equações exponenciais simples (y = A0.e-K0.t) ajustadas para a decomposição dos resíduos das culturas de entressafra. [Nabo forrageiro: K0 ≈ 0,0053 em 2007/08 e ≈ 0,0105 em 2008/09, lidos no gráfico; Quadro 2: 196,7 e 483,8 mm em 180 dias]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Lenz, Cox-O'Neill, Hales & Drewnoski, Crop, Forage & Turfgrass Management 5:180097, 2019",
+      "url": "https://doi.org/10.2134/cftm2018.12.0097",
+      "trecho": "The mean in vitro organic matter digestibility (IVOMD) of radish (86%) and turnip (87%) tops were high [...] crude protein (CP) of all forages was high, with oats (16% CP) being less than both radish (27%) and turnip (24%) tops."
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 1579 'NABO FORRAGEIRO TORTA' (CONCENTRADOS PROTÉICOS; espécie cadastrada: Raphunus sativus L.): PB média 37,27 (n 6, desvio 1,482); DIVMS média 75,66 (n 2, desvio 4,241). Torta (subproduto do óleo), não a parte aérea; não usado"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Fietz, Silva, Comunello & Souza (Embrapa Agropecuária Oeste), Water requirement of oilseed radish (Raphanus sativus L.) in Mato Grosso do Sul State, Brazil, CIGR/CONBEA 2008",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/255674/1/31128.pdf",
+      "trecho": "The variety used in this work was the CATI AL 1000, sown in May 31, 2007 [...] E - BB 27 d [...] BB – FB 21 d"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Ziech et al., Proteção do solo por plantas de cobertura de ciclo hibernal na região Sul do Brasil, Pesq. agropec. bras. 50(5):374-382, 2015",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/20934/12927",
+      "trecho": "Aos 93 DAS (6/10/2010) e aos 112 DAS (1/9/2011) [...] e o nabo forrageiro estava no final do florescimento"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995, cap. 7.2",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "Na região de Dourados, a semeadura deve ser realizada nos mês de abril [...] O florescimento pleno, que na região deve ocorrer entre 100 e 120 dias, é a época ideal para o manejo da cobertura verde"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Mascarenhas et al. (EPAMIG/Embrapa Milho e Sorgo), Nabo forrageiro: seletividade de herbicidas..., XXVII CBCPD, 2010 (conferência do mínimo em dias)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/859037/1/Naboforrageiro.pdf",
+      "trecho": "Segundo Lima et al. (2007), o intervalo de tempo a partir da semeadura até a planta atingir 50% de florescimento foi de 66 dias"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO próprio: NASA POWER diário Dourados-MS (-22,22; -54,81) 2007 e Dois Vizinhos-PR 2010-2011; climatologia T2M Dourados",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-54.81&latitude=-22.22&start=20070501&end=20070831&format=JSON",
+      "trecho": "Dourados 31/05/2007->24/07/2007 Tb5: GD 809, 54 d, Tmed 19,98; Dois Vizinhos 05/07/2010->06/10/2010: 1158; 12/05/2011->01/09/2011: 1243"
     }
   ],
   "pendencias": [
-    "temp_base_c ficou VAZIA: não achei Tb de crescimento/graus-dia medida para R. sativus var. oleiferus (só Tb de germinação do rabanete, ~15 °C em hidrotermal time, que não serve para crescimento). Thorup-Kristensen 2001 fala em ~750 °C·d até 1 m de raiz, mas não li a base usada.",
-    "tmax_critica_c = 30 é o máximo absoluto do ECOCROP, não um limiar de dano na floração medido. Confiabilidade moderada.",
-    "Kc: único ensaio com Kc medido (Fietz et al. 2008, 1 ano, Dourados, irrigado, cultivar de grão CATI AL 1000 que floresceu cedo, ~27 DAE). O 1.42 no florescimento pode ter efeito de borda do lisímetro. Para uso como COBERTURA (manejo no florescimento pleno), o kc_final 0.56 não chega a ocorrer; o app deveria manter ~kc_medio até a data do manejo. Se o catálogo quiser kc_final coerente com o manejo no florescimento, a alternativa é 0.92 (subperíodo FB-BS medido).",
-    "Água: valores derivados da ETm medida em Dourados no inverno (ET0 ~3,6 mm/d). Para a cobertura de ciclo longo (florescimento pleno com 100-120 dias, cv. Siletina), a água até o manejo deve ser maior que 160 mm; no Sul (ET0 de inverno menor), menor. Não há medição direta para esses casos.",
+    "temp_base_c = 5 é PROXY da canola (Embrapa Trigo adota 5 °C). Não há Tb de crescimento medida para o nabo forrageiro. A Tb medida da emergência ao início da floração da canola em Santa Maria ficou perto de 0 °C (Luz et al. 2012), e o fodder radish continua emitindo folhas com média de ~4 °C (van Dam & Lantinga 1998). A Tb real do nabo na fase vegetativa pode estar entre 0 e 5 °C. Com 5 °C, o motor acumula menos graus-dia no inverno frio do Sul e pode eliminar o nabo em janelas frias onde ele de fato cresce. O requisito de graus-dia do ciclo precisa ser calculado com a MESMA Tb.",
+    "tmax_critica_c = 30 é PROXY: o limiar de 29,5 °C na floração (Morrison & Stewart 2002) foi medido em canola, colza e mostarda no Canadá, e não no nabo; o 30 do ECOCROP é o máximo absoluto de cultivo. Li o resumo (AGRIS), não o artigo completo. Como cobertura, o nabo é manejado no florescimento, então o calor nessa fase afeta sobretudo quem colhe semente.",
+    "Água (110-330 mm até o florescimento pleno): o 110 é DERIVADO (mediana 111 mm em Ponta Grossa, arredondada para baixo na revisão) por cálculo próprio (NASA POWER + curva de Kc do catálogo), não medido. O POWER superestimou a ET0 em ~12% em Dourados (comparação com a estação do ensaio de Fietz 2008); no Sul o viés não foi conferido. O 330 está dentro da faixa calculada para o ciclo longo em Dourados (~305-350 mm corrigido). Só há medição direta para o ciclo curto de Dourados (156 mm, 48 dias).",
+    "Kc: único ensaio com Kc medido (Fietz et al. 2008, 1 ano, Dourados, irrigado, cultivar de grão CATI AL 1000 que floresceu cedo, ~27 DAE). O 1.42 no florescimento pode ter efeito de borda do lisímetro (2 m², plantas de 1,34 m). O kc_final 0.92 (subperíodo FB-BS medido) já representa o manejo no florescimento; o 0.56 só vale para quem conduz até a maturação dos grãos.",
     "profundidade_raiz_m = 2.0 vem de medição na Dinamarca (Thorup-Kristensen 2006), ciclo de outono longo; não achei medição brasileira da profundidade máxima. Estudos brasileiros sobre redução da resistência à penetração são mistos (há resultado sem efeito, ex. Cofer 2019 nos EUA), mas a Embrapa recomenda o nabo para descompactar.",
     "sensivel_geada = false: Embrapa CPAO diz 'tolerante à geada'; USDA-NRCS diz que morre abaixo de -6,7 °C. Geadas severas na Serra Gaúcha/Catarinense podem matar, mas nas condições típicas é tolerante.",
     "valor_forrageiro = medio: Embrapa CPAO considera 'excelente material forrageiro' com qualidade semelhante às de inverno, mas palatabilidade menor que aveia e azevém e pede mais estudos; o uso real é sobretudo como cobertura/adubo verde. 'baixo' também seria defensável.",
     "cobertura_solo = alta refere-se à cobertura viva (total aos 50-80 dias); a palhada tem C:N ~14 e decompõe rápido, protegendo o solo por pouco tempo após o manejo.",
+    "graus-dia: Sem soma térmica nem Tb medidas para o nabo forrageiro; faixa toda CÁLCULO sobre Tb PROXY (canola).",
+    "graus-dia: A faixa é larga porque mistura cultivar precoce de grão (CATI AL 1000, 48 DAE até o florescimento pleno) com as de cobertura de 1995 (100-120 dias). O nabo é de dias longos: semeado no outono (dias encurtando) floresce mais tarde. O máximo (1800) vem de cultivares antigas e de climatologia, não de datas do ensaio.",
+    "graus-dia: Se a Tb do nabo for perto de 0 °C (canola medida em Santa Maria: −0,8 e 0,3 °C da emergência ao início da floração), a soma subiria ~5 × dias (+270 a +600). Recalcular junto se a Tb mudar.",
+    "graus-dia: Sugestão para o motor: eliminar só abaixo do mínimo (800); entre 800 e 1800 é 'no limite'."
+  ],
+  "pendencias_resolvidas": [
+    "temp_base_c ficou VAZIA: não achei Tb de crescimento/graus-dia medida para R. sativus var. oleiferus (só Tb de germinação do rabanete, ~15 °C em hidrotermal time, que não serve para crescimento). Thorup-Kristensen 2001 fala em ~750 °C·d até 1 m de raiz, mas não li a base usada.",
+    "tmax_critica_c = 30 é o máximo absoluto do ECOCROP, não um limiar de dano na floração medido. Confiabilidade moderada.",
+    "Água: valores derivados da ETm medida em Dourados no inverno (ET0 ~3,6 mm/d). Para a cobertura de ciclo longo (florescimento pleno com 100-120 dias, cv. Siletina), a água até o manejo deve ser maior que 160 mm; no Sul (ET0 de inverno menor), menor. Não há medição direta para esses casos.",
     "DECISÃO NA JUNÇÃO: kc_final = 0.92 (medido logo após o florescimento pleno, Fietz et al. 2008), coerente com o ciclo até o manejo no florescimento; o 0.56 vale só para quem conduz até a maturação dos grãos."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 2.5,
+      "max": 5.5,
+      "tipico": 3.9
+    },
+    "cn_palhada": {
+      "min": 14,
+      "max": 32,
+      "tipico": 24.3
+    },
+    "k_dia": {
+      "valor": 0.0065,
+      "min": 0.0053,
+      "max": 0.0105
+    },
+    "meia_vida_dias": {
+      "valor": 106,
+      "min": 66,
+      "max": 131
+    },
+    "condicao_decomposicao": "Valor: Santa Maria-RS, nabo manejado no florescimento (inverno) e resíduos em bolsas na superfície de outubro a março (primavera-verão, chuvoso, 20-25 °C), na entrelinha do milho em plantio direto; média de 2003 e 2004 e de 3, 6 e 9 Mg/ha de resíduo. T½ = tempo para decompor 50% da massa (t50%).",
+    "pb_pct": 27,
+    "digestibilidade_pct": {
+      "valor": 86,
+      "tipo": "DIVMO",
+      "n": null,
+      "medicao": "medida",
+      "nota": "Digestibilidade in vitro da matéria orgânica (IVOMD) da parte aérea vegetativa do nabo no outono, Nebraska-EUA (Lenz et al. 2019); n não informado no trecho. Nem o CQBAL (só NABO FORRAGEIRO GRÃO, TORTA e FARELO) nem a Feedipedia (sem ficha de Raphanus sativus) têm a parte aérea: mantida a fonte atual, só corrigida a sigla."
+    },
+    "uso_forrageiro": "com_restricao",
+    "observacoes": {
+      "coleta": "MS no florescimento, t/ha: ~4,5 (Hernani, média de anos em MS); 3,72 (Aita & Giacomini); 5,53, 3,58 e 3,86 (Giacomini et al., 3 anos em Santa Maria); 4,1 e 2,5 (Marcelo, safrinha em SP). Típico = mediana dos 7 valores (3,9). C/N: 14 (Hernani), 30,6 (Aita & Giacomini), 22,4, 22,5 e 25,5 (Giacomini), 32 e 26 (Acosta), 21 (Heinzmann, colhido na maturação), 31 e 23 (Marcelo). Típico = mediana dos 10 valores (24,3). PB e digestibilidade: não achei dado brasileiro publicado em periódico. Usei a parte aérea vegetativa dos EUA (27% PB, 86% de DIVMO). É forragem jovem de outono, então superestima o valor no florescimento. Um TCC da UFFS (Erechim, 2018) achou 26,6% PB na folha e 13,3% no caule. Não usei esse número porque o próprio TCC marca a tabela como '% de matéria fresca'. O valor da forragem do nabo é citado como 'semelhante' ao das outras forrageiras de inverno (Keplin 1993, via Hernani 1995), mas a Tabela 9 dessa publicação não está no PDF digitalizado. uso_forrageiro = com_restricao: a Embrapa recomenda o nabo para pastejo de inverno, mas a palatabilidade é menor que a da aveia e do azevém, e as brássicas acumulam enxofre (risco de toxicidade se for pastejado sozinho, Lenz et al. 2019). Persistência: é a palhada de inverno que se decompõe mais rápido depois da ervilhaca. Acosta mediu 106 dias para decompor 50% (aveia: 164). Aita & Giacomini acharam 75% da MS ainda presente após 1 mês (aveia: 81%). Em Marcelo, ao fim do ano agrícola restavam 44% e 23%, o menor valor entre as coberturas trituradas no florescimento. Hernani recomenda vir em seguida com milho ou milheto, de C/N alto, para manter o solo coberto.",
+      "decomposicao": "Valor = Acosta 2014, t50% médio de 106 d (90 a 115 d conforme a quantidade de resíduo). Como o modelo é exponencial duplo, o k equivalente é k = ln2/t50% = 0,693/106 = 0,0065/dia (0,0060 a 0,0077 entre os níveis). Aita & Giacomini 2003 (mesmo local, outubro a março): modelo MSR = 66,3·e^(-0,01507t) + 33,7 (fração de 33,7% tratada como estável no período). Tempo para 50%: t = ln(66,3/16,3)/0,01507 = 93 d -> k equivalente 0,0074; aos 182 d o modelo dá 38,0% remanescente -> k = -ln(0,380)/182 = 0,0053/dia (min, T½ 131 d). Marcelo 2012 (Jaboticabal, trituração no florescimento ~60 DAS em maio/junho, decomposição na seca): K0 ≈ 0,0053 e ≈ 0,0105 (T½ ≈ 131 e 66 d; o 0,0105 é o max, ano com mais chuva), lidos no gráfico (±0,0002). Nabo é a palhada de inverno de decomposição mais rápida depois da ervilhaca; no Sul, a decomposição ocorre justamente na primavera-verão chuvosa, que é a condição do valor escolhido."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 3.9,
+      "ms_remanescente_t_ha": 2.64,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Parte aérea verde (vegetativa) do nabo forrageiro. Sem dado brasileiro nem nas duas bases."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "proxy",
+      "nota": "Tb 5 °C da canola (Brassica napus), adotada pela Embrapa Trigo (Dalmago et al. 2013). fontes: '(PROXY: canola, Brassica napus, para temp_base_c)'."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "Mascarenhas et al. 2010 (início do florescimento ~60 DAE) e Lima et al. 2007 (50% de florescimento aos 66 dias), dois estudos no Brasil."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Hernani et al., EMBRAPA-CPAO Doc. 4 (1995): 'O florescimento pleno [...] deve ocorrer entre 100 e 120 dias, é a época ideal para o manejo'."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "110 mm 'DERIVADO (cálculo próprio)': ETc = Kc × ET0 com NASA POWER 2005-2024, mediana 111 mm em Ponta Grossa arredondada para baixo; ciclo curto de 60 d em Ponta Grossa/Passo Fundo/Dourados. | Com Kc 1,25 a mediana em Ponta Grossa passa a 118 mm; o mínimo arredondado para baixo continua 110."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: data/catalogo/scripts/etc_nasa_power.py, cenários nabo_max_dourados_0104_120d e nabo_max_dourados_0105_120d (Kc 1,25), com desconto de ~12% do viés do POWER."
+    },
+    "kc_inicial": {
+      "tipo": "proxy",
+      "nota": "0.7 do grupo a. Small Vegetables do FAO-56 (linha Radish, rabanete hortaliça). fontes: '(PROXY: rabanete hortaliça, só para kc_inicial)'."
+    },
+    "kc_medio": {
+      "tipo": "proxy",
+      "nota": "Fietz et al. 2008 (lisímetro, Dourados): 1,42 de BB a FB; limitado a 1,25 (FAO-56 eq. 72). O valor final é o limite, não a medição."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "FAO-56 cap. 6: cultura colhida ou cortada verde mantém Kc end alto, próximo do Kc mid."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "estudo_unico",
+      "nota": "~2,0 m medido por Thorup-Kristensen 2006 na Dinamarca (clima não comparável); o USDA-NRCS 2012 cita 'six feet' (~1,8 m), não 2,0. Sem medição brasileira e sem valor no FAO-56 para a espécie."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "semeadura -> manejo no florescimento; Tb 5; Não achei soma térmica publicada para o nabo forrageiro (nem Tb medida; a Tb 5 do CSV é PROXY da canola). Todas as somas abaixo são CÁLCULO com Tb 5: dias publicados até o florescimento pleno × Tmed do NASA POWER. Mínimo: Dourados-MS, Fietz et al. 2008, cv. CATI AL 1000 semeada em 31/05/2007; emergência -> florescimento pleno = 27 + 21 = 48 d; + ~6 d da semeadura à emergência (não publicado; CÁLCULO) = 54 d; POWER diário 31/05 -> 24/07/2007 = 809 °C dia (Tmed 20,0 °C). Sul: Dois Vizinhos-PR, Ziech et al. 2015, nabo no FINAL do florescimento aos 93 DAS (sem. 5/7/2010) e 112 DAS (sem. 12/5/2011): POWER 1158 e 1243 °C dia (Tmed 17,5 e 16,1 °C). Como é o fim da floração, o pleno florescimento veio antes, com menos soma. Máximo: Dourados, Hernani et al. 1995 (cultivares antigas Siletina/Sileta Nova/Minowase), semeadura em abril e florescimento pleno aos 100-120 dias; Tmed POWER (climatologia) abr 24,0, mai 20,0, jun 19,0, jul 18,8, ago 21,0 -> média do período ~20 °C: 100 × 15 = 1500; 120 × 15,1 ≈ 1810. | plausibilidade: Tmed 15-20 °C no outono-inverno. 800/(20 − 5) = 53 d; 1800/(20 − 5) = 120 d (Dourados). No Sul (Tmed ~15): 800/10 = 80 d; 1800/10 = 180 d, acima do ciclo_dias_max 120 do CSV. CSV: ciclo_dias 60-120. O mínimo bate em todo lugar; o máximo só bate no MS, de onde veio."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "semeadura -> manejo no florescimento; Tb 5; Não achei soma térmica publicada para o nabo forrageiro (nem Tb medida; a Tb 5 do CSV é PROXY da canola). Todas as somas abaixo são CÁLCULO com Tb 5: dias publicados até o florescimento pleno × Tmed do NASA POWER. Mínimo: Dourados-MS, Fietz et al. 2008, cv. CATI AL 1000 semeada em 31/05/2007; emergência -> florescimento pleno = 27 + 21 = 48 d; + ~6 d da semeadura à emergência (não publicado; CÁLCULO) = 54 d; POWER diário 31/05 -> 24/07/2007 = 809 °C dia (Tmed 20,0 °C). Sul: Dois Vizinhos-PR, Ziech et al. 2015, nabo no FINAL do florescimento aos 93 DAS (sem. 5/7/2010) e 112 DAS (sem. 12/5/2011): POWER 1158 e 1243 °C dia (Tmed 17,5 e 16,1 °C). Como é o fim da floração, o pleno florescimento veio antes, com menos soma. Máximo: Dourados, Hernani et al. 1995 (cultivares antigas Siletina/Sileta Nova/Minowase), semeadura em abril e florescimento pleno aos 100-120 dias; Tmed POWER (climatologia) abr 24,0, mai 20,0, jun 19,0, jul 18,8, ago 21,0 -> média do período ~20 °C: 100 × 15 = 1500; 120 × 15,1 ≈ 1810. | plausibilidade: Tmed 15-20 °C no outono-inverno. 800/(20 − 5) = 53 d; 1800/(20 − 5) = 120 d (Dourados). No Sul (Tmed ~15): 800/10 = 80 d; 1800/10 = 180 d, acima do ciclo_dias_max 120 do CSV. CSV: ciclo_dias 60-120. O mínimo bate em todo lugar; o máximo só bate no MS, de onde veio."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 8,
+    "colunas": [
+      "temp_base_c",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "kc_inicial",
+      "kc_medio",
+      "profundidade_raiz_m",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

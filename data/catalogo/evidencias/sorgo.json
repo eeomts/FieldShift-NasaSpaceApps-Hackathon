@@ -19,10 +19,12 @@
     "fixa_nitrogenio": "false",
     "raiz_profunda": "true",
     "cobertura_solo": "media",
-    "aporte_biomassa": "alto",
-    "valor_forrageiro": "alto",
-    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Ecofisiologia (Magalhães et al.) (temp. ótima; frio; tolerância à seca; fenologia ~95 DAE)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Plantio (Mantovani & Ribas) (florescimento 60-70 DAE; maturação ~90 DAE; ponto de colheita)|Landau & Sans, Embrapa Milho e Sorgo, Cultivo do Sorgo 4ª ed. 2008, Clima (água 380-600 mm; limites 16 e 38 °C)|Landau & Guimarães, Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (grupos ZARC de ciclo; médias >21 °C)|Albuquerque & Andrade, Irrigação, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (água 380-600 mm; Kc 1,10 na fase III)|Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (geada; classes de ciclo pelo florescimento)|Sans & Guiscem, Estimativa do florescimento e maturidade do sorgo por graus-dia, XXIV CNMS, Embrapa 2002 (temp. base; 100 dias até a maturação)|FAO ECOCROP, Sorghum bicolor, data sheet id 48747 (temp. ótima 22-35 °C)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al. 2006a e 2008 (tmax crítica na antese)|Alvarenga, Cruz & Novotny, Manejo do solo para o cultivo do sorgo, Embrapa Milho e Sorgo Comunicado Técnico 89, 2003 (raiz profunda; recuperação de solo compactado; palhada persistente)|Coelho, Extração, exportação e ciclagem de nutrientes por híbridos de sorgo granífero, Embrapa Milho e Sorgo Comunicado Técnico 258, 2023 (biomassa: palhada 5,1-7,3 t/ha)|Rodrigues, Híbridos de sorgo forrageiro: onde estamos? para onde vamos?, Embrapa Milho e Sorgo, anais do VII Simpósio sobre Manejo Estratégico da Pastagem (valor forrageiro)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
-    "confianca_parametros": "media"
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Ecofisiologia (Magalhães et al.) (temp. ótima; frio; tolerância à seca; fenologia ~95 DAE)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Plantio (Mantovani & Ribas) (florescimento 60-70 DAE; maturação ~90 DAE; ponto de colheita)|Landau & Sans, Embrapa Milho e Sorgo, Cultivo do Sorgo 4ª ed. 2008, Clima (água 380-600 mm; limites 16 e 38 °C)|Landau & Guimarães, Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (grupos ZARC de ciclo; médias >21 °C)|Albuquerque & Andrade, Irrigação, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (água 380-600 mm; Kc 1,10 na fase III)|Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (geada; classes de ciclo pelo florescimento)|Sans & Guiscem, Estimativa do florescimento e maturidade do sorgo por graus-dia, XXIV CNMS, Embrapa 2002 (Tb testadas 7-10 °C; graus-dia semeadura-florescimento 999 e semeadura-maturação fisiológica 1473 °C dia com Tb 10, 1192 e 1751 com Tb 7; 73 e 100 dias)|FAO ECOCROP, Sorghum bicolor, data sheet id 48747 (temp. ótima 22-35 °C)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al. 2006a e 2008 (tmax crítica na antese)|Alvarenga, Cruz & Novotny, Manejo do solo para o cultivo do sorgo, Embrapa Milho e Sorgo Comunicado Técnico 89, 2003 (raiz profunda; recuperação de solo compactado; palhada persistente)|Coelho, Extração, exportação e ciclagem de nutrientes por híbridos de sorgo granífero, Embrapa Milho e Sorgo Comunicado Técnico 258, 2023 (biomassa: palhada 5,1-7,3 t/ha)|Rodrigues, Híbridos de sorgo forrageiro: onde estamos? para onde vamos?, Embrapa Milho e Sorgo, anais do VII Simpósio sobre Manejo Estratégico da Pastagem (valor forrageiro)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F = 10 °C, teto 100 °F; graus-dia do plantio ao florescimento 1848-1995 °F dia e à camada preta 2673-3360 °F dia = 1027-1108 e 1485-1867 °C dia)|Marin et al., Bragantia 65(1):157-162, 2006 (Tb 10 °C; 1574 °C dia da germinação à maturidade fisiológica, modelo de sorgo em SP)|Bandeira et al., Revista Brasileira de Milho e Sorgo 15(2):240-250, 2016 (Tb de sorgo sacarino 8,9-11,8 °C, RS)|White et al., Agronomy Journal 107:1987-2002, 2015 (CERES-Sorghum/DSSAT: TBASE 8 °C)|Tirfessa et al., Annals of Botany 131:601-611, 2023 (APSIM: Tbase 11 °C usada para a fenologia do sorgo na Austrália, Hammer et al. 1993)|Silva et al., Comportamento de híbridos de sorgo granífero na segunda safra em Sinop-MT, Resumos IV Jornada Científica Embrapa Agrossilvipastoril, 2015 (safrinha tardia colhida aos 112 dias após o plantio)|Almeida et al., Scientia Plena 11(12), 2015 (safrinha em Jataí-GO, colheita aos 115 dias após o plantio; florescimento ~68 dias)|May et al., Cultivares de sorgo granífero em safrinha no Sudoeste Goiano, Embrapa Milho e Sorgo Boletim de Pesquisa e Desenvolvimento 129, 2015 (colheita aos 120 dias após a semeadura)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "confianca_parametros": "alta",
+    "graus_dia_ciclo_min": "1470",
+    "graus_dia_ciclo_max": "1870"
   },
   "mudancas": [
     {
@@ -84,6 +86,60 @@
       "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|FAO Irrigation Water Management Manual 3 (água)|FAO ECOCROP (temperatura)|Embrapa Milho e Sorgo (ciclo)",
       "depois": "(ver valores.fontes)",
       "motivo": "As referências agora são exatas. Saiu o FAO IWM Manual 3, que não consultei; a água veio da Embrapa."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "10",
+      "depois": "10",
+      "motivo": "Valor mantido, agora com fonte direta. Tb = 10 °C (50 °F) é a base usada pela Texas A&M/Kansas State (Gerik, Bean & Vanderlip, B-6137) e no único modelo brasileiro de sorgo granífero achado (Marin et al. 2006, Bragantia). Os outros valores ficam em volta de 10: CERES-Sorghum 8 °C, APSIM 11 °C, sorgo sacarino no RS 8,9 a 11,8 °C (média dos quatro genótipos ~10,8). O 7 °C de Sans & Guiscem (2002) é o menor valor que eles testaram (7 a 10 °C) e o critério do menor desvio-padrão deu números próximos entre as bases (168 a 191 °C dia no florescimento). O ponto decisivo: Sans & Guiscem também publicaram a soma térmica com Tb 10 (999 °C dia até o florescimento e 1473 até a maturação), e esse número bate com a Texas A&M (1485 °C dia até a camada preta nos híbridos precoces). Assim Tb e exigência saem do mesmo estudo brasileiro e conferem com a fonte internacional."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista da rodada 1)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Sans & Guiscem passa a registrar as somas de graus-dia por Tb. Entram as fontes da Tb (Texas A&M, Marin et al., Bandeira et al., CERES-Sorghum, APSIM) e três ensaios de safrinha com a data de colheita."
+    },
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "alto",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "alto",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "4.9",
+      "depois": "4.2",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL SORGO RESTO DE CULTURA (id 976), n=3, Brasil; Feedipedia Sorghum straw 3,7 (n=40). O 4,9 anterior não era do resto de cultura."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 59.9, 'tipo': 'NDT'}",
+      "depois": "{'valor': 53.0, 'tipo': 'DMO', 'n': 8, 'medicao': 'estimada', 'nota': 'DMO em ruminantes da palhada de sorgo (Sorghum straw), Feedipedia, calculada por equação (*), 8 valores, faixa 40,6-69,8. No CQBAL (SORGO RESTO DE CULTURA, id 976) só há DMS 59,4 com n=1.'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT não é digestibilidade e o 59,9 era de silagem. CQBAL só tem DMS n=1 do resto de cultura e um NDT observado 73,25 (n=1) incoerente, não usado; vale a DMO estimada da Feedipedia para palhada de sorgo. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1470-1870",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
     }
   ],
   "evidencias": [
@@ -281,16 +337,365 @@
       "fonte": "Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, 2015",
       "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015647/1/Sorgosafrinha.pdf",
       "trecho": "No sistema de safrinha, não é recomendado plantar variedades de duplo propósito [...] A retirada da palhada do sorgo, após a colheita do grão prejudica o sistema plantio direto"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "gd_exigencia"
+      ],
+      "fonte": "Sans, L. M. A.; Guiscem, J. M., Estimativa do período do florescimento e maturidade fisiológica da cultura do sorgo por meio de graus-dia calculado com diferentes valores de temperatura base, XXIV Congresso Nacional de Milho e Sorgo, Embrapa, 2002",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/485711/1/Estimativaperiodo.pdf",
+      "trecho": "O valor médio de GDD necessário para o florescimento e/ou maturidade fisiológica foi de 1192, 1144, 1072 e 999 e de 1751, 1690, 1582 e 1473 nos modelos 1, 2, 3 e 4 respectivamente. [modelos 1-4 = Tb 7, 8, 9 e 10 °C; GDD contados da semeadura; Sete Lagoas-MG, 4 cultivares, 8 épocas de out/1997 a mai/1998; 73 e 100 dias]"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Sans & Guiscem, 2002 (mesmo resumo)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/485711/1/Estimativaperiodo.pdf",
+      "trecho": "os valores do desvio padrão referente aos graus-dia calculados para as épocas de semeadura entre as cultivares estudadas, variaram de 168, 191, 185 e 178, respectivamente, para os modelos 1, 2, 3 e 4 no período entre a semeadura e florescimento"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "gd_exigencia"
+      ],
+      "fonte": "Gerik, T.; Bean, B.; Vanderlip, R., Sorghum Growth and Development, Texas Cooperative Extension B-6137, 7-03 (2003)",
+      "url": "https://leon.agrilife.org/files/2024/08/Sorghum-Growth-and-Development-TAMU-SCSC-PU-069-2021.pdf",
+      "trecho": "The base temperature or lower temperature limit of sorghum development is 50 degrees F, while the upper limit is 100 degrees F. [...] Table 1. Cumulative growing degree units (F) from planting [...] Flowering 1848 1995 [...] Black Layer 2673 3360 [Short Season Hybrid / Long Season Hybrid; em °C dia (÷1,8): florescimento 1027-1108, camada preta 1485-1867]"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "gd_exigencia"
+      ],
+      "fonte": "Marin, F. R.; Pandorfi, H.; Sentelhas, P. C.; Camargo, M. B. P.; Hernandez, F. B. T., Perda de produtividade potencial da cultura do sorgo no Estado de São Paulo, Bragantia 65(1):157-162, 2006",
+      "url": "https://www.redalyc.org/pdf/908/90865120.pdf",
+      "trecho": "Admitindo-se uma temperatura-base de 10 oC e baseando-se em dados de dois ciclos de cultivo - um de inverno e outro de verão - obteve-se soma térmica de 1.574 oC.dia para o período compreendido entre a germinação e o ponto de maturidade fisiológica."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "White, J. W. et al., An Overview of CERES-Sorghum as Implemented in the Cropping System Model Version 4.5, Agronomy Journal, 2015",
+      "url": "https://ars.usda.gov/ARSUserFiles/20200500/White%20Et%20al.%20AgronJ2015.pdf",
+      "trecho": "Currently, a segmented linear model is used for all ecotypes, assuming a TBASE of 8°C and TOPT of 34°C for vegetative and reproductive phases (Ritchie and Alagarswamy, 1989a)."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Tirfessa, A. et al. (com Hammer, G.), Differences in temperature responses among phenological processes in diverse Ethiopian sorghum germplasm, Annals of Botany 131:601-611, 2023",
+      "url": "https://era.dpi.qld.gov.au/id/eprint/9217/1/mcad011.pdf",
+      "trecho": "a common Tbase of 11 °C, commonly used as the Tbase of phenological processes for Australian sorghum (Hammer et al., 1993)"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Bandeira, A. H. et al., Temperatura base inferior e exigência térmica de genótipos de sorgo sacarino, Revista Brasileira de Milho e Sorgo 15(2):240-250, 2016",
+      "url": "https://rbms.sede.embrapa.br/ojs/article/download/571/pdf_461/6666",
+      "trecho": "Os valores médios estimados para as variedades de sorgo sacarino foram de 11,6 °C; 11,8 °C; 8,9 °C; e 10,8 °C para os genótipos Fepagro 19, BRS 506, BRS 509 e BRS 511, respectivamente."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Silva, D. G. et al., Determinação da soma térmica e filocrono de progenitores de sorgo híbrido, Embrapa Milho e Sorgo Boletim de Pesquisa e Desenvolvimento 55, 2012 (contraponto: usa Tb 7)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/943262/1/bol55.pdf",
+      "trecho": "Adotou-se a temperatura base inferior de 7 ºC, conforme o trabalho de Sans e Guiscem (2002)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Silva, F. B. et al., Comportamento de híbridos de sorgo granífero cultivados na segunda safra no município de Sinop-MT, Resumos da IV Jornada Científica da Embrapa Agrossilvipastoril, 2015, p.70-74",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1044523/1/pages7074.pdf",
+      "trecho": "O experimento foi implantado em 22 de março de 2013 [...] em época de safrinha tardia, e colhido 112 dias após o plantio, simulando a realidade da utilização da cultura no estado."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Almeida, E. F.; Mota, J. H.; Menezes, C. B.; Yuri, J. E.; Resende, G. M., Desempenho agronômico de híbridos de sorgo granífero na safrinha em Jataí-GO, Scientia Plena 11(12), 2015",
+      "url": "https://scientiaplena.org.br/sp/article/download/2776/1363",
+      "trecho": "realizando o plantio manual, no dia 20 de março de 2014. [...] Realizou-se a colheita manual 115 dias após o plantio"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "May, A.; Gontijo Neto, M. M.; Passos, A. M. A.; Gravina, G. A., Cultivares de sorgo granífero em safrinha no Sudoeste Goiano, Embrapa Milho e Sorgo Boletim de Pesquisa e Desenvolvimento 129, 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1038498/1/bol129.pdf",
+      "trecho": "avaliadas durante safrinha de 2013 e 2014 em duas épocas de semeadura (primeira e segunda quinzenas de fevereiro) [...] A colheita foi realizada aos 120 dias após a semeadura."
+    },
+    {
+      "fonte": "Coelho, A. M., Extração, exportação e ciclagem de nutrientes por híbridos de sorgo granífero, Embrapa Milho e Sorgo Comunicado Técnico 258, 2023, Tabela 3 (semeadura 29/12/2016)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1157340/1/Extracao-exportacao-e-ciclagem-de-nutrientes-por-hibridos-de-sorgo-granifero.pdf",
+      "trecho": "Tabela 3. Produtividade de massa seca e conteúdo de macro e micronutrientes nos restos culturais (palhada). [...] Matéria seca (Mg ha-1): 1G100 5,10; BRS 330 7,26; DKB540 5,43; BRS 373 5,52; Média 5,83 [...] N (kg Mg-1): Média 10,58",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Marcelo, A. V.; Corá, J. E.; Fernandes, C., Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36:1568, 2012 (Jaboticabal, SP)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?format=html&lang=pt",
+      "trecho": "Quadro 4 [sorgo safrinha, trituração após colheita de grãos]: Acumulada 4,4 Mg ha-1 (2007/2008) e 3,5 Mg ha-1 (2008/2009). Quadro 3: Sorgo C 470,8 g kg-1, C:N 102 (2007/2008); C 464,2 g kg-1, C:N 66 (2008/2009)",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Campos, P. R. S. S.; Valadares Filho, S. C.; Detmann, E. et al., Consumo, digestibilidade e estimativa do valor energético de alguns volumosos por meio da composição química, Revista Ceres 57(1):79-86, 2010",
+      "url": "https://www.redalyc.org/pdf/3052/305226735014.pdf",
+      "trecho": "Tabela 1 [...] Silagem de sorgo: MS 24,59; PB 4,93. Tabela 4 [...] Silagem de sorgo: NDT estimado (NRC 2001) 57,94; NDT observado no ensaio com ovinos 59,91",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Feedipedia, Sorghum forage (tabela 'Sorghum, aerial part, silage')",
+      "url": "https://www.feedipedia.org/node/379",
+      "trecho": "Sorghum, aerial part, silage [...] Crude protein % DM 6.7 (SD 1.3; min 4.2; max 8.4; n 25) [...] OM digestibility, Ruminant 64.3%",
+      "colunas": [
+        "pb_pct"
+      ]
+    },
+    {
+      "fonte": "Embrapa Milho e Sorgo, Manejo cultural do sorgo para forragem, Circular Técnica 17, 1997 (citando Gomide et al. 1987; texto extraído por OCR, grafia corrigida)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/483986/1/circ172.ed.pdf",
+      "trecho": "Os melhores ganhos de peso foram observados nos animais alimentados com silagem de sorgo granífero, evidenciando o valor da panícula como componente para melhorar o valor nutritivo da silagem",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Rodrigues, J. A. S., Híbridos de sorgo forrageiro: onde estamos? para onde vamos?, Embrapa Milho e Sorgo (VII Simpósio sobre Manejo Estratégico da Pastagem)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1000424/1/Hibridossorgo.pdf",
+      "trecho": "O sorgo é uma cultura que produz silagens com boas características fermentativas, variando em torno de 90 a 95% do valor nutritivo do milho quando fornecido como único volumoso [trecho já registrado em evidencias/sorgo.json]",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Marcelo, A. V.; Corá, J. E.; Fernandes, C., Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5):1568-1582, 2012 (Jaboticabal, SP)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?format=html&lang=pt",
+      "trecho": "os resíduos de crotalária, milho, sorgo e girassol apresentaram menores taxas de decomposição [...] Quadro 2: Sorgo 905,0 mm / 23,9 °C (2007/2008); 1.203,2 mm / 24,1 °C (2008/2009) [Figura 3, K0 do sorgo lido do gráfico: ~0,0037 em 2007/2008 e ~0,0051 em 2008/2009]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Rossi, C. Q.; Pereira, M. G.; Giácomo, S. G.; Betta, M.; Polidoro, J. C., Decomposição e liberação de nutrientes da palhada de braquiária, sorgo e soja em áreas de plantio direto no cerrado goiano, Semina: Ciências Agrárias 34(4):1523-1534, 2013 (Rio Verde, GO), Tabela 1",
+      "url": "https://www.redalyc.org/pdf/4457/445744122007.pdf",
+      "trecho": "Os valores de T1/2 da matéria seca foram de 385 e 495 dias para braquiária + soja e sorgo + soja, respectivamente, no período seco e de 99 e 115 dias no período chuvoso (Tabela 1) [Tabela 1, massa seca, SS: K 0,0014 / 0,00600; T1/2 495 / 115]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Carvalho, A. M. de et al. (Embrapa Cerrados), Decomposição de resíduos vegetais de plantas de cobertura em sistema plantio direto no Cerrado, XXXIII Congresso Brasileiro de Ciência do Solo, 2011, resumo expandido (Planaltina, DF), Tabela 2",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/902785/1/CD371Arminda.PDF",
+      "trecho": "Sorgo cv. BR 304 23,02 c A 25,15 b A 119 154 172 222 [β1 floração, β1 maturação, ½ vida floração, ½ vida maturação (dias), reciclagem]",
+      "colunas": [
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Alvarenga, R. C.; Cruz, J. C.; Novotny, E. H., Manejo do solo para o cultivo do sorgo, Embrapa Milho e Sorgo Comunicado Técnico 89, 2003 (já em evidencias/sorgo.json)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487531/1/Com89.pdf",
+      "trecho": "Espécies como o sorgo devem ser incluídas nessa fase, devido à palhada mais persistente.",
+      "colunas": []
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 976 'SORGO RESTO DE CULTURA' (SUBPRODUTOS; espécie cadastrada: sorghum vulgare, bicolor ou sudanense): PB média 4,21 (n 3, desvio 0,987); NDT OBS média 73,25 (n 1, desvio 0); DMS média 59,4 (n 1, desvio 0); FDN média 50,49 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Sorghum forage",
+      "url": "https://www.feedipedia.org/node/379",
+      "trecho": "Sorghum straw [...] Crude protein % DM 3.7 (SD 1.2, 1.8-7.7, Nb 40) [...] OM digestibility, Ruminant % 53.0 (SD 9.1, 40.6-69.8, Nb 8) * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Sans, L. M. A.; Guiscem, J. M., Estimativa do período do florescimento e maturidade fisiológica da cultura do sorgo por meio de graus-dia calculado com diferentes valores de temperatura base, XXIV Congresso Nacional de Milho e Sorgo, Embrapa, 2002",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/485711/1/Estimativaperiodo.pdf",
+      "trecho": "O valor médio de GDD necessário para o florescimento e/ou maturidade fisiológica foi de 1192, 1144, 1072 e 999 e de 1751, 1690, 1582 e 1473 nos modelos 1, 2, 3 e 4 respectivamente. [modelo 4 = Tb 10 °C; da semeadura; 73 e 100 dias]"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Marin, Pandorfi, Sentelhas, Camargo & Hernandez, Perda de produtividade potencial da cultura do sorgo no Estado de São Paulo, Bragantia 65(1):157-162, 2006",
+      "url": "https://www.redalyc.org/pdf/908/90865120.pdf",
+      "trecho": "Admitindo-se uma temperatura-base de 10 oC [...] obteve-se soma térmica de 1.574 oC.dia para o período compreendido entre a germinação e o ponto de maturidade fisiológica."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003",
+      "url": "https://leon.agrilife.org/files/2024/08/Sorghum-Growth-and-Development-TAMU-SCSC-PU-069-2021.pdf",
+      "trecho": "The base temperature or lower temperature limit of sorghum development is 50 degrees F, while the upper limit is 100 degrees F. [...] Table 1. Cumulative growing degree units (F) from planting [...] Black Layer 2673 3360"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Mantovani & Ribas, Plantio, Cultivo do Sorgo, Embrapa Milho e Sorgo SP 2, 9ª ed., 2015 (fase)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748792/1/Sorgo-Plantio.pdf",
+      "trecho": "Próximo da idade de 90 dias após emergência, a planta está fisiologicamente madura, mas não está pronta para colher sem secagem artificial."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CONFERÊNCIA: WOFOST sorghum.yaml (Van Heemst 1988, tropical)",
+      "url": "https://github.com/ajwdewit/WOFOST_crop_parameters",
+      "trecho": "TSUMEM 70 + TSUM1 730 + TSUM2 600 = 1400 °C·d da semeadura à maturidade; DTSMTB Tb 10, teto 30 °C"
     }
   ],
   "pendencias": [
-    "temp_base_c = 10 ficou sem trecho literal que dê 'Tb = 10 °C' para o sorgo. A única fonte brasileira lida (Sans & Guiscem, 2002, resumo de congresso) testou só 7 a 10 °C e achou 7 °C o melhor, mas 7 é o menor valor testado, então o ótimo pode ser ainda mais baixo. A Ecofisiologia diz apenas que abaixo de 10 °C o crescimento é prejudicado. Mantive 10 para ficar coerente com o milho e com o uso internacional (que conheço de memória, sem fonte lida). Se o coordenador preferir só a fonte brasileira, use 7.",
-    "ciclo_dias 90-130 mantido. Nenhuma fonte diz literalmente 'X a Y dias da semeadura à colheita'. A faixa vem de: grupos ZARC em dias da emergência à maturação (<110, 110-120, >120); maturação por volta de 90-95 DAE nas cultivares comerciais; 100 dias da semeadura até a maturação em Sete Lagoas (Sans & Guiscem); e mais 4 a 10 dias de emergência e a secagem no campo até a colheita. O mínimo de 90 vale para os superprecoces (florescimento antes de 50 dias). As cultivares do Grupo III podem passar de 130.",
+    "EXIGÊNCIA DE GRAUS-DIA (para as colunas novas), com Tb = 10 °C e GD = max(0, Tmed − 10): da semeadura ao florescimento 999 °C dia; da semeadura à maturação fisiológica 1473 °C dia (Sans & Guiscem 2002, Sete Lagoas, média de 4 cultivares e 8 épocas). A Texas A&M (Tb 10 °C) dá 1027-1108 °C dia até o florescimento e 1485-1867 °C dia até a camada preta (híbrido precoce a tardio), e Marin et al. (2006) 1574 °C dia da germinação à maturação. Sugestão: gd_min = 1470 e gd_max = 1870 °C dia, da semeadura à maturação fisiológica. A colheita vem uns 10-20 dias depois, na secagem do grão, sem soma térmica publicada. Atenção: a Texas A&M soma graus-dia em °F com teto de 100 °F e piso de 50 °F nas temperaturas; a conversão para °C dia (÷1,8) é minha.",
+    "Se o time preferir Tb = 7 °C (o melhor ajuste de Sans & Guiscem e a base usada no Boletim 55 da Embrapa), a exigência da mesma fonte é 1192 °C dia até o florescimento e 1751 até a maturação. Não misture: a Tb e a soma têm de vir juntas.",
+    "ciclo_dias 90-130 mantido. Nenhuma fonte diz literalmente 'X a Y dias da semeadura à colheita' para o sorgo granífero na safrinha. Os ensaios de safrinha colheram aos 112 dias (Sinop-MT, semeado em 22/03), 115 dias (Jataí-GO, 20/03) e 120 dias (Sudoeste Goiano, fevereiro). A maturação fisiológica vem aos ~90-95 dias da emergência (Embrapa) e aos 100 dias da semeadura (Sans & Guiscem). O mínimo de 90 só vale para superprecoces colhidos logo na maturação; na prática a colheita da safrinha cai entre 110 e 120 dias. Com o filtro de graus-dia, o ciclo em dias passa a servir só de janela.",
     "Faixas de temperatura ótima de fontes diferentes: o mínimo de 22 é do ECOCROP (a Embrapa diz '>21 °C'); o máximo de 34 é da Embrapa (o ECOCROP dá 35). O 33-34 °C da Embrapa é um 'ótimo para crescimento' pontual, não uma faixa.",
     "tmax_critica_c = 36 vem de Prasad et al. (2006, 2008) via Nguyen et al. (2013), em câmara controlada com regime dia/noite de 36/26 °C. Não li o artigo original de Prasad. Ressalva da Embrapa: com umidade no solo, a fertilização pode ocorrer até 40-43 °C.",
     "valor_forrageiro = alto e a ausência de 'forrageira' em tipos são decisões de coerência com o milho, que tem alto e tipos só 'comercial'. A linha representa o sorgo granífero. O alto valor de silagem e de pastejo é das cultivares forrageiras e de pastejo. Do granífero, só o grão (ração) e a rebrota servem à alimentação animal. Se o app quiser marcar 'forrageira', convém fazer o mesmo no milho ou criar uma linha 'sorgo forrageiro'.",
     "aporte_biomassa = alto mantido, com ressalva. A palhada após a colheita dos grãos medida pela Embrapa foi de 5,1 a 7,3 t/ha (11 a 13 t/ha de biomassa total), abaixo dos ~14,5 t/ha citados para o milho. O que pesa a favor é a palhada persistente, de alta relação C/N. Daria para defender 'medio'.",
     "cobertura_solo = media mantido, sem número de cobertura (%) para o sorgo. A palhada é 'mais persistente' (Com. Téc. 89), mas a lavoura é em linhas, como o milho, que está como media.",
-    "fixa_nitrogenio = false e perene = false vêm da botânica (Poaceae anual; o ECOCROP diz 'Life span annual'), sem outra fonte. kc_inicial = 0.3 é o valor do grupo cereais da FAO-56; a Embrapa cita 0,35-0,45 na fase I, e mantive o critério do brief."
-  ]
+    "fixa_nitrogenio = false e perene = false vêm da botânica (Poaceae anual; o ECOCROP diz 'Life span annual'), sem outra fonte. kc_inicial = 0.3 é o valor do grupo cereais da FAO-56; a Embrapa cita 0,35-0,45 na fase I, e mantive o critério do brief.",
+    "graus-dia: Se o time preferir Tb 7 (melhor ajuste de Sans & Guiscem e Boletim 55 da Embrapa), a soma da mesma fonte é 1751 até a maturação (1192 até o florescimento). Não misture Tb e soma.",
+    "graus-dia: O máximo (1870) vem do híbrido tardio do Texas, com teto de 100 °F; não achei soma brasileira para os sorgos de ciclo tardio (Grupo III ZARC, >120 dias da emergência à maturação).",
+    "graus-dia: A conta da Texas A&M em °C (÷ 1,8) é minha. O WOFOST (1400, teto 30) fica um pouco abaixo do mínimo, coerente com o teto.",
+    "graus-dia: Sorgo é de dias curtos (Menezes et al. 2015 classifica pelo florescimento); semeaduras de safrinha tendem ao lado baixo da faixa."
+  ],
+  "pendencias_resolvidas": [
+    "temp_base_c = 10 ficou sem trecho literal que dê 'Tb = 10 °C' para o sorgo. A única fonte brasileira lida (Sans & Guiscem, 2002, resumo de congresso) testou só 7 a 10 °C e achou 7 °C o melhor, mas 7 é o menor valor testado, então o ótimo pode ser ainda mais baixo. A Ecofisiologia diz apenas que abaixo de 10 °C o crescimento é prejudicado. Mantive 10 para ficar coerente com o milho e com o uso internacional (que conheço de memória, sem fonte lida). Se o coordenador preferir só a fonte brasileira, use 7."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.5,
+      "max": 7.3,
+      "tipico": 5.0
+    },
+    "cn_palhada": {
+      "min": 44,
+      "max": 102,
+      "tipico": 66
+    },
+    "k_dia": {
+      "valor": 0.0044,
+      "min": 0.0037,
+      "max": 0.006
+    },
+    "meia_vida_dias": {
+      "valor": 158,
+      "min": 115,
+      "max": 187
+    },
+    "condicao_decomposicao": "Palhada de sorgo granífero safrinha triturada após a colheita do grão, em sacolas na superfície, semeadura direta, Jaboticabal-SP, 180 dias na estação chuvosa (905-1.203 mm, 24 °C), 2007/08 e 2008/09.",
+    "pb_pct": 4.2,
+    "digestibilidade_pct": {
+      "valor": 53.0,
+      "tipo": "DMO",
+      "n": 8,
+      "medicao": "estimada",
+      "nota": "DMO em ruminantes da palhada de sorgo (Sorghum straw), Feedipedia, calculada por equação (*), 8 valores, faixa 40,6-69,8. No CQBAL (SORGO RESTO DE CULTURA, id 976) só há DMS 59,4 com n=1."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Palhada do sorgo granífero após o grão. Faixa: 3,5-4,4 t/ha em safrinha (Marcelo 2012, SP) a 5,1-7,3 t/ha em semeadura de dezembro com 6-7 t/ha de grão (Coelho 2023). Típico 5,0: no Brasil o sorgo granífero é cultivado sobretudo em safrinha, então fica abaixo da média de 5,8 de Coelho. C/N: 66 e 102 medidos (Marcelo, safrinha). Coelho dá N 10,58 kg/Mg (1,06%); com C 46,4-47,1% (Marcelo) dá ~44. Típico 66 = valor medido mais próximo do meio. pb_pct/NDT da silagem de planta inteira (Campos 2010, mesmo ensaio usado para o milho, para os dois ficarem comparáveis). A PB 4,9% desse ensaio é baixa; a Feedipedia dá 6,7% (4,2-8,4). Palha do granífero após o grão: Cruz 1983, PB 5,0% e NDT 50,3%. Uso 'principal' para ficar coerente com o milho: a silagem de sorgo (inclusive de granífero, Embrapa CT 17) é recomendada pela pesquisa. Ressalva: a linha do catálogo é o granífero, e no sistema de grão só sobra a palhada (seria 'residual'); a Embrapa não recomenda duplo propósito na safrinha e diz que tirar a palhada prejudica o plantio direto (já em evidencias/sorgo.json). Algumas cultivares graníferas têm tanino.",
+      "decomposicao": "Valor = média dos dois K0 de Marcelo 2012 lidos da Figura 3: (0,0037 + 0,0051)/2 = 0,0044/dia; T½ = 0,693/0,0044 = 158 d (2007/08: T½ 187 d = mínimo do k; 2008/09: 136 d). Leitura do gráfico ±0,0003. Carvalho 2011 (Cerrado, sorgo BR 304 cortado na maturação): T½ 154 d -> k = 0,0045, confere. Máximo = Rossi 2013, 2ª avaliação (sacolas instaladas em nov/2007, período chuvoso, palhada do sistema soja/sorgo granífero, 120 d): k = 0,0060; T½ = 115 d. É mistura de palhada de sorgo com resto de soja. Na mesma tabela, no período seco (sacolas em mar/2007): k = 0,0014, T½ = 495 d (fora da faixa porque a régua quer a estação chuvosa). Atenção: o resumo de Rossi diz 258 e 119 dias, mas a Tabela 1 e o texto dos resultados dizem 495 e 115; usei a tabela. Torres et al. 2005 (citado por Rossi) acharam T½ 169 d para sorgo de cobertura (k 0,0041), não lido no original."
+    },
+    "uso_forrageiro_coletado": "principal",
+    "decisao_uso": "DECISÃO DO USUÁRIO (revisão 14/11): a linha é sorgo granífero (ciclo de safrinha, PAM de grão, palhada pós-colheita); forragem avaliada no cenário de grão.",
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 5.0,
+      "ms_remanescente_t_ha": 3.84,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": false
+      }
+    },
+    "cenario_forragem": "Restos da lavoura de sorgo granífero depois da colheita do grão (colmo e folhas secos). Saíram os números de silagem. O grão como ração eventual (SORGO GRÃO, id 36: PB 9,33 n=75) não entra. O NDT observado 73,25 (n=1) do SORGO RESTO DE CULTURA não foi usado: é maior que a DMS 59,4 do mesmo item e quase igual ao do grão (79,86), incoerente para um resto de cultura; o NDT calculado pelo próprio CQBAL (BR-CORTE 2016) dá 35,5."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "medido",
+      "nota": "Tb 10 °C usada com somas térmicas publicadas em mais de um estudo: Sans & Guiscem 2002 (Embrapa, modelo Tb 10: 999/1473 °C dia), Marin et al. 2006 (Bragantia, SP), Gerik et al. 2003 (Texas); Bandeira et al. 2016 estimaram 8,9-11,8 °C no RS."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Mantovani & Ribas, Embrapa Cultivo do Sorgo 2015: 'Próximo da idade de 90 dias após emergência, a planta está fisiologicamente madura'."
+    },
+    "ciclo_dias_max": {
+      "tipo": "convencao_com_fonte",
+      "nota": "130 não aparece literalmente ('Nenhuma fonte diz [...] X a Y dias'). Teto da janela escolhido pelo time e apoiado no Grupo III do ZARC (>120 d da emergência à maturação, Landau & Guimarães 2015) e nos ensaios de safrinha colhidos aos 112, 115 e 120 dias."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Landau & Sans, Embrapa Cultivo do Sorgo 2008: 'varia entre 380 e 600 mm durante o ciclo'; repetido em Albuquerque & Andrade 2015."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesmas fontes Embrapa: 380-600 mm."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (i. Cereals 0.3); a linha da própria cultura (Sorghum - grain) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária). A Embrapa (2015) dá 0,35-0,45 na fase I."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Sorghum grain 1.00-1.10, e Embrapa (Albuquerque & Andrade 2015): '1,10 na fase III'."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Sorghum grain 0.55, e Embrapa 2015: '0,55 no final da fase IV'."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Sorghum grain 1.0-2.0 m; limite superior."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; Sem conversão de Tb: as três fontes usam Tb 10 °C. Sans & Guiscem 2002 (Sete Lagoas, 4 cultivares, 8 épocas): GDD contados da semeadura, 1473 °C dia até a maturação fisiológica (100 dias) e 999 até o florescimento (73 dias), modelo 4 (Tb 10). Sem teto. Marin et al. 2006 (SP): 1574 °C dia da GERMINAÇÃO à maturidade fisiológica; somando a semeadura -> germinação (~5 d × (24 − 10) = ~70, CÁLCULO): ~1640. Gerik et al. 2003 (Texas A&M B-6137): unidades em °F com piso 50 °F e TETO 100 °F (Tmax limitada), da semeadura (planting): camada preta 2673 °F (híbrido precoce) e 3360 °F (tardio); ÷ 1,8 = 1485 e 1867 °C dia. O motor não usa teto, então em local quente acumularia um pouco mais que a fonte para a mesma fenologia. Faixa: 1470 (Sans & Guiscem, média brasileira, ~= híbrido precoce do Texas) a 1870 (híbrido tardio do Texas). A colheita vem 10-20 dias depois da maturação, sem soma publicada. | plausibilidade: Tmed típica na safra/safrinha 23-25 °C. 1470/(24 − 10) = 105 d; 1870/(24 − 10) = 134 d; a 25 °C: 98-125 d. CSV: ciclo_dias 90-130 (até a colheita). Bate. Sans & Guiscem: 1473/100 d = 14,7 °C dia/dia -> Tmed ~24,7 °C em Sete Lagoas, coerente com a climatologia POWER (out-jan 23,2-24,7 °C)."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; Sem conversão de Tb: as três fontes usam Tb 10 °C. Sans & Guiscem 2002 (Sete Lagoas, 4 cultivares, 8 épocas): GDD contados da semeadura, 1473 °C dia até a maturação fisiológica (100 dias) e 999 até o florescimento (73 dias), modelo 4 (Tb 10). Sem teto. Marin et al. 2006 (SP): 1574 °C dia da GERMINAÇÃO à maturidade fisiológica; somando a semeadura -> germinação (~5 d × (24 − 10) = ~70, CÁLCULO): ~1640. Gerik et al. 2003 (Texas A&M B-6137): unidades em °F com piso 50 °F e TETO 100 °F (Tmax limitada), da semeadura (planting): camada preta 2673 °F (híbrido precoce) e 3360 °F (tardio); ÷ 1,8 = 1485 e 1867 °C dia. O motor não usa teto, então em local quente acumularia um pouco mais que a fonte para a mesma fenologia. Faixa: 1470 (Sans & Guiscem, média brasileira, ~= híbrido precoce do Texas) a 1870 (híbrido tardio do Texas). A colheita vem 10-20 dias depois da maturação, sem soma publicada. | plausibilidade: Tmed típica na safra/safrinha 23-25 °C. 1470/(24 − 10) = 105 d; 1870/(24 − 10) = 134 d; a 25 °C: 98-125 d. CSV: ciclo_dias 90-130 (até a colheita). Bate. Sans & Guiscem: 1473/100 d = 14,7 °C dia/dia -> Tmed ~24,7 °C em Sete Lagoas, coerente com a climatologia POWER (out-jan 23,2-24,7 °C)."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 0,
+    "colunas": []
+  }
 }

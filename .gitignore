@@ -7,3 +7,6 @@ reviews/
 # Downloads grandes de dados (ver data/brutos/README.md)
 data/brutos/*
 !data/brutos/README.md
+# Python compilado
+__pycache__/
+*.pyc

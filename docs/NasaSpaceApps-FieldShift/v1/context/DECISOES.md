@@ -98,6 +98,15 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - O NASA Harvest sai da lista "Fora do projeto" e entra no núcleo, na linha **Contexto regional e renda** (portal, como contexto), na linha **Vegetação** (`crop-cycle-detection`) e numa nova linha **Chat** (MCP).
   - **Feito em 14/11/2026 (independe da aprovação):** os arquivos foram renomeados para o padrão `<NOME>.md`: `NASA_HARVEST.md` (GitHub), `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `NASA_HARVEST_PORTAL_MCP.md`, `NASA_HARVEST_PORTAL_MCP_IMPLEMENTACAO.md` e `NASA_POWER_X_HARVEST_PORTAL.md`. O `arquitetura-completa-field-shift.md` foi para `application/architecture/ARQUITETURA-COMPLETA.md`. As citações a nomes antigos foram corrigidas.
   - Ainda em aberto: o `fluxo-aplicativo-power-harvest-mcp.md` e o `comunicacao-entre-apis.md` são citados, mas não existem no repositório.
+### D-010 — Escopo do catálogo de culturas: Brasil e EUA
+- **Status:** Decidido (Yury, Pessoa 1, 15/11/2026) para o catálogo de culturas. Falta a equipe rever a D-003 para as outras fontes.
+- **Motivo:** o questionário já foi revisado para escopo global e testado em fazendas dos EUA (`data/onboarding/relatorio-revisao-questionario.md`), e os testes de chat do produtor americano (`TESTES_CHAT_SR_SMITH.md`) pedem culturas que o catálogo do Brasil não tem ou trata com outro sistema (centeio de cobertura, trigo de inverno, arroz inundado, amendoim).
+- **Consequências:**
+  - Novo catálogo `data/catalogo/eua/`, no mesmo formato do Brasil, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc`. Guia em `data/catalogo/eua/README.md`; construído pelo agente `agroia-dataset-eua`.
+  - Para o catálogo dos EUA, entram fontes que a D-003 deixava de fora: USDA NASS QuickStats (no lugar da PAM), USDA Agricultural Handbook 628 e RMA (no lugar do ZARC), extensão das universidades land-grant e USDA-ARS/NRCS (no lugar da Embrapa).
+  - A régua das colunas qualitativas, a regra de confiança e as regras do motor são as mesmas do Brasil (`data/catalogo/evidencias/README.md`), para as notas serem comparáveis.
+  - **Em aberto com a equipe:** se a D-003 cai também para solo (SSURGO), histórico de culturas (CDL) e clima (PRISM) nos pontos dos EUA, e se o id `arroz_irrigado` entra no `agroia/base/culturas.json`.
+
 ---
 
 ## 2. Inconsistências encontradas nos documentos
@@ -162,3 +171,4 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 14/11/2026 | **D-008:** escopo muda para o Brasil inteiro e substitui a D-001. Atualizados D-003, D-005, I-1, I-2, Q-01 a Q-03 e Q-07; I-3 resolvido; I-7 criado. Arquivos renomeados de `-minas` para `-brasil`. |
 | 14/11/2026 | **D-009:** fontes do MVP definidas (17 no núcleo, 3 opcionais, 19 fora). Substitui D-002 e D-005; D-003, D-008 e I-2 ajustados. |
 | 14/11/2026 | Proposta de revisão da D-009: NASA Harvest volta como contexto de mercado (Harvest Portal), no chat (MCP) e na detecção de ciclos (`crop-cycle-detection`). A confirmar com a equipe. |
+| 15/11/2026 | **D-010:** catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |

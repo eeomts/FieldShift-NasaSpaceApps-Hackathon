@@ -4,7 +4,7 @@
     "tipos": "comercial|fixadora_n",
     "perene": "false",
     "ciclo_dias_min": "60",
-    "ciclo_dias_max": "100",
+    "ciclo_dias_max": "110",
     "temp_base_c": "10",
     "temp_otima_min_c": "18",
     "temp_otima_max_c": "25",
@@ -19,10 +19,12 @@
     "fixa_nitrogenio": "true",
     "raiz_profunda": "false",
     "cobertura_solo": "baixa",
-    "aporte_biomassa": "baixo",
+    "aporte_biomassa": "medio",
     "valor_forrageiro": "baixo",
-    "fontes": "Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 2 Clima (temperatura ótima; calor no pré-florescimento/florescimento)|Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 8 Irrigação (água no ciclo 250-400 mm)|Embrapa Arroz e Feijão Circular Técnica 89 2011 (ciclo das cultivares 70-90 d; água 300-400 mm)|Embrapa Agropecuária Oeste Circular Técnica 45 2018 (ciclo superprecoce 60-65 d BRS FC104; Tmax >30 °C na fase reprodutiva; demanda hídrica 243.8 mm)|MAPA ZARC Feijão 2ª safra PR Portaria SPA/MAPA 251/2024 (abscisão de flores >30 °C dia e >25 °C noite; risco de geada Tmin <=3 °C; grupos de ciclo)|Del Peloso et al. Embrapa Arroz e Feijão 2009 cap. 4 (classes de ciclo: precoce <75 d a tardio >90 d)|Embrapa Tabuleiros Costeiros Circular Técnica 21 2001 (ótimo 18-30 °C; fixação simbiótica de N 30-120 kg/ha)|FAO ECOCROP Phaseolus vulgaris (ótimo 16-25 °C)|Medeiros et al. 2000 Pesq. Agropec. Bras. 35(9) (Tb 10 °C)|Tisot et al. 2005 Rev. Bras. Agrometeorologia 13(1) (Tb 10 °C)|FAO-56 Tab.11 (duração total 95-110 d)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
-    "confianca_parametros": "media"
+    "fontes": "Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 2 Clima (temperatura ideal ~29 °C de dia e 21 °C de noite; calor no pré-florescimento/florescimento)|Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 8 Irrigação (água no ciclo 250-400 mm)|Embrapa Arroz e Feijão Circular Técnica 89 2011 (ciclo das cultivares 70-90 d; água 300-400 mm)|Embrapa Agropecuária Oeste Circular Técnica 45 2018 (ciclo superprecoce 60-65 d BRS FC104; Tmax >30 °C na fase reprodutiva; demanda hídrica 243.8 mm)|MAPA ZARC Feijão 2ª safra PR Portaria SPA/MAPA 251/2024 (abscisão de flores >30 °C dia e >25 °C noite; <12 °C retarda o crescimento; risco de geada Tmin <=3 °C; grupos de ciclo; +30 d no ciclo em regiões frias do Sul)|Del Peloso et al. Embrapa Arroz e Feijão 2009 cap. 4 (classes de ciclo: precoce <75 d a tardio >90 d)|Embrapa Arroz e Feijão Catálogo de cultivares de feijão 2012 (classe tardio >95 d; BRS Vereda tardia)|Otsubo et al. Embrapa Agropecuária Oeste Comunicado Técnico 113 2005 BRS Vereda (93 d da emergência à maturação fisiológica)|Souza Filho & Andrade PESAGRO-RIO nº 124 2018 (VCU feijão preto ciclo normal: 98 d emergência-colheita)|Tisot et al. 2005 Rev. Bras. Agrometeorologia 13(1) (Tb 10 °C; 1158 GD da semeadura a R9 aos 96 DAS; colheita aos 110 DAS)|Medeiros et al. 2000 Pesq. Agropec. Bras. 35(9) (Tb 10 °C; 1155 GD da emergência à colheita)|Miranda & Campelo Júnior 2010 Pesq. Agropec. Trop. 40(2) (978-1262 GD da semeadura à maturação com Tb 10 °C)|Arruda, Tubelis & Nascimento 1980 Pesq. Agropec. Bras. 15(4) (21 °C aceito como ótimo; limiar térmico de produtividade 19-20 °C de média diária)|Justino, Heinemann et al. Embrapa Arroz e Feijão Anais XXII CBAGRO 2023 (temperaturas cardinais 12/21/29 °C)|Embrapa Tabuleiros Costeiros Circular Técnica 21 2001 (ótimo 18-30 °C, ideal ~20 °C; fixação simbiótica de N 30-120 kg/ha)|FAO ECOCROP Phaseolus vulgaris (ótimo 16-25 °C)|Farinelli et al. 2010 Bragantia 69(1) (dano de geada no feijoeiro: 82-98% das plantas afetadas e morte de plantas)|FAO-56 Tab.11 (duração total 95-110 d)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "confianca_parametros": "alta",
+    "graus_dia_ciclo_min": "980",
+    "graus_dia_ciclo_max": "1270"
   },
   "mudancas": [
     {
@@ -48,6 +50,60 @@
       "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|...",
       "depois": "(nova lista, ver valores)",
       "motivo": "Saiu o marcador de rascunho. Entraram as fontes primárias que foram lidas, e saiu o FAO Irrigation Water Management Manual 3, que não foi consultado."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "100",
+      "depois": "110",
+      "motivo": "O catálogo de cultivares da Embrapa Arroz e Feijão (2012) define a classe tardia como '> 95 dias' e inclui a BRS Vereda. Somando os ~5 dias da semeadura à emergência (5 dias em Tisot et al. 2005; 5 a 10 dias pelo ZARC) e o intervalo entre maturação fisiológica e colheita, chega-se a cerca de 105 a 110 dias. Há uma medição direta que confirma: a cultivar IAC-Carioca Tybatã, semeada em abril em Piracicaba, chegou a R9 aos 96 DAS e foi colhida aos 110 DAS (Tisot et al. 2005). No VCU de feijão preto de ciclo normal semeado em maio em Macaé-RJ, o ciclo foi de 98 dias da emergência à colheita, ou ~103 da semeadura (PESAGRO-RIO 2018). O FAO-56 Tab.11 vai até 110 dias."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista da rodada 1)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Entraram as fontes do ciclo tardio (catálogo Embrapa, CT 113 BRS Vereda, PESAGRO-RIO), dos graus-dia com Tb 10 °C (Tisot, Medeiros e Miranda, com os números), da faixa ótima (Arruda et al. 1980, IAC; Justino/Heinemann 2023, Embrapa Arroz e Feijão) e do dano de geada (Farinelli et al. 2010)."
+    },
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "baixo",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "4.6",
+      "depois": "6.7",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL FEIJÃO PALHA (id 77), n=20, Brasil; a Feedipedia dá 7,1 (n=13). O 4,6 anterior ficava abaixo das duas."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 60.6, 'tipo': 'NDT'}",
+      "depois": "{'valor': 54.7, 'tipo': 'DMO', 'n': 4, 'medicao': 'estimada', 'nota': 'DMO em ruminantes da palha de feijão (Common bean straw), Feedipedia, calculada por equação (*), 4 valores, faixa 47,7-60,2. No CQBAL (FEIJÃO PALHA, id 77) nenhuma métrica tem n >= 3: DIVMS 45,39 (n=2), DMS 50,7 (n=1), DMO 51,5 (n=1).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT não é digestibilidade (vai para ndt_pct quando o CQBAL tem NDT observado do mesmo material). Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "regua.regua.ndt_pct",
+      "antes": "None",
+      "depois": "56.12",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT observado guardado à parte; não entra na régua."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "980-1270",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
     }
   ],
   "evidencias": [
@@ -206,14 +262,318 @@
       "fonte": "Fietz et al., Embrapa Agropecuária Oeste, Circular Técnica 45, 2018",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1101445/1/ID36740.pdf",
       "trecho": "A demanda hídrica total foi de 243,8 mm [...] faixa sugerida por Oliveira et al. (2018), que é de 250 mm a 350 mm por ciclo"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Arroz e Feijão. Catálogo de cultivares de feijão comum, 2012 (2ª impressão abr. 2013)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/992459/1/catalogoFeijao-12jun2013.pdf",
+      "trecho": "BRS Vereda [...] Ciclo: Tardio (> 95 dias) [...] Ciclo: P-precoce (<75 dias); SP-semi-precoce (75-85 dias); N-normal (85-95 dias); T-tardio (>95 dias)."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Otsubo, A.A. et al. BRS Vereda: nova cultivar de feijão do grupo rosinha para Mato Grosso do Sul. Embrapa Agropecuária Oeste, Comunicado Técnico 113, dez. 2005",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/254504/1/COT2005113.pdf",
+      "trecho": "Ciclo da emergência ao florescimento: 47 dias / Ciclo da emergência à maturação fisiológica: 93 dias"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Souza Filho, B.F. de; Andrade, W.E. de B. Avaliação de genótipos de feijão preto em condições de cultivo empresarial (Ensaio VCU Preto ciclo precoce, normal e vitrine tecnológica 2016/2017). PESAGRO-RIO nº 124, maio 2018 (Macaé-RJ, semeadura em 31/05/2017; testemunhas IPR Tuiuiú, BRS Esteio, BRS FP403, IPR Uirapuru)",
+      "url": "https://www.rj.gov.br/pesagro/sites/default/files/arquivos_paginas/online124.pdf",
+      "trecho": "O ciclo dos materiais precoces foi de 84 dias (emergência-colheita) e, nos de ciclo normal e vitrine tecnológica, de 98 dias."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Tisot, D.A. et al. Modelos referentes ao padrão de variação temporal dos componentes de produtividade da cultura de feijão caracterizado por graus-dia. Rev. Bras. Agrometeorologia 13(1):81-89, 2005, Tabela 1 (IAC-Carioca Tybatã, Piracicaba-SP, semeadura 01/04/2002)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/15441/1/2005AP004.pdf",
+      "trecho": "temperatura base inferior (Tb = 10°C), graus-dia acumulados (GDac, °C.dia) [...] 5 DAS Emergência 77,9 [...] 45 DAS R5 630,9 [...] 48 R6 665,9 [...] 53 R7 711,6 [...] 68 R8 844,8 [...] 96 DAS R9 1.157,6 [...] 110 DAS Colheita. [...] utilizou-se a soma calórica (GD) a partir da semeadura."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Medeiros, G.A. de et al. Crescimento vegetativo e coeficiente de cultura do feijoeiro relacionados a graus-dia acumulados. Pesq. Agropec. Bras. 35(9):1733-1742, 2000, Tabela 4 (Carioca 80-SH, Campinas-SP, 1994; GD desde a emergência, Tbase 10 °C)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/5954/3058",
+      "trecho": "TABELA 4. Tempo termal das fases fenológicas do feijoeiro [...] 1ª folha trifoliada 94; 3ª folha trifoliada 246; Início do florescimento 532; Início da formação da vagem 653; Enchimento do grão 812; Colheita 1.155"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo (coluna futura)"
+      ],
+      "fonte": "Miranda, M.N.; Campelo Júnior, J.H. Soma térmica para o subperíodo semeadura-maturação de feijão cv. Carioca em Colorado do Oeste, Rondônia. Pesq. Agropec. Trop. 40(2):180-185, 2010, Tabelas 2 e 4",
+      "url": "https://www.redalyc.org/pdf/2530/253020107010.pdf",
+      "trecho": "Tabela 2. Graus-dia acumulados no subperíodo semeadura-maturação [...] Tb = 10°C [...] Média 1261,9 (T1, entressafra irrigada, 87 dias); 977,6 (T2, safra normal irrigada, 81 dias); 1236,5 (T3, safra normal sem irrigação, 101 dias)"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Arruda, F.B.; Tubelis, A.; Nascimento, F.J.L. do (IAC/UNESP). Efeito da temperatura média diária do ar na produtividade do feijoeiro. Pesq. Agropec. Bras. 15(4):413-417, 1980",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/16601/10888",
+      "trecho": "O limiar térmico da produtividade foi de 20 °C de temperatura média diária do ar, para os primeiros 50 dias do ciclo, e de 19 °C, para o ciclo todo. [...] englobando o valor de 21°C, aceito como a temperatura ótima para o desenvolvimento"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "Silva, Didonet & Morais, cap. 2 Clima, pergunta 19, em Feijão: o produtor pergunta, a Embrapa responde, 2. ed., Embrapa, 2014",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1015021/1/p25.pdf",
+      "trecho": "para que a cultura do feijoeiro consiga atingir rendimentos potenciais elevados, os valores de temperatura do ar deverão estar em torno de 29 °C, de dia, e 21 °C, de noite."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 251/2024, ZARC Feijão 2ª safra Paraná 2024/2025, Nota Técnica",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2024-2025/parana-pr/PO41831.PDF",
+      "trecho": "A ocorrência de temperaturas do ar inferiores a 12°C na fase vegetativa retarda o crescimento das plantas [...] considerado, para fins de avaliação dos riscos térmicos, um acréscimo proporcional de 30 dias no ciclo da cultura em relação ao ciclo representativo original."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Farinelli, R.; Fornasieri Filho, D.; Bordin, L.; Penariol, F.G.; Volpe, C.A. Efeitos de geada no desenvolvimento do feijoeiro em sucessão a espécies vegetais e adubação nitrogenada. Bragantia 69(1):249-252, 2010 (Jaboticabal-SP, cv. Pérola, geada de 17/7/2000)",
+      "url": "https://scielo.br/pdf/brag/v69n1/31.pdf",
+      "trecho": "sendo atingida temperatura mínima de 2,4 °C com -4,3 °C na relva, culminado com a formação da geada [...] o feijoeiro estava com sintomas característicos da geada, sendo visíveis plantas com poucas folhas, ausência de parte aérea e morte de plantas. [Tabela 1: plantas afetadas 82,7 a 98,0%] [...] a temperatura em que é promovida a formação de geada no feijoeiro está situada em aproximadamente 3 °C"
+    },
+    {
+      "fonte": "Chagas, E.; Araújo, A. P.; Teixeira, M. G.; Guerra, J. G. M., Decomposição e liberação de nitrogênio, fósforo e potássio de resíduos da cultura do feijoeiro, R. Bras. Ci. Solo 31(4):723-729, 2007 (Embrapa Agrobiologia, Seropédica, RJ)",
+      "url": "https://www.redalyc.org/pdf/1802/180214056013.pdf",
+      "trecho": "foram coletadas as folhas senescentes durante o ciclo da cultura, bem como os caules e a palhada de vagens após trilhagem dos grãos [...] Esses resíduos continham 2,3 Mg ha-1 de massa. Quadro 1: Massa (kg ha-1) Caule 810; Palhada de vagem 432; Folha senescente 1.032; Grão 1.350",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Chagas et al., R. Bras. Ci. Solo 31(4):723-729, 2007, Quadro 2",
+      "url": "https://www.redalyc.org/pdf/1802/180214056013.pdf",
+      "trecho": "Teor de C (kg kg-1) / Teor de N (g kg-1) / Relação C:N: Caules 0,54 / 6,8 / 79; Palhada de vagens 0,53 / 8,0 / 66; Folhas senescentes 0,48 / 20,4 / 24",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "QUADRO 6 [...] Feijão (Phaseolus vulgaris) - Palha: MS 87,5%; Proteína Bruta 4,6; NDT 60,6 (% MS)",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "QUADRO 1 - Estimativa da Produção Anual de Alguns Resíduos de Cultura [...] Feijão - Palhada - Proporção de resíduo em relação à planta 62%",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Chagas, E.; Araújo, A. P.; Teixeira, M. G.; Guerra, J. G. M., Decomposição e liberação de nitrogênio, fósforo e potássio de resíduos da cultura do feijoeiro, R. Bras. Ci. Solo 31(4):723-729, 2007 (Embrapa Agrobiologia, Seropédica, RJ)",
+      "url": "https://www.redalyc.org/pdf/1802/180214056013.pdf",
+      "trecho": "O tempo de meia-vida dos resíduos foi de, no primeiro e segundo ensaios, respectivamente, 133 e 179 dias para caules, 70 e 80 dias para folhas e 64 dias para vagens.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Chagas, E.; Araújo, A. P.; Teixeira, M. G.; Guerra, J. G. M., Decomposição e liberação de nitrogênio, fósforo e potássio de resíduos da cultura do feijoeiro, R. Bras. Ci. Solo 31(4):723-729, 2007 (Embrapa Agrobiologia, Seropédica, RJ), Quadros 1 e 3",
+      "url": "https://www.redalyc.org/pdf/1802/180214056013.pdf",
+      "trecho": "Quadro 3 [massa, dia-1 / dias]: Vagens (2º ensaio) 0,010862 / 64; Caules 0,005195 / 133 (1º) e 0,003868 / 179 (2º); Folhas 0,009883 / 70 (1º) e 0,008639 / 80 (2º). Quadro 1: Massa (kg ha-1) Caule 810; Palhada de vagem 432; Folha senescente 1.032",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Chagas, E.; Araújo, A. P.; Teixeira, M. G.; Guerra, J. G. M., Decomposição e liberação de nitrogênio, fósforo e potássio de resíduos da cultura do feijoeiro, R. Bras. Ci. Solo 31(4):723-729, 2007 (Embrapa Agrobiologia, Seropédica, RJ)",
+      "url": "https://www.redalyc.org/pdf/1802/180214056013.pdf",
+      "trecho": "o primeiro entre julho e novembro de 2003 [...] e o segundo entre outubro de 2003 e janeiro de 2004 [...] Na colheita mecanizada do feijão, os resíduos da parte aérea da cultura mantêm-se sobre o solo até sua completa decomposição, enquanto nas colheitas manual e semimecanizada a parte aérea é arrancada e transportada",
+      "colunas": [
+        "condicao"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 77 'FEIJÃO PALHA' (FORRAGENS SECAS; espécie cadastrada: Phaseolus vulgaris L.): PB média 6,67 (n 20, desvio 1,301); NDT OBS média 56,12 (n 2, desvio 4,079); DIVMS média 45,39 (n 2, desvio 0); DMS média 50,7 (n 1, desvio 0); DMO média 51,5 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Common bean (Phaseolus vulgaris)",
+      "url": "https://www.feedipedia.org/node/266",
+      "trecho": "Common bean straw [...] Crude protein % DM 7.1 (SD 1.8, 4.8-10.7, Nb 13) [...] OM digestibility, ruminants % 54.7 (SD 5.5, 47.7-60.2, Nb 4) * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Tisot, D.A. et al. Rev. Bras. Agrometeorologia 13(1):81-89, 2005, Tabela 1 (IAC-Carioca Tybatã, Piracicaba-SP)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/15441/1/2005AP004.pdf",
+      "trecho": "temperatura base inferior (Tb = 10°C), graus-dia acumulados (GDac, °C.dia) [...] 5 DAS Emergência 77,9 [...] 96 DAS R9 1.157,6 [...] 110 DAS Colheita. [...] utilizou-se a soma calórica (GD) a partir da semeadura."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Medeiros, G.A. et al. Pesq. Agropec. Bras. 35(9):1733-1742, 2000, Tabela 4 (Carioca 80-SH, Campinas-SP; GD desde a emergência, Tb 10)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/5954/3058",
+      "trecho": "TABELA 4. Tempo termal das fases fenológicas do feijoeiro [...] Início do florescimento 532; Início da formação da vagem 653; Enchimento do grão 812; Colheita 1.155"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Miranda, M.N.; Campelo Júnior, J.H. Pesq. Agropec. Trop. 40(2):180-185, 2010, Tabela 2 (Carioca, Colorado do Oeste-RO)",
+      "url": "https://www.redalyc.org/pdf/2530/253020107010.pdf",
+      "trecho": "Tabela 2. Graus-dia acumulados no subperíodo semeadura-maturação [...] Tb = 10°C [...] Média 1261,9 (T1, entressafra irrigada, 87 dias); 977,6 (T2, safra normal irrigada, 81 dias); 1236,5 (T3, safra normal sem irrigação, 101 dias)"
     }
   ],
   "pendencias": [
+    "Faixa ótima mantida em 18-25 °C, agora com justificativa. O valor central de 21 °C é consenso: IAC (Arruda et al. 1980: '21 °C, aceito como a temperatura ótima'), Embrapa Arroz e Feijão (Justino/Heinemann 2023: cardinais 12/21/29 °C) e Embrapa Tabuleiros (ideal ~20 °C). Piso de 18: em Campinas, a produtividade cai abaixo de 19-20 °C de média diária (Arruda et al. 1980), e a Embrapa Tabuleiros e Vieira (1967, citado por Arruda) usam 18. O piso de 16 do ECOCROP fica abaixo do limiar de produtividade medido no Brasil. Teto de 25: o regime ideal de 29 °C de dia e 21 °C à noite da Embrapa (2014) dá média diária de ~25 °C. O ZARC usa 25 °C noturno como limiar de abscisão, e o ECOCROP também para em 25. O teto de 30 da Embrapa Tabuleiros é o limite do dano por calor no florescimento (já em tmax_critica_c), não da faixa ótima de média diária. Resta conferir se o motor compara a faixa com Tmed diária (premissa adotada aqui).",
+    "ciclo_dias_max (110): o catálogo Embrapa não diz se os '> 95 dias' contam da semeadura ou da emergência. Del Peloso et al. 2009 e o CT 113 contam da emergência, e assumi o mesmo. Os 110 dias de Tisot et al. 2005 incluem 14 dias entre R9 e a colheita. Com dessecação ou colheita mecânica direta, esse intervalo é menor. No Sul de altitude, a 2ª safra pode alongar o ciclo em até 30 dias (ZARC). Esse alongamento é ambiental e deve sair do filtro de graus-dia, não do ciclo_dias_max.",
+    "graus-dia do feijão com Tb 10 °C (para a coluna futura): três fontes brasileiras, com o mesmo cálculo linear do motor (Tmed − Tb). Tisot et al. 2005 (IAC-Carioca Tybatã, Piracicaba, abr-jul): 1.158 GD da semeadura a R9; por fase, 78 até a emergência, 631 até R5 (pré-floração), 712 até R7 (vagens) e 845 até R8. Medeiros et al. 2000 (Carioca 80-SH, Campinas, ago-nov): 1.155 GD da emergência à colheita; 532 até o início do florescimento, 653 até o início da formação da vagem e 812 até o enchimento do grão. Miranda & Campelo Júnior 2010 (Carioca, Rondônia): 978 a 1.262 GD da semeadura à maturação, em 81 a 101 dias. Esses autores também citam Pereira et al. 2002 com 1.000-1.200 GD no ciclo completo (não lido). Sugestão para a coluna: ~1.000 (precoce) a ~1.250 (normal/tardio) GD da semeadura à maturação, típico 1.150. As três fontes usam cultivares do grupo carioca de ciclo normal. Não há medição com Tb 10 para cultivares superprecoces ou tardias.",
+    "tmax_critica_c = 30 °C é a máxima diurna adotada pelo ZARC e pela Embrapa. O ZARC também usa 25 °C para a temperatura noturna, que pesa muito no abortamento, mas a tabela não tem coluna para isso.",
+    "temp_base_c = 10 °C é o valor convencional usado em trabalhos brasileiros (Medeiros 2000, Tisot 2005, Miranda 2010). Em Rondônia, Miranda & Campelo Júnior (2010) encontraram 15 °C para a safra irrigada, então a Tb varia com a época e a cultivar.",
+    "Nenhuma fonte primária foi lida para cobertura_solo (baixa), aporte_biomassa (baixo) e valor_forrageiro (baixo). Esses valores vêm do julgamento agronômico do rascunho (pouca palhada, decomposição rápida, uso forrageiro só da palha).",
+    "sensivel_geada = true agora tem fonte de campo (Farinelli et al. 2010, Bragantia/IAC): uma geada com 2,4 °C no abrigo e −4,3 °C na relva atingiu 82-98% das plantas, com perda da parte aérea e morte de plantas. O feijoeiro brotou de novo e produziu. Ainda falta uma frase da própria Embrapa sobre geada (o cap. 2 do 500 Perguntas só fala em baixas temperaturas que atrasam a germinação e alongam o ciclo).",
+    "graus-dia: As três fontes usam cultivares do grupo carioca de ciclo normal. Não há medição com Tb 10 para superprecoces (BRS FC104) nem tardias; o mínimo só cobre o superprecoce se a Tmed for ~24 °C.",
+    "graus-dia: Miranda & Campelo Júnior 2010 acharam Tb 15 na safra irrigada em Rondônia; com Tb 15 os números seriam outros."
+  ],
+  "pendencias_resolvidas": [
     "ciclo_dias_max = 100 é uma estimativa. A Embrapa classifica como tardias as cultivares com mais de 90 dias da emergência à maturação, e somando cerca de 5 a 10 dias da semeadura à emergência o total fica perto de 100. A FAO-56 Tab.11 dá 95 a 110 dias. Nenhuma fonte brasileira lida diz literalmente 100 dias. O ZARC do PR soma 30 dias ao ciclo no feijão de 2ª safra em regiões frias do Sul, mas isso não entrou na faixa.",
     "Na faixa ótima de 18 a 25 °C, o limite inferior vem da Circ. Téc. 21 da Embrapa Tabuleiros (18 a 30 °C) e o superior do ECOCROP (16 a 25 °C). As fontes não coincidem: o ECOCROP começa em 16 °C, e a Embrapa fala em cerca de 29 °C de dia e 21 °C à noite, com ótimo de 21 °C. A faixa de 18 a 24 °C da matéria Epamig/Embrapa é texto de divulgação e não foi usada.",
-    "tmax_critica_c = 30 °C é a máxima diurna adotada pelo ZARC e pela Embrapa. O ZARC também usa 25 °C para a temperatura noturna, que pesa muito no abortamento, mas a tabela não tem coluna para isso.",
-    "temp_base_c = 10 °C é o valor convencional usado em trabalhos brasileiros. Em Rondônia, Miranda & Campelo Júnior (2010) encontraram 15 °C para a safra irrigada, então a Tb varia com a época e a cultivar.",
-    "Nenhuma fonte primária foi lida para cobertura_solo (baixa), aporte_biomassa (baixo) e valor_forrageiro (baixo). Esses valores vêm do julgamento agronômico do rascunho (pouca palhada, decomposição rápida, uso forrageiro só da palha).",
     "Lida em fonte primária, sensivel_geada = true se apoia só no critério de risco do ZARC (Tmin <= 3 °C). Não li um trecho da Embrapa que descreva diretamente o dano por geada."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 1.2,
+      "max": 2.3,
+      "tipico": 2.3
+    },
+    "cn_palhada": {
+      "min": 24,
+      "max": 79,
+      "tipico": 37
+    },
+    "k_dia": {
+      "valor": 0.007,
+      "min": 0.0057,
+      "max": 0.0081
+    },
+    "meia_vida_dias": {
+      "valor": 99,
+      "min": 85,
+      "max": 122
+    },
+    "condicao_decomposicao": "Resíduos do feijoeiro (caule, palha de vagem após trilha e folhas senescentes, nas proporções medidas na lavoura) em sacolas na superfície do solo, Seropédica-RJ (Embrapa Agrobiologia). Valor = 2º ensaio, out/2003-jan/2004 (primavera-verão, 595 mm, 24,8 °C, até 110 dias). Não é plantio direto formal; sacolas sobre o solo, como na colheita mecanizada.",
+    "pb_pct": 6.7,
+    "digestibilidade_pct": {
+      "valor": 54.7,
+      "tipo": "DMO",
+      "n": 4,
+      "medicao": "estimada",
+      "nota": "DMO em ruminantes da palha de feijão (Common bean straw), Feedipedia, calculada por equação (*), 4 valores, faixa 47,7-60,2. No CQBAL (FEIJÃO PALHA, id 77) nenhuma métrica tem n >= 3: DIVMS 45,39 (n=2), DMS 50,7 (n=1), DMO 51,5 (n=1)."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Palhada = caules + palha das vagens (trilha) + folhas que caem durante o ciclo. 2,3 t/ha é o total medido (Chagas 2007, lavoura de 1,35 t/ha de grão); 1,2 t/ha é só caule + vagem, sem as folhas senescentes. Não achei medida em lavoura de alta produtividade; pela proporção de Cruz (resíduo = 62% da planta) uma lavoura de 2,5 t/ha de grão deixaria ~3,5-4 t/ha (conta: 2,2 t MS de grão x 62/38), mas isso é extrapolação e ficou fora da faixa. C/N: 79 (caule) e 66 (vagem), 24 (folha senescente). Ponderada pela massa: C = 810x0,54 + 432x0,53 + 1032x0,48 = 1.162 kg; N = 5,8 + 4,1 + 21,3 = 31,2 kg; C/N = 37 (típico). Sem as folhas: 666/9,9 = 67. pb_pct/NDT da palha (Cruz 1983). Uso 'residual': só restos culturais. O NDT de 60,6 é alto para palha; é o valor da tabela, sem fonte original identificada no texto.",
+      "decomposicao": "Chagas dá k por componente; juntei pela massa de cada um na lavoura (caule 810, vagem 432, folha 1.032 kg/ha; total 2.274). Massa remanescente total M(t) = [810 e^(-k_caule t) + 432 e^(-k_vagem t) + 1032 e^(-k_folha t)] / 2274; resolvi M(t) = 0,5 numericamente. 2º ensaio (k_caule 0,003868; k_vagem 0,010862; k_folha 0,008639): T½ = 99 d -> k equivalente = ln2/99 = 0,0070/dia (média ponderada inicial dos k = 0,0074). 1º ensaio (inverno-primavera; caule 0,005195, folha 0,009883; vagem perdida por formigas, usei a do 2º): T½ = 85 d -> k = 0,0081 = máximo. Mínimo = só caule + vagem do 2º ensaio (se as folhas senescentes caírem e sumirem antes da colheita): T½ = 122 d -> k = 0,0057. Os autores avisam que algumas meias-vidas passam da duração do ensaio (110-120 d), o que traz incerteza. Na colheita manual/semimecanizada a parte aérea sai da lavoura e quase nada fica no campo."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 2.3,
+      "ms_remanescente_t_ha": 1.51,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": false
+      }
+    },
+    "cenario_forragem": "Palha de feijão depois da trilha do grão. O grão como ração eventual (CQBAL FEIJÃO MOÍDO, id 1678: PB 24,21 n=10) não entra.",
+    "ndt_pct": {
+      "valor": 56.12,
+      "n": 2,
+      "nota": "NDT observado da FEIJÃO PALHA (CQBAL id 77). Informativo."
+    }
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "convencao_com_fonte",
+      "nota": "Tb 10 °C é a base convencional adotada em três estudos brasileiros de graus-dia (Medeiros et al. 2000 citando Kish & Ogle 1980; Tisot et al. 2005; Miranda & Campelo Jr. 2010), não estimada por eles. Pendência registra 15 °C em Rondônia e cardinais 12/21/29 °C na Embrapa (Justino 2023). Não conta."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Agropecuária Oeste CT 45 (2018): BRS FC104 'tem ciclo de 60 dias a 65 dias'."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "Catálogo Embrapa 2012 (tardio >95 d) + medição de Tisot et al. 2005 (colheita aos 110 DAS) + VCU PESAGRO-RIO 2018 (98 d emergência-colheita) + FAO-56 Tab.11 (até 110 d). Várias fontes convergem."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Stone et al., Feijão: o produtor pergunta, Embrapa 2014, cap.8: 'faixa de 250 mm a 400 mm'; CT 45 mediu 243,8 mm."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte Embrapa 2014 (250-400 mm); CT 89 (2011) também dá 300-400 mm."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (e. Legumes 0.4); a linha da própria cultura (Beans, dry and Pulses) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Beans dry and Pulses: 1.15."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Beans dry and Pulses: 0.35."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Beans dry 0.6-0.9 m; limite superior = sequeiro."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; Valores já coletados em evidencias/feijao.json (Tb 10, média simples sem teto, igual ao motor). Tisot et al. 2005: 1158 GD da SEMEADURA a R9 (96 DAS), sem conversão; fase semeadura->emergência = 77,9 GD. Medeiros et al. 2000: 1155 GD da EMERGÊNCIA à colheita; somando a semeadura->emergência de Tisot (78): 1233 da semeadura à colheita (colheita > maturação, então é teto da faixa). Miranda & Campelo Júnior 2010: 978 a 1262 GD da SEMEADURA à maturação (81-101 dias), sem conversão. Faixa: 980 (Miranda T2, 81 dias) a 1270 (Miranda T1, 1262, arredondado). | plausibilidade: Mínimo: 980/(24 − 10) = 70 dias, igual ao superprecoce (60-65 dias da emergência + ~5 de emergência). Máximo: 1270/(21,5 − 10) = 110 dias (tardio em região mais fria), igual a ciclo_dias_max 110. Contra ciclo_dias 60-110 do CSV. Coerente."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; Valores já coletados em evidencias/feijao.json (Tb 10, média simples sem teto, igual ao motor). Tisot et al. 2005: 1158 GD da SEMEADURA a R9 (96 DAS), sem conversão; fase semeadura->emergência = 77,9 GD. Medeiros et al. 2000: 1155 GD da EMERGÊNCIA à colheita; somando a semeadura->emergência de Tisot (78): 1233 da semeadura à colheita (colheita > maturação, então é teto da faixa). Miranda & Campelo Júnior 2010: 978 a 1262 GD da SEMEADURA à maturação (81-101 dias), sem conversão. Faixa: 980 (Miranda T2, 81 dias) a 1270 (Miranda T1, 1262, arredondado). | plausibilidade: Mínimo: 980/(24 − 10) = 70 dias, igual ao superprecoce (60-65 dias da emergência + ~5 de emergência). Máximo: 1270/(21,5 − 10) = 110 dias (tardio em região mais fria), igual a ciclo_dias_max 110. Contra ciclo_dias 60-110 do CSV. Coerente."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 0,
+    "colunas": []
+  }
 }

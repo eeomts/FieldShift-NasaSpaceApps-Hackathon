@@ -13,16 +13,18 @@
     "agua_ciclo_mm_min": "400",
     "agua_ciclo_mm_max": "700",
     "kc_inicial": "0.35",
-    "kc_medio": "1.0",
+    "kc_medio": "1.15",
     "kc_final": "0.35",
     "profundidade_raiz_m": "1.5",
     "fixa_nitrogenio": "false",
     "raiz_profunda": "false",
-    "cobertura_solo": "baixa",
+    "cobertura_solo": "media",
     "aporte_biomassa": "medio",
-    "valor_forrageiro": "medio",
+    "valor_forrageiro": "baixo",
     "fontes": "Embrapa Soja, Circular Técnica 13 A cultura do girassol (Castro et al.), 1997 (ciclo 90-130 dias, temperaturas, água 500-700 mm, tolerância à seca, raiz sensível à compactação)|Castro & Farias, Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005 (temp. base 4-8,5 °C, ótimo 20-25 °C, <35 °C na floração, água 400-500 mm, raiz até 2 m e sensível à compactação, matéria seca 9,5 t/ha)|Ungaro, Castro, Farias et al., Girassol, cap. 12 de Agrometeorologia dos cultivos, INMET, 2009 (temp. base 4 °C de Barni et al. 1993, geada, dano por calor na antese, água)|Gonçalves et al., Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005 (valor forrageiro)|Amabile & Duarte, Girassol como alternativa para o sistema de produção do Cerrado, Embrapa Cerrados (silagem similar à de milho, tolerância à seca)|FAO ECOCROP Helianthus annuus id 1191 (ótimo 17-34 °C, absoluto 5-45 °C, morte a 0 °C no início do ciclo)|FAO Irrigation Water Management Training Manual 3, Tab.5 (água 600-1000 mm, referência internacional)|FAO-56 Tab.12 (Kc; ini do grupo Oil crops 0.35; mid 1.0 = limite inferior, para sequeiro, nota 9)|FAO-56 Tab.22 (raiz 0.8-1.5 m, limite superior = sequeiro)",
-    "confianca_parametros": "media"
+    "confianca_parametros": "alta",
+    "graus_dia_ciclo_min": "1500",
+    "graus_dia_ciclo_max": "2100"
   },
   "mudancas": [
     {
@@ -66,6 +68,60 @@
       "antes": "rascunho com referências genéricas",
       "depois": "referências exatas (ver valores.fontes)",
       "motivo": "Troquei as referências genéricas pelos documentos que li de fato."
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "baixa",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "1.0",
+      "depois": "1.15",
+      "motivo": "REVISÃO 14/11 (teste de coerência com o AquaCrop): KcTr,x do girassol = 1,10 (≈ Kcb médio); o kc_medio deve ficar entre KcTr,x e KcTr,x + ~0,10. O FAO-56 dá 1,00-1,15 e a nota 9 diz que o valor baixo é para sequeiro com menor densidade de plantas; a safrinha brasileira usa densidade normal, então vale o valor padrão da tabela."
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "8.8",
+      "depois": "5.7",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): A linha é de grão: o 8,8 era da silagem. Palhada de girassol: Feedipedia 5,7 (n=2); o CQBAL não tem a palhada."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 49.9, 'tipo': 'DIVMS'}",
+      "depois": "{'valor': 46.2, 'tipo': 'DMO', 'n': 1, 'medicao': 'medida', 'nota': 'DMO em ruminantes da palhada de girassol (Sunflower stover, stalks and heads), Feedipedia, valor medido (sem *), n=1 (Saricicek 1997). O CQBAL não tem a palhada: só GIRASSOL PLANTA (id 282, verde, DIVMS 47,82 n=2) e SILAGEM (id 283, DIVMS 47,31 n=3), que são o cenário de silagem.'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): A DIVMS 49,9 era da silagem; a linha é de grão. DMO medida da palhada (Feedipedia, n=1). Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.uso_forrageiro",
+      "antes": "com_restricao",
+      "depois": "residual",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): No cenário de grão sobra só a palhada, e a Feedipedia descreve os restos do girassol como material fibroso, pobre em proteína, que precisa de suplemento de energia e proteína, como as palhas de milho, sorgo e soja, que já são 'residual'. O 'com_restricao' anterior vinha da silagem."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "medio",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1500-2100",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
     }
   ],
   "evidencias": [
@@ -256,6 +312,167 @@
       "fonte": "Amabile & Duarte, Girassol como alternativa para o sistema de produção do Cerrado, Embrapa Cerrados",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/571940/1/art032.pdf",
       "trecho": "a de girassol é similar a silagem de milho e superior a de sorgo ... A espécie apresenta boa adaptabilidade, tolerância à seca"
+    },
+    {
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, cap. 9 de Leite, Brighenti & Castro (eds.), Girassol no Brasil, Embrapa Soja, 2005 (Londrina-PR)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "foram estimadas as produtividades de MS total e de aquênios, na colheita, em 9.507 kg ha-1 e 3.176 kg ha-1, respectivamente.",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, cap. 9 de Leite, Brighenti & Castro (eds.), Girassol no Brasil, Embrapa Soja, 2005 (Londrina-PR)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "O índice de colheita (IC) [...] relação entre a massa seca de aquênios e a produção de matéria seca total das plantas (caule, folhas, pecíolos, capítulos e aquênios) foi de 0,33. Merrien (1992) cita que o índice de colheita de girassol é baixo, situando-se entre 0,25 e 0,35.",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Farias et al., Zoneamento agrícola de risco climático para o girassol, Anais da 24ª Reunião Nacional de Pesquisa de Girassol, Embrapa Soja, 2023",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1157384/1/p-13-ANAIS-RNPG-23-online-2-1.pdf",
+      "trecho": "Nos últimos 20 anos, a produtividade média tem variado entre 1.137 kg/ha a 1.669 kg/ha (Conab, 2023).",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Quadros 3 e 4 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "trituradas [...] após a colheita de grãos para milho, sorgo e girassol; Quadro 4: Girassol 3,2 c [MS acumulada Mg ha-1 2007/08] [...] 2,4 (75) [remanescente] | 2,8 [2008/09] [...] 1,6 (58); Quadro 3: Girassol [...] C:N 83 [2007/08] [...] 39 [2008/09]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Silva, Trezzi, Buzzello, Patel, Miotto Jr. & Debastiani, Potencial supressivo de genótipos e níveis de palha de girassol sobre o desenvolvimento de picão preto, R. Bras. Agrociência 17(1-4):7-14, 2011 (Pato Branco-PR)",
+      "url": "https://periodicos.ufpel.edu.br/index.php/CAST/article/view/2026/1863",
+      "trecho": "equivalentes a 0, 50, 100, 200 e 400% da quantidade de matéria seca de colmo+folhas originalmente produzida a campo, na média dos três genótipos. Esses níveis corresponderam a 0, 1.649, 3.298, 6.596 e 13.192 Kg.ha-1",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Azevedo & Spehar, Decomposição da palhada de culturas para plantio no período de safrinha em solos de tabuleiros costeiros, Embrapa Meio-Norte, Comunicado Técnico 147, 2002 (Brejo-MA; resíduos após a colheita dos grãos)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/65737/1/CT147.pdf",
+      "trecho": "Girassol (Rumbosol 90) 21,08 [L %] [...] 37,58 [C %] 1,12 [N %] 19:1 [L:N] 34:1 [C:N]; Girassol (Rumbosol 90)(3) 39 B 42 C 43 B 53 B [perda de peso %]",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Gonçalves, Pereira, Tomich & Rodrigues, Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005 (Tabela 5 adaptada de Tomich et al., 2004)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/792184/1/Silagem-de-girassol-como-opcao-forrageira-capitulo-7.pdf",
+      "trecho": "Tabela 5. Composição química e digestibilidade das silagens de cultivares de girassol [13 cultivares: PB 7,2 a 9,8%; DIVMS 46,9 a 56,7%]; A ensilagem nesse estádio tem produzido silagens com teor de matéria seca entre 26% e 30%, cerca de 10% proteína bruta e coeficiente de digestibilidade da matéria seca por volta de 50%.",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Gonçalves, Pereira, Tomich & Rodrigues, Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005 (Tabela 5 adaptada de Tomich et al., 2004)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/792184/1/Silagem-de-girassol-como-opcao-forrageira-capitulo-7.pdf",
+      "trecho": "Geralmente, a silagem de girassol contém alto teor protéico ... Contudo, a fração fibrosa geralmente apresenta maior proporção de lignina e menor digestibilidade, quando comparada às silagens de milho e de sorgo (trecho já registrado em girassol.json)",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Feedipedia, Sunflower forage and crop residues",
+      "url": "https://www.feedipedia.org/node/143",
+      "trecho": "[Tabela 'Sunflower forage, silage': Crude protein % DM 12.0 (n=26); OM digestibility, Ruminant 66.9 %]",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Figura 3 e Quadro 2 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "Figura 3. Constantes (K0) das equações exponenciais simples (y = A0.e-K0.t) ajustadas para a decomposição dos resíduos das culturas de entressafra. [Girassol: K0 ≈ 0,0042 em 2007/08 e ≈ 0,0063 em 2008/09, lidos no gráfico]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Figura 3 e Quadro 2 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "Quadro 2. Valores de precipitação pluvial acumulada e temperatura média do ar no período de 180 dias de decomposição [...] Girassol 887,2 23,7 [2007/2008] 1.203,2 24,1 [2008/2009]",
+      "colunas": [
+        "condicao"
+      ]
+    },
+    {
+      "fonte": "Azevedo & Spehar, Decomposição da palhada de culturas para plantio no período de safrinha em solos de tabuleiros costeiros, Embrapa Meio-Norte, Comunicado Técnico 147, 2002 (Chapadinha/Brejo-MA; resíduos após a colheita dos grãos)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/65737/1/CT147.pdf",
+      "trecho": "Girassol (Rumbosol 90)(3) 39 B 42 C 43 B 53 B [perda de peso %, 29/08/01 a 29/01/02] [...] (3) Manejo da palhada em 28 de julho de 2001.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Teodoro, Souza, Rodrigues & Santos, Decomposition of green manure biomass in dystrophic Yellow Latosol in Piauí state, Brazil, Revista Agro@mbiente On-line 13:196-210, 2019, doi:10.18227/1982-8470ragro.v13i0.5476 (Parnaíba-PI; plantas cortadas aos 60 DAP; bolsas de maio a setembro)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1167409/1/Decomposition-of-green-manure-biomass-in-dystrophic-Yellow.pdf",
+      "trecho": "T17 – Sunflower cv. Catissol 7.1 97.6 0.95** [...] T19 – Sunflower cv. IAC Uruguai 6.2 111.8 0.91*",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Sunflower forage and crop residues",
+      "url": "https://www.feedipedia.org/node/143",
+      "trecho": "Sunflower stalks, heads (without seeds), and mixtures of stalks and heads are generally low-protein, fibrous materials [...] a much lower value (46%) has been reported for the whole stover (stalks and heads) [...] Because of their high fibre and low protein content, sunflower crop residues must be supplemented with ingredients rich in energy [...] and protein [Tabela 'Sunflower stover (stalks and heads)': Crude protein % DM 5.7 (5.4-6.1, Nb 2); OM digestibility, Ruminant % 46.2 (Nb 1)]"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 282 'GIRASSOL PLANTA' (FORRAGENS VERDES; espécie cadastrada: Helianthus annuss): PB média 9,13 (n 4, desvio 0,964); DIVMS média 47,82 (n 2, desvio 1,449)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 283 'GIRASSOL SILAGEM' (SILAGENS; espécie cadastrada: Helianthus annuss): PB média 9,61 (n 12, desvio 1,015); DIVMS média 47,31 (n 3, desvio 0,924); NDT OBS média 74,17 (n 2, desvio 3,442)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Ungaro, M.R.G.; Castro, C.; Farias, J.R.B.; Barni, N.A.; Ramos, N.P.; Sentelhas, P.C. Girassol. In: Monteiro (org.), Agrometeorologia dos cultivos, INMET, 2009, p. 205-221",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "BARNI et aI. (1993a), estudando nove cultivares (híbridos e populações), em 80 ambientes, no Estado do Rio Grande do Sul, determinaram uma temperatura base de 4°C, para todo o ciclo do girassol. A soma térmica efetiva (graus-dia) para o período emergência-maturação exigiu, na média das nove cultivares, 1620°Cdia, com dispersão entre 1380°Cdia, para os genótipos mais precoces, e 2010°Cdia, para os mais tardios (BARNI et aI., 1993b)."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Ungaro et al. 2009 (mesma página)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "SENTELHAS et aI. (1994) e Sentelhas e Ungaro (1998) determinaram que a soma térmica, da emergência à colheita, foi da ordem de 1743°Cdia para a cultivar IAC-Anhandy, 1713°Cdia para o híbrido Contisol 621 e, 1848°Cdia, para a linhagem VNIIMK, considerando-se uma temperatura base de 4,2°C."
+    },
+    {
+      "colunas": [
+        "plausibilidade"
+      ],
+      "fonte": "Castro & Farias, Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "Contudo, os teores de óleo do girassol cultivado nos Cerrados de Roraima, em que o ciclo é reduzido para cerca de 76 dias [...] Essa redução do ciclo da cultura está de acordo com o conceito de graus-dia"
     }
   ],
   "pendencias": [
@@ -264,6 +481,109 @@
     "sensivel_geada = true é simplificação de um campo booleano. A Embrapa/INMET diz que o girassol é sensível na emergência e na floração e 'muito resistente' depois dos 20 primeiros dias, além de ser 'mais resistente que o milho'. Mantive true porque, na safrinha, a floração e a diferenciação floral caem no outono/inverno e uma geada nessa fase causa infertilidade total dos círculos florais.",
     "raiz_profunda e tipos: mudei para false/sem raiz_profunda seguindo a definição do BRIEF (rompe camada compactada). O girassol tem raiz pivotante profunda (até 2 m, segundo o INMET 2009: 'pode absorver água de uma profundidade de 2 metros ou mais') e recicla nutrientes de camadas profundas, mas a Embrapa diz explicitamente que ele é sensível à compactação. Se o app usar raiz_profunda também para 'explora camadas profundas', a equipe deve rever.",
     "ciclo 90-130 dias da CT 13 conta da emergência à colheita e vem de 1997. O cap. 9 (2005) dá 65 a 155 dias como faixa genotípica geral e cita cerca de 76 dias em Roraima. Não conferi a lista atual de cultivares do ZARC do girassol, que tem grupos de ciclo.",
-    "temp_otima_max_c = 25 segue a afirmação de campo da Embrapa ('desenvolve-se bem entre 20 e 25 °C'). A CT 13 e estudos em ambiente controlado dão 27-28 °C como ótimo, e o ECOCROP dá 17-34 °C. Se a equipe preferir o ótimo fisiológico, usar 28."
-  ]
+    "temp_otima_max_c = 25 segue a afirmação de campo da Embrapa ('desenvolve-se bem entre 20 e 25 °C'). A CT 13 e estudos em ambiente controlado dão 27-28 °C como ótimo, e o ECOCROP dá 17-34 °C. Se a equipe preferir o ótimo fisiológico, usar 28.",
+    "graus-dia: Barni 1993b e Sentelhas 1994 foram lidos via Ungaro et al. 2009 (capítulo com Barni e Sentelhas como coautores), não no original.",
+    "graus-dia: Semeadura->emergência é CÁLCULO; no RS em julho a emergência pode levar até 15 dias (Castro & Farias 2005), e aí a fase passaria de 100 GD."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 2.1,
+      "max": 6.3,
+      "tipico": 3.2
+    },
+    "cn_palhada": {
+      "min": 34,
+      "max": 83,
+      "tipico": 39
+    },
+    "k_dia": {
+      "valor": 0.0052,
+      "min": 0.0041,
+      "max": 0.0071
+    },
+    "meia_vida_dias": {
+      "valor": 133,
+      "min": 98,
+      "max": 169
+    },
+    "condicao_decomposicao": "Valor: resíduo pós-colheita de grãos triturado (girassol de entressafra), Jaboticabal-SP, plantio direto; bolsas de decomposição por 180 dias a partir da colheita (agosto/setembro), período que atravessa o início da estação chuvosa (887 mm em 2007/08 e 1.203 mm em 2008/09). Média dos dois anos.",
+    "pb_pct": 5.7,
+    "digestibilidade_pct": {
+      "valor": 46.2,
+      "tipo": "DMO",
+      "n": 1,
+      "medicao": "medida",
+      "nota": "DMO em ruminantes da palhada de girassol (Sunflower stover, stalks and heads), Feedipedia, valor medido (sem *), n=1 (Saricicek 1997). O CQBAL não tem a palhada: só GIRASSOL PLANTA (id 282, verde, DIVMS 47,82 n=2) e SILAGEM (id 283, DIVMS 47,31 n=3), que são o cenário de silagem."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Grão: palhada = colmo, folhas e capítulos que ficam depois da colheita. Medidas diretas: 3,2 e 2,8 t/ha de resíduo triturado depois da colheita (Marcelo, safrinha em Jaboticabal); 3,3 t/ha de colmo + folhas no pleno florescimento (Silva et al., Pato Branco, sem capítulo); 9,507 - 3,176 = 6,33 t/ha (Embrapa Soja, Londrina, lavoura de alto rendimento, máximo). Conta para lavoura média brasileira: produtividade Conab de 1,137 a 1,669 t/ha (aquênio com ~10% de umidade, MS = 0,9) e IC = 0,33 (Embrapa): resíduo = grão MS x 0,67/0,33 -> 1,137 x 0,9 x 2,03 = 2,08 t/ha (mínimo) e 1,669 x 0,9 x 2,03 = 3,05 t/ha; no meio da faixa (1,403 t/ha) dá 2,56 t/ha. Típico = mediana de 2,56, 2,8, 3,2, 3,3 e 6,33 = 3,2 t/ha. C/N: 34 (CT 147), 83 e 39 (Marcelo; o 83 foi num ano com palha mais madura). Típico = mediana (39). PB e DIVMS: média das 13 cultivares da Tabela 5 (Tomich et al. 2004, via Embrapa): PB 8,8% e DIVMS 49,9%. A Feedipedia dá 12,0% PB e 66,9% de digestibilidade da MO para silagem (média mundial), mais alto. uso_forrageiro = com_restricao: a silagem é usada e recomendada pela Embrapa, mas tem digestibilidade menor (lignina) que as de milho e sorgo; o resíduo pós-colheita (hastes) tem pouco valor. Persistência e cobertura: resíduo pós-colheita mais recalcitrante que o das coberturas trituradas no florescimento (75% e 58% da MS ainda presentes ao fim do ano agrícola, Marcelo), mas cobre mal o solo: 81-89% de cobertura logo após a trituração, contra 97-100% das outras culturas, porque o resíduo é quase só haste (Marcelo, Quadro 5). No CT 147 perdeu 53% da massa em ~6 meses.",
+      "decomposicao": "Marcelo 2012: K0 lido na Figura 3 (exponencial simples, incerteza ≈ ±0,0002): 0,0042 (T½ = ln2/0,0042 = 165 d) e 0,0063 (T½ = 110 d). Valor = média = 0,00525 -> 0,0052/dia, T½ = ln2/0,0052 = 133 d. É o único dado de restolho de colheita decompondo na estação chuvosa. CT 147 (Brejo-MA, seca): de 28/07/2001 a 29/01/2002 são 184 dias, 53% de perda -> k = -ln(0,47)/184 = 0,0041/dia (min), T½ = 169 d. Teodoro 2019 (Parnaíba-PI, seca): planta verde cortada aos 60 DAP (não é restolho), k = 0,0071 e 0,0062/dia (T½ 98 e 112 d); o 0,0071 é o max. Observação: apesar do k parecido com o das coberturas, o resíduo de girassol cobre mal o solo (81-89% de cobertura logo após a trituração, Marcelo Quadro 5) por ser quase só haste; a persistência da massa não garante cobertura."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 3.2,
+      "ms_remanescente_t_ha": 2.34,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Palhada de girassol depois da colheita do grão (hastes e capítulos sem sementes). Saíram os números de silagem (PB 8,8, DIVMS 49,9). O grão como ração eventual (GIRASSOL SEMENTE, CQBAL id 888) não entra."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "medido",
+      "nota": "Barni et al. 1993 (9 cultivares, 80 ambientes no RS) 'determinaram uma temperatura base de 4°C, para todo o ciclo', e Sentelhas 4,2 °C, ambos via INMET 2009."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Soja CT 13 (1997): 'O ciclo vegetativo do girassol varia entre 90 a 130 dias'."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte, CT 13: 90-130 d."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Castro & Farias, Embrapa Soja 2005: '400 a 500 mm de água [...] rendimentos próximos ao potencial máximo'; Dias 1995 mediu 508,8 mm em Lavras."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Embrapa Soja CT 13 (1997): '500 a 700 mm de água'."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (h. Oil Crops 0.35); a linha da própria cultura (Sunflower) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Sunflower 1.00-1.15, valor padrão (1.15); coerente com KcTr,x 1,10 do AquaCrop (Annex I)."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Sunflower: 0.35."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Sunflower 0.8-1.5 m; limite superior."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 4; Barni et al. 1993b (9 cultivares, 80 ambientes no RS), Tb 4 (a mesma do CSV), da EMERGÊNCIA à maturação: 1380 (mais precoces) a 2010 (mais tardios), média 1620. Lido via Ungaro et al. 2009 (INMET/Embrapa). Sentelhas et al. 1994 (IAC, Tb 4,2, emergência->colheita): 1713-1848, dentro da faixa. Semeadura->emergência (CÁLCULO): as fontes não dão GD dessa fase; 5-7 d × (20 − 4) = 80-112 GD → 100. Min 1380 + 100 = 1480 ≈ 1500; max 2010 + 100 = 2110 ≈ 2100. Sem teto na fonte (média simples). | plausibilidade: RS (semeadura ago-set, Tmed do ciclo ~19,5 °C → 15,5 GD/dia): 1500/15,5 = 97 dias e 2100/15,5 = 135 dias, contra ciclo_dias 90-130 do CSV. Conferência tropical: Roraima, ciclo de ~76 dias (Castro & Farias 2005) a Tmed ~27 °C dá 76 × 23 = 1748 GD, dentro da faixa, o que confirma que o encurtamento do ciclo no calor segue o GD."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 4; Barni et al. 1993b (9 cultivares, 80 ambientes no RS), Tb 4 (a mesma do CSV), da EMERGÊNCIA à maturação: 1380 (mais precoces) a 2010 (mais tardios), média 1620. Lido via Ungaro et al. 2009 (INMET/Embrapa). Sentelhas et al. 1994 (IAC, Tb 4,2, emergência->colheita): 1713-1848, dentro da faixa. Semeadura->emergência (CÁLCULO): as fontes não dão GD dessa fase; 5-7 d × (20 − 4) = 80-112 GD → 100. Min 1380 + 100 = 1480 ≈ 1500; max 2010 + 100 = 2110 ≈ 2100. Sem teto na fonte (média simples). | plausibilidade: RS (semeadura ago-set, Tmed do ciclo ~19,5 °C → 15,5 GD/dia): 1500/15,5 = 97 dias e 2100/15,5 = 135 dias, contra ciclo_dias 90-130 do CSV. Conferência tropical: Roraima, ciclo de ~76 dias (Castro & Farias 2005) a Tmed ~27 °C dá 76 × 23 = 1748 GD, dentro da faixa, o que confirma que o encurtamento do ciclo no calor segue o GD."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 0,
+    "colunas": []
+  }
 }
