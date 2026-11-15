@@ -1,6 +1,6 @@
 # 02 — Script da malha municipal (IBGE)
 
-**Dono:** Pessoa 2 · **Status:** pendente
+**Dono:** Pessoa 2 · **Status:** em revisão
 
 ## Por quê
 O backend descobre o município da fazenda pelo ponto no mapa. É isso que liga o produtor à PAM e ao ZARC, sem perguntar nada a ele.
