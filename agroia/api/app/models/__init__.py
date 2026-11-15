@@ -1,5 +1,5 @@
 """Models do banco; importar daqui registra todas as tabelas."""
-from app.models.agente import BuscaLog
+from app.models.agente import BuscaLog, Conversa, Mensagem
 from app.models.clima import ClimaCelula, ClimaMensal
 from app.models.conhecimento import Documento, Trecho
 from app.models.fazenda import CalendarioItem, Fazenda
@@ -10,8 +10,10 @@ __all__ = [
     "CalendarioItem",
     "ClimaCelula",
     "ClimaMensal",
+    "Conversa",
     "Documento",
     "Fazenda",
+    "Mensagem",
     "Trecho",
     "Usuario",
 ]

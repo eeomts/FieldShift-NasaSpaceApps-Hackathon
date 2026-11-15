@@ -26,20 +26,21 @@ agroia/
 │   ├── app/                  # em camadas: routers -> services -> repositories -> models
 │   │   ├── main.py           # cria a API, liga as rotas e trata os erros de negócio
 │   │   ├── core/             # config.py (.env), db.py (PostgreSQL), security.py (senha e JWT), erros.py
-│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (busca_log), clima.py (clima_celula, clima_mensal)
-│   │   ├── schemas/          # entrada e saída das rotas: auth.py, fazenda.py, onboarding.py (respostas)
-│   │   ├── repositories/     # acesso ao banco: usuario, fazenda, conhecimento (busca híbrida), clima
+│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (conversa, mensagem, busca_log), clima.py (clima_celula, clima_mensal)
+│   │   ├── schemas/          # entrada e saída das rotas: auth.py, fazenda.py, onboarding.py (respostas), chat.py
+│   │   ├── repositories/     # acesso ao banco: usuario, fazenda, conhecimento (busca híbrida), clima, conversa
 │   │   ├── services/         # regras de negócio
 │   │   │   ├── auth_service.py      # cadastro, login, apagar conta
 │   │   │   ├── catalogo.py          # culturas/equipamentos (agroia/base) e casamento por sinônimo
 │   │   │   ├── interpretacao.py     # texto livre -> lista (Gemini, com a lista como reserva)
 │   │   │   ├── onboarding/          # perfil.py (perfil A–C, papel, retrato do solo), fazenda_service.py
 │   │   │   ├── rag/                 # base de conhecimento: chunker, embeddings (Gemini), fontes, ingestao
-│   │   │   ├── agente/              # busca_conhecimento_service.py (descarta trecho fraco, grava busca_log)
+│   │   │   ├── conversa_service.py  # conversas do usuário (criar, listar, abrir, apagar)
+│   │   │   ├── agente/              # o chat: agente_service.py (laço do Gemini), ferramentas.py, prompt.py, modelo.py, busca_conhecimento_service.py
 │   │   │   ├── clima/               # célula da grade, ET0 (FAO-56), limites, agregação mensal, clima_service.py
 │   │   │   └── integracao/          # nasa_power.py (cliente HTTP do NASA POWER)
 │   │   ├── cli/              # comandos: rag.py (ingerir, buscar), clima.py (baixar, mostrar, demo)
-│   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding
+│   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding, chat
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
 │   ├── tests/                # pytest (só rodam num Postgres local)
 │   ├── .env.example          # modelo de configuração
@@ -115,6 +116,7 @@ Os testes cobrem:
 - **Login:** cadastro, e-mail repetido, senha errada, token inválido e apagar a conta.
 - **Questionário:** salvamento parcial, conclusão, validações, regras do perfil, meses descobertos.
 - **IA:** a IA não pode inventar culturas e, se cair, o app usa a lista reserva.
+- **Chat:** rotas das conversas, 404 para conversa de outro usuário, e o agente com modelo falso (ferramentas, fontes, histórico, limite de rodadas, 503 sem gravar nada).
 
 ## Rotas da API
 
@@ -128,6 +130,11 @@ Os testes cobrem:
 | PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`) |
 | POST | `/onboarding/interpretar` | Texto livre → itens da base (perguntas 8, 26a e 26b) |
 | GET | `/culturas`, `/equipamentos` | Listas reserva |
+| GET | `/chat/conversas` | Lista as conversas do usuário (mais recente primeiro) |
+| POST | `/chat/conversas` | Cria uma conversa vazia (201) |
+| GET | `/chat/conversas/{id}` | Abre a conversa com as mensagens visíveis |
+| POST | `/chat/conversas/{id}/mensagens` | Envia `{"mensagem": "..."}` (1 a 2000 caracteres) e devolve a resposta do assistente |
+| DELETE | `/chat/conversas/{id}` | Apaga a conversa (204) |
 | GET | `/saude` | Mostra se a API está no ar |
 
 Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Authorization: Bearer <token>`.
@@ -141,7 +148,9 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | `calendario_item` | Cada cultura que o produtor confirmou, com os meses de plantio e colheita |
 | `documento` | Cada texto da base de conhecimento (glossário, metodologia, culturas, satélites), com fonte, caminho de origem e hash do conteúdo |
 | `trecho` | Pedaços de um documento com embedding (`vector(768)`) e busca textual em português |
-| `busca_log` | Cada busca na base de conhecimento: palavras do produtor, consulta, trechos devolvidos e descartados |
+| `conversa` | Uma conversa do chat: dono (`usuario_id`), título (início da primeira pergunta) e datas. Apaga junto com a conta |
+| `mensagem` | Cada turno do Gemini (`papel` `user`/`model`), com o `Content` completo em JSONB (inclui as chamadas de ferramenta, que voltam no histórico), `visivel` (só a pergunta e a resposta final), texto, fontes, ferramentas usadas e tokens |
+| `busca_log` | Cada busca na base de conhecimento: conversa, palavras do produtor, consulta, trechos devolvidos e descartados |
 | `clima_celula` | Uma célula da grade do NASA POWER (0,5° × 0,625°, ~50 km): centro, elevação, período baixado, limite de chuva forte (P95 de 1991–2020) e fonte. Fazendas vizinhas dividem a mesma linha |
 | `clima_mensal` | Por célula, ano e mês: chuva, ET0, temperaturas (média, média das máximas e mínimas, extremos), dias de geada (Tmin < 2 °C), de calor (Tmax > 35 °C) e de chuva forte, maior sequência seca (< 1 mm) e dias válidos. Sem dado fica `NULL`, nunca 0 |
 
@@ -157,6 +166,15 @@ uv run python -m app.cli.rag buscar "veranico no milho" --tipo glossario   # tes
 ```
 
 Documento que sai da lista de fontes é removido do banco na próxima ingestão. Os testes usam um embedder falso: não gastam a API.
+
+## Chat (agente)
+
+Um agente com 4 ferramentas, executadas pelo nosso código (o Gemini só pede a chamada): `ver_ficha`, `info_cultura`, `buscar_conhecimento` e `consultar_clima`. Os números vêm das ferramentas, e cada resposta devolve as `fontes` e as `ferramentas_usadas` delas, nunca do texto do modelo. Regras (não prescreve, não faz previsão, não inventa número) em `app/services/agente/prompt.py`.
+
+- Precisa de `GEMINI_API_KEY` (e `GEMINI_MODEL`) no `.env` e das tabelas da base de conhecimento e do clima. Sem a chave, `POST .../mensagens` responde 503.
+- Até 5 rodadas de ferramenta por pergunta. Se o assistente falhar ou estourar o limite, a resposta é 503 e **nada** daquela pergunta fica gravado.
+- Ao Gemini vai só o texto da conversa e um resumo da fazenda: nunca nome, e-mail ou coordenada exata (a ficha vai com o local arredondado a 0,1°).
+- Os testes usam um modelo falso roteirizado, um NASA POWER falso e um embedder falso: não gastam API nem rede.
 
 ## Clima (NASA POWER)
 
