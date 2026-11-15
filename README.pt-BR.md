@@ -37,9 +37,9 @@ O andamento detalhado, com PRs e pendências, fica em [`ANDAMENTO.md`](docs/Nasa
 | Entrada | E-mail e senha | Só o nome |
 | Questionário | Em branco | Já preenchido (fazenda de exemplo em Iowa), com o botão **Skip All** |
 | Endereço local | http://localhost:5173 | http://localhost:5174 |
-| Deploy na VPS | Sim (`.deploy/`) | Não, roda local |
+| Deploy na VPS (`.deploy/`) | https://agroai.mateusmoreira.dev | https://demo-agroai.mateusmoreira.dev |
 
-As duas usam a mesma API e o mesmo banco. Detalhes da versão de apresentação em [`agroai/web-demo/README.md`](agroai/web-demo/README.md).
+As duas usam a mesma API e o mesmo banco, também no deploy (o mesmo Caddy serve os dois domínios). Detalhes da versão de apresentação em [`agroai/web-demo/README.md`](agroai/web-demo/README.md).
 
 ## Rodar o app
 
@@ -143,8 +143,7 @@ Decisões que a equipe ainda precisa tomar ou registrar:
 
 - **Previsão do tempo:** registrar a Open-Meteo no `DECISOES.md` (única fonte fora da D-009).
 - **Numeração:** existem duas D-010 no `DECISOES.md`. Uma precisa ser renumerada.
-- **Tabelas antigas no banco:** a VPS tem `propriedades` e `questionario_respostas`, que não são usadas pelo código. É preciso decidir se elas saem.
-- **Produção:** a VPS precisa da extensão pgvector para as migrations a partir da `0003`.
+- **Tabelas antigas no banco:** o Postgres antigo da VPS (porta 5433) tem `propriedades` e `questionario_respostas`, que não são usadas pelo código. A produção não usa mais esse banco: é preciso decidir se ele sai.
 - **Demo:** confirmar as regiões e os pontos de exemplo (Q-01 a Q-03) e o usuário da demo (Q-02).
 
 A lista completa está em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md), seção 3, e as pendências do dia a dia em [`ANDAMENTO.md`](docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md).
