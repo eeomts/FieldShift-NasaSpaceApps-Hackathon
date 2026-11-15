@@ -29,7 +29,7 @@ log = logging.getLogger(__name__)
 # Campos do catálogo que NÃO vão ao modelo: identificação e códigos de outras bases, texto interno, e o que já vai no topo vindo de
 # agroai/base/culturas.json (perene, tipos, fixa_nitrogenio, raiz_profunda: um valor só, sem contradição). O resto vai (filtro por exclusão).
 CAMPOS_FORA_DOS_PARAMETROS = frozenset({
-    "id", "pais", "nome", "nome_cientifico", "familia_botanica", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
+    "id", "pais", "nome", "nome_base", "nome_cientifico", "familia_botanica", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
     "extras", "fontes", "estados_validos", "lacuna_informacao", "risco_revisao_local",
     "perene", "tipos", "fixa_nitrogenio", "raiz_profunda",
 })  # fmt: skip

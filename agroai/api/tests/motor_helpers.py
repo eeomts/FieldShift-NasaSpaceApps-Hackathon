@@ -30,7 +30,7 @@ def cultura(id: str = "c", **mudancas) -> CulturaMotor:
         "valor_forrageiro": "baixo", "confianca_parametros": "alta", "estados_validos": (),
     }  # fmt: skip
     base.update(mudancas)
-    sem_default_none = {f.name for f in fields(CulturaMotor)} - {"fontes", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda", "extras"}
+    sem_default_none = {f.name for f in fields(CulturaMotor)} - {"fontes", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda", "extras", "nome_base"}
     assert set(base) - CAMPOS_COM_DEFAULT_NONE == sem_default_none - CAMPOS_COM_DEFAULT_NONE  # conjunto exato; os campos novos são opcionais
     return CulturaMotor(**base)
 

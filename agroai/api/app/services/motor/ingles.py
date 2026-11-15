@@ -225,9 +225,9 @@ def _nomes_en() -> list[tuple[re.Pattern, str]]:
         for c in catalogo_motor.catalogo_do_pais(pais).values():
             en = None
             if c.id in exibicao:
-                en = base.nome_exibicao(exibicao[c.id], "en")
+                en = base.nome_exibicao(exibicao[c.id], "en")  # `c.nome` já é o nome de exibição em português
             if not en or en == c.nome:
-                m = re.search(r"\(([^)]+)\)\s*$", c.nome)  # "Algodão (upland cotton)" -> "Upland cotton"
+                m = re.search(r"\(([^)]+)\)\s*$", c.nome_base or c.nome)  # cultura fora do JSON: "Algodão (upland cotton)" -> "Upland cotton"
                 en = (m.group(1)[:1].upper() + m.group(1)[1:]) if m else en
             if en and en != c.nome:
                 pares[c.nome] = en

@@ -137,6 +137,28 @@ def test_campos_de_frio_com_virgula_decimal_e_celula_vazia(tmp_path):
     assert c["arroz"].tmin_dias_seguidos == 3.0 and c["arroz"].tmin_efeito == "aviso" and not c["arroz"].extras
 
 
+# --- M4: o nome da cultura no motor é o de exibição do culturas.json; o do CSV fica em nome_base
+def test_nome_do_motor_e_o_de_exibicao_do_json_e_o_do_csv_vai_para_nome_base():
+    eua = catalogo_do_pais("US")
+    assert (eua["soja"].nome, eua["soja"].nome_base) == ("Soja", "Soja (soybean)")
+    assert (eua["pastagem"].nome, eua["pastagem"].nome_base) == ("Pasto", "Festuca alta (tall fescue)")
+    br = catalogo_do_pais("BR")
+    assert (br["aveia"].nome, br["aveia"].nome_base) == ("Aveia", "Aveia-preta")
+    assert (br["pastagem"].nome, br["pastagem"].nome_base) == ("Pasto", "Braquiária")
+    for pais in ("BR", "US"):
+        for c in catalogo_do_pais(pais).values():
+            assert c.nome == base_do_app.nome_exibicao(base_do_app.culturas()[c.id], "pt") and "(" not in c.nome
+            assert c.nome_base
+
+
+def test_cultura_fora_do_json_mantem_o_nome_do_csv(tmp_path):
+    arquivo = tmp_path / "culturas.csv"
+    arquivo.write_text("id,nome,tipos\nmaxixe,Maxixe (gherkin),comercial\nsoja,Soja (soybean),comercial\n", encoding="utf-8")
+    c = ler_catalogo(arquivo, "US")
+    assert (c["maxixe"].nome, c["maxixe"].nome_base) == ("Maxixe (gherkin)", "Maxixe (gherkin)")
+    assert (c["soja"].nome, c["soja"].nome_base) == ("Soja", "Soja (soybean)")
+
+
 def test_dias_seguidos_de_frio_vazio_vale_1_e_arredonda():
     c = catalogo_do_pais("BR")
     assert c["soja"].tmin_dias_seguidos is None and c["soja"].dias_seguidos_de_frio == 1

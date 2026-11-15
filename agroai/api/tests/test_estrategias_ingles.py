@@ -153,6 +153,13 @@ def test_frases_novas_da_revisao_em_ingles_exatas():
     )
 
 
+def test_nomes_de_exibicao_em_portugues_viram_o_nome_em_ingles_do_json():
+    """O motor usa o nome do culturas.json (sem o "(inglês)" do CSV); a conta em inglês troca esse nome pelo da tela."""
+    assert traduzir("Soja: sem Kc nem faixa de água na base, não checamos a água.") == "Soybean: no Kc or water range in our database, so we did not check water."
+    assert traduzir("Pasto: sem exigência de graus-dia na base, não checamos o calor do ciclo.").startswith("Pasture: ")
+    assert traduzir("Plantar Aveia no período vazio (jul–set)") == "Plant Oat in the empty period (Jul–Sep)"
+
+
 def test_frio_traduz_limiar_e_dias_seguidos():
     assert traduzir("Arroz irrigado: frio na florada em 45% dos anos (mínima abaixo de 15 °C por 3 dias seguidos); "
                     "o dano é parcial, validar localmente.") == (

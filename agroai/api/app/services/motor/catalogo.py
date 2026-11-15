@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Literal
 
 from app.core.caminhos import RAIZ_REPO
+from app.services import catalogo as base
 
 log = logging.getLogger(__name__)
 
@@ -31,7 +32,11 @@ CAMPOS_TEXTO = (
 
 @dataclass(frozen=True)
 class CulturaMotor:
-    """Uma linha do catálogo. Célula vazia vira None (nunca 0)."""
+    """Uma linha do catálogo. Célula vazia vira None (nunca 0).
+
+    `nome` é o nome que o produtor vê: o de agroai/base/culturas.json (sem o "(inglês)" do CSV). O nome da linha do CSV
+    fica em `nome_base`. Cultura que não está no JSON mantém o nome do CSV nos dois.
+    """
 
     id: str
     pais: str
@@ -66,6 +71,7 @@ class CulturaMotor:
     nome_zarc: str | None = None  # só BR
     codigo_nass: str | None = None  # só US
     calendario_usda: str | None = None  # só US
+    nome_base: str | None = None  # coluna `nome` do CSV, como veio
     # Frio por fase (regra 17): vazio = None. tmin_efeito: elimina | aviso (None = elimina)
     tmin_critica_c: float | None = None
     fase_sensivel_frio: str | None = None  # floracao | enchimento_grao | ciclo_todo
@@ -117,9 +123,14 @@ def _linha_para_cultura(linha: dict[str, str], pais: str) -> CulturaMotor:
     valores = {c: _numero(linha.get(c)) for c in CAMPOS_NUMERICOS}
     valores |= {c: _booleano(linha.get(c)) for c in CAMPOS_BOOLEANOS}
     valores |= {c: _texto(linha.get(c)) for c in CAMPOS_TEXTO}
+    id_ = linha["id"].strip()
+    nome_base = valores["nome"]
+    if id_ in (exibicao := base.culturas()):
+        valores["nome"] = base.nome_exibicao(exibicao[id_], "pt")  # o mesmo nome que a rota mostra
     return CulturaMotor(
-        id=linha["id"].strip(),
+        id=id_,
         pais=pais,
+        nome_base=nome_base,
         tipos=_lista(linha.get("tipos")),
         fontes=_lista(linha.get("fontes")),
         estados_validos=tuple(e.upper() for e in _lista(linha.get("estados_validos"))),
