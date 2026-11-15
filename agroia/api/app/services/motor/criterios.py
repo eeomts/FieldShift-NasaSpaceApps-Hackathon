@@ -1,5 +1,6 @@
 """Seis critérios de 0 a 1 (água, terra, erosão, pragas, renda, animais), cada um com explicação e evidências."""
 from app.services.motor.catalogo import CulturaMotor
+from app.services.motor.declive import fator_do_declive
 from app.services.motor.entradas import EntradasMotor
 from app.services.motor.formatos import classe_da_palha_texto, classe_forrageira_texto, num, pct
 from app.services.motor.hidrico import etc_mensal
@@ -152,7 +153,11 @@ def nota_erosao(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMot
     cobertos = _meses_com_planta(itens)
     total = sum(forte.values())
     parcela = 1.0 if total <= 0 else sum(v for m, v in forte.items() if m in cobertos) / total
-    fator = FATOR_DECLIVE.get(e.relevo.classe) if e.relevo is not None else None
+    medida = e.relevo.declividade_pct if e.relevo is not None else None
+    if medida is not None:  # declividade medida (SRTM): LS da RUSLE, com teto 1
+        fator = fator_do_declive(medida)
+    else:  # só a classe (resposta q7), ou nada
+        fator = FATOR_DECLIVE.get(e.relevo.classe) if e.relevo is not None else None
     if fator is None:
         fator = FATOR_DECLIVE_SEM_DADO
         lac.append("Sem declividade do terreno: usamos um valor médio para a erosão." if e.relevo is None else f"Classe de declive desconhecida ({e.relevo.classe}): usamos um valor médio para a erosão.")
@@ -165,6 +170,8 @@ def nota_erosao(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMot
         fator_k = FATOR_K[classe_k]
     nota = _limita(1 - (1 - parcela) * fator * fator_k)
     terreno = "sem dado de declive" if e.relevo is None else f"terreno {e.relevo.classe.replace('_', ' ')}"
+    if medida is not None:
+        terreno += f", declividade de {num(medida, 1)}% medida por satélite (SRTM)"
     texto = f"{pct(parcela)} dos dias de chuva forte caem em meses com planta no campo; {terreno}."
     if classe_k is not None:
         texto += f" O solo tem erodibilidade {classe_k.replace('media', 'média')}."

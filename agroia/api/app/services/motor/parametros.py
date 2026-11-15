@@ -45,8 +45,13 @@ TERRA_PESO_FIXADORA = 0.3
 # Classe do aporte de biomassa e do valor forrageiro (escala do CSV; masculino e feminino por segurança)
 CLASSE_BIOMASSA = {"baixo": 0.33, "baixa": 0.33, "medio": 0.66, "media": 0.66, "alto": 1.0, "alta": 1.0}
 CLASSE_FORRAGEIRO = {"nenhum": 0.0, "baixo": 0.3, "medio": 0.6, "alto": 1.0}  # "nenhum" vem da régua do README
-FATOR_DECLIVE = {"plano": 0.25, "suave_ondulado": 0.5, "ondulado": 0.75, "forte_ondulado": 1.0, "montanhoso": 1.0}
-FATOR_DECLIVE_SEM_DADO = 0.5
+# Declive: fator = mín(1; LS da RUSLE), LS do USDA Agriculture Handbook 703 (tabelas de razão moderada, NRCS) e AH 537 (LS = 1 na
+# parcela-padrão de 72,6 pés e 9 %). Decisão do usuário e do Yury (VALIDACAO-PARAMETROS-MOTOR.md, 2.5): usar a declividade medida do SRTM.
+RAMPA_TIPICA_M = 46  # 150 pés: comprimento de rampa típico declarado (o guia do NRCS diz que a enxurrada se concentra em menos de 122 m)
+RAMPA_PADRAO_M = 22.13  # 72,6 pés: rampa da parcela-padrão da USLE
+# Sem declividade medida (só a classe, da resposta q7): LS no meio de cada classe com rampa de 46 m (1,5 %, 5,5 % e 14 % dão 0,22, 0,84 e 2,76), teto 1
+FATOR_DECLIVE = {"plano": 0.22, "suave_ondulado": 0.84, "ondulado": 1.0, "forte_ondulado": 1.0, "montanhoso": 1.0}
+FATOR_DECLIVE_SEM_DADO = 0.5  # escolha de produto (VALIDACAO-PARAMETROS-MOTOR.md): entre o plano e o suave ondulado
 # Erodibilidade K da USLE (t·ha·h/(ha·MJ·mm), SoilGrids pelo método de Williams): classes e fatores são proposta, validar com o Yury.
 K_LIMITE_BAIXA = 0.02  # abaixo disso: baixa
 K_LIMITE_MEDIA = 0.035  # abaixo disso: média; daí em diante: alta

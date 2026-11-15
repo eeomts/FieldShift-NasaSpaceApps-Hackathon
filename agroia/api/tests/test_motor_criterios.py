@@ -3,6 +3,7 @@ import pytest
 
 from app.services.motor.catalogo import FaixaPalhada, catalogo_do_pais
 from app.services.motor.criterios import calcular_notas, classe_do_k
+from app.services.motor.declive import fator_do_declive, ls_rusle
 from app.services.motor.entradas import Erodibilidade
 from app.services.motor.modelo import Estrategia
 from app.services.motor.relevo_service import Relevo
@@ -97,7 +98,7 @@ def test_terra_aceita_a_escala_feminina():
     assert n["terra"].nota == pytest.approx(0.4 + 0.3)
 
 
-# --- erosão: 1 - (1 - parcela coberta) x fator do declive
+# --- erosão: 1 - (1 - parcela coberta) x fator do declive (LS da RUSLE da declividade medida; só a classe: tabela por classe)
 FORTE_NO_VERAO = [10, 10, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0]  # toda a chuva forte em jan-mar
 
 
@@ -113,11 +114,11 @@ def test_erosao_chuva_forte_toda_descoberta_em_declive_forte_da_zero():
     assert n["erosao"].nota == 0.0
 
 
-@pytest.mark.parametrize("classe, fator", [("plano", 0.25), ("suave_ondulado", 0.5), ("ondulado", 0.75)])
-def test_erosao_fator_do_declive(classe, fator):
+@pytest.mark.parametrize("classe, fator", [("plano", 0.22), ("suave_ondulado", 0.84), ("ondulado", 1.0), ("forte_ondulado", 1.0), ("montanhoso", 1.0)])
+def test_erosao_fator_do_declive_so_pela_classe(classe, fator):
     n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo(classe, None, "q7"))
     parcela = 2 / 3
-    assert n["erosao"].nota == pytest.approx(1 - (1 - parcela) * fator)
+    assert n["erosao"].nota == pytest.approx(max(0.0, 1 - (1 - parcela) * fator))
 
 
 def test_erosao_sem_declividade_usa_fator_medio_e_registra_lacuna():
@@ -139,6 +140,39 @@ def test_erosao_sem_chuva_forte_no_dado_e_sem_nota():
 def test_erosao_cultura_fora_do_catalogo_ainda_cobre_o_solo():
     n, _ = notas([item(None, 1, 3)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=PLANO)
     assert n["erosao"].nota == 1.0
+
+
+@pytest.mark.parametrize("pct, ls", [(1.5, 0.22), (5.5, 0.84), (14.0, 2.76), (32.5, 7.59), (60.0, 13.65)])
+def test_ls_da_rusle_reproduz_a_tabela_da_validacao_com_rampa_de_46_m(pct, ls):
+    assert ls_rusle(pct) == pytest.approx(ls, rel=0.02)  # tabela 2.5 do VALIDACAO-PARAMETROS-MOTOR.md (AH 703, razão moderada)
+
+
+def test_ls_da_rusle_vale_1_na_parcela_padrao_da_usle_e_cresce_com_a_rampa():
+    assert ls_rusle(9.0, 22.13) == pytest.approx(1.0, abs=0.01)  # 72,6 pés e 9 %
+    assert ls_rusle(5.5, 91) == pytest.approx(1.13, rel=0.02) and ls_rusle(5.5, 23) == pytest.approx(0.64, rel=0.03)
+
+
+@pytest.mark.parametrize("pct, fator", [(1.5, 0.222), (5.5, 0.846), (14.0, 1.0), (60.0, 1.0)])
+def test_erosao_com_declividade_medida_usa_o_ls_com_teto_1(pct, fator):
+    assert fator_do_declive(pct) == pytest.approx(fator, abs=0.002)
+    n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("plano", pct, "SRTM 30 m"))
+    assert n["erosao"].nota == pytest.approx(max(0.0, 1 - (1 / 3) * fator), abs=0.001)
+
+
+def test_erosao_medida_vence_a_classe_e_o_texto_cita_a_declividade_e_a_fonte():
+    # a classe diz "plano" (fator 0,22), mas a declividade medida de 14 % manda: fator 1
+    n, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("plano", 14.0, "SRTM 30 m"))
+    assert n["erosao"].nota == pytest.approx(1 - 1 / 3)
+    assert "declividade de 14,0% medida por satélite (SRTM)" in n["erosao"].explicacao
+    declive = n["erosao"].evidencias[1]
+    assert (declive.valor, declive.unidade, declive.fonte) == (14.0, "%", "SRTM 30 m")
+    q7, _ = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("plano", None, "q7"))
+    assert "medida por satélite" not in q7["erosao"].explicacao and q7["erosao"].evidencias[1].unidade == "classe"
+
+
+def test_erosao_sem_nada_usa_o_fator_sem_dado():
+    n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=None)
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5) and any("declividade" in l for l in lac)
 
 
 # --- pragas
@@ -229,13 +263,13 @@ def test_erosao_fator_da_erodibilidade(k, classe, fator):
     e = Erodibilidade(k_usle=k)
     n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"), erodibilidade=e)
     assert classe_do_k(k) == classe
-    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5 * fator)  # parcela 2/3, declive 0,5
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.84 * fator)  # parcela 2/3, declive 0,84 (suave ondulado)
     assert not any("erodibilidade" in l for l in lac)
 
 
 def test_erosao_sem_k_usa_fator_neutro_e_registra_lacuna():
     n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"), erodibilidade=None)
-    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5)  # o mesmo de antes do K
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.84)  # o mesmo de antes do K
     assert any("erodibilidade" in l for l in lac)
 
 
@@ -245,7 +279,7 @@ def test_erosao_com_k_alto_em_declive_forte_nao_passa_de_zero():
 
 
 def test_erosao_k_alto_piora_e_k_baixo_melhora_a_nota():
-    kw = dict(clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("ondulado", None, "q7"))
+    kw = dict(clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"))
     baixo, _ = notas([item("c", 1, 2)], [cultura("c")], erodibilidade=Erodibilidade(0.01), **kw)
     alto, _ = notas([item("c", 1, 2)], [cultura("c")], erodibilidade=Erodibilidade(0.05), **kw)
     assert baixo["erosao"].nota > alto["erosao"].nota
