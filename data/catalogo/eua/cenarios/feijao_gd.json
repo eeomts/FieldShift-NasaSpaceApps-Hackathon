@@ -480,6 +480,58 @@
         2020
       ],
       "nota": "Conferência: pinto/navy tardia de Michigan (103 dias) em 2001-2020."
+    },
+    {
+      "nome": "feijao_langdon_clima_0525_86d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "dias": 86,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "MÍNIMO da linha (revisão do lote 3, A-02, 15/11): cenário mais frio da Dakota do Norte = Langdon (local mais ao norte dos ensaios) na data típica dos ensaios (25/mai) com a duração da precoce (86 dias, mediana dos ensaios), 2001-2020. No feijão, semear mais tarde soma MAIS graus-dia na mesma duração (junho/agosto mais quentes que fim de maio/início de setembro), então o mais frio não é a semeadura mais tardia (ver feijao_langdon_clima_0605_86d)."
+    },
+    {
+      "nome": "feijao_langdon_clima_0605_86d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "06-05",
+      "dias": 86,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Conferência do A-02: Langdon semeado em 5/jun (fim da semeadura mais ativa na ND, Handbook 628: 19/mai-6/jun) + 86 dias, 2001-2020; soma mais que 25/mai."
+    },
+    {
+      "nome": "feijao_pigeon_clima_0617_96d",
+      "cultura": "feijao",
+      "local": "pigeon",
+      "semeadura": "06-17",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "MÍNIMO do arranjo de Michigan (revisão do lote 3, A-01): Pigeon (Thumb, Huron County, à beira do Lago Huron) com semeadura no fim da época mais ativa de MI (Handbook 628: 3-17/jun) e a pinto precoce (Windbreaker, 96 dias), 2001-2020."
+    },
+    {
+      "nome": "feijao_kawkawlin_clima_0617_96d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-17",
+      "dias": 96,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Candidato ao mínimo do arranjo de Michigan: Kawkawlin (Saginaw Valley, Bay County), 17/jun + 96 dias, 2001-2020. O mínimo usa o mais frio entre Pigeon e Kawkawlin."
     }
   ]
 }

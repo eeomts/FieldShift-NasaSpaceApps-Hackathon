@@ -4,15 +4,15 @@
   "nome": "Feijão seco (dry edible bean)",
   "nome_cientifico": "Phaseolus vulgaris",
   "familia_botanica": "Fabaceae",
-  "sistema": "dry edible bean (classes pinto e navy), sequeiro, colheita do grão seco (arranquio/enleiramento ou colheita direta); mesma espécie do Brasil (feijão comum), mas em uma safra de verão no norte dos EUA, semeada de meados de maio a meados de junho",
-  "regiao_referencia": "Dakota do Norte (Carrington e Langdon); Michigan (Saginaw Valley e Thumb: Bay, Tuscola, Huron, Sanilac)",
+  "sistema": "dry edible bean (classes pinto e navy), sequeiro, colheita do grão seco (arranquio/enleiramento ou colheita direta), Dakota do Norte; mesma espécie do Brasil (feijão comum), mas em uma safra de verão no norte dos EUA, semeada de meados de maio a início de junho. A linha vale para a ND e o Vale do Red River (estados_validos ND|MN); Michigan fica em regua.arranjos.michigan",
+  "regiao_referencia": "Dakota do Norte (Carrington e Langdon, ensaios de sequeiro da NDSU); estados_validos ND|MN (Vale do Red River). Michigan (Saginaw Valley e Thumb: Bay, Tuscola, Huron, Sanilac) só em regua.arranjos.michigan",
   "valores": {
     "tipos": "comercial|fixadora_n",
     "perene": "false",
     "ciclo_dias_min": "86",
-    "ciclo_dias_max": "103",
-    "graus_dia_ciclo_min": "950",
-    "graus_dia_ciclo_max": "1095",
+    "ciclo_dias_max": "113",
+    "graus_dia_ciclo_min": "800",
+    "graus_dia_ciclo_max": "1130",
     "temp_base_c": "10",
     "temp_otima_min_c": "18",
     "temp_otima_max_c": "25",
@@ -33,8 +33,9 @@
     "nome_zarc": "",
     "codigo_nass": "BEANS, DRY EDIBLE",
     "calendario_usda": "Beans, dry edible",
-    "fontes": "NDSU Carrington Research Extension Center, Dry Edible Bean - Dryland, Variety Trial Data 2018, 2019, 2020, 2022, 2023 e 2025 (dias da semeadura à maturação fisiológica, DAP, e data de semeadura)|NDSU Langdon Research Extension Center, Dry Bean Variety Trial Data 2019, 2020 e 2022 (dias até R9, 80% das vagens amarelas)|Michigan Bean Commission 2023 Research Report (MSU): ensaio estadual de 2022 (Tab. 1 datas de semeadura e GDD base 50 °F; Tab. 5 navy, maturação em DAP) e ensaio de qualidade pinto/preto 2020-2021 (dias até a maturação fisiológica)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, 'Beans, dry edible' (semeadura e colheita ND e MI)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/feijao_gd.json (graus-dia sem teto, Tb 10, no ano e no local de cada ensaio, NASA POWER)|NDSU Extension, Water Spouts No. 306, ago. 2019 (uso de água do feijão pinto na estação, 15-17 pol.) e No. 311, jul. 2020 (julho+agosto = 12,8 pol., ~70% do total)|CONFERÊNCIA: scripts/etc_nasa_power.py, cenários eua/cenarios/feijao_etc.json (Kc FAO-56 x ET0 do NASA POWER, ND e MI, 2001-2020)|Yonts, UNL Panhandle REC, Dry Bean Water Management, Central Plains Irrigation Association Proceedings 2006 (16 pol. de água; raízes nos primeiros 18 pol.; conferência, oeste do Nebraska)|High Plains Regional Climate Center (UNL), AWDN crop_drybean (GDD 86/50 por fase; conferência, sem autor nem data)|FAO-56 Tab.11 (fases do feijão seco, clima continental), Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.22 (raiz; limite superior = sequeiro)|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, temperatura ótima, tmax 30 °C na floração, geada; ver data/catalogo/evidencias/feijao.json)|Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders (queda de flores com +90 °F de dia e 75 °F à noite; conferência americana da tmax)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024) (produtividade do feijão seco ND e MI 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.1a (R_AG de Beans and Pulses, regra 6 do motor) e Tab. 11.2 (Dry bean, conferência)|Chatterjee & Acharya, Archives of Agronomy and Soil Science 66(5):614-624, 2020 (decomposição no Vale do Red River, ND/MN; lido só o resumo)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Common bean straw, node 12006 (PB e DMO; valores pontuais)",
-    "confianca_parametros": "media"
+    "fontes": "NDSU Carrington Research Extension Center, Dry Edible Bean - Dryland, Variety Trial Data 2018, 2019, 2020, 2022, 2023 e 2025 (dias da semeadura à maturação fisiológica, DAP, e data de semeadura)|NDSU Langdon Research Extension Center, Dry Bean Variety Trial Data 2019, 2020 e 2022 (dias até R9, 80% das vagens amarelas)|Michigan Bean Commission 2023 Research Report (MSU): ensaio estadual de 2022 (Tab. 1 datas de semeadura e GDD base 50 °F; Tab. 5 navy, maturação em DAP) e ensaio de qualidade pinto/preto 2020-2021 (dias até a maturação fisiológica) - só no arranjo regua.arranjos.michigan|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, 'Beans, dry edible' (semeadura e colheita ND e MI)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/feijao_gd.json (graus-dia sem teto, Tb 10, NASA POWER): máximo no ano e no local de cada ensaio da ND; mínimo pela convenção (mediana 2001-2020 de feijao_langdon_clima_0525_86d); arranjo de Michigan com feijao_pigeon_clima_0617_96d e os ensaios de MI|NDSU Extension, Water Spouts No. 306, ago. 2019 (uso de água do feijão pinto na estação, 15-17 pol.) e No. 311, jul. 2020 (julho+agosto = 12,8 pol., ~70% do total)|CONFERÊNCIA e CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/feijao_etc.json (Kc FAO-56 x ET0 do NASA POWER, 2001-2020): conferência da água na ND; água do arranjo de Michigan (feijao_min_kawkawlin_0605_96d e feijao_kawkawlin_0605_103d)|Yonts, UNL Panhandle REC, Dry Bean Water Management, Central Plains Irrigation Association Proceedings 2006 (16 pol. de água; raízes nos primeiros 18 pol.; conferência, oeste do Nebraska)|High Plains Regional Climate Center (UNL), AWDN crop_drybean (GDD 86/50 por fase; conferência, sem autor nem data)|FAO-56 Tab.11 (fases do feijão seco, clima continental), Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.22 (raiz; limite superior = sequeiro)|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, temperatura ótima, tmax 30 °C na floração, geada; ver data/catalogo/evidencias/feijao.json)|Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders (queda de flores com +90 °F de dia e 75 °F à noite; conferência americana da tmax)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024) (produtividade do feijão seco ND 2021-2025; MI no arranjo)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.1a (R_AG de Beans and Pulses, regra 6 do motor) e Tab. 11.2 (Dry bean, conferência)|Chatterjee & Acharya, Archives of Agronomy and Soil Science 66(5):614-624, 2020 (decomposição no Vale do Red River, ND/MN; lido só o resumo)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Common bean straw, node 12006 (PB e DMO; valores pontuais)",
+    "confianca_parametros": "media",
+    "estados_validos": "ND|MN"
   },
   "origem": {
     "temp_base_c": {
@@ -47,19 +48,19 @@
     },
     "ciclo_dias_max": {
       "tipo": "medido",
-      "nota": "Michigan (MSU/Michigan Bean Commission): Charro (pinto) 103 dias da semeadura à maturação fisiológica, média de 4 local-anos (Bay e Tuscola 2020, Bay e Huron 2021); no ensaio estadual de 2022 a navy liberada mais tardia (Merlin) também teve 103 DAP, com semeadura de 2 a 15/jun em 4 condados. Na Dakota do Norte a mais tardia ficou em mediana de 96 dias (9 local-anos), mas chega a 110-113 em Langdon e no ano frio de 2025 em Carrington (ver pendências). A colheita vem depois (Handbook 628)."
+      "nota": "Semeadura -> maturação fisiológica, ensaios de sequeiro da NDSU (2 locais, vários anos). Critério (o mesmo da canola e do girassol): a MAIOR duração da cultivar pinto ou navy liberada mais tardia na ND, Langdon 2022 (semeadura 27/mai): HMS Medalist e ND-Polar (navy) 113 dias até R9. Outras tardias da ND: Carrington 88 (2018), 93 (2019), 93 (2020), 96 (2022), 96 (2023), 110 (2025, ano frio); Langdon 111 (2019), 110 (2020), 113 (2022). Até 15/11 a linha usava 103 (Michigan); Michigan passou para regua.arranjos.michigan (revisão do lote 3, A-01). A colheita vem depois (Handbook 628)."
     },
     "graus_dia_ciclo_min": {
       "tipo": "calculo",
-      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 10), scripts/gd_nasa_power.py com eua/cenarios/feijao_gd.json, modo 'dias', no ANO e no LOCAL de cada ensaio (as fontes dão dias, não GDD). Mais precoce de cada local-ano na ND: Carrington 984 (2018), 868 (2019), 887 (2020), 920 (2022), 956 (2023), 1016 (2025); Langdon 953 (2019), 974 (2020), 966 (2022). Mediana dos 9 = 956 -> 950 (arredondado para baixo). Em dias o ciclo varia de 82 a 107; em graus-dia só de 868 a 1016. Clima 2001-2020 em Carrington, 25/mai + 85 dias: mediana 866 (P10 656)."
+      "nota": "CÁLCULO pela convenção do README (mínimo = mediana 2001-2020 do cenário mais frio da região de referência; decisão do usuário na revisão do lote 3, A-02): scripts/gd_nasa_power.py, cenário feijao_langdon_clima_0525_86d de eua/cenarios/feijao_gd.json (Langdon-ND, semeadura 25/mai + 86 dias, Tb 10, sem teto, NASA POWER): mediana 806 (P10 593, mín 551, máx 976) -> 800 (arredondado para baixo). Langdon é o local mais frio dos ensaios (mais ao norte); 86 dias = mediana da precoce nos ensaios da ND; 25/mai = data típica dos ensaios. No feijão, semear mais tarde soma MAIS graus-dia na mesma duração (feijao_langdon_clima_0605_86d, 5/jun: mediana 845), então o cenário mais frio é Langdon na data dos ensaios, não a semeadura mais tardia. Conferência, precoce no ano e no local de cada ensaio (modo 'dias'): Carrington 984 (2018), 868 (2019), 887 (2020), 920 (2022), 956 (2023), 1016 (2025); Langdon 953 (2019), 974 (2020), 966 (2022); mediana 956 (era o valor da linha até 15/11, 950: com o corte de 90% o motor eliminaria o feijão em Langdon, onde a NDSU tem ensaio). Clima Carrington 25/mai + 85 d: mediana 866."
     },
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
-      "nota": "CÁLCULO no POWER (mesmo script e arquivo). Mais tardia de Michigan (103 dias; Charro 2020-2021 e Merlin 2022) nos 8 local-anos: 1099, 1101, 1167, 1091 (pinto 2020-2021) e 1106, 1042, 1084, 1083 (navy 2022); mediana = 1095. Na ND a mais tardia deu mediana de 1030 (930-1139). Conferência: a MSU mediu 1847-2108 GDD °F (base 50) da semeadura à COLHEITA em 2022 (1026-1171 °C·dia), um pouco acima da maturação, como esperado. Brasil: 980-1270."
+      "nota": "CÁLCULO no POWER (mesmo script e arquivo, modo 'dias', no ano e no local de cada ensaio, Tb 10, sem teto). Maior soma das tardias da ND: Carrington 2025 (2/jun + 110 dias, ND Rodeo e ND Polar) = 1139 -> 1130 (arredondado para baixo). Demais tardias da ND: Carrington 1051 (2018), 930 (2019), 1030 (2020), 1058 (2022), 1085 (2023); Langdon 973 (2019), 1005 (2020), 1008 (2022, 113 dias). Até 15/11 a linha usava 1095 (mediana das tardias de Michigan), que passou para regua.arranjos.michigan (revisão do lote 3, A-01). Brasil: 980-1270."
     },
     "agua_ciclo_mm_min": {
       "tipo": "publicado",
-      "nota": "NDSU Water Spouts No. 306 (ago. 2019), tabela de pesquisas 'mainly from North Dakota, Minnesota and South Dakota': feijão pinto, 'Water Use for the Growing Season (inches)' 15 to 17. 15 x 25,4 = 381 -> 380 mm (arredondado para baixo). Consumo com produtividade plena (tabela de resposta à irrigação). Conferência no POWER (feijao_etc.json, 2001-2020): Carrington 86 dias = 399 mm; Michigan (Bay County, clima úmido) 96 dias = 329 mm e 103 dias = 342 mm, abaixo da faixa (ver pendências)."
+      "nota": "NDSU Water Spouts No. 306 (ago. 2019), tabela de pesquisas 'mainly from North Dakota, Minnesota and South Dakota': feijão pinto, 'Water Use for the Growing Season (inches)' 15 to 17. 15 x 25,4 = 381 -> 380 mm (arredondado para baixo). Consumo com produtividade plena (tabela de resposta à irrigação). Conferência no POWER (feijao_etc.json, 2001-2020): Carrington 86 dias = 399 mm. Michigan (clima úmido, 329-342 mm no POWER) fica no arranjo regua.arranjos.michigan."
     },
     "agua_ciclo_mm_max": {
       "tipo": "publicado",
@@ -123,13 +124,13 @@
       "coluna": "ciclo_dias_min, ciclo_dias_max",
       "valor_brasil": "60, 110",
       "decisao": "trocado",
-      "motivo": "Ensaios da NDSU e da MSU: 86-103 dias da semeadura à maturação fisiológica (pinto e navy no norte dos EUA)."
+      "motivo": "Ensaios da NDSU em sequeiro: 86-113 dias da semeadura à maturação fisiológica (pinto e navy na Dakota do Norte). Michigan (96-103) no arranjo."
     },
     {
       "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
       "valor_brasil": "980, 1270",
       "decisao": "trocado",
-      "motivo": "Recalculados no POWER nas datas e locais dos ensaios dos EUA: 950-1095 °C·dia (Tb 10, sem teto). Dentro da ordem de grandeza do Brasil."
+      "motivo": "Recalculados no POWER (Tb 10, sem teto): mínimo 800 pela convenção (mediana 2001-2020 em Langdon, 25/mai + 86 d), máximo 1130 (maior tardia da ND, Carrington 2025). Michigan (910-1160) no arranjo. Dentro da ordem de grandeza do Brasil."
     },
     {
       "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
@@ -199,7 +200,7 @@
       "colunas": [
         "ciclo_dias_min",
         "ciclo_dias_max",
-        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
         "sensivel_geada"
       ],
       "fonte": "NDSU Carrington REC, 2025 Variety Trial Data, Dry Edible Bean - Dryland",
@@ -209,7 +210,9 @@
     {
       "colunas": [
         "ciclo_dias_min",
-        "graus_dia_ciclo_min"
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
       ],
       "fonte": "NDSU Langdon Research Extension Center, 2019, 2020 e 2022 Variety Trial Data, Dry Bean",
       "url": "https://www.ag.ndsu.edu/varietytrialS/langdon-rec/2020-trial-results/2020-trial-results-dry-bean-langdon",
@@ -217,31 +220,30 @@
     },
     {
       "colunas": [
-        "ciclo_dias_max",
-        "graus_dia_ciclo_max"
+        "regua"
       ],
-      "fonte": "Michigan Bean Commission 2023 Research Report (MSU), Evaluating canning quality of black and pinto bean varieties, Tab. 2 (2020-2021)",
+      "fonte": "Michigan Bean Commission 2023 Research Report (MSU), Evaluating canning quality of black and pinto bean varieties, Tab. 2 (2020-2021) - arranjo regua.arranjos.michigan",
       "url": "https://michiganbeastg.wpengine.com/wp-content/uploads/2023/02/Michigan-Bean-Commission-2023-Research-Report-Final.pdf",
       "trecho": "Planting dates were June 7,2020 in Bay County and June 6, 2020 in Tuscola County. In 2021 dry beans were planted on May 31st in Bay County and June 11th in Huron County. [...] Charro 103 [...] LaPaz 98 [...] Windbreaker 96 [...] Dry bean maturity averaged across location is days after planting to physiological maturity"
     },
     {
       "colunas": [
-        "ciclo_dias_max",
-        "graus_dia_ciclo_max",
+        "regua",
         "temp_base_c"
       ],
-      "fonte": "Michigan Bean Commission 2023 Research Report (MSU), 2022 performance trials, Tab. 1 e Tab. 5 (navy)",
+      "fonte": "Michigan Bean Commission 2023 Research Report (MSU), 2022 performance trials, Tab. 1 e Tab. 5 (navy) - arranjo regua.arranjos.michigan e conferência da Tb",
       "url": "https://michiganbeastg.wpengine.com/wp-content/uploads/2023/02/Michigan-Bean-Commission-2023-Research-Report-Final.pdf",
       "trecho": "Bay Schindler Farms June 15 [...] 1,847 [...] Huron [...] June 8 [...] 1,868 [...] Sanilac [...] June 3 [...] 1,998 [...] Tuscola Rayl Farms June 2 [...] 2,108 [...] Growing degree days (GDD) were calculated using the following equation: ([MAX + MIN] ÷ 2) – 50 = GDD [...] Plant maturity was rated visually in days after planting (DAP) for all locations. [...] Merlin 103 [...] Vigilant 95"
     },
     {
       "colunas": [
         "graus_dia_ciclo_min",
-        "graus_dia_ciclo_max"
+        "graus_dia_ciclo_max",
+        "regua"
       ],
       "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/feijao_gd.json (NASA POWER, Tb 10 °C, sem teto, no ano de cada ensaio)",
       "url": "data/catalogo/eua/cenarios/feijao_gd.json",
-      "trecho": "Carrington precoce: 2018 984 | 2019 868 | 2020 887 | 2022 920 | 2023 956 | 2025 1016; Langdon precoce: 2019 953 | 2020 974 | 2022 966 -> mediana 956. Michigan tardia (103 d): Kawkawlin 2020 1099 | Colling 2020 1101 | Kawkawlin 2021 1167 | Pigeon 2021 1091 | Kawkawlin 2022 1106 | Pigeon 2022 1042 | Sandusky 2022 1084 | Colling 2022 1083 -> mediana 1095. ND tardia: Carrington 1051, 930, 1030, 1058, 1085, 1139; Langdon 973, 1005, 1008. Clima 2001-2020: Carrington 25/mai 85 d mediana 866, 96 d 982; Kawkawlin 5/jun 96 d 991, 103 d 1035."
+      "trecho": "feijao_langdon_clima_0525_86d: n = 20 anos | mediana 806 | mín 551 | máx 976 | P10 593 -> mínimo 800. feijao_langdon_clima_0605_86d: mediana 845. ND tardia: Carrington 1051, 930, 1030, 1058, 1085, 1139 (2025, 110 d); Langdon 973, 1005, 1008 -> máximo 1130. ND precoce (conferência): Carrington 984, 868, 887, 920, 956, 1016; Langdon 953, 974, 966. Michigan (arranjo): feijao_pigeon_clima_0617_96d mediana 919 (P10 782) -> 910; feijao_kawkawlin_clima_0617_96d 987; tardia 103 d: Kawkawlin 2020 1099 | Colling 2020 1101 | Kawkawlin 2021 1167 | Pigeon 2021 1091 | Kawkawlin 2022 1106 | Pigeon 2022 1042 | Sandusky 2022 1084 | Colling 2022 1083 -> 1160."
     },
     {
       "colunas": [
@@ -263,9 +265,10 @@
     {
       "colunas": [
         "agua_ciclo_mm_min",
-        "agua_ciclo_mm_max"
+        "agua_ciclo_mm_max",
+        "regua"
       ],
-      "fonte": "CONFERÊNCIA: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/feijao_etc.json (NASA POWER, 2001-2020)",
+      "fonte": "CONFERÊNCIA (ND) e CÁLCULO (arranjo de Michigan): scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/feijao_etc.json (NASA POWER, 2001-2020)",
       "url": "data/catalogo/eua/cenarios/feijao_etc.json",
       "trecho": "feijao_carrington_0525_86d: ET0 440, chuva 215, Kc mid 1.181, ETc mediana 399 | feijao_carrington_0525_96d: 439 | feijao_max_langdon_0525_110d: ET0 521, chuva 281, ETc 463 | feijao_min_kawkawlin_0605_96d: ET0 394, chuva 262, Kc mid 1.136, ETc 329 | feijao_kawkawlin_0605_103d: 342"
     },
@@ -411,15 +414,30 @@
     "excecoes": {},
     "arranjos": {
       "michigan": {
-        "estados": [
-          "MI"
-        ],
+        "estados": "MI",
         "ms_palhada_t_ha": {
           "min": 5.03,
           "max": 5.23,
           "tipico": 5.16
         },
-        "nota": "Mesma conta da linha (regra 6, R_AG 2,1) com a produtividade NASS de Michigan 2021-2025: 2410, 2400, 2440, 2430, 2350 lb/acre; mediana 2410 -> 2,70 t/ha -> 2,46 t MS de grão -> 5,16 t/ha. Mínimo 2025 (2350) -> 5,03; máximo 2023 (2440) -> 5,23. Classe 'medio', como a da linha."
+        "ciclo_dias": {
+          "min": 96,
+          "max": 103
+        },
+        "graus_dia_ciclo": {
+          "min": 910,
+          "max": 1160
+        },
+        "agua_ciclo_mm": {
+          "min": 320,
+          "max": 340
+        },
+        "origem": {
+          "ciclo_dias": "medido",
+          "graus_dia_ciclo": "calculo",
+          "agua_ciclo_mm": "calculo"
+        },
+        "nota": "Feijão seco de sequeiro do Saginaw Valley e do Thumb (Bay, Tuscola, Huron, Sanilac), números que estavam no máximo da linha até 15/11 (revisão do lote 3, A-01). Ciclo (MSU/Michigan Bean Commission 2023, medido): Windbreaker (pinto) 96 dias e Charro (pinto) 103 dias até a maturação fisiológica, média de Bay e Tuscola 2020 e Bay e Huron 2021; Merlin (navy) 103 DAP no ensaio estadual de 2022 (4 condados). Graus-dia (Tb 10, sem teto, POWER, scripts/gd_nasa_power.py com eua/cenarios/feijao_gd.json): mínimo pela convenção (mediana 2001-2020 do cenário mais frio): Pigeon 17/jun (fim da semeadura mais ativa em MI, Handbook 628: 3-17/jun) + 96 d, feijao_pigeon_clima_0617_96d, mediana 919 (P10 782) -> 910 (Kawkawlin, mesmo cenário: 987); máximo = maior soma da tardia (103 d) nos 8 local-anos de MI, Kawkawlin 2021 1167 -> 1160 (demais 1042-1106). Água (CÁLCULO, scripts/etc_nasa_power.py com eua/cenarios/feijao_etc.json, Kc FAO-56 x ET0 POWER, 2001-2020): Kawkawlin 5/jun + 96 d mediana 329 mm -> 320; + 103 d 342 mm -> 340. Sem fonte de extensão de Michigan com o uso de água do feijão; o NDSU (380-432 mm) é de clima mais seco. Palhada: mesma conta da linha (regra 6, R_AG 2,1) com a produtividade NASS de Michigan 2021-2025: 2410, 2400, 2440, 2430, 2350 lb/acre; mediana 2410 -> 2,70 t/ha -> 2,46 t MS de grão -> 5,16 t/ha. Mínimo 2025 (2350) -> 5,03; máximo 2023 (2440) -> 5,23. Classe 'medio', como a da linha. Decomposição: usar o k da linha (sem medição em MI)."
       }
     },
     "observacoes": {
@@ -461,14 +479,50 @@
       "antes": "",
       "depois": "baixo",
       "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "103",
+      "depois": "113",
+      "motivo": "Revisão do lote 3 (15/11), A-01: a linha fica só com a Dakota do Norte; maior tardia da ND (Langdon 2022, HMS Medalist e ND-Polar, 113 dias), mesmo critério da canola e do girassol. O 103 de Michigan foi para regua.arranjos.michigan."
+    },
+    {
+      "coluna": "graus_dia_ciclo_max",
+      "antes": "1095",
+      "depois": "1130",
+      "motivo": "Revisão do lote 3 (15/11), A-01: maior soma das tardias da ND (Carrington 2025, 1139, cenário feijao_carrington_2025_0602_tardia_110d) arredondada para baixo. O 1095 (mediana de MI) foi para o arranjo."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min",
+      "antes": "950",
+      "depois": "800",
+      "motivo": "Revisão do lote 3 (15/11), A-02, decisão do usuário: convenção do README (mediana 2001-2020 do cenário mais frio). Cenário novo feijao_langdon_clima_0525_86d: mediana 806 (P10 593) -> 800. Com 950 o motor eliminaria o feijão em Langdon (806 < 855)."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "",
+      "depois": "ND|MN",
+      "motivo": "Revisão do lote 3 (15/11), A-01, decisão do arquiteto: Vale do Red River (fonte de água e estudo de decomposição); SD fora por falta de dado."
+    },
+    {
+      "coluna": "regua.arranjos.michigan",
+      "antes": "estados ['MI'] (lista) e só ms_palhada_t_ha",
+      "depois": "estados 'MI' (texto); ciclo_dias 96-103; graus_dia_ciclo 910-1160; agua_ciclo_mm 320-340; palhada mantida",
+      "motivo": "Revisão do lote 3 (15/11), A-01 e B-03: arranjo regional completo (modelo ervilhaca.sudeste); estados como texto com '|', igual a estados_validos. Mínimo de graus-dia pela convenção em Pigeon 17/jun + 96 d (919 -> 910); máximo Kawkawlin 2021 1167 -> 1160; água POWER 329-342 (cálculo)."
+    },
+    {
+      "coluna": "sistema / regiao_referencia / fontes / origem / pendencias",
+      "antes": "Dakota do Norte e Michigan como extremos da mesma faixa",
+      "depois": "só Dakota do Norte (ND|MN); Michigan no arranjo",
+      "motivo": "Revisão do lote 3 (15/11), A-01 e A-02: textos atualizados para a nova região da linha e a nova convenção do mínimo de graus-dia."
     }
   ],
   "pendencias": [
-    "Região: a linha vale para o feijão seco de sequeiro do norte dos EUA (Dakota do Norte e Michigan, ~60% da área colhida em 2025 pelo NASS). Ciclo, graus-dia e água usam as duas regiões como extremos da faixa (não há mediana misturando as duas); a palhada típica é a da Dakota do Norte e a de Michigan fica em regua.arranjos.michigan. estados_validos vazio: o feijão seco também é plantado em MN, NE, ID, CO e WA, sem conferência aqui.",
-    "ciclo_dias_max (103) vem de Michigan; na ND a mais tardia chega a 110-113 dias em Langdon (norte) e a 110 no ano frio de 2025 em Carrington (mediana das tardias na ND = 96). A soma térmica desses ciclos longos fica perto da faixa (973-1008 em Langdon; só Carrington 2025 passa do máximo, com 1139), o que mostra que o filtro por graus-dia é mais estável que o de dias. Resolveria: NDAWN ou guia A1133 da NDSU com GDD até a maturação por classe (o guia A1133 e as páginas da NDSU deram 'Access denied').",
+    "Região (revisão do lote 3, A-01, 15/11): a linha vale só para a Dakota do Norte (ensaios da NDSU em Carrington e Langdon), com estados_validos ND|MN por decisão do arquiteto: Vale do Red River, de onde vêm a fonte de água (NDSU, pesquisas de ND, MN e SD) e o estudo de decomposição (Casselton-ND, Ada e Downer-MN). Não há ensaio de ciclo em Minnesota lido aqui: em MN a linha vale para o noroeste (Vale do Red River) e o motor trabalha por estado. SD ficou de fora por falta de dado. Michigan (~1/4 da área) está em regua.arranjos.michigan, com ciclo, graus-dia, água e palhada próprios. NE, ID, CO e WA ficam sem dado (o motor mostra 'sem dado para sua região'). Resolveria: ensaios de cultivares da UMN (noroeste de MN) e da SDSU.",
+    "ciclo_dias_max = 113 (Langdon 2022, navy) e graus_dia_ciclo_max = 1130 (Carrington 2025, ano frio, 110 dias) são os extremos das tardias da ND; a mediana das tardias é 96 dias e 1030 °C·dia. Em Langdon, mais ao norte, os ciclos são longos (110-113 dias), mas a soma térmica fica em 973-1008, o que mostra que o filtro por graus-dia é mais estável que o de dias. Resolveria: NDAWN ou guia A1133 da NDSU com GDD até a maturação por classe (o guia A1133 e as páginas da NDSU deram 'Access denied').",
     "Definições de maturação: Carrington usa 'Days to PM' (maturação fisiológica); Langdon usa R9 com 80% das vagens amarelas, que a própria NDSU chama de maturação fisiológica (Water Spouts 318); a MSU avalia a olho em DAP ('for all locations', provavelmente média dos locais). Langdon é ~1,3° mais ao norte e mais fria: os dias são maiores, mas os graus-dia são parecidos com os de Carrington.",
-    "graus_dia (cálculo): as fontes dão dias, não GDD; refiz a soma no ano e no local de cada ensaio (POWER). Os pontos de Michigan usam a cidade do condado (Kawkawlin, Colling, Pigeon, Sandusky), não a fazenda; em Huron 2021 o relatório cita Ruth e Pigeon sem dizer qual ano (usei Pigeon). Conferência independente: a MSU mediu 1847-2108 GDD °F base 50 até a COLHEITA em 2022 (1026-1171 °C·dia), coerente com 1042-1106 até a maturação no POWER.",
-    "agua: 15-17 pol. (380-432 mm) é da NDSU para o pinto (pesquisas de ND, MN e SD). Em Michigan, mais úmido, o cálculo no POWER deu menos (329-342 mm, 96-103 dias); no norte da ND (Langdon, 110 dias) deu 463 mm. O motor deve preferir a conta local (regra 1). A água é consumo sem déficit: a chuva da estação no POWER (ND 215-281 mm; MI 262-275 mm) fica abaixo, e o motor marca 'água no limite' sem eliminar.",
+    "graus_dia (cálculo): as fontes dão dias, não GDD. O mínimo (800) segue a convenção do README: mediana 2001-2020 em Langdon, 25/mai + 86 d (806; P10 593, ou seja, em 2 de cada 20 anos Langdon soma menos de 600 e o motor só avisa 'em ano frio pode não completar'). Semear mais tarde soma mais (5/jun: 845), por isso o cenário frio é o da data dos ensaios. Os 9 valores dos ensaios (868-1016) ficam como conferência. Os pontos de Michigan (arranjo) usam a cidade do condado (Kawkawlin, Colling, Pigeon, Sandusky), não a fazenda; em Huron 2021 o relatório cita Ruth e Pigeon sem dizer qual ano (usei Pigeon). Conferência independente: a MSU mediu 1847-2108 GDD °F base 50 até a COLHEITA em 2022 (1026-1171 °C·dia), coerente com 1042-1106 até a maturação no POWER.",
+    "agua: 15-17 pol. (380-432 mm) é da NDSU para o pinto (pesquisas de ND, MN e SD). Em Langdon (110 dias) o POWER deu 463 mm, acima da faixa. Michigan, mais úmido, tem a água do arranjo calculada no POWER (329-342 mm -> 320-340), sem fonte de extensão de MI. O motor deve preferir a conta local (regra 1). A água é consumo sem déficit: a chuva da estação no POWER (ND 215-281 mm) fica abaixo, e o motor marca 'água no limite' sem eliminar.",
     "tmax_critica_c = 30 °C mantido do Brasil (ZARC: abscisão de flores acima de 30 °C de dia e 25 °C à noite, na floração). A fonte americana lida (Utah State, sem autor nem data, guia de hortaliças) fala em +90 °F de dia (32 °C) e 75 °F à noite (24 °C), junto com ar seco ou falta de água. Divergência de 2 °C; não achei texto da NDSU ou da MSU com o limiar (o guia A1133 não abriu).",
     "temp_otima_min/max (18-25 °C) mantidos do Brasil; sem fonte americana lida. O ECOCROP dá 16-25 °C para Phaseolus vulgaris (cópia EcoCrop_DB.csv).",
     "sensivel_geada = true: conferido nos EUA pelo ensaio de Carrington de 2025 (34-35 °F no enchimento 'impacted yield') e pelo Handbook 628 (colheita até o fim de outubro, antes do frio). Não achei o limiar de geada em fonte americana.",

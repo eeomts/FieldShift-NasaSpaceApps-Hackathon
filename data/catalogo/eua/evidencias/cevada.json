@@ -11,7 +11,7 @@
     "perene": "false",
     "ciclo_dias_min": "81",
     "ciclo_dias_max": "105",
-    "graus_dia_ciclo_min": "1710",
+    "graus_dia_ciclo_min": "1560",
     "graus_dia_ciclo_max": "1780",
     "temp_base_c": "0",
     "temp_otima_min_c": "15",
@@ -33,10 +33,10 @@
     "nome_zarc": "",
     "codigo_nass": "BARLEY",
     "calendario_usda": "Spring barley",
-    "fontes": "SISTEMA: cevada de primavera (Hordeum vulgare, seis ou duas fileiras, malte ou ração), sequeiro, Dakota do Norte; Montana em regua.arranjos.montana; a cevada de outono (Meio-Atlântico, Califórnia, Arizona) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita da cevada de primavera em ND, MN, SD e MT)|NDAWN, Barley Growing Degree Day Information (Enz & Vasey 2005, de Bauer et al. 1992; Tb 32 °F; emergência 176 GDD °F; lido em cópia do Internet Archive de 8/5/2026)|Bongard, Oelke & Simmons, UMN Extension, Spring barley growth and development guide, revisto em 2021 (Fig. 2: maturação 85 dias e 2260 GDD base 40 °F depois da emergência; lido em cópia do Internet Archive de 11/8/2026)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/cevada_gd.json (emergência pelo NDAWN + maturação pela UMN, graus-dia sem teto, Tb 0, NASA POWER 2001-2020, Fargo, Carrington e Langdon)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/cevada_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|NDSU Extension A1049-24, North Dakota Barley, Oat and Rye Variety Trial Results for 2024 (dias até o espigamento das variedades) e NDSU Carrington REC, 2025 Variety Trial Data, Barley - Dryland (semeadura, espigamento e colheita)|Peel, NDSU, Small grain growth stages (maturação fisiológica no grão farináceo duro; temperatura ótima da cevada 70 °F)|McVay et al., MSU Extension EB0186 Montana Barley Production Guide, rev. nov. 2017 (ET da cevada irrigada em Montana 15-20 pol.; maturação fisiológica com ~35% de umidade)|Ransom, NDSU, Crop Water Use & Rooting Depth (apresentação; água da cevada 11-16 pol.)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz da cevada)|FAO ECOCROP Hordeum vulgare id 1232 (temperatura ótima)|Penn State Extension, Will Late Spring Low Temperatures Affect Small Grains?, atualizado em abr. 2026 (geada na floração; cevada a mais sensível dos cereais)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade da cevada em ND e MT 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Barley) e 11.1a (resíduo acima do solo)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão da cevada; conferência)|PROXY: Hangs & Schoenau, Univ. of Saskatchewan, pôster 2018 (C/N do resíduo de cevada, Saskatchewan)|Rogers et al., Agrosystems, Geosciences & Environment 2025, e70229 (C/N e decomposição da palha de cevada, Aberdeen-ID; resumo)|PROXY: k da palha de trigo da linha trigo dos EUA (Schomberg & Steiner 1999; Ghidey & Alberts 1993; Stott et al. 1990; Rogers et al. 2025)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (proteína da palha de cevada)",
+    "fontes": "SISTEMA: cevada de primavera (Hordeum vulgare, seis ou duas fileiras, malte ou ração), sequeiro, Dakota do Norte; Montana em regua.arranjos.montana; a cevada de outono (Meio-Atlântico, Califórnia, Arizona) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita da cevada de primavera em ND, MN, SD e MT)|NDAWN, Barley Growing Degree Day Information (Enz & Vasey 2005, de Bauer et al. 1992; Tb 32 °F; emergência 176 GDD °F; lido em cópia do Internet Archive de 8/5/2026)|Bongard, Oelke & Simmons, UMN Extension, Spring barley growth and development guide, revisto em 2021 (Fig. 2: maturação 85 dias e 2260 GDD base 40 °F depois da emergência; lido em cópia do Internet Archive de 11/8/2026)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/cevada_gd.json (emergência pelo NDAWN + maturação pela UMN, graus-dia sem teto, Tb 0, NASA POWER 2001-2020, Fargo, Carrington e Langdon; mínimo = mediana do cenário mais frio, cevada_langdon_clima_0525_81d)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/cevada_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|NDSU Extension A1049-24, North Dakota Barley, Oat and Rye Variety Trial Results for 2024 (dias até o espigamento das variedades) e NDSU Carrington REC, 2025 Variety Trial Data, Barley - Dryland (semeadura, espigamento e colheita)|Peel, NDSU, Small grain growth stages (maturação fisiológica no grão farináceo duro; temperatura ótima da cevada 70 °F)|McVay et al., MSU Extension EB0186 Montana Barley Production Guide, rev. nov. 2017 (ET da cevada irrigada em Montana 15-20 pol.; maturação fisiológica com ~35% de umidade)|Ransom, NDSU, Crop Water Use & Rooting Depth (apresentação; água da cevada 11-16 pol.)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz da cevada)|FAO ECOCROP Hordeum vulgare id 1232 (temperatura ótima)|Penn State Extension, Will Late Spring Low Temperatures Affect Small Grains?, atualizado em abr. 2026 (geada na floração; cevada a mais sensível dos cereais)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade da cevada em ND e MT 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Barley) e 11.1a (resíduo acima do solo)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão da cevada; conferência)|PROXY: Hangs & Schoenau, Univ. of Saskatchewan, pôster 2018 (C/N do resíduo de cevada, Saskatchewan)|Rogers et al., Agrosystems, Geosciences & Environment 2025, e70229 (C/N e decomposição da palha de cevada, Aberdeen-ID; resumo)|PROXY: k da palha de trigo da linha trigo dos EUA (Schomberg & Steiner 1999; Ghidey & Alberts 1993; Stott et al. 1990; Rogers et al. 2025)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (proteína da palha de cevada)",
     "confianca_parametros": "baixa",
-    "estados_validos": "ND|MN|SD",
-    "lacuna_informacao": "Não achamos na Dakota do Norte uma medida de quantos dias e de quanto calor a cevada precisa até amadurecer, nem de quanta água ela usa. Calculamos os dois com um guia de Minnesota e dados de clima de satélite, para uma variedade de ciclo médio.",
+    "estados_validos": "ND|MN",
+    "lacuna_informacao": "Não achamos medição na Dakota do Norte de quantos dias e quanto calor a cevada precisa para amadurecer, de quanta água usa, nem do calor que prejudica a floração. Calculamos com um guia de Minnesota e clima de satélite, para uma variedade de ciclo médio.",
     "risco_revisao_local": "Variedades precoces ou tardias podem amadurecer alguns dias antes ou depois. Confirme com a extensão da Universidade Estadual da Dakota do Norte a variedade e a data de semeadura e, na cevada para malte, se o comprador aceita a variedade."
   },
   "origem": {
@@ -54,7 +54,7 @@
     },
     "graus_dia_ciclo_min": {
       "tipo": "calculo",
-      "nota": "CÁLCULO na régua do POWER (Tb 0, sem teto), scripts/gd_nasa_power.py com eua/cenarios/cevada_gd.json, 2001-2020, soma das medianas de duas etapas: (1) semeadura -> emergência, alvo do NDAWN 176 GDD °F (Tb 32 °F, teto 70 °F) com alvo_com_teto; (2) emergência -> maturação, alvo da UMN 2260 GDD °F base 40 °F, sem teto, com alvo_com_teto. Fargo 26/abr: 10 d + 86 d = 96 d, 101 + 1637 = 1738; Fargo 25/mai: 7 + 74 = 81 d, 115 + 1596 = 1711; Carrington 26/abr: 11 + 90 = 101 d, 101 + 1651 = 1752; Carrington 25/mai: 7 + 78 = 85 d, 113 + 1607 = 1720; Langdon 26/abr: 11 + 94 = 105 d, 104 + 1678 = 1782; Langdon 25/mai: 8 + 82 = 90 d, 113 + 1629 = 1742. Mínimo = 1711 (Fargo, 25/mai) arredondado para baixo = 1710. A conversão sobe a soma: na Tb 4,4 °C a exigência da UMN é 1256 °C·dia; na Tb 0 o POWER soma 1596-1678 da emergência à maturação. A faixa é estreita porque só uma cultivar (intermediária) entrou."
+      "nota": "CÁLCULO na régua do POWER (Tb 0, sem teto), scripts/gd_nasa_power.py com eua/cenarios/cevada_gd.json, cenário cevada_langdon_clima_0525_81d (modo 'dias'). Convenção do mínimo (evidencias/README.md; decisão da revisão do lote 3): mediana 2001-2020 do cenário mais frio da região de referência, com a semeadura mais tardia e o fim mais cedo: Langdon (local mais frio), semeadura 25/mai (fim do período 'most active' de ND, Handbook 628) e 81 dias (ciclo_dias_min da linha). Saída: n = 20, mediana 1566, P10 1351, mín 1324, máx 1728. Mínimo = 1566 arredondado para baixo = 1560. Conferência pelas duas etapas (emergência pelo NDAWN, 176 GDD °F, Tb 32 °F, teto 70 °F; emergência -> maturação pela UMN, 2260 GDD °F base 40 °F; soma das medianas): Fargo 25/mai 1711; Carrington 25/mai 1720; Langdon 25/mai 1742; Fargo 26/abr 1738; Carrington 26/abr 1752; Langdon 26/abr 1782. Antes era 1710 (Fargo 25/mai, o local MAIS QUENTE), contra a convenção. As duas etapas somam mais porque, para juntar os 2260 GDD da base 40 °F (1256 °C·dia na Tb 4,4 °C), o ciclo dura mais que 81 dias em Langdon (90 d em 25/mai); a faixa é estreita porque só uma cultivar (intermediária) entrou."
     },
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
@@ -286,6 +286,14 @@
       "fonte": "Rogers, C.W.; Thurgood; Dari; Sihi; Marshall, Barley, corn, and wheat residue decomposition as affected by tillage and nitrogen rate in semi-arid conditions, Agrosystems, Geosciences & Environment 8, 2025, e70229 (Aberdeen-ID, 2018-2020; só o resumo, lido no registro do Crossref). O k usado no bloco é o da palha de trigo da linha trigo dos EUA (PROXY; fontes e trechos em data/catalogo/eua/evidencias/trigo.json); este estudo mostra que a palha de cevada na superfície decompõe tão devagar quanto a de trigo",
       "url": "https://doi.org/10.1002/agg2.70229",
       "trecho": "Barley, corn, HRW, and SWW carbon:nitrogen (C:N) ratios were 74, 62, 105, and 87, respectively. [...] Decomposition was greatest from post‐harvest to spring for incorporated corn (37%) and least for surface barley, HRW, and SWW (21%). [...] First‐order decay constants ranged from 0.00075 to 0.00300 day−1 for surface HRW and incorporated corn, respectively."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/cevada_gd.json cevada_langdon_clima_0525_81d (NASA POWER diário, comunidade AG; Tb 0, sem teto; 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "semeadura 05-25, 81 d; Tb 0 °C, sem teto; anos 2001-2020 | n = 20 anos | GD (°C·dia): média 1550 | mediana 1566 | mín 1324 | máx 1728 | P10 1351 | P90 1708"
     }
   ],
   "regua": {
@@ -374,11 +382,41 @@
       "antes": "",
       "depois": "baixo",
       "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min",
+      "antes": "1710",
+      "depois": "1560",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-06: o 1710 era o cenário de Fargo (local mais quente); pela convenção do README o mínimo é a mediana 2001-2020 do cenário mais frio, Langdon 25/mai + 81 d (cevada_langdon_clima_0525_81d, mediana 1566, P10 1351)."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "ND|MN|SD",
+      "depois": "ND|MN",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-03: SD sai pelo mesmo critério que tirou MT; Montana só como arranjo (regua.arranjos.montana)."
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "Não achamos na Dakota do Norte uma medida de quantos dias e de quanto calor a cevada precisa até amadurecer, nem de quanta água ela usa. Calculamos os dois com um guia de Minnesota e dados de clima de satélite, para uma variedade de ciclo médio.",
+      "depois": "Não achamos medição na Dakota do Norte de quantos dias e quanto calor a cevada precisa para amadurecer, de quanta água usa, nem do calor que prejudica a floração. Calculamos com um guia de Minnesota e clima de satélite, para uma variedade de ciclo médio.",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-04: incluir o calor que prejudica a floração (tmax_critica_c vazio)."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "CÁLCULO gd sem o cenário do mínimo",
+      "depois": "CÁLCULO gd com cevada_langdon_clima_0525_81d",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-06."
+    },
+    {
+      "coluna": "pendencias",
+      "antes": "SISTEMA e região: cevada de PRIMAVERA de sequeiro da Dakota do Norte. estados_validos = ND|MN|SD (Grandes Planícies do Norte, mesmo calendário no Handbook 628). Montana fica em regua.arranjos.montana (parte irrigada, produtividade 38-54 bu/acre contra 51-78 em ND, semeadura duas semanas antes); Idaho, Washington, Colorado e Wyoming (cevada irrigada do Oeste) e a cevada de outono (Meio-Atlântico, Califórnia, Arizona) ficam sem linha. DECISÃO para o coordenador: incluir MT em estados_validos usando a linha, ou manter só o arranjo.",
+      "depois": "SISTEMA e região com a decisão tomada; ciclo e graus-dia com o mínimo novo",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-03 e M-06."
     }
   ],
   "pendencias": [
-    "SISTEMA e região: cevada de PRIMAVERA de sequeiro da Dakota do Norte. estados_validos = ND|MN|SD (Grandes Planícies do Norte, mesmo calendário no Handbook 628). Montana fica em regua.arranjos.montana (parte irrigada, produtividade 38-54 bu/acre contra 51-78 em ND, semeadura duas semanas antes); Idaho, Washington, Colorado e Wyoming (cevada irrigada do Oeste) e a cevada de outono (Meio-Atlântico, Califórnia, Arizona) ficam sem linha. DECISÃO para o coordenador: incluir MT em estados_validos usando a linha, ou manter só o arranjo.",
-    "ciclo e graus-dia: CÁLCULO montado com duas fontes que não são da cevada de ND: a emergência do NDAWN (176 GDD °F) e a maturação de UMA cultivar intermediária em St. Paul-MN (UMN, 2260 GDD base 40 °F depois da emergência, valor lido numa figura). A faixa 81-105 dias e 1710-1780 °C·dia vem só do local e da data de semeadura; a diferença entre variedades ficou de fora (no espigamento, 57-66 dias no A1049-24). O GD total soma as medianas das duas etapas (não é a mediana da soma). Conferência fraca: o NDAWN diz que a cevada amadurece 10-14 dias antes do trigo de primavera, e a página antiga da NDSU dá ~2400 GDD °F e 83-100 dias para o TRIGO, o que daria menos que 1710 °C·dia para a cevada. Resolveria: Bauer et al. 1992 (NDSU Agric. Exp. Stn. Bull. 523, não achado on-line), ou ensaios da NDSU/MSU com data de maturação fisiológica.",
+    "SISTEMA e região: cevada de PRIMAVERA de sequeiro da Dakota do Norte. DECISÃO (revisão do lote 3, M-03): estados_validos = ND|MN. Minnesota fica porque a maturação vem do guia da UMN e a cevada de MN está no noroeste do estado; Dakota do Sul sai pelo mesmo critério que tirou Montana (sem dado próprio de ciclo nem de água). Montana fica só em regua.arranjos.montana (estados 'MT'; parte irrigada, produtividade 38-54 bu/acre contra 51-78 em ND, semeadura duas semanas antes), sem entrar em estados_validos. Idaho, Washington, Colorado e Wyoming (cevada irrigada do Oeste) e a cevada de outono (Meio-Atlântico, Califórnia, Arizona) ficam sem linha.",
+    "ciclo e graus-dia: CÁLCULO montado com duas fontes que não são da cevada de ND: a emergência do NDAWN (176 GDD °F) e a maturação de UMA cultivar intermediária em St. Paul-MN (UMN, 2260 GDD base 40 °F depois da emergência, valor lido numa figura). A faixa 81-105 dias vem só do local e da data de semeadura; a diferença entre variedades ficou de fora (no espigamento, 57-66 dias no A1049-24). Graus-dia 1560-1780 °C·dia: o mínimo segue a convenção do README (mediana 2001-2020 de Langdon, 25/mai + 81 d = 1566; P10 1351); o máximo é a soma das medianas das duas etapas em Langdon 26/abr (1782; não é a mediana da soma). Conferência fraca: o NDAWN diz que a cevada amadurece 10-14 dias antes do trigo de primavera, e a página antiga da NDSU dá ~2400 GDD °F e 83-100 dias para o TRIGO, o que daria menos que o máximo da cevada. Resolveria: Bauer et al. 1992 (NDSU Agric. Exp. Stn. Bull. 523, não achado on-line), ou ensaios da NDSU/MSU com data de maturação fisiológica.",
     "agua: CÁLCULO (Kc × ET0 do POWER), consumo sem déficit. As fontes de ND (Ransom/Scherer, 11-16 pol.) não dizem se é sem déficit nem de que cultivar; a da MSU (15-20 pol.) é de cevada irrigada em Montana. Um boletim Water Spouts da NDSU (2005) daria 16-18 pol. para cevada de malte irrigada de alta produtividade e outro 18-22 pol. no oeste de ND/leste de MT, mas só vi o resumo da busca (os arquivos do UNT Web Archive não abriram): não usados. A chuva mediana da estação no POWER (209-293 mm) fica abaixo do consumo; regra 1: só aviso.",
     "tmax_critica_c vazio: não achei limiar numérico de dano por calor na floração ou no enchimento da cevada em fonte dos EUA. A NDSU (Crop & Pest Report, 22/6/2023) fala de calor acima de 75 °F no perfilhamento e de 85 °F na fotorrespiração, mas para o trigo e fora da fase sensível; o teto de 95 °F do NDAWN é teto de fórmula de graus-dia e não entra.",
     "sensivel_geada = true pela fase sensível (encanamento a floração; 30 °F por 2 h na floração, Penn State citando Kentucky, números do trigo; a cevada é a mais sensível dos cereais). No vegetativo o ponto de crescimento fica protegido abaixo do solo (UMN); o motor não deve eliminar a cevada por geada leve no começo do ciclo.",

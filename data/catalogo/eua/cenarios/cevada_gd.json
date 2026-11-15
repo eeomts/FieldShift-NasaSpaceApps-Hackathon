@@ -1,5 +1,5 @@
 {
-  "_leia": "Cenários de graus-dia da cevada de primavera (Hordeum vulgare, sequeiro, Dakota do Norte) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 0), sem teto (Tb 0 °C = 32 °F do NDAWN). O ciclo (semeadura -> maturação fisiológica) é montado em duas partes, porque nenhuma fonte de ND dá a soma térmica até a maturação: (1) 'cevada_emergencia_*': semeadura -> emergência pelo modelo do NDAWN (176 GDD °F, Tb 32 °F, teto 70 °F antes do Haun 2), com 'alvo_com_teto'; (2) 'cevada_umn_maturacao_*': emergência -> maturação (Zadoks 89) pelo guia da Universidade de Minnesota (2260 GDD °F base 40 °F, sem teto), também com 'alvo_com_teto', começando na data mediana de emergência do cenário (1). Locais da Dakota do Norte (Fargo, Carrington, Langdon), semeadura no início (26/abr) e no fim (25/mai) do período 'most active' do Handbook 628, 2001-2020. 'anos' = anos da semeadura.",
+  "_leia": "Cenários de graus-dia da cevada de primavera (Hordeum vulgare, sequeiro, Dakota do Norte) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 0), sem teto (Tb 0 °C = 32 °F do NDAWN). O ciclo (semeadura -> maturação fisiológica) é montado em duas partes, porque nenhuma fonte de ND dá a soma térmica até a maturação: (1) 'cevada_emergencia_*': semeadura -> emergência pelo modelo do NDAWN (176 GDD °F, Tb 32 °F, teto 70 °F antes do Haun 2), com 'alvo_com_teto'; (2) 'cevada_umn_maturacao_*': emergência -> maturação (Zadoks 89) pelo guia da Universidade de Minnesota (2260 GDD °F base 40 °F, sem teto), também com 'alvo_com_teto', começando na data mediana de emergência do cenário (1). Locais da Dakota do Norte (Fargo, Carrington, Langdon), semeadura no início (26/abr) e no fim (25/mai) do período 'most active' do Handbook 628, 2001-2020. 'anos' = anos da semeadura. (3) 'cevada_langdon_clima_0525_81d' ('dias'): cenário do mínimo de graus-dia pela convenção do README (local mais frio, Langdon; semeadura mais tardia, 25/mai; ciclo mais curto da linha, 81 dias), 2001-2020.",
   "locais": {
     "fargo": {
       "nome": "Fargo-ND (NDSU/USDA-ARS)",
@@ -283,6 +283,23 @@
         "estatistica": "mediana",
         "valor": 1256,
         "nota": "UMN Extension, Spring barley growth and development guide (Bongard, Oelke & Simmons; revisto em 2021), Fig. 2: maturidade (Zadoks 89, maturação fisiológica aproximada) = 85 dias e 2260 GDD (base 40 °F) depois da EMERGÊNCIA, cultivar intermediária de seis fileiras em St. Paul-MN. Sem teto declarado (teto 150 °F = sem teto). 2260 / 1,8 = 1256 °C·dia na Tb 4,4 °C. Início = semeadura 05-25 + 8 dias (mediana do cenário cevada_emergencia_langdon_0525). GD total do ciclo = este GD + o GD da emergência."
+      }
+    },
+    {
+      "nome": "cevada_langdon_clima_0525_81d",
+      "cultura": "cevada",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "dias": 81,
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1560,
+        "nota": "Convenção do mínimo de graus-dia (evidencias/README.md): mediana 2001-2020 do cenário mais frio da região de referência, com a semeadura mais tardia e o fim mais cedo. Local mais frio = Langdon-ND; semeadura = 25/mai (fim do período 'most active' de ND, Handbook 628); duração = ciclo_dias_min da linha (81 dias, Fargo 25/mai: 7 d até a emergência pelo NDAWN + 74 d até a maturação pela UMN). Modo 'dias', Tb 0, sem teto."
       }
     }
   ]

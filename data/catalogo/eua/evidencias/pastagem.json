@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "",
     "calendario_usda": "",
-    "fontes": "Lacefield, Henning & Phillips, Univ. of Kentucky AGR-59, Tall Fescue, rev. 2003 (endófito em mais de 85% dos pastos do Kentucky; qualidade por estação; época de semeadura; produção de 2-4 t curtas/acre; raiz profunda)|USDA NRCS, Plant Guide Tall Fescue, Lolium arundinaceum (LOAR10), National Plant Data Center, 2001/2006 (cresce com o solo a 40 °F; adaptação; ~75% dos estandes dos EUA com endófito; raiz relativamente profunda)|Ball, Lacefield & Hoveland, The Wonder Grass - The Story of Tall Fescue in the United States, Oregon Tall Fescue Commission, 2019 (30-40 milhões de acres; 'Fescue Belt'; Epichloë coenophiala; festucose)|Flournoy, Baldwin, Stewart, Philley, Reddy, McCurdy (Mississippi State) & Kreuser (UNL), Determining Base Temperature for Warm- and Cool-Season Turfgrasses, resumo/pôster 2016-15-565 (Tb 4,25 °C da festuca Falcon V em câmara)|FAO ECOCROP, Festuca arundinacea, código 6102 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop) (temperatura ótima 15-22 °C, mínima 5 °C)|PROXY: FAO-56 Tab.12, Grazing Pasture - Rotated Grazing (Kc 0,40/0,85-1,05/0,85; categoria genérica de pastagem) e nota 15 (gramíneas de clima frio incluem a festuca); Tab.11 nota 4 (estação do pasto de gramínea); Tab.22 Grazing Pasture 0,5-1,5 m (raiz, limite superior)|UC ANR Center for Landscape & Urban Horticulture, ET: Evapotranspiration and Plant Water Use (ETo = uso de água da festuca alta bem irrigada, a planta de referência)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/pastagem_etc.json (água ANUAL sem déficit, Kc x ET0 do NASA POWER, Columbia-MO e Lexington-KY, 2001-2020)|Mississippi State Univ. Extension, Tall Fescue (Festuca arundinacea) (PB 12-15%, digestibilidade da MS 69-74%, tolerância à seca; conferência)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Other Hay (por que não há código da festuca)|Sedivec, Meehan et al., NDSU R1061, Determining Grazing Readiness for Native and Tame Pastures, rev. 2023 (base 32 °F para gramíneas de clima frio; alternativa de Tb nas pendências)|PERENE FORRAGEIRA (padrão da pastagem do Brasil e da alfafa dos EUA): ciclo e graus-dia não se aplicam; água e Kc ANUAIS",
+    "fontes": "Lacefield, Henning & Phillips, Univ. of Kentucky AGR-59, Tall Fescue, rev. 2003 (endófito em mais de 85% dos pastos do Kentucky; qualidade por estação; época de semeadura; produção de 2-4 t curtas/acre; raiz profunda)|USDA NRCS, Plant Guide Tall Fescue, Lolium arundinaceum (LOAR10), National Plant Data Center, 2001/2006 (cresce com o solo a 40 °F; adaptação; ~75% dos estandes dos EUA com endófito; raiz relativamente profunda)|Ball, Lacefield & Hoveland, The Wonder Grass - The Story of Tall Fescue in the United States, Oregon Tall Fescue Commission, 2019 (30-40 milhões de acres; 'Fescue Belt'; Epichloë coenophiala; festucose)|Flournoy, Baldwin, Stewart, Philley, Reddy, McCurdy (Mississippi State) & Kreuser (UNL), Determining Base Temperature for Warm- and Cool-Season Turfgrasses, resumo/pôster 2016-15-565 (Tb 4,25 °C da festuca Falcon V em câmara)|FAO ECOCROP, Festuca arundinacea, código 6102 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop) (temperatura ótima 15-22 °C, mínima 5 °C)|PROXY: FAO-56 Tab.12, Grazing Pasture - Rotated Grazing (Kc 0,40/0,85-1,05/0,85; categoria genérica de pastagem) e nota 15 (gramíneas de clima frio incluem a festuca); Tab.11 nota 4 (estação do pasto de gramínea); Tab.22 Grazing Pasture 0,5-1,5 m (raiz, limite superior)|UC ANR Center for Landscape & Urban Horticulture, ET: Evapotranspiration and Plant Water Use (ETo = uso de água da festuca alta bem irrigada, a planta de referência)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/pastagem_etc.json (água ANUAL sem déficit, Kc x ET0 do NASA POWER, Columbia-MO e Lexington-KY, 2001-2020)|Mississippi State Univ. Extension, Tall Fescue (Festuca arundinacea) (PB 12-15%, digestibilidade da MS 69-74%, tolerância à seca; conferência)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Other Hay (por que não há código da festuca)|Sedivec, Meehan et al., NDSU R1061, Determining Grazing Readiness for Native and Tame Pastures, rev. 2023 (base 32 °F para gramíneas de clima frio; alternativa de Tb nas pendências)|Smith, Lacefield, Burris, Ditsch, Coleman, Lehmkuhler & Henning, Univ. of Kentucky ID-143, Rotational Grazing, rev. 2011 (Tab. 6: festuca, entrada 4-8 pol., saída 2-3 pol., 15-30 dias de descanso; manejo, fora das colunas)|Bailey, E. (MU Extension), The value of grazing management with current commodity prices, Progressive Cattle, 9/mai/2022 (descanso da festuca por estação; coluna de revista, manejo fora das colunas)|PERENE FORRAGEIRA (padrão da pastagem do Brasil e da alfafa dos EUA): ciclo e graus-dia não se aplicam; água e Kc ANUAIS",
     "confianca_parametros": "baixa",
     "semeadura_inicio": "08-15",
     "semeadura_fim": "10-15",
@@ -41,7 +41,7 @@
     "manejo_fim": "",
     "tipo_manejo": "",
     "condicao_semeadura": "",
-    "estados_validos": "AL|AR|GA|IL|IN|KY|MO|MS|NC|OH|OK|SC|TN|VA|WV",
+    "estados_validos": "KY|MO|TN|VA|WV|IL|IN|OH|AR|NC",
     "lacuna_informacao": "Não achamos medição de quanta água a festuca usa por ano no Missouri ou no Kentucky; calculamos com o clima local e um coeficiente geral de pastagem. Também não sabemos quanta palha fica quando o pasto é dessecado para plantar lavoura.",
     "risco_revisao_local": "Muitos pastos antigos de festuca (Kentucky 31) têm um fungo que intoxica o gado, sobretudo no calor: menos ganho de peso e menos leite. Confirme com a extensão se a sua variedade é sem fungo ou de fungo amigável e como manejar o pastejo no verão."
   },
@@ -79,8 +79,8 @@
       "nota": "FAO-56 Tab. 12, Grazing Pasture - Rotated Grazing: Kc ini 0,40. Categoria genérica de pastagem, sem linha da festuca: proxy, o mesmo critério da pastagem do Brasil. Usado no repouso de inverno (1/jan-14/mar) da conta anual."
     },
     "kc_medio": {
-      "tipo": "convencao_com_fonte",
-      "nota": "0,95 = ponto médio da faixa 0,85-1,05 do FAO-56 (Grazing Pasture - Rotated Grazing), regra do time apoiada em duas fontes: a nota 15 da Tab. 12 inclui a festuca nas gramíneas de clima frio (Kc 0,95 para gramado de clima frio) e a UC ANR define a ETo como o uso de água da festuca alta bem irrigada ('tall fescue, the reference plant'), isto é, Kc perto de 1 quando o pasto está alto e sem falta de água; o pastejo rotacionado baixa a média. No POWER a eq. 62 deu 0,95 (MO) e 0,93 (KY)."
+      "tipo": "proxy",
+      "nota": "0,95 = ponto médio da faixa 0,85-1,05 do FAO-56 Tab. 12, Grazing Pasture - Rotated Grazing: a mesma categoria genérica de pastagem do Kc ini e do Kc fin, sem linha da festuca em pasto, portanto proxy (revisão do lote 3, B-02). Apoio: a nota 15 da Tab. 12 inclui a festuca nas gramíneas de clima frio (Kc 0,95 para gramado de clima frio) e a UC ANR define a ETo como o uso de água da festuca alta bem irrigada ('tall fescue, the reference plant'), isto é, Kc perto de 1 com o pasto alto e sem falta de água; o pastejo rotacionado baixa a média. No POWER a eq. 62 deu 0,95 (MO) e 0,93 (KY)."
     },
     "kc_final": {
       "tipo": "proxy",
@@ -111,10 +111,10 @@
       "motivo": "Mesma unidade (anual), mas aqui é consumo sem déficit calculado (Kc x ET0 do POWER) no Missouri e no Kentucky, não chuva ótima."
     },
     {
-      "coluna": "kc_inicial, kc_final, profundidade_raiz_m (origem)",
+      "coluna": "kc_inicial, kc_medio, kc_final, profundidade_raiz_m (origem)",
       "valor_brasil": "proxy (Grazing Pasture do FAO-56)",
       "decisao": "conferido e mantido",
-      "motivo": "Mesma categoria genérica do FAO-56 e mesma classificação (proxy). O kc_medio passou de 0,85 (medido na braquiária) para 0,95 (ponto médio da faixa; a festuca é a planta da ETo de referência)."
+      "motivo": "Mesma categoria genérica do FAO-56 e mesma classificação (proxy), agora também no Kc médio (revisão do lote 3, B-02). O kc_medio passou de 0,85 (medido na braquiária) para 0,95 (ponto médio da faixa; a festuca é a planta da ETo de referência)."
     },
     {
       "coluna": "regua (método)",
@@ -298,6 +298,30 @@
       "fonte": "Meehan, Sedivec et al., Determining Grazing Readiness for Native and Tame Pastures, NDSU Extension R1061, rev. maio de 2023 (alternativa de Tb, gramíneas do norte das Planícies, sem a festuca)",
       "url": "https://www.ndsu.edu/agriculture/extension/publications/determining-grazing-readiness-native-and-tame-pastures",
       "trecho": "is 32 F for cool-season and 40 F for warm-season grasses."
+    },
+    {
+      "colunas": [
+        "pendencias.manejo"
+      ],
+      "fonte": "Smith, R., Lacefield, G., Burris, R., Ditsch, D., Coleman, B., Lehmkuhler, J. & Henning, J., Rotational Grazing, University of Kentucky Cooperative Extension ID-143, revisado em out. 2011, Tab. 5 e Tab. 6",
+      "url": "https://grazer.mgcafe.uky.edu/sites/grazer.ca.uky.edu/files/id143.pdf",
+      "trecho": "Table 6. Guidelines for rotational stocking of selected forage crops. [...] Target Height (inches) Begin Grazing End Grazing Usual Days of Rest [...] Fescue, tall 4-8 2-3 15-30 [...] Days of rest: Values range from 10 or less for grasses during periods of rapid growth to 30 for legumes and even more for periods of slow growth."
+    },
+    {
+      "colunas": [
+        "pendencias.manejo"
+      ],
+      "fonte": "UK AGR-59 (2003), Grazing (altura de saída)",
+      "url": "https://publications.ca.uky.edu/sites/publications.ca.uky.edu/files/agr59.pdf",
+      "trecho": "Spring growth can be more efficiently utilized if animals are restricted to small fields (rotational grazing) that can be kept grazed to a 3- to 4-inch height during April, May, and June. [...] Ideally, a stubble height of 3 to 4 inches should be maintained throughout the summer."
+    },
+    {
+      "colunas": [
+        "pendencias.manejo"
+      ],
+      "fonte": "Bailey, E. (Assistant Professor and State Beef Nutritionist, University of Missouri Extension), The value of grazing management with current commodity prices, Progressive Cattle, 9 de maio de 2022 (coluna de revista, não revisada)",
+      "url": "https://agproud.com/articles/55237-the-value-of-grazing-management-with-current-commodity-prices",
+      "trecho": "For tall fescue, the recovery period needed in the spring is much less than during the fall. [...] I generally shoot for a minimum of three weeks recovery in the spring and double that during summer and fall."
     }
   ],
   "regua": {
@@ -333,7 +357,7 @@
     "observacoes": {
       "palhada": "SEM DADO. Pasto perene: a massa produzida é colhida pelo animal ou pelo feno. A palha que fica para a lavoura seguinte só existe quando o pasto é dessecado (conversão para lavoura), e não achei medição americana dessa massa nem do k. aporte_biomassa e cobertura_solo ficam vazios ('não sei').",
       "endofito": "Epichloë coenophiala (antes Neotyphodium/Acremonium coenophialum): presente em mais de 85% dos pastos e campos de feno do Kentucky (AGR-59) e em ~75% dos estandes dos EUA (NRCS); pelo menos 70% das plantas num campo típico de Kentucky 31 (Ball et al. 2019). Novilhos em festuca 90% infectada ganharam 1,41 lb/dia contra 2,18 lb/dia na festuca sem fungo (AGR-59 Tab. 1, média de 3 anos); vacas de leite produziram 34 contra 43 lb/dia (Tab. 2). O NRCS lista o manejo: pastejar com a planta vegetativa, pastejar só na primavera e no outono, cortar o feno no emborrachamento e misturar leguminosas.",
-      "forragem": "uso_forrageiro = principal: é o pasto mais importante das áreas úmidas dos EUA (30-40 milhões de acres; 5,5 milhões de acres no Kentucky). DMD 69,7% (>= 60) mantém a classe alta; com a IVDMD de Iowa (56-58%) cairia para média.",
+      "forragem": "uso_forrageiro = principal: é o pasto mais importante das áreas úmidas dos EUA (30-40 milhões de acres; 5,5 milhões de acres no Kentucky). DMD 69,7% (>= 60) mantém a classe alta; com a IVDMD de Iowa (56-58%) cairia para média. A classe fica 'alto' por decisão do usuário (revisão do lote 3, A-03) e a tela mostra sempre junto dela o aviso do fungo de regua.avisos.valor_forrageiro.",
       "manejo": "REFERÊNCIA DE MANEJO, fora das colunas. A festuca faz mais de dois terços da produção na primavera, cresce pouco em julho e agosto e volta no outono (AGR-59). Produção de 2 a 4 t curtas de MS/acre/ano (4,5-9,0 t/ha). Diferimento (stockpiling): tirar o gado no fim de julho ou começo de agosto, adubar com 40-80 lb de N/acre e acumular até novembro ou dezembro (AGR-59). Primeiro corte de feno de 1 a 15 de maio.",
       "codigos": "codigo_nass e calendario_usda vazios: ver pendências (o NASS e o Handbook 628 só têm 'Other Hay', que mistura todas as gramíneas de feno)."
     },
@@ -349,6 +373,9 @@
         "aporte_biomassa": null,
         "cobertura_solo": null
       }
+    },
+    "avisos": {
+      "valor_forrageiro": "Atenção: a maioria dos pastos antigos de festuca tem um fungo que intoxica o gado e reduz ganho de peso e leite. Confirme se a sua variedade é sem fungo ou de fungo amigável."
     }
   },
   "mudancas": [
@@ -357,12 +384,36 @@
       "antes": "",
       "depois": "alto",
       "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "regua.avisos.valor_forrageiro",
+      "antes": "",
+      "depois": "Atenção: a maioria dos pastos antigos de festuca tem um fungo que intoxica o gado e reduz ganho de peso e leite. Confirme se a sua variedade é sem fungo ou de fungo amigável.",
+      "motivo": "Revisão do lote 3, A-03, decisão do usuário: valor_forrageiro continua 'alto' e a tela mostra o aviso do fungo endófito sempre junto da classe (regra 16). Saiu a pendência 'Decisão do coordenador'; risco_revisao_local fica como reserva."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "AL|AR|GA|IL|IN|KY|MO|MS|NC|OH|OK|SC|TN|VA|WV",
+      "depois": "KY|MO|TN|VA|WV|IL|IN|OH|AR|NC",
+      "motivo": "Revisão do lote 3, M-02, decisão do arquiteto: saem AL, GA, MS, SC e OK (só a franja na faixa, verão mais quente); ficam o núcleo do Fescue Belt, AR e NC. Em IL, IN e OH só o sul está na faixa; o motor usa a água calculada no local (regra 1)."
+    },
+    {
+      "coluna": "origem.kc_medio",
+      "antes": "convencao_com_fonte",
+      "depois": "proxy",
+      "motivo": "Revisão do lote 3, B-02: mesma categoria genérica 'Grazing Pasture' do FAO-56 do Kc ini e do Kc fin. temp_base_c fica convencao_com_fonte. Lacunas 5 -> 6; confiança continua baixa."
+    },
+    {
+      "coluna": "pendencias (MANEJO)",
+      "antes": "",
+      "depois": "descanso, altura de entrada e de saída do pastejo rotacionado",
+      "motivo": "Revisão do lote 3, M-07: referência de manejo fora das colunas (UK ID-143 Tab. 6, UK AGR-59, coluna de E. Bailey da MU Extension); soma térmica por corte sem fonte."
     }
   ],
   "pendencias": [
     "Sistema: no Brasil o id 'pastagem' é braquiária (Urochloa brizantha, tropical); nos EUA é festuca alta (Lolium arundinaceum, sin. Festuca arundinacea / Schedonorus arundinaceus), gramínea perene de clima frio. Nenhum número de fisiologia foi reaproveitado do Brasil; só o padrão das perenes (ciclo e graus-dia vazios, água e Kc anuais) e o método da régua.",
-    "ENDÓFITO (festucose): a festuca 'Kentucky 31', a mais plantada, quase sempre carrega o fungo Epichloë coenophiala (pelo menos 70% das plantas por campo; mais de 85% dos pastos do Kentucky; ~75% dos estandes dos EUA). Os alcaloides do ergot causam festucose no gado: menos ganho (novilhos 1,41 contra 2,18 lb/dia, AGR-59 Tab. 1), menos leite e problemas no calor. As variedades sem fungo ou com fungo 'amigável' (novel endophyte, ex.: Max Q, ArkPlus) evitam o problema, mas pedem mais manejo. Mantive uso_forrageiro = principal (é o pasto mais importante da região) e registrei a restrição em cenario_forragem, observacoes.endofito e risco_revisao_local. Decisão do coordenador: se o motor tiver um aviso por cultura, este é o caso.",
-    "estados_validos: 'Fescue Belt' (Ball et al. 2019: do centro de Ohio ao centro do Alabama e do leste de Oklahoma ao leste da Virgínia) = AL, AR, GA, IL, IN, KY, MO, MS, NC, OH, OK, SC, TN, VA, WV. Em vários desses estados só parte da área está na faixa (sul de OH, IL e IN; norte de AL, GA e MS; leste de OK). O NRCS diz que a festuca se adapta a 'all areas east of the Great Plains', ao noroeste do Pacífico e ao Intermountain: fora da lista ela sobrevive, mas não é o pasto dominante e os números (água do Missouri e do Kentucky) não foram conferidos.",
+    "ENDÓFITO (festucose): a festuca 'Kentucky 31', a mais plantada, quase sempre carrega o fungo Epichloë coenophiala (pelo menos 70% das plantas por campo; mais de 85% dos pastos do Kentucky; ~75% dos estandes dos EUA). Os alcaloides do ergot causam festucose no gado: menos ganho (novilhos 1,41 contra 2,18 lb/dia, AGR-59 Tab. 1), menos leite e problemas no calor. As variedades sem fungo ou com fungo 'amigável' (novel endophyte, ex.: Max Q, ArkPlus) evitam o problema, mas pedem mais manejo. Mantive uso_forrageiro = principal (é o pasto mais importante da região) e registrei a restrição em cenario_forragem, observacoes.endofito e risco_revisao_local. Decidido (usuário, revisão do lote 3, A-03): a classe fica 'alto' e o aviso do fungo vai em regua.avisos.valor_forrageiro, mostrado sempre junto da classe (regra 16); risco_revisao_local continua com o mesmo alerta, como reserva.",
+    "estados_validos (decisão do arquiteto, revisão do lote 3, M-02) = KY, MO, TN, VA, WV, IL, IN, OH, AR, NC: o núcleo do 'Fescue Belt' (Ball et al. 2019: do centro de Ohio ao centro do Alabama e do leste de Oklahoma ao leste da Virgínia), com AR e NC pelo núcleo de pesquisa e uso. Saíram AL, GA, MS, SC e OK: só uma franja desses estados está na faixa, com verão mais quente que o de MO e KY. Em IL, IN e OH só o sul está na faixa da festuca; o motor trabalha por estado e usa a água calculada no local (regra 1), não a do Missouri ou do Kentucky. O NRCS diz que a festuca se adapta a 'all areas east of the Great Plains', ao noroeste do Pacífico e ao Intermountain: fora da lista ela sobrevive, mas não é o pasto dominante e os números não foram conferidos.",
     "agua (cálculo): não achei consumo anual publicado da festuca em pasto no Missouri ou no Kentucky. A conta usa o ano todo (1/jan-31/dez), com o Kc genérico de pastagem e fases por convenção do time (repouso até 14/mar; rebrota até 14/abr; pastejo até 15/nov). Resolveria: medição por balanço de energia ou covariância de vórtices em pasto de festuca (ex.: USDA-ARS em Booneville-AR ou Univ. of Missouri). A chuva anual mediana do POWER (1008 mm em Columbia; 1246 mm em Lexington) fica perto ou acima do consumo; no verão há 'verão lento' (summer slump) e déficit em anos secos.",
     "Kc: a Tab. 12 do FAO-56 não tem linha de festuca em pasto; usei a categoria 'Grazing Pasture - Rotated Grazing' (proxy, como no Brasil) com Kc médio no ponto médio 0,95 (a ETo de referência da UC é a própria festuca bem irrigada, Kc ~1). Em pastejo contínuo e baixo (Extensive Grazing) o FAO dá 0,30/0,75/0,75.",
     "temp_base_c = 4 °C (NRCS: cresce com o solo a 40 °F; câmara: 4,25 °C em 'Falcon V', cultivar de gramado). A NDSU usa 0 °C (32 °F) para gramíneas de clima frio em geral, e um estudo de 2006 (Grass and Forage Science, festuca e azevém) conta o filocrono acima de 0 °C (visto só em resultado de busca). Não muda nenhum filtro (perene, regra 14).",
@@ -371,15 +422,17 @@
     "regua: palhada, C/N e k SEM DADO (aporte_biomassa e cobertura_solo vazios = 'não sei'). Na conversão de pasto de festuca em lavoura (dessecação antes do milho ou da soja em plantio direto) a massa de palha depende do manejo; não achei medição americana dessa massa nem da decomposição. A produção anual (2-4 t curtas/acre = 4,5-9,0 t/ha, AGR-59) é colhida pelo gado ou pelo feno e não é palhada.",
     "regua: digestibilidade 69,7% = média das três estações da Tab. 3 do AGR-59 ('Digestible Dry Matter', método e n não informados; tratada como estimada); a Mississippi State dá 69-74%. A mesma publicação cita IVDMD de 58,1% (primavera) e 56,2% (outono) para Kentucky 31 sem endófito (dados de Iowa, 1988): com esse número a classe cairia para 'medio'. A PB de 19,7% é de folhas verdes (Tab. 3); a planta inteira em pasto fica em 12-15% (Mississippi State). Resolveria: NASEM 2016/2021 (tabela de alimentos, festuca fresca) ou Dairy One por estação.",
     "codigo_nass vazio: o NASS não estima pasto por espécie. A festuca enfardada cai em 'Other Hay' (HAY, (EXCL ALFALFA) no QuickStats), que mistura todas as gramíneas e misturas (trevo-timothy, bermuda, campo nativo, cereais); não serve para a festuca. calendario_usda vazio: o relatório de 2010 só tem datas de colheita de 'Other Hay' (Kentucky 15/mai-10/out; Missouri 17/mai-5/ago), não do pasto.",
-    "Janela de semeadura (08-15 a 10-15) é a da implantação do pasto (AGR-59, 'Primary seeding date'); há uma janela secundária de 1/fev a 15/abr. Não é cobertura: tipo_manejo e condicao_semeadura ficam vazios. Não incluí 'cobertura' em tipos para o motor não sugerir a festuca entre duas safras de grão."
+    "Janela de semeadura (08-15 a 10-15) é a da implantação do pasto (AGR-59, 'Primary seeding date'); há uma janela secundária de 1/fev a 15/abr. Não é cobertura: tipo_manejo e condicao_semeadura ficam vazios. Não incluí 'cobertura' em tipos para o motor não sugerir a festuca entre duas safras de grão.",
+    "MANEJO (referência, fora das colunas; o motor não usa). Pastejo rotacionado da festuca no Kentucky (UK ID-143, Rotational Grazing, rev. 2011, Tab. 6, guia tirado do Forage Pocket Guide de Ball, Lacefield & Hoveland 1999): entrar com o gado quando o pasto tiver 4 a 8 polegadas (10-20 cm), tirar com 2 a 3 polegadas (5-8 cm) e dar 15 a 30 dias de descanso; a Tab. 5 diz que o descanso vai de 10 dias ou menos nas gramíneas em crescimento rápido a 30 dias ou mais no crescimento lento. O UK AGR-59 pede manter 3 a 4 polegadas (8-10 cm) na primavera e no verão. Por estação (Missouri): Eric Bailey, especialista de bovinos de corte da MU Extension, coluna na revista Progressive Cattle (9/mai/2022, não é publicação revisada), mira no mínimo três semanas de descanso na primavera e o dobro (cerca de seis semanas) no verão e no outono. Soma térmica (graus-dia) por corte ou por pastejo da festuca: sem fonte. Resolveria: Missouri Grazing Manual (MU M157) ou o guia de pastejo de leite da MU (M181), que deram 403."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
-    "contagem": 5,
+    "contagem": 6,
     "colunas": [
       "agua_ciclo_mm_min",
       "agua_ciclo_mm_max",
       "kc_inicial",
+      "kc_medio",
       "kc_final",
       "profundidade_raiz_m"
     ]
