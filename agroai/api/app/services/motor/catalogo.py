@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 from app.core.caminhos import RAIZ_REPO
+from app.services import catalogo as base
 from app.services.motor.parametros import ARRANJOS_DE_CONSORCIO, PALHADA_ALTA_T_HA, PALHADA_MEDIA_T_HA
 
 log = logging.getLogger(__name__)
@@ -71,7 +72,11 @@ class ArranjoRegional:
 
 @dataclass(frozen=True)
 class CulturaMotor:
-    """Uma linha do catálogo. Célula vazia vira None (nunca 0)."""
+    """Uma linha do catálogo. Célula vazia vira None (nunca 0).
+
+    `nome` é o nome que o produtor vê: o de agroai/base/culturas.json (sem o "(inglês)" do CSV). O nome da linha do CSV
+    fica em `nome_base`. Cultura que não está no JSON mantém o nome do CSV nos dois.
+    """
 
     id: str
     pais: str
@@ -106,6 +111,7 @@ class CulturaMotor:
     nome_zarc: str | None = None  # só BR
     codigo_nass: str | None = None  # só US
     calendario_usda: str | None = None  # só US
+    nome_base: str | None = None  # coluna `nome` do CSV, como veio
     estados_validos: tuple[str, ...] = ()  # siglas (UF no BR, USPS nos EUA); vazio = sem restrição (regra 13)
     semeadura_inicio: MesDia | None = None  # janela de semeadura na região de referência (regra 12)
     semeadura_fim: MesDia | None = None
@@ -128,6 +134,11 @@ class CulturaMotor:
     tmin_dias_seguidos: int | None = None  # vazio = 1 dia
     tmin_efeito: str | None = None  # elimina | aviso; vazio = elimina
     extras: dict[str, str] = field(default_factory=dict, compare=False)  # colunas novas do CSV, sem tipo
+
+    @property
+    def dias_seguidos_de_frio(self) -> int:
+        """Dias seguidos com Tmin abaixo do limiar para o dano (regra 17): vazio = 1 dia."""
+        return max(1, round(self.tmin_dias_seguidos or 1))
 
     def tem_tipo(self, tipo: str) -> bool:
         return tipo in self.tipos
@@ -296,9 +307,13 @@ def _linha_para_cultura(linha: dict[str, str], pais: str, regua: dict[str, Any] 
     valores |= {c: _booleano(linha.get(c)) for c in CAMPOS_BOOLEANOS}
     valores |= {c: _texto(linha.get(c)) for c in CAMPOS_TEXTO}
     valores |= {c: _mes_dia(linha.get(c), f"{contexto}, {c}") for c in CAMPOS_MES_DIA}
+    nome_base = valores["nome"]
+    if id_ in (exibicao := base.culturas()):
+        valores["nome"] = base.nome_exibicao(exibicao[id_], "pt")  # o mesmo nome que a rota mostra
     return CulturaMotor(
         id=id_,
         pais=pais,
+        nome_base=nome_base,
         tipos=_lista(linha.get("tipos")),
         fontes=_lista(linha.get("fontes")),
         estados_validos=tuple(e.upper() for e in _lista(linha.get("estados_validos"))),

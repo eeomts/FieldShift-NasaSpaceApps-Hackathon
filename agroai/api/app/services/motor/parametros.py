@@ -31,14 +31,33 @@ GEADA_MIN_DIAS_NO_ANO = 1  # o ano conta se algum mês da fase sensível teve pe
 GEADA_FASE_SENSIVEL = "terco_medio"  # ok como reserva para cultura sem tmin_critica_c (FAO Frost protection, Tab. 4.5; FAO-56 cap. 6); a regra 17 substitui quando houver limiar
 
 # Fases do ciclo em dias (regra 17 do README do catálogo; decisões do usuário em 15/11)
-DIA_DA_SEMEADURA = 15  # a semeadura é no dia 15 do mês de início do item
+DIA_DA_SEMEADURA = 15  # a semeadura é no dia 15 do mês de início do item (proposta, validar com o Yury)
+
 # Frio por cultura (regra 17): com tmin_critica_c, a fase e os dias seguidos vêm do catálogo; > 30 % dos anos = GEADA_MAX_FRACAO_DE_ANOS
+FRIO_MIN_ANOS_COM_DADO = 25  # proposta, validar com o Yury: com menos anos de fase completa (dos 30) o frio não decide, vira lacuna
+# Fase sensível ao frio, como aparece na frase e na lacuna do frio. Sem jargão. As chaves são as fases aceitas por
+# data/catalogo/scripts/montar_csv.py (FASES_FRIO); um teste confere.
+FASES_FRIO_TEXTO = {
+    "emergencia": "na emergência das plantas",
+    "vegetativo": "no crescimento das plantas",
+    "floracao": "na florada",
+    "enchimento_grao": "no enchimento dos grãos",
+    "ciclo_todo": "em todo o ciclo",
+}
+FASE_FRIO_PADRAO = "na fase sensível"  # fase com nome que ainda não conhecemos
+FASE_FRIO_PERENE = "ao longo do ano"  # perene: o ano todo
 
 # Calor na fase sensível (regra 11 revista; decisão do usuário em 15/11, validar com o Yury): só avisa, nunca elimina
 CALOR_MAX_FRACAO_DE_ANOS = 0.30  # acima de 30 % dos anos com a sequência de dias quentes
 CALOR_DIAS_SEGUIDOS = 3  # o ano conta com 3 dias seguidos de máxima acima de tmax_critica_c
 CALOR_FASE_INICIO_FRAC = 1 / 3  # fase = terço do meio do ciclo, em dias a partir da semeadura (perene: o ano todo)
 CALOR_FASE_FIM_FRAC = 2 / 3
+
+# Mês por extenso (frases da regra 12 com o mês da colheita)
+MESES_POR_EXTENSO = (
+    "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+    "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+)  # fmt: skip
 
 # Pesos das prioridades (decisão do usuário, 15/11)
 PESOS_PRIORIDADE = (0.5, 0.3, 0.2)  # 1ª, 2ª e 3ª escolha, reescalados para sobrar PESO_NAO_ESCOLHIDO aos demais

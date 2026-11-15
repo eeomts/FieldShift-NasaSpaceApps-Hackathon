@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # AppEEARS no Field Shift Brasil
 
 Complemento à *Documentação do Projeto* e ao *Banco de Dados NASA*. Explica por que usar o AppEEARS, como ele entra na ferramenta e o que muda para o produtor, com um caso hipotético que mostra a equipe montando os dados de um talhão na borda da Amazônia.

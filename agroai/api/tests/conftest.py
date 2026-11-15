@@ -11,12 +11,32 @@ os.environ["GEMINI_API_KEY"] = ""  # vazio vence o .env (o pop deixava a chave r
 
 import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
-from sqlalchemy import text  # noqa: E402
+from sqlalchemy import create_engine, text  # noqa: E402
+from sqlalchemy.pool import NullPool  # noqa: E402
 
+from app.core.config import get_settings  # noqa: E402
 from app.core.db import get_engine  # noqa: E402
 from app.main import app  # noqa: E402
 
 assert os.environ["DB_HOST"] in ("127.0.0.1", "localhost"), "testes só rodam em banco local"
+
+
+CHAVE_TRAVA_BANCO = 7_150_126  # qualquer inteiro fixo: todo processo de pytest usa o mesmo
+
+
+@pytest.fixture(scope="session", autouse=True)
+def trava_do_banco():
+    """Um segundo pytest espera o primeiro terminar: sem isto, os dois truncam o mesmo banco ao mesmo tempo.
+
+    A trava fica numa conexão só dela (sem pool). Se o processo morrer, o Postgres solta a trava ao fechar a conexão."""
+    engine = create_engine(get_settings().database_url, poolclass=NullPool)
+    with engine.connect().execution_options(isolation_level="AUTOCOMMIT") as c:
+        c.execute(text("SELECT pg_advisory_lock(:k)"), {"k": CHAVE_TRAVA_BANCO})
+        try:
+            yield
+        finally:
+            c.execute(text("SELECT pg_advisory_unlock(:k)"), {"k": CHAVE_TRAVA_BANCO})
+    engine.dispose()
 
 
 @pytest.fixture(autouse=True)

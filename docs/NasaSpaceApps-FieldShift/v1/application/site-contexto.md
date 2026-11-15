@@ -15,6 +15,8 @@
 > | `tools/NASA_HARVEST_PORTAL_*.md` | API e MCP do NASA Harvest Portal (dados de mercado por país) |
 > | `application/DOR-DO-AGRICULTOR-E-CASO-DE-USO.md` | Dor do produtor e persona Dona Marta |
 >
+> **Atualização de 15/11/2026, dados usados:** o app usa **NASA POWER** (clima), **SRTM** (relevo), **SoilGrids** (solo) e a **Open-Meteo** (previsão). A **umidade do solo (SMAP, GLDAS)**, o **NDVI (MODIS, VIIRS, HLS)** e a chuva de satélite (GPM IMERG) **ficaram fora desta versão**, e o **AppEEARS foi descartado** (ver D-009 em `DECISOES.md`). Onde este documento cita esses dados, ele descreve o plano original, não o que o app faz hoje.
+>
 > Marcadores: **[decidir]** = equipe ainda não definiu · **[verificar]** = confirmar em fonte oficial antes de virar código.
 
 ---
@@ -37,7 +39,7 @@
 
 O **AgroAI** é um site em que o produtor:
 1. **Faz login e responde o questionário da fazenda** (`ONBOARDING.md`): local, o que planta e quando, o que sabe do solo, perdas que já teve e prioridades.
-2. **Acessa o Dashboard**: informações da região dele, atualizadas diariamente com dados da NASA. Inclui previsão do tempo, condição do solo, saúde da lavoura, alertas e a comparação de estratégias de rotação.
+2. **Acessa o Dashboard**: informações da região dele, atualizadas diariamente com dados da NASA. Inclui previsão do tempo, condição do solo, alertas e a comparação de estratégias de rotação.
 3. **Conversa com a AgroAI**: um assistente (Gemini) que conhece a fazenda dele (perfil, indicadores do dia e base de conhecimento) e responde em linguagem simples, citando a fonte de cada dado.
 
 **Duas abas principais:** `Dashboard` e `AgroAI`.
@@ -132,8 +134,8 @@ Cada card tem: valor principal em frase simples · mini gráfico (se fizer senti
 |---|---|---|---|---|
 | 1 | **Previsão do tempo** | 7 dias: máx/mín, chuva, vento; dias de risco destacados | **Open-Meteo** (não é NASA; global, gratuito, sem chave). Ver 5.3 | Várias vezes por dia |
 | 2 | **Clima recente vs. normal** | Últimos 30 dias de chuva e temperatura vs. média histórica | **NASA POWER** (diário desde 1981) | Diário, com **2 a 7 dias de atraso** (`tools/NASA_POWER.md`) |
-| 3 | **Umidade do solo** | Superfície e zona das raízes vs. normal (anomalia) | **SMAP L4** (9 km, 3-horário) e NASA POWER `GWETTOP/GWETROOT` como reserva | Poucos dias de atraso (`tools/SMAP_L4.md`) |
-| 4 | **Saúde da lavoura** | NDVI do ponto no ano vs. anos anteriores; **períodos de solo descoberto** marcados | **MODIS MOD13Q1** (250 m, 16 dias) via AppEEARS; HLS (30 m) opcional | A cada 16 dias (MODIS) |
+| 3 | **Umidade do solo (fora desta versão: SMAP não é usado)** | Superfície e zona das raízes vs. normal (anomalia) | **SMAP L4** (9 km, 3-horário) e NASA POWER `GWETTOP/GWETROOT` como reserva | Poucos dias de atraso (`tools/SMAP_L4.md`) |
+| 4 | **Saúde da lavoura (fora desta versão: NDVI não é usado)** | NDVI do ponto no ano vs. anos anteriores; **períodos de solo descoberto** marcados | **MODIS MOD13Q1** (250 m, 16 dias) via AppEEARS; HLS (30 m) opcional | A cada 16 dias (MODIS) |
 | 5 | **Fique de olho** | Alertas de geada, calor, chuva forte, seca e erosão, ligados à fase da cultura | Regras (5.4) sobre previsão + POWER + SMAP + perfil | Diário |
 | 6 | **Seu solo** | Textura, carbono orgânico, pH. Mostra lado a lado o que o produtor informou e o modelo | **SoilGrids** (250 m) + onboarding | Estático |
 | 7 | **Relevo e erosão** | Declividade do ponto e vizinhança; risco com chuva forte | **SRTM** (30 m) + chuva (POWER/IMERG) + resposta 7/16 do onboarding | Estático + mensal |
@@ -146,7 +148,7 @@ Cada card tem: valor principal em frase simples · mini gráfico (se fizer senti
 ### 5.3 "Atualizado diariamente com a NASA": o que é verdade
 - **A NASA não oferece previsão do tempo simples.** Os dados NASA são de **observação** e chegam com atraso: POWER leva 2 a 7 dias e o **IMERG Final leva cerca de 3,5 meses**. Para chuva recente, usar **IMERG Late/Early** (`tools/GPM_IMERG.md`). A **previsão vem do Open-Meteo**, e a tela diz isso: *"Previsão: Open-Meteo · Histórico, solo e vegetação: NASA"*.
 - **O job roda todo dia**, mas cada card mostra a **data real do dado**, não a do processamento.
-- **Demo:** pré-processar e guardar em cache as fazendas de demonstração. AppEEARS é assíncrono e pode demorar.
+- **Demo:** pré-processar e guardar em cache as fazendas de demonstração (`python -m app.cli.clima demo`). O AppEEARS foi descartado em 15/11/2026.
 
 ### 5.4 Regras de alerta (versão inicial)
 Limiares de partida, a ajustar por cultura pela base de culturas **[verificar com fonte agronômica]**.

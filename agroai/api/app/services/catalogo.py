@@ -74,6 +74,17 @@ def alternativas(item_id: str, texto_original: str) -> list[str]:
     return list(ambiguo["alternativas"])
 
 
+def atributos_no_pais(cultura_id: str, pais: str) -> dict:
+    """`perene` e `tipos` da cultura no país (BR ou US): o bloco `por_pais` do culturas.json; sem bloco, o padrão global.
+
+    O bloco usa o vocabulário do CSV do país (com comercial e forrageira) e é o que o chat mostra. GET /culturas e a
+    interpretação do onboarding seguem com o padrão global.
+    """
+    item = culturas()[cultura_id]
+    fonte = (item.get("por_pais") or {}).get(pais) or item
+    return {"perene": bool(fonte["perene"]), "tipos": list(fonte["tipos"])}
+
+
 def listar_culturas(idioma: str = "pt") -> list[dict]:
     """Culturas para a lista reserva do onboarding (quando a IA não está disponível)."""
     return [

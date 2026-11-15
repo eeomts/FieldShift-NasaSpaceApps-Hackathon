@@ -1,9 +1,9 @@
 # 01 — Pontos da demo
 
-**Dono:** Pessoa 2 · **Status:** em revisão (falta o time aprovar as regiões) · **Prioridade:** primeira (destrava o AppEEARS)
+**Dono:** Pessoa 2 · **Status:** em revisão (falta o time aprovar as regiões) · **Prioridade:** primeira (a parte do AppEEARS foi descartada em 15/11/2026)
 
 ## Por quê
-A apresentação mostra 2 ou 3 produtores concretos em regiões contrastantes, onde os mesmos dados levam a recomendações diferentes. Todos os dados lentos (NDVI, umidade) são pré-calculados para esses pontos.
+A apresentação mostra 2 ou 3 produtores concretos em regiões contrastantes, onde os mesmos dados levam a recomendações diferentes. Os dados lentos são pré-calculados para esses pontos (o NDVI e a umidade do solo ficaram fora desta versão: o AppEEARS foi descartado em 15/11/2026, ver D-009 em DECISOES.md).
 
 ## Saída: `data/demo/pontos_demo.csv` (o cabeçalho já existe)
 
@@ -30,4 +30,4 @@ A apresentação mostra 2 ou 3 produtores concretos em regiões contrastantes, o
 - [ ] O time aprovou as regiões.
 
 ## Desbloqueia
-03 (AppEEARS) e o pré-cálculo do backend.
+O pré-cálculo do backend (a 03, do AppEEARS, foi descartada em 15/11/2026).

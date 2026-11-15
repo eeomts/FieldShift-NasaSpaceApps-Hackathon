@@ -14,9 +14,9 @@
     "graus_dia_ciclo_min": "1560",
     "graus_dia_ciclo_max": "2270",
     "temp_base_c": "4",
-    "temp_otima_min_c": "20",
-    "temp_otima_max_c": "25",
-    "tmax_critica_c": "35",
+    "temp_otima_min_c": "",
+    "temp_otima_max_c": "",
+    "tmax_critica_c": "",
     "sensivel_geada": "true",
     "agua_ciclo_mm_min": "440",
     "agua_ciclo_mm_max": "560",
@@ -96,6 +96,18 @@
     "fase_frio_frac": {
       "tipo": "publicado",
       "nota": "Floração R4 a R6 pela Tab. 1 do A1995 (dias da semeadura, NDAWN): R4 aos 71 dias e R6 ('Flowering complete') aos 84 dias. Ciclo médio da linha (104 + 137) / 2 = 120,5: 71 / 120,5 = 0,59 e 84 / 120,5 = 0,70. Conferência nos ensaios A652: 'Days to Flower' 64 a 76 dias com maturação em 104 a 137 dias (ex.: Carrington 2025, N4H205 E, 70 e 115 dias = 0,61)."
+    },
+    "temp_otima_min_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano (decisão do usuário, revisão 15/11/2026, ponto A4: sem número dos EUA, o campo fica vazio). A fonte dos EUA da linha, NDSU Extension A1995 (2020), não traz temperatura ótima nem crítica de calor: só diz que temperatura alta no enchimento muda a proporção oleico/linoleico. O Brasil usa 20 °C (Embrapa), fonte brasileira, que não vale para a linha dos EUA."
+    },
+    "temp_otima_max_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano (decisão do usuário, revisão 15/11/2026, ponto A4: sem número dos EUA, o campo fica vazio). A fonte dos EUA da linha, NDSU Extension A1995 (2020), não traz temperatura ótima nem crítica de calor: só diz que temperatura alta no enchimento muda a proporção oleico/linoleico. O Brasil usa 25 °C (Embrapa, 'desenvolve-se bem entre 20 e 25 °C'), fonte brasileira, que não vale para a linha dos EUA. O NDAWN só diz que não há teto de graus-dia ('no upper limit has been identified for sunflower'), o que não é temperatura ótima."
+    },
+    "tmax_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano (decisão do usuário, revisão 15/11/2026, ponto A4: sem número dos EUA, o campo fica vazio). A fonte dos EUA da linha, NDSU Extension A1995 (2020), não traz temperatura ótima nem crítica de calor: só diz que temperatura alta no enchimento muda a proporção oleico/linoleico. O Brasil usa 35 °C, fonte brasileira, que não vale para a linha dos EUA. O único limiar de temperatura da NDSU para o girassol é o de frio (30 °F, ver tmin_critica_c)."
     }
   },
   "reuso_brasil": [
@@ -126,8 +138,8 @@
     {
       "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
       "valor_brasil": "20, 25, 35",
-      "decisao": "reusado",
-      "motivo": "Fisiologia da espécie. Não achei número de temperatura ótima ou crítica de calor na NDSU (o A1995 só diz que temperatura alta no enchimento muda a proporção oleico/linoleico)."
+      "decisao": "trocado",
+      "motivo": "Valores do Brasil (20, 25, 35) trocados por vazio em 15/11/2026 (revisão A4, decisão do usuário: sem número americano, o campo fica vazio). Não achei número de temperatura ótima ou crítica de calor na NDSU (o A1995 só diz que temperatura alta no enchimento muda a proporção oleico/linoleico)."
     },
     {
       "coluna": "sensivel_geada",
@@ -547,6 +559,12 @@
       "antes": "(vazio)",
       "depois": "floracao, 0.59, 0.70",
       "motivo": "REVISÃO 15/11 (dano por frio): R4 aos 71 dias e R6 aos 84 dias (NDSU A1995, Tab. 1) sobre o ciclo médio de 120,5 dias. Origem: publicado"
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
+      "antes": "20, 25, 35 (reusados do Brasil, sem bloco em origem)",
+      "depois": "vazios; origem vazio_nao_sei",
+      "motivo": "REVISÃO 15/11/2026 (2ª revisão projeto-dados, ponto A4; decisão do usuário: o número americano vence e, sem ele, o campo fica vazio). A NDSU A1995 não traz número para esses três campos; os valores eram só do Brasil. reuso_brasil (trocado), origem e pendências atualizados. confianca_parametros não muda (os três não são colunas do filtro)."
     }
   ],
   "pendencias": [
@@ -556,7 +574,7 @@
     "agua: CÁLCULO (Kc × ET0 do POWER), consumo com produtividade plena (sem déficit). A única fonte de ND é a média de 19 in (483 mm) do girassol IRRIGADO no sudeste do estado (NDSU A1995, que cita Ennen 1979); não há medida do girassol de sequeiro. A chuva mediana da estação no POWER (2001-2020) fica abaixo do mínimo de 440 mm em todos os locais de referência: Langdon 279, Carrington 291, Fargo 341-348 mm. Pela regra 1 do motor (15/11) isso não elimina o girassol, que é a cultura típica de sequeiro da região: marca 'água no limite' com o déficit estimado. O número não foi rebaixado para caber na chuva. Resolveria: ET medida de girassol de sequeiro em ND por híbrido ou local (NDAWN Crop Water Use; USDA-ARS Mandan ou Sidney-MT), incluindo a água do solo usada abaixo de 4 ft.",
     "temp_base_c = 4 (Brasil) contra 44 °F = 6,7 °C da NDSU/NDAWN. As somas térmicas desta linha já estão na Tb 4. Se o coordenador quiser a Tb americana, os cenários de girassol_gd.json podem ser refeitos trocando 'tb'.",
     "raiz_profunda = false segue o Brasil (a raiz não rompe camada compactada). A NDSU destaca a raiz profunda (efetiva ~4 ft, tira água e nitrato abaixo de 2 ft); se a coluna for usada como 'explora camadas profundas', rever.",
-    "temp_otima_min_c, temp_otima_max_c e tmax_critica_c: sem fonte americana; reusados do Brasil.",
+    "temp_otima_min_c, temp_otima_max_c e tmax_critica_c: VAZIOS desde 15/11/2026 (revisão A4, decisão do usuário: sem número americano, fica vazio; antes 20, 25 e 35 do Brasil). A NDSU A1995 não traz temperatura ótima nem crítica de calor. Sem tmax_critica_c o motor não avisa calor na floração do girassol. Resolveria: limiar de calor na floração ou faixa ótima de girassol oleícola em fonte dos EUA (NDSU, USDA-ARS Fargo ou Mandan ou National Sunflower Association).",
     "DECISÃO (revisão de 15/11, do arquiteto, aceita pelo usuário): a palhada fica a massa medida em Mandan-ND (van Donk et al. 2008), típico 5,6 t/ha, faixa 3,6-8,5, classe 'medio'. A regra 6 do motor só escala a palhada pelo IPCC na soja, no milho, no trigo, no arroz e no sorgo; nas demais culturas vale o típico do bloco regua. O método razão × NASS (3,84 × mediana de 2,13 t/ha = 8,2 t/ha, classe 'alto') fica só como conferência em regua.observacoes.coleta. Continua fraco: C/N, k, PB e digestibilidade são PROXY (Brasil e Feedipedia), sem dado dos EUA; o k do WEPS (0,025) é por dia de decomposição ótimo, não por dia de calendário.",
     "calendario_usda: 'Sunflower, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Oleícola e confeiteiro juntos ('Sunflower, all').",
     "semeadura_inicio/fim (05-19 a 06-08) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 14/mai, fim 15/jun), oleícola e confeiteiro juntos. Bate com cenarios/girassol_gd.json (semeaduras de 19/mai a 6/jun).",

@@ -14,9 +14,9 @@
     "graus_dia_ciclo_min": "1270",
     "graus_dia_ciclo_max": "1590",
     "temp_base_c": "15",
-    "temp_otima_min_c": "20",
-    "temp_otima_max_c": "30",
-    "tmax_critica_c": "38",
+    "temp_otima_min_c": "",
+    "temp_otima_max_c": "34",
+    "tmax_critica_c": "",
     "sensivel_geada": "true",
     "agua_ciclo_mm_min": "420",
     "agua_ciclo_mm_max": "690",
@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "COTTON, UPLAND",
     "calendario_usda": "Cotton, all",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, All Cotton (janela de semeadura e colheita GA/TX)|Texas A&M AgriLife Extension, Crop Management Newsletter Dawson/Lynn Counties (Doederlein), tabela de dias e heat units do algodão no High Plains (130-160 dias e 2200 DD60 até 'harvest ready')|Ritchie, Bednarz, Jost & Brown, UGA Bulletin 1252 Cotton Growth and Development, rev. 2007 (DD60 e dias em Tifton)|UGA, 2021 Georgia Cotton Production Guide (DD-60 2500-2700 e 140-160 dias até a colheita; teto 93 °F; UGA Checkbook de água)|Plains Cotton Growers / PhytoGen (Lege), When Should We Plant Cotton?, 2023 (janela de semeadura em Lubbock; data final do seguro)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/algodao_gd.json (DD60 da fonte convertido para Tb 15 sem teto na régua do NASA POWER)|Porter, Texas A&M AgriLife Extension, Irrigation Management Decisions 2022, Lubbock (27 in de demanda plena)|Howell, Evett, Tolk & Schneider, Evapotranspiration of full-, deficit-irrigated and dryland cotton on the northern Texas High Plains, USCID/EWRI 2002 (ET medida em lisímetro, conferência; Peng et al. 1989 por citação secundária)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/algodao_etc.json|Peabody et al., Texas J. Agric. Nat. Resour. 15, 2002 (geada no High Plains)|FAO-56 Tab.11, Tab.12 (Kc) e Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade de pluma GA/TX 2023-2025)|USDA-ARS WEPS, arquivo de cultura NRCS 'Cotton, stripper' (razão resíduo:pluma 2,6 do RUSLE, citação secundária)|Lachnicht et al., Applied Soil Ecology 27:135-142, 2004 (decomposição de restos de algodão no inverno; só o resumo)|Feedipedia, Cotton straw (PB e DMO; valores pontuais)|Beck, OSU Cow-Calf Corner, Cotton Stalk Residue as a Winter Feed Resource, 2022 (pastejo de restos na Geórgia; via Oklahoma Farm Report)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Lange & Hake, Cotton Physiology Today 2(7), National Cotton Council, jun. 1991 (geada só queima folha; congelamento do ar abaixo de 32 °F por várias horas para a abertura e apodrece o capulho imaturo)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, All Cotton (janela de semeadura e colheita GA/TX)|Texas A&M AgriLife Extension, Crop Management Newsletter Dawson/Lynn Counties (Doederlein), tabela de dias e heat units do algodão no High Plains (130-160 dias e 2200 DD60 até 'harvest ready')|Ritchie, Bednarz, Jost & Brown, UGA Bulletin 1252 Cotton Growth and Development, rev. 2007 (DD60 e dias em Tifton)|UGA, 2021 Georgia Cotton Production Guide (DD-60 2500-2700 e 140-160 dias até a colheita; teto 93 °F = temp_otima_max_c 34; UGA Checkbook de água)|Plains Cotton Growers / PhytoGen (Lege), When Should We Plant Cotton?, 2023 (janela de semeadura em Lubbock; data final do seguro)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/algodao_gd.json (DD60 da fonte convertido para Tb 15 sem teto na régua do NASA POWER)|Porter, Texas A&M AgriLife Extension, Irrigation Management Decisions 2022, Lubbock (27 in de demanda plena)|Howell, Evett, Tolk & Schneider, Evapotranspiration of full-, deficit-irrigated and dryland cotton on the northern Texas High Plains, USCID/EWRI 2002 (ET medida em lisímetro, conferência; Peng et al. 1989 por citação secundária)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/algodao_etc.json|Peabody et al., Texas J. Agric. Nat. Resour. 15, 2002 (geada no High Plains)|FAO-56 Tab.11, Tab.12 (Kc) e Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade de pluma GA/TX 2023-2025)|USDA-ARS WEPS, arquivo de cultura NRCS 'Cotton, stripper' (razão resíduo:pluma 2,6 do RUSLE, citação secundária)|Lachnicht et al., Applied Soil Ecology 27:135-142, 2004 (decomposição de restos de algodão no inverno; só o resumo)|Feedipedia, Cotton straw (PB e DMO; valores pontuais)|Beck, OSU Cow-Calf Corner, Cotton Stalk Residue as a Winter Feed Resource, 2022 (pastejo de restos na Geórgia; via Oklahoma Farm Report)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Lange & Hake, Cotton Physiology Today 2(7), National Cotton Council, jun. 1991 (geada só queima folha; congelamento do ar abaixo de 32 °F por várias horas para a abertura e apodrece o capulho imaturo)",
     "confianca_parametros": "media",
     "semeadura_inicio": "04-08",
     "semeadura_fim": "06-07",
@@ -87,6 +87,18 @@
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Cotton 1,0-1,7 m; limite superior (sequeiro, solo sem impedimento). Igual ao Brasil. Em Bushland, Howell et al. 2002 tratam 2,0 m como o limite da extração de água no Pullman."
     },
+    "temp_otima_min_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano para o ótimo mínimo (revisão A4, 15/11/2026: sem número dos EUA, o campo fica vazio). O 20 °C do Brasil saiu. O 60 °F do DD60 (Ritchie et al., UGA B1252) é a temperatura mínima de crescimento (Tb), não o início da faixa ótima."
+    },
+    "temp_otima_max_c": {
+      "tipo": "publicado",
+      "nota": "Teto do cálculo de graus-dia da fonte (decisão do usuário, 15/11/2026, A4/NOVO-3: o teto americano vale como temp_otima_max_c). UGA, 2021 Georgia Cotton Production Guide: 'Temperatures above 93o F should be entered in the formula at only 93o F since growth probably does not increase at higher temperatures'. (93 - 32)/1,8 = 33,9 -> 34 °C. É o limite acima do qual a fonte para de somar graus-dia, não uma temperatura de dano."
+    },
+    "tmax_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano de dano por calor numa fase sensível (revisão A4, 15/11/2026: sem número dos EUA, o campo fica vazio). O 38 °C do Brasil saiu. Os 93 °F da UGA são o teto do cálculo de graus-dia (já usado em temp_otima_max_c), não dano."
+    },
     "tmin_critica_c": {
       "tipo": "publicado",
       "nota": "National Cotton Council, Cotton Physiology Today (1991), texto dos especialistas de extensão do Mid-South: congelamento quando o AR fica abaixo de 32 °F (0 °C) por várias horas para a abertura dos capulhos e faz o capulho imaturo apodrecer; a geada de 36 °F (2 °C) só queima folha, com pouco dano ao capulho, e não conta. 32 °F = 0 °C. Temperatura do ar ('air temperature'), comparável à mínima do abrigo. Coerente com Peabody et al. (2002): no High Plains o algodão precisa amadurecer antes do congelamento de meados de outubro."
@@ -116,10 +128,22 @@
       "motivo": "DD60 americano = Tb 15,6 °C. Mantida 15 (decisão do README dos EUA); graus-dia convertidos no POWER."
     },
     {
-      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
-      "valor_brasil": "20, 30, 38",
-      "decisao": "conferido e mantido",
-      "motivo": "A UGA (2021) limita a Tmax do DD60 em 93 °F (33,9 °C), 'since growth probably does not increase at higher temperatures', acima do ótimo máximo de 30 °C do Brasil. Não achei fonte americana para 20 °C nem para 38 °C; mantidos do Brasil."
+      "coluna": "temp_otima_min_c",
+      "valor_brasil": "20",
+      "decisao": "trocado",
+      "motivo": "Revisão A4 (15/11/2026), decisão do usuário: sem número americano, o campo fica vazio (não sei). Não achei fonte dos EUA para o ótimo mínimo; o 60 °F do DD60 é a Tb."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "valor_brasil": "30",
+      "decisao": "trocado",
+      "motivo": "Revisão A4/NOVO-3 (15/11/2026), decisão do usuário: o teto do cálculo de graus-dia da fonte americana vale como temp_otima_max_c. UGA 2021: 93 °F, 'since growth probably does not increase at higher temperatures'; (93 - 32)/1,8 = 33,9 -> 34."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "valor_brasil": "38",
+      "decisao": "trocado",
+      "motivo": "Revisão A4 (15/11/2026), decisão do usuário: sem número americano de dano por calor, o campo fica vazio (não sei). O 93 °F da UGA é o teto do cálculo de graus-dia, não dano."
     },
     {
       "coluna": "sensivel_geada",
@@ -196,7 +220,7 @@
         "graus_dia_ciclo_max",
         "temp_otima_max_c"
       ],
-      "fonte": "University of Georgia, 2021 Georgia Cotton Production Guide, seção Plant and Fiber Development (cópia do escritório de extensão de Colquitt County)",
+      "fonte": "University of Georgia, 2021 Georgia Cotton Production Guide, seção Plant and Fiber Development (cópia do escritório de extensão de Colquitt County). Teto de 93 °F = temp_otima_max_c: (93 - 32)/1,8 = 33,9 -> 34 °C",
       "url": "https://site.extension.uga.edu/colquittag/files/2021/03/2021-Cotton-Production-Guide-final.pdf",
       "trecho": "Temperatures above 93o F should be entered in the formula at only 93o F since growth probably does not increase at higher temperatures. [...] First open boll 2150 115 to 120 [...] Harvest 2500 to 2700 140 to 160"
     },
@@ -499,6 +523,18 @@
       "antes": "(vazio)",
       "depois": "enchimento_grao, 0.41, 1.00",
       "motivo": "REVISÃO 15/11 (dano por frio): da primeira flor (59 dias, UGA B1252) ao fim do ciclo; 59 / 145 = 0,41. Origem: publicado"
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "30",
+      "depois": "34",
+      "motivo": "15/11/2026, revisão 'projeto-dados 15_11_26' (A4/NOVO-3), decisão do usuário: o teto do cálculo de graus-dia da fonte americana vale como temp_otima_max_c. UGA 2021 Georgia Cotton Production Guide, 93 °F: (93 - 32)/1,8 = 33,9 -> 34. Origem: publicado."
+    },
+    {
+      "coluna": "temp_otima_min_c, tmax_critica_c",
+      "antes": "20, 38",
+      "depois": "(vazio), (vazio)",
+      "motivo": "15/11/2026, revisão 'projeto-dados 15_11_26' (A4), decisão do usuário: quando não há número americano, o campo fica vazio (não sei). Os valores eram do Brasil. Origem: vazio_nao_sei; reuso_brasil separado por coluna, decisão 'trocado'."
     }
   ],
   "pendencias": [
@@ -509,7 +545,7 @@
     "graus_dia: o POWER em Tifton soma 3% mais DD60 que a média histórica de Tifton (1928-2003) nos mesmos 140 dias (1492 contra 1444); o Texas não tem conferência equivalente.",
     "agua: valores publicados de extensão (UGA Checkbook 16,6 in; Texas A&M 27 in). O Kc x ET0 do POWER dá 39% mais em Tifton e 22% mais em Lubbock, e 33-36% mais que o lisímetro de Bushland nos mesmos anos: se o motor calcular a água no local com o POWER, a demanda do algodão no High Plains sai inflada. Recomendo testar o POWER contra o lisímetro de Bushland antes de confiar no cálculo local no oeste do Texas.",
     "agua_min (420) é da Geórgia, onde o sequeiro recebe ~535 mm de chuva no ciclo (POWER); em Lubbock a chuva do ciclo é ~315 mm (POWER) e o algodão de sequeiro vive da água guardada no solo. Com a regra 'abaixo do mínimo elimina', o motor pode eliminar algodão de sequeiro em Lubbock; o mínimo 'para colher algo' do Texas é 13 in (330 mm).",
-    "tmax_critica_c = 38 e temp_otima_min_c = 20 sem fonte americana (mantidos do Brasil). A UGA limita a Tmax do DD60 em 93 °F (33,9 °C).",
+    "TEMPERATURAS (15/11/2026, A4/NOVO-3): temp_otima_max_c 34 = teto do cálculo de graus-dia da UGA (93 °F), por decisão do usuário; não é medida de crescimento máximo nem de dano. Conferência: a K-State MF3740 (2026, Tab. 1, culturas do Kansas) dá Tupper de 95 °F (35 °C) para 'Cotton (Upland)' (https://bookstore.ksre.ksu.edu/download/understanding-growing-degree-days_MF3740, trecho 'Cotton (Upland) 60 95'); não usado, a linha segue a UGA. temp_otima_min_c e tmax_critica_c ficaram VAZIOS (sem número americano; os 20 e 38 °C do Brasil saíram). Resolveria: publicação da extensão ou do USDA-ARS dos EUA com a temperatura de dano ao pólen ou de queda de capulhos/maçãs na floração do algodão (em °F) e com a faixa ótima de crescimento.",
     "regua: razão resíduo:pluma 2,6 lida por citação secundária (nota do arquivo do WEPS); conferir no banco do RUSLE2. A produtividade do Texas é do estado todo. C/N estimada (sem medida nos EUA). Decomposição de um estudo, lido só no resumo (local não informado no resumo). Digestibilidade com n = 1 (Feedipedia).",
     "calendario_usda: 'Cotton, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). O Handbook não separa o upland ('Cotton, all').",
     "semeadura_inicio/fim (04-08 a 06-07) = 'most active' do Handbook 628 (2010) no Texas, a região de referência principal (início 22/mar, fim 20/jun). É o estado inteiro: inclui o sul do Texas (março-abril); em Lubbock a semeadura é em maio-junho. A janela do sul da Geórgia ('most active' 2/mai-31/mai; início 23/abr, fim 11/jun; linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv) está em regua.arranjos.georgia (15/11, decisão do usuário, M-06). Conferência com cenarios/algodao_gd.json (graus-dia e ciclo NÃO mudados): Lubbock 15/mai e 1/jun dentro da janela do Texas; Tifton 1/mai fica 1 dia antes do 'most active' da Geórgia (dentro do início de 23/abr). O motor ainda não lê regua.arranjos nem a janela dos grãos: hoje nenhuma das duas janelas filtra Tifton; quando o motor passar a ler, Tifton deve usar a da Geórgia.",

@@ -35,10 +35,11 @@ entrada em evidencias e origem); janela de
 semeadura obrigatória nas coberturas (sem `comercial`); lacuna_informacao e
 risco_revisao_local obrigatórios com confiança `baixa`.
 
-Avisos (não impedem gravar): `perene` e o vocabulário de `tipos` que o culturas.json
-e o CSV têm em comum (cobertura, fixadora_n, raiz_profunda, tolerante_seca) divergem
-no mesmo id. O JSON guarda um valor por id e o CSV um por país; qual vale é decisão
-do dono do dado.
+Conferência por país (é PROBLEMA, não aviso): todo id do CSV precisa ter bloco
+`por_pais.<BR|US>` no agroai/base/culturas.json, com `perene` e o conjunto de `tipos`
+iguais aos do CSV (vocabulário completo, com comercial e forrageira). O CSV é o que o
+motor lê; o bloco é o que o chat lê; o `perene`/`tipos` global do JSON é o padrão do
+calendário, do onboarding e de GET /culturas e pode diferir sem aviso.
 """
 import argparse
 import csv
@@ -54,8 +55,6 @@ EXTRAS = ["codigo_nass", "calendario_usda"]
 # Ordem das linhas do culturas.csv do Brasil (a histórica do arquivo). Id fora da lista vai ao fim, em ordem alfabética.
 ORDEM_BR = ["soja", "milho", "feijao", "trigo", "arroz", "algodao", "mandioca", "sorgo", "milheto", "feijao_caupi",
             "girassol", "crotalaria", "nabo_forrageiro", "aveia", "guandu", "pastagem", "arroz_irrigado"]
-# Vocabulário de `tipos` que o culturas.json e o CSV têm em comum (o CSV ainda tem comercial e forrageira).
-TIPOS_COMUNS = ["cobertura", "fixadora_n", "raiz_profunda", "tolerante_seca"]
 FIXAS = {"id", "nome", "nome_cientifico", "familia_botanica"}
 NUM = ["ciclo_dias_min", "ciclo_dias_max", "graus_dia_ciclo_min", "graus_dia_ciclo_max", "temp_base_c",
        "temp_otima_min_c", "temp_otima_max_c", "tmax_critica_c", "tmin_critica_c", "agua_ciclo_mm_min", "agua_ciclo_mm_max",
@@ -181,30 +180,33 @@ def comparar():
         raise SystemExit(1)
 
 
-def divergencias_json_csv(linhas, culturas_json):
-    """Atributos que o JSON e o CSV têm em comum e que divergem no mesmo id.
+def conferir_por_pais(linhas, culturas_json, pais):
+    """Compara `perene` e `tipos` de cada linha do CSV com o bloco `por_pais[pais]` do culturas.json.
 
-    `linhas`: dicts do CSV (strings). `culturas_json`: lista `culturas` do culturas.json.
-    Devolve [(id, campo, valor_no_json, valor_no_csv)], campo = "perene" ou "tipos:<tipo>".
+    `linhas`: dicts do CSV (strings). `culturas_json`: lista `culturas` do culturas.json. `pais`: "BR" ou "US".
+    Devolve uma lista de mensagens de problema (vazia se o CSV é igual ao bloco).
     """
     por_id = {c["id"]: c for c in culturas_json}
-    saida = []
+    problemas = []
     for r in linhas:
         c = por_id.get(r["id"])
         if c is None:
+            continue  # id fora do culturas.json já é problema em montar()
+        bloco = (c.get("por_pais") or {}).get(pais)
+        if bloco is None:
+            problemas.append(f"{r['id']}: falta por_pais.{pais} em agroai/base/culturas.json")
             continue
-        if r.get("perene") in ("true", "false") and (r["perene"] == "true") != bool(c.get("perene")):
-            saida.append((r["id"], "perene", bool(c.get("perene")), r["perene"] == "true"))
+        if (r["perene"] == "true") != bool(bloco.get("perene")):
+            problemas.append(f"{r['id']}: perene do CSV ({r['perene']}) difere de por_pais.{pais} ({bool(bloco.get('perene'))})")
         tipos_csv = set(filter(None, (r.get("tipos") or "").split("|")))
-        tipos_json = set(c.get("tipos") or [])
-        for t in TIPOS_COMUNS:
-            if (t in tipos_json) != (t in tipos_csv):
-                saida.append((r["id"], f"tipos:{t}", t in tipos_json, t in tipos_csv))
-    return saida
+        tipos_bloco = set(bloco.get("tipos") or [])
+        if tipos_csv != tipos_bloco:
+            problemas.append(f"{r['id']}: tipos do CSV ({sorted(tipos_csv)}) diferem de por_pais.{pais} ({sorted(tipos_bloco)})")
+    return problemas
 
 
 def montar(catalogo):
-    """Lê as evidências do catálogo e devolve (colunas, linhas, problemas, avisos)."""
+    """Lê as evidências do catálogo e devolve (colunas, linhas, problemas, avisos); avisos hoje vem vazio."""
     eh_br = os.path.realpath(catalogo) == os.path.dirname(BASE_BR)
     with open(BASE_BR, encoding="utf-8") as f:
         colunas = next(csv.reader(f)) + ([] if eh_br else EXTRAS)  # o Brasil não tem as colunas extras do país
@@ -212,7 +214,7 @@ def montar(catalogo):
         culturas_json = json.load(f)["culturas"]
     ids_app = {c["id"] for c in culturas_json}
 
-    linhas, problemas = [], []
+    linhas, problemas, avisos = [], [], []
     for p in sorted(glob.glob(os.path.join(catalogo, "evidencias", "*.json"))):
         with open(p, encoding="utf-8") as f:
             texto = f.read()
@@ -289,8 +291,7 @@ def montar(catalogo):
     if eh_br:
         pos = {c: n for n, c in enumerate(ORDEM_BR)}
         linhas.sort(key=lambda r: (pos.get(r["id"], len(pos)), r["id"]))
-    avisos = [f"{i}: {campo} diverge entre culturas.json ({vj}) e o CSV ({vc})"
-              for i, campo, vj, vc in divergencias_json_csv(linhas, culturas_json)]
+    problemas += conferir_por_pais(linhas, culturas_json, "BR" if eh_br else "US")
     return colunas, linhas, problemas, avisos
 
 

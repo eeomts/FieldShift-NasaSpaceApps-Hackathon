@@ -14,9 +14,9 @@
     "graus_dia_ciclo_min": "800",
     "graus_dia_ciclo_max": "1130",
     "temp_base_c": "10",
-    "temp_otima_min_c": "18",
-    "temp_otima_max_c": "25",
-    "tmax_critica_c": "30",
+    "temp_otima_min_c": "",
+    "temp_otima_max_c": "",
+    "tmax_critica_c": "32",
     "sensivel_geada": "true",
     "agua_ciclo_mm_min": "380",
     "agua_ciclo_mm_max": "432",
@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "BEANS, DRY EDIBLE, INCL CHICKPEAS",
     "calendario_usda": "Beans, dry edible",
-    "fontes": "NDSU Carrington Research Extension Center, Dry Edible Bean - Dryland, Variety Trial Data 2018, 2019, 2020, 2022, 2023 e 2025 (dias da semeadura à maturação fisiológica, DAP, e data de semeadura)|NDSU Langdon Research Extension Center, Dry Bean Variety Trial Data 2019, 2020 e 2022 (dias até R9, 80% das vagens amarelas)|Michigan Bean Commission 2023 Research Report (MSU): ensaio estadual de 2022 (Tab. 1 datas de semeadura e GDD base 50 °F; Tab. 5 navy, maturação em DAP) e ensaio de qualidade pinto/preto 2020-2021 (dias até a maturação fisiológica) - só no arranjo regua.arranjos.michigan|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, 'Beans, dry edible' (semeadura e colheita ND e MI)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/feijao_gd.json (graus-dia sem teto, Tb 10, NASA POWER): máximo no ano e no local de cada ensaio da ND; mínimo pela convenção (mediana 2001-2020 de feijao_langdon_clima_0525_86d); arranjo de Michigan com feijao_pigeon_clima_0617_96d e os ensaios de MI|NDSU Extension, Water Spouts No. 306, ago. 2019 (uso de água do feijão pinto na estação, 15-17 pol.) e No. 311, jul. 2020 (julho+agosto = 12,8 pol., ~70% do total)|CONFERÊNCIA e CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/feijao_etc.json (Kc FAO-56 x ET0 do NASA POWER, 2001-2020): conferência da água na ND; água do arranjo de Michigan (feijao_min_kawkawlin_0605_96d e feijao_kawkawlin_0605_103d)|Yonts, UNL Panhandle REC, Dry Bean Water Management, Central Plains Irrigation Association Proceedings 2006 (16 pol. de água; raízes nos primeiros 18 pol.; conferência, oeste do Nebraska)|High Plains Regional Climate Center (UNL), AWDN crop_drybean (GDD 86/50 por fase; conferência, sem autor nem data)|FAO-56 Tab.11 (fases do feijão seco, clima continental), Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.22 (raiz; limite superior = sequeiro)|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, temperatura ótima, tmax 30 °C na floração, geada; ver data/catalogo/evidencias/feijao.json)|Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders (queda de flores com +90 °F de dia e 75 °F à noite; conferência americana da tmax)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024) (produtividade do feijão seco ND 2021-2025; MI no arranjo)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.1a (R_AG de Beans and Pulses, regra 6 do motor) e Tab. 11.2 (Dry bean, conferência)|Chatterjee & Acharya, Archives of Agronomy and Soil Science 66(5):614-624, 2020 (decomposição no Vale do Red River, ND/MN; lido só o resumo)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Common bean straw, node 12006 (PB e DMO; valores pontuais)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|NDSU Extension, Fall Frost Damage to Field Crops (pinto e navy: geada na faixa de 30-32 °F; flores e vagens verdes)|Farinelli et al. 2010 Bragantia 69(1) (geada com 2,4 °C de mínima e -4,3 °C na relva, Jaboticabal-SP: morte de plantas e produtividade menor)|FAO Frost Protection vol. 1, Tab. 4.5 (Ventskevich 1958; feijão -2/-3 °C na floração e -3/-4 °C na frutificação, no abrigo; conferência, conflita)",
+    "fontes": "NDSU Carrington Research Extension Center, Dry Edible Bean - Dryland, Variety Trial Data 2018, 2019, 2020, 2022, 2023 e 2025 (dias da semeadura à maturação fisiológica, DAP, e data de semeadura)|NDSU Langdon Research Extension Center, Dry Bean Variety Trial Data 2019, 2020 e 2022 (dias até R9, 80% das vagens amarelas)|Michigan Bean Commission 2023 Research Report (MSU): ensaio estadual de 2022 (Tab. 1 datas de semeadura e GDD base 50 °F; Tab. 5 navy, maturação em DAP) e ensaio de qualidade pinto/preto 2020-2021 (dias até a maturação fisiológica) - só no arranjo regua.arranjos.michigan|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, 'Beans, dry edible' (semeadura e colheita ND e MI)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/feijao_gd.json (graus-dia sem teto, Tb 10, NASA POWER): máximo no ano e no local de cada ensaio da ND; mínimo pela convenção (mediana 2001-2020 de feijao_langdon_clima_0525_86d); arranjo de Michigan com feijao_pigeon_clima_0617_96d e os ensaios de MI|NDSU Extension, Water Spouts No. 306, ago. 2019 (uso de água do feijão pinto na estação, 15-17 pol.) e No. 311, jul. 2020 (julho+agosto = 12,8 pol., ~70% do total)|CONFERÊNCIA e CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/feijao_etc.json (Kc FAO-56 x ET0 do NASA POWER, 2001-2020): conferência da água na ND; água do arranjo de Michigan (feijao_min_kawkawlin_0605_96d e feijao_kawkawlin_0605_103d)|Yonts, UNL Panhandle REC, Dry Bean Water Management, Central Plains Irrigation Association Proceedings 2006 (16 pol. de água; raízes nos primeiros 18 pol.; conferência, oeste do Nebraska)|High Plains Regional Climate Center (UNL), AWDN crop_drybean (GDD 86/50 por fase; conferência, sem autor nem data)|FAO-56 Tab.11 (fases do feijão seco, clima continental), Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.22 (raiz; limite superior = sequeiro)|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, geada; ver data/catalogo/evidencias/feijao.json)|PROXY: Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders, guia de horta de outro estado (Utah, ar seco) (limite de calor de 32 °C na floração: queda de flores com +90 °F de dia e 75 °F à noite)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024) (produtividade do feijão seco ND 2021-2025; MI no arranjo)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.1a (R_AG de Beans and Pulses, regra 6 do motor) e Tab. 11.2 (Dry bean, conferência)|Chatterjee & Acharya, Archives of Agronomy and Soil Science 66(5):614-624, 2020 (decomposição no Vale do Red River, ND/MN; lido só o resumo)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Common bean straw, node 12006 (PB e DMO; valores pontuais)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|NDSU Extension, Fall Frost Damage to Field Crops (pinto e navy: geada na faixa de 30-32 °F; flores e vagens verdes)|Farinelli et al. 2010 Bragantia 69(1) (geada com 2,4 °C de mínima e -4,3 °C na relva, Jaboticabal-SP: morte de plantas e produtividade menor)|FAO Frost Protection vol. 1, Tab. 4.5 (Ventskevich 1958; feijão -2/-3 °C na floração e -3/-4 °C na frutificação, no abrigo; conferência, conflita)",
     "confianca_parametros": "media",
     "estados_validos": "ND|MN",
     "semeadura_inicio": "05-19",
@@ -97,6 +97,18 @@
     "fase_frio_frac": {
       "tipo": "estudo_unico",
       "nota": "Fase = da floração à maturação fisiológica (NDSU: 'Late green pods or flowers are easily damaged by frost'; vagens amarelas escapam). Ensaio de sequeiro de Carrington 2020 (NDSU, semeadura 27/mai, 24 cultivares liberadas): média de 45 dias até a floração e 87,3 dias até a maturação fisiológica. Início = 45/87,3 = 0,515 -> 0.52 (usei a proporção do próprio ensaio; com o ciclo médio da linha, (86 + 113)/2 = 99,5 dias, daria 45/99,5 = 0,45); fim = maturação = fim do ciclo = 1.00. Um local e um ano = estudo_unico. Conferência: Embrapa CT 89 (Brasil), 35 dias até a floração num ciclo de 80 = 0,44."
+    },
+    "temp_otima_min_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano lido para a faixa ótima do feijão seco (NDSU, MSU e UNL não publicam; o guia A1133 da NDSU não abriu). O 18 do Brasil (Embrapa/ZARC) saiu por decisão do usuário de 15/11/2026 (A4: sem número dos EUA, o campo fica vazio). O ECOCROP (16-25 °C) não foi usado: é base internacional, decisão pendente sobre aceitá-la como fonte nos EUA."
+    },
+    "temp_otima_max_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano lido para a faixa ótima do feijão seco (NDSU, MSU e UNL não publicam; o guia A1133 da NDSU não abriu). O 25 do Brasil (Embrapa/ZARC) saiu por decisão do usuário de 15/11/2026 (A4). Nenhuma fonte americana lida calcula graus-dia do feijão com teto próprio da espécie: o HPRCC usa o teto genérico 86 °F (86/50), não usado aqui."
+    },
+    "tmax_critica_c": {
+      "tipo": "proxy",
+      "nota": "Utah State University Extension, Vegetable Guide, Legumes - Physiological Disorders (split set): queda de flores com '+90 °F day/75 °F nights' junto com ar seco ou falta de água no solo. (90 - 32) x 5/9 = 32,2 -> 32 °C, na floração. PROXY: guia de horta de outro estado (Utah, clima seco), sem autor nem data, não um ensaio de feijão seco de lavoura na Dakota do Norte; o dano depende da umidade do ar e da água no solo, então a confiança neste campo é baixa. Trocado do 30 do Brasil (ZARC) por decisão do usuário de 15/11/2026 (A4: o número americano vence)."
     }
   },
   "reuso_brasil": [
@@ -115,14 +127,14 @@
     {
       "coluna": "temp_otima_min_c, temp_otima_max_c",
       "valor_brasil": "18, 25",
-      "decisao": "reusado",
-      "motivo": "Fisiologia da espécie; sem fonte americana lida (ver pendências)."
+      "decisao": "trocado",
+      "motivo": "Esvaziados em 15/11/2026 (decisão do usuário, A4: sem número americano, o campo fica vazio = não sei). Nenhuma fonte americana lida dá a faixa ótima do feijão seco (ver pendências)."
     },
     {
       "coluna": "tmax_critica_c",
       "valor_brasil": "30",
-      "decisao": "conferido e mantido",
-      "motivo": "Dano na floração (abscisão de flores, ZARC). Fonte americana (Utah State) fala em +90 °F de dia/75 °F à noite (32/24 °C) com ar seco: divergência de 2 °C registrada em pendências."
+      "decisao": "trocado",
+      "motivo": "Trocado por 32 em 15/11/2026 (decisão do usuário, A4: o número americano com trecho vence). Utah State: queda de flores com +90 °F de dia/75 °F à noite (32,2/23,9 °C) e ar seco; o Brasil (ZARC) usa 30 °C de dia e 25 °C à noite. Origem proxy (guia de horta de outro estado, clima seco)."
     },
     {
       "coluna": "sensivel_geada",
@@ -382,7 +394,7 @@
       "colunas": [
         "tmax_critica_c"
       ],
-      "fonte": "Utah State University Extension, Vegetable Guide, Legumes - Physiological Disorders (Split set), sem autor nem data (conferência americana do valor brasileiro)",
+      "fonte": "Utah State University Extension, Vegetable Guide, Legumes - Physiological Disorders (Split set), sem autor nem data (fonte do valor desde 15/11/2026; proxy: guia de horta, Utah)",
       "url": "https://extension.usu.edu/vegetableguide/legumes/abiotic-disorders",
       "trecho": "Split set occurs when some of the flowers abort (drop off) resulting in variable pod maturity. The combination of high temperatures (+90 °F day/75 °F nights) and low relative humidity or soil moisture stress favors flower drop."
     },
@@ -669,6 +681,30 @@
       "antes": "(vazio)",
       "depois": "aviso",
       "motivo": "REVISÃO 15/11 (revisão do frio): nas fontes do limiar a perda é parcial (Farinelli 2010: severidade média até 3,75 de 5 e rebrota; Carrington 2025: ensaio colhido), não a perda da lavoura."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "30",
+      "depois": "32",
+      "motivo": "15/11/2026, 2ª revisão (A4), decisão do usuário: o número americano com trecho vence. Utah State, '+90 °F day/75 °F nights' -> 32,2 °C. Origem: reusado do Brasil -> proxy (guia de horta de outro estado, ar seco)."
+    },
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "18",
+      "depois": "",
+      "motivo": "15/11/2026, 2ª revisão (A4), decisão do usuário: sem número americano, o campo fica vazio (não sei). Origem: reusado do Brasil -> vazio_nao_sei."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "25",
+      "depois": "",
+      "motivo": "15/11/2026, 2ª revisão (A4), decisão do usuário: sem número americano, o campo fica vazio (não sei). Origem: reusado do Brasil -> vazio_nao_sei."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "...|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, temperatura ótima, tmax 30 °C na floração, geada; ver data/catalogo/evidencias/feijao.json)|...|Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders (queda de flores com +90 °F de dia e 75 °F à noite; conferência americana da tmax)|...",
+      "depois": "...|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, geada; ver data/catalogo/evidencias/feijao.json)|...|PROXY: Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders, guia de horta de outro estado (Utah, ar seco) (limite de calor de 32 °C na floração: queda de flores com +90 °F de dia e 75 °F à noite)|...",
+      "motivo": "15/11/2026, 2ª revisão (A4), pedido do coordenador (o chat mostra este texto ao produtor): a faixa ótima e o limite de calor de 30 °C do Brasil saíram da linha; a Utah State passa a ser a fonte do limite de calor de 32 °C, marcada como PROXY. Só esses dois trechos mudaram."
     }
   ],
   "pendencias": [
@@ -677,8 +713,8 @@
     "Definições de maturação: Carrington usa 'Days to PM' (maturação fisiológica); Langdon usa R9 com 80% das vagens amarelas, que a própria NDSU chama de maturação fisiológica (Water Spouts 318); a MSU avalia a olho em DAP ('for all locations', provavelmente média dos locais). Langdon é ~1,3° mais ao norte e mais fria: os dias são maiores, mas os graus-dia são parecidos com os de Carrington.",
     "graus_dia (cálculo): as fontes dão dias, não GDD. O mínimo (800) segue a convenção do README: mediana 2001-2020 em Langdon, 25/mai + 86 d (806; P10 593, ou seja, em 2 de cada 20 anos Langdon soma menos de 600 e o motor só avisa 'em ano frio pode não completar'). Semear mais tarde soma mais (5/jun: 845), por isso o cenário frio é o da data dos ensaios. Os 9 valores dos ensaios (868-1016) ficam como conferência. Os pontos de Michigan (arranjo) usam a cidade do condado (Kawkawlin, Colling, Pigeon, Sandusky), não a fazenda; em Huron 2021 o relatório cita Ruth e Pigeon sem dizer qual ano (usei Pigeon). Conferência independente: a MSU mediu 1847-2108 GDD °F base 50 até a COLHEITA em 2022 (1026-1171 °C·dia), coerente com 1042-1106 até a maturação no POWER.",
     "agua: 15-17 pol. (380-432 mm) é da NDSU para o pinto (pesquisas de ND, MN e SD). Em Langdon (110 dias) o POWER deu 463 mm, acima da faixa. Michigan, mais úmido, tem a água do arranjo calculada no POWER (329-342 mm -> 320-340), sem fonte de extensão de MI. O motor deve preferir a conta local (regra 1). A água é consumo sem déficit: a chuva da estação no POWER (ND 215-281 mm) fica abaixo, e o motor marca 'água no limite' sem eliminar.",
-    "tmax_critica_c = 30 °C mantido do Brasil (ZARC: abscisão de flores acima de 30 °C de dia e 25 °C à noite, na floração). A fonte americana lida (Utah State, sem autor nem data, guia de hortaliças) fala em +90 °F de dia (32 °C) e 75 °F à noite (24 °C), junto com ar seco ou falta de água. Divergência de 2 °C; não achei texto da NDSU ou da MSU com o limiar (o guia A1133 não abriu).",
-    "temp_otima_min/max (18-25 °C) mantidos do Brasil; sem fonte americana lida. O ECOCROP dá 16-25 °C para Phaseolus vulgaris (cópia EcoCrop_DB.csv).",
+    "tmax_critica_c = 32 °C desde 15/11/2026 (A4, decisão do usuário: o número americano vence; antes 30, do ZARC). Fonte: Utah State (sem autor nem data, guia de hortaliças de clima seco): +90 °F de dia (32,2 °C) e 75 °F à noite (23,9 °C), junto com ar seco ou falta de água. Origem proxy e confiança baixa no campo: não é ensaio de feijão seco de lavoura na ND/MN, e o Brasil usa 30 °C. Resolveria: limiar de abscisão de flores da NDSU (guia A1133, que não abriu) ou da MSU.",
+    "temp_otima_min_c e temp_otima_max_c vazios desde 15/11/2026 (A4, decisão do usuário: sem número americano = não sei; antes 18-25 °C, do Brasil). O ECOCROP dá 16-25 °C para Phaseolus vulgaris (cópia EcoCrop_DB.csv), não usado enquanto o usuário não decidir se o ECOCROP vale como fonte nos EUA. Resolveria: faixa ótima publicada pela NDSU, MSU ou UNL.",
     "sensivel_geada = true: conferido nos EUA pelo ensaio de Carrington de 2025 (34-35 °F no enchimento 'impacted yield') e pelo Handbook 628 (colheita até o fim de outubro, antes do frio). Não achei o limiar de geada em fonte americana.",
     "regua: palhada pela regra 6 do motor (R_AG = 2,1 da Tab. 11.1a do IPCC, 'Beans and Pulses', que mistura soja, feijão, lentilha, ervilha). A linha 'Dry bean' da Tab. 11.2 (uma fonte só, Ortega 1988, razão 1,6, R² 0,15) daria só 1,3 t/ha na ND (0,36 x 1,73 + 0,68): classe 'baixo'. No arranquio e enleiramento a palha volta picada, frágil e com pouca cobertura. Resolveria: medição americana de resíduo do feijão seco (RUSLE2 ou ensaios da NDSU/MSU).",
     "regua: C/N sem dado americano (o NRCS 2011 não tem feijão; o Brasil mediu 37). k vem de um só ensaio de 1 ano no Vale do Red River (ND/MN), lido só no resumo: 55% de massa restante em 365 dias a partir de 31/out (inclui o inverno, quando quase não decompõe); no verão a perda deve ser mais rápida.",

@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Análise das ferramentas × arquitetura do Field Shift
 
 > Documento para discussão da equipe (14/11/2026). Cruza o `PROS-E-CONTRAS-FERRAMENTAS.md` com a arquitetura do projeto (`ARQUITETURA-COMPLETA.md`, `COLETA.md`, `INTEGRACAO-DE-DADOS.md`, `MOTOR-DE-ANALISE.md`, `DASHBOARD-E-CHAT.md`, `BANCO-DE-DADOS.md`) e com as documentações de cada ferramenta. As posições são **propostas**; a decisão final vai para a **D-010** no `context/DECISOES.md`.

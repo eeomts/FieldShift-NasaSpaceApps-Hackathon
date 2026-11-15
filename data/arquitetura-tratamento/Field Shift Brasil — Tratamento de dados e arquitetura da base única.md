@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Field Shift Brasil — Tratamento de dados e arquitetura da base única
 
 Nov 14, 2026 · @Yury Turatti · Revisado em 14/11/2026: alinhado com `application/architecture/`, com o `tools/comparative/COMPARATIVO_FINAL.md` e com os arquivos reais de `data/`.

@@ -32,7 +32,7 @@ Umidade do solo é a quantidade de água que está dentro da terra. A fundura im
 
 Ter água na terra não quer dizer que a planta consegue usar toda ela. Uma parte fica tão presa nos grãozinhos de terra, principalmente na argila, que a raiz não consegue puxar. Por isso duas terras com a mesma umidade podem ser boas para a planta em uma e ruins na outra.
 
-O Field Shift usa a umidade do satélite SMAP, que mede a camada de cima e estima até cerca de 1 metro de fundura. O app sempre diz de que camada está falando e compara a umidade de agora com o normal da época, em vez de dizer só "seco" ou "molhado".
+O satélite SMAP mede a umidade da camada de cima e estima até cerca de 1 metro de fundura. O Field Shift não usa o SMAP nesta versão: a água das estratégias vem da chuva e do clima do NASA POWER, comparados com a água que cada cultura gasta.
 
 Como o produtor costuma dizer: terra molhada, terra seca, a terra está com água por baixo, umidade da terra, o chão segurou água.
 
@@ -58,9 +58,9 @@ NDVI é um número que os satélites calculam para mostrar quanto de planta verd
 
 O NDVI funciona porque a folha verde reflete muita luz invisível, o infravermelho, e absorve a luz vermelha. O satélite compara essas duas luzes e chega no número.
 
-O Field Shift usa o NDVI dos satélites MODIS e VIIRS para desenhar a curva do ano: quando a lavoura sobe, quando chega ao máximo, quando é colhida e quando o campo fica sem verde.
+Os satélites MODIS e VIIRS medem o NDVI e mostram a curva do ano: quando a lavoura sobe, quando chega ao máximo, quando é colhida e quando o campo fica sem verde. O Field Shift não usa o NDVI nesta versão: os meses com planta no campo vêm do calendário que o produtor informa.
 
-O NDVI não diz qual é a planta, nem quanto ela vai produzir. Lavoura recém-nascida tem NDVI baixo e está tudo bem. E palhada no chão aparece com NDVI baixo, parecido com terra pelada, mesmo protegendo o solo. Por isso o app sempre interpreta o NDVI com a época, a cultura e a conversa com o produtor.
+O NDVI não diz qual é a planta, nem quanto ela vai produzir. Lavoura recém-nascida tem NDVI baixo e está tudo bem. E palhada no chão aparece com NDVI baixo, parecido com terra pelada, mesmo protegendo o solo. Por isso o NDVI só faz sentido junto com a época, a cultura e a conversa com o produtor.
 
 Como o produtor costuma dizer: lavoura verde, roça fechada, lavoura bonita, planta amarelando, campo verdinho.
 
@@ -216,7 +216,7 @@ Erosão é a terra sendo arrancada e levada embora, pela água da chuva ou pelo 
 
 A erosão é mais forte quando se juntam três coisas: terreno inclinado, chuva forte e chão sem cobertura. Terra arenosa e com pouca matéria orgânica também é mais fácil de levar. Água barrenta saindo do campo depois da chuva é um sinal claro.
 
-O Field Shift mostra o risco de erosão como um sinal de atenção, juntando a inclinação do SRTM, a chuva forte do GPM IMERG e os meses de solo descoberto. Ele não diz quantas toneladas de terra foram perdidas, porque isso não é medido. As estratégias que cobrem o chão nos meses de chuva forte ganham mais pontos.
+O Field Shift mostra o risco de erosão como um sinal de atenção, juntando a inclinação do SRTM, os dias de chuva forte do NASA POWER, o tipo de solo do mapa global de solo e os meses de solo descoberto. Ele não diz quantas toneladas de terra foram perdidas, porque isso não é medido. As estratégias que cobrem o chão nos meses de chuva forte ganham mais pontos.
 
 Como o produtor costuma dizer: a chuva levou a terra, enxurrada, voçoroca, valeta, sulco, água barrenta, terra lavada, o morro desceu.
 
@@ -290,7 +290,7 @@ Reanálise é um jeito de reconstruir o clima do passado juntando um modelo de c
 
 O clima do NASA POWER vem de reanálise. Isso quer dizer que "veio da NASA" não significa que um satélite mediu a temperatura em cima da fazenda naquele dia: o valor é uma estimativa bem feita, que combina medições e física.
 
-A vantagem da reanálise é não ter buracos: todo dia tem dado, sem falha por nuvem. A desvantagem é que ela pode ter diferença em relação a uma estação local, principalmente na chuva. Por isso o Field Shift compara a chuva da reanálise com a do GPM IMERG e com o que o produtor lembra.
+A vantagem da reanálise é não ter buracos: todo dia tem dado, sem falha por nuvem. A desvantagem é que ela pode ter diferença em relação a uma estação local, principalmente na chuva. Por isso o Field Shift mostra a fonte e o período de cada número de chuva, e vale conferir com o que o produtor lembra. (A comparação com a chuva do GPM IMERG não é feita nesta versão.)
 
 Como o produtor costuma dizer: de onde vem esse dado?, isso foi medido?, é do satélite?, é estimativa?
 
@@ -300,7 +300,7 @@ Fonte: NASA POWER (MERRA-2); Field Shift, glossário científico (reanálise).
 
 Resolução é o tamanho do menor pedaço que um dado consegue mostrar. Todo dado de satélite ou modelo vem em quadradinhos, e cada quadradinho tem um só valor. Quanto menor o quadradinho, mais detalhe.
 
-No Field Shift, o relevo do SRTM tem quadradinhos de 30 metros; o verde da lavoura do MODIS, de 250 metros; o mapa do solo, de 250 metros; a água do solo do SMAP, de 9 km; a chuva do GPM IMERG, de 10 km; o clima do NASA POWER, de uns 50 km.
+No Field Shift, o relevo do SRTM tem quadradinhos de 30 metros; o mapa do solo, de 250 metros; o clima e a chuva do NASA POWER, de uns 50 km. (O verde da lavoura do MODIS, de 250 metros, a água do solo do SMAP, de 9 km, e a chuva do GPM IMERG, de 10 km, não são usados nesta versão.)
 
 Um quadradinho de 50 km mostra a média da região, não o seu sítio. Ampliar a imagem não cria detalhe novo. O app sempre mostra a resolução de cada número e trata dado de quadradinho grande como contexto regional.
 
