@@ -1,0 +1,127 @@
+{
+  "_leia": "Cenários de graus-dia do milho (corn for grain, sequeiro, Corn Belt) para scripts/gd_nasa_power.py. Cada cenário refaz, na régua do NASA POWER (GD = soma de max(0, Tmed - 10), sem teto), uma exigência da literatura americana dada em GDD 86/50 °F (Tmax limitada a 86 °F, Tmin elevada a 50 °F). 'referencia.valor' = GDD °F da fonte / 1,8 (mesma Tb: 50 °F = 10 °C), ainda com teto; a diferença impressa pelo script é o efeito conjunto do teto e do POWER. Datas de semeadura e dias até a maturação fisiológica (R6) são os da fonte. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "lewis": {
+      "nome": "Lewis-IA (ISU Armstrong Research Farm)",
+      "lat": 41.31,
+      "lon": -95.17,
+      "elevacao_m": 387.1
+    },
+    "champaign": {
+      "nome": "Champaign-IL",
+      "lat": 40.08,
+      "lon": -88.24,
+      "elevacao_m": 208.77
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "milho_nashua_0425_105rm_140d",
+      "cultura": "milho",
+      "local": "nashua",
+      "semeadura": "04-25",
+      "dias": 140,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1407,
+        "nota": "Elmore, ISU ICM News 28/04/2011, Tabela 1 (Hybrid-Maize): Nashua, híbrido 105 RM, 2533 GDD; semeadura 25/abr, 140 dias até R6 (12/set). 2533 / 1,8 = 1407 °C·dia (com teto)."
+      }
+    },
+    {
+      "nome": "milho_nashua_0516_105rm_135d",
+      "cultura": "milho",
+      "local": "nashua",
+      "semeadura": "05-16",
+      "dias": 135,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1407,
+        "nota": "Elmore 2011, Tabela 1: Nashua, 105 RM, 2533 GDD; semeadura 16/mai, 135 dias até R6 (28/set)."
+      }
+    },
+    {
+      "nome": "milho_lewis_0425_110rm_129d",
+      "cultura": "milho",
+      "local": "lewis",
+      "semeadura": "04-25",
+      "dias": 129,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1476,
+        "nota": "Elmore 2011, Tabela 1: Lewis, 110 RM, 2657 GDD; semeadura 25/abr, 129 dias até R6 (1/set). 2657 / 1,8 = 1476 °C·dia (com teto)."
+      }
+    },
+    {
+      "nome": "milho_lewis_0509_110rm_123d",
+      "cultura": "milho",
+      "local": "lewis",
+      "semeadura": "05-09",
+      "dias": 123,
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1476,
+        "nota": "Elmore 2011, Tabela 1: Lewis, 110 RM, 2657 GDD; semeadura 9/mai, 123 dias até R6 (9/set)."
+      }
+    },
+    {
+      "nome": "milho_champaign_2013_0501_0910",
+      "cultura": "milho",
+      "local": "champaign",
+      "semeadura": "05-01",
+      "fim": "09-10",
+      "tb": 10,
+      "anos": [
+        2013,
+        2013
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1533,
+        "nota": "Conferência da conversão: Nafziger, farmdoc (Univ. of Illinois) 11/09/2013: em Champaign, GDD de 1/mai a 10/set de 2013 = 2760 (86/50 °F). 2760 / 1,8 = 1533 °C·dia (com teto, estação local)."
+      }
+    },
+    {
+      "nome": "milho_champaign_2013_0515_0920",
+      "cultura": "milho",
+      "local": "champaign",
+      "semeadura": "05-15",
+      "fim": "09-20",
+      "tb": 10,
+      "anos": [
+        2013,
+        2013
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1514,
+        "nota": "Nafziger 2013: híbridos de ciclo médio do centro de Illinois precisam de 2700-2750 GDD da semeadura à maturação; os semeados em meados de maio 'should mature by September 20 or so' (2013). Ponto médio 2725 / 1,8 = 1514 °C·dia (com teto)."
+      }
+    }
+  ]
+}
