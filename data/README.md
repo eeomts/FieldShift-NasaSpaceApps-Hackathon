@@ -43,12 +43,12 @@ As 17 culturas do Brasil (os mesmos `id` do `agroia/base/culturas.json`) **já t
 | Tarefa | Arquivo | Esforço |
 |---|---|---|
 | 4. Pontos da demo (decidir com o time e testar no SoilGrids) | `demo/pontos_demo.csv` | Baixo |
-| 5. Pedido no AppEEARS (NDVI + SMAP dos pontos) | `demo/appeears/<id_da_tarefa>/` | Médio (espera) |
+| 5. ~~Pedido no AppEEARS (NDVI + SMAP dos pontos)~~ **descartada em 15/11/2026**: o projeto não vai mais usar o AppEEARS. `demo/appeears/` e `scripts/baixar_appeears.py` ficam só como histórico | `demo/appeears/` (histórico) | — |
 | 6. ZARC: baixar a tábua de risco e mapear os nomes das culturas | bruto em `brutos/zarc/`; mapa em `brasil/zarc/mapa_culturas_zarc.csv`; janelas em `brasil/zarc/janelas.csv` (GO, RS e BA; `scripts/preparar_zarc.py`) | Médio |
 | 3. O que cada cultura exige de equipamento (ids do `agroia/base/equipamentos.json`) | `catalogo/cultura_equipamentos.csv` | Baixo |
 | Registro de tudo que baixar | `FONTES.md` | — |
 
-**Começar pela tarefa 4**: o AppEEARS só pode ser pedido depois que os pontos existirem, e ele demora.
+**Começar pela tarefa 4** (pontos da demo). A antiga espera do AppEEARS acabou: ele foi descartado.
 
 ### Pessoa 3 — Conteúdo para o produtor (perfil: escrita e produto) · _____________
 
@@ -77,9 +77,8 @@ data/
 │   └── cultura_equipamentos.csv    # Pessoa 2
 ├── demo/
 │   ├── pontos_demo.csv             # Pessoa 2
-│   ├── appeears/<id_da_tarefa>/    # Pessoa 2 (CSVs como vieram)
-│   ├── pontos_demo_eua.csv         # Pessoa 2 (pontos dos EUA)
-│   └── appeears_eua/<id_da_tarefa>/  # Pessoa 2 (AppEEARS dos pontos dos EUA)
+│   ├── appeears/                   # histórico: AppEEARS descartado em 15/11/2026 (tarefas.json + README com o aviso)
+│   └── pontos_demo_eua.csv         # Pessoa 2 (pontos dos EUA)
 ├── brasil/
 │   ├── municipios/                 # Pessoa 2 (malha do IBGE)
 │   ├── pam/
@@ -103,7 +102,7 @@ data/
 
 ## EUA: o que substitui cada fonte brasileira
 
-Os dados da NASA (AppEEARS, SMAP, POWER) e o SoilGrids cobrem os EUA do mesmo jeito. O que muda são as fontes nacionais:
+Os dados da NASA (POWER) e o SoilGrids cobrem os EUA do mesmo jeito. O que muda são as fontes nacionais:
 
 | Brasil | EUA | Diferença que o motor precisa saber |
 |---|---|---|
@@ -120,13 +119,17 @@ Mandioca, milheto, feijão-caupi, crotalária, guandu e arroz de terras altas s�
 
 > **Aviso (revisão de 15/11/2026): o `SERIES` do `scripts/baixar_nass_eua.py` não segue o `codigo_nass` do catálogo dos EUA.** O `trigo` do catálogo é o de inverno (`WHEAT, WINTER`), mas o script soma inverno e primavera (sem o durum). O `girassol` do catálogo é `SUNFLOWER, OIL TYPE`, mas o script soma oleícola e confeiteiro (non-oil). Faltam as quatro culturas acima (alfafa, amendoim, canola e cevada), e o script baixa a aveia, que não tem `codigo_nass` no catálogo (cobertura). Corrigir muda os números do `producao_condado.csv` e exige baixar de novo, com a `NASS_API_KEY`. **Pendente, decisão do usuário.** O motor não lê esse arquivo hoje.
 
-Para gerar: `python data/scripts/baixar_condados_eua.py`, `python data/scripts/preparar_datas_plantio_eua.py`, `NASS_API_KEY=... python data/scripts/baixar_nass_eua.py` e `python data/scripts/baixar_appeears.py --pontos data/demo/pontos_demo_eua.csv --saida data/demo/appeears_eua`.
+Para gerar: `python data/scripts/baixar_condados_eua.py`, `python data/scripts/preparar_datas_plantio_eua.py` e `NASS_API_KEY=... python data/scripts/baixar_nass_eua.py`.
+
+## AppEEARS: descartado em 15/11/2026
+
+O projeto **não vai mais usar o AppEEARS** (decisão do usuário, 15/11/2026; nota datada na D-009 do `DECISOES.md`). `demo/appeears/` (só o `tarefas.json` e o README) e `scripts/baixar_appeears.py` ficam apenas como histórico, sem apagar. Não existe `demo/appeears_eua/`, e não há dado do AppEEARS a registrar no `FONTES.md`.
 
 ## Dependências entre as pessoas
 
 ```
 Pessoa 1: ids das 17 culturas do Brasil e das 18 dos EUA (já prontos) ───► todos usam os mesmos ids
-Pessoa 2: pontos_demo.csv ──► pedido no AppEEARS ──► CSVs em demo/appeears/
+Pessoa 2: pontos_demo.csv ──► (o pedido no AppEEARS foi descartado em 15/11/2026)
 Pessoa 2: mapa_culturas_zarc.csv ──► nome_zarc em culturas.csv; janelas.csv
 Pessoa 1: culturas.csv completo (Brasil e EUA) ──► Pessoa 3 escreve fichas-culturas.md
 ```
