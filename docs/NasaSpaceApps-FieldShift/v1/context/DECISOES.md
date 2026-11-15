@@ -131,6 +131,21 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
     - critério de `estudo_unico` escrito (1 local, 1 ano ou 1 cultivar); o sorgo dos EUA fica `media`;
     - ervilhaca dos EUA só no Corn Belt (Sudeste em arranjo regional); centeio com palhada típica 0,97 t/ha; girassol e amendoim com a palhada medida na região.
 
+### D-011 — IA do chat e do RAG: Gemini, sem framework de agentes
+- **Status:** Decidido (15/11/2026)
+- **Decisão:**
+  - **Modelo:** Gemini, pelo SDK `google-genai`, o mesmo que o onboarding já usa no texto livre. Uma chave e um SDK para o projeto todo.
+  - **Embeddings:** `gemini-embedding-001`, 768 dimensões, `task_type` `RETRIEVAL_DOCUMENT` (trechos) e `RETRIEVAL_QUERY` (pergunta); vetor normalizado no código (a documentação exige abaixo de 3072).
+  - **Sem framework** (LangChain, Agno, Google ADK, LlamaIndex): o SDK direto, com as ferramentas executadas pelo nosso código (chamada automática desligada), cada chamada registrada no banco.
+  - **RAG no próprio Postgres:** pgvector + busca textual em português, combinadas por RRF, com descarte de trechos fracos.
+- **Motivo:** é 1 agente com poucas ferramentas e uma base pequena (~4 documentos). A parte difícil é controlar o que o modelo vê e responde (nada de número inventado, fonte em tudo), e um framework esconderia justamente isso. O Gemini tem embeddings no mesmo SDK; o Claude exigiria um segundo provedor para os embeddings.
+- **Alternativas descartadas:** LangChain/LangGraph e Google ADK (pesados para o tamanho do problema); Agno (cria tabelas e busca próprias, sem a busca híbrida e o registro de buscas); Claude no chat (precisaria de outro provedor para os embeddings).
+- **Consequências:**
+  - O banco precisa da extensão `vector`: o do compose (`.deploy/`) já tem; o Postgres atual da VPS precisaria instalar.
+  - O banco de **teste** usa a imagem `pgvector/pgvector:pg17`.
+  - No chat v1 as ferramentas são internas (ficha, culturas, base de conhecimento, clima, comparação de rotações). O MCP do Harvest Portal (revisão da D-009) fica fora da v1.
+  - Plano gratuito do Gemini: 20 chamadas por dia por modelo; para a demo é preciso ativar o faturamento.
+
 ---
 
 ## 2. Inconsistências encontradas nos documentos
@@ -197,3 +212,4 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 14/11/2026 | Proposta de revisão da D-009: NASA Harvest volta como contexto de mercado (Harvest Portal), no chat (MCP) e na detecção de ciclos (`crop-cycle-detection`). A confirmar com a equipe. |
 | 15/11/2026 | **D-010:** o app também aceita fazendas nos EUA. Amplia a D-008 e altera a D-003 (Census, CDL e NASS QuickStats entram para as fazendas dos EUA). |
 | 15/11/2026 | **D-010:** catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |
+| 15/11/2026 | **D-011:** chat e RAG com Gemini (`google-genai` + `gemini-embedding-001` 768d), sem framework de agentes, RAG com pgvector + busca textual no próprio Postgres. |
