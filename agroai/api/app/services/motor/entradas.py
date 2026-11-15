@@ -1,6 +1,7 @@
 """Reúne o que o motor precisa de uma fazenda: catálogo, rotação atual, clima da célula, relevo e restrições."""
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from datetime import date
 from typing import Protocol
 
 from app.core.erros import ErroDeNegocio
@@ -33,6 +34,8 @@ class ClimaDoLocal:
     dias_chuva_forte: dict[int, float | None]  # média de dias por ano
     geada_por_ano: dict[int, dict[int, int | None]]  # ano -> mês -> dias de geada (1991–2020)
     gd_por_tb_medio: dict[int, dict[str, float]]  # mês -> Tb inteira ("0".."20") -> GD médio 1991–2020
+    # Tmin de cada dia da série (a partir de 1991, o fim da janela de 2020 pode cair em 2021). Dia sem dado: None ou ausente.
+    tmin_por_dia: dict[date, float | None] = field(default_factory=dict)
 
 
 def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str) -> ClimaDoLocal:
@@ -47,6 +50,9 @@ def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str) -> Clim
         do_mes = [l.gd_por_tb for l in base if l.mes == mes and l.gd_por_tb]  # {} e None: mês sem temperatura completa
         if do_mes:
             gd[mes] = {str(tb): sum(d[str(tb)] for d in do_mes) / len(do_mes) for tb in range(TB_MIN, TB_MAX + 1)}
+    tmin_por_dia = {
+        date(l.ano, l.mes, i + 1): v for l in linhas if l.tmin_diaria for i, v in enumerate(l.tmin_diaria)
+    }  # mês sem a lista (célula antiga): dias ausentes
     return ClimaDoLocal(
         fonte=fonte,
         periodo=periodo,
@@ -55,6 +61,7 @@ def clima_de_linhas(linhas: list[LinhaMensal], fonte: str, periodo: str) -> Clim
         dias_chuva_forte={m: meses[m].dias_chuva_forte for m in range(1, 13)},
         geada_por_ano=geada,
         gd_por_tb_medio=gd,
+        tmin_por_dia=tmin_por_dia,
     )
 
 

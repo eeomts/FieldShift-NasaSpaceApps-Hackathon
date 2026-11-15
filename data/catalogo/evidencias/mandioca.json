@@ -1,5 +1,9 @@
 {
   "id": "mandioca",
+  "pais": "BR",
+  "nome": "Mandioca",
+  "nome_cientifico": "Manihot esculenta",
+  "familia_botanica": "Euphorbiaceae",
   "valores": {
     "tipos": "comercial|tolerante_seca",
     "perene": "true",

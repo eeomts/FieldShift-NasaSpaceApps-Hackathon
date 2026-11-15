@@ -1,4 +1,5 @@
 """Motor completo sobre fazendas e climas sintéticos: entradas, erros de negócio, atual, melhores e eliminadas."""
+from datetime import date
 from dataclasses import replace
 
 import pytest
@@ -130,6 +131,16 @@ def test_clima_de_linhas_media_gd_geada_por_ano_e_ignora_fora_da_base():
     assert c.gd_por_tb_medio[1]["10"] == 12.0 and 2 not in c.gd_por_tb_medio  # média de 10 e 14; {} fica fora; mês sem dado fica ausente
     assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}}  # 2021 está fora de 1991–2020
     assert c.chuva_mm[1] == 100.0 and c.chuva_mm[2] is None and c.et0_mm[1] == 50.0 and c.dias_chuva_forte[1] == 2.0
+
+
+def test_clima_de_linhas_monta_a_tmin_por_dia_e_ignora_mes_sem_a_lista():
+    def linha(ano, mes, tmin_diaria):
+        return LinhaMensal(ano, mes, 100.0, 50.0, 20.0, 28.0, 14.0, 35.0, 5.0, 0, 0, 2, 3, 30, {}, tmin_diaria)
+
+    c = clima_de_linhas([linha(2020, 2, [1.0, None] + [3.0] * 27), linha(2021, 1, [4.0] * 31), linha(2020, 3, None)], "f", "p")
+    assert c.tmin_por_dia[date(2020, 2, 1)] == 1.0 and c.tmin_por_dia[date(2020, 2, 2)] is None
+    assert c.tmin_por_dia[date(2020, 2, 29)] == 3.0 and c.tmin_por_dia[date(2021, 1, 31)] == 4.0  # 2021 fica (fim da janela de 2020)
+    assert date(2020, 3, 1) not in c.tmin_por_dia  # célula antiga: sem a lista, sem dia
 
 
 def test_clima_do_servico_monta_do_servico_de_clima():

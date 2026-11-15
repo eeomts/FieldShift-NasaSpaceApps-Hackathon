@@ -1,5 +1,9 @@
 {
   "id": "milho",
+  "pais": "BR",
+  "nome": "Milho",
+  "nome_cientifico": "Zea mays",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "comercial",
     "perene": "false",

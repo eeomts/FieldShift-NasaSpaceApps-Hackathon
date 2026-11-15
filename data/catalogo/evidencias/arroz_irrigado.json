@@ -1,5 +1,9 @@
 {
   "id": "arroz_irrigado",
+  "pais": "BR",
+  "nome": "Arroz irrigado",
+  "nome_cientifico": "Oryza sativa",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "comercial",
     "perene": "false",

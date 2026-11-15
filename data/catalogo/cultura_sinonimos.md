@@ -4,10 +4,10 @@
 >
 > A fonte única dos nomes das culturas é o campo `nomes` de cada cultura em **`agroai/base/culturas.json`**, que é arquivo do app e só muda por PR, avisando o Pedro. Este documento lista o que já existe lá e **o que a proposta muda**.
 >
-> **Idiomas:** o app tem só **português e inglês** (decisão da Pessoa 3, 15/11/2026). Hoje o `culturas.json` ainda tem uma lista `"es"` (espanhol) em cada uma das 42 culturas: a proposta é **tirar todas**. As tabelas abaixo mostram só PT e EN.
+> **Idiomas:** o app tem só **português e inglês** (decisão da Pessoa 3, 15/11/2026). Hoje o `culturas.json` ainda tem uma lista `"es"` (espanhol) em cada uma das 41 culturas: a proposta é **tirar todas**. As tabelas abaixo mostram só PT e EN.
 
 ## Como aplicar (no PR do app)
-1. **Tirar o espanhol:** apagar a chave `"es"` do `nomes` das 42 culturas do `agroai/base/culturas.json`.
+1. **Tirar o espanhol:** apagar a chave `"es"` do `nomes` das 41 culturas do `agroai/base/culturas.json`.
 2. **Nomes novos:** para cada linha com nomes em **Novos propostos**, acrescentar o nome na lista do idioma certo (`pt` ou `en`).
 3. **Código que ainda fala de espanhol** (fica para quem fizer o PR, não é desta tarefa):
    - `agroai/api/tests/test_arroz_irrigado.py` espera os idiomas `{"pt", "en", "es"}`: passa a esperar `{"pt", "en"}`.

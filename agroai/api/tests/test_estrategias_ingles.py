@@ -102,3 +102,35 @@ def test_em_portugues_nao_muda(client, auth):
 )  # fmt: skip
 def test_frases_soltas(pt, en):
     assert traduzir(pt) == en
+
+
+@pytest.mark.parametrize(
+    "pt",
+    [
+        # regra 17 (filtro._frio): eliminação, aviso e lacuna
+        "Soja: em 40% dos anos houve geada no enchimento dos grãos (mínima abaixo de -2,2 °C) e ela é sensível.",
+        "Trigo: em 35% dos anos houve geada na florada (mínima abaixo de -2 °C) e ela é sensível.",
+        "Arroz irrigado: frio na florada em 45% dos anos (mínima abaixo de 15 °C por 3 dias seguidos); o dano é parcial, validar localmente.",
+        "Pasto: em 60% dos anos houve geada ao longo do ano (mínima abaixo de -3 °C) e ela é sensível.",
+        "Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio.",
+        "Milho: sem a mínima diária do local para a fase todo o ciclo, não checamos o frio.",
+        # renda: frase acrescentada à explicação
+        "A rotação tem 2 cultura(s) para vender: Milho, Feijão. Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota.",
+        # regra 12 (candidatas): lacunas da janela de semeadura
+        "Nabo forrageiro: ainda não confirmamos a melhor época para semear esta cobertura. Confirme com seu agrônomo.",
+        "Milheto: não conseguimos confirmar depois de qual cultura esta cobertura pode ser semeada. Confirme com seu agrônomo.",
+        "Aveia: esta cobertura só serve depois de uma cultura colhida para silagem, e não sabemos se a sua é. Confirme antes de semear.",
+    ],
+)
+def test_frases_da_revisao_de_dados_sem_portugues(pt):
+    en = traduzir(pt)
+    assert en != pt
+    assert not _PT.search(en), en
+
+
+def test_frio_traduz_limiar_e_dias_seguidos():
+    assert traduzir("Arroz irrigado: frio na florada em 45% dos anos (mínima abaixo de 15 °C por 3 dias seguidos); "
+                    "o dano é parcial, validar localmente.") == (
+        "Irrigated rice: cold during flowering in 45% of the years (low below 15 °C for 3 days in a row); "
+        "the damage is partial, check locally."
+    )

@@ -67,7 +67,7 @@ O questionário em si está em [`../ONBOARDING.md`](../ONBOARDING.md).
 3. **Motor:** indicadores e estratégias a partir da ficha.
 4. **Dashboard** lendo a ficha e o motor.
 5. **Chat** com as ferramentas; depois, os **cenários**.
-6. **Integração lenta:** NDVI e SMAP via AppEEARS.
+6. **Integração lenta:** NDVI e SMAP. *(Era via AppEEARS, descartado em 15/11/2026; a ferramenta desta etapa está em aberto.)*
 
 O chat vem depois de propósito: sem o motor, ele não tem o que consultar.
 
@@ -80,7 +80,7 @@ O chat vem depois de propósito: sem o motor, ele não tem o que consultar.
 | 12 fotos de solo com origem e licença | Pergunta 19 |
 | Glossário em linguagem simples | Dashboard e chat |
 | Textos-modelo das explicações (por quê, evidência, benefícios, lacunas, riscos) | Dashboard e chat |
-| Conta NASA Earthdata (gratuita) | AppEEARS, SMAP, IMERG |
+| Conta NASA Earthdata (gratuita) | SMAP, IMERG (o AppEEARS foi descartado em 15/11/2026) |
 | Chave da API do Gemini | Texto livre e chat |
 | Hospedagem | Backend, banco e frontend |
 

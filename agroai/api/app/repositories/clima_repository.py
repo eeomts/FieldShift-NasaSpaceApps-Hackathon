@@ -1,6 +1,6 @@
 """Acesso ao banco do clima: célula da grade e os meses agregados."""
 from fastapi import Depends
-from sqlalchemy import func, select
+from sqlalchemy import func, or_, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
@@ -19,8 +19,11 @@ class ClimaRepository:
         return self.db.get(ClimaCelula, celula_id)
 
     def faltam_graus_dia(self, celula_id: str) -> bool:
-        """Algum mês da célula sem `gd_por_tb` (baixada antes da coluna existir)."""
-        consulta = select(ClimaMensal.celula_id).where(ClimaMensal.celula_id == celula_id, ClimaMensal.gd_por_tb.is_(None))
+        """Algum mês da célula sem `gd_por_tb` ou sem `tmin_diaria` (baixada antes da coluna existir)."""
+        consulta = select(ClimaMensal.celula_id).where(
+            ClimaMensal.celula_id == celula_id,
+            or_(ClimaMensal.gd_por_tb.is_(None), ClimaMensal.tmin_diaria.is_(None)),
+        )
         return self.db.scalars(consulta.limit(1)).first() is not None
 
     def gravar(self, celula: dict, meses: list[dict]) -> ClimaCelula:

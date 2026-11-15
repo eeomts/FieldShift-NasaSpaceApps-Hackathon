@@ -50,3 +50,6 @@ class ClimaMensal(Base):
     # Graus-dia do mês por Tb inteira ({"0": 512.3, ..., "20": 3.1}), sem teto. {} = mês sem temperatura completa;
     # NULL = célula baixada antes desta coluna (o serviço baixa de novo).
     gd_por_tb: Mapped[dict | None] = mapped_column(JSONB(none_as_null=True))
+    # Tmin de cada dia do mês (28 a 31 valores, índice = dia - 1; null no dia sem dado). NULL = célula baixada
+    # antes desta coluna (o serviço baixa de novo).
+    tmin_diaria: Mapped[list | None] = mapped_column(JSONB(none_as_null=True))

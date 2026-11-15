@@ -136,9 +136,9 @@ Fonte: Field Shift, motor de análise; Field Shift, glossário científico (ince
 
 ## Nota das estratégias de rotação
 
-A nota das estratégias é como o Field Shift compara a rotação atual do produtor com outras possíveis. Primeiro o app monta candidatas: preencher o mês vazio com planta de cobertura, trocar por uma cultura que aguenta mais a seca ou incluir uma leguminosa. Depois tira as inviáveis: a cultura que não fecha o ciclo na janela, que corre risco alto de geada, que precisa de mais água do que tem, que o produtor não plantaria ou para a qual falta máquina.
+A nota das estratégias é como o Field Shift compara a rotação atual do produtor com outras possíveis. Primeiro o app monta candidatas: preencher o mês vazio com planta de cobertura, trocar por uma cultura que aguenta mais a seca ou incluir uma leguminosa. Depois tira as inviáveis: a cultura que não fecha o ciclo na janela, que corre risco alto de frio ou geada na fase em que a planta é sensível, que o produtor não plantaria ou para a qual falta máquina. A falta de água não tira a cultura de sequeiro: ela só ganha um aviso de "água no limite".
 
-Cada estratégia que sobra ganha uma nota de 0 a 1 em seis critérios: economizar água, melhorar a terra, evitar erosão, menos praga, renda extra e comida pros animais. As prioridades do produtor dão o peso: a primeira escolha vale 0,5, a segunda 0,3, a terceira 0,2. O app mostra a rotação atual e as 2 melhores.
+Cada estratégia que sobra ganha uma nota de 0 a 1 em seis critérios: economizar água, melhorar a terra, evitar erosão, menos praga, renda extra e comida pros animais. A renda extra, por enquanto, é uma contagem: quantas culturas da rotação o produtor pode vender. Ela ainda não usa preço nem quanto a região produz, e por isso não é uma previsão de lucro. As prioridades do produtor dão o peso: a primeira escolha vale 0,5, a segunda 0,3, a terceira 0,2. O app mostra a rotação atual e as 2 melhores.
 
 A nota das estratégias não usa inteligência artificial nem caixa-preta. Toda nota se abre até o dado de origem, e é daí que sai o "por que foi sugerida". A nota é um apoio para conversar e decidir; quem decide é o produtor.
 
@@ -152,11 +152,11 @@ Graus-dia é uma forma de medir o calor acumulado que a planta recebe até fecha
 
 Por exemplo: se o campo fica vazio de abril a julho, o app verifica se uma planta de cobertura ou uma safrinha consegue crescer nesse tempo com o frio daquela época. Se a soma ficar abaixo de 90% do mínimo da cultura, a estratégia é descartada antes da comparação; entre 90% e 100%, ela fica marcada como "no limite", para conferir no local.
 
-A janela de plantio também considera o risco de geada e de falta de chuva nas fases sensíveis e, no Brasil, o ZARC, o zoneamento de risco climático do Ministério da Agricultura. O ZARC não cobre todas as culturas: mandioca, milheto, crotalária, nabo forrageiro, guandu e braquiária sozinha não têm zoneamento. Para elas, e para fazendas fora do Brasil, a janela sai só do clima, com confiança menor. A conta de graus-dia é feita pelo clima da região; variedades precoces ou tardias podem mudar o resultado, por isso o produtor confirma as datas.
+A janela de plantio também considera o frio nos dias em que a planta é mais sensível, como na florada ou no enchimento dos grãos: cada cultura tem a sua temperatura de dano, e o Field Shift olha a temperatura mínima de cada dia daquela fase nos anos passados. A falta de chuva no período só gera um aviso. O Field Shift ainda não usa o ZARC, o zoneamento de risco climático do Ministério da Agricultura: hoje, no Brasil e fora dele, a janela sai do clima do local e dos números da base de culturas, e a confiança acompanha a confiança da base. A conta de graus-dia é feita pelo clima da região; variedades precoces ou tardias podem mudar o resultado, por isso o produtor confirma as datas.
 
 Como o produtor costuma dizer: dá tempo de plantar?, fecha o ciclo?, época de plantio, plantar no tarde, safrinha, janela.
 
-Fonte: NASA POWER; base de culturas do Field Shift; MAPA, Zoneamento Agrícola de Risco Climático (ZARC); Field Shift, motor de análise.
+Fonte: NASA POWER; base de culturas do Field Shift; Field Shift, motor de análise.
 
 ## Cenários: e se?
 

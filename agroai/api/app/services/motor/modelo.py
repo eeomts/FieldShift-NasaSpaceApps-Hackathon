@@ -28,6 +28,7 @@ class Estrategia:
     nome: str
     origem: Origem
     itens: tuple[ItemRotacao, ...]
+    lacunas: tuple[str, ...] = ()  # o que não deu para confirmar ao gerar a candidata (ex.: época de semeadura); vai para o produtor
 
 
 @dataclass(frozen=True)

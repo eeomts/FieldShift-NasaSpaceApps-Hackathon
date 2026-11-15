@@ -1,5 +1,9 @@
 {
   "id": "feijao",
+  "pais": "BR",
+  "nome": "Feijão",
+  "nome_cientifico": "Phaseolus vulgaris",
+  "familia_botanica": "Fabaceae",
   "valores": {
     "tipos": "comercial|fixadora_n",
     "perene": "false",

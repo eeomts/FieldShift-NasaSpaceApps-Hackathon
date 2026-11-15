@@ -4,6 +4,8 @@ DIAS_POR_MES = 30.4  # 365 / 12, arredondado
 
 # Candidatas
 MAX_CANDIDATAS = 30  # proposta, validar com o Yury
+# Regra 12: cobertura com condicao_semeadura "apos_cereal_inverno" só entra depois de um destes (ids do catálogo)
+CEREAIS_INVERNO = ("trigo", "aveia", "cevada", "centeio")  # proposta, validar com o Yury
 
 # Filtro de graus-dia (regra 2, Yury 14/11)
 GD_ELIMINA_ABAIXO = 0.90  # abaixo de 90 % do mínimo da cultura elimina
@@ -17,6 +19,20 @@ AGUA_ALERTA_ABAIXO = 0.80  # proposta, validar com o Yury
 GEADA_MAX_FRACAO_DE_ANOS = 0.30
 GEADA_MIN_DIAS_NO_ANO = 1  # o ano conta se algum mês da fase sensível teve pelo menos 1 dia de geada
 GEADA_FASE_SENSIVEL = "terco_medio"  # proposta, validar com o Yury (floração): o terço do meio do ciclo, onde o Kc é médio
+
+# Filtro de frio por fase (regra 17): a mesma fração máxima de anos da geada (GEADA_MAX_FRACAO_DE_ANOS)
+SEMEADURA_DIA_DO_MES = 15  # proposta, validar com o Yury: dia da semeadura dentro do inicio_mes (alternativa: dias 1, 11 e 21)
+TMIN_ANO_INICIO = 1991  # anos de semeadura que entram na conta do frio (base 1991-2020)
+TMIN_ANO_FIM = 2020
+# Fase sensível ao frio: (como aparece na frase "houve frio ...", como aparece em "para a fase ..."). Sem jargão.
+FASES_FRIO_TEXTO = {
+    "floracao": ("na florada", "florada"),
+    "enchimento_grao": ("no enchimento dos grãos", "enchimento dos grãos"),
+    "inicio": ("no começo do crescimento", "começo do crescimento"),
+    "ciclo_todo": ("em todo o ciclo", "todo o ciclo"),
+}
+FASE_FRIO_PADRAO = ("na fase sensível", "fase sensível")  # fase com nome que ainda não conhecemos
+FASE_FRIO_PERENE = ("ao longo do ano", "ano todo")  # perene: o ano todo
 
 # Pesos das prioridades (decisão do usuário, 15/11)
 PESOS_PRIORIDADE = (0.5, 0.3, 0.2)  # 1ª, 2ª e 3ª escolha, reescalados para sobrar PESO_NAO_ESCOLHIDO aos demais
