@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     # IA (opcional: sem chave, o onboarding usa a lista reserva)
     gemini_api_key: str | None = None
     gemini_model: str = "gemini-3.8-flash"
+    gemini_embedding_model: str = "gemini-embedding-001"
 
     # Front-end permitido (CORS), separado por vírgula
     cors_origins: str = "http://localhost:5173"

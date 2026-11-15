@@ -1,4 +1,4 @@
-# API do AgroIA (FastAPI). Contexto do build: agroia/ (precisa de api/ e base/).
+# API do AgroIA (FastAPI). Contexto do build: a raiz do repositório; o container tem o mesmo layout do repo sob /app.
 FROM python:3.13-slim
 
 COPY --from=ghcr.io/astral-sh/uv:0.7.2 /uv /usr/local/bin/uv
@@ -7,16 +7,18 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     UV_COMPILE_BYTECODE=1 \
     UV_LINK_MODE=copy \
-    PATH="/app/api/.venv/bin:$PATH"
+    PATH="/app/agroia/api/.venv/bin:$PATH"
 
-WORKDIR /app/api
+WORKDIR /app/agroia/api
 
 # dependências primeiro: só reinstala quando o uv.lock muda
-COPY api/pyproject.toml api/uv.lock ./
+COPY agroia/api/pyproject.toml agroia/api/uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY api/ ./
-COPY base/ /app/base/
+COPY agroia/api/ ./
+COPY agroia/base/ /app/agroia/base/
+COPY data/catalogo/ /app/data/catalogo/
+COPY data/rag/ /app/data/rag/
 
 RUN useradd --system --no-create-home agroia && chown -R agroia /app
 USER agroia
