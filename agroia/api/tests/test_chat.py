@@ -14,6 +14,7 @@ from app.services.agente import agente_service
 from app.services.agente.agente_service import de_json, para_json, provedor_de_busca
 from app.services.agente.busca_conhecimento_service import BuscaConhecimentoService
 from app.services.agente.modelo import get_modelo
+from app.services.agente.prompt import RESPOSTA_FORA_DO_ESCOPO
 from app.services.conversa_service import titulo_da_pergunta
 from app.services.integracao.nasa_power import DiaPower, ErroNasaPower, SeriePower, get_cliente
 
@@ -492,3 +493,22 @@ def test_instrucao_pede_texto_simples_sem_markdown(client, auth, conversa, model
     perguntar(client, auth, conversa, "oi")
     instrucao = m.chamadas[0]["instrucao"]
     assert "SEM markdown" in instrucao and "linha em branco" in instrucao and '"- "' in instrucao
+
+
+def test_instrucao_tem_regra_de_escopo_antes_dos_numeros(client, auth, conversa, modelo):
+    m = modelo([fala("ok")])
+    perguntar(client, auth, conversa, "oi")
+    instrucao = m.chamadas[0]["instrucao"]
+    assert RESPOSTA_FORA_DO_ESCOPO in instrucao and "1. ESCOPO" in instrucao
+    assert "programação e código" in instrucao and "NÃO chame ferramenta" in instrucao
+    assert instrucao.index("1. ESCOPO") < instrucao.index("NUNCA inventa número")
+
+
+def test_fora_do_escopo_responde_a_frase_fixa_sem_ferramenta(client, auth, conversa, modelo):
+    m = modelo([fala(RESPOSTA_FORA_DO_ESCOPO)])
+    r = perguntar(client, auth, conversa, "como fazer um hello world em python")
+    assert r.status_code == 200
+    corpo = r.json()
+    assert corpo["texto"] == RESPOSTA_FORA_DO_ESCOPO
+    assert corpo["fontes"] == [] and corpo["ferramentas_usadas"] == []
+    assert len(m.chamadas) == 1
