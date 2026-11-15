@@ -18,7 +18,7 @@ Rode o mais barato primeiro: `curl localhost:8000/saude`, os testes (`pytest`) e
 7. **Texto livre não separa as culturas / sempre cai na lista.** Sem `GEMINI_API_KEY` ou o Gemini falhou (cota, timeout): o app usa a lista reserva de propósito. Ver o log (`Falha ao interpretar com Gemini`).
 8. **Tela mostra código cru ("ruim", "presente") ou campo vazio.** O front está usando um campo que mudou na API (ex.: `valor` × `texto` no retrato do solo). Comparar o schema Pydantic com `agroai/web/src/api/tipos.ts`.
 9. **Fazenda antiga com formato antigo.** Dados derivados (perfil, retrato do solo) são recalculados quando o produtor salva o questionário de novo.
-10. **Dado externo vazio.** SoilGrids devolve vazio em área urbana (máscara deles): use ponto rural. NASA POWER usa `-999` para ausente: tem que virar `None`, nunca 0. AppEEARS é assíncrono: "sem dado" pode ser só tarefa ainda processando.
+10. **Dado externo vazio.** SoilGrids devolve vazio em área urbana (máscara deles): use ponto rural. NASA POWER usa `-999` para ausente: tem que virar `None`, nunca 0. (O AppEEARS foi descartado em 15/11/2026: o app não usa SMAP nem NDVI.)
 11. **`python3` trava no Windows.** É o atalho da Microsoft Store. Use o Python do `.venv` (`agroai/api/.venv/Scripts/python.exe`) ou o `uv run`.
 
 ## Como reportar

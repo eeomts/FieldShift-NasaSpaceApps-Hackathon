@@ -85,6 +85,8 @@ Detalhes em `data/catalogo/evidencias/README.md` (Convenções, Confiança, "Col
 - **`tmax_critica_c`:** só temperatura de dano numa fase sensível que a cultura atravessa no sistema. Cobertura manejada ou morta antes de florescer = vazio justificado; não use o TMAX do ECOCROP nem o teto de uma fórmula de graus-dia.
 - **Perenes forrageiras** (pastagem, alfafa): `ciclo_dias_*` e `graus_dia_ciclo_*` vazios com `vazio_nao_se_aplica`; água e Kc anuais.
 - **`forrageira` em `tipos`:** quando `uso_forrageiro` = `principal`, ou `com_restricao` em cultura sem `comercial`.
+- **`perene` e `tipos` = `por_pais.US` do `agroai/base/culturas.json`** (decisão de 15/11/2026). O `montar_csv.py` recusa a evidência se forem diferentes. Para mudar um deles, avise o coordenador: o bloco do JSON muda junto, por PR.
+- **Temperaturas (decisão de 15/11/2026):** número americano com trecho vence o do Brasil; sem número americano, `temp_otima_*` e `tmax_critica_c` ficam vazios (`vazio_nao_sei`), nunca "reusado do Brasil". O teto do cálculo de graus-dia da fonte americana vale como `temp_otima_max_c`, com nota dizendo isso.
 - **Confiança `baixa`:** preencha `lacuna_informacao` e `risco_revisao_local` em `valores`, até 300 caracteres cada, em português simples para o produtor (sem sigla, sem "proxy", sem "P10", sem nome de modelo). O que não sabemos e o que confirmar com o agrônomo ou a extensão.
 - **Água:** `agua_ciclo_mm_*` é consumo sem déficit; o motor não elimina sequeiro pela água. Não rebaixe o número para "caber" na chuva.
 
