@@ -4,6 +4,7 @@
 !agroia/base
 !data/catalogo
 !data/rag
+!data/demo/pontos_demo.csv
 
 **/.venv
 **/__pycache__
