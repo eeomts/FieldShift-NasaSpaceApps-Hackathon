@@ -20,9 +20,11 @@
     "raiz_profunda": "true",
     "cobertura_solo": "alta",
     "aporte_biomassa": "alto",
-    "valor_forrageiro": "alto",
-    "fontes": "FAO-56 Tab.12 (Kc, linha Grazing Pasture - Rotated Grazing 0.40/0.85-1.05/0.85; categoria genérica de pastagem, usada para kc_inicial e kc_final; kc_medio no limite inferior da faixa, confirmado pela medição de Souza et al. 2021)|FAO-56 Tab.22 (raiz, Grazing Pasture 0.5-1.5 m; limite superior = sequeiro)|Sanches et al., Rev. Bras. Agric. Irrigada 11(2):1291-1301, 2017 (Kc medido em lisímetro de pesagem, Marandu em formação, média 1.07)|Souza et al., IV INOVAGRI 2017, Embrapa Alice doc 1078225 (Kc em lisímetro de pesagem, Marandu irrigado, ciclos de corte outono-inverno, Kc médio 0.60-0.80)|Mendonça & Rassini, Embrapa Pecuária Sudeste Circular Técnica 45, 2006 (temperatura base 15.0 °C, Marandu)|Cruz et al., Pesq. Agropec. Bras. 46(7):675-681, 2011 (temperatura base 17.2 °C, Marandu sequeiro)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Bread grass Brachiaria brizantha, node 490 (temperatura ótima 30-35 °C, geada, raízes até 2 m)|Tropical Forages (CIAT/ILRI), Urochloa brizantha fact sheet (geada, seca de 3-6 meses, melhor adaptada a 1500-3500 mm/ano de chuva e cresce com pouco menos de 1000 mm/ano, MS 8-20 t/ha/ano, valor nutritivo, cobertura)|Kluthcouski et al., Embrapa Arroz e Feijão Circular Técnica 38, 2000 - Sistema Santa Fé (palhada estável, vedação 30-60 dias pós-colheita, dessecação)|Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2ª ed. 2018 (consórcio com milho safrinha, pastejo pós-colheita, dessecação antes da soja)|Oliveira, Kluthcouski, Vilela et al. (Embrapa Cerrados), Os muitos benefícios da ILP para os solos, A Granja, 2015 (raiz profunda rompe camada compactada, bioporos)|Salton & Tomazi, Embrapa Agropecuária Oeste Comunicado Técnico 198, 2014 (raiz da braquiária estrutura o solo; soja após braquiária com raiz a 70 cm vs 40 cm)|Primavesi et al., Embrapa Pecuária Sudeste, 2002 (raízes vivas de Marandu presentes a 80-100 cm)|Souza, Sanches, Mendonça, Pezzopane, Amorim & Jesus, Crop coefficient estimated by degree-days for 'Marandu' palisadegrass and mixed forage, Rev. FCA UNCuyo 53(2):71-81, 2021, doi:10.48162/rev.39.041 (ESALQ, lisímetro de pesagem, Marandu irrigado com corte a 0,15 m a cada 28/40 dias; ETo e ETc por ciclo de corte -> Kc médio dos ciclos 0,82 e consumo anual ~1.030 mm; Kc por graus-dia 0,50-0,90 na primavera/verão e 0,67-0,82 no outono/inverno)|Souza, Sanches, Mendonça, Pilau & Jesus, Crop coefficient of Marandu palisade grass: an approach involving leaf area index and canopy height, Irriga 26(4):924-937, 2021, doi:10.15809/irriga.2021v26n4p924-937 (mesmo ensaio: Kc mínimo e máximo por estação 0,45-1,10; altura do dossel até 0,44 m)|FAO ECOCROP, Brachiaria brizantha, código 536 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial está fora do ar (chuva ótima 750-2500 mm/ano, absoluta 500-4000; temperatura ótima 25-35 °C, absoluta 15-38 °C)|EMBRAPA-CNPGC (Nunes, Boock, Penteado & Gomes), Brachiaria brizantha cv. Marandu, Documentos 21, Campo Grande, 1984 (origem com ~700 mm/ano de chuva e ~8 meses de seca; adaptação ao Cerrado, tolerância à seca e ao frio)|NASA POWER (LaRC), dados diários de Piracicaba-SP, fev/2016-jan/2017 (WS2M, T2M_MAX, T2MDEW) -> u2 e UR mínima para a equação 62 do FAO-56 (cálculo próprio, porque os artigos não publicam esses valores)",
-    "confianca_parametros": "media"
+    "valor_forrageiro": "medio",
+    "fontes": "FAO-56 Tab.12 (Kc, linha Grazing Pasture - Rotated Grazing 0.40/0.85-1.05/0.85; categoria genérica de pastagem, usada para kc_inicial e kc_final; kc_medio no limite inferior da faixa, confirmado pela medição de Souza et al. 2021)|FAO-56 Tab.22 (raiz, Grazing Pasture 0.5-1.5 m; limite superior = sequeiro)|Sanches et al., Rev. Bras. Agric. Irrigada 11(2):1291-1301, 2017 (Kc medido em lisímetro de pesagem, Marandu em formação, média 1.07)|Souza et al., IV INOVAGRI 2017, Embrapa Alice doc 1078225 (Kc em lisímetro de pesagem, Marandu irrigado, ciclos de corte outono-inverno, Kc médio 0.60-0.80)|Mendonça & Rassini, Embrapa Pecuária Sudeste Circular Técnica 45, 2006 (temperatura base 15.0 °C, Marandu)|Cruz et al., Pesq. Agropec. Bras. 46(7):675-681, 2011 (temperatura base 17.2 °C, Marandu sequeiro)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Bread grass Brachiaria brizantha, node 490 (temperatura ótima 30-35 °C, geada, raízes até 2 m)|Tropical Forages (CIAT/ILRI), Urochloa brizantha fact sheet (geada, seca de 3-6 meses, melhor adaptada a 1500-3500 mm/ano de chuva e cresce com pouco menos de 1000 mm/ano, MS 8-20 t/ha/ano, valor nutritivo, cobertura)|Kluthcouski et al., Embrapa Arroz e Feijão Circular Técnica 38, 2000 - Sistema Santa Fé (palhada estável, vedação 30-60 dias pós-colheita, dessecação)|Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2ª ed. 2018 (consórcio com milho safrinha, pastejo pós-colheita, dessecação antes da soja)|Oliveira, Kluthcouski, Vilela et al. (Embrapa Cerrados), Os muitos benefícios da ILP para os solos, A Granja, 2015 (raiz profunda rompe camada compactada, bioporos)|Salton & Tomazi, Embrapa Agropecuária Oeste Comunicado Técnico 198, 2014 (raiz da braquiária estrutura o solo; soja após braquiária com raiz a 70 cm vs 40 cm)|Primavesi et al., Embrapa Pecuária Sudeste, 2002 (raízes vivas de Marandu presentes a 80-100 cm)|Souza, Sanches, Mendonça, Pezzopane, Amorim & Jesus, Crop coefficient estimated by degree-days for 'Marandu' palisadegrass and mixed forage, Rev. FCA UNCuyo 53(2):71-81, 2021, doi:10.48162/rev.39.041 (ESALQ, lisímetro de pesagem, Marandu irrigado com corte a 0,15 m a cada 28/40 dias; ETo e ETc por ciclo de corte -> Kc médio dos ciclos 0,82 e consumo anual ~1.030 mm; Kc por graus-dia 0,50-0,90 na primavera/verão e 0,67-0,82 no outono/inverno)|Souza, Sanches, Mendonça, Pilau & Jesus, Crop coefficient of Marandu palisade grass: an approach involving leaf area index and canopy height, Irriga 26(4):924-937, 2021, doi:10.15809/irriga.2021v26n4p924-937 (mesmo ensaio: Kc mínimo e máximo por estação 0,45-1,10; altura do dossel até 0,44 m)|FAO ECOCROP, Brachiaria brizantha, código 536 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial está fora do ar (chuva ótima 750-2500 mm/ano, absoluta 500-4000; temperatura ótima 25-35 °C, absoluta 15-38 °C)|EMBRAPA-CNPGC (Nunes, Boock, Penteado & Gomes), Brachiaria brizantha cv. Marandu, Documentos 21, Campo Grande, 1984 (origem com ~700 mm/ano de chuva e ~8 meses de seca; adaptação ao Cerrado, tolerância à seca e ao frio)|NASA POWER (LaRC), dados diários de Piracicaba-SP, fev/2016-jan/2017 (WS2M, T2M_MAX, T2MDEW) -> u2 e UR mínima para a equação 62 do FAO-56 (cálculo próprio, porque os artigos não publicam esses valores)|PROXY: kc_inicial, kc_final e raiz da categoria Grazing pasture do FAO-56; água = chuva anual ótima (ECOCROP/Tropical Forages), não consumo",
+    "confianca_parametros": "baixa",
+    "graus_dia_ciclo_min": "",
+    "graus_dia_ciclo_max": ""
   },
   "mudancas": [
     {
@@ -71,7 +73,7 @@
       "coluna": "confianca_parametros",
       "antes": "baixa",
       "depois": "media",
-      "motivo": "Temperatura base, papéis qualitativos e raiz_profunda têm fonte primária ou técnica da Embrapa conferida. O Kc e a raiz vêm de categoria genérica do FAO (pastagem), corroborada por medições brasileiras. A temperatura ótima vem da Feedipedia, porque o ECOCROP estava indisponível. Ciclo, água e tmax ficaram vazios."
+      "motivo": "Temperatura base, papéis qualitativos e raiz_profunda têm fonte primária ou técnica da Embrapa conferida. O Kc e a raiz vêm de categoria genérica do FAO (pastagem), corroborada por medições brasileiras. A temperatura ótima vem da Feedipedia, porque o ECOCROP estava indisponível. Ciclo, água e tmax ficaram vazios naquela rodada (a água anual 750-1500 mm foi preenchida depois; ciclo e tmax continuam vazios porque não se aplicam)."
     },
     {
       "coluna": "fontes",
@@ -114,6 +116,48 @@
       "antes": "30",
       "depois": "25",
       "motivo": "DECISÃO NA JUNÇÃO: FAO ECOCROP (código 536) dá ótimo de 25 a 35 °C; o ECOCROP é a fonte de temperatura usada nas outras culturas, e o 30 vinha da Feedipedia."
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 4 coluna(s) do filtro sem medição ou publicação própria: kc_inicial (proxy), kc_medio (estudo_unico), kc_final (proxy), profundidade_raiz_m (proxy)"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "11.6",
+      "depois": "7.7",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL capim-marandu (id 1370), n=60, Brasil. O 11,6 anterior era de pastejo simulado (Euclides et al. 2021)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 60.0, 'tipo': 'DIVMO (digestibilidade in vitro da matéria orgânica) de amostra simulando o pastejo; média das 4 estações'}",
+      "depois": "{'valor': 55.9, 'tipo': 'DIVMS', 'n': 25, 'medicao': 'medida', 'nota': 'Digestibilidade in vitro da matéria seca do capim-marandu (CQBAL id 1370, CAPIM BRAQUIÁRIA BRIZANTHA MARANDU), n=25, desvio 2,46. A DIVMO do mesmo item também fica abaixo de 60: 58,85 (n=15). O outro registro Marandu (id 1366, agrupado por idade) tem DIVMS 62,36 (n=13); somando os dois, DIVMS 58,1 (n=38). Feedipedia (B. brizantha fresca): DMO 58,0 (*). A DIVMO 60,0 anterior era de pastejo simulado em lotação contínua (Euclides et al. 2021, Embrapa Gado de Corte), média de 4 épocas de 57,0 a 62,5. As DMS 74,06 e DMO 75,27 (n=1-2) do CQBAL não foram usadas (ver cenario).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL é a fonte principal: capim-marandu id 1370, DIVMS n=25 (a métrica de maior n). MUDA A CLASSE: 55,9 < 60, então 'principal' cai para medio; a DIVMO do mesmo item (58,85, n=15) e a DMO da Feedipedia (58,0) dão o mesmo resultado. ERROS DE CADASTRO tratados: o CQBAL registra a B. brizantha como 'UROCHLOA DECUMBENS' (o alimento 'CAPIM BRAQUIARIA DECUMBENS' agrupa todas as braquiárias); usei o nome do derivado (BRIZANTHA MARANDU). As DMS 74,06/DMO 75,27 (n=1-2) foram descartadas por incoerência com DIVMS e FDN. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "regua.regua.ndt_pct",
+      "antes": "None",
+      "depois": "58.06",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT observado guardado à parte; não entra na régua."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "alto",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "-",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: vazio_nao_se_aplica"
     }
   ],
   "evidencias": [
@@ -337,7 +381,7 @@
       "colunas": [
         "kc_medio"
       ],
-      "fonte": "Cálculo próprio: equação 62 do FAO-56 com NASA POWER de Piracicaba (-22.70, -47.63), 11/02/2016 a 31/01/2017; script em scratchpad/rodada2/braq_kc_calc.py",
+      "fonte": "Cálculo próprio: equação 62 do FAO-56 com NASA POWER de Piracicaba (-22.70, -47.63), 11/02/2016 a 31/01/2017; script em data/catalogo/scripts/etc_nasa_power.py (cenários: ver data/catalogo/scripts/etc_cenarios.json)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WS2M,T2M_MAX,T2M_MIN,T2MDEW,RH2M&community=AG&longitude=-47.63&latitude=-22.70&start=20160211&end=20170131&format=JSON",
       "trecho": "u2 médio 1,94 m/s; URmin (pelo ponto de orvalho e Tmax) 51,3%; h 0,30 m -> [0,04(u2-2) - 0,004(URmin-45)](h/3)^0,3 = -0,014 -> Kc_padrão = Kc_medido + 0,014. Por ciclo, o ajuste vai de -0,050 (verão úmido) a +0,033 (fim do inverno seco). Kc médio dos ciclos medido 0,82 -> padronizado ~0,84."
     },
@@ -348,19 +392,324 @@
       "fonte": "Souza et al., Rev. FCA UNCuyo 53(2):71-81, 2021, Discussão (citando Pezzopane et al., Field Crops Research 224:13-21, 2018)",
       "url": "https://doi.org/10.48162/rev.39.041",
       "trecho": "Literature on tropical pasture reports the optimum and maximum temperatures for vegetative development to be 40 °C, and 45 °C, respectively (24)."
+    },
+    {
+      "fonte": "Mendonça, Mello, Andreotti, Pariz, Yano & Pereira, Liberação de nutrientes da palhada de forrageiras consorciadas com milho e sucessão com soja, R. Bras. Ci. Solo 39:183-193, 2015",
+      "url": "https://doi.org/10.1590/01000683rbcs20150666",
+      "trecho": "Quadro 1. Produtividade de massa matéria seca das forrageiras em consórcio com milho [...] avaliada no momento da semeadura da soja: U. brizantha cv. Marandu 4250 [Linha] 3150 [Lanço] 2850 [Lanço V4]; U. ruziziensis 4150 4650 3000 [kg ha-1]",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Oliveira & Kluthcouski, Palhada de cobertura do solo no sistema plantio direto, cap. 8, Embrapa Arroz e Feijão, 2009, Tabelas 11 e 12 (dados de Braz, 2003, Santo Antônio de Goiás-GO)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Braquiária solteira 12426 [MSPTI kg ha-1] 0,0094 [k dia-1] 48 [PR150 %] 62 [PR360 %] [...] Braquiária consorciada 3889 0,0057 56 86",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Pacheco, Leandro, Machado, Assis, Cobucci, Madari & Petter, Produção de fitomassa e acúmulo e liberação de nutrientes por plantas de cobertura na safrinha, Pesq. agropec. bras. 46(1):17-25, 2011 (Santo Antônio de Goiás e Rio Verde-GO)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/882280/1/pab46.pdf",
+      "trecho": "U. brizantha [...] 11.405a [kg ha-1, 200 DAS, S.A. Goiás]; U. ruziziensis [...] 6.965b [200 DAS, S.A. Goiás]; U. ruziziensis [...] 6.237a [180 DAS, Rio Verde]; Relação C/N [200 DAS] U. brizantha 49b, U. ruziziensis 34c; [Rio Verde, 180 DAS] U. ruziziensis 35b",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 dias após o plantio)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 2 [...] Braquiária 6,0 bc [MS] 130,8 b 16,1 [C/N] | 2,1 c 41,6 c 19,6; Quadro 3 Braquiária 0,0132 52 [T½ dia, milho] | 0,0115 60 [soja]",
+      "colunas": [
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Azevedo & Spehar, Decomposição da palhada de culturas para plantio no período de safrinha em solos de tabuleiros costeiros, Embrapa Meio-Norte, Comunicado Técnico 147, 2002 (Brejo-MA; resíduos após a colheita dos grãos)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/65737/1/CT147.pdf",
+      "trecho": "Braquiária brizanta (Brachiaria brizantha) [...] 25:1 [C:N]; Braquiária decumbens (B. decumbens) [...] 25:1",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Euclides, Montagner et al., Valor nutritivo, estrutura do dossel e desempenho animal de algumas cultivares de Panicum maximum e Brachiaria spp. submetidas a diferentes estratégias de manejo, Embrapa Gado de Corte, Documentos 292, 2021, Tabela 1A (capim-marandu, lotação contínua a 15 cm, média de 2007 a 2011)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1135277/1/DOC-292-Final-em-alta.pdf",
+      "trecho": "Proteína bruta (%) 13,5 ± 0,5 [transição seca/águas] 12,6 ± 0,5 [águas] 11,4 ± 0,6 [transição águas/seca] 8,8 ± 0,5 [seca]; DIVMO5 (%) 62,5 ± 1,1 61,1 ± 0,7 59,4 ± 1,7 57,0 ± 0,8",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Cook et al., Tropical Forages (CIAT/ILRI), Urochloa brizantha",
+      "url": "https://tropicalforages.info/text/entities/urochloa_brizantha.htm",
+      "trecho": "DM yields range from 8 to 20 t/ha/yr ... CP ranges are 7–16% and digestibility 51–75% ... Well accepted by grazing stock (trecho já registrado em braquiaria.json)",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Kluthcouski et al., Cultivo do feijoeiro em palhada de braquiária, Embrapa Arroz e Feijão, Documentos 157, 2003 (dados de Teixeira Neto, 2002)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/212489/1/doc157.pdf",
+      "trecho": "Na quinta avaliação, feita aos 120 dias após a dessecação, a maior quantidade de biomassa seca residual ainda foi da braquiária solteira (10,4 t ha-1) [...] o menor percentual de decomposição foi da palhada resultante do consórcio milho+braquiária (53% de redução), seguido da braquiária solteira (61%)",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Rossi, Pereira, Giácomo, Betta & Polidoro, Decomposição e liberação de nutrientes da palhada de braquiária, sorgo e soja em áreas de plantio direto no cerrado goiano, Semina: Ciências Agrárias 34(4):1523-1534, 2013",
+      "url": "https://doi.org/10.5433/1679-0359.2013v34n4p1523",
+      "trecho": "Os valores de T1/2 da matéria seca foram de 154 e 258 dias para braquiária + soja e sorgo + soja, respectivamente, no período seco e de 99 e 119 dias no período chuvoso.",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Ceccon, Milho safrinha com braquiária em consórcio, Embrapa Agropecuária Oeste, Comunicado Técnico 140, 2008, Tabela 7",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/239984/1/COT2008140.pdf",
+      "trecho": "Tabela 7. Rendimento de massa seca das espécies na colheita do milho safrinha, em 2006 [...] B. Marandu 1.871 b 1.593 d 4.040 c [...] B. ruziziensis 2.264 b 1.454 b 6.540 a [kg ha-1; Dourados, Batayporã, São Gabriel do Oeste]",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Rossi, Pereira, Giácomo, Betta & Polidoro, Decomposição e liberação de nutrientes da palhada de braquiária, sorgo e soja em áreas de plantio direto no cerrado goiano, Semina: Ciências Agrárias 34(4):1523-1534, 2013 (PDF: https://ojs.uel.br/revistas/uel/index.php/semagrarias/article/download/10610/pdf_1/65679)",
+      "url": "https://doi.org/10.5433/1679-0359.2013v34n4p1523",
+      "trecho": "Os valores de T1/2 da matéria seca foram de 154 e 258 dias para braquiária + soja e sorgo + soja, respectivamente, no período seco e de 99 e 119 dias no período chuvoso.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Rossi, Pereira, Giácomo, Betta & Polidoro, Decomposição e liberação de nutrientes da palhada de braquiária, sorgo e soja em áreas de plantio direto no cerrado goiano, Semina: Ciências Agrárias 34(4):1523-1534, 2013 (PDF: https://ojs.uel.br/revistas/uel/index.php/semagrarias/article/download/10610/pdf_1/65679)",
+      "url": "https://doi.org/10.5433/1679-0359.2013v34n4p1523",
+      "trecho": "Em cada bolsa foram colocadas 20 g de material fresco composto por soja + braquiária e soja + sorgo. [...] A primeira, no período seco (final de março de 2007), com coletas realizadas aos 15, 30, 60, 90 e 120 dias; a segunda, no período chuvoso (novembro de 2007)",
+      "colunas": [
+        "condicao"
+      ]
+    },
+    {
+      "fonte": "Oliveira & Kluthcouski, Palhada de cobertura do solo no sistema plantio direto, cap. 8, Embrapa Arroz e Feijão, 2009 (dados de Braz, 2003, Santo Antônio de Goiás-GO, 2002; modelo de Dalal & Mayer com massa de equilíbrio, 150 dias observados)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "O índice invariante (k dia-1) de perda de massa (decomposição) estimado foi de 0,0094 dia-1. Estimaram-se os valores de massa seca de 12.426 kg ha-1 (massa Y0) no tempo t0, e de 6.410 kg ha-1 para 150 dias.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Oliveira & Kluthcouski, Palhada de cobertura do solo no sistema plantio direto, cap. 8, Embrapa Arroz e Feijão, 2009 (dados de Braz, 2003, Santo Antônio de Goiás-GO, 2002; modelo de Dalal & Mayer com massa de equilíbrio, 150 dias observados)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Rezende et al. (1999) com Brachiaria humidicola, onde foram observadas reduções de fitomassa próximas de 60%, no período de 112 dias, na estação chuvosa, e de 50%, no período de 140 dias, na estação seca.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Kluthcouski et al., Cultivo do feijoeiro em palhada de braquiária, Embrapa Arroz e Feijão, Documentos 157, 2003 (dados de Teixeira Neto, 2002; Santo Antônio de Goiás-GO, junho a outubro de 2001)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/212489/1/doc157.pdf",
+      "trecho": "Na quinta avaliação, feita aos 120 dias após a dessecação, a maior quantidade de biomassa seca residual ainda foi da braquiária solteira (10,4 t ha-1) [...] o menor percentual de decomposição foi da palhada resultante do consórcio milho+braquiária (53% de redução), seguido da braquiária solteira (61%)",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 3 [...] Braquiária 0,0132 52 [milho] [...] Braquiária 0,0115 60 [soja]; Quadro 4 [...] Braquiária 0,0090 77 [milho] [...] Braquiária 0,0089 78 [soja]",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 1370 'CAPIM BRAQUIÁRIA BRIZANTHA MARANDU' (FORRAGENS VERDES; espécie cadastrada: UROCHLOA DECUMBENS): PB média 7,68 (n 60, desvio 1,125); DIVMS média 55,92 (n 25, desvio 2,461); DIVMO média 58,85 (n 15, desvio 1,981); NDT OBS média 58,06 (n 5, desvio 2,406); DMS média 74,06 (n 1, desvio 0); DMO média 75,27 (n 1, desvio 0); FDN média 72,08 (n 51, desvio 2,019)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 1366 'CAPIM BRAQUIÁRIA BRIZANTHA MARANDU' (FORRAGENS VERDES; espécie cadastrada: UROCHLOA DECUMBENS): PB média 8,27 (n 42, desvio 1,64); DIVMS média 62,36 (n 13, desvio 3,188); DIVMO média 62,01 (n 3, desvio 3,001); DMS média 74,06 (n 2, desvio 1,4)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Bread grass (Brachiaria brizantha)",
+      "url": "https://www.feedipedia.org/node/490",
+      "trecho": "Bread grass (Brachiaria brizantha), aerial part, fresh [...] Crude protein % DM 10.4 (SD 2.8, 4.6-15.8, Nb 324) [...] OM digestibility, Ruminant % 58.0 * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Souza, Sanches, Mendonça, Pezzopane, Amorim & Jesus, Crop coefficient estimated by degree-days for 'Marandu' palisadegrass and mixed forage, Rev. FCA UNCuyo 53(2):71-81, 2021, doi:10.48162/rev.39.041 (já na evidência da cultura)",
+      "url": "https://doi.org/10.48162/rev.39.041",
+      "trecho": "[Marandu irrigado cortado a 0,15 m a cada 28 dias na primavera/verão e 40 dias no outono/inverno; os graus-dia descrevem a REBROTA entre cortes, não um ciclo da semeadura à colheita]"
     }
   ],
   "pendencias": [
+    "PRIORIDADE (decisão 14/11): buscar o texto completo de Sanches et al. 2017 (Rev. Bras. Agric. Irrigada 11(2):1291-1301, Marandu, lisímetro, ensaio diferente de Souza/Sanches 2021). É a única fonte que pode tirar a pastagem da confiança baixa (kc_medio deixaria de ser estudo_unico). Enquanto isso, mantém 0,85.",
     "Ciclo vazio por decisão (perene). Se o app precisar de uma janela para encaixar a braquiária como cobertura na ILP, a opção é da semeadura junto com o milho safrinha (fim de fev./início de mar., Broch & Ceccon) até a dessecação antes da soja (set.-out.), cerca de 180 a 230 dias. Esse número é DERIVADO do calendário, não lido numa fonte: nenhuma fonte primária dá dias fixos. Também é DERIVADA a janela de 60 a 150 dias entre a colheita do safrinha e a dessecação. O que a fonte diz: 30 a 60 dias de vedação para rebrota após a colheita (Circ. Téc. 38) e intervalo de 20 a 30 dias entre a dessecação de Marandu/Xaraés/Piatã e a semeadura da soja (Doc 131, Tab. 3).",
     "agua_ciclo_mm_min/max (750-1500) são exigência ANUAL de CHUVA (mm/ano), não água por ciclo como nas anuais. O motor precisa comparar com a chuva anual (ou de 12 meses) e não com a de uma janela de cultivo. Para usar a braquiária como cobertura de entressafra na ILP (janela de ~180-230 dias), o filtro anual não serve. Nesse caso, uma opção DERIVADA é ETc = Kc 0,85 × ET0 da janela.",
     "Kc: o kc_medio 0,85 vem de um único ensaio (ESALQ 2016-17, 1 ano, lisímetros de 1,17-1,22 m², corte a 0,15 m, irrigado). As ETc por ciclo podem estar subestimadas, porque leituras com chuva intensa foram descartadas, e os ciclos chuvosos (mar/2016 0,65, jan/2017 0,75) parecem afetados. Em pastejo com resíduo mais alto, o Kc tende a ser maior: os picos no verão chegam a 1,10 (Irriga) e 1,20-1,27 (dado original). O Sanches 2017 (1,07, formação) foi lido só no resumo e o 1,19 só como citação secundária. u2 e URmin da equação 62 vieram do NASA POWER, e não da estação da ESALQ. kc_inicial 0,40 (FAO) ficou abaixo do Kc medido logo após o corte (0,45-0,67), mas este foi irrigado, com solo úmido; mantive o FAO.",
     "Raiz 1.5 m segue a regra do BRIEF (limite superior da FAO-56 Tab.22 para pastagem). A Feedipedia diz 'down to 2 m' para B. brizantha. Não achei medição de campo publicada de profundidade máxima da brizantha além de 1 m (Primavesi 2002 mediu só até 100 cm). Para B. decumbens adubada há citação de raízes além de 250 cm (Primavesi & Primavesi 1999, citado em Primavesi et al. 2002). Se a equipe aceitar fonte fora da FAO, 2.0 é defensável.",
-    "Guenni, Marín & Baruch 2002 (Plant and Soil 243:229-241), sobre seca e distribuição radicular, foi lido só pelo resumo num resultado de busca. Não está na lista de fontes."
+    "Guenni, Marín & Baruch 2002 (Plant and Soil 243:229-241), sobre seca e distribuição radicular, foi lido só pelo resumo num resultado de busca. Não está na lista de fontes.",
+    "cobertura_solo \"alta\" está a 0,04 t/ha do corte (9,19 x e^(-0,007x60) = 6,04 t/ha); o k vem de B. ruziziensis com resíduo de soja (Rossi 2013). Com k = 0,0094 (Braz) a classe seria \"media\". O aviso \"depende da época\" deve aparecer na tela.",
+    "graus-dia: Perene: min/max nulos de propósito (vazio_nao_se_aplica). O motor deve pular o filtro de 'completar o ciclo' para a pastagem.",
+    "graus-dia: Se um dia o motor quiser um teste de frio para a pastagem, o caminho é outro: graus-dia por período de rebrota (Tb 15 °C, Mendonça & Rassini 2006; 17,2 °C, Cruz et al. 2011) ou a estacionalidade da produção no inverno, não uma exigência de ciclo.",
+    "graus-dia: Na formação (estabelecimento) há uma fase com começo e fim (semeadura até o primeiro pastejo, ~90-120 dias em ILP), mas não achei soma térmica publicada para ela."
   ],
   "pendencias_resolvidas": [
     "agua_ciclo_mm vazio: sem ciclo definido não há água por ciclo. Referência anual (Tropical Forages): ótimo de 1500 a 3500 mm/ano de chuva, cresce com chuva 'somewhat below 1,000 mm' e aguenta 3 a 6 meses de seca. Se o app aceitar valor anual para perenes, um mínimo de 1000 mm/ano tem respaldo; o máximo não é um limite agronômico.",
     "tmax_critica_c vazio: não tem sentido para forrageira sem colheita de grão, e não achei fonte. O ECOCROP (temperatura absoluta máxima) estava fora do ar em ecocrop.apps.fao.org (erro de banco) e em ecocrop.review.fao.org (pede login).",
     "temp_otima 30-35 vem da Feedipedia (base compilada da FAO/INRAE/CIRAD), não do ECOCROP. Vale reconferir no ECOCROP (id provável 538, não confirmado) quando o site voltar.",
     "Kc: não há trio ini/mid/end específico de U. brizantha publicado de forma padronizada. Os lisímetros brasileiros (ESALQ/Embrapa Pecuária Sudeste) mostram Kc de 0,6 a 0,8 no outono-inverno e cerca de 1,07 a 1,19 no verão/irrigado. O trabalho com Kc por graus-dia (Souza et al., Rev. Fac. Cienc. Agrar. UNCuyo 53(2), 2021, DOI 10.48162/rev.39.041) não abriu (502); seria a melhor fonte para refinar. Os valores de Sanches 2017 (1,07) foram lidos só no resumo da AGRIS, e o 1,19 só na citação secundária de Mombach et al. 2019."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 6.24,
+      "max": 12.4,
+      "tipico": 9.19
+    },
+    "cn_palhada": {
+      "min": 16.1,
+      "max": 49,
+      "tipico": 25
+    },
+    "k_dia": {
+      "valor": 0.007,
+      "min": 0.0044,
+      "max": 0.0082
+    },
+    "meia_vida_dias": {
+      "valor": 99,
+      "min": 85,
+      "max": 157
+    },
+    "condicao_decomposicao": "Valor: Cerrado goiano (Rio Verde-GO), Brachiaria ruziziensis cultivada na seca e dessecada no fim de outubro antes da soja; bolsas instaladas em novembro de 2007 (período chuvoso), coletas até 120 dias, plantio direto. A palhada nas bolsas era mistura de braquiária com resíduo de soja. Braquiária adulta, não a planta jovem de 110 dias.",
+    "pb_pct": 7.7,
+    "digestibilidade_pct": {
+      "valor": 55.9,
+      "tipo": "DIVMS",
+      "n": 25,
+      "medicao": "medida",
+      "nota": "Digestibilidade in vitro da matéria seca do capim-marandu (CQBAL id 1370, CAPIM BRAQUIÁRIA BRIZANTHA MARANDU), n=25, desvio 2,46. A DIVMO do mesmo item também fica abaixo de 60: 58,85 (n=15). O outro registro Marandu (id 1366, agrupado por idade) tem DIVMS 62,36 (n=13); somando os dois, DIVMS 58,1 (n=38). Feedipedia (B. brizantha fresca): DMO 58,0 (*). A DIVMO 60,0 anterior era de pastejo simulado em lotação contínua (Euclides et al. 2021, Embrapa Gado de Corte), média de 4 épocas de 57,0 a 62,5. As DMS 74,06 e DMO 75,27 (n=1-2) do CQBAL não foram usadas (ver cenario)."
+    },
+    "uso_forrageiro": "principal",
+    "observacoes": {
+      "coleta": "TÍPICO ATUAL (decisão do usuário, revisão 14/11): braquiária SOLTEIRA, mediana de 6,24; 6,97; 11,4; 12,4 t/ha = 9,19 t/ha. Os valores de consórcio com milho estão em regua.arranjos. Texto original da coleta: MS na dessecação antes da soja, em ILP/consórcio ou safrinha de braquiária, t/ha: consórcio com milho, Mendonça (Marandu 4,25, 3,15, 2,85; ruziziensis 4,15, 4,65, 3,0) e Braz (consorciada 3,89); solteira na safrinha, Pacheco (brizantha 11,4; ruziziensis 6,97 e 6,24) e Braz (solteira 12,4). Típico = mediana dos 11 valores (4,3), puxada pelo consórcio com milho, que é o arranjo mais comum. A braquiária solteira chega a 11-12 t/ha. Na colheita do milho safrinha a braquiária consorciada tem só 0,7-6,5 t/ha (Ceccon), e o pastejo e o rebrote até a dessecação aumentam a massa. Excluí da faixa de MS os valores de Torres (6,0 e 2,1), porque ali a braquiária foi cobertura de verão dessecada aos 110 DAP, não ILP. C/N: 16,1 e 19,6 (Torres, planta jovem), 25 e 25 (CT 147, brizantha e decumbens), 49 (brizantha) e 34-35 (ruziziensis) na dessecação aos 180-200 DAS (Pacheco). Típico = mediana dos 7 valores (25). Planta mais velha e com mais colmo tem C/N maior. PB e digestibilidade: média das 4 estações do Marandu em pastejo (Embrapa Gado de Corte): PB 11,6% e DIVMO 60,0%. Nas águas são 12,6% e 61,1%, na seca 8,8% e 57,0%. A Feedipedia dá 10,4% PB e 58% de digestibilidade da MO. uso_forrageiro = principal. Persistência: é a palhada mais persistente nos estudos goianos. Braz mediu k = 0,0094/dia (consorciada 0,0057), 48% de perda aos 150 dias e 62% projetada aos 360 dias, com equilíbrio depois de 360 dias. Teixeira Neto (via Kluthcouski) achou 10,4 t/ha ainda presentes 120 dias após a dessecação na braquiária solteira (61% de redução) e 53% de redução no consórcio milho + braquiária. Rossi et al. mediram T½ de 154 dias (seca) e 99 dias (chuva) para palhada de ruziziensis + soja. A exceção é Torres: a braquiária jovem, com C/N 16, teve T½ de só 52-60 dias.",
+      "decomposicao": "Escolha: Rossi et al. 2013, período chuvoso, T½ = 99 d -> k = ln2/99 = 0,0070/dia. É o caso do app: braquiária adulta dessecada antes da soja, com a palhada exposta às chuvas. Ressalva: a bolsa tinha braquiária misturada com resíduo de soja, e a espécie é ruziziensis (C/N menor que o da brizantha). Apoio: Rezende et al. 1999 (B. humidicola, via Embrapa): ~60% de perda em 112 d na chuva -> k = -ln(0,40)/112 = 0,0082/dia (max), T½ 85 d; ~50% em 140 d na seca -> k = 0,0050. Teixeira Neto 2002 (braquiária solteira, junho a outubro, seca): 61% de redução aos 120 d -> k = -ln(0,39)/120 = 0,0078/dia, T½ 88 d. Braz 2003 (braquiária solteira, 12,4 t/ha, GO): o k = 0,0094/dia é do modelo de Dalal & Mayer com massa de equilíbrio e NÃO é exponencial simples (com e^(-0,0094·150) sobrariam 24%, mas o próprio estudo dá 6.410/12.426 = 51,6% aos 150 d). k efetivo = -ln(0,516)/150 = 0,0044/dia (min), T½ 157 d; a época não está informada no capítulo. Rossi na seca: T½ 154 d (k 0,0045), praticamente igual ao Braz efetivo. Por que não Torres: a B. brizantha de Torres foi dessecada aos 110 DAP, planta jovem com C/N 16-20, e decompôs com T½ 52-60 d nas águas (k 0,0115-0,0132) e 77-78 d na seca. Esse comportamento não representa a pastagem adulta (C/N 25-49 na dessecação aos 180-200 DAS, Pacheco 2011), então ficou fora da faixa; usar Torres subestimaria a persistência pela metade. Faixa adotada: 0,0044 (adulta, seca ou época não informada) a 0,0082 (adulta, chuva)."
+    },
+    "arranjo": "braquiaria_solteira",
+    "arranjos": {
+      "braquiaria_solteira": {
+        "ms_palhada_t_ha": {
+          "min": 6.24,
+          "max": 12.4,
+          "tipico": 9.19
+        },
+        "nota": "Valores de braquiária solteira já coletados (6,24; 6,97; 11,4; 12,4 t/ha); típico = mediana."
+      },
+      "consorcio_milho_safrinha": {
+        "ms_palhada_t_ha": {
+          "min": 2.85,
+          "max": 4.65
+        },
+        "nota": "Braquiária consorciada com milho safrinha e dessecada antes da soja (ILP). O motor deve usar este arranjo quando a rotação for milho safrinha + braquiária."
+      }
+    },
+    "decisao_arranjo": "DECISÃO DO USUÁRIO (revisão 14/11): a linha pastagem representa a braquiária solteira (perene, água anual). O consórcio com milho é uma rotação, guardada em arranjos.",
+    "resultado": {
+      "aporte_biomassa": "alto",
+      "cobertura_solo": "alta",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 9.19,
+      "ms_remanescente_t_ha": 6.04,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Capim-marandu (Urochloa brizantha cv. Marandu), forragem verde, item sem agrupamento do CQBAL. ERRO DE CADASTRO: o CQBAL põe todos os capins braquiária (brizantha, humidicola, ruziziensis, mutica) sob o alimento 'CAPIM BRAQUIARIA DECUMBENS' com espécie 'UROCHLOA DECUMBENS'; o nome do derivado (BRIZANTHA MARANDU) é o que identifica a planta, e foi ele que foi usado. VALORES SUSPEITOS NÃO USADOS: DMS 74,06 (n=1) e DMO 75,27 (n=1) do id 1370, e DMS 74,06 (n=2) do id 1366 (mesma média, talvez registro duplicado); ficam 15-18 pontos acima da DIVMS do mesmo capim (55,9, n=25) com FDN 72,1% (n=51). Faixa sazonal de PB no CQBAL: 7,9 (inverno) a 12,3 (verão); pré-pastejo a 30 cm: 7,6 (secas) a 12,5 (águas).",
+    "ndt_pct": {
+      "valor": 58.06,
+      "n": 5,
+      "nota": "NDT observado do capim-marandu (CQBAL id 1370). Informativo."
+    }
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "medido",
+      "nota": "Embrapa Pecuária Sudeste CT 45 (Mendonça & Rassini 2006), Tab.3: Marandu Tb 15,0 °C; outras medições de Marandu: 17,2 °C (Cruz et al. 2011) e 10,5 °C (Silva et al. 2012). 15 vem da fonte Embrapa e fica no meio."
+    },
+    "ciclo_dias_min": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Perene; pendência: 'Ciclo vazio por decisão (perene)'."
+    },
+    "ciclo_dias_max": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Perene; mesmo motivo."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "proxy",
+      "nota": "Pela decisão do time, nas perenes a coluna é chuva ANUAL. 750 mm/ano = limite inferior da chuva ótima do ECOCROP para B. brizantha (código 536: ROPMN 750); Tropical Forages e Embrapa Doc. 21 (origem com ~700 mm) são coerentes. | REVISÃO 14/11 (consenso dos 3 revisores): chuva anual ótima no lugar da água consumida = proxy, mesmo critério da mandioca. A decisão do usuário (água anual nas perenes) define a unidade, não a origem."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "proxy",
+      "nota": "Nas perenes a coluna é chuva anual. 1500 mm/ano é o início da faixa de melhor adaptação da Tropical Forages ('1,500–3,500 mm'); consumo medido em lisímetro de ~1.030 mm/ano (Souza et al. 2021) fica dentro. | REVISÃO 14/11 (consenso dos 3 revisores): chuva anual ótima no lugar da água consumida = proxy, mesmo critério da mandioca. A decisão do usuário (água anual nas perenes) define a unidade, não a origem."
+    },
+    "kc_inicial": {
+      "tipo": "proxy",
+      "nota": "0.40 da linha genérica 'Grazing Pasture - Rotated Grazing' do FAO-56 Tab.12. fontes: 'categoria genérica de pastagem, usada para kc_inicial e kc_final'."
+    },
+    "kc_medio": {
+      "tipo": "estudo_unico",
+      "nota": "0,85 = medido em lisímetro num único ensaio (Souza et al. 2021, ESALQ, 1 ano, Marandu irrigado: Kc médio 0,82 → ~0,84-0,87 padronizado), no limite inferior da faixa genérica do FAO-56 (0,85-1,05). Pendência: 'vem de um único ensaio'."
+    },
+    "kc_final": {
+      "tipo": "proxy",
+      "nota": "0.85 do Kc end da linha genérica 'Grazing Pasture' do FAO-56."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab.22, Grazing Pasture 0.5-1.5 m (categoria genérica). A Feedipedia dá 'down to 2 m' para B. brizantha; Primavesi 2002 mediu só até 1 m."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "não se aplica (perene); Tb 15; Nenhuma. A braquiária (Urochloa brizantha) é perene, sem ciclo de colheita nem maturação: não existe 'completar o ciclo na janela'. | plausibilidade: Não se aplica: ciclo_dias_min/max também estão vazios no CSV."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "não se aplica (perene); Tb 15; Nenhuma. A braquiária (Urochloa brizantha) é perene, sem ciclo de colheita nem maturação: não existe 'completar o ciclo na janela'. | plausibilidade: Não se aplica: ciclo_dias_min/max também estão vazios no CSV."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 6,
+    "colunas": [
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "kc_inicial",
+      "kc_medio",
+      "kc_final",
+      "profundidade_raiz_m"
+    ]
+  }
 }

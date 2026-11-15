@@ -13,7 +13,7 @@
     "agua_ciclo_mm_min": "1000",
     "agua_ciclo_mm_max": "1500",
     "kc_inicial": "0.3",
-    "kc_medio": "0.8",
+    "kc_medio": "0.98",
     "kc_final": "0.3",
     "profundidade_raiz_m": "0.8",
     "fixa_nitrogenio": "false",
@@ -21,8 +21,10 @@
     "cobertura_solo": "baixa",
     "aporte_biomassa": "baixo",
     "valor_forrageiro": "medio",
-    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc Cassava year 1: 0.3/0.80/0.30)|FAO-56 Tab.22 (raiz Cassava year 1: 0.5-0.8 m; usado limite superior)|FAO-56 Tab.11 (duração Cassava year 1: 210 dias; year 2: 360 dias)|Embrapa Mandioca e Fruticultura/Embrapa Semiárido, Sistema de Produção de Mandioca no Semiárido, Sistema de Produção 12, 2a ed. 2020 (ciclo 6 a 24 meses em sequeiro; temperatura ideal 20-27 °C; chuva anual ótima 1000-1500 mm/ano, usada em agua_ciclo como aproximação, NÃO é ETc medida; tolerância à seca)|Mattos, Farias & Ferreira Filho (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa 2006 (chuva anual ótima 1000-1500 mm, NÃO é ETc medida; temp. 20-27 °C; paralisa a ~15 °C; geada; uso da parte aérea e das raízes na alimentação animal; solo descoberto, erosão e pouco resíduo)|Embrapa Amazônia Ocidental, Circular Técnica 23, 2004 (ciclo de cultivares brasileiras 6-8 a 12-16 meses)|Schons et al., Ciência Rural 37(6):1586-1592, 2007 (Tb 14 °C estimada para emissão de folhas da cv. RS 13 em vasos no RS; cita ZARC-SC com Tb 15 °C)|Alves, Fisiologia da mandioca, EMBRAPA-CNPMF 1990 (não cresce abaixo de 15 °C, base da Tb adotada; arbusto perene)|FAO ECOCROP Manihot esculenta (temp. ótima 20-29 °C, absoluta 10-35 °C; morte a 0 °C no início do crescimento; perene)|Moreno-Cadena et al., Modeling growth, development and yield of cassava: a review, Field Crops Research 267:108140, 2021 (Tb dos modelos 10-16 °C; GUMCAS 13 °C; LINTUL-Cassava Tb 15 °C e 4320 °C dia ou 360 dias no ótimo)|Ezui et al., Field Crops Research 219:256-272, 2018 e Adiele et al., European Journal of Agronomy 124:126242, 2021, LINTUL-Cassava, parâmetros no pacote R LINTULcassava (TBASE 15 °C; maturidade em TSUMCROP 4320 °C dia; calibrado na Nigéria)|Burgos et al., Rev. FCA UNCuyo 45(1):43-52, 2013 (Tb 16 °C; 2027-2097 °C dia do plantio à maturidade, ~240 dias, Corrientes, Argentina)|Cenóz, Burgos & López, Agrotecnia 15, UNNE, 2005 (Tb 16 °C)|Akparobi, Togun & Ekanayake, African Journal of Root and Tuber Crops 4(1):1-4, 2000 (sem iniciação de folhas a 15/10 °C, IITA)|Silva, N. D., Balanço de energia e evapotranspiração em cultivo de mandioca industrial, tese UFRB 2021 (não há estudo brasileiro de ET da mandioca; ET medida só na formação das raízes, 154-160 mm)|Silva, R. B. et al., Revista Ceres 70(5), 2023 (ETc ESTIMADA por Kc × ETo: 1030 mm em 355 dias, Rio Largo-AL; conferência de agua_ciclo)|Coelho Filho, Irrigação da cultura da mandioca, Embrapa Mandioca e Fruticultura Comunicado Técnico 172, 2020 (Kc 0,55-0,98 por fase em ciclo de 360 dias)",
-    "confianca_parametros": "media"
+    "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc Cassava year 1: 0.3/0.80/0.30)|FAO-56 Tab.22 (raiz Cassava year 1: 0.5-0.8 m; usado limite superior)|FAO-56 Tab.11 (duração Cassava year 1: 210 dias; year 2: 360 dias)|Embrapa Mandioca e Fruticultura/Embrapa Semiárido, Sistema de Produção de Mandioca no Semiárido, Sistema de Produção 12, 2a ed. 2020 (ciclo 6 a 24 meses em sequeiro; temperatura ideal 20-27 °C; chuva anual ótima 1000-1500 mm/ano, usada em agua_ciclo como aproximação, NÃO é ETc medida; tolerância à seca)|Mattos, Farias & Ferreira Filho (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa 2006 (chuva anual ótima 1000-1500 mm, NÃO é ETc medida; temp. 20-27 °C; paralisa a ~15 °C; geada; uso da parte aérea e das raízes na alimentação animal; solo descoberto, erosão e pouco resíduo)|Embrapa Amazônia Ocidental, Circular Técnica 23, 2004 (ciclo de cultivares brasileiras 6-8 a 12-16 meses)|Schons et al., Ciência Rural 37(6):1586-1592, 2007 (Tb 14 °C estimada para emissão de folhas da cv. RS 13 em vasos no RS; cita ZARC-SC com Tb 15 °C)|Alves, Fisiologia da mandioca, EMBRAPA-CNPMF 1990 (não cresce abaixo de 15 °C, base da Tb adotada; arbusto perene)|FAO ECOCROP Manihot esculenta (temp. ótima 20-29 °C, absoluta 10-35 °C; morte a 0 °C no início do crescimento; perene)|Moreno-Cadena et al., Modeling growth, development and yield of cassava: a review, Field Crops Research 267:108140, 2021 (Tb dos modelos 10-16 °C; GUMCAS 13 °C; LINTUL-Cassava Tb 15 °C e 4320 °C dia ou 360 dias no ótimo)|Ezui et al., Field Crops Research 219:256-272, 2018 e Adiele et al., European Journal of Agronomy 124:126242, 2021, LINTUL-Cassava, parâmetros no pacote R LINTULcassava (TBASE 15 °C; maturidade em TSUMCROP 4320 °C dia; calibrado na Nigéria)|Burgos et al., Rev. FCA UNCuyo 45(1):43-52, 2013 (Tb 16 °C; 2027-2097 °C dia do plantio à maturidade, ~240 dias, Corrientes, Argentina)|Cenóz, Burgos & López, Agrotecnia 15, UNNE, 2005 (Tb 16 °C)|Akparobi, Togun & Ekanayake, African Journal of Root and Tuber Crops 4(1):1-4, 2000 (sem iniciação de folhas a 15/10 °C, IITA)|Silva, N. D., Balanço de energia e evapotranspiração em cultivo de mandioca industrial, tese UFRB 2021 (não há estudo brasileiro de ET da mandioca; ET medida só na formação das raízes, 154-160 mm)|Silva, R. B. et al., Revista Ceres 70(5), 2023 (ETc ESTIMADA por Kc × ETo: 1030 mm em 355 dias, Rio Largo-AL; conferência de agua_ciclo)|Coelho Filho, Irrigação da cultura da mandioca, Embrapa Mandioca e Fruticultura Comunicado Técnico 172, 2020 (Kc 0,55-0,98 por fase em ciclo de 360 dias)|PROXY: agua_ciclo = chuva anual ótima (Embrapa/ECOCROP), não consumo do ciclo|Embrapa CT 172 2020 (kc_medio 0.98)",
+    "confianca_parametros": "baixa",
+    "graus_dia_ciclo_min": "1250",
+    "graus_dia_ciclo_max": "4280"
   },
   "mudancas": [
     {
@@ -84,6 +86,54 @@
       "antes": "(lista da rodada 1)",
       "depois": "(ver valores.fontes)",
       "motivo": "Agora diz que agua_ciclo é chuva anual ótima, não ETc medida. Entram as fontes de Tb e graus-dia (revisão de modelos, LINTUL-Cassava, Burgos et al., Cenóz et al., Akparobi et al.) e as de consumo de água usadas para conferir (tese UFRB, Silva et al. 2023, CT 172)."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "0.8",
+      "depois": "0.98",
+      "motivo": "REVISÃO 14/11: a Embrapa (Coelho Filho, CT 172, 2020) recomenda curva de Kc de 0,55 a 0,98 com pico de 0,98 aos 100-120 dias; Silva et al. 2023 usaram 1,0 na fase média. O 0,80 do FAO-56 (ano 1) ficou abaixo do KcTr,x 0,85 do AquaCrop (Wellens et al. 2022, calibração tropical), incoerente com o teste. Ressalva: a curva da Embrapa é para lavoura irrigada no Recôncavo baiano."
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "10.9",
+      "depois": "20.8",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Pedido: rama fresca, não feno/parte aérea velha. Média ponderada dos dois registros 'MANDIOCA RAMA' do CQBAL: id 1134 (19,34, n=3) e id 1135 (21,92, n=4)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 42.9, 'tipo': 'DIVMS'}",
+      "depois": "{'valor': 53.0, 'tipo': 'DMS', 'n': 3, 'medicao': 'medida', 'nota': \"Digestibilidade (aparente) da matéria seca da rama fresca de mandioca: média ponderada pelo n dos dois registros 'MANDIOCA RAMA' do CQBAL, id 1134 (48,2, n=1) e id 1135 (55,38, n=2); nenhum dos dois sozinho chega a n=3. DMO pela mesma conta: 51,8 (n=3); empate de n, ficou a DMS. Feedipedia (Cassava foliage, fresh): DMO 63,9 medida (n=4, mundial).\"}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Pedido: rama fresca. A DIVMS 42,9 era da parte aérea velha (18 meses), parecida com feno. CQBAL MANDIOCA RAMA, DMS da média ponderada dos ids 1134 e 1135 (n=3). Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "regua.regua.ndt_pct",
+      "antes": "None",
+      "depois": "61.53",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT observado guardado à parte; não entra na régua."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1250-4320",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Recontagem (revisão 14/11): agua_ciclo_mm_min (proxy), agua_ciclo_mm_max (proxy), graus_dia_ciclo_min (calculo), graus_dia_ciclo_max (calculo)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "1250-4320",
+      "depois": "1250-4280",
+      "motivo": "DECISÃO (14/11): culturas de Tb alta ficam na régua do motor (NASA POWER, sem correção). Régua NASA POWER: mínimo Tironi 2015 (Santa Maria, 1268 e 1663, colheita de um ciclo); máximo Silva R.B. 2023 (Rio Largo-AL, 355 dias, 4275-4279). Atenção: em Rio Largo o POWER fica ~2 °C mais quente que a estação (com a Tmed da estação seria ~3590)."
     }
   ],
   "evidencias": [
@@ -305,6 +355,174 @@
       "fonte": "Coelho Filho, M. A., Irrigação da cultura da mandioca, Embrapa Mandioca e Fruticultura Comunicado Técnico 172, 2020",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1121941/1/ComunicadoTecnico172-Mauricio-Coelho-AINFO-2.pdf",
       "trecho": "A planta eleva o consumo de água diário (ETc - mm dia-1) na Fase II a partir dos 40 dias após o plantio (Kc = 0,56) até os 120 dias após este (Kc = 0,98) [...] Tabela 2. Cálculos aproximados das necessidades de irrigação (mm), sendo a lâmina de irrigação (LI) a própria evapotranspiração da cultura (ETc). [Kc de 0,55 a 0,98 em 16 períodos até 360 dias]"
+    },
+    {
+      "fonte": "Rev. Bras. Saúde Prod. Anim. 17(1):1-12, 2016 (Embrapa Cerrados), Produtividade e valor nutricional da parte aérea e de raízes tuberosas de oito genótipos de mandioca de indústria",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1044360/1/CPAC1.pdf",
+      "trecho": "Tabela 1 [...] parte aérea de mandioca de indústria avaliada aos dezoito meses após o plantio [...] Média geral: PMS 5.949 kg ha-1; MS 21,87%; DIVMS 42,88%; PB 10,92% [PMS de 3.701 (BGMC 1262) a 8.554 (BGMC 1304); PB de 9,10 a 12,58]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Rev. Bras. Saúde Prod. Anim. 17(1):1-12, 2016 (Embrapa Cerrados), Produtividade e valor nutricional da parte aérea e de raízes tuberosas de oito genótipos de mandioca de indústria",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1044360/1/CPAC1.pdf",
+      "trecho": "Moura & Costa (2001), que ao avaliarem cinco cultivares de mandioca no Estado do Acre, verificaram produtividades de MS de parte aérea colhida aos cinco meses, variando de 4.000 a 9.000 kg ha-1. Já Azevedo et al. (2006), no Estado do Rio Grande do Sul, ao avaliarem três variedades de mandioca, colhidas aos seis meses de idade, relataram valores de produtividade de matéria seca da parte aérea, oscilando de 3.240 a 5.870kg ha-1",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Embrapa CPATU, Utilização da mandioca na alimentação de ruminantes na Amazônia, Documentos 73, 1993",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/378466/1/CPATUDoc73.pdf",
+      "trecho": "Durante a colheita da mandioca, somente parte da haste lenhosa é usada para plantio, o restante é deixado no campo e incorporado ao solo como resíduo orgânico.",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Embrapa CPATU, Documentos 36 (citando Batista et al. 1983a)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/394670/1/CPATUDoc36v5P123.pdf",
+      "trecho": "Batista et al. (1983a) encontraram, em 30 cultivares colhidas, aos doze meses de idade, a produção da rama (terço superior da planta) variou de 10,7 - 54,0 t/ha, percentagem de proteína bruta de 12,0 - 22,8, coeficientes de digestibilidade in vitro da matéria seca e da matéria orgânica de 40,0% - 60,1 % e 38,4% - 58,9%",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Rev. Bras. Saúde Prod. Anim. 17(1):1-12, 2016 (Embrapa Cerrados), Produtividade e valor nutricional da parte aérea e de raízes tuberosas de oito genótipos de mandioca de indústria",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1044360/1/CPAC1.pdf",
+      "trecho": "a parte aérea de mandioca de indústria na forma in natura necessita passar por uma exposição ao sol logo após o corte, para redução do ácido cianídrico a níveis seguros para seu fornecimento aos animais. Geralmente se recomenda um tempo que pode variar de 12 a 24 horas",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Mattos, Farias & Ferreira Filho (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.466",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "A parte aérea de variedades mansas (com baixo teor de ácido cianídrico) de mandioca pode ser usada in natura e na forma de feno (desidratada) na alimentação animal",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Lumbanraja, J.; Barus, J.; Sudarsono, H.; Dermiyati, A litterbag study: decomposition rate and C/N ratio of annual crop biomass residues on an ultisols in Natar Village, South Lampung, Indonesia, 2019 (registro AGRIS; provavelmente Pertanika J. Trop. Agric. Sci. 42(1)) - CONTEXTO, não usado no valor",
+      "url": "https://agris.fao.org/search/en/records/647480e22d3f560f80b18cfd",
+      "trecho": "cassava shoots and leaves [...] most rapidly decomposed (k = -0.2830) [...] maize stover (-0.2066), rice straw (-0.1924), and soybean stover (-0.1675)",
+      "colunas": []
+    },
+    {
+      "fonte": "Mattos et al. (ed.), Mandioca: o produtor pergunta, a Embrapa responde, Embrapa, 2006, q.101 (já em evidencias/mandioca.json)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/120506/1/500perguntasmandioca.pdf",
+      "trecho": "praticamente, exporta tudo o que absorveu, não devolvendo quase nada ao solo na forma de resíduos culturais",
+      "colunas": []
+    },
+    {
+      "fonte": "Chagas, E.; Araújo, A. P.; Teixeira, M. G.; Guerra, J. G. M., Decomposição e liberação de nitrogênio, fósforo e potássio de resíduos da cultura do feijoeiro, R. Bras. Ci. Solo 31(4):723-729, 2007 (Embrapa Agrobiologia, Seropédica, RJ) - base do PROXY",
+      "url": "https://www.redalyc.org/pdf/1802/180214056013.pdf",
+      "trecho": "Quadro 3 [massa, dia-1 / dias]: Vagens (2º ensaio) 0,010862 / 64; Caules 0,005195 / 133 (1º) e 0,003868 / 179 (2º); Folhas 0,009883 / 70 (1º) e 0,008639 / 80 (2º). Quadro 1: Massa (kg ha-1) Caule 810; Palhada de vagem 432; Folha senescente 1.032",
+      "colunas": []
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 1134 'MANDIOCA RAMA' (FORRAGENS VERDES; espécie cadastrada: Manihot esculenta Crantz.): PB média 19,34 (n 3, desvio 2,3); DMS média 48,2 (n 1, desvio 0); DMO média 49,33 (n 1, desvio 0); NDT OBS média 61,53 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 1135 'MANDIOCA RAMA' (FORRAGENS VERDES; espécie cadastrada: Manihot esculenta Crantz.): PB média 21,92 (n 4, desvio 1,39); DMS média 55,38 (n 2, desvio 2,575); DMO média 53,09 (n 2, desvio 2,247)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Cassava leaves and foliage",
+      "url": "https://www.feedipedia.org/node/528",
+      "trecho": "Cassava foliage, fresh [...] Crude protein % DM 24.9 (SD 2.6, 17.2-29.3, Nb 54) [...] OM digestibility, Ruminant % 63.9 (SD 6.6, 58.0-72.9, Nb 4)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min"
+      ],
+      "fonte": "Tironi, Uhlmann, Streck, Samboranha, Freitas & Silva, Desempenho de cultivares de mandioca em ambiente subtropical, Bragantia 74(1):58-66, 2015, doi:10.1590/1678-4499.0352",
+      "url": "https://www.agrolink.com.br/downloads/0006-8705-brag-74-1-58-1.pdf",
+      "trecho": "O plantio foi realizado nos dias 6 de outubro de 2010 (primeiro ano agrícola) e no dia 27 de setembro de 2011 (segundo ano agrícola). A colheita, nos dois anos agrícolas, foi realizada ao final de um ciclo de crescimento das plantas, nos dias 15 de junho de 2011 [...] e 20 de junho de 2012 [...] Fepagro-RS13 [...] 2010-2011 32,83"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO próprio: NASA POWER diário Santa Maria-RS (-29,69; -53,81) 2010-2012 e Cruz das Almas-BA (-12,67; -39,10) 2015-2017, GD = Σmax(0, (Tmax+Tmin)/2 − 15)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-53.81&latitude=-29.69&start=20101001&end=20120630&format=JSON",
+      "trecho": "Santa Maria 06/10/2010->15/06/2011 Tb15: GD 1268, 252 d, Tmed 19,69, 41 d < Tb; 27/09/2011->20/06/2012: GD 1663; Cruz das Almas 01/05/2015 +6 meses: 1769; +12 meses: 4202; +24 meses: 8455"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "PROXY: LINTUL-Cassava (Ezui et al. 2018; Adiele et al. 2021), R/L2C_parsEZAR.R do pacote LINTULcassava",
+      "url": "https://github.com/cropmodels/LINTULcassava/blob/HEAD/R/L2C_parsEZAR.R",
+      "trecho": "TBASE = 15, # deg. C : Base temperature [...] It is assumed that maturity (Development stage = 2) is reached when the TSUMCROP = 4320 Deg. C."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Moreno-Cadena et al., Modeling growth, development and yield of cassava: A review, Field Crops Research 267:108140, 2021",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146721/",
+      "trecho": "The LINTUL model for cassava assumes a determinate growth of the crop with a default maximum age of 4320 thermal units or 360 days under optimal conditions which are defined with an optimum temperature of 27 °C and a base temperature of 15 °C."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Burgos, Prause, Argüello & Cenóz, Rev. FCA UNCuyo 45(1):43-52, 2013 (alternativa não adotada)",
+      "url": "https://www.redalyc.org/pdf/3828/382837652004.pdf",
+      "trecho": "Los cultivares Palomita y Amarilla requirieron entre 2027 y 2096 GD respectivamente para completar el ciclo total anual de crecimiento (Tb: 16°C)."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Embrapa Mandioca e Fruticultura/Embrapa Semiárido, Sistema de Produção de Mandioca no Semiárido (SP 12), 2ª ed., 2020 (janela de colheita)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1131107/1/Sistema-de-Producao-de-Mandioca-no-Semiarido.pdf",
+      "trecho": "em condições de sequeiro, a colheita da mandioca varia de 6 a 24 meses após o plantio"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min"
+      ],
+      "fonte": "POWER diário, Santa Maria-RS (-29,69; -53,81), out/2010-jun/2012, datas de Tironi et al., Bragantia 74(1):58-66, 2015",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-53.81&latitude=-29.69&start=20101001&end=20120630&format=JSON",
+      "trecho": "06/10/2010->15/06/2011: 1268; 27/09/2011->20/06/2012: 1663 °C dia (Tb 15). Artigo: https://www.agrolink.com.br/downloads/0006-8705-brag-74-1-58-1.pdf"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "POWER diário, Rio Largo-AL (-9,47; -35,83), mai/2019-jul/2020, datas de Silva, R. B. et al., Water balance and technical-financial performance of irrigation in the cassava cultivation, Revista Ceres 70(5), 2023",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-35.83&latitude=-9.47&start=20190501&end=20200731&format=JSON",
+      "trecho": "plantio 1-30/06/2019 + 355 d: 4275-4279 °C dia (Tb 15). Artigo: https://scielo.br/j/rceres/a/cdZfswtdP8VsKjGKFBP5Rsr/?lang=en ('Cassava planting was carried out in June 2019'; 'during the cassava harvest (355 DAP)'; 'average air temperature, during cassava cultivation, was 25.1 (± 1.5) °C')"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CONFERÊNCIA: POWER diário, Cruz das Almas-BA (-12,67; -39,10), 2001-2022, 365 d a partir de 1º/mai",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-39.1&latitude=-12.67&start=20010101&end=20221231&format=JSON",
+      "trecho": "21 anos: mínimo 3871, mediana 4099, máximo 4293 °C dia (Tb 15)"
     }
   ],
   "pendencias": [
@@ -315,10 +533,140 @@
     "Kc e raiz usam o ano 1 do FAO-56 (210 dias). Para lavouras de 2 ciclos (18-24 meses) valem os valores do ano 2: Kc ini 0.3, médio 1.10, final 0.50 e raiz 1.0 m. A tabela tem uma linha só, então ficou o ano 1, que vale para as cultivares precoces e semiprecoces (10-16 meses).",
     "temp_otima_max_c: Embrapa 27 °C contra ECOCROP 29 °C. Escolhi a Embrapa. As duas faixas se referem à média do ar (anual na Embrapa).",
     "ciclo_dias_min = 180 (6 meses) vale para aipim/mesa e colheitas precoces. A mandioca industrial raramente é colhida antes de 10-12 meses.",
-    "Não consultei o ZARC da mandioca diretamente; a Tb 15 °C do ZARC-SC vem da citação em Schons et al. (2007)."
+    "Não consultei o ZARC da mandioca diretamente; a Tb 15 °C do ZARC-SC vem da citação em Schons et al. (2007).",
+    "graus-dia: O que a faixa representa: soma do plantio até UMA colheita de ciclo único (8 a 12 meses). Não é maturação: a mandioca continua acumulando raiz e é colhida de 6 a 24 meses. Em 24 meses no Nordeste a soma passa de 8000; isso não é 'não completar o ciclo'.",
+    "graus-dia: Sugestão: o filtro de graus-dia faz sentido só como teste de FRIO. Use apenas o mínimo (1250) para eliminar regiões/janelas frias demais; não use o máximo para eliminar. A janela de colheita deve vir do usuário (aipim 6-10 meses, indústria 12-18 meses), e o motor pode comparar a soma da janela escolhida com o mínimo.",
+    "graus-dia: Tb 15 e Tb 14: a UFSM usa 14 (emissão de folhas); com 14 o 1º ano de Santa Maria dá 1487 em vez de 1268. Não misture.",
+    "graus-dia: O mínimo foi calculado com o POWER (coerente com o motor), mas o POWER esfriou Santa Maria em 1-2 °C em outros ensaios (crotalária 2014/15, aveia 2014); com estação a soma seria maior. Não há soma de campo brasileira publicada para confirmar.",
+    "graus-dia: O máximo é PROXY (modelo calibrado na Nigéria) e só serve de referência para 'ciclo de 12 meses no ótimo'."
   ],
   "pendencias_resolvidas": [
     "temp_base_c = 14 vem de um único estudo com uma cultivar (RS 13, no RS), feito com a emissão de folhas. A Embrapa (Alves 1990) e o ZARC-SC usam 15 °C, e não li o documento do ZARC-SC diretamente.",
     "agua_ciclo_mm_min e agua_ciclo_mm_max são CHUVA ANUAL ótima (Embrapa e ECOCROP: 1000-1500 mm/ano), não consumo de água medido no ciclo. Não achei ETc total do ciclo em fonte da Embrapa. Em lavouras de 18-24 meses a necessidade no ciclo será maior. O Semiárido produz com 500-700 mm/ano usando variedades adaptadas."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.2,
+      "max": 8.6,
+      "tipico": 5.0
+    },
+    "cn_palhada": {
+      "min": 22,
+      "max": 31,
+      "tipico": 26
+    },
+    "k_dia": {
+      "valor": null,
+      "min": null,
+      "max": null
+    },
+    "meia_vida_dias": {
+      "valor": null,
+      "min": null,
+      "max": null
+    },
+    "condicao_decomposicao": "Sem dado brasileiro. PROXY sugerido: feijão (resíduo inteiro, Chagas 2007): k 0,0070/dia (0,0057-0,0081), T½ 99 d (85-122).",
+    "pb_pct": 20.8,
+    "digestibilidade_pct": {
+      "valor": 53.0,
+      "tipo": "DMS",
+      "n": 3,
+      "medicao": "medida",
+      "nota": "Digestibilidade (aparente) da matéria seca da rama fresca de mandioca: média ponderada pelo n dos dois registros 'MANDIOCA RAMA' do CQBAL, id 1134 (48,2, n=1) e id 1135 (55,38, n=2); nenhum dos dois sozinho chega a n=3. DMO pela mesma conta: 51,8 (n=3); empate de n, ficou a DMS. Feedipedia (Cassava foliage, fresh): DMO 63,9 medida (n=4, mundial)."
+    },
+    "uso_forrageiro": "com_restricao",
+    "observacoes": {
+      "coleta": "O que considerei como 'palhada': toda a parte aérea na colheita (folhas que ainda estão na planta + hastes e terço superior), menos a parte da haste lenhosa guardada como maniva para o próximo plantio, supondo que a rama NÃO é retirada para os animais. Se a rama for usada na alimentação, quase nada fica (a Embrapa 500 perguntas, q.101, diz que a mandioca 'não devolve quase nada ao solo'). Folhas que caem durante o ciclo também entram, mas nenhuma fonte as mediu. Faixa da MS da parte aérea: 3,2-5,9 t/ha aos 6 meses (RS), 4-9 t/ha aos 5 meses (AC), 3,7-8,6 t/ha aos 18 meses (Cerrado, média 5,9). Típico 5,0 = valor central dessas faixas, descontada a maniva (sem número para ela). C/N: sem medida. Estimativa pela PB da parte aérea (Cerrado: 9,1-12,6%, média 10,9%) com C 45%: 31 a 22, média 26. O terço superior, mais rico em folha (PB 12-22,8%), daria 12-23; ficou fora da faixa porque é a parte que vai para os animais. pb_pct/DIVMS da parte aérea inteira (Cerrado). O terço superior é melhor (PB 12-22,8%, DIVMS 40-60%). As raízes também alimentam animais (DIVMS 86,9%, PB 2,3%, mesma fonte), mas são o produto comercial. Uso 'com_restricao': a rama é subproduto e tem ácido cianídrico (precisa murchar ao sol 12-24 h, fenar ou ensilar), e as folhas têm tanino. Quando a fonte só dá N (ou PB), a C/N foi calculada como C/N = C / (PB/6,25), com C = 45% da MS (os teores de C medidos nas fontes lidas vão de 39% a 53%: Machado 1983 arroz 40%; Wisniewski & Holtz 1997 milho 43%; Assmann 2015 soja 48-53%; Marcelo 2012 39-52%). Isso é estimativa, não medida.",
+      "decomposicao": "Busquei decomposição de rama/parte aérea de mandioca (Embrapa, RBCS, Scielo, inglês): nenhum estudo brasileiro. O único com sacolas é da Indonésia (Lampung, 2016, 9 meses, superfície e enterrado, fresco e compostado): a parte aérea de mandioca foi o resíduo que mais rápido se decompôs (k 0,283) contra milho 0,207, arroz 0,192 e soja 0,168. Só li o resumo (registro AGRIS); a unidade do k não aparece. Se for por mês (coletas mensais), seria 0,283/30 = 0,0094/dia, T½ = 74 d, mas não dá para confirmar, por isso não usei como valor. A ordem relativa (mandioca > milho no mesmo ensaio, 1,37x) é a informação útil. PROXY = feijão (resíduo inteiro): mistura de haste lenhosa e folhas de C/N baixa (mandioca: C/N estimada 22-31 em regua_mandioca.json; feijão inteiro 37), decomposição mais rápida que a do milho, como em Lampung. Valor do proxy: k 0,0070, T½ 99 d (ver persist_feijao). Ressalva de manejo: a rama costuma sair do campo (maniva para plantio e alimentação animal) e a Embrapa diz que a mandioca devolve quase nada ao solo; a persistência da cobertura depende mais disso que do k."
+    },
+    "excecoes": {
+      "aporte_biomassa": {
+        "valor": "baixo",
+        "motivo": "Embrapa: a mandioca \"não devolve quase nada ao solo\"; a rama costuma sair do campo (alimentação animal e replantio)."
+      },
+      "cobertura_solo": {
+        "valor": "baixa",
+        "motivo": "Embrapa: crescimento inicial lento e solo descoberto por mais tempo; a rama sai do campo."
+      }
+    },
+    "resultado": {
+      "aporte_biomassa": "baixo",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 5.0,
+      "ms_remanescente_t_ha": null,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": null
+      },
+      "excecoes_aplicadas": [
+        "aporte_biomassa",
+        "cobertura_solo"
+      ]
+    },
+    "cenario_forragem": "Rama (parte aérea) fresca de mandioca, in natura. Os números anteriores (PB 10,9, DIVMS 42,9) eram da parte aérea inteira aos 18 meses (Embrapa Cerrados 2016), parecidos com o feno do CQBAL (id 896: PB 9,56, DIVMS 44,43). A rama fresca precisa de murcha ao sol (ácido cianídrico) antes de ir ao animal.",
+    "ndt_pct": {
+      "valor": 61.53,
+      "n": 1,
+      "nota": "NDT observado da MANDIOCA RAMA (CQBAL id 1134). Informativo."
+    }
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Alves, Fisiologia da mandioca, EMBRAPA-CNPMF 1990: 'não cresce em temperaturas abaixo de 15°C'; ZARC-SC com Tb 15 (via Schons 2007) e LINTUL-Cassava TBASE 15."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa, Sistema de Produção 12 (2020): 'colheita da mandioca varia de 6 a 24 meses'; CT 23 Embrapa Amazônia Ocidental com cultivares de 6-8 meses."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte, 24 meses = 720 d."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "proxy",
+      "nota": "1000 mm é CHUVA ANUAL ótima (Embrapa SP 12; Mattos et al. 2006; ECOCROP), usada como aproximação do consumo no ciclo. mudancas: 'é CHUVA ANUAL, não consumo medido no ciclo'. Outra grandeza no lugar da água do ciclo."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "proxy",
+      "nota": "1500 mm, mesma chuva anual ótima usada como aproximação; o ciclo vai até 720 d, então não é água do ciclo."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Cassava year 1: 0.3 (valor da própria linha)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "Embrapa Mandioca e Fruticultura, CT 172 (2020): curva oficial de Kc da própria espécie, pico 0,98 aos 100-120 dias (irrigada). Conferido com AquaCrop KcTr,x 0,85 e Silva et al. 2023 (1,0)."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Cassava year 1: 0.30 (dormência na seca, nota 3)."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Cassava year 1 0.5-0.8 m; limite superior."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "Régua NASA POWER: mínimo Tironi 2015 (Santa Maria, 1268 e 1663, colheita de um ciclo); máximo Silva R.B. 2023 (Rio Largo-AL, 355 dias, 4275-4279). Atenção: em Rio Largo o POWER fica ~2 °C mais quente que a estação (com a Tmed da estação seria ~3590)."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "Régua NASA POWER: mínimo Tironi 2015 (Santa Maria, 1268 e 1663, colheita de um ciclo); máximo Silva R.B. 2023 (Rio Largo-AL, 355 dias, 4275-4279). Atenção: em Rio Largo o POWER fica ~2 °C mais quente que a estação (com a Tmed da estação seria ~3590)."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 4,
+    "colunas": [
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

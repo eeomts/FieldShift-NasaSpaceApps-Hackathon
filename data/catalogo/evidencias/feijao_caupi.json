@@ -18,11 +18,13 @@
     "profundidade_raiz_m": "1.0",
     "fixa_nitrogenio": "true",
     "raiz_profunda": "false",
-    "cobertura_solo": "media",
+    "cobertura_solo": "baixa",
     "aporte_biomassa": "baixo",
     "valor_forrageiro": "medio",
     "fontes": "Allen et al. FAO-56 1998 Tab.12 (Kc; linha Green Gram and Cowpeas; Kc ini do grupo Legumes; Kc end 0.35 = colhido seco)|Allen et al. FAO-56 1998 Tab.22 (raiz 0.6-1.0 m; limite superior = sequeiro)|MAPA Portaria SPA/MAPA 128/2026 ZARC feijão caupi MT 2026/2027 (temperatura ótima 18-34 °C; água mínima 300 mm; Tmin decendial >18 °C; raiz efetiva superficial 45 cm; grupos de ciclo)|Ribeiro (ed.) Embrapa Meio-Norte Sistemas de Produção 2 Cultivo do Feijão-caupi 2002 (ciclo por cultivar 60-90 d; temperatura base 8-11 °C; água 300-450 mm/ciclo; fixação de N; usos forrageiro e adubação verde)|Andrade Júnior, Bastos & Cardoso Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Clima (florescimento prejudicado acima de 35 °C; 300 mm de chuva)|Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Irrigação (consumo 250-400 mm/ciclo; Kc medidos no Brasil)|FAO ECOCROP Vigna unguiculata ssp. unguiculata (temperatura ótima 20-35 °C e absoluta 10-40 °C; apoio a temp_base e sensibilidade ao frio)",
-    "confianca_parametros": "media"
+    "confianca_parametros": "alta",
+    "graus_dia_ciclo_min": "1150",
+    "graus_dia_ciclo_max": "1550"
   },
   "mudancas": [
     {
@@ -42,6 +44,42 @@
       "antes": "RASCUNHO A CONFERIR|...",
       "depois": "referências conferidas (ver valores.fontes)",
       "motivo": "Fontes lidas e trechos registrados; retirado o marcador de rascunho."
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "14.5",
+      "depois": "13.7",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Feedipedia Cowpea haulms (n=61), o material do cenário de grão; o CQBAL só tem feno de caupi (n=1)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 57.5, 'tipo': \"'digestibilidade' sem método declarado na fonte (Embrapa Meio-Norte), 55-60% na forragem depois da colheita dos grãos\"}",
+      "depois": "{'valor': 65.3, 'tipo': 'DMO', 'n': 2, 'medicao': 'estimada', 'nota': 'DMO em ruminantes das ramas de caupi depois da colheita das vagens (Cowpea haulms), Feedipedia, calculada por equação (*), 2 valores, faixa 58,0-65,3. A mesma tabela tem DMO por pepsina-celulase 69,1 (n=19, medida, mas enzimática, não ruminal). O CQBAL só tem FEIJÃO MIÚDO FENO (id 794, DMS 55,97, n=1), que é feno. A Embrapa Meio-Norte dá 55-60% depois da colheita dos grãos, sem método.'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): O tipo anterior não tinha método ('digestibilidade' da Embrapa Meio-Norte). CQBAL só tem feno de caupi (n=1); vale a DMO estimada da Feedipedia para as ramas depois da colheita. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1150-1550",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
     }
   ],
   "evidencias": [
@@ -143,6 +181,160 @@
       "fonte": "FAO ECOCROP, Vigna unguiculata ssp. unguiculata, data sheet id 10835",
       "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=10835",
       "trecho": "Temperat. requir. | 20 | 35 | 10 | 40 (Optimal Min/Max, Absolute Min/Max) [...] Crop cycle | 60 | 240"
+    },
+    {
+      "fonte": "Cardoso, Bastos, Andrade Júnior & Athayde Sobrinho (eds.), Feijão-caupi: o produtor pergunta, a Embrapa responde, Embrapa Meio-Norte, 2017, cap. 19 (alimentação de ruminantes)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1078098/1/500P500RFeijaocaupiCap19.pdf",
+      "trecho": "A produção de rama verde [...] cortada na época da floração [...] representando, em matéria seca, valores próximos a 1.600 kg ha-1. Se a cultura for cortada depois da colheita dos grãos, a produção de massa verde tenderá a chegar a 9.000 kg ha-1, com matéria seca de cerca de 1.400 kg ha-1.",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Araújo, M.E.B., Estratégias de irrigação deficitária no desempenho agronômico de cultivares de feijão-caupi no litoral cearense, dissertação UFC, 2014, Tabela 12 (cv. Sempre Verde e Setentão, Fortaleza-CE)",
+      "url": "https://repositorio.ufc.br/ri/bitstream/riufc/10571/1/2014_dis_mebaraujo.pdf",
+      "trecho": "O Índice de colheita foi obtido dividindo-se a produção de grãos pela produção de matéria seca total da parte aérea. [Tabela 12, %IC sem déficit (T1): SVE 29,99; SET 31,16]",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Ribeiro (ed.), Cultivo do feijão-caupi, Embrapa Meio-Norte, Sistemas de Produção 2, 2002",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/66591/1/sistemaproducao2.PDF",
+      "trecho": "No Nordeste, a produção e a produtividade são de 429.375 t e 303,5 kg/ha, respectivamente.",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Araújo, dissertação UFC, 2014, citando Conab (2014)",
+      "url": "https://repositorio.ufc.br/ri/bitstream/riufc/10571/1/2014_dis_mebaraujo.pdf",
+      "trecho": "Na região Nordeste estima-se para a safra 2013/2014 a cultura do feijão ocupe uma área de 1.462,80 mil hectares, produtividade de 458 kg ha-1",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Azevedo & Spehar, Decomposição da palhada de culturas para plantio no período de safrinha em solos de tabuleiros costeiros, Embrapa Meio-Norte, Comunicado Técnico 147, 2002 (Brejo-MA; resíduos após a colheita dos grãos)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/65737/1/CT147.pdf",
+      "trecho": "Feijão-caupi (BR 17) [...] C:N 31:1; Feijão-caupi (BR 14) [...] 23:1; Feijão-caupi (BR 17) 13 A 35 C 49 C 75 C [perda de peso %]; os sorgos [...] e o feijão-caupi apresentaram as maiores velocidades de decomposição",
+      "colunas": [
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Cardoso, Bastos, Andrade Júnior & Athayde Sobrinho (eds.), Feijão-caupi: o produtor pergunta, a Embrapa responde, Embrapa Meio-Norte, 2017, cap. 19 (alimentação de ruminantes)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1078098/1/500P500RFeijaocaupiCap19.pdf",
+      "trecho": "Depois da colheita dos grãos, a forragem torna-se mais fibrosa, a proteína bruta reduz, variando de 14% a 15%, e a digestibilidade também reduz, para valores de 55% a 60%. [...] reduz muito seu valor proteico após a colheita dos grãos.",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Cardoso, Bastos, Andrade Júnior & Athayde Sobrinho (eds.), Feijão-caupi: o produtor pergunta, a Embrapa responde, Embrapa Meio-Norte, 2017, cap. 19 (alimentação de ruminantes)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1078098/1/500P500RFeijaocaupiCap19.pdf",
+      "trecho": "o restolho da cultura do feijão-caupi possui elevado teor de fibra e baixo teor proteico, sua proporção na dieta de ruminantes deve considerar as exigências nutricionais dos animais",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Feedipedia, Cowpea (Vigna unguiculata) forage",
+      "url": "https://www.feedipedia.org/node/233",
+      "trecho": "Haulms tend to be of lower quality (CP less than 18% DM) [...] DM digestibility is about 65-70% [...] [Tabela 'haulms': Crude protein % DM 13.7 (n=61)]",
+      "colunas": [
+        "pb_pct",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Azevedo & Spehar, Decomposição da palhada de culturas para plantio no período de safrinha em solos de tabuleiros costeiros, Embrapa Meio-Norte, Comunicado Técnico 147, 2002 (Chapadinha/Brejo-MA; resíduos após a colheita dos grãos)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/65737/1/CT147.pdf",
+      "trecho": "Tabela 2 [...] Perda de peso (%) 29/08/01 29/09/01 29/10/01 29/01/02 [...] Feijão-caupi (BR 17) 13 A 35 C 49 C 75 C | Feijão-caupi (BR 14) 13 A 30 C 40 B 75 C [...] (2) Manejo da palhada em 28 de junho de 2001.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Azevedo & Spehar, Decomposição da palhada de culturas para plantio no período de safrinha em solos de tabuleiros costeiros, Embrapa Meio-Norte, Comunicado Técnico 147, 2002 (Chapadinha/Brejo-MA; resíduos após a colheita dos grãos)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/65737/1/CT147.pdf",
+      "trecho": "Apresenta totais pluviométricas entre 1.600 e 2.000 mm, sendo os meses de fevereiro a abril os mais chuvosos e julho a novembro os mais secos.",
+      "colunas": [
+        "condicao"
+      ]
+    },
+    {
+      "fonte": "Teodoro, Souza, Rodrigues & Santos, Decomposition of green manure biomass in dystrophic Yellow Latosol in Piauí state, Brazil, Revista Agro@mbiente On-line 13:196-210, 2019, doi:10.18227/1982-8470ragro.v13i0.5476 (Parnaíba-PI; plantas cortadas aos 60 DAP; bolsas de maio a setembro)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1167409/1/Decomposition-of-green-manure-biomass-in-dystrophic-Yellow.pdf",
+      "trecho": "T9 – Cowpea BRS Guariba 7.1 97.6 0.89* [k mg g-1, T½ day]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Cardoso, Macena, Santos, Santos & Silva, Decomposição de adubos verde em cultivo de quiabeiro, Cadernos de Agroecologia (resumo de congresso), UEMA, São Luís-MA, abril a junho de 2017",
+      "url": "https://cadernos.aba-agroecologia.org.br/cadernos/article/download/3463/4456/27554",
+      "trecho": "O feijão caupi em monocultivo e consorciado apresentou o menor tempo de meia vida, 32 e 29 dias, respectivamente [...] Feijão caupi Y=90,234 e-0,176x R2=0,7594 32 -0,02194",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Cowpea (Vigna unguiculata) forage",
+      "url": "https://www.feedipedia.org/node/233",
+      "trecho": "Cowpea haulms can provide adequate protein and energy [...] DM digestibility is about 65-70% [...] [Tabela 'Cowpea haulms': Crude protein % DM 13.7 (SD 2.9, 6.9-18.0, Nb 61); OM digestibility, pepsin-cellulase % 69.1 (Nb 19); OM digestibility, ruminants % 65.3 (58.0-65.3, Nb 2) *] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 794 'FEIJÃO MIÚDO FENO' (FORRAGENS SECAS; espécie cadastrada: Vigna unguiculata): PB média 14,24 (n 1, desvio 0); DMS média 55,97 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Cardoso, M.J.; Bastos, E.A.; Andrade Júnior, A.S.; Melo, F.B.; Frota, A.B. Rendimento de grãos de feijão caupi relacionado a graus-dia acumulados. V RENAC, Embrapa Meio-Norte, Teresina, 2001, Tabela 1",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/64660/1/Renac0810.pdf",
+      "trecho": "GD = (tma + Tmin)/2-10, onde Tmax ≤ 30°C e Tmin ≥ 10°C, sendo o ΣGD feito para o período da emergência até 50% da floração plena e da emergência até a maturidade dos grãos (quando 70 % das vagens apresentavam com coloração amarelo palha). [obs.: os sinais ≤, ≥ e Σ se perderam na extração do PDF e foram reconstruídos] [...] Em-MO: BR 7 1367,9; IPA 206 1266,0; BR 14 1230,9; BR 17 1196,1; Monteiro 1110,6; Vita 7 1041,1"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Tavares, D.S.; Campêlo, L.D.R.; Farias, W.M.; Mousinho, F.E.P.; Rocha, D.R.; Andrade Júnior, A.S. Determinação dos graus-dias acumulados no período semeadura-colheita do feijão caupi. Anais do II CONAC, 2009, p. 436-440 (PDF digitalizado, lido por imagem)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/663784/1/CONAC2p436.pdf",
+      "trecho": "A duração média do ciclo da cultura foi de 73 dias. [...] a soma térmica (graus-dia) para o feijão-caupi, cultivar BR-17 Gurguéia uma soma térmica de 1128 e 1192 graus dias, respectivamente, pelos Métodos de Arnold (1959) e Ometto (1981), para o período semeadura-colheita. [...] Utilizou-se como temperatura basal mínima (Tb), 11 °C [...] a mínima foi de 19,6 °C"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Souza, L.S.B.; Moura, M.S.B.; Silva, T.G.F.; Soares, J.M.; Santos, W.S.; Brandão, E.O. Caracterização térmica do feijão-caupi e do milho em sistema de plantio consorciado nas condições do Semi-Árido nordestino. Embrapa Semi-Árido (Petrolina-PE, 2006; PDF digitalizado, lido por imagem)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/160416/1/OPB1569.pdf",
+      "trecho": "requerimento térmico [...] do feijão-caupi foi 1.442 graus-dia, com duração de 78 dias (colheita de grãos secos). [...] Para tb, utilizou-se o valor de 10°C para as culturas do milho e feijão-caupi"
+    },
+    {
+      "colunas": [
+        "tb_usada"
+      ],
+      "fonte": "Ribeiro (ed.), Embrapa Meio-Norte, Sistemas de Produção 2, Cultivo do Feijão-caupi, 2002 (Tb do CSV)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/66591/1/sistemaproducao2.PDF",
+      "trecho": "A temperatura base [...] Para a germinação, varia de 8 a 11°C, enquanto para o estádio de floração inicial, de 8 a 10 °C"
     }
   ],
   "pendencias": [
@@ -152,6 +344,110 @@
     "temp_otima: ECOCROP dá 20-35 °C como ótimo; adotado 18-34 °C do ZARC/Embrapa (fonte brasileira). Embrapa também diz que <19 °C reduz produtividade.",
     "Kc alternativo brasileiro (Embrapa Meio-Norte 2017, Tab.1, Teresina): 0.5 / 1.05 / 0.75 (Kc final alto porque inclui colheita antes da secagem); Apodi-RN: 0.52 / 0.57 / 1.16. Mantido FAO-56 (0.4/1.05/0.35, colhido seco).",
     "profundidade_raiz_m=1.0 segue a regra do limite superior da FAO-56, mas o ZARC usa profundidade efetiva de 45 cm e chama a raiz de superficial. Isso confirma raiz_profunda=false.",
-    "cobertura_solo=media, aporte_biomassa=baixo e valor_forrageiro=medio: qualitativos sem número em fonte primária. A Embrapa cita uso como forragem, adubação verde e proteção do solo, e porte prostrado a semi-ereto, mas não dá produção de matéria seca. Pode-se considerar 'cobertura' em tipos (cultivares de grão preto usadas como adubo verde no RS/SC)."
-  ]
+    "cobertura_solo=media, aporte_biomassa=baixo e valor_forrageiro=medio: qualitativos sem número em fonte primária. A Embrapa cita uso como forragem, adubação verde e proteção do solo, e porte prostrado a semi-ereto, mas não dá produção de matéria seca. Pode-se considerar 'cobertura' em tipos (cultivares de grão preto usadas como adubo verde no RS/SC).",
+    "graus-dia: Tavares 2009 e Souza (Petrolina) contam até a COLHEITA, um pouco depois da maturidade fisiológica; Cardoso 2001 conta da emergência e usa teto.",
+    "graus-dia: Todas as medições são do Nordeste quente (Teresina, Petrolina). Não há medição para o caupi de safrinha do MT, onde a Tmed é menor.",
+    "graus-dia: Moura et al. (Piauí, BR 17 Gurguéia, 1103,5 GD da semeadura ao fim do ciclo, citado no resumo de busca) não foi lido."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 0.6,
+      "max": 1.6,
+      "tipico": 0.9
+    },
+    "cn_palhada": {
+      "min": 23,
+      "max": 31,
+      "tipico": 27
+    },
+    "k_dia": {
+      "valor": 0.0064,
+      "min": 0.0042,
+      "max": 0.0219
+    },
+    "meia_vida_dias": {
+      "valor": 107,
+      "min": 32,
+      "max": 167
+    },
+    "condicao_decomposicao": "Valor: restolho pós-colheita de grãos (BR 17 e BR 14), Chapadinha/Brejo-MA (tabuleiros costeiros), manejo da palhada em 28/06/2001 e pesagens até 29/01/2002 (215 dias), quase todo o período na estação seca (julho a novembro) com início das chuvas no fim. Não achei medida de restolho pós-colheita decompondo na estação chuvosa.",
+    "pb_pct": 13.7,
+    "digestibilidade_pct": {
+      "valor": 65.3,
+      "tipo": "DMO",
+      "n": 2,
+      "medicao": "estimada",
+      "nota": "DMO em ruminantes das ramas de caupi depois da colheita das vagens (Cowpea haulms), Feedipedia, calculada por equação (*), 2 valores, faixa 58,0-65,3. A mesma tabela tem DMO por pepsina-celulase 69,1 (n=19, medida, mas enzimática, não ruminal). O CQBAL só tem FEIJÃO MIÚDO FENO (id 794, DMS 55,97, n=1), que é feno. A Embrapa Meio-Norte dá 55-60% depois da colheita dos grãos, sem método."
+    },
+    "uso_forrageiro": "com_restricao",
+    "observacoes": {
+      "coleta": "Grão: a palhada é o restolho depois da colheita (caule, folhas, vagens vazias). Só achei uma medida direta: ~1,4 t/ha de MS cortada depois da colheita (Embrapa Meio-Norte); 1,6 t/ha é a rama inteira na floração, usada como teto. Conta pela produtividade e pelo índice de colheita (IC = grãos / fitomassa aérea total = 0,30 no tratamento sem déficit da UFC; grão com 13% de umidade, MS = 0,87): NE 303,5 kg/ha -> 0,3035 x 0,87 = 0,264 t MS de grão -> resíduo = 0,264 x 0,70/0,30 = 0,62 t/ha (mínimo); Conab NE 2013/14 458 kg/ha -> 0,398 x 2,333 = 0,93 t/ha. Típico = mediana de 0,62, 0,93 e 1,4 = 0,9 t/ha. Lavouras tecnificadas de safrinha no Centro-Oeste (1-1,5 t/ha de grão) deixariam 2-3 t/ha pela mesma conta, mas não achei medida publicada para confirmar. C/N: só uma fonte com resíduo pós-colheita (CT 147: 23 e 31; típico = média, 27). uso_forrageiro = com_restricao: a cultura é de grão e o uso animal típico é o restolho/rama como subproduto, com PB e digestibilidade em queda depois da colheita (Embrapa). Na floração a rama tem 19-24% PB e 72-80% de digestibilidade, mas cortá-la nessa fase sacrifica o grão. Persistência: é a palhada que se decompõe mais rápido no CT 147 (75% da massa perdida em ~7 meses, contra 20-45% do milheto e das braquiárias).",
+      "decomposicao": "Contas (CT 147): de 28/06/2001 a 29/01/2002 são 215 dias; restavam 25% nas duas cultivares -> k = -ln(0,25)/215 = 0,00645/dia; T½ = ln2/0,00645 = 107 d. Valor = 0,0064. Na data intermediária (29/10/2001, 123 dias): BR 17 k = -ln(0,51)/123 = 0,0055; BR 14 k = -ln(0,60)/123 = 0,0042 (min, T½ 167 d). Teodoro 2019 (Parnaíba-PI, seca): planta verde cortada aos 60 DAP, k = 7,1 mg/g/dia = 0,0071/dia, T½ 98 d (confirma a ordem de grandeza mesmo na seca). Max = Cardoso et al. 2017 (São Luís-MA, abril a junho, estação chuvosa): k = 0,02194/dia, T½ 32 d; mas é massa FRESCA de adubo verde (não restolho de colheita), avaliada só por 50 dias, em resumo de congresso; serve apenas como teto para palhada verde na chuva. Por que o valor é o da seca: o caupi de grão é colhido no fim das chuvas (NE) ou na safrinha (Centro-Oeste), então o restolho normalmente atravessa a seca até as chuvas seguintes, que é a condição do CT 147. Se a palhada ficar exposta às chuvas, espere decomposição mais rápida que 0,0064. O CT 147 aponta o caupi como uma das palhadas que decompõem mais rápido (C/N 23-31, lignina baixa)."
+    },
+    "resultado": {
+      "aporte_biomassa": "baixo",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 0.9,
+      "ms_remanescente_t_ha": 0.61,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    },
+    "cenario_forragem": "Restolho/ramas do feijão-caupi depois da colheita dos grãos. Atenção: a Tropical Forages dá PB de 6-8% para os resíduos e 14-21% para a folhagem verde; as 'haulms' da Feedipedia (13,7) incluem ramas colhidas ainda com folhas. A Embrapa Meio-Norte dá 14-15% de PB depois da colheita."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Embrapa Meio-Norte, Sistemas de Produção 2 (2002): Tb 'para a germinação, varia de 8 a 11°C [...] floração inicial, de 8 a 10 °C' (Craufurd et al. 1996); ECOCROP mínimo absoluto 10 °C."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Meio-Norte 2002: superprecoce 'maturação em até 60 dias'; Manaus 60 d."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Embrapa Meio-Norte 2002: médio 71-90 dias; nenhuma cultivar das tabelas passa de 90."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Meio-Norte 2002: 'pode variar de 300 a 450 mm/ciclo'; ZARC MT 2026: 'mínimo de 300 mm'."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Embrapa Meio-Norte 2002: 300-450 mm/ciclo."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (e. Legumes 0.4); a linha da própria cultura (Green Gram and Cowpeas) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Green Gram and Cowpeas: 1.05; Embrapa 2017 (Teresina) também mediu 1,05."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Cowpeas 0.60-0.35, nota 6: 'second value is for harvested dry'."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Green Gram and Cowpeas 0.6-1.0 m; limite superior = sequeiro."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; (1) Cardoso et al. 2001 (Embrapa Meio-Norte, Teresina, jul-set, irrigado, 6 cultivares), Tb 10 com TETO (Tmax ≤ 30, Tmin ≥ 10), da EMERGÊNCIA à maturidade (70% das vagens amarelo-palha): 1041 (Vita 7) a 1368 (BR 7). Em Teresina a Tmax passa de 30, então o motor sem teto somaria ~12% mais por dia (Tmed real ~28 contra ~26 limitada: 18/16 = 1,125, CÁLCULO). Mais semeadura->emergência ~80 GD (5 d × 16, CÁLCULO): 1120-1450 com teto, ~1250-1620 sem teto. (2) Tavares et al. 2009 (UFPI/Embrapa Meio-Norte, Teresina, BR 17 Gurguéia), Tb 11, média simples, da SEMEADURA à colheita: 1128 GD em 73 dias. Conversão Tb 11 -> 10 (exata, Tmin mínima foi 19,6 °C): 1128 + 1 × 73 = 1201. (3) Souza et al. (Embrapa Semi-Árido, Petrolina, cv. Guaribas em consórcio), Tb 10, média simples, semeadura->colheita de grãos secos: 1442 GD em 78 dias. Faixa adotada: 1150 (precoce) a 1550 (ciclo médio, ajustado pelo teto). | plausibilidade: Nordeste/Norte, Tmed ~28 °C → 18 GD/dia: 1150/18 = 64 dias e 1550/18 = 86 dias, contra ciclo_dias 60-90 do CSV. Em local mais frio (Tmed 24, safrinha MT) o máximo levaria 1550/14 = 111 dias."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; (1) Cardoso et al. 2001 (Embrapa Meio-Norte, Teresina, jul-set, irrigado, 6 cultivares), Tb 10 com TETO (Tmax ≤ 30, Tmin ≥ 10), da EMERGÊNCIA à maturidade (70% das vagens amarelo-palha): 1041 (Vita 7) a 1368 (BR 7). Em Teresina a Tmax passa de 30, então o motor sem teto somaria ~12% mais por dia (Tmed real ~28 contra ~26 limitada: 18/16 = 1,125, CÁLCULO). Mais semeadura->emergência ~80 GD (5 d × 16, CÁLCULO): 1120-1450 com teto, ~1250-1620 sem teto. (2) Tavares et al. 2009 (UFPI/Embrapa Meio-Norte, Teresina, BR 17 Gurguéia), Tb 11, média simples, da SEMEADURA à colheita: 1128 GD em 73 dias. Conversão Tb 11 -> 10 (exata, Tmin mínima foi 19,6 °C): 1128 + 1 × 73 = 1201. (3) Souza et al. (Embrapa Semi-Árido, Petrolina, cv. Guaribas em consórcio), Tb 10, média simples, semeadura->colheita de grãos secos: 1442 GD em 78 dias. Faixa adotada: 1150 (precoce) a 1550 (ciclo médio, ajustado pelo teto). | plausibilidade: Nordeste/Norte, Tmed ~28 °C → 18 GD/dia: 1150/18 = 64 dias e 1550/18 = 86 dias, contra ciclo_dias 60-90 do CSV. Em local mais frio (Tmed 24, safrinha MT) o máximo levaria 1550/14 = 111 dias."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 0,
+    "colunas": []
+  }
 }

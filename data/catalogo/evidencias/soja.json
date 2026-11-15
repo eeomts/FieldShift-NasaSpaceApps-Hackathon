@@ -18,11 +18,13 @@
     "profundidade_raiz_m": "1.3",
     "fixa_nitrogenio": "true",
     "raiz_profunda": "false",
-    "cobertura_solo": "media",
-    "aporte_biomassa": "baixo",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "medio",
     "valor_forrageiro": "baixo",
     "fontes": "Embrapa Soja Circular Técnica 48 (2007) (temperatura e água)|Embrapa Soja Documentos 284 e 309 (ciclo)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes)|FAO-56 Tab.22 (raiz)|IBGE PAM tabela 5457 (código)",
-    "confianca_parametros": "alta"
+    "confianca_parametros": "media",
+    "graus_dia_ciclo_min": "1600",
+    "graus_dia_ciclo_max": "2050"
   },
   "mudancas": [
     {
@@ -36,6 +38,54 @@
       "antes": "700",
       "depois": "800",
       "motivo": "Circular Técnica 48: 450 a 800 mm/ciclo"
+    },
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "baixo",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "5.0",
+      "depois": "5.7",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL é a fonte principal: PB da SOJA PALHA (id 76), n=5, Brasil. O 5,0 anterior não tinha n declarado."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 40.8, 'tipo': 'NDT'}",
+      "depois": "{'valor': 52.8, 'tipo': 'DMO', 'n': 5, 'medicao': 'estimada', 'nota': 'Digestibilidade da matéria orgânica em ruminantes da palha de soja (Soybean straw), média mundial da Feedipedia calculada por equação (*), 5 valores, faixa 42,0-63,8. O CQBAL (SOJA PALHA, id 76) só tem DMS 26,25 com n=1, abaixo de toda a faixa da Feedipedia e da DMS do caule de soja do próprio CQBAL (43,53, id 215): não usado.'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT não é digestibilidade (vai para ndt_pct quando o CQBAL tem NDT observado do mesmo material). Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "regua.regua.ndt_pct",
+      "antes": "None",
+      "depois": "42.5",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT observado guardado à parte; não entra na régua."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1600-2050",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (calculo), graus_dia_ciclo_max (calculo)"
     }
   ],
   "evidencias": [
@@ -116,10 +166,257 @@
       "fonte": "IBGE, API de agregados, tabela 5457, classificação 782",
       "url": "https://servicodados.ibge.gov.br/api/v3/agregados/5457/metadados",
       "trecho": "40124 Soja (em grão)"
+    },
+    {
+      "fonte": "Mata, J. F. et al., Produção, decomposição e meia-vida da palhada em consórcio de gramíneas..., Rev. Bras. Tecnol. Aplic. Ciênc. Agrárias 4(1):96-115, 2011 (citando Ruedell 1998)",
+      "url": "https://revistas.unicentro.br/index.php/repaa/article/download/1460/1479",
+      "trecho": "Tomando a soja como exemplo, onde a produção de palhada após a colheita está estimada em 2,5 t ha-1 (RUEDELL, 1998)",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009, Tabela 1 (dados de Aidar et al. 2000)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Tabela 1. [...] Matéria seca (t ha-1) [...] Antes da semeadura [do feijão] [...] Soja 4,06 c [...] Após a colheita 1,62 c [...] Redução 60%",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Assmann, J. M. et al., Carbon and nitrogen cycling in an integrated soybean-beef cattle production system under different grazing intensities, Pesq. agropec. bras. 50(10):967-978, 2015 (São Miguel das Missões, RS), Table 1",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/20122/13092",
+      "trecho": "Soybean stem / Soybean leaf. Dry matter (Mg ha-1): No grazing 2.68 / 2.69 [faixa entre tratamentos: caule 2.56-3.10; folha 2.29-2.69]. Carbon (g kg-1): 530 / 479. Nitrogen (g kg-1): 16.4 / 23.0",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "QUADRO 6 - Composição Química e Valor Nutritivo de Restos de Cultura [...] Soja anual (Glycine max) - Palhas: MS 92,2%; Proteína Bruta 5,0; NDT 40,8 (% MS)",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "Alguns desses resíduos têm uso bastante limitado pelo alto teor de lignina (casca de amendoim, arroz, cacau, café, bagaço de cana, palhada de soja anual)",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009 (citando Seguy et al., 1992, Cerrados do Médio Norte de MT)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "no período de 90 dias após a primeira chuva, as palhadas de milho, arroz e soja foram reduzidas em 63%, 65% e 86%, respectivamente, de sua massa inicial e, nessa mesma ordem e período, resultaram em cobertura do solo de 30%, 38% e 7%",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009 (citando Aidar et al., 2000, Brasil Central, Tabela 1)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Como se tratou de cultivo de inverno do feijoeiro sobre diversas fontes de palhada, no período de maio a setembro, a redução da biomassa variou de 60%, na palhada de soja, a 30%, na palhada de arroz, no período estudado. [Tabela 1, 107 dias:] Soja 4,06 c / 1,62 c / 60; Milho 14,49 bc / 6,30 ab / 57; Arroz 6,02 c / 4,22 bc / 30",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Mendes, I. S. et al., Acúmulo e decomposição de diferentes resíduos de cultivos agrícolas no solo, Agropecuária Científica no Semiárido 18(1):1-5, 2022 (Uruçuí, PI)",
+      "url": "https://acsa.revistas.ufcg.edu.br/acsa/index.php/ACSA/article/download/1257/pdf/5244",
+      "trecho": "O experimento foi conduzido no período entre agosto de 2019 e julho de 2020 [...] Soja ysuperfície = 90,378e-0,004x R² = 0,935",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Assmann, J. M. et al., Carbon and nitrogen cycling in an integrated soybean-beef cattle production system under different grazing intensities, Pesq. agropec. bras. 50(10):967-978, 2015 (São Miguel das Missões, RS) - CONTEXTO, não usado no valor",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/20122/13092",
+      "trecho": "Leaf residues are an easily decomposable material (72%) with an average t1/2 of 120 days, contrasting to the 392 days of soybean stems.",
+      "colunas": []
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 76 'SOJA PALHA' (SUBPRODUTOS; espécie cadastrada: Glycine max (L.) Merr.): PB média 5,67 (n 5, desvio 1,357); NDT OBS média 42,5 (n 1, desvio 0); DMS média 26,25 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 215 'SOJA CAULE FENO' (FORRAGENS SECAS; espécie cadastrada: Glycine max (L.) Merr.): PB média 6,43 (n 1, desvio 0); DMS média 43,53 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Soybean forage",
+      "url": "https://www.feedipedia.org/node/294",
+      "trecho": "Soybean straw [...] Crude protein % DM 6.9 (SD 2.9, 3.5-12.6, Nb 13) [...] OM digestibility, ruminants % 52.8 (SD 11.0, 42.0-63.8, Nb 5) * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Wazilewski, W.T.; Santos, R.F.; Bassegio, D. Exigência térmica da cultura da soja para a região de Cascavel - Paraná. Cultivando o Saber 4(3):130-139, 2011 (dados de VCU da COODETEC, 2006/07-2009/10), Tabelas 1 e 2",
+      "url": "https://cultivandosaber.fag.edu.br/index.php/cultivando/article/download/368/277",
+      "trecho": "Tb = Temperatura base da cultura. Adotou-se 14ºC (Câmara, 1998). [...] Já para o período entre a emergência e a maturação o total variou de 1078 a 1217, com média de 1166. [...] Média [dias E-maturação] 120,27 [...] Temperatura Média [...] E- MA 23,03-24,04ºC"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Alves, D.M.R.; Martorano, L.G. et al. Produtividade de cultivares de soja associada a graus-dia acumulados sob condições agrometeorológicas em Belterra (PA). Rev. Ibero-Americana de Ciências Ambientais 9(6), 2018 (Embrapa Amazônia Oriental)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1112299/1/Rica20191.pdf",
+      "trecho": "Como temperatura máxima, foram computadas as temperaturas menores ou iguais a 30°C [...] temperatura base (Tb), Foi Utilizada a temperatura de 10°C [...] Os valores de graus-dia acumulados até a colheita, que corresponde desde a fase de emergência até a maturação [...] a cultivar A, apresentou a menor soma térmica com 1522°C. A cultivar C [...] contabilizou 1742°C"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max (conversão)"
+      ],
+      "fonte": "Bortoluzzi, M.P. et al. Numerical Climatic Analysis of Soybean Development in Sowing Dates in Humid Subtropical Climate. Rev. Bras. Meteorologia 36(2), 2021 (semeadura->emergência; ciclo por GM no RS)",
+      "url": "https://scielo.br/j/rbmet/a/kwpRmWj8kpLmVTLV5y5qbTn/?lang=en",
+      "trecho": "the cumulative value of 92.5 °C day was adopted, beginning from the base temperature of 10 °C. [ciclo para semeadura em 21/09 em Santa Maria: RMG 7.4-8.0 de 119 a 159 dias]"
+    },
+    {
+      "colunas": [
+        "tb_usada"
+      ],
+      "fonte": "Embrapa Soja, Circular Técnica 48, 2007, p. 3 (Tb 10 do CSV)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/470308/1/circtec48.pdf",
+      "trecho": "Regiões com temperaturas menores ou iguais a 10°C graus são impróprias ao cultivo da soja, pois nesses locais o crescimento vegetativo da soja é pequeno ou nulo."
     }
   ],
   "pendencias": [
     "Catálogos de cultivares de 2007/2008; cultivares superprecoces atuais podem fechar o ciclo em cerca de 90 dias.",
-    "cobertura_solo, aporte_biomassa e valor_forrageiro são julgamento, sem fonte com números."
-  ]
+    "cobertura_solo, aporte_biomassa e valor_forrageiro são julgamento, sem fonte com números.",
+    "graus-dia: Máximo (2050) é CÁLCULO: não achei medição de GD com Tb 10 para cultivares tardias (GM 8-9) no Cerrado/MATOPIBA.",
+    "graus-dia: Souza et al. 2013 (Rev. Ciências Agrárias, UFRA, Paragominas-PA, BRS Tracajá, Tb 10 com cardinais 10/31/40) têm ~1753 GD da emergência a R8 segundo o resumo indexado, mas o site da revista falhou no certificado e o texto não foi lido.",
+    "graus-dia: A literatura brasileira de soja usa várias Tb (7,6 °C em Santa Maria; 14 °C em Cascavel e Embrapa Cerrados), o que obriga a converter. A conversão só é exata quando Tmed > Tb todos os dias.",
+    "graus-dia: Sugestão para o motor: no futuro, guardar GD por grupo de maturação (ou por faixa de latitude), porque o GD do ciclo só vale para o GM adaptado à latitude."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 2.5,
+      "max": 5.6,
+      "tipico": 4.0
+    },
+    "cn_palhada": {
+      "min": 21,
+      "max": 32,
+      "tipico": 26
+    },
+    "k_dia": {
+      "valor": 0.0137,
+      "min": 0.004,
+      "max": 0.0218
+    },
+    "meia_vida_dias": {
+      "valor": 51,
+      "min": 32,
+      "max": 173
+    },
+    "condicao_decomposicao": "Palhada de soja após a colheita do grão, na superfície, plantio direto. Valor = média geométrica de duas medidas de campo no Cerrado: Seguy (MT, 90 dias após a primeira chuva, estação chuvosa) e Aidar (Brasil Central, maio-setembro, sob feijão de inverno, 107 dias). Faixa inclui Mendes 2022 (Uruçuí-PI, sacolas na superfície por ~1 ano, ago/2019-jul/2020, seca + chuva).",
+    "pb_pct": 5.7,
+    "digestibilidade_pct": {
+      "valor": 52.8,
+      "tipo": "DMO",
+      "n": 5,
+      "medicao": "estimada",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes da palha de soja (Soybean straw), média mundial da Feedipedia calculada por equação (*), 5 valores, faixa 42,0-63,8. O CQBAL (SOJA PALHA, id 76) só tem DMS 26,25 com n=1, abaixo de toda a faixa da Feedipedia e da DMS do caule de soja do próprio CQBAL (43,53, id 215): não usado."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Palhada = caule + vagens + folhas que caem no fim do ciclo. Faixa: 2,5 t/ha (estimativa de Ruedell 1998 citada) a 5,6 t/ha (caule 3,10 + folha 2,46 no tratamento de 30 cm de Assmann 2015, RS, lavoura com expectativa de 4 t/ha de grãos). Típico 4,0 = medida de Aidar et al. no Brasil Central (4,06). C/N calculada de Assmann 2015 (sem pastejo): caule 530/16,4 = 32; folha 479/23,0 = 21; palhada inteira ponderada pela massa = 2709 kg C / 105,8 kg N = 25,6 (típico 26). Atenção: Wisniewski & Holtz (1997), às vezes citado como fonte de C/N 30 da soja, não mediu soja (mediu milho e aveia-preta); não usei. pb_pct e NDT são da palhada (Cruz 1983), porque o uso animal na lavoura de soja é o resto cultural; o grão vira ração depois de industrializado (farelo), o que não conta como forragem da rotação. Uso 'residual'. Decomposição rápida: a palhada de soja perdeu 60% da massa em 107 dias (Aidar) e 86% em 90 dias com só 7% de cobertura (Seguy, já em evidencias/milho.json).",
+      "decomposicao": "Contas: Seguy (86% de perda em 90 d -> fração 0,14): k = -ln(0,14)/90 = 0,0218/dia; T½ = ln2/k = 32 d. Aidar (60% de perda em 107 d -> fração 0,40): k = -ln(0,40)/107 = 0,0086/dia; T½ = 81 d. Valor = média geométrica sqrt(0,0218 x 0,0086) = 0,0137/dia; T½ = 0,693/0,0137 = 51 d (as duas são as únicas medidas de palhada de soja pós-colheita em plantio direto no Cerrado achadas; uma é estação chuvosa, a outra inverno com feijão irrigado). Mínimo = Mendes 2022: k = 0,004/dia ajustado pelo autor (T½ = 0,693/0,004 = 173 d; o artigo usa t0,5 = 2/k, que está errado; refiz com ln2). Esse valor inclui a estação seca do Piauí e o modelo tem intercepto 90,4%, por isso é o limite lento, não o típico. Assmann 2015 (RS) mede liberação de C, não massa, com sacolas instaladas no outono-inverno; ficou só como contexto (folha T½ ~120 d; caule ~390 d). Se a régua quiser só a estação chuvosa, use Seguy: k 0,0218, T½ 32 d (Seguy é citado pela Embrapa; não li o relatório original de 1992). Comparação homogênea (mesmo local e período em cada estudo, k = -ln(fração)/dias): Seguy, MT, 90 d após a 1ª chuva: milho k = -ln(0,37)/90 = 0,0111 (T½ 63 d); arroz -ln(0,35)/90 = 0,0117 (59 d); soja -ln(0,14)/90 = 0,0218 (32 d). Aidar, Brasil Central, maio-set (inverno, feijão de inverno), 107 d: milho -ln(0,43)/107 = 0,0079 (88 d); arroz -ln(0,70)/107 = 0,0033 (208 d); soja -ln(0,40)/107 = 0,0086 (81 d). Nos dois, a soja é a menos persistente; arroz persiste igual ou mais que o milho. O sítio de Seguy decompõe ~2,4x mais rápido que o de Marcelo 2012 para o milho (0,0111 contra 0,0045), então números de fontes diferentes não são diretamente comparáveis."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.0,
+      "ms_remanescente_t_ha": 1.76,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Palhada de soja depois da colheita do grão (palha: caules e vagens vazias). O grão como ração eventual (CQBAL SOJA GRÃO, id 2: PB 38,47, n=75) não entra nos números.",
+    "ndt_pct": {
+      "valor": 42.5,
+      "n": 1,
+      "nota": "NDT observado da SOJA PALHA (CQBAL id 76). Informativo, não entra na régua."
+    }
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Embrapa Soja CT 48 (2007), p.3: 'temperaturas menores ou iguais a 10°C [...] crescimento vegetativo pequeno ou nulo'."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Soja Doc. 284 (classes por região: 'Precoce até 110 dias', RR 'até 105 dias'); faixa de cultivares Embrapa."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Embrapa Soja Doc. 309: tabelas de cultivares com '115 a 138 dias de ciclo total'; Embrapa 48 com 124 dias no PR."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Soja CT 48, p.5: 'necessidade total de água [...] varia entre 450 a 800 mm/ciclo'."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte, CT 48: 450 a 800 mm/ciclo."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (e. Legumes 0.4); a linha da própria cultura (Soybeans) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, linha Soybeans: 1.15."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, linha Soybeans: 0.50."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Soybeans 0.6-1.3 m; limite superior, que a própria FAO indica para sequeiro."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; (1) Cascavel-PR (Wazilewski et al. 2011), cultivares precoces CD 202, CD 213RR e CD 214RR, 4 safras, Tb 14 da EMERGÊNCIA à maturação plena: 1079 a 1218 GD (média 1166) em 110-130 dias. Conversão para Tb 10 (CÁLCULO, exata porque Tmed do período foi 23-24 °C, sempre acima de 14): GD10 = GD14 + 4 × dias → 1079 + 4 × 112 = 1527 até 1218 + 4 × 119 = 1694 (média 1166 + 4 × 120,3 = 1647). (2) Semeadura->emergência: 92,5 °C·dia com Tb 10 (Schneider et al. 1987, adotado por Bortoluzzi et al. 2021). Cascavel da semeadura: 1620 a 1790 (média 1740). (3) Belterra-PA (Alves et al. 2018, Tb 10, Tmax limitada a 30 °C = TETO): 1522 a 1742 GD da emergência à colheita; da semeadura ≈ 1615 a 1835. Mínimo adotado 1600 (as duas fontes medidas). (4) Máximo (CÁLCULO, sem medição): cultivar tardia de grupo de maturação alto no Cerrado, ciclo_dias_max 140 × (24,5 − 10) = 2030 ≈ 2050; no RS, GM 7,4-8,0 semeado em setembro chega a 159 dias (Bortoluzzi 2021), 159 × (21 − 10) ≈ 1750, abaixo do teto. | plausibilidade: 1600/(Tmed 26 − 10) = 100 dias (Norte, safra) e 2050/(24,5 − 10) = 141 dias (Cerrado), contra ciclo_dias 100-140 do CSV. Cascavel: 1740/(23,5 − 10) = 129 dias da semeadura, contra 7 + 120 = 127 observados. Coerente."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; (1) Cascavel-PR (Wazilewski et al. 2011), cultivares precoces CD 202, CD 213RR e CD 214RR, 4 safras, Tb 14 da EMERGÊNCIA à maturação plena: 1079 a 1218 GD (média 1166) em 110-130 dias. Conversão para Tb 10 (CÁLCULO, exata porque Tmed do período foi 23-24 °C, sempre acima de 14): GD10 = GD14 + 4 × dias → 1079 + 4 × 112 = 1527 até 1218 + 4 × 119 = 1694 (média 1166 + 4 × 120,3 = 1647). (2) Semeadura->emergência: 92,5 °C·dia com Tb 10 (Schneider et al. 1987, adotado por Bortoluzzi et al. 2021). Cascavel da semeadura: 1620 a 1790 (média 1740). (3) Belterra-PA (Alves et al. 2018, Tb 10, Tmax limitada a 30 °C = TETO): 1522 a 1742 GD da emergência à colheita; da semeadura ≈ 1615 a 1835. Mínimo adotado 1600 (as duas fontes medidas). (4) Máximo (CÁLCULO, sem medição): cultivar tardia de grupo de maturação alto no Cerrado, ciclo_dias_max 140 × (24,5 − 10) = 2030 ≈ 2050; no RS, GM 7,4-8,0 semeado em setembro chega a 159 dias (Bortoluzzi 2021), 159 × (21 − 10) ≈ 1750, abaixo do teto. | plausibilidade: 1600/(Tmed 26 − 10) = 100 dias (Norte, safra) e 2050/(24,5 − 10) = 141 dias (Cerrado), contra ciclo_dias 100-140 do CSV. Cascavel: 1740/(23,5 − 10) = 129 dias da semeadura, contra 7 + 120 = 127 observados. Coerente."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

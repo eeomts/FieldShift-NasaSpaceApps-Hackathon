@@ -18,11 +18,13 @@
     "profundidade_raiz_m": "1.5",
     "fixa_nitrogenio": "false",
     "raiz_profunda": "false",
-    "cobertura_solo": "alta",
-    "aporte_biomassa": "alto",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
     "valor_forrageiro": "alto",
-    "fontes": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, XXXIV Reunião da Comissão Brasileira de Pesquisa de Aveia, Editora UPF, 2014, cap. 8 (dessecação no florescimento pleno; emergência ao florescimento 101-134 dias nas aveias-pretas; MS 4,9-7,4 t/ha no corte único no florescimento; qualidade da forragem; tolerância a frio e geada; supressão de plantas daninhas pela palhada)|IDR-Paraná, folder Aveia Preta IAPAR 61 Ibiporã, 2021 (ciclo 134 dias emergência à plena emissão de panículas, aveia comum 96 dias; 7,8 t/ha MS cobertura; baixa decomposição da palhada reduz plantas daninhas)|Fontaneli, Santos & Fontaneli (eds.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012, cap. 4 Aveia preta (rústica; temperatura basal mais alta que outras espécies de inverno; ~6 t/ha MS; uso em pastejo, feno e silagem)|Primavesi, Rodrigues & Godoy, Recomendações técnicas para o cultivo de aveia, Embrapa Pecuária Sudeste Boletim de Pesquisa 6, 2000 (>32 °C no florescimento causa esterilidade; aveia muito exigente em água; nível do mar a 1.000 m)|Ferreira, Bernardo, Sediyama, Nascimento Jr. & Soares, Evapotranspiração (ETc) e coeficiente de cultura (kc) da aveia-preta irrigada, Revista Ceres 38(215):25-35, 1991 (Kc em lisímetro de drenagem, Viçosa-MG: 0,29 nos 10 primeiros dias pelo método de Penman; só até o 1º corte aos 56 dias)|Souza, Palhares & Mendonça, Coeficientes de culturas forrageiras no Brasil, Embrapa Pecuária Sudeste Comunicado Técnico 118, 2025 (revisão: só Ferreira et al. 1991 e Luz et al. 2008 têm Kc de aveia-preta; nenhum até o florescimento)|MAPA, Portaria SPA/MAPA 407/2023, ZARC aveia de sequeiro PR 2023/2024, nota técnica (inclui A. strigosa; Kc FAO-56 ini 0,40, máx 1,00, final 0,40; raiz efetiva 60 cm; grupos de ciclo de grão <120 a >140 dias emergência-maturação; geada <=1 °C no espigamento)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Black oat (Avena strigosa) forage, 2015 (não sobrevive abaixo de -8 °C; tolerante à seca; 3-8 t/ha MS)|Mantai et al., Simulation of oat development cycle by photoperiod and temperature, Rev. Bras. Eng. Agríc. Ambient. 21(1):3-8, 2017 (temperatura mínima cardinal 4 °C da emergência à antese; ótimo 22 °C) (PROXY: aveia branca, Avena sativa)|FAO-56 Allen et al. 1998 Tab.12 (Kc mid 1.15 da linha Oats; Kc ini 0.3 do grupo Cereals) e cap.6 (fim do estádio médio = início da maturação; Kc end alto em cultura colhida verde, por isso kc_final = Kc mid no manejo no florescimento) (PROXY: oats, Avena sativa)|FAO-56 Tab.22 (raiz Oats 1.0-1.5 m; limite superior = sequeiro) (PROXY: oats, Avena sativa)|FAO ECOCROP, ficha Avena sativa (EcoPortCode 481), lida na cópia integral do banco no GitHub OpenCLIM/ecocrop, EcoCrop_DB.csv (TOPMN 16 °C e TOPMX 20 °C; A. strigosa não consta do banco) (PROXY: Avena sativa)|Broca, Peruzzo, Garbin, Martins & Ludwig, Influência da qualidade das sementes no filocrono de aveia preta, 8ª MoEPEx IFRS Ibirubá, 2019 (Tb 4 °C adotada para A. strigosa Embrapa 139; filocrono 90-93 °C dia/folha)|Pivetta, Filocrono de genótipos de aveia branca e preta submetidos a vernalização, TCC Agronomia UNIPAMPA, 2019 (Tb 0 °C adotada para aveia preta e branca)|CÁLCULO deste catálogo: ETc = soma diária de Kc × ET0 (FAO-56 Penman-Monteith eq. 6; curva Kc 0.3 → 1.15, kc_final = Kc mid) com NASA POWER diário 2001-2020 em Passo Fundo, Santa Maria, Ponta Grossa e Londrina, semeadura 01/04 a 15/05, 100-140 dias até o florescimento (agua_ciclo 110-390 mm; média dos anos)|Ramos, Irrigação de aveia preta com efluente da suinocultura em casa de vegetação, TCC UNIPAMPA Alegrete, 2023 (consumo de 283 mm, 2,67 mm/dia, semeadura 06/05, último corte 115 dias; só conferência de ordem de grandeza)",
-    "confianca_parametros": "media"
+    "fontes": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, XXXIV Reunião da Comissão Brasileira de Pesquisa de Aveia, Editora UPF, 2014, cap. 8 (dessecação no florescimento pleno; emergência ao florescimento 101-134 dias nas aveias-pretas; MS 4,9-7,4 t/ha no corte único no florescimento; qualidade da forragem; tolerância a frio e geada; supressão de plantas daninhas pela palhada)|IDR-Paraná, folder Aveia Preta IAPAR 61 Ibiporã, 2021 (ciclo 134 dias emergência à plena emissão de panículas, aveia comum 96 dias; 7,8 t/ha MS cobertura; baixa decomposição da palhada reduz plantas daninhas)|Fontaneli, Santos & Fontaneli (eds.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012, cap. 4 Aveia preta (rústica; temperatura basal mais alta que outras espécies de inverno; ~6 t/ha MS; uso em pastejo, feno e silagem)|Primavesi, Rodrigues & Godoy, Recomendações técnicas para o cultivo de aveia, Embrapa Pecuária Sudeste Boletim de Pesquisa 6, 2000 (>32 °C no florescimento causa esterilidade; aveia muito exigente em água; nível do mar a 1.000 m)|Ferreira, Bernardo, Sediyama, Nascimento Jr. & Soares, Evapotranspiração (ETc) e coeficiente de cultura (kc) da aveia-preta irrigada, Revista Ceres 38(215):25-35, 1991 (Kc em lisímetro de drenagem, Viçosa-MG: 0,29 nos 10 primeiros dias pelo método de Penman; só até o 1º corte aos 56 dias)|Souza, Palhares & Mendonça, Coeficientes de culturas forrageiras no Brasil, Embrapa Pecuária Sudeste Comunicado Técnico 118, 2025 (revisão: só Ferreira et al. 1991 e Luz et al. 2008 têm Kc de aveia-preta; nenhum até o florescimento)|MAPA, Portaria SPA/MAPA 407/2023, ZARC aveia de sequeiro PR 2023/2024, nota técnica (inclui A. strigosa; Kc FAO-56 ini 0,40, máx 1,00, final 0,40; raiz efetiva 60 cm; grupos de ciclo de grão <120 a >140 dias emergência-maturação; geada <=1 °C no espigamento)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Black oat (Avena strigosa) forage, 2015 (não sobrevive abaixo de -8 °C; tolerante à seca; 3-8 t/ha MS)|Mantai et al., Simulation of oat development cycle by photoperiod and temperature, Rev. Bras. Eng. Agríc. Ambient. 21(1):3-8, 2017 (temperatura mínima cardinal 4 °C da emergência à antese; ótimo 22 °C) (PROXY: aveia branca, Avena sativa)|FAO-56 Allen et al. 1998 Tab.12 (Kc mid 1.15 da linha Oats; Kc ini 0.3 do grupo Cereals) e cap.6 (fim do estádio médio = início da maturação; Kc end alto em cultura colhida verde, por isso kc_final = Kc mid no manejo no florescimento) (PROXY: oats, Avena sativa)|FAO-56 Tab.22 (raiz Oats 1.0-1.5 m; limite superior = sequeiro) (PROXY: oats, Avena sativa)|FAO ECOCROP, ficha Avena sativa (EcoPortCode 481), lida na cópia integral do banco no GitHub OpenCLIM/ecocrop, EcoCrop_DB.csv (TOPMN 16 °C e TOPMX 20 °C; A. strigosa não consta do banco) (PROXY: Avena sativa)|Broca, Peruzzo, Garbin, Martins & Ludwig, Influência da qualidade das sementes no filocrono de aveia preta, 8ª MoEPEx IFRS Ibirubá, 2019 (Tb 4 °C adotada para A. strigosa Embrapa 139; filocrono 90-93 °C dia/folha)|Pivetta, Filocrono de genótipos de aveia branca e preta submetidos a vernalização, TCC Agronomia UNIPAMPA, 2019 (Tb 0 °C adotada para aveia preta e branca)|CÁLCULO deste catálogo: ETc = soma diária de Kc × ET0 (FAO-56 Penman-Monteith eq. 6; curva Kc 0.3 → 1.15, kc_final = Kc mid) com NASA POWER diário 2001-2020 em Passo Fundo, Santa Maria, Ponta Grossa e Londrina, semeadura 01/04 a 15/05, 100-140 dias até o florescimento (agua_ciclo 110-390 mm; média dos anos)|Ramos, Irrigação de aveia preta com efluente da suinocultura em casa de vegetação, TCC UNIPAMPA Alegrete, 2023 (consumo de 283 mm, 2,67 mm/dia, semeadura 06/05, último corte 115 dias; só conferência de ordem de grandeza)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: aveia_min_santamaria_1504_100d, aveia_max_londrina_1505_140d)",
+    "confianca_parametros": "baixa",
+    "graus_dia_ciclo_min": "1080",
+    "graus_dia_ciclo_max": "1570"
   },
   "mudancas": [
     {
@@ -96,6 +98,48 @@
       "antes": "",
       "depois": "1.15",
       "motivo": "Regra do time para cobertura cortada no florescimento: kc_final = kc_medio. O FAO-56 (cap. 6) diz que o Kc end fica alto em cultura colhida verde, antes de secar. Não achei Kc medido de aveia-preta no florescimento: Ferreira 1991 vai só até 56 dias, e Sanches et al. 2019 mede um consórcio com capim tropical."
+    },
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "alto",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 6 coluna(s) do filtro sem medição ou publicação própria: temp_base_c (proxy), agua_ciclo_mm_min (calculo), agua_ciclo_mm_max (calculo), kc_inicial (proxy), kc_medio (proxy), profundidade_raiz_m (proxy)"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "21.5",
+      "depois": "13.0",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL AVEIA PRETA FORRAGEM (id 842), n=8, Brasil. O 21,5 era de cortes vegetativos (CBPA 2014)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 70.5, 'tipo': 'DIVMS'}",
+      "depois": "{'valor': 69.2, 'tipo': 'DMO', 'n': None, 'medicao': 'estimada', 'nota': 'DMO em ruminantes da aveia-preta fresca (Black oat, Avena strigosa, aerial part, fresh), Feedipedia, calculada por equação (*) a partir da composição (16 amostras de PB/FDN; Nb da DMO não informado). No CQBAL (AVEIA PRETA FORRAGEM, id 842) só há DIVMO 74,8 (n=1) e DMS 88,98 (n=1, rejeitada como erro). Confirmam >= 60: CBPA 2014 DIVMS 69-73 (4 cultivares, média de 6 anos); CQBAL AVEIA FORRAGEIRA (id 56) DIVMO 61,87 (n=7, espécie não confirmada).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL sem métrica com n >= 3 para aveia-preta; vale a DMO estimada da Feedipedia. ERRO DE CADASTRO no CQBAL, item 842: DMS 88,98 (n=1) não foi usada. É maior que a DIVMO 74,8 do mesmo item, com FDN 54% (n=6), maior que a DMS da aveia genérica (72, id 648) e do feno de aveia-preta (58,25, id 844), e quase igual à do fubá de milho (92,08, id 1); para uma forragem com metade da MS em fibra, é implausível (provável erro de digitação). O item também está cadastrado como 'Avena sativa L.', mas é aveia-preta (Avena strigosa). A classe não muda: todas as medidas válidas ficam >= 60. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1080-1570",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
     }
   ],
   "evidencias": [
@@ -306,7 +350,7 @@
         "agua_ciclo_mm_min",
         "agua_ciclo_mm_max"
       ],
-      "fonte": "CÁLCULO deste catálogo com FAO-56 eq. 6 (Penman-Monteith; Rn pelas eqs. 37-39; G = 0; ea pela Tdew) e NASA POWER diário (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN, PS, PRECTOTCORR), 2001-2020; script em scratchpad/scripts_aveia/etc.py",
+      "fonte": "CÁLCULO deste catálogo com FAO-56 eq. 6 (Penman-Monteith; Rn pelas eqs. 37-39; G = 0; ea pela Tdew) e NASA POWER diário (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN, PS, PRECTOTCORR), 2001-2020; script em data/catalogo/scripts/etc_nasa_power.py (cenários: aveia_min_santamaria_1504_100d, aveia_max_londrina_1505_140d)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
       "trecho": "Médias de 20 anos de ETc até o manejo (Kc mid 1.15). Passo Fundo: 142-260 mm (chuva 441-641). Santa Maria: 110-211 mm (chuva 409-609). Ponta Grossa: 129-241 mm (chuva 324-482). Londrina: 202-386 mm (chuva 295-419). Faixas para semeaduras de 01/04, 15/04 e 15/05 e ciclos de 100 e 140 dias. Com o Kc mid corrigido pela eq. 62 (u2 e RHmin do local, h = 1 m), cai até 10 mm. Ano seco/quente (p90): até 427 mm em Londrina."
     },
@@ -327,6 +371,190 @@
       "fonte": "Ferreira et al., Revista Ceres 38(215):25-35, 1991 (lisímetro, Viçosa-MG; já citado)",
       "url": "https://ojs.ceres.ufv.br/ceres/article/view/2119",
       "trecho": "A evapotranspiração média da aveia, até o primeiro corte, com 56 dias de idade, foi de 2,10 mm dia-1"
+    },
+    {
+      "fonte": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, XXXIV Reunião da Comissão Brasileira de Pesquisa de Aveia, Editora UPF, 2014",
+      "url": "https://www.unifateb.edu.br/wp-content/uploads/2023/03/11-Indicacoes-Tecnicas-para-a-Cultura-da-Aveia.pdf",
+      "trecho": "Embrapa 139 (Neblina) [...] para cobertura do solo (corte único no florescimento): 5.374 kg/ha; IAPAR 61 – Ibiporã [...] 7.411 kg/ha; IPR Cabocla [...] 4.873 kg/ha; UPFA 21 – Moreninha [...] 6.949 kg/ha",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Giacomini, Aita, Vendruscolo, Cubilla, Nicoloso & Fries, Matéria seca, relação C/N e acúmulo de nitrogênio, fósforo e potássio em misturas de plantas de cobertura de solo, R. Bras. Ci. Solo 27:325-334, 2003 (Santa Maria-RS, 1998-2000)",
+      "url": "https://www.redalyc.org/pdf/1802/180218485012.pdf",
+      "trecho": "Quadro 1 [...] 100% AP(1) 4,60 a [1998] [...] 4,21 a [1999] [...] 4,12 a [2000] [Mg ha-1]; Quadro 2 [C/N] 100% AP(1) 34,2 a [1998] [...] 32,5 a [1999] [...] 42,9 a [2000]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Aita & Giacomini, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura de solo solteiras e consorciadas, R. Bras. Ci. Solo 27:601-612, 2003 (Santa Maria-RS; aveia no pleno florescimento, nabo no final do florescimento)",
+      "url": "https://www.redalyc.org/pdf/1802/180214026004.pdf",
+      "trecho": "100 % AP 443 11,1 [...] 40,3 [C/N]; [MS adicionada] 100 % AP 4.390 [kg ha-1]; 81 % da matéria seca (MS) inicial da aveia ainda permanecia na superfície do solo [ao fim do primeiro mês]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "Quanto à produção de matéria seca avaliada no florescimento, aveia-preta, centeio e nabo forrageiro atingiram médias anuais de cerca de 4,5 t/ha",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Wisniewski & Holtz, Decomposição da palhada e liberação de nitrogênio e fósforo numa rotação aveia-soja sob plantio direto, Pesq. agropec. bras. 32(11):1191-1197, 1997 (Carambeí-PR; aveia manejada com rolo-faca no grão leitoso)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/4761/7274/56089",
+      "trecho": "à maior quantidade de resíduo inicial (9,8 contra 6,8 t.ha-1) [milho vs aveia]. A palhada de aveia-preta perdeu 71% de peso em 179 dias. [Tabela 4, 1ª amostra da palhada de aveia: C/N 23]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Acosta, Amado, Silva, Santi & Weber, Decomposição da fitomassa de plantas de cobertura e liberação de nitrogênio em função da quantidade de resíduos aportada ao solo sob sistema plantio direto, Ciência Rural 44(5):801-809, 2014 (Santa Maria-RS)",
+      "url": "https://www.redalyc.org/pdf/331/33130634007.pdf",
+      "trecho": "44 e 39 nos resíduos de aveia preta; Tabela 1 [...] Aveia preta Média [...] 164 a [t50% dia]",
+      "colunas": [
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Heinzmann, Resíduos culturais de inverno e assimilação de nitrogênio por culturas de verão, Pesq. agropec. bras. 20(9):1021-1030, 1985 (amostragem na época da colheita das culturas de inverno)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/16176/10348",
+      "trecho": "TABELA 2 [...] Aveia-preta 50 97 147 [N total kg/ha] 31 [C/N raízes] 28 [C/N P. aérea]",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, XXXIV Reunião da Comissão Brasileira de Pesquisa de Aveia, Editora UPF, 2014",
+      "url": "https://www.unifateb.edu.br/wp-content/uploads/2023/03/11-Indicacoes-Tecnicas-para-a-Cultura-da-Aveia.pdf",
+      "trecho": "Tabela 4. Qualidade bromatológica [...] Média de seis anos [...] Campos Gerais - PR: AP Iapar 61 - Ibiporã 22 [PB %] [...] 71 [DIVMS %]; AP UPFA 21 - Moreninha 22 [...] 69; AP IPR Cabocla 21 [...] 69; AP Embrapa 139 21 [...] 73",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, XXXIV Reunião da Comissão Brasileira de Pesquisa de Aveia, Editora UPF, 2014",
+      "url": "https://www.unifateb.edu.br/wp-content/uploads/2023/03/11-Indicacoes-Tecnicas-para-a-Cultura-da-Aveia.pdf",
+      "trecho": "Enquanto todas as cultivares de aveia preta (Avena strigosa Schereb) são forrageiras, as brancas (Avena sativa L.) podem ser graníferas ou forrageiras.",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 dias após o plantio)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 2 [...] Aveia 2,4 d [MS] 29,2 e 30,6 [C/N] | 3,4 ab 46,0 c 28,3; Quadro 3 Aveia 0,0064 108 [T½ dia, milho] | 0,0062 112 [soja]",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Acosta, Amado, Silva, Santi & Weber, Decomposição da fitomassa de plantas de cobertura e liberação de nitrogênio em função da quantidade de resíduos aportada ao solo sob sistema plantio direto, Ciência Rural 44(5):801-809, 2014 (Santa Maria-RS; bolsas de outubro a março, entrelinha do milho; médias de 2003 e 2004)",
+      "url": "https://www.redalyc.org/pdf/331/33130634007.pdf",
+      "trecho": "Os resíduos de aveia preta com, aproximadamente, 80% de compartimento recalcitrante necessitaram de 164 dias para decompor a metade da quantidade de seus resíduos",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Aita & Giacomini, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura de solo solteiras e consorciadas, R. Bras. Ci. Solo 27:601-612, 2003 (Santa Maria-RS; outubro de 1999 a março de 2000)",
+      "url": "https://www.redalyc.org/pdf/1802/180214026004.pdf",
+      "trecho": "Quadro 5 [...] Matéria seca remanescente (MSR) [...] 100 % AP 66,4 a (4) 0,01359 c [...] 51 a [...] MSR = A e(-kat) + (100-A) nos tratamentos 100 % AP e 100 % NF",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Wisniewski & Holtz, Decomposição da palhada e liberação de nitrogênio e fósforo numa rotação aveia-soja sob plantio direto, Pesq. agropec. bras. 32(11):1191-1197, 1997 (Carambeí-PR; aveia semeada em 28/04/93, cortada com rolo-faca no grão leitoso aos 162 dias; soja semeada em 29/10/93)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/4761/7274/56089",
+      "trecho": "A palhada de aveia-preta perdeu 71% de peso em 179 dias.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 3 [...] ano agrícola 2000/01 [...] Cultura de milho [...] Aveia 0,0064 108 [...] Cultura de soja [...] Aveia 0,0062 112",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 842 'AVEIA PRETA FORRAGEM' (FORRAGENS VERDES; espécie cadastrada: Avena sativa L.): PB média 12,98 (n 8, desvio 1,62); DMS média 88,98 (n 1, desvio 0); DIVMO média 74,8 (n 1, desvio 0); FDN média 54 (n 6, desvio 2,595). O CQBAL cadastra este item como 'Avena sativa L.', mas o nome é aveia-preta (Avena strigosa)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Black oat (Avena strigosa)",
+      "url": "https://www.feedipedia.org/node/581",
+      "trecho": "Black oat (Avena strigosa), aerial part, fresh [...] Crude protein % DM 17.6 (SD 3.5, 12.5-26.3, Nb 16) [...] OM digestibility, ruminants % 69.2 * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 56 'AVEIA FORRAGEIRA' (FORRAGENS VERDES; espécie cadastrada: Avena sativa L.): PB média 11,6 (n 10, desvio 1,301); DIVMO média 61,87 (n 7, desvio 2,22); DIVMS média 67,07 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, CBPA/Editora UPF, 2014, cap. 8 (aveias forrageiras e de cobertura)",
+      "url": "https://www.unifateb.edu.br/wp-content/uploads/2023/03/11-Indicacoes-Tecnicas-para-a-Cultura-da-Aveia.pdf",
+      "trecho": "O ciclo da emergência ao florescimento varia de acordo com a cultivar e a região de cultivo. Na média dos últimos três anos dos ensaios da CBPA, as aveias IPR Cabocla, Embrapa 139 e IPR Esmeralda foram as mais precoces, atingindo o florescimento em torno de 101, 102 e 109 dias [...] Iapar 61 – Ibiporã e IPR 126 [...] 134 e 134 dias"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Ziech, Conceição, Luchese, Balin, Candiotto & Garmus, Proteção do solo por plantas de cobertura de ciclo hibernal na região Sul do Brasil, Pesq. agropec. bras. 50(5):374-382, 2015 (UTFPR Dois Vizinhos)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/20934/12927",
+      "trecho": "No primeiro ciclo, a semeadura ocorreu em 5/7/2010 [...] semeadura ocorreu em 12/5/2011 [...] Aos 93 DAS (6/10/2010) e aos 112 DAS (1/9/2011) [...] a aveia‑preta, o centeio, o azevém [...] encontravam-se no estádio de pleno florescimento"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "PROXY de espécie (conferência): Görgen Chaves, Cargnelutti Filho et al., Phyllochron and leaf appearance rate in oat, Bragantia 76(1):73-81, 2017 (UFSM, Avena sativa, 2014)",
+      "url": "https://www.redalyc.org/pdf/908/90850418008.pdf",
+      "trecho": "The base temperature utilized was 3.0 °C [...] URS Charrua April 28 May 4 [...] August 8 [...] 1,258.2 [...] URS Estampa April 28 May 4 [...] September 5 [...] 1,640.3 [...] URS Charrua July 14 July 20 [...] October 1 [...] 1,080.8"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO próprio: NASA POWER diário Dois Vizinhos-PR (-25,70; -53,10) 2010-2011 e Santa Maria-RS 2014; climatologia T2M mensal (Passo Fundo, Santa Maria, Ponta Grossa, Londrina)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-53.10&latitude=-25.70&start=20100701&end=20111001&format=JSON",
+      "trecho": "Dois Vizinhos 05/07/2010->06/10/2010 Tb4: GD 1251, Tmed 17,45; 12/05/2011->01/09/2011: GD 1355, Tmed 16,1. Climatologia T2M mai/jun/jul/ago/set: Passo Fundo 14,7/13,0/12,3/13,9/15,8; Ponta Grossa 15,5/14,1/13,7/15,0/17,2"
     }
   ],
   "pendencias": [
@@ -337,12 +565,126 @@
     "kc_medio 1.15 e profundidade_raiz_m 1.5 são PROXY de oats (A. sativa) do FAO-56. O ZARC aveia usa 0,6 m de raiz efetiva.",
     "ciclo_dias: os dias da fonte contam da emergência ao florescimento. Somei ~1 semana de semeadura até a emergência e arredondei (100-140). O ciclo encurta em semeaduras tardias e em regiões mais quentes (CBPA 2014). Até a semente (grão), o ciclo é bem mais longo: os grupos ZARC vão de <120 a >140 dias só da emergência à maturação, e o BP 6 dá '120 a mais de 200 dias' conforme a espécie.",
     "Alelopatia: não conferida em fonte primária. A supressão de plantas daninhas pela palhada está documentada (folder IAPAR 61; CBPA 2014: 'supressão de plantas daninhas'), mas o efeito alelopático específico da aveia-preta (literatura de Almeida/IAPAR, Jacobi & Fleck) não foi lido.",
-    "Outros benefícios documentados, para uso futuro no app: quebra o ciclo do mal-do-pé (Gaeumannomyces graminis var. tritici) e da podridão comum (Bipolaris sorokiniana) no trigo (CBPA 2014; Fontaneli 2012); tolera acidez e alumínio (Fontaneli 2012)."
+    "Outros benefícios documentados, para uso futuro no app: quebra o ciclo do mal-do-pé (Gaeumannomyces graminis var. tritici) e da podridão comum (Bipolaris sorokiniana) no trigo (CBPA 2014; Fontaneli 2012); tolera acidez e alumínio (Fontaneli 2012).",
+    "graus-dia: Não há soma térmica medida até o florescimento para a aveia-preta no Brasil nas fontes lidas; a faixa é CÁLCULO (dias publicados × Tmed do POWER). O APSIM-Oats parametrizado para aveia-preta em Piracicaba (Souza et al. 2025, Acta Sci. Agron. 47) usa Tb 0 e põe os parâmetros térmicos numa tabela suplementar (S4) que não li.",
+    "graus-dia: Tb 4 continua PROXY. Se o time adotar Tb 0 (Pivetta 2019; APSIM-Oats), a soma sobe ~4 × dias (~+430 a +560): não misture.",
+    "graus-dia: Aveia responde a fotoperíodo e vernalização (CBPA 2014, item 4.2.4); semeaduras tardias (julho) floresceram com menos soma (branca: 1008-1115 contra 1162-1516 em abril).",
+    "graus-dia: Viés do POWER em Santa Maria: para a aveia branca de 2014, o POWER deu ~18% menos que a conta com a estação da UFSM. Os números de Dois Vizinhos já são POWER, coerentes com o motor."
   ],
   "pendencias_resolvidas": [
     "temp_otima_min_c/temp_otima_max_c: não achei fonte primária com a faixa ótima de crescimento da aveia-preta. O 15-20 do rascunho não tinha fonte e ficou vazio. Achei: germinação ideal de 20-25 °C para a aveia (CBPA 2014) e um ótimo de 22 °C da emergência à antese da aveia branca (Mantai 2017). Fonte ainda não lida: Derpsch & Calegari 1992 (IAPAR, Plantas para adubação verde de inverno). O FAO ECOCROP estava fora do ar (erro de banco de dados) e não deu para ver a ficha de Avena sativa.",
     "agua_ciclo_mm_min/max: sem fonte para a aveia-preta até o florescimento em campo, e por isso ficou vazio. Dados parciais: ETc média de 2,10 mm/dia até 56 dias (Viçosa, irrigada; Ferreira 1991); ~4 mm/dia e 240+450 mm em dois ciclos de corte da aveia amarela irrigada em São Carlos (Bacchi et al. 1996, A. byzantina); 283 mm em casa de vegetação (TCC UNIPAMPA 2023, não lido). O FAO IWM Manual 3 dá 450-650 mm para Barley/Oats/Wheat até a maturação (não conferido para esta linha), o que superestima a cobertura manejada na floração.",
     "kc_final = 1.15 é inferência (Kc mid do FAO-56 para oats, porque o manejo no florescimento ocorre antes do início da maturação), não medição. O único Kc medido de aveia-preta (Ferreira 1991, lisímetro de drenagem) vai só até 56 dias e chega a 1,53-1,84 por efeito oásis. O ZARC aveia usa Kc máximo de 1,00. Se o grupo preferir manter vazio como na crotalária, é uma alternativa defensável.",
     "DECISÃO NA JUNÇÃO: kc_final vazio (sem medição até o manejo), mesma convenção da crotalária e do guandu. O 1.15 (Kc mid de oats) era só inferência."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 4.1,
+      "max": 7.4,
+      "tipico": 4.7
+    },
+    "cn_palhada": {
+      "min": 23,
+      "max": 44,
+      "tipico": 36.6
+    },
+    "k_dia": {
+      "valor": 0.0065,
+      "min": 0.0042,
+      "max": 0.0069
+    },
+    "meia_vida_dias": {
+      "valor": 107,
+      "min": 100,
+      "max": 164
+    },
+    "condicao_decomposicao": "Aveia-preta manejada no florescimento/grão leitoso (inverno) com palhada decompondo na primavera-verão chuvosa sob milho ou soja em plantio direto: Santa Maria-RS (out-mar), Carambeí-PR (out-abr) e Uberaba-MG (águas 2000/01). Valor = mediana das quatro estimativas nessas condições.",
+    "pb_pct": 13.0,
+    "digestibilidade_pct": {
+      "valor": 69.2,
+      "tipo": "DMO",
+      "n": null,
+      "medicao": "estimada",
+      "nota": "DMO em ruminantes da aveia-preta fresca (Black oat, Avena strigosa, aerial part, fresh), Feedipedia, calculada por equação (*) a partir da composição (16 amostras de PB/FDN; Nb da DMO não informado). No CQBAL (AVEIA PRETA FORRAGEM, id 842) só há DIVMO 74,8 (n=1) e DMS 88,98 (n=1, rejeitada como erro). Confirmam >= 60: CBPA 2014 DIVMS 69-73 (4 cultivares, média de 6 anos); CQBAL AVEIA FORRAGEIRA (id 56) DIVMO 61,87 (n=7, espécie não confirmada)."
+    },
+    "uso_forrageiro": "principal",
+    "observacoes": {
+      "coleta": "MS no florescimento (corte único/manejo), t/ha, no Sul e no MS: 4,60, 4,21 e 4,12 (Giacomini, Santa Maria); 4,39 (Aita & Giacomini); ~4,5 (Hernani, MS); cultivares da CBPA de 4,87 a 7,41; 6,8 (Wisniewski & Holtz, Carambeí, manejo no grão leitoso). Típico = mediana dos 10 valores (4,7). Excluí os 2,4 e 3,4 t/ha de Torres (Uberaba), porque o Cerrado fica fora da região de cultivo típica. C/N: 34,2, 32,5 e 42,9 (Giacomini), 40,3 (Aita), 44 e 39 (Acosta), 28 (Heinzmann), 23 (Wisniewski, palhada no grão leitoso). Típico = mediana dos 8 valores (36,6). Torres achou 30,6 e 28,3 no Cerrado. PB e DIVMS: média das 4 cultivares de aveia-preta da Tabela 4 da CBPA (Fundação ABC, forragem em pastejo/corte): PB 21,5% e DIVMS 70,5%, com NDT de 60-64%. A Feedipedia dá 17,6% PB para a parte aérea fresca. uso_forrageiro = principal (a CBPA classifica todas as cultivares de aveia-preta como forrageiras). Persistência: é a palhada de inverno mais persistente desses estudos. Acosta mediu 164 dias para decompor 50% (nabo: 106); Aita & Giacomini acharam 81% da MS ainda presente após 1 mês; Wisniewski & Holtz mediram 71% de perda em 179 dias; Torres, no Cerrado, achou T½ de 108-112 dias, o maior entre as coberturas daquele estudo, por causa do C/N mais alto. O IAPAR destaca a 'baixa decomposição da palhada'.",
+      "decomposicao": "Quatro estimativas de estação chuvosa: (1) Acosta 2014: t50% = 164 d (141 a 203 d conforme 3, 6 ou 9 Mg/ha) -> k = 0,693/164 = 0,0042/dia (min). (2) Aita & Giacomini 2003: MSR = 66,4·e^(-0,01359t) + 33,6; tempo para 50%: t = ln(66,4/16,4)/0,01359 = 103 d -> k = 0,693/103 = 0,0067; aos 182 d o modelo dá 39,2% -> k efetivo = -ln(0,392)/182 = 0,0051. (3) Wisniewski & Holtz 1997: 71% de perda em 179 d (palhada no campo, sob soja) -> k = -ln(0,29)/179 = 0,0069/dia (max), T½ 100 d. (4) Torres 2005 (Cerrado, águas): média de 0,0064 e 0,0062 = 0,0063 (T½ 108-112 d). Mediana de 0,0042; 0,0063; 0,0067; 0,0069 = 0,0065/dia -> T½ = ln2/0,0065 = 107 d. Torres 2001/02 (seca): 0,0052 e 0,0054 (T½ 133 e 128 d). Acosta cita Torres & Pereira (2008) com 3,7 meses para a aveia (fonte secundária, não usada). Aveia é a palhada de inverno mais persistente (C/N 28-44)."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "alto"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.7,
+      "ms_remanescente_t_ha": 3.18,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": false
+      }
+    },
+    "cenario_forragem": "Forragem verde de aveia-preta (parte aérea), item AVEIA PRETA FORRAGEM do CQBAL, sem estádio declarado. A PB 21,5 anterior era de cortes vegetativos para pastejo (CBPA 2014); a do CQBAL (13,0) mistura estádios e fica mais perto da planta no florescimento, quando a cobertura é manejada."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "proxy",
+      "nota": "4 °C é a mínima cardinal da aveia BRANCA (Avena sativa; Mantai et al. 2017). Pendência: 'temp_base_c = 4 continua PROXY. Não existe Tb estimada [...] para A. strigosa'."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "CBPA 2014 (Lângaro & Carvalho): aveias-pretas florescem aos 101 (IPR Cabocla) e 102 dias (Embrapa 139) da emergência; ensaios da comissão com várias cultivares."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "CBPA 2014 e folder IDR-Paraná 2021: IAPAR 61 com 134 dias da emergência à plena emissão de panículas; +~1 semana até a semeadura."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "'CÁLCULO deste catálogo': ETc = Σ Kc × ET0 (NASA POWER 2001-2020), menor média em Santa Maria, 100 d."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo, maior média em Londrina, 140 d (386 → 390)."
+    },
+    "kc_inicial": {
+      "tipo": "proxy",
+      "nota": "0.3 do grupo i. Cereals do FAO-56, cuja linha é Oats (A. sativa), não A. strigosa. Ferreira et al. 1991 mediu 0,29 na aveia-preta nos 10 primeiros dias (Viçosa), o que concorda, mas é um único ensaio."
+    },
+    "kc_medio": {
+      "tipo": "proxy",
+      "nota": "1.15 da linha Oats (A. sativa) do FAO-56. fontes: '(PROXY: oats, Avena sativa)'."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "kc_final = kc_medio para cobertura cortada no florescimento; FAO-56 cap.6 ('mid-season stage runs from effective full cover to the start of maturity'; Kc end alto em cultura colhida verde). O resolvidas registra uma decisão antiga de deixar vazio, mas o CSV atual tem 1.15."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab.22, Oats 1.0-1.5 m (A. sativa). fontes: '(PROXY: oats, Avena sativa)'. O ZARC aveia usa 0,6 m efetivo."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "semeadura -> manejo no florescimento; Tb 4; Não achei soma térmica publicada até o florescimento para a aveia-PRETA (A. strigosa). Três caminhos, todos com Tb 4 (a do CSV, PROXY da aveia branca, Mantai 2017): (1) Dias da CBPA × Tmed do POWER (climatologia mai-set): emergência -> florescimento 101 (IPR Cabocla), 102 (Embrapa 139), 115 (UPFA 21 Moreninha), 134 (Iapar 61) dias; + ~7 dias da semeadura à emergência (a CBPA não dá; CÁLCULO). Tmed mai-set POWER: Passo Fundo 13,9; Santa Maria 14,1; Ponta Grossa 15,1 °C. Mínimo: 108 d × (14 − 4) = 1080. Máximo: 141 d × (15,1 − 4) = 1565 (Passo Fundo: 141 × 9,9 = 1396). (2) Aveia-preta no pleno florescimento em Dois Vizinhos-PR (Ziech et al. 2015), POWER diário: semeadura 5/7/2010 -> 6/10/2010 (93 DAS) = 1251 °C dia; 12/5/2011 -> 1/9/2011 (112 DAS) = 1355 °C dia; nenhum dia com Tmed < 4. (3) Conferência com aveia BRANCA (A. sativa, Görgen Chaves et al. 2017, Santa Maria 2014, Tb 3 da fonte, da emergência até a última contagem de folhas, 'until the plant flowering'): 1080,8-1640,3 °C dia (Tb 3). Conversão para Tb 4: − 1 × dias: Charrua abr 1258,2 − 96 = 1162; Estampa abr 1640,3 − 124 = 1516; Charrua jul 1080,8 − 73 = 1008; Estampa jul 1195,3 − 80 = 1115. Semeadura -> emergência 6-8 d; com a taxa do próprio artigo nos primeiros dias (132/7 ≈ 19 °C dia/dia em Tb 3 em maio; 154,5/11 ≈ 14 em junho) dá ~+80 a +110. Total Tb 4: ~1090-1620. A mesma conta com POWER diário (sem conversão) dá 879-1329, ~18% abaixo. Faixa adotada 1080-1570 (preta,"
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "semeadura -> manejo no florescimento; Tb 4; Não achei soma térmica publicada até o florescimento para a aveia-PRETA (A. strigosa). Três caminhos, todos com Tb 4 (a do CSV, PROXY da aveia branca, Mantai 2017): (1) Dias da CBPA × Tmed do POWER (climatologia mai-set): emergência -> florescimento 101 (IPR Cabocla), 102 (Embrapa 139), 115 (UPFA 21 Moreninha), 134 (Iapar 61) dias; + ~7 dias da semeadura à emergência (a CBPA não dá; CÁLCULO). Tmed mai-set POWER: Passo Fundo 13,9; Santa Maria 14,1; Ponta Grossa 15,1 °C. Mínimo: 108 d × (14 − 4) = 1080. Máximo: 141 d × (15,1 − 4) = 1565 (Passo Fundo: 141 × 9,9 = 1396). (2) Aveia-preta no pleno florescimento em Dois Vizinhos-PR (Ziech et al. 2015), POWER diário: semeadura 5/7/2010 -> 6/10/2010 (93 DAS) = 1251 °C dia; 12/5/2011 -> 1/9/2011 (112 DAS) = 1355 °C dia; nenhum dia com Tmed < 4. (3) Conferência com aveia BRANCA (A. sativa, Görgen Chaves et al. 2017, Santa Maria 2014, Tb 3 da fonte, da emergência até a última contagem de folhas, 'until the plant flowering'): 1080,8-1640,3 °C dia (Tb 3). Conversão para Tb 4: − 1 × dias: Charrua abr 1258,2 − 96 = 1162; Estampa abr 1640,3 − 124 = 1516; Charrua jul 1080,8 − 73 = 1008; Estampa jul 1195,3 − 80 = 1115. Semeadura -> emergência 6-8 d; com a taxa do próprio artigo nos primeiros dias (132/7 ≈ 19 °C dia/dia em Tb 3 em maio; 154,5/11 ≈ 14 em junho) dá ~+80 a +110. Total Tb 4: ~1090-1620. A mesma conta com POWER diário (sem conversão) dá 879-1329, ~18% abaixo. Faixa adotada 1080-1570 (preta,"
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 8,
+    "colunas": [
+      "temp_base_c",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "kc_inicial",
+      "kc_medio",
+      "profundidade_raiz_m",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

@@ -22,7 +22,9 @@
     "aporte_biomassa": "alto",
     "valor_forrageiro": "baixo",
     "fontes": "SISTEMA: arroz irrigado por inundação das várzeas/terras baixas do RS e SC, em rotação com soja; o arroz de terras altas fica na linha arroz|SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, 2025, cap. 2, 3, 6 e 8 (ciclo das cultivares 100-145 d; temperaturas críticas Tab.3.2 Yoshida 1981; esterilidade por frio 15-19 °C e por calor >35 °C; ET média 7,2 mm/dia; período de irrigação 80-100 d; lâmina total 6.000-12.000 m³/ha; resteva usada para pastejo)|MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado subtropical RS 2026/2027 (grupos de ciclo ≤105 a ≥136 d; Tmin ≤15 °C na pré-floração; Tmax ≥35 °C na floração; geada Tmin <2 °C; déficit hídrico nulo por ser irrigado)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C, Infeld et al. 1998, arroz irrigado RS)|Meus et al., Ecofisiologia do arroz visando altas produtividades, Santa Maria, 2020 (Tb 11 °C no PlanejArroz/SimulArroz; temperaturas cardinais 11/26/40 °C da emissão de folhas)|Parfitt et al., Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 313, 2018 (ET do arroz ~650 mm, Mota et al. 1990; uso de água 8-10 mil m³/ha)|Stone, Irrigação, cap. 17 de A Cultura do Arroz no Brasil, 2ª ed., Embrapa Arroz e Feijão, 2006 (ET diária 6,8-8,7 mm no RS, Mota et al. 1990)|FAO Irrigation Water Management Training Manual 3, Tab.14 (Rice paddy 450-700 mm; conferência da água)|FAO-56 Tab.12 e Tab.14 (Kc de Rice: ini 1.05 para arroz com lâmina, mid 1.20, end 0.90-0.60)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite inferior, de manejo de irrigação, porque o solo fica inundado)|IBGE PAM tabela 5457 (código 40102; não separa irrigado de terras altas)",
-    "confianca_parametros": "media"
+    "confianca_parametros": "alta",
+    "graus_dia_ciclo_min": "1180",
+    "graus_dia_ciclo_max": "1760"
   },
   "mudancas": [
     {
@@ -126,6 +128,36 @@
       "antes": "",
       "depois": "40102",
       "motivo": "Mesmo código da linha arroz. A PAM não separa os sistemas."
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "4.3",
+      "depois": "5.6",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL ARROZ PALHA (id 83), n=19, Brasil. O 4,3 anterior era o da Feedipedia (4,2, média mundial)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 37.2, 'tipo': 'NDT'}",
+      "depois": "{'valor': 46.1, 'tipo': 'DMS', 'n': 4, 'medicao': 'medida', 'nota': 'Digestibilidade (aparente, in vivo) da matéria seca da ARROZ PALHA (CQBAL id 83), n=4, desvio 2,06. Outras métricas do mesmo item: DMO 56,12 (n=3), DIVMS 34,51 (n=1). Feedipedia (Rice straw): DMO 49,8 medida (n=15). Nenhuma base separa a palha do arroz irrigado da de terras altas; mesmos números do arroz, como proxy.'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT não é digestibilidade (vai para ndt_pct quando o CQBAL tem NDT observado do mesmo material). Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1180-1760",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
     }
   ],
   "evidencias": [
@@ -369,9 +401,161 @@
       "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 5.2.3 (sistema plantio direto)",
       "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
       "trecho": "Normalmente, porém, tem-se sucesso na semeadura direta do arroz sobre a resteva de outra cultura de verão, mais comumente soja, sorgo ou milho"
+    },
+    {
+      "fonte": "Massoni, P. F. S.; Marchesan, E.; Grohs, M.; Silva, L. S.; Roso, R., Nutrientes do solo influenciados por diferentes manejos da palha após a colheita do arroz irrigado, Revista Ciência Agronômica 44(2):205-214, 2013 (Santa Maria, RS, cv. IRGA 417)",
+      "url": "https://www.redalyc.org/pdf/1953/195325760001.pdf",
+      "trecho": "realizou-se a semeadura do arroz irrigado nos anos de 2008/09 e 2009/10 [...] A produção de matéria seca em cada cultivo foi de 7.098 e 7.477 kg ha -1, respectivamente.",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Beutler, A. N. et al., Manejo do solo, palha residual e produtividade de arroz irrigado por inundação, Semina: Ciências Agrárias 35(3):1153-1161, 2014 (RS)",
+      "url": "https://www.redalyc.org/pdf/4457/445744141005.pdf",
+      "trecho": "plantio direto com ausência de palha na superfície do solo (E30P), palha atual na superfície do solo de 3.726 kg ha-1 (E31P)",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Beutler, A. N. et al., Propriedades físicas do solo e produtividade de arroz irrigado em diferentes sistemas de manejo, R. Bras. Ci. Solo 36(5):1601-1607, 2012 (RS)",
+      "url": "https://www.redalyc.org/pdf/1802/180224890024.pdf",
+      "trecho": "ausência de palha (0); palha residual atual (8.196); duas vezes (16.392); e três vezes (24.588 kg ha-1) a quantidade de palha sobre a superfície do solo. No inverno, as áreas ficaram em pousio e a soca do arroz utilizada para pastoreio",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Machado, M. O.; Gomes, A. S.; Turatti, A. L.; Pauletto, E. A.; Silveira Junior, P., Efeito da adubação orgânica e mineral na produção do arroz irrigado e nas propriedades químicas e físicas do solo de Pelotas, Pesq. agropec. bras. 18(6):583-591, 1983, Tabela 1",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/15308/9151/67672",
+      "trecho": "Composição dos adubos de origem orgânica [...] Palha de arroz: N total 0,76%; C orgânico 40,0%; C/N 52,6",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Massoni et al., Revista Ciência Agronômica 44(2), 2013",
+      "url": "https://www.redalyc.org/pdf/1953/195325760001.pdf",
+      "trecho": "a alta relação C/N da palha de arroz e um ambiente anaeróbio limitam a decomposição do grande volume de palha produzido",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "QUADRO 6 [...] Arroz (Oryza sativa) [...] Palhas: MS 92,0%; Proteína Bruta 4,3; NDT 37,2",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, 2025, cap. 9.4.8",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "normalmente após a colheita do arroz, produtores e/ou proprietários do campo adotam a resteva do arroz como uma opção para alimentar animais [trecho já registrado no patch arroz_irrigado.json]",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Massoni, P. F. S., Dinâmica do banco de sementes de arroz vermelho e ciclagem de nutrientes em função do manejo pós colheita da palha do arroz, dissertação de mestrado, UFSM, 2011 (Santa Maria, RS), Tabela 2.3 e p. 71-74 (PDF escaneado; lido por imagem)",
+      "url": "https://repositorio.ufsm.br/handle/1/5041",
+      "trecho": "MSR, NR, PR, KR = A e-kat + (100-A) Equação (1) [...] A MS, N, P, K do segundo compartimento (100-A) são considerados recalcitrantes e, por isso, não sofrem transformação no período de tempo considerado. [Tabela 2.3, A (%) / Ka (dia-1) / R²:] -Lâmina de água 43 0,010 0,99; -Sem preparo do solo 45 0,030 0,99 [2009]; -Lâmina de água 48 0,025 0,99; -Sem preparo do solo 56 0,015 0,80 [2010]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Massoni, P. F. S., Dinâmica do banco de sementes de arroz vermelho e ciclagem de nutrientes em função do manejo pós colheita da palha do arroz, dissertação de mestrado, UFSM, 2011 (Santa Maria, RS), Tabela 2.3 e p. 71-74 (PDF escaneado; lido por imagem)",
+      "url": "https://repositorio.ufsm.br/handle/1/5041",
+      "trecho": "A menor decomposição ocorrida no período no tratamento com manutenção da lâmina de água permanente (60% MSR) foi dependente do ambiente anaeróbio",
+      "colunas": [
+        "k_dia"
+      ]
+    },
+    {
+      "fonte": "Winckler, L. T.; Güths, A. K.; Gayer, P. R., Benthic macroinvertebrates and degradation of phytomass as indicators of ecosystem functions in flooded rice cropping, Pesq. agropec. bras. 52(4):261-270, 2017 (Embrapa Clima Temperado, Pelotas-RS)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/24108/13735",
+      "trecho": "The experiment was conducted between May 26 and August 4, 2014 [...] According to the decay coefficient, proposed by Petersen & Cummins (1974), the results in all periods and management systems were greater than 0.010 per day, which expresses a quick biomass decay.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Massoni, P. F. S. et al., Nutrientes do solo influenciados por diferentes manejos da palha após a colheita do arroz irrigado, Revista Ciência Agronômica 44(2):205-214, 2013",
+      "url": "https://www.redalyc.org/pdf/1953/195325760001.pdf",
+      "trecho": "a alta relação C/N da palha de arroz e um ambiente anaeróbio limitam a decomposição do grande volume de palha produzido",
+      "colunas": []
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 83 'ARROZ PALHA' (FORRAGENS SECAS; espécie cadastrada: Oryza sativa): PB média 5,61 (n 19, desvio 1,036); DMS média 46,12 (n 4, desvio 2,061); DMO média 56,12 (n 3, desvio 1,395); DIVMS média 34,51 (n 1, desvio 0)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Rice straw",
+      "url": "https://www.feedipedia.org/node/557",
+      "trecho": "Rice straw [...] Crude protein % DM 4.2 (SD 1.1, 2.4-6.8, Nb 237) [...] OM digestibility, Ruminant % 49.8 (SD 2.8, 46.0-56.0, Nb 15)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Steinmetz, S.; Cuadra, S.V.; Almeida, I.R.; Magalhães Júnior, A.M.; Fagundes, P.R.R. Graus-dia para atingir estádios fenológicos de subgrupos de cultivares de arroz irrigado por inundação. Agrometeoros 29:e026815, 2021 (Embrapa Clima Temperado; 12 safras 2004/05-2015/16, Capão do Leão-RS), Tabela 2",
+      "url": "https://apct.sede.embrapa.br/agrometeoros/article/download/26815/14856/128397",
+      "trecho": "Os GD (°C dia) foram calculados por meio do somatório da diferença entre a temperatura média diária do ar (Tm) e a temperatura base (Tb=11°C), da emergência até a data de cada estádio. [...] Tabela 2 [...] R9: Muito Precoce 1 1122; Muito Precoce 2 1216; Precoce 1 1320; Precoce 2 1382; Médio 1 1446; Médio 2 1458; Tardio 1708"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Steinmetz et al. 2021, Agrometeoros 29:e026815, Material e Métodos (método com teto)",
+      "url": "https://apct.sede.embrapa.br/agrometeoros/article/download/26815/14856/128397",
+      "trecho": "Antes de calcular-se a Tm, foram aplicados os limites de 34 °C e de 21 °C (Slaton et al., 1996), respectivamente, para a Tx e a Tn, ou seja, valores superiores a estes foram desconsiderados. A Tb utilizada foi 11°C"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "plausibilidade"
+      ],
+      "fonte": "Steinmetz, S. et al. Número de dias e de graus-dia para atingir os principais estádios de desenvolvimento da planta de sete subgrupos de cultivares de arroz irrigado. Embrapa Clima Temperado, CBAI 2017, Tabela 1 (dias)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1075153/1/SilvioStenmetzCBAI2017NDGD7SubgruposSilvio.pdf",
+      "trecho": "Número médio de dias da emergência a cada um dos seis estádios [...] Muito Precoce 1 (MP1) [...] R9 91 [...] Média Tardio (T) 24 78 103 117 139 145"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Steinmetz, S. et al. Estádios de desenvolvimento de 10 cultivares de arroz irrigado expressos em graus-dia. XV CBAgro, Embrapa Clima Temperado, 2007",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/743981/1/CBAgro152007Estadios2081.pdf",
+      "trecho": "Os menores valores de soma térmica para atingir a maturação (R9), em cada grupo de cultivares, foram obtidos pelas cultivares BRS Ligeirinho (1143 GD), BRS 6 “Chuí” (1215 GD) e BR-IRGA 410 (1380 GD)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max (conversão)"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado subtropical RS 2026/2027, item 3.1 (semeadura->emergência)",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/rio-grande-do-sul/PORTN62.PDF",
+      "trecho": "O risco do ciclo de cultivo estimado para cada decêndio de semeadura considera um intervalo médio entre 5 e 10 dias para ocorrência da emergência."
     }
   ],
   "pendencias": [
+    "BLOQUEIO DE CARGA (revisão 14/11, P-01): o id arroz_irrigado ainda não existe em agroia/base/culturas.json, que é a fonte única de ids. Não carregar esta linha no banco antes de incluir o id lá, com sinônimos (arroz irrigado, arroz de várzea, arroz inundado).",
     "codigo_pam 40102 é o mesmo da linha arroz: a PAM do IBGE não separa arroz irrigado de arroz de terras altas. Qualquer cruzamento com a PAM (área, produção) mistura os dois sistemas; no RS e em SC quase toda a área é irrigada, no Centro-Norte predomina terras altas.",
     "Frio (risco central no RS), sem coluna: a esterilidade de espiguetas por frio na microsporogênese (R2, 7-14 dias antes da emissão das panículas) ocorre com temperatura de 15-17 °C nos genótipos tolerantes e 17-19 °C nos sensíveis (SOSBAI). O ZARC RS restringe decêndios com 3 ou mais dias seguidos de Tmin ≤15 °C na pré-floração e usa como critério auxiliar Tmed <14 °C no 1º decêndio após a emergência e <19 °C nos 3 últimos decêndios. tmax_critica_c só cobre calor; sensivel_geada=true não captura esse risco. Sugestão: criar uma coluna tmin_critica_c (15 °C, critério do ZARC) aplicada à fase de pré-floração.",
     "Água: agua_ciclo 580-720 mm é CONSUMO (ET), estimado como ET média de 7,2 mm/dia (SOSBAI) × período de irrigação de 80-100 dias (SOSBAI). Bate com os ~650 mm de Mota et al. 1990 (citado pela Embrapa BPD 313; não li o original). A conta cobre só o período inundado: a ET entre a semeadura e o início da irrigação em V3/V4 (~15 dias após a emergência) e a da fase final após a supressão ficam de fora, então 720 pode subestimar ciclos longos (tardias de SC, 145 d).",
@@ -383,9 +567,113 @@
     "Ciclo 100-145 d é da EMERGÊNCIA à maturação (SOSBAI e ZARC). Da semeadura são mais 5-10 dias (ZARC: 'intervalo médio entre 5 e 10 dias para ocorrência da emergência'), e no sistema convencional com solo frio a emergência pode atrasar mais de 20 dias (SOSBAI). O ZARC conta até a maturação fisiológica; da maturação fisiológica até a colheita são mais 1-2 semanas (SOSBAI). Se o motor conta da semeadura à colheita, o teto realista fica perto de 160 d.",
     "temp_otima 20-33 é o envelope das ótimas das fases após a germinação na Tab.3.2 da SOSBAI (Yoshida 1981): maturação 20-25 e antese 30-33. O núcleo das fases vegetativas é 25-30/31 °C. O '20 a 35 °C' que a linha arroz usa (Embrapa 500 Perguntas) aparece na SOSBAI como ótima da germinação. Os modelos do RS usam ótima de 26 °C para emissão de folhas (Meus et al. 2020).",
     "Qualitativas como julgamento: aporte_biomassa=alto (não achei t/ha de palha de arroz irrigado em fonte primária; só a produtividade de grãos ~8 t/ha), cobertura_solo=media, raiz_profunda=false, tipos=comercial. A SOSBAI fala da resteva só como pastejo e como problema (ácidos orgânicos, metano), não como cobertura.",
-    "Fonte da SOSBAI: usei a edição de 2025 (XXXIV Reunião Técnica, Santa Maria), a disponível no site. Os números de água (6.000-12.000 m³/ha; 7,2 mm/dia de ET) e as temperaturas podem ter sido herdados de edições anteriores sem mudança."
+    "Fonte da SOSBAI: usei a edição de 2025 (XXXIV Reunião Técnica, Santa Maria), a disponível no site. Os números de água (6.000-12.000 m³/ha; 7,2 mm/dia de ET) e as temperaturas podem ter sido herdados de edições anteriores sem mudança.",
+    "graus-dia: Os valores são de Capão do Leão-RS (clima temperado). O programa GD Arroz usa o mesmo conjunto para 17 locais do RS. Para arroz irrigado tropical (TO, GO, várzeas do Norte) não achei soma térmica com Tb 11.",
+    "graus-dia: A fonte de 2021 limita Tn a 21 °C e Tx a 34 °C (DD50). Se o motor quiser bater exatamente com o GD Arroz, deveria aplicar os mesmos limites. Sem teto, o motor tende a superestimar o desenvolvimento em locais quentes.",
+    "graus-dia: Semeadura->emergência é CÁLCULO (5-7 d × 8 °C). Com semente pré-germinada a fase é mais curta; com semeadura em solo frio (setembro) pode passar de 10 dias (ZARC)."
   ],
   "pendencias_resolvidas": [
     "Pendência da linha arroz: 'O arroz irrigado por inundação (RS/SC) fica fora [...] Se o app precisar dele, crie uma linha separada' — resolvida com esta linha nova arroz_irrigado (Kc ini 1.05; água como ET, não como lâmina; ciclo até 145 d)."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.7,
+      "max": 8.2,
+      "tipico": 7.3
+    },
+    "cn_palhada": {
+      "min": 44,
+      "max": 58,
+      "tipico": 53
+    },
+    "k_dia": {
+      "valor": 0.004,
+      "min": 0.0026,
+      "max": 0.01
+    },
+    "meia_vida_dias": {
+      "valor": 173,
+      "min": 69,
+      "max": 267
+    },
+    "condicao_decomposicao": "Palha (resteva) de arroz irrigado deixada na superfície sem preparo do solo e sem lâmina, Planossolo de várzea, Santa Maria-RS, entressafra maio-outubro de 2009 e 2010 (outono-inverno, 1.141-1.235 mm de chuva), sacolas até 164 dias após a colheita. Não é plantio direto de grão; é pousio de várzea.",
+    "pb_pct": 5.6,
+    "digestibilidade_pct": {
+      "valor": 46.1,
+      "tipo": "DMS",
+      "n": 4,
+      "medicao": "medida",
+      "nota": "Digestibilidade (aparente, in vivo) da matéria seca da ARROZ PALHA (CQBAL id 83), n=4, desvio 2,06. Outras métricas do mesmo item: DMO 56,12 (n=3), DIVMS 34,51 (n=1). Feedipedia (Rice straw): DMO 49,8 medida (n=15). Nenhuma base separa a palha do arroz irrigado da de terras altas; mesmos números do arroz, como proxy."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Palhada = resteva (palha + soca) após a colheita. Típico 7,3 t/ha = média dos dois anos de Massoni 2013 (7,1 e 7,5 t/ha, Santa Maria). 3,7 e 8,2 t/ha são a 'palha residual atual' medida antes da semeadura seguinte em lavouras gaúchas (Beutler 2014 e 2012), já depois da decomposição e do pastejo no inverno. Conferência: pela proporção de Cruz (palha = 62,8% da planta) uma lavoura de 8 t/ha de grão deixaria ~11,8 t/ha (7,0 t MS de grão x 62,8/37,2); as medidas ficam abaixo disso. C/N: 52,6 é medida em palha de arroz de Pelotas (Machado 1983), por isso o típico é 53; a faixa 44-58 é a mesma da linha arroz (44,2 citada; 58 estimada pela PB 4,3% de Cruz com C 40%). pb_pct/NDT da palha (Cruz 1983). A soca/rebrota pastejada no inverno deve ter PB maior, mas não achei número. Uso 'residual' (só a resteva).",
+      "decomposicao": "Massoni usa o modelo assintótico: só a fração lábil A decai; 100-A fica parada no período. Para ter um k único (exponencial simples) calculei a MSR prevista aos 164 d e k = -ln(MSR)/164. Sem preparo 2009: MSR = 45 e^(-0,030x164) + 55 = 55,3% -> k = -ln(0,553)/164 = 0,0036; 2010: 56 e^(-0,015x164) + 44 = 48,8% -> k = 0,0044. Média 0,0040/dia; T½ = 0,693/0,0040 = 173 d. Mínimo = lâmina de água permanente 2009: 43 e^(-1,64) + 57 = 65,3% -> k = 0,0026; T½ = 267 d (o texto fala em 60% de MSR para esse tratamento). Lâmina 2010: 52,8% -> k = 0,0039. Máximo = Winckler 2017: k > 0,010/dia em sacolas dentro da água, em 70 dias de inverno (T½ < 69 d). É um limite inferior do k, medido com malha larga (0,5 cm) e em período curto, que pega só a fase rápida. Ressalva: o modelo assintótico diz que ~45-55% da palha é recalcitrante e quase não some em 164 d; a fase lábil some rápido (k 0,015-0,030). Na prática a resteva persiste na entressafra, mas o produtor costuma incorporar ou queimar antes da semeadura."
+    },
+    "resultado": {
+      "aporte_biomassa": "alto",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 7.3,
+      "ms_remanescente_t_ha": 5.74,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Palha de arroz depois da colheita do grão. Nenhuma base separa a palha do arroz irrigado da de terras altas; mesmos números do arroz, como proxy. O CQBAL não tem NDT observado da palha de arroz."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "medido",
+      "nota": "Tb 11 °C medida em arroz irrigado no RS (Infeld et al. 1998), adotada pela Embrapa Clima Temperado (Steinmetz et al. 2007) e pelo SimulArroz/PlanejArroz (Meus et al. 2020). Mesma condição do sistema desta linha."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "SOSBAI 2025: BRS Atalanta 'ciclo muito precoce, em torno de 100 dias'; ZARC RS Grupo I <=105 d."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "SOSBAI 2025: Risomarino CL 'Ciclo de 145 dias para Santa Catarina'; ZARC RS Grupo IV >=136 d."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "580 = 7,2 mm/dia de ET (SOSBAI) × 80 d de irrigação (SOSBAI), conta do time. Bate com ~650 mm de Mota et al. 1990 (via Embrapa BPD 313) e com a FAO (450-700), mas o número em si é derivado. | DECISÃO NA JUNÇÃO: multiplicação de dois números oficiais da SOSBAI (7,2 mm/dia x 80-100 dias), confirmada por Mota 1990 (~650 mm); conta simples sobre valores publicados, não estimativa própria do time."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "720 = 7,2 mm/dia × 100 d (SOSBAI), conta do time; a pendência avisa que ignora a ET fora do período inundado. | DECISÃO NA JUNÇÃO: multiplicação de dois números oficiais da SOSBAI (7,2 mm/dia x 80-100 dias), confirmada por Mota 1990 (~650 mm); conta simples sobre valores publicados, não estimativa própria do time."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12/cap.6, Rice com lâmina: 'The Kc ini in Table 12 is 1.05'."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Rice: 1.20."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Rice 0.90-0.60; ponta baixa apoiada no FAO-56 cap.6 (cultura que seca no campo) e na SOSBAI (supressão da irrigação 10-15 d após a floração)."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Rice 0.5-1.0 m; limite inferior, que o texto da FAO indica para manejo de irrigação ('smaller values [...] for irrigation scheduling')."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 11; Fonte conta da EMERGÊNCIA até R9 (maturidade completa dos grãos da panícula), Tb 11 (a mesma do CSV). Semeadura->emergência (CÁLCULO): o ZARC RS usa 5 a 10 dias; a fonte não dá GD dessa fase. 7 d × (19 − 11) = 56 GD, com Tmed ~19 °C em out-nov no RS (premissa). Min: subgrupo Muito Precoce 1, 1122 + 56 = 1178 ≈ 1180. Max: subgrupo Tardio, 1708 + 56 = 1764 ≈ 1760. TETO: a fonte de 2021 aplica o método DD50 de Slaton (Tx limitada a 34 °C e Tn a 21 °C antes de fazer a média); o motor não usa teto, então em dias quentes soma mais GD por dia e fecha o ciclo um pouco antes (no RS o efeito é pequeno; no arroz irrigado tropical, TO/GO, é maior). O trabalho de 2007 (mesma equipe, 10 cultivares) não cita limites e dá R9 de 1143 (BRS Ligeirinho) a 1422 (BRS Pelota), dentro da faixa. | plausibilidade: Tmed efetiva implícita na fonte: MP1 = 11 + 1122/91 = 23,3 °C; Tardio = 11 + 1708/145 = 22,8 °C. 1180/(23,3 − 11) = 96 dias e 1760/(22,8 − 11) = 149 dias, contra ciclo_dias 100-145 do CSV (contado da emergência, como no ZARC). Coerente; o máximo passa 4 dias porque inclui a semeadura->emergência."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "medido",
+      "nota": "semeadura -> maturação fisiológica; Tb 11; Fonte conta da EMERGÊNCIA até R9 (maturidade completa dos grãos da panícula), Tb 11 (a mesma do CSV). Semeadura->emergência (CÁLCULO): o ZARC RS usa 5 a 10 dias; a fonte não dá GD dessa fase. 7 d × (19 − 11) = 56 GD, com Tmed ~19 °C em out-nov no RS (premissa). Min: subgrupo Muito Precoce 1, 1122 + 56 = 1178 ≈ 1180. Max: subgrupo Tardio, 1708 + 56 = 1764 ≈ 1760. TETO: a fonte de 2021 aplica o método DD50 de Slaton (Tx limitada a 34 °C e Tn a 21 °C antes de fazer a média); o motor não usa teto, então em dias quentes soma mais GD por dia e fecha o ciclo um pouco antes (no RS o efeito é pequeno; no arroz irrigado tropical, TO/GO, é maior). O trabalho de 2007 (mesma equipe, 10 cultivares) não cita limites e dá R9 de 1143 (BRS Ligeirinho) a 1422 (BRS Pelota), dentro da faixa. | plausibilidade: Tmed efetiva implícita na fonte: MP1 = 11 + 1122/91 = 23,3 °C; Tardio = 11 + 1708/145 = 22,8 °C. 1180/(23,3 − 11) = 96 dias e 1760/(22,8 − 11) = 149 dias, contra ciclo_dias 100-145 do CSV (contado da emergência, como no ZARC). Coerente; o máximo passa 4 dias porque inclui a semeadura->emergência."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 0,
+    "colunas": []
+  }
 }

@@ -10,7 +10,7 @@
     "temp_otima_max_c": "35",
     "tmax_critica_c": "40",
     "sensivel_geada": "true",
-    "agua_ciclo_mm_min": "100",
+    "agua_ciclo_mm_min": "80",
     "agua_ciclo_mm_max": "260",
     "kc_inicial": "0.3",
     "kc_medio": "1.0",
@@ -18,11 +18,13 @@
     "profundidade_raiz_m": "2.0",
     "fixa_nitrogenio": "false",
     "raiz_profunda": "true",
-    "cobertura_solo": "alta",
+    "cobertura_solo": "media",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "alto",
-    "fontes": "Embrapa Milho e Sorgo, Cultivo do Milheto, Sistema de Produção 3, 5a ed. 2016 (florescimento das cultivares 43-58 dias, raiz, reciclagem de nutrientes, descompactação, biomassa, forragem, estresse térmico em FC 2)|Embrapa Milho e Sorgo, Cultivo do Milheto - Clima, Sistema de Produção 3, 2009 (temp. base ~13 °C, ótimo 31-34 °C, não tolera geada, tolerância à seca)|Embrapa Milho e Sorgo, Circular Técnica 29 Manejo da Cultura do Milheto, 2003 (cobertura: 45-55 dias da germinação ao manejo, manejo com 5-10% de emissão do pendão aos 50-60 DAE, dessecação na pré-floração; semeadura em safrinha de fim de janeiro a meados de abril ou em agosto-setembro; 282-302 g de água por g de matéria seca; seca, raiz profunda)|FAO ECOCROP Pennisetum glaucum id 8418 (temperatura ótima 25-35, absoluta 12-40; o máximo absoluto de 40 °C é o tmax no uso como cobertura)|FAO-56 Tab.11 (Millet: fases de 15/25/40/25 dias, a fase média começa aos 40 dias)|FAO-56 Tab.12 (Kc, linha Millet, Kc ini do grupo Cereals)|FAO-56 cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|FAO-56 Tab.22 (raiz 1.0-2.0 m, limite superior = sequeiro)|Silva & Rosolem, RBCS 25:253-260, 2001 (raiz do milheto atravessa camada compactada)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao manejo aos 45-60 dias (água)",
-    "confianca_parametros": "media"
+    "fontes": "Embrapa Milho e Sorgo, Cultivo do Milheto, Sistema de Produção 3, 5a ed. 2016 (florescimento das cultivares 43-58 dias, raiz, reciclagem de nutrientes, descompactação, biomassa, forragem, estresse térmico em FC 2)|Embrapa Milho e Sorgo, Cultivo do Milheto - Clima, Sistema de Produção 3, 2009 (temp. base ~13 °C, ótimo 31-34 °C, não tolera geada, tolerância à seca)|Embrapa Milho e Sorgo, Circular Técnica 29 Manejo da Cultura do Milheto, 2003 (cobertura: 45-55 dias da germinação ao manejo, manejo com 5-10% de emissão do pendão aos 50-60 DAE, dessecação na pré-floração; semeadura em safrinha de fim de janeiro a meados de abril ou em agosto-setembro; 282-302 g de água por g de matéria seca; seca, raiz profunda)|FAO ECOCROP Pennisetum glaucum id 8418 (temperatura ótima 25-35, absoluta 12-40; o máximo absoluto de 40 °C é o tmax no uso como cobertura)|FAO-56 Tab.11 (Millet: fases de 15/25/40/25 dias, a fase média começa aos 40 dias)|FAO-56 Tab.12 (Kc, linha Millet, Kc ini do grupo Cereals)|FAO-56 cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|FAO-56 Tab.22 (raiz 1.0-2.0 m, limite superior = sequeiro)|Silva & Rosolem, RBCS 25:253-260, 2001 (raiz do milheto atravessa camada compactada)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao manejo aos 45-60 dias (água)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: milheto_min_sorriso_0104_45d, milheto_max_senadorcanedo_1508_60d, milheto_max_rioverde_1508_60d)",
+    "confianca_parametros": "baixa",
+    "graus_dia_ciclo_min": "520",
+    "graus_dia_ciclo_max": "740"
   },
   "mudancas": [
     {
@@ -90,6 +92,60 @@
       "antes": "alta",
       "depois": "media",
       "motivo": "Ciclo, temperaturas, raiz, Kc ini/mid e as colunas qualitativas seguem com fonte primária. A água agora é um cálculo próprio (FAO-56 + NASA POWER), não uma medição, e o kc_final vem de convenção. Pela regra, 'alta' só vale quando todas as colunas têm fonte primária conferida."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "100",
+      "depois": "80",
+      "motivo": "REVISÃO (C-07): o próprio cálculo dá 83-103 mm na safrinha; o mínimo foi arredondado para baixo (80), não para cima, para não eliminar a cultura acima do que a conta indica."
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "12.4",
+      "depois": "12.2",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL MILHETO (id 85), n=23, Brasil."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 67.5, 'tipo': 'DMD (digestibilidade da matéria seca em ruminantes) da forragem verde, faixa 66-69% (Feedipedia); não é DIVMS in vitro estrito'}",
+      "depois": "{'valor': 61.3, 'tipo': 'DIVMS', 'n': 3, 'medicao': 'medida', 'nota': 'Digestibilidade in vitro da matéria seca do MILHETO forragem verde (CQBAL id 85), n=3, desvio 3,28. LIMÍTROFE: no mesmo item a DIVMO é 58,31 (n=3), que rebaixaria a classe para medio; pela regra de empate (DIVMS > DIVMO) ficou a DIVMS. Feedipedia (aerial part, fresh): DMO 68,5 (*).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL MILHETO id 85, DIVMS n=3 medida no Brasil, em vez da DMD da Feedipedia. Classe mantida (alto), mas limítrofe: a DIVMO do mesmo item (58,31, n=3) daria medio. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "regua.regua.ndt_pct",
+      "antes": "None",
+      "depois": "65.62",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT observado guardado à parte; não entra na régua."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "550-800",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Recontagem (revisão 14/11): agua_ciclo_mm_min (calculo), agua_ciclo_mm_max (calculo), graus_dia_ciclo_min (calculo), graus_dia_ciclo_max (calculo)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "550-800",
+      "depois": "520-740",
+      "motivo": "DECISÃO (14/11): culturas de Tb alta ficam na régua do motor (NASA POWER, sem correção). Régua NASA POWER até o estádio de manejo (E5-E6, Costa 2005, Seropédica: águas 577-718, seca 519-614; mediana sobre os dias possíveis do mês de semeadura). Somavilla 2023 (888, até o florescimento da última planta) fica fora: passa do ponto de manejo da cobertura."
     }
   ],
   "evidencias": [
@@ -318,7 +374,7 @@
         "agua_ciclo_mm_min",
         "agua_ciclo_mm_max"
       ],
-      "fonte": "Cálculo próprio: ETc = Kc × ET0, com ET0 FAO-56 Penman-Monteith diário a partir do NASA POWER (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN), média de 2001-2020; RHmin = ea/es(Tmax); Kc mid corrigido pela eq. 62 com h = 1,5 m. Script: /tmp/claude-1000/-home-yuryturatti-Documentos-programacao-NASA-SPACE-APPS/9584014b-e866-48e9-a25c-7646b51ef42b/scratchpad/rodada2/scripts/et0_calc.py",
+      "fonte": "Cálculo próprio: ETc = Kc × ET0, com ET0 FAO-56 Penman-Monteith diário a partir do NASA POWER (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN), média de 2001-2020; RHmin = ea/es(Tmax); Kc mid corrigido pela eq. 62 com h = 1,5 m. Script: data/catalogo/scripts/etc_nasa_power.py (cenários: milheto_min_sorriso_0104_45d, milheto_max_senadorcanedo_1508_60d, milheto_max_rioverde_1508_60d)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&start=20010101&end=20201231",
       "trecho": "ETc acumulada (mm), manejo aos 45 / 60 dias. Rio Verde-GO: safrinha 1/fev 103/157, 1/mar 97/151, 1/abr 94/144; primavera 15/ago 166/255, 15/set 147/218. Sorriso-MT: 87/133, 86/133, 83/124; 89/143, 94/146. Planaltina-DF: 102/154, 95/147, 91/138; 149/236, 140/203. Senador Canedo-GO: 101/154, 96/149, 92/140; 173/264, 148/214. Com Kc ini 0.6 na safrinha: 113-139 (45 d) e 155-193 (60 d)."
     },
@@ -354,19 +410,359 @@
       "fonte": "FAO ECOCROP, data sheet Pennisetum glaucum (id 8418)",
       "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=8418",
       "trecho": "Temperat. requir. Optimal 25 35, Absolute 12 40"
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 dias após o plantio)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 2 [...] Milheto 10,3 a [MS Mg ha-1, 2000/01] 165,6 a 21,7 [C/N] | 3,6 a [MS, 2001/02] 55,8 b 25,3 [C/N]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Quadros 3 e 4 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "trituradas [...] no estádio de florescimento para crotalária, guandu, nabo forrageiro e milheto; Quadro 4: Milheto 6,8 a [MS acumulada Mg ha-1 2007/08] [...] 6,4 a [2008/09]; Quadro 3: Milheto [...] C:N 33 [2007/08] [...] 42 [2008/09]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Pacheco, Leandro, Machado, Assis, Cobucci, Madari & Petter, Produção de fitomassa e acúmulo e liberação de nutrientes por plantas de cobertura na safrinha, Pesq. agropec. bras. 46(1):17-25, 2011 (Santo Antônio de Goiás e Rio Verde-GO)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/882280/1/pab46.pdf",
+      "trecho": "P. glaucum(3) 8.495a [kg ha-1, 60 DAS, Santo Antônio de Goiás] [...] 3.619a [Rio Verde]; (3)Dia da dessecação do P. glaucum no florescimento; Relação C/N P. glaucum(3) 35a [60 DAS, S.A. Goiás] | 36a [60 DAS, Rio Verde]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Oliveira & Kluthcouski, Palhada de cobertura do solo no sistema plantio direto, cap. 8, Embrapa Arroz e Feijão, 2009, Tabelas 11 e 12 (dados de Braz, 2003, Santo Antônio de Goiás-GO)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Milheto 6258 [MSPTI kg ha-1] 0,0150 [k dia-1] 58 [PR150 %] 65 [PR360 %]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Mingotte & Lemos et al., Informe Agropecuário (EPAMIG) v.39 n.302 p.28-41, 2018, Tabela 3 (adaptada de Silva et al., 2013; Selvíria-MS, safras 2010 e 2011, MS no corte das coberturas)",
+      "url": "https://livrariaepamig.com.br/wp-content/uploads/2023/02/ia-302.pdf",
+      "trecho": "Milheto 9.059 a [kg/ha, 2010] 10.046 ab [2011]",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto, Sistema de Produção 3, 5ª ed., 2016",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "Produtividade de palhada (massa seca) 5 a 8 t ha -1 [ADR 7010] (trecho já registrado em data/catalogo/evidencias/milheto.json)",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Pearl millet (Pennisetum glaucum), forage",
+      "url": "https://www.feedipedia.org/node/399",
+      "trecho": "The crude protein content of green pearl millet forage varies from 6 to 20%. The fresh forage is fairly well digested by ruminants, with DMD being about 66-69%. [...] Pearl millet is a valuable forage for ruminants, it is palatable and digestible. [Tabela 'aerial part, fresh': Crude protein % DM 12.4 (n=19)]",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Embrapa Milho e Sorgo, Cultivo do Milheto, SP3, 2016",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/993985/1/Sistema-de-Producao-Cultivo-do-Milheto.pdf",
+      "trecho": "muito apreciada pelo gado, já que, além de ser nutritiva, não possui fatores antinutricionais como os cianogênios (trecho já registrado em milheto.json)",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Fontaneli, Santos & Fontaneli (eds.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012, Tabela 13.1",
+      "url": "https://www.alice.cnptia.embrapa.br/bitstream/doc/1010247/1/LV2012forrageirasparaintegracaoFontaneli.pdf",
+      "trecho": "Milheto 10 - 15 por corte [...] Grão leitoso para pastoso 56 - 60 [% NDT da silagem] 8 -12 [% PB]",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Azevedo & Spehar, Decomposição da palhada de culturas para plantio no período de safrinha em solos de tabuleiros costeiros, Embrapa Meio-Norte, Comunicado Técnico 147, 2002 (Brejo-MA; resíduos após a colheita dos grãos)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/65737/1/CT147.pdf",
+      "trecho": "Milheto ( IPA- Bulk l) [...] C:N 62:1; Milheto (BRS-1501) [...] 54:1; Milheto (BRS 1501) 13 A 7 A 9 A 20 A [perda de peso %, 4 datas]",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 3 [...] ano agrícola 2000/01 [...] Cultura de milho [...] Milheto 0,0053 131 [k g g-1, T½ dia] [...] Cultura de soja [...] Milheto 0,0053 131",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "No primeiro ano, a precipitação foi de 1.970 mm (Figura 1), tendo a dessecação das plantas de cobertura e a introdução das bolsas de decomposição ocorrido na época das águas, enquanto, no segundo ano, essas práticas foram realizadas no início do período seco e de menores temperaturas.",
+      "colunas": [
+        "condicao"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 4 [...] ano agrícola 2001/02 [...] Cultura de milho [...] Milheto 0,0062 112 [...] Cultura de soja [...] Milheto 0,0058 119",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Pacheco, Leandro, Machado, Assis, Cobucci, Madari & Petter, Produção de fitomassa e acúmulo e liberação de nutrientes por plantas de cobertura na safrinha, Pesq. agropec. bras. 46(1):17-25, 2011",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/882280/1/pab46.pdf",
+      "trecho": "Quanto à decomposição (PL) dos resíduos culturais, após dessecação do P. glaucum, em Santo Antônio de Goiás e Rio Verde (Tabela 2), o tempo de meia vida (T½ vida) foi de 95 e 83 dias, respectivamente",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Oliveira & Kluthcouski, Palhada de cobertura do solo no sistema plantio direto, cap. 8, Embrapa Arroz e Feijão, 2009 (dados de Braz, 2003, Santo Antônio de Goiás-GO, 2002; modelo de Dalal & Mayer com massa de equilíbrio, 150 dias observados)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "índice invariante k de 0,015 dia-1 que, no tempo inicial (t0) estima o valor de 6258 kg ha-1(Y0), e no tempo de equilíbrio (Y), o valor de 2223 kg ha-1, em tempo maior que 360 dias. A perda relativa de massa seca da palhada foi de 58%, até os 150 dias",
+      "colunas": [
+        "k_dia"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Figura 3 e Quadro 2 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "Figura 3. Constantes (K0) das equações exponenciais simples (y = A0.e-K0.t) ajustadas para a decomposição dos resíduos das culturas de entressafra. [Milheto: K0 ≈ 0,0042 em 2007/08 e ≈ 0,0066 em 2008/09, lidos no gráfico; Quadro 2: 198,7 e 578,5 mm em 180 dias]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Teodoro, Souza, Rodrigues & Santos, Decomposition of green manure biomass in dystrophic Yellow Latosol in Piauí state, Brazil, Revista Agro@mbiente On-line 13:196-210, 2019, doi:10.18227/1982-8470ragro.v13i0.5476 (Parnaíba-PI; plantas cortadas aos 60 DAP; bolsas de maio a setembro)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1167409/1/Decomposition-of-green-manure-biomass-in-dystrophic-Yellow.pdf",
+      "trecho": "T8 – Pearl millet 2.8 247.6 0.99** [k mg g-1, T½ day]",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 85 'MILHETO' (FORRAGENS VERDES; espécie cadastrada: Pennisetum glaucum L.): PB média 12,23 (n 23, desvio 1,717); DIVMS média 61,27 (n 3, desvio 3,275); DIVMO média 58,31 (n 3, desvio 2,348); NDT OBS média 65,62 (n 3, desvio 2,894)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Pearl millet (Pennisetum glaucum), forage",
+      "url": "https://www.feedipedia.org/node/399",
+      "trecho": "Pearl millet, aerial part, fresh [...] Crude protein % DM 12.4 (SD 2.9, 6.6-17.0, Nb 19) [...] OM digestibility, Ruminant % 68.5 (SD 1.7, 68.5-75.2, Nb 8) * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Costa, Geraldo, Pereira & Pimentel, Unidades térmicas e produtividade em genótipos de milheto semeados em duas épocas, Pesq. agropec. bras. 40(12):1171-1177, 2005 (UFRRJ, Seropédica-RJ, jan e mar/2002)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/7081/4129",
+      "trecho": "utilizou-se a fórmula UT = Σ (temperatura média diária - temperatura base) em ºC, por dia. A temperatura base utilizada foi de 10ºC [...] Tabela 1 (águas) ENA 1: E5 52 DAE 839 UT; E6 59 DAE 961 UT; BRS 1501: E0 0 DAE 31 UT; E5 48 769; E6 55 892. Tabela 2 (seca) ENA 1: E0 0 36; E5 44 691; E6 51 784; BRS 1501: E5 47 729; E6 53 808 [tabelas lidas na imagem da página]"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Costa et al. 2005 (mesmo artigo), clima dos ensaios",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/7081/4129",
+      "trecho": "A precipitação total, a evaporação total e a temperatura média, durante o experimento, foram de 336 mm, 352,2 mm e 26ºC [...] foram de 207,5 mm, 318,1 mm e 24,4ºC"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Somavilla et al., Leaf appearance rate and phyllochron on millet sowing dates, Revista Brasileira de Milho e Sorgo 22:e1309, 2023, doi:10.18512/rbms2023v22e1309 (UFSM, BRS 1501, 6 semeaduras nov/2019-jan/2020)",
+      "url": "https://rbms.sede.embrapa.br/ojs/article/download/1309/1605/11271",
+      "trecho": "O PEF variou entre 49 e 88 dias; a STa entre 697,57 e 1299,47°C dia [...] Tb = 10 °C (Norman et al., 1995 [...]) [...] The leaf appearance period (LAP, in days) was calculated from seedling emergence to the flowering"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Circular Técnica 29, Manejo da Cultura do Milheto, 2003, item 12 (estádio de manejo da cobertura)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/487545/1/Circ29.pdf",
+      "trecho": "O manejo pode ser iniciado quando a cultura estiver com 5 a 10% de emissão do pendão floral, ainda incluso (charuto). Esse estádio ocorre quando as plantas estão ao redor de 50 a 60 dias após a emergência"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CONFERÊNCIA: WOFOST millet.yaml (Van Heemst 1988)",
+      "url": "https://github.com/ajwdewit/WOFOST_crop_parameters",
+      "trecho": "TSUMEM 60, TSUM1 772 °C·d; DTSMTB Tb 10 °C, platô 27-35 °C; até a antese a 25 °C: 56 d × 12 ≈ 670 °C·d com Tb 13 [conversão do relatório wofost.json]"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "POWER diário, Seropédica-RJ (-22,75; -43,70), jan-jun/2002, com DAE das Tabelas 1 e 2 de Costa et al., PAB 40(12):1171-1177, 2005",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-43.7&latitude=-22.75&start=20020101&end=20020630&format=JSON",
+      "trecho": "Semeadura no mês (dia não publicado): águas E5-E6 565-740; seca E5-E6 493-653 °C dia (Tb 13). Artigo: https://seer.sct.embrapa.br/index.php/pab/article/download/7081/4129 ('O primeiro experimento foi instalado no mês de janeiro de 2002' / 'O segundo experimento foi instalado no mês de março de 2002')"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "POWER diário, Santa Maria-RS (-29,69; -53,81), nov/2019-abr/2020, com as datas da Tabela 1 de Somavilla et al., RBMS 22:e1309, 2023",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-53.81&latitude=-29.69&start=20191101&end=20200430&format=JSON",
+      "trecho": "semeadura -> florescimento: 998, 895, 1087, 836, 880, 697 °C dia (Tb 13). Artigo: https://rbms.sede.embrapa.br/ojs/article/download/1309/1605/11271 ('11/28/2019 12/08/2019 03/03/2020 [...] 01/14/2020 01/21/2020 03/17/2020'; '(1) Date of flowering of the last plant among the five plants evaluated')"
     }
   ],
   "pendencias": [
-    "agua_ciclo (100-260 mm) é cálculo próprio (FAO-56 + NASA POWER), não medição. Não achei ETc medida do milheto até o manejo. O valor depende da época: safrinha 83-157 mm, primavera (ago-set, seca) 140-264 mm. Depende também do Kc ini: 0.3 é o da FAO-56 para molhamento pouco frequente; com chuva frequente, 0.6 soma cerca de 35 mm.",
+    "agua_ciclo (80-260 mm; mínimo arredondado para baixo na revisão) é cálculo próprio (FAO-56 + NASA POWER), não medição. Não achei ETc medida do milheto até o manejo. O valor depende da época: safrinha 83-157 mm, primavera (ago-set, seca) 140-264 mm. Depende também do Kc ini: 0.3 é o da FAO-56 para molhamento pouco frequente; com chuva frequente, 0.6 soma cerca de 35 mm.",
     "tmax_critica_c = 40 continua, mas o motivo mudou. A esterilidade de espiguetas por calor em FC 2 não importa para a cobertura, que é manejada antes de formar grão. No uso como cobertura, 40 °C é o máximo absoluto de crescimento do ECOCROP. A Embrapa diz que calor >= 40 °C em FC 1 tem pouco efeito, e a germinação só zera entre 45 e 47 °C. Não há limiar medido de dano vegetativo.",
     "kc_final = kc_medio = 1.0 vem da convenção do time para cobertura cortada no florescimento (FAO-56 cap. 6). Não achei Kc do milheto medido logo após o florescimento.",
     "Uso para grão fica fora desta linha. Se o app modelar milheto-grão: ciclo 76-105 dias (SP3: maturidade 97-104 DAE; ADR 300/500 92/100 dias; FAO-56 Tab.11 105 dias), água 450-650 mm (FAO IWM Manual 3, Tab.5) e kc_final 0.3.",
     "cobertura_solo=alta: cobertura rápida e densa, mas a palhada dessecada na pré-floração tem baixa C/N e decomposição rápida (Circ. 29), ou seja, persiste menos que a de braquiária.",
-    "Grão de milheto tem mercado (ração), mas é secundário e sem código PAM; por isso 'comercial' não entrou em tipos."
+    "Grão de milheto tem mercado (ração), mas é secundário e sem código PAM; por isso 'comercial' não entrou em tipos.",
+    "graus-dia: A Tb 13 do CSV é 'próxima a 13 ºC' (Embrapa Clima, Landau & Pereira Filho 2009), mas os dois estudos brasileiros de graus-dia usam Tb 10 (Norman et al. 1995). Se o time trocar a Tb para 10, use os números da fonte sem conversão: 690-1000 °C dia (Costa 2005, E5-E6 das cultivares brasileiras, da semeadura). Não misture Tb e soma.",
+    "graus-dia: Só um ensaio (1 local, 1 ano, 2 épocas) dá a soma até o estádio de manejo; por isso CÁLCULO sobre estudo único. O ensaio da UFSM (Somavilla 2023) conta até o florescimento da última planta de 5, o que puxa para cima (até ~1035 em Tb 13 da emergência); usei só como conferência.",
+    "graus-dia: Milheto é de dias curtos (Costa 2005: o Souna III e o ENA 1 encurtaram o ciclo no plantio de março, o BRS 1501 quase não). Em semeaduras tardias (safrinha) a soma até o florescimento cai.",
+    "graus-dia: Viés do POWER: em Seropédica (2002) a Tmed do POWER ficou ~1,2 °C abaixo da Tmed da estação do ensaio (24,8 vs 26 °C em jan-abr; 23,2 vs 24,4 °C em mar-jun). Com Tb 13 isso reduz a soma do POWER em ~10%. Ver nota geral sobre o viés em culturas de Tb alta."
   ],
   "pendencias_resolvidas": [
     "Ciclo mistura dois usos de propósito: ciclo_dias_min=45 é o manejo da COBERTURA (dessecação na pré-floração, florescimento das cultivares 43-58 dias); ciclo_dias_max=105 é a colheita de GRÃO (maturidade fisiológica 97-104 DAE; ADR 500/ADR 7010 100 dias). Se o integrador preferir só o uso de cobertura, usar 45-60; só grão, usar 76-105 (ENA 1 76 dias no plantio das secas). O ZARC agrupa cultivares em Grupo I até 110 dias, II 110-130 e III acima de 130 dias (emergência-maturação), mas as cultivares descritas no SP3 ficam em 76-104 dias.",
     "Água 450-650 mm é a faixa FAO conjunta 'Sorghum/Millet' para ciclo completo até grão; não achei valor Embrapa específico para a cobertura (ciclo ~45-60 dias), que deve consumir menos. Embrapa cita 440 mm para alta produtividade de grão e tolerância a menos de 400 mm, coerente com o limite inferior.",
     "tmax_critica_c=40: a Embrapa diz que estresse térmico em FC 2 (formação da panícula, inclui o florescimento) reduz a fertilidade das espiguetas e cita >=40 °C como temperatura elevada; não há limiar específico para antese no texto. 40 coincide com o máximo absoluto do ECOCROP."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.6,
+      "max": 10.3,
+      "tipico": 6.8
+    },
+    "cn_palhada": {
+      "min": 21.7,
+      "max": 42,
+      "tipico": 34
+    },
+    "k_dia": {
+      "valor": 0.0053,
+      "min": 0.0042,
+      "max": 0.0084
+    },
+    "meia_vida_dias": {
+      "valor": 131,
+      "min": 83,
+      "max": 165
+    },
+    "condicao_decomposicao": "Valor: Uberaba-MG (Cerrado, Aw), milheto semeado no início das chuvas e dessecado aos 110 DAP; bolsas de decomposição na superfície na época das águas (ano agrícola 2000/01, 1.970 mm), sob milho e sob soja em plantio direto, avaliadas até 320 dias após o plantio. Faixa: Cerrado e Sudeste, inclui safrinha/entressafra com decomposição na seca.",
+    "pb_pct": 12.2,
+    "digestibilidade_pct": {
+      "valor": 61.3,
+      "tipo": "DIVMS",
+      "n": 3,
+      "medicao": "medida",
+      "nota": "Digestibilidade in vitro da matéria seca do MILHETO forragem verde (CQBAL id 85), n=3, desvio 3,28. LIMÍTROFE: no mesmo item a DIVMO é 58,31 (n=3), que rebaixaria a classe para medio; pela regra de empate (DIVMS > DIVMO) ficou a DIVMS. Feedipedia (aerial part, fresh): DMO 68,5 (*)."
+    },
+    "uso_forrageiro": "principal",
+    "observacoes": {
+      "coleta": "MS: valores medidos no manejo/florescimento em sequeiro no Brasil (t/ha): 10,3 e 3,6 (Torres, Uberaba, 2 anos); 6,8 e 6,4 (Marcelo, Jaboticabal, safrinha); 8,5 e 3,6 (Pacheco, GO, safrinha após soja, dessecado no florescimento aos 60 DAS); 6,26 (Braz, palhada no tempo inicial); 9,06 e 10,05 (Silva et al., Selvíria). Típico = mediana desses 9 valores (6,8), coerente com a faixa 5-8 t/ha da Embrapa. Semeadura no início das chuvas dá mais MS que safrinha. C/N: 21,7 e 25,3 (Torres), 33 e 42 (Marcelo), 35 e 36 (Pacheco, no florescimento); típico = mediana (34). Excluí os C/N 54-62 do CT 147 porque ali o milheto foi conduzido até a colheita de grãos (palha mais velha). PB e digestibilidade: forragem verde (Feedipedia, média mundial). Referência brasileira de apoio: folha do BN-2 com 21,4% PB e 71,5% de digestibilidade in situ (Embrapa SP3) e silagem com 8-12% PB e 56-60% NDT (Embrapa Trigo). Persistência: T½ da MS de 131 dias sob milho e sob soja (Torres, k = 0,0053/dia), a mais longa entre as coberturas de verão desse estudo; k = 0,015/dia, 58% de perda aos 150 dias e 65% projetada aos 360 dias (Braz); 51% (2007/08) e 34% (2008/09) da MS ainda na superfície ao fim do ano agrícola (Marcelo); em Pacheco a fitomassa caiu de 8.495 kg/ha (60 DAS) para 3.378 kg/ha aos 200 DAS. Liberação de N mais lenta que a das leguminosas (T½ do N 46-60 dias, Pacheco).",
+      "decomposicao": "Valor = Torres 2000/01 (estação chuvosa), igual sob milho e sob soja: k = 0,0053/dia, T½ = 131 d (ln2/0,0053 = 130,8). É a única medida de milheto com as bolsas instaladas nas águas. Outras medidas: Torres 2001/02 (dessecação no início da seca) k = 0,0062 e 0,0058 (T½ 112 e 119 d). Pacheco 2011 (safrinha em GO, dessecado no florescimento aos 60 DAS em 22/5/2008 em Santo Antônio de Goiás e 12/6/2008 em Rio Verde, decomposição na entressafra seca, fitomassa medida no campo): T½ 95 e 83 d -> k = 0,693/95 = 0,0073 e 0,693/83 = 0,0084 (max da faixa). Braz (GO): o k = 0,015/dia é do modelo de Dalal & Mayer, que tem massa de equilíbrio (2.223 kg/ha); não é comparável ao k exponencial simples. k efetivo pela perda de 58% em 150 d: k = -ln(0,42)/150 = 0,0058/dia (T½ ≈ 120 d), coerente com Torres. Marcelo 2012 (Jaboticabal, entressafra, trituração no florescimento em junho, decomposição na seca): K0 ≈ 0,0042 (T½ ≈ 165 d, min da faixa) e ≈ 0,0066 (T½ ≈ 105 d), lidos no gráfico da Figura 3 (incerteza ≈ ±0,0002). Faixa = 0,0042 a 0,0084 (T½ 83 a 165 d). Fora da faixa: Teodoro 2019 (Parnaíba-PI, seca do semiárido litorâneo, 62 mm e 36 °C em 4 meses, planta verde aos 60 DAP) k = 2,8 mg/g/dia = 0,0028/dia, T½ 248 d; condição extrema de seca, não usada. Milheto é a palhada de verão mais persistente entre as coberturas de Torres."
+    },
+    "resultado": {
+      "aporte_biomassa": "alto",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "alto"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 6.8,
+      "ms_remanescente_t_ha": 4.95,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Forragem verde de milheto (parte aérea), o material que o CQBAL chama de MILHETO (forragens verdes).",
+    "ndt_pct": {
+      "valor": 65.62,
+      "n": 3,
+      "nota": "NDT observado do MILHETO (CQBAL id 85). Informativo."
+    }
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Embrapa, Cultivo do Milheto - Clima (2009): 'a temperatura, base [...] deve estar próxima a 13ºC'."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa CT 29 (2003): 'o intervalo entre a germinação e o manejo varia de 45 a 55 dias'; SP3 2016: florescimento 43-58 d."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Embrapa CT 29: manejo 'ao redor de 50 a 60 dias após a emergência'."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "Cálculo próprio ETc = Kc × ET0 (FAO-56 PM, NASA POWER 2001-2020, 4 locais), manejo aos 45 d. Pendência: 'é cálculo próprio [...] não medição'."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo, manejo aos 60 d com semeadura de agosto em GO (pior caso 264 mm)."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (i. Cereals 0.3); a linha da própria cultura (Millet) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Millet: 1.00."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "kc_final = kc_medio para cobertura cortada no florescimento; FAO-56 cap.6: 'terminate the application of the constructed curve early, corresponding to the time of the early harvest'. Não há Kc medido."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Millet 1.0-2.0 m (limite superior); Embrapa SP3 cita raízes até 3 m nas de ciclo longo."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "Régua NASA POWER até o estádio de manejo (E5-E6, Costa 2005, Seropédica: águas 577-718, seca 519-614; mediana sobre os dias possíveis do mês de semeadura). Somavilla 2023 (888, até o florescimento da última planta) fica fora: passa do ponto de manejo da cobertura."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "Régua NASA POWER até o estádio de manejo (E5-E6, Costa 2005, Seropédica: águas 577-718, seca 519-614; mediana sobre os dias possíveis do mês de semeadura). Somavilla 2023 (888, até o florescimento da última planta) fica fora: passa do ponto de manejo da cobertura."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 4,
+    "colunas": [
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

@@ -20,9 +20,11 @@
     "raiz_profunda": "false",
     "cobertura_solo": "baixa",
     "aporte_biomassa": "baixo",
-    "valor_forrageiro": "nenhum",
+    "valor_forrageiro": "baixo",
     "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc ini grupo Fibre Crops 0.35; Kc mid 1.15-1.20; Kc end 0.70-0.50) e cap.6 (criterio Kc end para cultura que seca no campo)|FAO-56 Tab.22 (raiz 1.0-1.7 m; limite superior)|FAO Irrigation Water Management Training Manual 3, Brouwer & Heibloem 1986, Tab. crop water needs (agua 700-1300 mm; sensibilidade a seca baixa)|MAPA Portaria SPA/MAPA n.285/2025 ZARC algodao herbaceo BA 2025/2026, nota tecnica (agua 700-1300 mm; >38 C prejudicial; grupos de ciclo; semeadura-emergencia 5-10 dias)|Embrapa Algodao Boletim de Pesquisa 39, Amorim Neto et al. 1999, Zoneamento algodao herbaceo no Nordeste (otima 20-30 C; >38 C reduz rendimento)|Beltrao N.E.M. (Embrapa Algodao), Clima regula producao e qualidade da fibra do algodoeiro, Visao Agricola n.6 ESALQ 2006 (inativo <15 C; nao suporta geada; shedding >38 C; resistencia a seca; sensivel a compactacao; anual)|Antonini et al., Eng. Agric. (Embrapa Cerrados) Modelagem espacotemporal da duracao do ciclo do algodoeiro em GO (graus-dia com Tb 15 C)|Embrapa Algodao Circular Tecnica 93, Morello et al. 2006, Cultivares do algodoeiro para o Cerrado (classes de ciclo 100-180 dias emergencia-colheita)|Embrapa Agropecuaria Oeste Documentos 148, Lamas et al. 2022, Panorama do algodoeiro em MT (1a safra nov-dez, 2a safra jan-fev; solo com pouca cobertura; destruicao de restos culturais)|Embrapa Algodao Comunicado Tecnico 377, Ferreira et al. 2016 (restos culturais com baixa MS residual)",
-    "confianca_parametros": "media"
+    "confianca_parametros": "media",
+    "graus_dia_ciclo_min": "1400",
+    "graus_dia_ciclo_max": "1750"
   },
   "mudancas": [
     {
@@ -54,6 +56,48 @@
       "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|FAO Irrigation Water Management Manual 3 (agua)|FAO ECOCROP (temperatura)|Embrapa Algodao (ciclo)",
       "depois": "(ver valores.fontes)",
       "motivo": "Retiradas a marca RASCUNHO e a ECOCROP, cuja pagina nao abriu e nao foi lida. Entraram as referencias Embrapa e MAPA realmente lidas."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "nenhum",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "23.5",
+      "depois": "6.4",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): A linha é de grão e a régua avalia a palhada: o 23,5 era do caroço. Restos de algodão: Feedipedia 6,4 (n=7); o CQBAL não tem restos de algodão."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 77, 'tipo': 'NDT'}",
+      "depois": "{'valor': 37.2, 'tipo': 'DMO', 'n': 1, 'medicao': 'medida', 'nota': 'DMO in vivo (ovinos) dos restos culturais de algodão (Cotton straw and cotton crop residues), Feedipedia, valor medido (sem *), n=1 (Flachowsky et al. 1981). O CQBAL não tem caule nem restos de algodão (só caroço, casca, capulho e farelos).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT não é digestibilidade e o 77 era do caroço. Restos de algodão: DMO 37,2 medida em ovinos (Feedipedia, n=1); não há dado brasileiro. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1400-1750",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: estudo_unico"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (estudo_unico), graus_dia_ciclo_max (estudo_unico)"
     }
   ],
   "evidencias": [
@@ -187,6 +231,121 @@
       "fonte": "Ferreira, Bogiani, Sofiatti, Lamas, Sistemas de cultivo de plantas de cobertura para a semeadura direta do algodoeiro, Embrapa Algodao Comunicado Tecnico 377, 2016",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1066067/1/Sistemasdecultivodeplantasdecobertura.pdf",
       "trecho": "os restos culturais do algodoeiro disponibilizam baixa quantidade de MS residual no solo"
+    },
+    {
+      "fonte": "Feedipedia (INRAE, CIRAD, AFZ, FAO), Cotton straw and cotton crop residues",
+      "url": "https://www.feedipedia.org/node/744",
+      "trecho": "The amount of cotton crop residues, known under various names (e.g. cotton straw, cotton sticks, cotton wood) can range from 5 to 7 t/ha (Silanikove et al., 1986). [Tabela Cotton straw: Crude protein 6.4 % DM (3.5-9.6, n=7); OM digestibility, ruminants 37.2%]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Rosolem, C. A.; Echer, F. R.; Lisboa, I. P.; Barbosa, T. S., Acúmulo de nitrogênio, fósforo e potássio pelo algodoeiro sob irrigação cultivado em sistemas convencional e adensado, R. Bras. Ci. Solo 36:457-466, 2012, Figura 1",
+      "url": "https://www.redalyc.org/pdf/1802/180222641015.pdf",
+      "trecho": "Figura 1. Acúmulo de matéria seca da planta (a), do caule (b), das folhas (c) e dos frutos (d) do algodoeiro [...] A desfolha foi feita aos 146 DAE [valores lidos no gráfico, ~165 DAE: caule ~3.800-4.300 kg ha-1; folhas ~2.000 kg ha-1]",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Ferreira, Bogiani, Sofiatti, Lamas, Sistemas de cultivo de plantas de cobertura para a semeadura direta do algodoeiro, Embrapa Algodão Comunicado Técnico 377, 2016",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1066067/1/Sistemasdecultivodeplantasdecobertura.pdf",
+      "trecho": "os restos culturais do algodoeiro disponibilizam baixa quantidade de MS residual no solo [trecho já registrado em evidencias/algodao.json]",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Piccolo, M. C.; Carvalho, M. C. S., Adubação nitrogenada na sucessão braquiária/algodão em sistema plantio direto. 2 - Produção de braquiária e disponibilidade de nitrogênio no solo, Embrapa Algodão / CENA-USP (resumo de congresso)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/277729/1/ALGODAO-2.pdf",
+      "trecho": "Esses resíduos, sobretudo os derivados das raízes, possuem elevada relação C/N (> 30), associada com valores relativamente altos de lignina e índice lignina/N",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Costa, D. A.; Carneiro, J. C.; Lopes, F. C. F. et al., Produção e composição do leite de vacas submetidas à dieta contendo diferentes níveis de caroço de algodão, Semina: Ciências Agrárias 32(supl.):2001, 2011 (Embrapa Gado de Leite; valores do NRC 2001)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/918397/1/Artigo-meta-2011-Semina-Jailton.pdf",
+      "trecho": "o caroço de algodão [...] têm em sua composição 19,3% de extrato etéreo (EE), 23,5% de proteína bruta (PB), 77% de nutrientes digestíveis totais (NDT) e 50,3% de fibra em detergente neutro (FDN) (NRC, 2001)",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Figueiredo, L. B. F. et al. (com Nogueira, D. M., Embrapa Semiárido), Efeito de diferentes níveis de torta de algodão incluídos na dieta sobre a performance reprodutiva de cabras no semiárido nordestino",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1096460/1/Daniel.pdf",
+      "trecho": "a torta de algodão, que possui altos índices de proteína bruta, fibra em detergente neutro e de nutrientes digestíveis totais. [...] ela apresenta um fator antinutricional chamado de gossipol [...] O gossipol, no macho bovino, promove redução na concentração espermática",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Chagas, E.; Araújo, A. P.; Teixeira, M. G.; Guerra, J. G. M., Decomposição e liberação de nitrogênio, fósforo e potássio de resíduos da cultura do feijoeiro, R. Bras. Ci. Solo 31(4):723-729, 2007 (Embrapa Agrobiologia, Seropédica, RJ) - base do PROXY (caule lenhoso de dicotiledônea)",
+      "url": "https://www.redalyc.org/pdf/1802/180214056013.pdf",
+      "trecho": "O tempo de meia-vida dos resíduos foi de, no primeiro e segundo ensaios, respectivamente, 133 e 179 dias para caules, 70 e 80 dias para folhas e 64 dias para vagens. A relativamente lenta decomposição dos resíduos pode ser associada à sua alta relação C:N – acima de 60 para caule e palhada de vagens.",
+      "colunas": []
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Cotton straw and cotton crop residues",
+      "url": "https://www.feedipedia.org/node/744",
+      "trecho": "Cotton crop residues are a poor quality and fibrous by-product with a low crude protein content (4-10% DM) [...] A low OM digestibility value (37%) has been reported in sheep [...] (Flachowsky et al., 1981) [Tabela 'Cotton straw': Crude protein % DM 6.4 (Nb 7); OM digestibility, ruminants % 37.2 (Nb 1), sem *]"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 157 'ALGODÃO CAROÇO' (CONCENTRADOS PROTÉICOS; espécie cadastrada: Gossypium hirsutum): PB média 22,94 (n 60, desvio 1,183); NDT OBS média 81,46 (n 10, desvio 2,297)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Antonini, J.C.A.; Silva, E.M.; Griebeler, N.P.; Sano, E.E. Spatio-temporal modelling of the duration of the cotton cycle in the State of Goiás, Brazil. Eng. Agríc. 31(4):652-662, 2011",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/899346/1/CRI7900Antonini.pdf",
+      "trecho": "The mean degree-days required for the medium- and late-cycle groups were 1,519 ± 35 °C and 1,609 ± 69 °C, respectively [...] The observation and determination of cycle duration and the requirement of degree-days were carried out during the phase between the emergences and when 90% of the bolls were open"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Antonini et al. 2011, Eng. Agríc. 31(4), método",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/899346/1/CRI7900Antonini.pdf",
+      "trecho": "To calculate the GDoij available for cotton, a Tb of 15 oC and a TB of 40 oC were assumed (BELTRÃO et al., 2007). These values were established as respective limits of minimum and maximum air temperatures, every time temperatures registered at the meteorological stations were below or above these limits."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min (conferência)"
+      ],
+      "fonte": "Antonini et al. 2011, revisão (outras exigências brasileiras; fontes secundárias, não lidas)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/899346/1/CRI7900Antonini.pdf",
+      "trecho": "In Brazil, for the same conditions, the cultivars ITA 90 and Antares require 1,287 oC (ROSOLEM, 2001); and the cultivars IAC 22, CNPA Acala 1 and CNPA Precoce 2 require 1,364; 1,539 and 1,085 oC for Tb = 13 oC, 12 oC, and 15 oC, respectively (BOLONHEZI, 2000)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max (conversão)"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA n.285/2025, ZARC algodão herbáceo BA",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2025-2026/bahia-ba/PORTN285ALGODAOHERBACEOBA.pdf",
+      "trecho": "considera um intervalo médio entre 5 e 10 dias para ocorrência da emergência"
+    },
+    {
+      "colunas": [
+        "plausibilidade"
+      ],
+      "fonte": "Morello et al., Cultivares do algodoeiro para o Cerrado, Embrapa Algodão Circular Técnica 93, 2006",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/276778/1/CIRTEC93.pdf",
+      "trecho": "P: Precoce (100 a 130 dias da emergência à colheita); M: mediano (131 a 160 dias da emergência à colheita); T : Tardio (161 a 180 dias da emergência à colheita)"
     }
   ],
   "pendencias": [
@@ -197,6 +356,127 @@
     "cobertura_solo = baixa: a evidência é indireta (pouca MS residual, restos culturais destruídos à força pelo vazio sanitário, solo com pouca cobertura no sistema soja-algodão). Não li dado de cobertura do dossel.",
     "fixa_nitrogenio = false: vem da família botânica (Malvaceae, não leguminosa), sem citação específica.",
     "FAO ECOCROP saiu das fontes porque a página é um app JS e não pôde ser lida. As temperaturas vêm de fontes Embrapa e MAPA.",
-    "DECISÃO NA JUNÇÃO: tolerante_seca não entrou em tipos, porque o ZARC aponta sensibilidade ao déficit hídrico de 60 a 100 DAE e o motor não deve sugerir algodão como alternativa para seca."
-  ]
+    "DECISÃO NA JUNÇÃO: tolerante_seca não entrou em tipos, porque o ZARC aponta sensibilidade ao déficit hídrico de 60 a 100 DAE e o motor não deve sugerir algodão como alternativa para seca.",
+    "graus-dia: Um só estudo com Tb 15 e ciclo completo (Antonini 2011, GO). Mínimo para cultivares precoces é CÁLCULO; o valor de Bolonhezi (1085 GD Tb 15, CNPA Precoce 2) é até o 1º capulho e foi lido só via Antonini.",
+    "graus-dia: Fim da fase = 90% dos capulhos abertos (ponto de desfolha/colheita), não 'maturação fisiológica' no sentido de grãos.",
+    "graus-dia: Algodão 2ª safra do MT (semeado jan-fev) cruza o inverno com Tmin < 15; o piso da fonte (Tmin elevada a 15) faz ela somar mais GD que o motor nesses dias."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 4.0,
+      "max": 7.0,
+      "tipico": 5.5
+    },
+    "cn_palhada": {
+      "min": 30,
+      "max": null,
+      "tipico": 44
+    },
+    "k_dia": {
+      "valor": null,
+      "min": null,
+      "max": null
+    },
+    "meia_vida_dias": {
+      "valor": null,
+      "min": null,
+      "max": null
+    },
+    "condicao_decomposicao": "Sem dado. PROXY sugerido: feijão, componente caule (Chagas 2007): k 0,0039-0,0052/dia, T½ 133-179 d; na prática, igual ao milho e ao sorgo (~0,0045, T½ ~155 d).",
+    "pb_pct": 6.4,
+    "digestibilidade_pct": {
+      "valor": 37.2,
+      "tipo": "DMO",
+      "n": 1,
+      "medicao": "medida",
+      "nota": "DMO in vivo (ovinos) dos restos culturais de algodão (Cotton straw and cotton crop residues), Feedipedia, valor medido (sem *), n=1 (Flachowsky et al. 1981). O CQBAL não tem caule nem restos de algodão (só caroço, casca, capulho e farelos)."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Restos culturais = caule (lenhoso), ramos, carpelos das maçãs e folhas que caem na desfolha. Não achei medida brasileira de MS dos restos de algodão em sequeiro. Faixa 4-7 t/ha: 4 = só o caule no fim do ciclo (Rosolem 2012, lido do gráfico, lavoura IRRIGADA e fértil); 5-7 = Feedipedia (Silanikove 1986, Israel). Típico 5,5 = meio da faixa; tende a ser menor no sequeiro. A Embrapa diz que o algodão deixa 'baixa quantidade de MS residual' e os restos são destruídos à força no vazio sanitário (bicudo), então pouco fica como cobertura; o número de MS não capta isso. C/N: Embrapa só diz '> 30' (raízes). Típico 44 = estimativa pela PB da palha (Feedipedia 6,4% -> N 1,02%) com C 45%. Máximo deixado null: não achei medida. pb_pct/NDT do caroço de algodão (o subproduto que vira ração), não da planta. Os restos culturais em si são forragem ruim (Feedipedia: PB 6,4%, DMO 37%). uso 'com_restricao': o caroço e a torta são alimentos usados de rotina, mas têm gossipol (fator antinutricional, dano reprodutivo) e são subprodutos industriais. Se a régua considerar só o que fica no campo, seria 'residual' ou 'nao_serve'. Quando a fonte só dá N (ou PB), a C/N foi calculada como C/N = C / (PB/6,25), com C = 45% da MS (os teores de C medidos nas fontes lidas vão de 39% a 53%: Machado 1983 arroz 40%; Wisniewski & Holtz 1997 milho 43%; Assmann 2015 soja 48-53%; Marcelo 2012 39-52%). Isso é estimativa, não medida. | DECISÃO NA JUNÇÃO: uso_forrageiro = residual (era com_restricao). O caroço é beneficiado e vendido pela algodoeira, não fica com o produtor, e a destruição dos restos culturais é obrigatória (bicudo).",
+      "decomposicao": "Busquei decomposição de restos culturais (soqueira/caule, carpelos) de algodoeiro em português e inglês (Embrapa Algodão, RBCS, PAB, Revista Caatinga): só achei decomposição de plantas de cobertura ANTES do algodão (milheto, braquiária, guandu; Silva Filho et al., Rev. Caatinga 2018), não da palhada do próprio algodão. Por isso null. PROXY = feijão (caule): os restos do algodoeiro são sobretudo caule lenhoso (dicotiledônea, C/N estimada ~44 em regua_algodao.json; caule de feijão tem C/N 79), mais carpelos e folhas da desfolha. O caule de feijão deu k = ln2/133 = 0,0052 (inverno-primavera) e ln2/179 = 0,0039 (primavera-verão). Na régua, isso põe o algodão na mesma classe de persistência de milho e sorgo, o que é provavelmente otimista para cobertura do solo: o vazio sanitário (bicudo) obriga a destruir a soqueira logo após a colheita, e a Embrapa diz que o algodão deixa pouca massa residual (ver regua_algodao.json). A persistência real no campo depende mais desse manejo que do k."
+    },
+    "excecoes": {
+      "aporte_biomassa": {
+        "valor": "baixo",
+        "motivo": "Destruição obrigatória dos restos culturais (vazio sanitário do bicudo): a palhada não fica no campo, apesar da massa produzida."
+      },
+      "cobertura_solo": {
+        "valor": "baixa",
+        "motivo": "Destruição obrigatória dos restos culturais (vazio sanitário do bicudo)."
+      }
+    },
+    "resultado": {
+      "aporte_biomassa": "baixo",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 5.5,
+      "ms_remanescente_t_ha": null,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": null
+      },
+      "excecoes_aplicadas": [
+        "aporte_biomassa",
+        "cobertura_solo"
+      ]
+    },
+    "cenario_forragem": "Restos culturais do algodão depois da colheita (caule lenhoso, ramos, carpelos, folhas), que em geral são destruídos no vazio sanitário. Antes, pb_pct e NDT eram do CAROÇO; agora o caroço fica só como 'grão como ração eventual': CQBAL ALGODÃO CAROÇO (id 157) PB 22,94 (n=60), NDT observado 81,46 (n=10); tem gossipol."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Beltrão (Embrapa Algodão), Visão Agrícola 2006: 'Fica inativo quando a temperatura [...] cai abaixo de 15 ºC'; Antonini et al. usam Tb 15 °C em GO."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Algodão CT 93 (2006): mediano 131-160 d da emergência à colheita; +5-10 d semeadura-emergência (ZARC BA). Grupos do ZARC BA (Port. 285/2025) coerentes."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "CT 93: tardio 161-180 d da emergência à colheita, +5-10 d (ZARC) = ~190."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "FAO IWM Manual 3 (Cotton 700-1300) e ZARC BA, Port. 285/2025: 'necessita de 700 mm a 1300 mm'."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesmas fontes: 700-1300 mm."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (g. Fibre Crops 0.35); a linha da própria cultura (Cotton) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Cotton 1.15-1.20; ponta baixa."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Cotton 0.70-0.50; ponta baixa apoiada no FAO-56 cap.6 ('senesce and dry out in the field [...] Kc end will be relatively small') e no Doc. 148 (colheita na estação seca)."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Cotton 1.0-1.7 m; limite superior."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "estudo_unico",
+      "nota": "semeadura -> maturação fisiológica (90% dos capulhos abertos); Tb 15; Antonini et al. 2011 (Embrapa Cerrados, lavouras comerciais em GO), Tb 15 (a mesma do CSV), da EMERGÊNCIA a 90% de capulhos abertos: ciclo médio (Delta Opal, Nu Opal) 1519 ± 35; tardio (BRS 269 Buriti, Fibermax 993, FMT 701) 1609 ± 69. Semeadura->emergência (CÁLCULO): o ZARC algodão usa 5 a 10 dias; 7 d × (25 − 15) = 70 GD. Médio: 1519 + 70 = 1589. Máximo: tardio + 1 desvio = 1609 + 69 + 70 = 1748 ≈ 1750. Mínimo (CÁLCULO, sem medição): cultivar precoce (ZARC Grupo I, < 131 dias da emergência), ciclo_dias_min 140 × (25 − 15) = 1400. MÉTODO DA FONTE: Tmin abaixo de 15 °C é elevada a 15 e Tmax acima de 40 é limitada a 40 antes da média. Com Tmin < 15 (safrinha do MT em junho-julho) a fonte soma um pouco MAIS que o motor; com Tmax > 40 (raro), um pouco menos. | plausibilidade: GO, Tmed ~24 °C → 9 GD/dia: 1589/9 = 177 dias (ciclos observados pela fonte: 146-190 dias). 1750/(24,5 − 15) = 184 dias; 1400/(25 − 15) = 140 dias. Contra ciclo_dias 140-190 do CSV. Coerente."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "estudo_unico",
+      "nota": "semeadura -> maturação fisiológica (90% dos capulhos abertos); Tb 15; Antonini et al. 2011 (Embrapa Cerrados, lavouras comerciais em GO), Tb 15 (a mesma do CSV), da EMERGÊNCIA a 90% de capulhos abertos: ciclo médio (Delta Opal, Nu Opal) 1519 ± 35; tardio (BRS 269 Buriti, Fibermax 993, FMT 701) 1609 ± 69. Semeadura->emergência (CÁLCULO): o ZARC algodão usa 5 a 10 dias; 7 d × (25 − 15) = 70 GD. Médio: 1519 + 70 = 1589. Máximo: tardio + 1 desvio = 1609 + 69 + 70 = 1748 ≈ 1750. Mínimo (CÁLCULO, sem medição): cultivar precoce (ZARC Grupo I, < 131 dias da emergência), ciclo_dias_min 140 × (25 − 15) = 1400. MÉTODO DA FONTE: Tmin abaixo de 15 °C é elevada a 15 e Tmax acima de 40 é limitada a 40 antes da média. Com Tmin < 15 (safrinha do MT em junho-julho) a fonte soma um pouco MAIS que o motor; com Tmax > 40 (raro), um pouco menos. | plausibilidade: GO, Tmed ~24 °C → 9 GD/dia: 1589/9 = 177 dias (ciclos observados pela fonte: 146-190 dias). 1750/(24,5 − 15) = 184 dias; 1400/(25 − 15) = 140 dias. Contra ciclo_dias 140-190 do CSV. Coerente."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

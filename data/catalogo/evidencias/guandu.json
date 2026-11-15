@@ -19,10 +19,12 @@
     "fixa_nitrogenio": "true",
     "raiz_profunda": "true",
     "cobertura_solo": "media",
-    "aporte_biomassa": "alto",
-    "valor_forrageiro": "alto",
-    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (guandu cv. Kaki em Senador Canedo-GO: 50% do florescimento aos 137/124/94 dias com semeadura em 12/nov, 7/jan e 4/mar; sensível ao fotoperíodo, dias curtos; 46,6 t/ha de fitomassa verde na semeadura de novembro)|Matta, Oliveira, Verzignassi, Castro, Novo & Godoy, Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026 (92 DAE ao início e 97 DAE a 50% do florescimento; 120 dias ao florescimento e 180 dias à semente com plantio em fevereiro; Guatã cerca de 30 dias mais precoce que a BRS Mandarim; 15 t/ha MS e ~380 kg/ha N na parte aérea com semeadura em novembro, 7 t/ha e ~180 kg/ha N em janeiro; ciclo anual/bianual; geada: suscetível; déficit hídrico: alta tolerância; aptidão para cobertura do solo: média; aptidão para pastagem: forte; raiz pivotante)|Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim, s.d. (FBN até 280 kg/ha/ano de N; biodescompactador natural; vida útil de até 4 anos em pasto; ~20% de proteína; resiste à escassez de água; não tolera encharcamento)|Pereira, J., Embrapa-CPAC (Cerrados), Circular Técnica 20, O feijão guandu: uma opção para a agropecuária brasileira, 1985 (anual ou semiperene, 2-3 anos; ciclo total 150-360 dias; bom desenvolvimento até 40 °C; suporta geadas leves, perdas a -3,3 °C e morte a -4,14 °C; cultivado com 500-1.000 mm/ano; raiz pivotante penetra solos compactados; crescimento inicial lento)|Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, Consorciação com guandu na recuperação de pastagens degradadas, 2017 (roçada anual; florescimento no início da estação seca; palatável só após o florescimento; 18-20% de proteína bruta; estande dura cerca de três anos)|FAO ECOCROP Cajanus cajan, código 576 (ótimo 18-38 °C, absoluto 10-45 °C; chuva ótima 600-1.500 mm/ano; ciclo 90-365 d; perene, muitas vezes cultivado como anual; não tolera geada) — números lidos na cópia do banco EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial estava fora do ar; notas da ficha lidas no Wayback Machine (cropView?id=576, 2018)|Cook et al., Tropical Forages (tropicalforages.info), Cajanus cajan (raiz pivotante até 2 m; geralmente cultivado entre 18 e 30 °C e tolera mais de 35 °C; não tolera geada; tolera seca; florescimento 60 dias nas cultivares precoces e 180-250 dias nas arbóreas; pouco palatável até os animais se acostumarem)|Deshmukh & Mankar, Dr. PDKV Akola / PoCRA, Determination of crop coefficients for major crops by lysimetric studies, Phase X Final Report, 2021-2024, e Phase VIII Part II, 2023 (Kc do guandu cv. PDKV Ashlesha em lisímetro de pesagem, kharif 2022 e 2023: inicial 0,53, desenvolvimento 0,81, médio 1,10 e final 0,79; Kc FAO modificado para Akola 1,08 na fase média; Kc semanal de 1,10 a 1,14 nas semanas 13-17, no florescimento; altura 1,6-2,2 m; lido no Wayback Machine porque mahapocra.gov.in recusa conexão)|Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (ET em lisímetro de pesagem, cv. GT-100, Anand, Índia: 437-458 mm da emergência a 50% da floração, cerca de 83 dias; 800-839 mm no ciclo de 147 dias até a maturação; pico de 8,6 mm/dia; usado só como conferência da água)|Mahendraraj et al., Experimental Results 2:e39, 2021, doi:10.1017/exp.2021.31 (Tb de 8,4 °C para germinação e 10,8 °C para emergência; cita Carberry et al. com Tb de 9,9 °C para germinação) (PROXY: temperatura base da germinação e emergência, não do ciclo todo)|Câmara & Godoy, Nativa 7(4):343-348, 2019 (raízes de guandu amostradas até 1 m, 64% nos primeiros 20 cm; até 8,98 t/ha MS na parte aérea)|Alvarenga, Costa, Moura Filho & Regazzi, R. Bras. Ci. Solo 20:319-326, 1996 (em casa de vegetação, as raízes do guandu foram reduzidas dentro e abaixo da camada compactada)|FAO-56 Tab.12, grupo e. Legumes (Leguminosae): Kc ini 0.4 (PROXY: grupo das leguminosas; o Kc ini medido em Akola, 0,53 com molhamento de monção, bate com o 0,50 que o método gráfico da FAO-56 dá para esse molhamento)|FAO-56 eq. 62 (padronização do Kc médio medido em Akola: 1,10 + 0,07 = 1,17) e cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao florescimento (água)",
-    "confianca_parametros": "media"
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "medio",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (guandu cv. Kaki em Senador Canedo-GO: 50% do florescimento aos 137/124/94 dias com semeadura em 12/nov, 7/jan e 4/mar; sensível ao fotoperíodo, dias curtos; 46,6 t/ha de fitomassa verde na semeadura de novembro)|Matta, Oliveira, Verzignassi, Castro, Novo & Godoy, Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026 (92 DAE ao início e 97 DAE a 50% do florescimento; 120 dias ao florescimento e 180 dias à semente com plantio em fevereiro; Guatã cerca de 30 dias mais precoce que a BRS Mandarim; 15 t/ha MS e ~380 kg/ha N na parte aérea com semeadura em novembro, 7 t/ha e ~180 kg/ha N em janeiro; ciclo anual/bianual; geada: suscetível; déficit hídrico: alta tolerância; aptidão para cobertura do solo: média; aptidão para pastagem: forte; raiz pivotante)|Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim, s.d. (FBN até 280 kg/ha/ano de N; biodescompactador natural; vida útil de até 4 anos em pasto; ~20% de proteína; resiste à escassez de água; não tolera encharcamento)|Pereira, J., Embrapa-CPAC (Cerrados), Circular Técnica 20, O feijão guandu: uma opção para a agropecuária brasileira, 1985 (anual ou semiperene, 2-3 anos; ciclo total 150-360 dias; bom desenvolvimento até 40 °C; suporta geadas leves, perdas a -3,3 °C e morte a -4,14 °C; cultivado com 500-1.000 mm/ano; raiz pivotante penetra solos compactados; crescimento inicial lento)|Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, Consorciação com guandu na recuperação de pastagens degradadas, 2017 (roçada anual; florescimento no início da estação seca; palatável só após o florescimento; 18-20% de proteína bruta; estande dura cerca de três anos)|FAO ECOCROP Cajanus cajan, código 576 (ótimo 18-38 °C, absoluto 10-45 °C; chuva ótima 600-1.500 mm/ano; ciclo 90-365 d; perene, muitas vezes cultivado como anual; não tolera geada) — números lidos na cópia do banco EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial estava fora do ar; notas da ficha lidas no Wayback Machine (cropView?id=576, 2018)|Cook et al., Tropical Forages (tropicalforages.info), Cajanus cajan (raiz pivotante até 2 m; geralmente cultivado entre 18 e 30 °C e tolera mais de 35 °C; não tolera geada; tolera seca; florescimento 60 dias nas cultivares precoces e 180-250 dias nas arbóreas; pouco palatável até os animais se acostumarem)|Deshmukh & Mankar, Dr. PDKV Akola / PoCRA, Determination of crop coefficients for major crops by lysimetric studies, Phase X Final Report, 2021-2024, e Phase VIII Part II, 2023 (Kc do guandu cv. PDKV Ashlesha em lisímetro de pesagem, kharif 2022 e 2023: inicial 0,53, desenvolvimento 0,81, médio 1,10 e final 0,79; Kc FAO modificado para Akola 1,08 na fase média; Kc semanal de 1,10 a 1,14 nas semanas 13-17, no florescimento; altura 1,6-2,2 m; lido no Wayback Machine porque mahapocra.gov.in recusa conexão)|Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (ET em lisímetro de pesagem, cv. GT-100, Anand, Índia: 437-458 mm da emergência a 50% da floração, cerca de 83 dias; 800-839 mm no ciclo de 147 dias até a maturação; pico de 8,6 mm/dia; usado só como conferência da água)|Mahendraraj et al., Experimental Results 2:e39, 2021, doi:10.1017/exp.2021.31 (Tb de 8,4 °C para germinação e 10,8 °C para emergência; cita Carberry et al. com Tb de 9,9 °C para germinação) (PROXY: temperatura base da germinação e emergência, não do ciclo todo)|Câmara & Godoy, Nativa 7(4):343-348, 2019 (raízes de guandu amostradas até 1 m, 64% nos primeiros 20 cm; até 8,98 t/ha MS na parte aérea)|Alvarenga, Costa, Moura Filho & Regazzi, R. Bras. Ci. Solo 20:319-326, 1996 (em casa de vegetação, as raízes do guandu foram reduzidas dentro e abaixo da camada compactada)|FAO-56 Tab.12, grupo e. Legumes (Leguminosae): Kc ini 0.4 (PROXY: grupo das leguminosas; o Kc ini medido em Akola, 0,53 com molhamento de monção, bate com o 0,50 que o método gráfico da FAO-56 dá para esse molhamento)|FAO-56 eq. 62 (padronização do Kc médio medido em Akola: 1,10 + 0,07 = 1,17) e cap. 6, Kc end (cultura cortada antes da senescência: kc_final = kc_medio)|Cálculo próprio de ETc = Kc × ET0 (FAO-56 Penman-Monteith diário, NASA POWER 2001-2020 em Rio Verde-GO, Sorriso-MT, Planaltina-DF e Senador Canedo-GO), da semeadura ao florescimento (água)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: guandu_min_senadorcanedo_0403_94d, guandu_min_senadorcanedo_0403_94d_kcini053, guandu_max_rioverde_1510_150d, guandu_max_planaltina_0111_150d_kcini053, guandu_conferencia_eq62_akola)",
+    "confianca_parametros": "baixa",
+    "graus_dia_ciclo_min": "1200",
+    "graus_dia_ciclo_max": "2350"
   },
   "mudancas": [
     {
@@ -144,6 +146,54 @@
       "antes": "(lista da rodada 1)",
       "depois": "(ver valores.fontes)",
       "motivo": "Entraram os relatórios de lisímetro da PDKV Akola (Kc medido), a eq. 62 e o cap. 6 da FAO-56 e o cálculo com NASA POWER. O Kc mid deixou de ser PROXY. A referência de Patel et al. ficou só como conferência."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "280",
+      "depois": "280",
+      "motivo": "DECISÃO DO USUÁRIO (revisão 14/11): mantém 280 mm (cálculo para o Cerrado), para que mínimo e máximo saiam do mesmo método e clima. Os 437 mm medidos em Anand (Índia, monção) ficam como evidência; a ET medida passou da ET0 do período, o que é suspeito."
+    },
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "alto",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "alto",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "baixa",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 5 coluna(s) do filtro sem medição ou publicação própria: temp_base_c (proxy), agua_ciclo_mm_min (calculo), agua_ciclo_mm_max (calculo), kc_inicial (proxy), kc_medio (estudo_unico)"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "19.0",
+      "depois": "19.1",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): CQBAL GUANDU (id 92), n=11, Brasil (igual ao anterior na prática)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 55, 'tipo': 'digestibilidade da MS ou da MO das folhas frescas e do feno, faixa 50-60% (Feedipedia, citando da Silva et al. 2009, Brasil); não é DIVMS estrito'}",
+      "depois": "{'valor': 48.9, 'tipo': 'DIVMS', 'n': 3, 'medicao': 'medida', 'nota': 'Digestibilidade in vitro da matéria seca do GUANDU forragem verde (CQBAL id 92), n=3, desvio 2,0. GUANDU PARTE AÉREA (id 1427): DIVMS 56,28 (n=2). Feedipedia (aerial part, fresh): DMO 64,6 (*).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): O tipo anterior não era estrito ('MS ou MO', faixa 50-60). CQBAL GUANDU id 92, DIVMS medida, n=3. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1200-2350",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
     }
   ],
   "evidencias": [
@@ -342,7 +392,7 @@
       "colunas": [
         "kc_medio"
       ],
-      "fonte": "Conferência própria do termo da eq. 62 em Akola com NASA POWER (20,70 N, 77,03 E), 11/set-10/nov, 2001-2020. Script: /tmp/claude-1000/-home-yuryturatti-Documentos-programacao-NASA-SPACE-APPS/9584014b-e866-48e9-a25c-7646b51ef42b/scratchpad/rodada2/scripts/et0_calc.py",
+      "fonte": "Conferência própria do termo da eq. 62 em Akola com NASA POWER (20,70 N, 77,03 E), 11/set-10/nov, 2001-2020. Script: data/catalogo/scripts/etc_nasa_power.py (cenários: guandu_min_senadorcanedo_0403_94d, guandu_min_senadorcanedo_0403_94d_kcini053, guandu_max_rioverde_1510_150d, guandu_max_planaltina_0111_150d_kcini053, guandu_conferencia_eq62_akola)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&latitude=20.70&longitude=77.03&start=20010101&end=20201231",
       "trecho": "u2 = 1,66 m/s; RHmin = 53,4%; h = 2,0 m -> termo = -0,042 (contra -0,07 implícito no relatório)."
     },
@@ -351,7 +401,7 @@
         "agua_ciclo_mm_min",
         "agua_ciclo_mm_max"
       ],
-      "fonte": "Cálculo próprio: ETc = Kc × ET0, com ET0 FAO-56 Penman-Monteith diário a partir do NASA POWER, média de 2001-2020; Kc ini 0.4 por 23% dos dias e desenvolvimento por 50% (proporções de Akola até o florescimento), Kc mid 1,17 corrigido pela eq. 62 com u2 e RHmin locais e h = 2 m. Script: /tmp/claude-1000/-home-yuryturatti-Documentos-programacao-NASA-SPACE-APPS/9584014b-e866-48e9-a25c-7646b51ef42b/scratchpad/rodada2/scripts/et0_calc.py",
+      "fonte": "Cálculo próprio: ETc = Kc × ET0, com ET0 FAO-56 Penman-Monteith diário a partir do NASA POWER, média de 2001-2020; Kc ini 0.4 por 23% dos dias e desenvolvimento por 50% (proporções de Akola até o florescimento), Kc mid 1,17 corrigido pela eq. 62 com u2 e RHmin locais e h = 2 m. Script: data/catalogo/scripts/etc_nasa_power.py (cenários: guandu_min_senadorcanedo_0403_94d, guandu_min_senadorcanedo_0403_94d_kcini053, guandu_max_rioverde_1510_150d, guandu_max_planaltina_0111_150d_kcini053, guandu_conferencia_eq62_akola)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN,T2MDEW,RH2M,WS2M,ALLSKY_SFC_SW_DWN,PRECTOTCORR&community=AG&start=20010101&end=20201231",
       "trecho": "ETc até o florescimento (mm; Rio Verde-GO / Sorriso-MT / Planaltina-DF / Senador Canedo-GO): 15/out 150 d 511/411/499/495; 1/nov 150 d 491/406/481/477; 12/nov 137 d 445/369/436/433; 7/jan 124 d 383/329/374/374; 1/fev 120 d 359/309/346/349; 4/mar 94 d 272/236/260/264. Com Kc ini 0,53: 1/nov 150 d 534/442/521/518; 15/out 150 d 556/447/541/538; 4/mar 94 d 295/258/283/287."
     },
@@ -371,12 +421,201 @@
       "fonte": "Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (conferência)",
       "url": "https://epubs.icar.org.in/index.php/AAZ/article/download/65240/27553/163934",
       "trecho": "Tabela 1 (ET mm, P1-P5 até 50% flowering): 1992 30.7+54.4+86.9+136.1+150.3; 1993 21.9+44.5+90.5+206.4+74.1 | P1 8, P2 18, P3 25, P4 19, P5 13 dias. Recalculado com NASA POWER: ET0 do mesmo período = 378 mm (1992) e 406 mm (1993); ETc pelo método FAO-56 = 286-336 mm."
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 dias após o plantio)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 2 [...] Guandu 1,6 d [MS Mg ha-1, 2000/01] 51,3 d 11,3 [C/N] | 2,7 bc [MS, 2001/02] 62,4 ab 16,6 [C/N]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Quadros 3 e 4 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "Quadro 4: Guandu 4,1 c [MS acumulada Mg ha-1 2007/08] 1,9 c (47) 2,2 b (53) | 3,5 b [2008/09] [...] 1,3 a (38); Quadro 3: Guandu [...] C:N 20 [2007/08] [...] 21 [2008/09] (cultivar anão)",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Oliveira & Kluthcouski, Palhada de cobertura do solo no sistema plantio direto, cap. 8, Embrapa Arroz e Feijão, 2009, Tabelas 11 e 12 (dados de Braz, 2003, Santo Antônio de Goiás-GO)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Guandu 5606 [MSPTI kg ha-1] 0,0115 [k dia-1] 65 [PR150 %] 79 [PR360 %]",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "observacoes"
+      ]
+    },
+    {
+      "fonte": "Mingotte & Lemos et al., Informe Agropecuário (EPAMIG) v.39 n.302 p.28-41, 2018, Tabela 3 (adaptada de Silva et al., 2013; Selvíria-MS, safras 2010 e 2011, MS no corte das coberturas)",
+      "url": "https://livrariaepamig.com.br/wp-content/uploads/2023/02/ia-302.pdf",
+      "trecho": "Guandu 8.907 a [kg/ha, 2010] 6.974 bc [2011]",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Matta et al., BRS Guatã - nova cultivar de Cajanus cajan, Embrapa Pecuária Sudeste, Comunicado Técnico 120, 2026",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "com semeadura realizada em novembro de 2024 ... produtividade de matéria seca de 15 t.ha-1 [...] janeiro de 2025 ... 7 t.ha-1 (trecho já registrado em guandu.json)",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Feedipedia, Pigeon pea (Cajanus cajan) forage",
+      "url": "https://www.feedipedia.org/node/22444",
+      "trecho": "Pigeon pea foliage is a protein rich forage (10-27% of DM). [...] its high fibre content (particularly ADF and lignin) decreases digestibility and limits its potential use. It can be considered as a medium to low energy quality forage. [...] DM or OM digestibility of fresh pigeon pea leaves and hay are within the range 50-60% (da Silva et al., 2009). [Tabela 'aerial part, fresh': Crude protein % DM 19.0 (n=33)]",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.P.A., Consorciação com guandu na recuperação de pastagens degradadas, Embrapa Pecuária Sudeste, Circular Técnica 75, 2017",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1069192/1/Circula75.pdf",
+      "trecho": "na época seca, o guandu fornece forragem de alto teor proteico aos animais, pois é palatável somente após o florescimento (trecho já registrado em guandu.json; a mesma circular cita 18-20% de PB)",
+      "colunas": [
+        "pb_pct"
+      ]
+    },
+    {
+      "fonte": "Matta et al., Embrapa Pecuária Sudeste, Comunicado Técnico 120, 2026",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "Aptidão para pastagem Forte (trecho já registrado em guandu.json)",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Cook et al., Tropical Forages, Cajanus cajan",
+      "url": "https://tropicalforages.info/text/entities/cajanus_cajan.htm",
+      "trecho": "Moderately unpalatable until stock become accustomed to the taste (trecho já registrado em guandu.json)",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 3 [...] ano agrícola 2000/01 [...] Cultura de milho [...] Guandu 0,0062 112 [...] Cultura de soja [...] Guandu 0,0061 114",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "No primeiro ano, a precipitação foi de 1.970 mm (Figura 1), tendo a dessecação das plantas de cobertura e a introdução das bolsas de decomposição ocorrido na época das águas, enquanto, no segundo ano, essas práticas foram realizadas no início do período seco e de menores temperaturas.",
+      "colunas": [
+        "condicao"
+      ]
+    },
+    {
+      "fonte": "Torres, Pereira, Andrioli, Polidoro & Fabian, Decomposição e liberação de nitrogênio de resíduos culturais de plantas de cobertura em um solo de cerrado, R. Bras. Ci. Solo 29(4):609-618, 2005 (Uberaba-MG; coberturas dessecadas aos 110 DAP; bolsas de decomposição sob milho e soja)",
+      "url": "https://www.redalyc.org/pdf/1802/180214035013.pdf",
+      "trecho": "Quadro 4 [...] ano agrícola 2001/02 [...] Cultura de milho [...] Guandu 0,0063 110 [...] Cultura de soja [...] Guandu 0,0075 92",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Oliveira & Kluthcouski, Palhada de cobertura do solo no sistema plantio direto, cap. 8, Embrapa Arroz e Feijão, 2009 (dados de Braz, 2003, Santo Antônio de Goiás-GO, 2002; modelo de Dalal & Mayer com massa de equilíbrio, 150 dias observados)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "palhada do guandu, com índice invariante (k dia-1) de perda de massa de 0,0115 dia-1. No tempo inicial (t0) estimou-se o valor de 5606 kg ha-1 (massa Y0), e no tempo de equilíbrio (Y), de 1151 kg ha-1 [...] A perda relativa de massa seca da palhada foi de 65%, até os 150 dias observados",
+      "colunas": [
+        "k_dia"
+      ]
+    },
+    {
+      "fonte": "Marcelo, Corá & Fernandes, Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5), 2012, doi:10.1590/S0100-06832012000500021 (Jaboticabal-SP; Figura 3 e Quadro 2 lidos nas imagens do SciELO)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?lang=pt",
+      "trecho": "Figura 3. Constantes (K0) das equações exponenciais simples (y = A0.e-K0.t) ajustadas para a decomposição dos resíduos das culturas de entressafra. [Guandu: K0 ≈ 0,0046 em 2007/08 e ≈ 0,0073 em 2008/09, lidos no gráfico; Quadro 2: 464,0 e 1.139,5 mm em 180 dias]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Teodoro, Souza, Rodrigues & Santos, Decomposition of green manure biomass in dystrophic Yellow Latosol in Piauí state, Brazil, Revista Agro@mbiente On-line 13:196-210, 2019, doi:10.18227/1982-8470ragro.v13i0.5476 (Parnaíba-PI; plantas cortadas aos 60 DAP; bolsas de maio a setembro)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1167409/1/Decomposition-of-green-manure-biomass-in-dystrophic-Yellow.pdf",
+      "trecho": "T1 – Dwarf pigeon pea 1.1 630.1 0.87* [...] T13 – Pigeon pea cv. Fava Larga 2.8 247.6 0.89*",
+      "colunas": [
+        "observacoes"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 92 'GUANDU' (FORRAGENS VERDES; espécie cadastrada: Cajanus cajan L.): PB média 19,08 (n 11, desvio 1,564); DIVMS média 48,93 (n 3, desvio 2,004)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 1427 'GUANDU PARTE AÉREA' (FORRAGENS VERDES; espécie cadastrada: Cajanus cajan L.): PB média 21,74 (n 3, desvio 0,843); DIVMS média 56,28 (n 2, desvio 1,389)"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Pigeon pea (Cajanus cajan) forage",
+      "url": "https://www.feedipedia.org/node/22444",
+      "trecho": "Pigeon pea (Cajanus cajan), aerial part, fresh [...] Crude protein % DM 19.0 (SD 4.7, 10.1-26.7, Nb 33) [...] OM digestibility, ruminants % 64.6 * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (Senador Canedo-GO, 1991/92)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/5695/2799/20586",
+      "trecho": "TABELA 3. Número de dias para atingir 50% do florescimento [...] Guandu 137Aa 124Bb 94Cc [...] Com o deslocamento da época considerada como favorável (início de novembro) para outras, dadas como marginais (janeiro e março), os dias tornaram-se curtos, e causaram, assim, a diminuição da fase vegetativa"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Matta et al., BRS Guatã - nova cultivar de Cajanus cajan, Embrapa Pecuária Sudeste, Comunicado Técnico 120, 2026",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "Em São Carlos (SP), com semeadura realizada em novembro de 2024, a altura das plantas em pleno florescimento (em abril) [...] atingindo 50% de florescimento após quatro meses. Considerando a semeadura realizada em 17 de janeiro de 2025"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO próprio: NASA POWER diário Senador Canedo-GO 1991-1992 e São Carlos-SP (-22,02; -47,89) 2024-2025",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-47.89&latitude=-22.02&start=20241101&end=20250630&format=JSON",
+      "trecho": "São Carlos 15/11/2024->15/04/2025 Tb10: GD 2367; 17/01/2025->17/05/2025: GD 1880; Senador Canedo 12/11/1991+137 d: 1753; 07/01/1992+124 d: 1522; 04/03/1992+94 d: 1141"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CONFERÊNCIA (não usado): WOFOST pigeonpea.yaml (Van Heemst 1988)",
+      "url": "https://github.com/ajwdewit/WOFOST_crop_parameters",
+      "trecho": "TSUMEM 70, TSUM1 700 °C·d; DTSMTB Tb 11, ótimo 25 °C; 55 d até a antese a 25 °C; IDSL 0 (sem fotoperíodo) -> incompatível com o guandu brasileiro (90-150 d)"
     }
   ],
   "pendencias": [
     "Kc mid/end medido vem de um só local e cultivar (Akola, PDKV Ashlesha de 180 dias, monção). A padronização usa o termo da eq. 62 que o próprio relatório deixa implícito (-0,07, porque não publica u2, RHmin nem h). Com o NASA POWER o termo dá -0,04, então o Kc padrão fica entre 1,14 e 1,17. O artigo de Vidarbha sobre Kc e IAF (core.ac.uk/outputs/690753542) continuou bloqueado (403), mas os relatórios da PDKV Akola foram lidos no Wayback Machine.",
     "kc_inicial = 0.4 continua como PROXY do grupo Legumes da FAO-56. O Kc ini depende mais do molhamento do solo que da cultura, e a eq. 62 não se aplica a ele. Akola mediu 0,53 com molhamento de monção, e o método gráfico da FAO-56 deu 0,50 para esse molhamento; os dois valores batem.",
-    "agua_ciclo (280-520 mm) é cálculo próprio (FAO-56 + NASA POWER), não medição no Brasil. O mínimo de 280 é uma proposta que substitui a medição de Anand (437 mm): lá a ET de lisímetro ficou acima da ET0 do período, sinal de superestimativa ou de condição de oásis. Se o time preferir ficar com a medição, volte a 437. Em Sorriso-MT (ET0 menor) os valores são cerca de 15% mais baixos.",
+    "DECIDIDO (usuário, revisão 14/11): mínimo de 280 mm mantido; os 437 mm de Anand ficam só como evidência. agua_ciclo (280-520 mm) é cálculo próprio (FAO-56 + NASA POWER), não medição no Brasil.",
     "temp_base_c = 10 vem de PROXY da germinação e emergência (Mahendraraj 2021: 8,4 e 10,8 °C) e do mínimo absoluto do ECOCROP. Não achei Tb fenológica da floração. O artigo de Omanga et al. (Quênia) não estava acessível.",
     "temp_otima_max_c: o ECOCROP dá 38 °C, mas a Tropical Forages dá a faixa usual de 18-30 °C. Escolhi 38 para seguir o padrão das outras culturas (ECOCROP). Se o app pontuar pela média do ar, 30 é mais conservador.",
     "Os números do ECOCROP vieram da cópia EcoCrop_DB.csv (OpenCLIM). O site oficial (ecocrop.apps.fao.org) deu erro de banco em todas as tentativas. Conferi a cópia com os valores que outros agentes leram no site oficial (Crotalaria 20-30/4-40, Helianthus 17-34/5-45, Sorghum 22-35): bateram.",
@@ -385,10 +624,124 @@
     "raiz_profunda = true segue a Embrapa ('biodescompactador natural', CPAC 1985, Mandarim). Ressalva: em vaso, Alvarenga et al. (1996) viram as raízes do guandu reduzidas dentro e abaixo da camada compactada.",
     "perene = false pressupõe o uso em rotação, manejado no florescimento. No consórcio com pastagem (BRS Mandarim) ele fica 3 a 4 anos com roçada anual. Se o app modelar esse uso, perene seria true.",
     "ciclo_dias_max = 150 pode ser curto para cultivares tardias de porte alto semeadas cedo na primavera. A Tropical Forages cita 180-250 dias até a floração nas arbóreas, mas não achei número brasileiro para a Mandarim semeada em outubro. Não achei fonte oficial do IDR-Paraná para o ciclo da IAPAR 43 Aratã (anão). Só uma página comercial, que não usei, cita 120-150 dias até a floração.",
-    "O Comunicado Técnico 119 da Embrapa (BRS Guatã, 2025) deu 'Identificador inválido' no ainfo e não foi lido."
+    "O Comunicado Técnico 119 da Embrapa (BRS Guatã, 2025) deu 'Identificador inválido' no ainfo e não foi lido.",
+    "graus-dia: Guandu é de dias curtos: a soma até o florescimento depende da época de semeadura (no mesmo local, 1241 em março contra 1939 em novembro, com Tmed quase igual). O filtro de graus-dia não prevê bem o ciclo; vale mais a época. Sugestão: eliminar só abaixo do mínimo (1200) e tratar 1200-2350 como 'no limite'. Para semeaduras de outubro-novembro, a exigência real fica perto do máximo.",
+    "graus-dia: Tb 10 é PROXY (germinação/emergência). O WOFOST usa Tb 11 com ótimo em 25 °C e queda acima disso; o motor (sem teto) acumula mais em locais quentes.",
+    "graus-dia: Não há dado brasileiro para cultivares tardias de porte alto (Mandarim, ~30 dias mais tardia que a Guatã) semeadas em outubro; a soma pode passar de 2350.",
+    "graus-dia: O WOFOST (55 d até a antese) não serve: ignora o fotoperíodo."
   ],
   "pendencias_resolvidas": [
     "Kc: não há Kc medido para o guandu. Os Kc 0.4 e 1.15 são PROXY do grupo Legumes do FAO-56. Os relatórios de Kc em lisímetro de pigeonpea da PDKV Akola (mahapocra.gov.in, Phase VIII-X) recusaram conexão, e o artigo de Vidarbha (core.ac.uk/outputs/690753542) caiu no bloqueio da Cloudflare. Vale tentar de outra rede. kc_final ficou vazio pela convenção (corte na floração).",
-    "agua_ciclo: o único dado medido é de um estudo indiano (Anand, cv. GT-100 precoce, semiárido, irrigado). Os 437 mm cobrem cerca de 83 dias até a floração; ciclos brasileiros de 90 a 150 dias tendem a gastar mais. Os 839 mm são do ciclo completo até o grão."
-  ]
+    "agua_ciclo: o único dado medido é de um estudo indiano (Anand, cv. GT-100 precoce, semiárido, irrigado). Os 437 mm cobrem cerca de 83 dias até a floração; ciclos brasileiros de 90 a 150 dias tendem a gastar mais. Os 839 mm são do ciclo completo até o grão.",
+    "agua_ciclo (280-520 mm) é cálculo próprio (FAO-56 + NASA POWER), não medição no Brasil. O mínimo de 280 é uma proposta que substitui a medição de Anand (437 mm): lá a ET de lisímetro ficou acima da ET0 do período, sinal de superestimativa ou de condição de oásis. Se o time preferir ficar com a medição, volte a 437. Em Sorriso-MT (ET0 menor) os valores são cerca de 15% mais baixos."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 1.6,
+      "max": 15.0,
+      "tipico": 5.6
+    },
+    "cn_palhada": {
+      "min": 11.3,
+      "max": 21,
+      "tipico": 18.3
+    },
+    "k_dia": {
+      "valor": 0.0062,
+      "min": 0.0046,
+      "max": 0.0075
+    },
+    "meia_vida_dias": {
+      "valor": 113,
+      "min": 92,
+      "max": 151
+    },
+    "condicao_decomposicao": "Valor: Uberaba-MG (Cerrado), guandu semeado no início das chuvas e dessecado aos 110 DAP (perto do florescimento); bolsas na superfície na época das águas (2000/01), sob milho e sob soja em plantio direto. Média das duas culturas. Faixa inclui decomposição na seca (Torres 2001/02, Marcelo).",
+    "pb_pct": 19.1,
+    "digestibilidade_pct": {
+      "valor": 48.9,
+      "tipo": "DIVMS",
+      "n": 3,
+      "medicao": "medida",
+      "nota": "Digestibilidade in vitro da matéria seca do GUANDU forragem verde (CQBAL id 92), n=3, desvio 2,0. GUANDU PARTE AÉREA (id 1427): DIVMS 56,28 (n=2). Feedipedia (aerial part, fresh): DMO 64,6 (*)."
+    },
+    "uso_forrageiro": "com_restricao",
+    "observacoes": {
+      "coleta": "MS no manejo, t/ha: 1,6 e 2,7 (Torres, dessecado aos 110 DAP; o guandu floresce aos 94-137 dias, então o corte foi perto do florescimento, num ano seco); 4,1 e 3,5 (Marcelo, guandu anão, safrinha); 5,6 (Braz, palhada no tempo inicial); 8,9 e 7,0 (Silva et al., Selvíria); 15 e 7 (BRS Guatã, semeadura em novembro e em janeiro). Típico = mediana dos 9 valores (5,6). A semeadura cedo, em novembro, e as cultivares forrageiras de porte alto ficam no alto da faixa. C/N: 11,3 e 16,6 (Torres), 20 e 21 (Marcelo). Típico = mediana (18,3). PB 19,0%: Feedipedia, parte aérea fresca (n=33); bate com os 18-20% da Embrapa Pecuária Sudeste (CT 75, folder BRS Mandarim). Digestibilidade 55%: meio da faixa de 50-60% da MS/MO das folhas frescas e do feno (dado brasileiro de da Silva et al. 2009, via Feedipedia). Restos de colheita: 47-54%. uso_forrageiro = com_restricao, mas no limite com principal: a Embrapa lança cultivares forrageiras (BRS Mandarim, BRS Guatã com 'aptidão para pastagem forte') e recomenda o guandu como banco de proteína. Por outro lado, ele só é palatável depois do florescimento (Embrapa CT 75), é pouco palatável até o animal se acostumar (Tropical Forages) e a fibra e a lignina altas limitam a digestibilidade (Feedipedia). Se a régua pesar mais a recomendação da pesquisa, troque para principal. Persistência: T½ da MS de 112 dias (milho) e 114 dias (soja) em Torres; k = 0,0115/dia, 65% de perda aos 150 dias e 79% projetada aos 360 dias (Braz). Em Marcelo restavam 53% e 38% ao fim do ano agrícola. A decomposição é rápida para uma palhada lenhosa, porque o C/N é baixo.",
+      "decomposicao": "Valor = média de Torres 2000/01 (águas): (0,0062 + 0,0061)/2 = 0,00615 -> 0,0062/dia; T½ = (112 + 114)/2 = 113 d. Braz (GO): o k = 0,0115/dia é do modelo de Dalal & Mayer com massa de equilíbrio (1.151 kg/ha), não comparável; k efetivo pela perda de 65% em 150 d: k = -ln(0,35)/150 = 0,0070/dia (T½ ≈ 99 d). Torres 2001/02 (seca): 0,0063 e 0,0075 (max, T½ 92 d). Marcelo 2012 (guandu anão, entressafra, decomposição na seca): K0 ≈ 0,0046 (min, T½ = ln2/0,0046 = 151 d) e ≈ 0,0073 (T½ 95 d), lidos no gráfico (±0,0002). No painel 2008/09 da Figura 3 há um losango extra (≈ 0,0098) entre as colunas de crotalária e guandu, sem rótulo; usei o que está alinhado com o rótulo 'Guandu' (0,0073) e não usei o extra. Fora da faixa: Teodoro 2019 (Parnaíba-PI, seca extrema, 60 DAP): guandu-anão k = 0,0011 (T½ 630 d) e Fava Larga 0,0028 (T½ 248 d). Decomposição rápida para uma palhada lenhosa, por causa do C/N baixo (11-21)."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 5.6,
+      "ms_remanescente_t_ha": 3.86,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Forragem verde de guandu (parte aérea), item GUANDU do CQBAL."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "proxy",
+      "nota": "Tb da germinação (8,4 °C) e da emergência (10,8 °C) de Mahendraraj et al. 2021, e mínimo absoluto do ECOCROP (10 °C). fontes: '(PROXY: temperatura base da germinação e emergência, não do ciclo todo)'."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "Amabile et al. 2000: 94 d até 50% de flores (semeadura em 4/mar); Embrapa CT 120 (BRS Guatã): 97 DAE até 50% de flores."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "Amabile 2000: 137 d (semeadura em 12/nov); Embrapa CT 120: Guatã semeada em novembro floresce em abril (~150 d)."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "MUDANÇA APLICADA: fica 280 mm, do cálculo ETc = Kc × ET0 (NASA POWER, semeadura em 4/mar com 94 d: 260-272 mm em GO/DF). Os 437 mm medidos em Anand, Índia (Patel et al. 1996), ficam só como evidência."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "520 mm, mesmo cálculo próprio, semeadura de out/nov com 150 d (477-511 mm; até 556 com Kc ini 0,53)."
+    },
+    "kc_inicial": {
+      "tipo": "proxy",
+      "nota": "0.4 do grupo e. Legumes do FAO-56 (o guandu não tem linha própria). Akola mediu 0,53."
+    },
+    "kc_medio": {
+      "tipo": "estudo_unico",
+      "nota": "1.17 = Kc 1,10 medido em lisímetro em Akola (PDKV, Índia, uma cultivar, kharif 2022-23), padronizado pela eq. 62. Pendência: 'vem de um só local e cultivar'."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "kc_final = kc_medio para corte no florescimento (FAO-56 cap.6, encerrar a curva no corte precoce); apoiado pelo Kc semanal de 1,10-1,14 de Akola nas semanas do florescimento."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "Tropical Forages (CIAT/ILRI), ficha de Cajanus cajan: 'deep taproot (to 2 m)'; o ECOCROP fala em 'deep and quick growing taproot'. É uma ficha de referência para a espécie, não um ensaio."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "semeadura -> manejo no florescimento; Tb 10; Não achei soma térmica publicada para o guandu no Brasil. CÁLCULO com Tb 10 (a do CSV): (1) Amabile et al. 2000, Senador Canedo-GO, cv. Kaki, dias até 50% do florescimento 137 (12/nov), 124 (7/jan), 94 (4/mar); Tmed = (Tmax + Tmin)/2 da Tabela 1 = 24,15; 23,65; 23,2 °C. GD = 137×14,15 = 1939; 124×13,65 = 1693; 94×13,2 = 1241. Com POWER diário nas mesmas datas: 1753, 1522, 1141 (Tmed POWER ~1 °C abaixo). (2) BRS Guatã, São Carlos-SP (Matta et al. 2026): semeadura em novembro/2024 com pleno florescimento em abril; semeadura em 17/01/2025 com 50% do florescimento 'após quatro meses'. POWER diário: 15/11/2024 -> 15/04/2025 = 2367 °C dia (151 d, Tmed 25,7); 17/01/2025 -> 17/05/2025 = 1880 °C dia (120 d). As datas exatas de novembro e do florescimento são aproximadas (o texto dá só o mês). Faixa: 1200 (semeadura de março no Cerrado) a 2350 (semeadura de novembro no Sudeste). | plausibilidade: Tmed 22-25 °C. 1200/(23 − 10) = 92 d; 2350/(25 − 10) = 157 d. CSV: ciclo_dias 90-150. Bate. Mas a soma até o florescimento quase DOBRA da semeadura de março para a de novembro, com a mesma temperatura: é o fotoperíodo, não a temperatura, que controla."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "semeadura -> manejo no florescimento; Tb 10; Não achei soma térmica publicada para o guandu no Brasil. CÁLCULO com Tb 10 (a do CSV): (1) Amabile et al. 2000, Senador Canedo-GO, cv. Kaki, dias até 50% do florescimento 137 (12/nov), 124 (7/jan), 94 (4/mar); Tmed = (Tmax + Tmin)/2 da Tabela 1 = 24,15; 23,65; 23,2 °C. GD = 137×14,15 = 1939; 124×13,65 = 1693; 94×13,2 = 1241. Com POWER diário nas mesmas datas: 1753, 1522, 1141 (Tmed POWER ~1 °C abaixo). (2) BRS Guatã, São Carlos-SP (Matta et al. 2026): semeadura em novembro/2024 com pleno florescimento em abril; semeadura em 17/01/2025 com 50% do florescimento 'após quatro meses'. POWER diário: 15/11/2024 -> 15/04/2025 = 2367 °C dia (151 d, Tmed 25,7); 17/01/2025 -> 17/05/2025 = 1880 °C dia (120 d). As datas exatas de novembro e do florescimento são aproximadas (o texto dá só o mês). Faixa: 1200 (semeadura de março no Cerrado) a 2350 (semeadura de novembro no Sudeste). | plausibilidade: Tmed 22-25 °C. 1200/(23 − 10) = 92 d; 2350/(25 − 10) = 157 d. CSV: ciclo_dias 90-150. Bate. Mas a soma até o florescimento quase DOBRA da semeadura de março para a de novembro, com a mesma temperatura: é o fotoperíodo, não a temperatura, que controla."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 7,
+    "colunas": [
+      "temp_base_c",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "kc_inicial",
+      "kc_medio",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

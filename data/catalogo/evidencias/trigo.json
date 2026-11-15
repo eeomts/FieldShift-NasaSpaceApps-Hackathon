@@ -20,9 +20,11 @@
     "raiz_profunda": "false",
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
-    "valor_forrageiro": "baixo",
+    "valor_forrageiro": "medio",
     "fontes": "FAO-56 Tab.12 linha Spring Wheat + grupo Cereals (Kc)|FAO-56 Tab.22 Spring Wheat 1.0-1.5 m (raiz; limite superior)|Embrapa 2016 Trigo: o produtor pergunta Cap.2 (trigos de primavera no Brasil; geada no espigamento-floração)|Silva et al. 2008 PAB 43(10) Embrapa Trigo (geada no espigamento)|ZARC trigo MAPA Portarias 385/2022 RS e 02/2021 GO e 434/2025 BA (ciclo por grupo; geada no espigamento; calor como limitante na região tropical)|Embrapa Cerrados Circular Técnica 49 2021 BRS 264 (ciclo mínimo)|Embrapa Trigo folheto Cultivares Embrapa 2021 (ciclo das tardias de duplo propósito: BRS Tarumã 160-165 d e BRS Tarumaxi 162-167 d até a maturação)|Embrapa Trigo folder BRS Tarumã 2016 (maturação fisiológica 162 d)|Fontaneli et al. 2019 Revista Plantio Direto 29(168) BRS Pastoreio (156 d da emergência à maturação; BRS Tarumã cerca de uma semana mais longo)|Embrapa Trigo Comunicado Técnico 324 2013 (temperatura base 0 °C; soma térmica ET-ANT 388-512 GD)|Walter et al. 2009 Ciência Rural 39(8) (soma térmica emergência-maturidade fisiológica 1964-2504 °C dia com Tb 0 °C)|Embrapa Trigo Sistema de Produção 4 Cultivo de Trigo 2ª ed. 2014 (filocrono ~100 GD com Tb 0 °C; critério ZARC SP de Tmax média na floração <= 28 °C)|FAO ECOCROP Triticum aestivum (temperatura ótima)|Ferris et al. 1998 Ann. Bot. 82(5):631-639 (tmax na antese: perda de rendimento acima da base de 31 °C)|Porter & Gawith 1999 Eur J Agron 10:23-36 via Jacott & Boden 2020 J Exp Bot (tmax na antese 31 °C; original de acesso fechado, não lido)|FAO Irrigation Water Management Training Manual 3 Tab.14 (água)|Antonini et al. 2024 Embrapa Cerrados Boletim de P&D 416 (lâmina irrigada 445-498 mm no ciclo do BRS 264 no DF)",
-    "confianca_parametros": "media"
+    "confianca_parametros": "media",
+    "graus_dia_ciclo_min": "2000",
+    "graus_dia_ciclo_max": "2600"
   },
   "mudancas": [
     {
@@ -60,6 +62,42 @@
       "antes": "(lista da rodada 1)",
       "depois": "(ver valores.fontes)",
       "motivo": "Entraram as fontes do ciclo tardio, Ferris et al. 1998 (fonte primária do limiar de 31 °C), o Sistema de Produção da Embrapa Trigo (critério de calor do ZARC SP e filocrono), Walter et al. 2009 (graus-dia com Tb 0 °C) e Antonini et al. 2024 (água no trigo irrigado do Cerrado). A citação de Porter & Gawith ficou marcada como lida de forma indireta."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "baixo",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 68, 'tipo': 'DIVMS', 'nota': 'DMS estimada pela FDA (Fontaneli), não DIVMS medida in vitro; é da forragem verde de trigo duplo propósito'}",
+      "depois": "{'valor': 68, 'tipo': 'DMS', 'n': 3, 'medicao': 'estimada', 'nota': 'Digestibilidade da matéria seca ESTIMADA pela FDA (não medida), forragem verde de trigo duplo propósito, um corte, média de 2003-2005, 3 cultivares (BRS Figueira 68,5; BRS Umbu 69,0; BRS 277 68,2), Fontaneli et al. 2012, Embrapa Trigo. O CQBAL não tem forragem verde de trigo (só palha, feno, silagem e grão). Feedipedia (Wheat forage, fresh, estádios misturados): PB 11,0 (n=32), DMO 69,2 (*, n=9); em ovinos pastejando trigo duplo propósito a digestibilidade in vivo foi 84-85% (Dove et al. 2009, citado na Feedipedia).'}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): O tipo 'DIVMS' estava errado: a fonte dá DMS ESTIMADA pela FDA, não digestibilidade in vitro medida. Valor mantido (68), tipo corrigido para a sigla DMS, n=3 cultivares, marcada 'estimada'. Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "2000-2600",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: estudo_unico"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (estudo_unico), graus_dia_ciclo_max (estudo_unico)"
     }
   ],
   "evidencias": [
@@ -249,6 +287,123 @@
       "fonte": "Antonini, J.C. dos A. et al. Estabelecimento do momento de irrigação do trigo de inverno (BRS 264) para as condições edafoclimáticas do Cerrado do Brasil Central. Embrapa Cerrados, Boletim de Pesquisa e Desenvolvimento 416, 2024, Tabela 2 (Planaltina-DF, semeadura em maio, safras 2021-2023)",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1170016/1/Bolpd-416-CPAC.pdf",
       "trecho": "O plantio ocorreu no início da estação seca, no mês de maio [...] Fator de disponibilidade de água (f) / Lâmina de água (mm): 0,2 498,23; 0,4 486,40; 0,6 459,17; 0,8 444,68"
+    },
+    {
+      "fonte": "Foloni, J. S. S.; Silva, S. R.; Bassoi, M. C.; Oliveira Junior, A.; Castro, C., Cobertura nitrogenada em diferentes estádios do trigo 2: acamamento, biomassa da parte aérea e índice de colheita aparente, Reunião da Comissão Brasileira de Pesquisa de Trigo e Triticale, 2016 (Embrapa Soja/Embrapa Trigo)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1067420/1/ID439902016RCBPTT10FOLONI98.pdf",
+      "trecho": "ICA (%) = [MSG/(BS+MSG)]x100 [BS = biomassa seca da parte aérea; MSG = massa de grãos]. Tabela 1, Biomassa (kg/ha) LDseq / PG: BRS Gralha-azul 5513 / 4842; BRS Tangará 5083 / 4382; BRS Pardela 4749 / 3647. Produtividade LDseq / PG: 4152 / 3605; 3373 / 2833; 3518 / 2907",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Kluthcouski, J.; Cobucci, T.; Aidar, H. et al., Cultivo do feijoeiro em palhada de braquiária, Embrapa Arroz e Feijão Documentos 157, 2003 (citando Roman & Velloso 1993)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/212489/1/doc157.pdf",
+      "trecho": "a aveia preta tem sido destaque na produção de matéria seca, como cultura de inverno, atingindo mais de 19 t ha-1, enquanto o trigo, a menor produção, com apenas 2,2 t ha-1 (Roman & Velloso, 1993) [...] os resíduos remanescentes, após 170 dias, foram de [...] 64% para [...] trigo",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Heinzmann, F. X., Resíduos culturais de inverno e assimilação de nitrogênio por culturas de verão, Pesq. agropec. bras. 20(9):1021-1030, 1985 (Latossolo Roxo, PR), Tabela 2",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/16176/10348/70555",
+      "trecho": "A menor relação C/N foi determinada nos resíduos vegetais da ervilhaca-peluda (15); e a mais elevada, nos resíduos de aveia e trigo (28 e 38, respectivamente). [Tabela 2: Trigo, relação C/N parte aérea 38; N total determinado apenas na palha]",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Luz, L. P., Dinâmica do carbono durante a decomposição de palha de trigo marcada com 13C e dejetos líquidos de suínos, dissertação, UFSM, 2007 (resumo, via BDTD)",
+      "url": "https://bdtd.ibict.br/vufind/Record/UFSM_b5c7cb3d42644b47f2c6742d3422a8e8",
+      "trecho": "Apesar da elevada relação C/N (65,2) da palha de trigo, a sua mineralização aumentou apenas quando ela foi mantida na superfície do solo",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Cruz, G. M. (Embrapa CNPGL), Resíduos de cultura e indústria, Informe Agropecuário (EPAMIG) v.9 n.108, dez. 1983",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/42814/1/digitalizar0013.pdf",
+      "trecho": "QUADRO 6 [...] Trigo (Triticum aestivum) - Palhas: MS 90,4%; Proteína Bruta 3,5; NDT 42,2",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Fontaneli, R. S.; Santos, H. P.; Fontaneli, R. S. (ed.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012",
+      "url": "https://www.alice.cnptia.embrapa.br/bitstream/doc/1010247/1/LV2012forrageirasparaintegracaoFontaneli.pdf",
+      "trecho": "Tabela 1.5 [...] proteína bruta (PB) [...] e digestibilidade da matéria seca estimada (DMS) de forragem de cereais de inverno, da segunda época de semeadura, com um corte, média de 2003 a 2005. Embrapa Trigo [...] 12. Trigo BRS Figueira PB 25,9; DMS 68,5 [...] 13. Trigo BRS Umbu PB 26,8; DMS 69,0 [...] 14. Trigo BRS 277 PB 26,0; DMS 68,2",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Fontaneli, R. S.; Santos, H. P.; Fontaneli, R. S. (ed.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012",
+      "url": "https://www.alice.cnptia.embrapa.br/bitstream/doc/1010247/1/LV2012forrageirasparaintegracaoFontaneli.pdf",
+      "trecho": "A forragem de trigo, bem manejada é um alimento de elevado valor nutritivo para ruminantes e equinos. [...] o manejo apropriado de corte da forragem ou de pastejo permite obter forragem no inverno, período crítico, sem redução expressiva no rendimento de grãos.",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Gonçalves, S. L.; Saraiva, O. F.; Torres, E., Influência de fatores climáticos na decomposição de resíduos culturais de aveia e trigo, Embrapa Soja, Boletim de Pesquisa e Desenvolvimento 5, 2010 (Londrina, PR), Tabelas 1 a 5",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/884905/1/Boletim5.pdf",
+      "trecho": "Subamostras de 12g (equivalente a 4 t/ha de matéria seca) [...] deixadas na superfície do solo no plantio direto [...] A decomposição dos resíduos da aveia e do trigo ocorreu entre a primavera e o verão, durante o cultivo de soja. [Decomposição de resíduos (% diária), TrigoPD: 1,17 (1º-7º dia); 0,51 (7º-14º); 0,31 (14º-26º); 0,37 (26º-56º); 0,26 (56º-113º)]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009 (citando Roman & Velloso, 1993, Região Sul)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "os resíduos de aveia-preta, aveia-branca, colza, chícharo, ervilhaca e trigo, remanescentes após 170 dias, foram de 43%, 36%, 8%, 25%, 9% e 64%, respectivamente.",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Carvalho, A. M. de et al. (Embrapa Cerrados), Decomposição de resíduos vegetais de plantas de cobertura em sistema plantio direto no Cerrado, XXXIII Congresso Brasileiro de Ciência do Solo, 2011, resumo expandido (Planaltina, DF), Tabela 2",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/902785/1/CD371Arminda.PDF",
+      "trecho": "calcularam-se a meia-vida do (h = ln2/k) [...] Trigo 38,98 a A 34,35 a A 95 114 137 164 [β1 floração, β1 maturação, ½ vida floração, ½ vida maturação (dias), reciclagem]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Fontaneli, R. S.; Santos, H. P.; Fontaneli, R. S. (ed.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012",
+      "url": "https://www.alice.cnptia.embrapa.br/bitstream/doc/1010247/1/LV2012forrageirasparaintegracaoFontaneli.pdf",
+      "trecho": "Tabela 1.5 [...] proteína bruta (PB) [...] e digestibilidade da matéria seca estimada (DMS) de forragem de cereais de inverno, da segunda época de semeadura, com um corte, média de 2003 a 2005. [...] 12. Trigo BRS Figueira PB 25,9; DMS 68,5 [...] 13. Trigo BRS Umbu PB 26,8; DMS 69,0 [...] 14. Trigo BRS 277 PB 26,0; DMS 68,2"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Wheat forage",
+      "url": "https://www.feedipedia.org/node/363",
+      "trecho": "Wheat forage, fresh: Crude protein % DM 11.0 (SD 4.5, 7.3-24.4, Nb 32) [...] OM digestibility, ruminants % 69.2 (SD 9.0, 63.9-84.6, Nb 9) * [...] At pasture, in vivo digestibility in young crossbred sheep grazing dual-purpose wheat crops was high (84-85%)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Walter, L.C.; Streck, N.A.; Rosa, H.T.; Alberto, C.M.; Oliveira, F.B. Desenvolvimento vegetativo e reprodutivo de cultivares de trigo e sua associação com a emissão de folhas. Ciência Rural 39(8):2320-2326, 2009",
+      "url": "https://www.redalyc.org/pdf/331/33117308018.pdf",
+      "trecho": "Considerou-se Tb=0°C, Tot=22ºC e TB=35ºC [...] A duração (média das datas de semeadura) do ciclo total de desenvolvimento (EM-MF) das cultivares usadas no estudo variou de 1963,5°C dia a 2503,6°C dia (Tabela 1). [Tabela 1: BRS Louro 1963,5; CEP 52 1993,1; BRS 177 2073,7; CEP 51 2083,9; Nova Era 2183,9; BRS Tarumã 2503,6]"
+    },
+    {
+      "colunas": [
+        "tb_usada"
+      ],
+      "fonte": "Rodrigues, O. et al. Caracterização ontogenética de cultivares brasileiras de trigo. Embrapa Trigo, Comunicado Técnico 324, 2013 (Tb 0 da Embrapa)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/988430/1/2013comunicadotecnicoonline324.pdf",
+      "trecho": "A duração das respectivas fases foi quantificada em soma térmica utilizando-se a temperatura basal de zero grau."
     }
   ],
   "pendencias": [
@@ -258,10 +413,117 @@
     "agua_ciclo_mm (450-650, mantido): no trigo irrigado do Cerrado (BRS 264, DF, estação seca, Antonini et al. 2024) a lâmina aplicada foi de 445 a 498 mm por ciclo. Isso confirma o piso de 450 para cultivar superprecoce em clima de alta demanda. A lâmina aplicada não inclui a chuva (13% do total anual cai de maio a setembro), então a ETc real pode ser um pouco maior. Para o RS e o PR não achei total de ETc por ciclo só do trigo: Carazinho-RS tem ETc medida por eddy covariance, mas só somada com a soja. O teto de 650 continua vindo só da FAO.",
     "graus-dia do trigo com Tb 0 °C (para a coluna futura): a melhor fonte brasileira é Walter et al. 2009 (Santa Maria-RS), com 1964 a 2504 °C dia da emergência à maturidade fisiológica (de BRS Louro a BRS Tarumã). Ressalva: o cálculo usa Tb 0 com Tot 22 °C e TB 35 °C (função que corta acima de 22 °C), e não o max(0, Tmed − Tb) linear do motor. No inverno gaúcho a Tmed raramente passa de 22 °C, e aí os dois métodos quase coincidem. A média inclui semeaduras fora de época, com desvio-padrão de 141 a 419 °C dia. Por fase, só achei ET-ANT de 388 a 512 GD (Embrapa CT 324, em casa de vegetação) e o filocrono de ~100 GD (70 a 160). Não achei soma térmica com Tb 0 °C para o Cerrado. A Revista Cultivar (2025) cita 1.450 °C dia até a maturação no Brasil Central, sem dizer a Tb; é só pista. Noreto 2013 (Unioeste-PR, 1.487 GD) usa Tb 5 °C e não serve. Sugestão para a coluna: 2000 (precoce/médio) a 2500 (tardio) °C dia da emergência à maturação, com Tb 0.",
     "cobertura_solo (media), aporte_biomassa (medio), valor_forrageiro (baixo), raiz_profunda (false): julgamento qualitativo, sem fonte primária com números. Observação: a Embrapa recomenda trigo de duplo propósito (pastejo + grão) no Sul (Informações Técnicas Trigo e Triticale, 2023, item 7; folheto Embrapa 2021: BRS Tarumã, Pastoreio, Tarumaxi). Se o app considerar isso, valor_forrageiro poderia subir para 'medio'.",
-    "temp_otima (15–23) vem do ECOCROP, que é genérico para a espécie. Não achei faixa ótima da Embrapa para cultivares brasileiras. Walter et al. 2009 usam Tot = 22 °C no cálculo térmico, o que é coerente com o teto de 23."
+    "temp_otima (15–23) vem do ECOCROP, que é genérico para a espécie. Não achei faixa ótima da Embrapa para cultivares brasileiras. Walter et al. 2009 usam Tot = 22 °C no cálculo térmico, o que é coerente com o teto de 23.",
+    "graus-dia: Uma só fonte de ciclo completo (Walter 2009, RS). Não achei soma térmica com Tb 0 para o trigo tropical do Cerrado; o mínimo de 2000 foi checado só por cálculo (105 dias × 19,5 °C).",
+    "graus-dia: A Revista Cultivar (2025) cita 1450 °C·dia até a maturação no Brasil Central sem dizer a Tb; não usado.",
+    "graus-dia: Semeadura->emergência é CÁLCULO (~110 GD). WOFOST usa 120 e AquaCrop 150 com Tb 0, o que confere."
   ],
   "pendencias_resolvidas": [
     "tmax_critica_c (31): a fonte lida é uma revisão secundária (Jacott & Boden 2020) que cita Porter & Gawith 1999. Não li o original e não achei limiar numérico em documento da Embrapa.",
     "ciclo_dias_max (165): o Grupo III do ZARC da Região 1 do RS não tem teto (≥160 dias da emergência à colheita). 165 soma cerca de 5 dias até a emergência. Cultivares tardias ou de duplo propósito semeadas 20 a 40 dias antes podem passar disso. Não achei uma ficha de cultivar tardia com o número de dias."
-  ]
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 2.2,
+      "max": 5.5,
+      "tipico": 4.3
+    },
+    "cn_palhada": {
+      "min": 38,
+      "max": 80,
+      "tipico": 65
+    },
+    "k_dia": {
+      "valor": 0.0047,
+      "min": 0.00263,
+      "max": 0.0061
+    },
+    "meia_vida_dias": {
+      "valor": 147,
+      "min": 114,
+      "max": 264
+    },
+    "condicao_decomposicao": "Palha de trigo colhida no fim do ciclo, em sacolas na superfície (plantio direto), Londrina-PR, decomposição na primavera-verão durante a soja, 113 dias, média de 12-13 anos (Embrapa Soja).",
+    "pb_pct": 26,
+    "digestibilidade_pct": {
+      "valor": 68,
+      "tipo": "DMS",
+      "n": 3,
+      "medicao": "estimada",
+      "nota": "Digestibilidade da matéria seca ESTIMADA pela FDA (não medida), forragem verde de trigo duplo propósito, um corte, média de 2003-2005, 3 cultivares (BRS Figueira 68,5; BRS Umbu 69,0; BRS 277 68,2), Fontaneli et al. 2012, Embrapa Trigo. O CQBAL não tem forragem verde de trigo (só palha, feno, silagem e grão). Feedipedia (Wheat forage, fresh, estádios misturados): PB 11,0 (n=32), DMO 69,2 (*, n=9); em ovinos pastejando trigo duplo propósito a digestibilidade in vivo foi 84-85% (Dove et al. 2009, citado na Feedipedia)."
+    },
+    "uso_forrageiro": "com_restricao",
+    "observacoes": {
+      "coleta": "Palhada = palha + restolho depois da colheita do grão. Faixa: 2,2 t/ha (Roman & Velloso, citado pela Embrapa) a 5,5 t/ha (Foloni, Londrina sequeiro, BRS Gralha-azul). Típico 4,3 = média das três cultivares em Ponta Grossa, PR (4.842; 4.382; 3.647 kg/ha), lavoura de sequeiro com 2,8-3,6 t/ha de grãos. C/N: 38 (Heinzmann, palha no campo, PR) e 65,2 (Luz 2007, palha usada em incubação). Cruz 1983 dá PB 3,5% (N 0,56%), o que com C 45% daria ~80 (estimativa; também é o valor de Saviozzi 1997, Itália, 79,6, citado por Aita et al. 2006). Típico 65 = único valor medido no Brasil acima do campo de Heinzmann; a faixa é larga. uso_forrageiro: 'com_restricao' porque o uso forrageiro existe e é recomendado pela Embrapa Trigo, mas só no Sul, com cultivares de duplo propósito e manejo de corte/pastejo que pode custar grão; o trigo para grão comum só deixa palha (Cruz: PB 3,5%, NDT 42,2), o que seria 'residual'. Se a linha trigo do catálogo for trigo só para grão, troque para 'residual' e use PB 3,5 / NDT 42,2. pb_pct e DMS acima são da forragem verde no 1º corte (duplo propósito). Quando a fonte só dá N (ou PB), a C/N foi calculada como C/N = C / (PB/6,25), com C = 45% da MS (os teores de C medidos nas fontes lidas vão de 39% a 53%: Machado 1983 arroz 40%; Wisniewski & Holtz 1997 milho 43%; Assmann 2015 soja 48-53%; Marcelo 2012 39-52%). Isso é estimativa, não medida.",
+      "decomposicao": "Embrapa Soja: somei a perda diária (% da massa inicial) x dias de cada período: 1,17x7 + 0,51x7 + 0,31x12 + 0,37x30 + 0,26x57 = 41,4% em 113 d -> fração 0,586; k = -ln(0,586)/113 = 0,0047/dia; T½ = 0,693/0,0047 = 147 d. O boletim não diz se a % diária é sobre a massa inicial ou a remanescente; se for sobre a remanescente, fica fração 0,660 -> k = 0,0037, T½ = 189 d (ainda dentro da faixa). Mínimo = Roman & Velloso (64% restante após 170 d, Sul): k = -ln(0,64)/170 = 0,0026/dia; T½ = 264 d. Máximo = Carvalho 2011 (Cerrado, trigo cortado na maturação, T½ 114 d): k = 0,693/114 = 0,0061/dia (no corte na floração, T½ 95 d, k 0,0073, mas isso não é palhada pós-grão). Na mesma série da Embrapa Soja a aveia-preta perdeu 75,5% em 113 d (mesma conta), bem mais rápido que o trigo."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.3,
+      "ms_remanescente_t_ha": 3.24,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Forragem verde de trigo duplo propósito, cortada/pastejada no estádio vegetativo (antes do primeiro nó). Mantida a fonte atual: nem o CQBAL nem a Feedipedia têm esse material; a tabela 'Wheat forage, fresh' da Feedipedia mistura estádios (PB 7,3-24,4)."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Embrapa Trigo CT 324 (2013): 'temperatura basal de zero grau'; Sistema de Produção 4 (2014) e Walter et al. 2009 usam a mesma Tb."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Cerrados CT 49 (2021), BRS 264: '105 dias da emergência à maturação [...] colhida em torno de 110 dias após a semeadura'."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "Folheto Embrapa Trigo 2021 (BRS Tarumã 160-165 d, Tarumaxi 162-167 d), folder BRS Tarumã 2016 (162 d) e Fontaneli et al. 2019 (156 d BRS Pastoreio); +5-10 d semeadura-emergência pelo critério do ZARC. 175 não aparece literalmente, mas várias fontes convergem."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "FAO IWM Training Manual 3, Tab.14: 'Barley/Oats/Wheat 450-650'; confirmado no Cerrado por Antonini et al. 2024 (lâmina 445-498 mm, BRS 264)."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "FAO IWM Manual 3, Tab.14 (450-650). Pendência: o teto vem só da FAO, sem ETc medida no Sul."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (i. Cereals 0.3); a linha da própria cultura (Spring Wheat) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Spring Wheat: 1.15."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Spring Wheat: 0.25-0.4 (nota 10: valor maior para colheita manual); 0.25 = colheita mecânica."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Spring Wheat 1.0-1.5 m; limite superior."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "estudo_unico",
+      "nota": "semeadura -> maturação fisiológica; Tb 0; Valor já coletado em evidencias/trigo.json. Walter et al. 2009 (Santa Maria-RS, 6 cultivares, 13 datas de semeadura), Tb 0, da EMERGÊNCIA à maturidade fisiológica: 1963,5 (BRS Louro) a 2503,6 (BRS Tarumã). TETO: a fonte usa função com Tot 22 °C e TB 35 °C (a taxa cai acima de 22), não o linear do motor; no inverno gaúcho a Tmed raramente passa de 22 e os dois métodos quase coincidem. Semeadura->emergência (CÁLCULO): a fonte não dá; 7 d × 15 °C = 105 ≈ 110 GD. Da semeadura: 1964 + 110 = 2074 e 2504 + 110 = 2614. Faixa: 2000 (arredondado para baixo para cobrir o precoce do Cerrado, ver plausibilidade) a 2600. | plausibilidade: Cerrado irrigado (BRS 264, ciclo_dias_min 105, maio-set, Tmed ~19,5 °C): 105 × 19,5 = 2048 GD, e 2000/19,5 = 103 dias. RS (Tarumã, Tmed ~15 °C): 2600/15 = 173 dias, contra ciclo_dias_max 175. Contra ciclo_dias 105-175 do CSV. Coerente. No Cerrado a Tmed passa de 22 em parte do ciclo; ali o motor linear soma mais que a função de Walter."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "estudo_unico",
+      "nota": "semeadura -> maturação fisiológica; Tb 0; Valor já coletado em evidencias/trigo.json. Walter et al. 2009 (Santa Maria-RS, 6 cultivares, 13 datas de semeadura), Tb 0, da EMERGÊNCIA à maturidade fisiológica: 1963,5 (BRS Louro) a 2503,6 (BRS Tarumã). TETO: a fonte usa função com Tot 22 °C e TB 35 °C (a taxa cai acima de 22), não o linear do motor; no inverno gaúcho a Tmed raramente passa de 22 e os dois métodos quase coincidem. Semeadura->emergência (CÁLCULO): a fonte não dá; 7 d × 15 °C = 105 ≈ 110 GD. Da semeadura: 1964 + 110 = 2074 e 2504 + 110 = 2614. Faixa: 2000 (arredondado para baixo para cobrir o precoce do Cerrado, ver plausibilidade) a 2600. | plausibilidade: Cerrado irrigado (BRS 264, ciclo_dias_min 105, maio-set, Tmed ~19,5 °C): 105 × 19,5 = 2048 GD, e 2000/19,5 = 103 dias. RS (Tarumã, Tmed ~15 °C): 2600/15 = 173 dias, contra ciclo_dias_max 175. Contra ciclo_dias 105-175 do CSV. Coerente. No Cerrado a Tmed passa de 22 em parte do ciclo; ali o motor linear soma mais que a função de Walter."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }

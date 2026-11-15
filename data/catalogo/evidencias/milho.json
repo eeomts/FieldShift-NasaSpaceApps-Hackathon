@@ -20,9 +20,11 @@
     "raiz_profunda": "false",
     "cobertura_solo": "media",
     "aporte_biomassa": "alto",
-    "valor_forrageiro": "alto",
+    "valor_forrageiro": "baixo",
     "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Clima e solo (água; tmax crítica; geada)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed. 2007, Cultivares (classes de ciclo)|Cruz & Magalhães, Embrapa Milho e Sorgo, Cultivares superprecoces surpreendem produtores, Campo & Negócios jan/2010 (grupos de ciclo MAPA/ZARC em dias; geada)|Borghi, Magalhães & Pereira Filho, Embrapa Milho e Sorgo Documentos 273, 2023 (ciclo em dias após emergência)|Magalhães & Durães, Embrapa Milho e Sorgo Circular Técnica 76, 2006 (fenologia: floração 65 DAE, R6 50-60 dias após polinização; água ~600 mm)|Avelar, Embrapa CNPMS, Manual técnico Cultura do Milho, cap. 1 Fatores climáticos (temp base; temp ótima)|Oliveira & Kluthcouski, Embrapa Arroz e Feijão, Fundamentos para uma agricultura sustentável, cap. 8 Palhada de cobertura do solo no SPD, 2009 (biomassa; persistência da palhada)|Resende et al., Embrapa Gado de Leite Circular Técnica 114, 2017 (valor forrageiro)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
-    "confianca_parametros": "media"
+    "confianca_parametros": "media",
+    "graus_dia_ciclo_min": "1500",
+    "graus_dia_ciclo_max": "1900"
   },
   "mudancas": [
     {
@@ -48,6 +50,48 @@
       "antes": "RASCUNHO A CONFERIR|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|FAO Irrigation Water Management Manual 3 (água)|FAO ECOCROP (temperatura)|Embrapa Milho e Sorgo",
       "depois": "(ver valores.fontes)",
       "motivo": "As fontes agora são exatas. Saíram o FAO IWM Manual 3 e o ECOCROP, que não consultei; a Embrapa cobre água e temperatura."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "alto",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança (ver evidencias/README.md): 0 coluna(s) do filtro sem medição ou publicação própria: nenhuma"
+    },
+    {
+      "coluna": "regua.regua.pb_pct",
+      "antes": "7.1",
+      "depois": "3.9",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): A linha é de grão: a PB 7,1 era da planta inteira (silagem). Palhada seca de milho: Feedipedia 3,9 (n=80). O CQBAL não tem a palhada da lavoura (o 'MILHO PALHA' é palha da espiga)."
+    },
+    {
+      "coluna": "regua.regua.digestibilidade_pct",
+      "antes": "{'valor': 63.2, 'tipo': 'NDT'}",
+      "depois": "{'valor': 49.0, 'tipo': 'DMO', 'n': 6, 'medicao': 'estimada', 'nota': \"DMO em ruminantes da palhada seca de milho (Maize stover, dry), Feedipedia, calculada por equação (*), 6 valores, faixa 46-61,4. O CQBAL não tem a palhada da lavoura: o item 'MILHO PALHA' (id 104) é a palha da espiga (ver cenario_forragem) e o 'MILHO COLMO' (id 239) é colmo verde com DIVMS n=1.\"}",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): NDT não é digestibilidade (vai para ndt_pct quando o CQBAL tem NDT observado do mesmo material). Regra desta rodada: 1) CQBAL, mesmo material e mesma espécie, métrica de digestibilidade com n >= 3 (a de maior n; empate: DIVMS > DIVMO > DMS > DMO); 2) senão, DMO da Feedipedia do mesmo material, marcada 'estimada' quando a Feedipedia a calcula por equação (*); 3) sem material em nenhuma das duas, mantém a fonte atual e só corrige a sigla. NDT não é digestibilidade e fica em ndt_pct."
+    },
+    {
+      "coluna": "regua.regua.cenario_forragem",
+      "antes": "None",
+      "depois": "(novo campo)",
+      "motivo": "REVISÃO 14/11 (CQBAL/Feedipedia): Registra o material medido, para não misturar cenário de grão, silagem e feno."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min/max",
+      "antes": "(coluna nova)",
+      "depois": "1500-1900",
+      "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (calculo), graus_dia_ciclo_max (calculo)"
     }
   ],
   "evidencias": [
@@ -164,6 +208,183 @@
       "fonte": "FAO-56, Tabela 22",
       "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
       "trecho": "Maize 1.0-1.7 (já conferido pelo coordenador)"
+    },
+    {
+      "fonte": "Coelho, A. M., Nutrição e adubação do milho, Embrapa Milho e Sorgo Circular Técnica 78, 2006, Tabela 3",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/490410/1/Circ78.pdf",
+      "trecho": "Grãos, 7,10 t ha-1 x 1,4 % de N [...] Palhada, 7,00 t ha-1 x 0,7 % de N",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Wisniewski, C.; Holtz, G. P., Decomposição da palhada e liberação de nitrogênio e fósforo numa rotação aveia-soja sob plantio direto, Pesq. agropec. bras. 32(11):1191-1197, 1997 (Carambeí, PR)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/4761/7274/56089",
+      "trecho": "A palhada de milho decompôs-se mais lentamente, perdendo 49% de peso em 149 dias, devido à sua mais alta relação C/N (43:1) [...] e à maior quantidade de resíduo inicial (9,8 contra 6,8 t.ha-1)",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009, Tabela 1 (dados de Aidar et al. 2000)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Matéria seca (t ha-1) [...] Antes da semeadura [...] Milho 14,49 bc",
+      "colunas": [
+        "ms_palhada_t_ha"
+      ]
+    },
+    {
+      "fonte": "Marcelo, A. V.; Corá, J. E.; Fernandes, C., Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36:1568, 2012 (Jaboticabal, SP)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?format=html&lang=pt",
+      "trecho": "Quadro 4 [milho safrinha, trituração após colheita de grãos]: Acumulada 4,3 Mg ha-1 (2007/2008) e 3,9 Mg ha-1 (2008/2009). Quadro 3: C:N do milho 110 (2007/2008) e 105 (2008/2009)",
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Informe Agropecuário (EPAMIG) v.39 n.302, Sistema Plantio Direto no Cerrado, p.28-41, 2018",
+      "url": "https://livrariaepamig.com.br/wp-content/uploads/2023/02/ia-302.pdf",
+      "trecho": "relação C/N da palha de milho (76/1)",
+      "colunas": [
+        "cn_palhada"
+      ]
+    },
+    {
+      "fonte": "Campos, P. R. S. S.; Valadares Filho, S. C.; Detmann, E. et al., Consumo, digestibilidade e estimativa do valor energético de alguns volumosos por meio da composição química, Revista Ceres 57(1):79-86, 2010",
+      "url": "https://www.redalyc.org/pdf/3052/305226735014.pdf",
+      "trecho": "Tabela 1 [...] Silagem de milho: MS 34,84; PB 7,06. Tabela 4 [...] Silagem de milho: NDT estimado (NRC 2001) 57,53; NDT observado no ensaio com ovinos 63,16",
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ]
+    },
+    {
+      "fonte": "Resende, H. et al., Tecnologia e custo da silagem de milho, Embrapa Gado de Leite Circular Técnica 114, 2017",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1078472/1/CT114Tecnologiaecustosilagemdemilho.pdf",
+      "trecho": "No Brasil, e no mundo, a planta forrageira mais utilizada para ensilagem é o milho.",
+      "colunas": [
+        "uso_forrageiro"
+      ]
+    },
+    {
+      "fonte": "Marcelo, A. V.; Corá, J. E.; Fernandes, C., Sequências de culturas em sistema de semeadura direta: II - decomposição e liberação de nutrientes na entressafra, R. Bras. Ci. Solo 36(5):1568-1582, 2012 (Jaboticabal, SP)",
+      "url": "https://www.scielo.br/j/rbcs/a/qZZ98W4dXhy3qXV9GM6WzTb/?format=html&lang=pt",
+      "trecho": "Avaliaram-se a decomposição e a liberação de nutrientes utilizando sacolas de decomposição, com coletas aos 15, 30, 60, 120 e 180 dias após a trituração das culturas. [...] os resíduos de crotalária, milho, sorgo e girassol apresentaram menores taxas de decomposição [...] Quadro 2: Milho 918,0 mm / 24,0 °C (2007/2008); 1.203,2 mm / 24,1 °C (2008/2009) [Figura 3, K0 do milho lido do gráfico: ~0,0045 em 2007/2008 e ~0,0046 em 2008/2009]",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Wisniewski, C.; Holtz, G. P., Decomposição da palhada e liberação de nitrogênio e fósforo numa rotação aveia-soja sob plantio direto, Pesq. agropec. bras. 32(11):1191-1197, 1997 (Carambeí, PR)",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/4761/7274/56089",
+      "trecho": "A palhada de milho decompôs-se mais lentamente, perdendo 49% de peso em 149 dias, devido à sua mais alta relação C/N (43:1)",
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Maluf, H. J. G. M. et al., Decomposição de resíduos de culturas e mineralização de nutrientes em solo com diferentes texturas, R. Bras. Ci. Solo 39(6):1681-1689, 2015 (citando Calonego et al., 2012)",
+      "url": "https://www.scielo.br/scielo.php?script=sci_arttext&pid=S0100-06832015000601681",
+      "trecho": "resíduos de milho e braquiária, que apresentaram relações C/N de 46 e 44, respectivamente, e tempo de meia-vida superior a 135 dias ( Calonego et al., 2012 )",
+      "colunas": [
+        "meia_vida_dias"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009 (citando Seguy et al., 1992, Cerrados do Médio Norte de MT)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "no período de 90 dias após a primeira chuva, as palhadas de milho, arroz e soja foram reduzidas em 63%, 65% e 86%, respectivamente, de sua massa inicial e, nessa mesma ordem e período, resultaram em cobertura do solo de 30%, 38% e 7%",
+      "colunas": [
+        "k_dia"
+      ]
+    },
+    {
+      "fonte": "Oliveira, P.; Kluthcouski, J., Palhada de cobertura do solo no Sistema Plantio Direto, cap. 8 de Fundamentos para uma agricultura sustentável, Embrapa Arroz e Feijão, 2009 (citando Aidar et al., 2000, Brasil Central, Tabela 1)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658109/1/cap8-2009-fundamentos.pdf",
+      "trecho": "Como se tratou de cultivo de inverno do feijoeiro sobre diversas fontes de palhada, no período de maio a setembro, a redução da biomassa variou de 60%, na palhada de soja, a 30%, na palhada de arroz, no período estudado. [Tabela 1, 107 dias:] Soja 4,06 c / 1,62 c / 60; Milho 14,49 bc / 6,30 ab / 57; Arroz 6,02 c / 4,22 bc / 30",
+      "colunas": [
+        "k_dia"
+      ]
+    },
+    {
+      "fonte": "Mendes, I. S. et al., Acúmulo e decomposição de diferentes resíduos de cultivos agrícolas no solo, Agropecuária Científica no Semiárido 18(1):1-5, 2022 (Uruçuí, PI)",
+      "url": "https://acsa.revistas.ufcg.edu.br/acsa/index.php/ACSA/article/download/1257/pdf/5244",
+      "trecho": "Milho ysuperfície = 97,565e-0,005x R² = 0,9606",
+      "colunas": [
+        "k_dia"
+      ]
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Maize stover",
+      "url": "https://www.feedipedia.org/node/16072",
+      "trecho": "Maize stover, dry [...] Crude protein % DM 3.9 (SD 1.5, 1.8-11.5, Nb 80) [...] OM digestibility, ruminants % 49 (SD 6.1, 46-61.4, Nb 6) * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 104 'MILHO PALHA' (SUBPRODUTOS; espécie cadastrada: Zea mays L.): PB média 2,63 (n 9, desvio 0,731); NDT OBS média 54,59 (n 2, desvio 0,906); DMS média 51,28 (n 1, desvio 0); DMO média 49,1 (n 1, desvio 0). Itens vizinhos no CQBAL: 568 MILHO PALHA 4624, 564 MILHO PALHA AMPARO, 561 MILHO PALHA ARMOUR, 557 MILHO PALHA CRISTAL junto de 567/563/560/556 MILHO SABUGO e 566/562/559/555 MILHO GRÃO das mesmas cultivares"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "CQBAL 4.0 (Valadares Filho, Lopes et al., Tabelas Brasileiras de Composição de Alimentos para Ruminantes, UFV), API pública POST /api/relatorio/derivados, consultada em 14/11/2026",
+      "url": "https://www.cqbal.com.br/",
+      "trecho": "Derivado 1783 'MILHO BRÁCTEAS' (FORRAGENS VERDES; espécie cadastrada: Zea mays L.): PB média 3,55 (n 2, desvio 0,332)"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Embrapa Milho e Sorgo, Sistema de Produção 1, Cultivo do Milho, Plantio (versão online)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748759/1/Milho-Plantio.pdf",
+      "trecho": "O somatório térmico é calculado através das temperaturas máximas e mínimas diárias, sendo 30 ºC e 10 ºC, respectivamente, as temperaturas referenciais para o cálculo. [...] As cultivares normais apresentam exigências térmicas correspondentes a 890-1200 graus-dia (G.D.), as precoces, de 831 a 890, e as superprecoces, de 780 a 830 G.D. Essas exigências calóricas se referem ao cumprimento das fases fenológicas compreendidas entre a emergência e o início da polinização."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Cruz & Pereira Filho, Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Milho 3ª ed., Cultivares, 2007",
+      "url": "https://ainfo.cnptia.embrapa.br/digital/bitstream/item/69869/1/Cultivares-1.pdf",
+      "trecho": "UC = [ (temperatura máxima + temperatura mínima) : 2] - 10 onde temperaturas máximas iguais ou maiores que 30°C devem ser consideradas como 30°C, e temperaturas mínimas iguais ou menores que 10°C devem ser consideradas como 10°C. [obs.: o símbolo de grau saiu como \"0\" na extração e foi corrigido] As cultivares normais apresentam exigências térmicas maior do que 890 graus-dias (G.D.), as precoces, de 830 a 890 G.D., e as superprecoces, menor do que 830 G.D."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Oliveira, M.D.X.; Fornasieri Filho, D.; Santos, M.X. (Embrapa). Duração, em graus-dia, dos subperíodos de desenvolvimento do milho safrinha, no Estado de Mato Grosso do Sul. Memorias de la XVIII Reunión Latinoamericana del Maíz (ensaios 1993 e 1994, Campo Grande-MS)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/483422/1/Duracaograus.pdf",
+      "trecho": "A duração média dos subperíodos foram: Emergência ao Florescimento Masculino: 672 e 704 GD para C 606 e C 805; 703 a 740 GD para AG 405 e BR210; 728 e 798 GD para P 3210 e XL 604; Florescimento Masculino ao Florescimento Feminino: entre 31 e 49 GD [...] Florescimento Feminino à Maturidade Fisiológica: entre 668 e 697 GD para C 606 e C 805; 661 e 674 GD para AG 405 e BR 201; 636 e 691 GD para P3210 e XL 604."
+    },
+    {
+      "colunas": [
+        "plausibilidade"
+      ],
+      "fonte": "Magalhães & Durães, Fisiologia da produção de milho, Embrapa Milho e Sorgo Circular Técnica 76, 2006",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/490408/1/Circ76.pdf",
+      "trecho": "Estádio R6 (Maturidade Fisiológica) [...] ocorre cerca de 50 a 60 dias após a polinização"
+    },
+    {
+      "colunas": [
+        "conferencia"
+      ],
+      "fonte": "Souza, L.S.B. et al. Caracterização térmica do feijão-caupi e do milho em sistema de plantio consorciado nas condições do Semi-Árido nordestino. Embrapa Semi-Árido (Petrolina-PE, semeadura 20/10/2006; Tb 10, média simples)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/160416/1/OPB1569.pdf",
+      "trecho": "requerimento térmico para conclusão do ciclo do milho foi 1.866 graus-dia, com duração de 103 dias"
     }
   ],
   "pendencias": [
@@ -171,6 +392,115 @@
     "temp_otima_min_c/max: a única faixa da Embrapa é a ótima de germinação (24-30 °C); para o desenvolvimento a Embrapa só dá 'ótimo a 30 °C'. O trecho '25-28 °C' do Avelar é temperatura do SOLO na Nigéria (Samaru), não do ar, então não serve para mudar o mínimo para 25. Por isso mantive 24-30. O ECOCROP não foi consultado (a página de busca não devolveu dados).",
     "fixa_nitrogenio=false e raiz_profunda=false vêm da botânica (Poaceae, raiz fasciculada), sem trecho citado. FAO-56 Tab.22 (raiz 1.7) e Kc médio/final reaproveitados do rascunho, conferidos no t12.txt.",
     "valor_forrageiro=alto vale para milho silagem. Se o app tratar o milho só como grão, o valor da palhada é menor. Convém alinhar com o sorgo (hoje 'medio'), que também é forrageira de silagem. Opcional: incluir 'forrageira' em tipos.",
-    "cobertura_solo=media mantido (coluna = efeito no fator C da erosão). A palhada do milho persiste bem (30% de cobertura após 90 dias contra 7% da soja), mas durante o ciclo a lavoura em linhas cobre menos que as plantas de cobertura, que estão como 'alta'."
-  ]
+    "cobertura_solo=media mantido (coluna = efeito no fator C da erosão). A palhada do milho persiste bem (30% de cobertura após 90 dias contra 7% da soja), mas durante o ciclo a lavoura em linhas cobre menos que as plantas de cobertura, que estão como 'alta'.",
+    "graus-dia: Não achei fonte brasileira com GD (Tb 10) da semeadura à maturidade fisiológica por classe de ciclo; a soma é CÁLCULO a partir de duas fontes por fase.",
+    "graus-dia: As classes Embrapa usam teto (Tmax 30, Tmin 10). O motor sem teto soma mais GD em dia quente: com Tmax 33 e Tmin 20, Embrapa dá 15 e o motor 16,5 GD. Em locais quentes o motor vai considerar o ciclo fechado alguns dias antes.",
+    "graus-dia: Semeadura->emergência é CÁLCULO (70-90 GD). WOFOST (TSUMEM 70, Tb 10) confere."
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.9,
+      "max": 14.5,
+      "tipico": 7.0
+    },
+    "cn_palhada": {
+      "min": 39,
+      "max": 110,
+      "tipico": 76
+    },
+    "k_dia": {
+      "valor": 0.0045,
+      "min": 0.0045,
+      "max": 0.0111
+    },
+    "meia_vida_dias": {
+      "valor": 154,
+      "min": 63,
+      "max": 154
+    },
+    "condicao_decomposicao": "Palhada de milho safrinha triturada após a colheita do grão, em sacolas na superfície, semeadura direta, Jaboticabal-SP, decomposição de 180 dias na estação chuvosa (918-1.203 mm, 24 °C), 2007/08 e 2008/09.",
+    "pb_pct": 3.9,
+    "digestibilidade_pct": {
+      "valor": 49.0,
+      "tipo": "DMO",
+      "n": 6,
+      "medicao": "estimada",
+      "nota": "DMO em ruminantes da palhada seca de milho (Maize stover, dry), Feedipedia, calculada por equação (*), 6 valores, faixa 46-61,4. O CQBAL não tem a palhada da lavoura: o item 'MILHO PALHA' (id 104) é a palha da espiga (ver cenario_forragem) e o 'MILHO COLMO' (id 239) é colmo verde com DIVMS n=1."
+    },
+    "uso_forrageiro": "residual",
+    "observacoes": {
+      "coleta": "Palhada = colmo, folhas, palha da espiga e sabugo depois da colheita do grão. Faixa: 3,9 t/ha (milho safrinha em SP, Marcelo 2012) a 14,5 t/ha (Aidar, Brasil Central, verão, alta fertilidade). Típico 7,0 t/ha = exemplo da Embrapa para lavoura de 7,1 t/ha de grãos (Coelho 2006). Milho safrinha deixa bem menos (~4 t/ha). C/N: medidas de 39-47 (Wisniewski & Holtz, ao longo de 149 dias; média 43), 46 (Calonego et al. 2012, citado em RBCS, não lido), 76 (EPAMIG), 105-110 (Marcelo 2012, safrinha). Coelho (0,7% N) com C 42,8% (W&H) daria ~61. Típico 76 = mediana das medidas 43, 46, 76, 105, 110. pb_pct e NDT são da silagem de planta inteira (uso principal); a palhada após o grão vale bem menos (Cruz 1983: palha/pé de milho sem espiga PB 4,5% e NDT 50,3%). Quando a fonte só dá N (ou PB), a C/N foi calculada como C/N = C / (PB/6,25), com C = 45% da MS (os teores de C medidos nas fontes lidas vão de 39% a 53%: Machado 1983 arroz 40%; Wisniewski & Holtz 1997 milho 43%; Assmann 2015 soja 48-53%; Marcelo 2012 39-52%). Isso é estimativa, não medida.",
+      "decomposicao": "Valor = K0 de Marcelo 2012 (modelo y = A0 e^(-K0 t), ajustado pelos autores), lido da Figura 3: ~0,0045 (2007/08) e ~0,0046 (2008/09) -> 0,0045/dia; T½ = 0,693/0,0045 = 154 d. A leitura do gráfico tem erro de ~±0,0003. Confere com Wisniewski & Holtz (49% de perda em 149 d -> fração 0,51): k = -ln(0,51)/149 = 0,00452/dia; T½ = 153 d; e com Calonego 2012 (T½ > 135 d -> k < 0,0051). Mendes 2022 (PI, 1 ano): k = 0,005 (T½ 139 d). Aidar (inverno, 107 d, 57% de perda): k = -ln(0,43)/107 = 0,0079 (T½ 88 d). Máximo = Seguy (MT, 63% de perda em 90 d na chuva): k = -ln(0,37)/90 = 0,0111/dia; T½ = 63 d. Milho safrinha (C/N 105-110 em Marcelo) persiste mais que milho verão com C/N ~43-46; os dois dão T½ ~150 d nos dados lidos. Comparação homogênea (mesmo local e período em cada estudo, k = -ln(fração)/dias): Seguy, MT, 90 d após a 1ª chuva: milho k = -ln(0,37)/90 = 0,0111 (T½ 63 d); arroz -ln(0,35)/90 = 0,0117 (59 d); soja -ln(0,14)/90 = 0,0218 (32 d). Aidar, Brasil Central, maio-set (inverno, feijão de inverno), 107 d: milho -ln(0,43)/107 = 0,0079 (88 d); arroz -ln(0,70)/107 = 0,0033 (208 d); soja -ln(0,40)/107 = 0,0086 (81 d). Nos dois, a soja é a menos persistente; arroz persiste igual ou mais que o milho. O sítio de Seguy decompõe ~2,4x mais rápido que o de Marcelo 2012 para o milho (0,0111 contra 0,0045), então números de fontes diferentes não são diretamente comparáveis."
+    },
+    "uso_forrageiro_coletado": "principal",
+    "decisao_uso": "DECISÃO DO USUÁRIO (revisão 14/11): linhas de grão avaliam a forragem no cenário de grão (palhada e grão como ração eventual). A silagem de planta inteira é outro cenário e tiraria a palhada do campo (dupla contagem, achado N-03).",
+    "resultado": {
+      "aporte_biomassa": "alto",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 7.0,
+      "ms_remanescente_t_ha": 5.34,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "cenario_forragem": "Palhada de milho depois da colheita do grão (colmo, folhas, palha e sabugo secos). Saíram os números de silagem/planta inteira. O 'MILHO PALHA' do CQBAL (id 104: PB 2,63 n=9, NDT 54,59 n=2, DMS 51,28 n=1, DMO 49,1 n=1) é a PALHA DA ESPIGA: o CQBAL tem MILHO PALHA 4624/AMPARO/ARMOUR/CRISTAL ao lado de MILHO SABUGO e MILHO GRÃO das mesmas cultivares (dissecção da espiga), e itens 'MILHO PALHA E SABUGO' e 'MILHO DESINTEGRADO COM PALHA E SABUGO', em que 'palha' é a bráctea; a PB 2,6 bate com MILHO BRÁCTEAS (id 1783, PB 3,55). Por isso não foi usado. O grão como ração eventual (MILHO FUBÁ, id 1: PB 8,96 n=945) não entra."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Avelar, Embrapa CNPMS, Manual técnico Cultura do Milho, cap.1: 'o milho tem uma temperatura base de 10°C'."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Grupos MAPA/ZARC (Cruz & Magalhães, Embrapa 2010): Grupo II de 110 a 145 dias da emergência à maturação; ensaio Embrapa Doc. 273 com 114-134 DAE confirma."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Mesmo Grupo II do ZARC (<=145 dias). Grupo III (>145) fica fora por decisão registrada em mudancas."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "Embrapa Milho e Sorgo, Cultivo do Milho 3ª ed., Clima e solo: 'consumo de água durante todo o ciclo está entre 500 e 800mm'."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte: 500 a 800 mm."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12 traz o Kc ini só na linha do grupo (i. Cereals 0.3); a linha da própria cultura (Maize, field (grain)) herda esse valor por construção da tabela. Tratado como valor publicado para a espécie, e não como proxy (proxy fica para espécies sem linha própria, como guandu e crotalária)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Maize field (grain): 1.20."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.12, Maize: 0.60-0.35; usado 0.35, a ponta para grão seco no campo prevista na própria tabela."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab.22, Maize 1.0-1.7 m; limite superior = sequeiro (texto da Tab.22)."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; Classes de ciclo da Embrapa (Tb 10, Tmax limitada a 30 °C e Tmin elevada a 10 °C = TETO), da EMERGÊNCIA ao início da polinização: superprecoce 780-830, precoce 831-890, normal 890-1200 GD. Para o ciclo inteiro (CÁLCULO): soma-se a fase florescimento feminino->maturidade fisiológica (camada preta) medida por Oliveira, Fornasieri Filho & Santos no milho safrinha de Campo Grande-MS (mesmo método Embrapa, Tb 10): médias de 636 a 697 GD por cultivar (extremos 450-798, os baixos em semeadura de abril com déficit hídrico). Florescimento masculino->feminino: 27-79 GD (mesma fonte). Semeadura->emergência: a fonte não dá; 5-7 d × (24 − 10) = 70-98 GD (CÁLCULO). Mínimo (superprecoce, safrinha): 780 + 650 + 70 = 1500. Máximo (normal, verão): 950 (normal típico; a classe vai até 1200) + 40 + 750 + 90 = 1830 ≈ 1900. Com o extremo da classe normal (1200) daria 1200 + 40 + 790 + 90 ≈ 2100. | plausibilidade: Verão no Cerrado, Tmed ~23,5 °C → 13,5 GD/dia: 1500/13,5 = 111 dias e 1900/13,5 = 141 dias, contra ciclo_dias 110-145 do CSV. No Sul (Tmed ~21,5): 1900/11,5 = 165 dias, acima do CSV, mas o ciclo normal no Sul de fato alonga. Conferência: Circular 76 diz R6 cerca de 50-60 dias após a polinização; 55 × (23 − 10) = 715 GD, dentro dos 636-798 de Oliveira."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "semeadura -> maturação fisiológica; Tb 10; Classes de ciclo da Embrapa (Tb 10, Tmax limitada a 30 °C e Tmin elevada a 10 °C = TETO), da EMERGÊNCIA ao início da polinização: superprecoce 780-830, precoce 831-890, normal 890-1200 GD. Para o ciclo inteiro (CÁLCULO): soma-se a fase florescimento feminino->maturidade fisiológica (camada preta) medida por Oliveira, Fornasieri Filho & Santos no milho safrinha de Campo Grande-MS (mesmo método Embrapa, Tb 10): médias de 636 a 697 GD por cultivar (extremos 450-798, os baixos em semeadura de abril com déficit hídrico). Florescimento masculino->feminino: 27-79 GD (mesma fonte). Semeadura->emergência: a fonte não dá; 5-7 d × (24 − 10) = 70-98 GD (CÁLCULO). Mínimo (superprecoce, safrinha): 780 + 650 + 70 = 1500. Máximo (normal, verão): 950 (normal típico; a classe vai até 1200) + 40 + 750 + 90 = 1830 ≈ 1900. Com o extremo da classe normal (1200) daria 1200 + 40 + 790 + 90 ≈ 2100. | plausibilidade: Verão no Cerrado, Tmed ~23,5 °C → 13,5 GD/dia: 1500/13,5 = 111 dias e 1900/13,5 = 141 dias, contra ciclo_dias 110-145 do CSV. No Sul (Tmed ~21,5): 1900/11,5 = 165 dias, acima do CSV, mas o ciclo normal no Sul de fato alonga. Conferência: Circular 76 diz R6 cerca de 50-60 dias após a polinização; 55 × (23 − 10) = 715 GD, dentro dos 636-798 de Oliveira."
+    }
+  },
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }
