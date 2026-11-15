@@ -1,6 +1,8 @@
 """Catálogo do motor: BR (17 culturas, vazio = None), EUA sem CSV e equipamentos por cultura."""
 import csv
+import importlib.util
 import logging
+from dataclasses import replace
 
 import pytest
 
@@ -8,6 +10,7 @@ from app.core.caminhos import RAIZ_REPO
 from app.services import catalogo as base_do_app
 from app.services.motor import catalogo
 from app.services.motor.catalogo import catalogo_do_pais, equipamentos_por_cultura, ler_catalogo
+from app.services.motor.parametros import FASES_FRIO_TEXTO
 
 
 @pytest.fixture(autouse=True)
@@ -132,3 +135,32 @@ def test_campos_de_frio_com_virgula_decimal_e_celula_vazia(tmp_path):
     assert c["soja"].tmin_critica_c == -2.2 and c["soja"].tmin_dias_seguidos is None and c["soja"].tmin_efeito is None
     assert c["soja"].fase_frio_fim_frac is None  # coluna que nem existe no arquivo
     assert c["arroz"].tmin_dias_seguidos == 3.0 and c["arroz"].tmin_efeito == "aviso" and not c["arroz"].extras
+
+
+def test_dias_seguidos_de_frio_vazio_vale_1_e_arredonda():
+    c = catalogo_do_pais("BR")
+    assert c["soja"].tmin_dias_seguidos is None and c["soja"].dias_seguidos_de_frio == 1
+    assert c["arroz_irrigado"].dias_seguidos_de_frio == 3
+    assert replace(c["soja"], tmin_dias_seguidos=0.0).dias_seguidos_de_frio == 1
+    assert replace(c["soja"], tmin_dias_seguidos=2.6).dias_seguidos_de_frio == 3
+
+
+# --- M2: o texto do frio cobre as fases e os valores que o montar_csv.py aceita
+def _montar_csv():
+    spec = importlib.util.spec_from_file_location("montar_csv_motor_catalogo", RAIZ_REPO / "data" / "catalogo" / "scripts" / "montar_csv.py")
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
+def test_fases_de_frio_com_texto_sao_as_do_montar_csv():
+    assert set(FASES_FRIO_TEXTO) == _montar_csv().FASES_FRIO - {""}
+
+
+def test_fase_e_efeito_de_frio_dos_dois_csv_sao_permitidos():
+    montar = _montar_csv()
+    for pais in ("BR", "US"):
+        for c in catalogo_do_pais(pais).values():
+            assert (c.fase_sensivel_frio or "") in montar.FASES_FRIO, (pais, c.id)
+            assert (c.tmin_efeito or "") in montar.EFEITOS_FRIO, (pais, c.id)
+            assert c.fase_sensivel_frio is None or c.fase_sensivel_frio in FASES_FRIO_TEXTO, (pais, c.id)  # com texto próprio, não o genérico

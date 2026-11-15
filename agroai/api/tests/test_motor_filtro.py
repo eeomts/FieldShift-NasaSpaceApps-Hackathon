@@ -1,7 +1,8 @@
 """Filtro: cada regra elimina com o motivo certo; a atual nunca é eliminada."""
 from datetime import date, timedelta
 
-from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada, janela_do_frio
+from app.services.motor.filtro import anos_com_frio, avaliar, fracao_de_anos_com_geada, janela_do_frio
+from app.services.motor.parametros import FASES_FRIO_TEXTO, FRIO_MIN_ANOS_COM_DADO
 from motor_helpers import ANOS, clima, cultura, entradas, item, serie_tmin
 
 RESP = (10, 12)  # outubro a dezembro: 3 meses
@@ -388,12 +389,45 @@ def test_frio_dia_sem_dado_quebra_a_sequencia_e_tira_o_ano_da_conta():
     it = item("arroz", *RESP)
     # 3 dias frios com o do meio sem dado, em todos os anos: nenhum ano tem a janela completa
     r = frio(c, it, com_frio(c, it, dias=3, valor=10.0, ausente=[1]))
-    assert not r.eliminada and not r.alertas and any("sem a mínima diária" in l for l in r.lacunas)
-    # sem dado só em 20 anos: os 10 restantes (todos frios) decidem
+    assert not r.eliminada and not r.alertas and any("não temos a temperatura mínima de cada dia" in l for l in r.lacunas)
+    # sem dado só em 5 anos: os 25 restantes (todos frios) decidem, sem lacuna
     serie = com_frio(c, it, dias=3, valor=10.0)
-    for a in list(ANOS)[:20]:
+    for a in list(ANOS)[: 30 - FRIO_MIN_ANOS_COM_DADO]:
         serie[janela_do_frio(c, it, a)[0]] = None
-    assert [x.codigo for x in frio(c, it, serie).alertas] == ["frio"]
+    r = frio(c, it, serie)
+    assert [x.codigo for x in r.alertas] == ["frio"] and not r.lacunas
+    assert len(anos_com_frio(c, it, clima(tmin_por_dia=serie))) == FRIO_MIN_ANOS_COM_DADO
+
+
+def test_frio_com_poucos_anos_de_dado_nao_decide_e_vira_lacuna_com_o_numero_de_anos():
+    c = cultura("arroz", **ARROZ)
+    it = item("arroz", *RESP)
+    serie = com_frio(c, it, dias=3, valor=10.0)  # todo ano tem o frio, mas faltam dados em 6 anos
+    for a in list(ANOS)[: 31 - FRIO_MIN_ANOS_COM_DADO]:
+        serie[janela_do_frio(c, it, a)[0]] = None
+    r = frio(c, it, serie)
+    anos = FRIO_MIN_ANOS_COM_DADO - 1
+    assert not r.eliminada and not r.alertas
+    assert r.lacunas == [f"Arroz: o frio na florada foi checado em só {anos} dos 30 anos, por falta de temperatura mínima do local; poucos para decidir."]
+
+
+def test_frio_sem_ciclo_na_base_tem_lacuna_propria():
+    c = cultura("c", ciclo_dias_min=None, ciclo_dias_max=None, sensivel_geada=True, tmin_critica_c=0, fase_sensivel_frio="floracao", fase_frio_inicio_frac=0.3, fase_frio_fim_frac=0.5)
+    it = item("c", *RESP)
+    assert janela_do_frio(c, it, 2000) is None
+    r = frio(c, it, serie_tmin(lambda d: -5.0))
+    assert not r.eliminada and not r.alertas
+    assert any(l == "C: sem o ciclo na base, não checamos o frio." for l in r.lacunas)
+    assert not any("temperatura mínima" in l for l in r.lacunas)
+
+
+def test_texto_do_frio_tem_uma_frase_para_cada_fase_do_catalogo():
+    assert set(FASES_FRIO_TEXTO) == {"emergencia", "vegetativo", "floracao", "enchimento_grao", "ciclo_todo"}
+    for fase, onde in FASES_FRIO_TEXTO.items():
+        c = cultura("c", sensivel_geada=True, tmin_critica_c=0, fase_sensivel_frio=fase, fase_frio_inicio_frac=0.0, fase_frio_fim_frac=1.0)
+        it = item("c", *RESP)
+        r = avaliar([it], entradas([it], [c], clima=clima()), True)  # sem a Tmin diária
+        assert r.lacunas == [f"C: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio {onde}."]
 
 
 def test_frio_trigo_com_geada_so_fora_da_janela_da_fase_passa():
@@ -429,7 +463,7 @@ def test_frio_sem_dado_diario_vira_lacuna_nao_elimina_e_nao_cai_nos_2_graus():
     it = item("soja", *RESP)
     r = avaliar([it], entradas([it], [c], clima=clima(geada={11: 30, 12: 30, 1: 30})), True)  # geada < 2 °C todo ano, mas sem Tmin diária
     assert not r.eliminada and not r.alertas
-    assert r.lacunas == ["Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio."]
+    assert r.lacunas == ["Soja: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio no enchimento dos grãos."]
 
 
 def test_frio_sem_tmin_critica_mantem_a_reserva_de_2_graus_no_terco_do_meio():

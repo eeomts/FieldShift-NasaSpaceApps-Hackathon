@@ -80,6 +80,11 @@ class CulturaMotor:
     estados_validos: tuple[str, ...] = ()  # siglas (UF no BR, USPS nos EUA); vazio = sem restrição (regra 13)
     extras: dict[str, str] = field(default_factory=dict, compare=False)  # colunas novas do CSV, sem tipo
 
+    @property
+    def dias_seguidos_de_frio(self) -> int:
+        """Dias seguidos com Tmin abaixo do limiar para o dano (regra 17): vazio = 1 dia."""
+        return max(1, round(self.tmin_dias_seguidos or 1))
+
     def tem_tipo(self, tipo: str) -> bool:
         return tipo in self.tipos
 

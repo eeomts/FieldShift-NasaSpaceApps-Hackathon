@@ -1,6 +1,6 @@
 """Série diária -> linhas mensais (somas, médias, extremos e contagens). Dia ausente não entra na conta da variável."""
-from dataclasses import dataclass
 import calendar
+from dataclasses import dataclass
 from datetime import date, timedelta
 
 from app.services.clima.graus_dia import gd_mensal_por_tb, tmed_do_dia

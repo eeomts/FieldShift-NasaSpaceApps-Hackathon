@@ -112,8 +112,14 @@ def test_frases_soltas(pt, en):
         "Trigo: em 35% dos anos houve geada na florada (mínima abaixo de -2 °C) e ela é sensível.",
         "Arroz irrigado: frio na florada em 45% dos anos (mínima abaixo de 15 °C por 3 dias seguidos); o dano é parcial, validar localmente.",
         "Pasto: em 60% dos anos houve geada ao longo do ano (mínima abaixo de -3 °C) e ela é sensível.",
-        "Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio.",
-        "Milho: sem a mínima diária do local para a fase todo o ciclo, não checamos o frio.",
+        "Soja: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio no enchimento dos grãos.",
+        "Milho: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio em todo o ciclo.",
+        "Trigo: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio na emergência das plantas.",
+        "Aveia: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio no crescimento das plantas.",
+        "Pasto: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio ao longo do ano.",
+        "Feijão: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio na fase sensível.",
+        "Arroz irrigado: o frio na florada foi checado em só 24 dos 30 anos, por falta de temperatura mínima do local; poucos para decidir.",
+        "Soja: sem o ciclo na base, não checamos o frio.",
         # regra 2 na cobertura: só aviso
         "Centeio: o calor do período dá 800 graus-dia e ela precisa de pelo menos 1.200; pode não completar o ciclo antes do manejo.",
         # A1: cobertura semeada no mês da colheita
@@ -139,6 +145,12 @@ def test_frases_novas_da_revisao_em_ingles_exatas():
         "Rye: sowing is in October, right after the harvest of Corn and Soybean; it depends on your harvest date."
     )
     assert traduzir("Plantar Centeio logo depois da colheita (out–abr)") == "Plant Rye right after the harvest (Oct–Apr)"
+    assert traduzir("Milho: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio em todo o ciclo.") == (
+        "Corn: we don't have the daily minimum temperature for your location, so we did not check the cold over the whole cycle."
+    )
+    assert traduzir("Arroz irrigado: o frio na florada foi checado em só 24 dos 30 anos, por falta de temperatura mínima do local; poucos para decidir.") == (
+        "Irrigated rice: the cold during flowering was checked in only 24 of 30 years, for lack of the local minimum temperature; too few to decide."
+    )
 
 
 def test_frio_traduz_limiar_e_dias_seguidos():

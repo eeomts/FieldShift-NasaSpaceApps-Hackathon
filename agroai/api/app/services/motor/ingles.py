@@ -52,16 +52,13 @@ _FRASES = {
 
 _Regra = tuple[re.Pattern, str | Callable[[re.Match], str]]
 
-# Regra 17 (frio por fase, filtro._frio): termo, onde (parametros.FASES_FRIO_TEXTO) e o limiar.
+# Regra 17 (frio por fase, filtro._frio): termo, onde (parametros.FASES_FRIO_TEXTO, FASE_FRIO_PADRAO e FASE_FRIO_PERENE) e o limiar.
 _TERMO_FRIO = {"geada": "frost", "frio": "cold"}
 _ONDE_FRIO = {
+    "na emergência das plantas": "during emergence", "no crescimento das plantas": "during plant growth",
     "na florada": "during flowering", "no enchimento dos grãos": "during grain fill",
-    "no começo do crescimento": "early in growth", "em todo o ciclo": "over the whole cycle",
-    "ao longo do ano": "through the year", "na fase sensível": "in the sensitive stage",
-}  # fmt: skip
-_FASE_FRIO = {
-    "florada": "flowering", "enchimento dos grãos": "grain fill", "começo do crescimento": "early growth",
-    "todo o ciclo": "the whole cycle", "ano todo": "the whole year", "fase sensível": "the sensitive stage",
+    "em todo o ciclo": "over the whole cycle", "ao longo do ano": "through the year",
+    "na fase sensível": "in the sensitive stage",
 }  # fmt: skip
 _QUANTO_FRIO = re.compile(r"^mínima abaixo de (\S+) °C(?: por (\d+) dias seguidos)?$")
 
@@ -123,8 +120,12 @@ _REGRAS: list[_Regra] = [
         (r"^(.+?): (geada|frio) (.+?) em (\S+) dos anos \((mínima abaixo de .+?)\); o dano é parcial, validar localmente\.$",
          lambda m: f"{m.group(1)}: {_TERMO_FRIO[m.group(2)]} {_ONDE_FRIO.get(m.group(3), m.group(3))} in {m.group(4)} of the years "
                    f"({_quanto_frio(m.group(5))}); the damage is partial, check locally."),
-        (r"^(.+?): sem a mínima diária do local para a fase (.+?), não checamos o frio\.$",
-         lambda m: f"{m.group(1)}: no local daily minimum temperature for {_FASE_FRIO.get(m.group(2), m.group(2))}, so we did not check the cold."),
+        (r"^(.+?): não temos a temperatura mínima de cada dia do seu local, então não checamos o frio (.+?)\.$",
+         lambda m: f"{m.group(1)}: we don't have the daily minimum temperature for your location, so we did not check the cold {_ONDE_FRIO.get(m.group(2), m.group(2))}."),
+        (r"^(.+?): o frio (.+?) foi checado em só (\d+) dos (\d+) anos, por falta de temperatura mínima do local; poucos para decidir\.$",
+         lambda m: f"{m.group(1)}: the cold {_ONDE_FRIO.get(m.group(2), m.group(2))} was checked in only {m.group(3)} of {m.group(4)} years, "
+                   "for lack of the local minimum temperature; too few to decide."),
+        (r"^(.+?): sem o ciclo na base, não checamos o frio\.$", r"\1: no cycle in our database, so we did not check the cold."),
         (r"^Você disse que não planta (.+)\.$", r"You said you don't grow \1."),
         (r"^(.+?) só entra com irrigação ou várzea e você não marcou irrigação\.$", r"\1 only works with irrigation or flooded lowland, and you did not mark irrigation."),
         (r"^(.+?): sem os meses de plantio, não checamos clima, água e geada\.$", r"\1: without the planting months, we did not check climate, water and frost."),

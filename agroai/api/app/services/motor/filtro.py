@@ -14,10 +14,11 @@ from app.services.motor.modelo import Alerta, ItemRotacao
 from app.services.motor.parametros import (
     AGUA_ALERTA_ABAIXO,
     AGUA_MUITO_ABAIXO,
-    GD_ALERTA_ABAIXO,
     FASE_FRIO_PADRAO,
     FASE_FRIO_PERENE,
     FASES_FRIO_TEXTO,
+    FRIO_MIN_ANOS_COM_DADO,
+    GD_ALERTA_ABAIXO,
     GD_ELIMINA_ABAIXO,
     GEADA_FASE_SENSIVEL,
     GEADA_MAX_FRACAO_DE_ANOS,
@@ -94,21 +95,23 @@ def _ano_com_frio(janela: tuple[date, date], limiar: float, seguidos: int, clima
     return False
 
 
-def fracao_de_anos_com_frio(c: CulturaMotor, item: ItemRotacao, clima: ClimaDoLocal) -> float | None:
-    """Parcela dos anos de semeadura 1991-2020, com todos os dias da fase presentes, em que o frio da regra 17 ocorreu."""
-    limiar = c.tmin_critica_c
-    if limiar is None:
+def anos_com_frio(c: CulturaMotor, item: ItemRotacao, clima: ClimaDoLocal) -> list[bool] | None:
+    """Para cada ano de semeadura 1991-2020 com todos os dias da fase presentes: o frio da regra 17 ocorreu?
+
+    Ano com algum dia sem dado fica de fora (a lista pode ter menos de 30). None: sem limiar na base ou sem ciclo para
+    montar a janela da fase.
+    """
+    if c.tmin_critica_c is None:
         return None
-    seguidos = max(1, round(c.tmin_dias_seguidos or 1))
     resultados = []
     for ano in range(TMIN_ANO_INICIO, TMIN_ANO_FIM + 1):
         janela = janela_do_frio(c, item, ano)
         if janela is None:
             return None
-        r = _ano_com_frio(janela, limiar, seguidos, clima)
+        r = _ano_com_frio(janela, c.tmin_critica_c, c.dias_seguidos_de_frio, clima)
         if r is not None:
             resultados.append(r)
-    return sum(resultados) / len(resultados) if resultados else None
+    return resultados
 
 
 def _equipamento(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
@@ -206,16 +209,24 @@ def _geada(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMoto
 def _frio(c: CulturaMotor, item: ItemRotacao, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
     """Regra 17: limiar de Tmin da cultura, só nos dias da fase sensível. Sem dado diário: lacuna, nunca o limiar de 2 °C."""
     limiar = c.tmin_critica_c
-    onde, fase = FASE_FRIO_PERENE if item.perene else FASES_FRIO_TEXTO.get(c.fase_sensivel_frio or "", FASE_FRIO_PADRAO)
-    fracao = fracao_de_anos_com_frio(c, item, e.clima)
-    if fracao is None:
-        lac.append(f"{c.nome}: sem a mínima diária do local para a fase {fase}, não checamos o frio.")
+    onde = FASE_FRIO_PERENE if item.perene else FASES_FRIO_TEXTO.get(c.fase_sensivel_frio or "", FASE_FRIO_PADRAO)
+    anos = anos_com_frio(c, item, e.clima)
+    if anos is None:  # sem ciclo na base: não dá para montar a janela da fase
+        lac.append(f"{c.nome}: sem o ciclo na base, não checamos o frio.")
         return
+    if not anos:
+        lac.append(f"{c.nome}: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio {onde}.")
+        return
+    total = TMIN_ANO_FIM - TMIN_ANO_INICIO + 1
+    if len(anos) < FRIO_MIN_ANOS_COM_DADO:
+        lac.append(f"{c.nome}: o frio {onde} foi checado em só {len(anos)} dos {total} anos, por falta de temperatura mínima do local; poucos para decidir.")
+        return
+    fracao = sum(anos) / len(anos)
     if fracao <= GEADA_MAX_FRACAO_DE_ANOS:
         return
     termo = "geada" if limiar <= 0 else "frio"
     graus = num(limiar, 1).removesuffix(",0")
-    seguidos = max(1, round(c.tmin_dias_seguidos or 1))
+    seguidos = c.dias_seguidos_de_frio
     quanto = f"mínima abaixo de {graus} °C" + (f" por {seguidos} dias seguidos" if seguidos > 1 else "")
     if c.tmin_efeito == "aviso":  # dano parcial (ex.: esterilidade do arroz): fica, com o aviso
         achados.append(Achado(termo, f"{c.nome}: {termo} {onde} em {pct(fracao)} dos anos ({quanto}); o dano é parcial, validar localmente.", False))

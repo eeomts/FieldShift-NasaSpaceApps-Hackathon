@@ -1,4 +1,5 @@
 """Números do motor de rotação: cada constante diz a fonte ou 'proposta, validar com o Yury'."""
+from app.services.clima.limiares import BASE_FIM, BASE_INICIO
 
 DIAS_POR_MES = 30.4  # 365 / 12, arredondado
 
@@ -22,17 +23,20 @@ GEADA_FASE_SENSIVEL = "terco_medio"  # proposta, validar com o Yury (floração)
 
 # Filtro de frio por fase (regra 17): a mesma fração máxima de anos da geada (GEADA_MAX_FRACAO_DE_ANOS)
 SEMEADURA_DIA_DO_MES = 15  # proposta, validar com o Yury: dia da semeadura dentro do inicio_mes (alternativa: dias 1, 11 e 21)
-TMIN_ANO_INICIO = 1991  # anos de semeadura que entram na conta do frio (base 1991-2020)
-TMIN_ANO_FIM = 2020
-# Fase sensível ao frio: (como aparece na frase "houve frio ...", como aparece em "para a fase ..."). Sem jargão.
+TMIN_ANO_INICIO = BASE_INICIO  # anos de semeadura que entram na conta do frio (a base do clima, 1991-2020)
+TMIN_ANO_FIM = BASE_FIM
+FRIO_MIN_ANOS_COM_DADO = 25  # proposta, validar com o Yury: com menos anos de janela completa (dos 30) o frio não decide, vira lacuna
+# Fase sensível ao frio, como aparece na frase "houve frio ..." e na lacuna "não checamos o frio ...". Sem jargão.
+# As chaves são as fases aceitas por data/catalogo/scripts/montar_csv.py (FASES_FRIO); um teste confere.
 FASES_FRIO_TEXTO = {
-    "floracao": ("na florada", "florada"),
-    "enchimento_grao": ("no enchimento dos grãos", "enchimento dos grãos"),
-    "inicio": ("no começo do crescimento", "começo do crescimento"),
-    "ciclo_todo": ("em todo o ciclo", "todo o ciclo"),
+    "emergencia": "na emergência das plantas",
+    "vegetativo": "no crescimento das plantas",
+    "floracao": "na florada",
+    "enchimento_grao": "no enchimento dos grãos",
+    "ciclo_todo": "em todo o ciclo",
 }
-FASE_FRIO_PADRAO = ("na fase sensível", "fase sensível")  # fase com nome que ainda não conhecemos
-FASE_FRIO_PERENE = ("ao longo do ano", "ano todo")  # perene: o ano todo
+FASE_FRIO_PADRAO = "na fase sensível"  # fase com nome que ainda não conhecemos
+FASE_FRIO_PERENE = "ao longo do ano"  # perene: o ano todo
 
 # Mês por extenso (frases da regra 12 com o mês da colheita)
 MESES_POR_EXTENSO = (
