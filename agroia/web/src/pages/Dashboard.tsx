@@ -64,6 +64,9 @@ export function Dashboard() {
                 Seu questionário está salvo. A busca dos dados da NASA para o seu ponto entra na próxima parte do projeto.
               </Texto>
             </Cartao>
+            <Link to="/chat" className="flex h-14 items-center justify-center gap-2 rounded-[20px] bg-folha px-5 text-[17px] font-bold text-white shadow-degrau">
+              <Brilho /> Conversar com o assistente
+            </Link>
             <Link to="/onboarding" className="text-center text-sm font-bold text-folha lg:text-left">Revisar minhas respostas</Link>
           </div>
           {temCalendario && fazenda && (

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import { SessaoProvider, useSessao } from "./api/sessao";
+import { Chat } from "./pages/Chat";
 import { Dashboard } from "./pages/Dashboard";
 import { Entrar } from "./pages/Entrar";
 import { Onboarding } from "./onboarding/Onboarding";
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/cadastro" element={<SoDeslogado><Entrar modo="cadastro" /></SoDeslogado>} />
           <Route path="/onboarding" element={<Protegida><Onboarding /></Protegida>} />
           <Route path="/dashboard" element={<Protegida exigeOnboarding><Dashboard /></Protegida>} />
+          <Route path="/chat" element={<Protegida exigeOnboarding><Chat /></Protegida>} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </BrowserRouter>
