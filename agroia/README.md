@@ -80,6 +80,7 @@ Crie uma conta no site: ela fica só no seu banco local. A documentação intera
 | `DB_PASSWORD` | Senha do banco. Peça a quem cuida da VPS |
 | `JWT_SECRET` | Gere com `python -c "import secrets; print(secrets.token_urlsafe(48))"` |
 | `GEMINI_API_KEY` | Opcional. Sem ela, o questionário usa a reserva sem IA e o chat responde 503 |
+| `EARTHDATA_TOKEN` | Opcional. Token do Earthdata Login (urs.earthdata.nasa.gov → Generate Token), na mesma conta que aprovou a aplicação "NASA GESDISC DATA ARCHIVE". Sem ele, o Dashboard mostra só a chuva do NASA POWER e diz que faltam a umidade e o NDVI. Vai no `.env`, nunca no `.env.dev` (que é versionado) |
 
 > ⚠️ Rode o `cp` **só uma vez**: ele sobrescreve o `.env` e apaga o que você preencheu.
 
@@ -130,6 +131,8 @@ Os testes cobrem:
 | GET | `/fazenda` | Questionário salvo, perfil, resumo, `status_processamento` (`pendente`, `processando`, `pronto`, `erro`) e o retrato do solo (`indicadores`, `figuras`, `sintese`, `soilgrids`) |
 | PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`). Com local novo, responde na hora com `status_processamento: "processando"` e busca o solo no SoilGrids em segundo plano (veja "Solo") |
 | GET | `/fazenda/estrategias` | Compara a rotação atual com as 2 melhores alternativas, na hora (a 1ª vez numa região baixa o NASA POWER, 10–30 s). Erros: 404 sem fazenda, 422 sem local / sem culturas da região / sem calendário, 503 se o NASA POWER falhar |
+| GET | `/fazenda/satelite` | Satélite no ponto da fazenda: umidade do solo (SMAP L4, comparada com o mesmo dia dos 8 anos anteriores), NDVI do último ano (MODIS MOD13Q1) e chuva diária dos últimos 30 dias (GPM IMERG; se a conta não tiver acesso à GES DISC, NASA POWER com aviso). Lê só os pixels do ponto pelo OPeNDAP; a 1ª vez numa região leva 10–15 s e depois fica em cache no dia. Cada parte que falhar vem em `faltas` com um código (`sem_token`, `nuvem`...); o front escreve o texto em PT ou EN. Erros: 404 sem fazenda, 422 sem local |
+| GET | `/fazenda/previsao` | Previsão dos próximos 7 dias no ponto da fazenda (Open-Meteo, D-014): máxima, mínima, chuva, chance de chuva e código WMO. Sem chave; cache de 1 hora por ponto. A tela dá o crédito à Open-Meteo (CC BY 4.0). Erros: 404 sem fazenda, 422 sem local, 503 se a Open-Meteo falhar |
 | POST | `/onboarding/interpretar` | Texto livre → itens da base (perguntas 8, 26a e 26b). Aceita `hemisferio` (`N`/`S`) e `idioma` (`pt`/`en`) |
 | GET | `/culturas`, `/equipamentos` | Listas reserva (`?idioma=pt\|en`) |
 | GET | `/local/buscar?q=&idioma=` | Busca cidade ou região (OpenStreetMap / Nominatim), até 5 resultados. Falha → lista vazia |

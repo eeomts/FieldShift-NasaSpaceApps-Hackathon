@@ -26,6 +26,9 @@ class Settings(BaseSettings):
     gemini_model: str = "gemini-3.8-flash"
     gemini_embedding_model: str = "gemini-embedding-001"
 
+    # Earthdata Login da NASA (SMAP, MODIS e IMERG pelo OPeNDAP). Sem token, o Dashboard diz que o dado não veio.
+    earthdata_token: str | None = None
+
     # Front-end permitido (CORS), separado por vírgula
     cors_origins: str = "http://localhost:5173"
     # Em desenvolvimento, aceita o front em qualquer porta do localhost (o Vite pula para 5174 se a 5173 estiver ocupada).

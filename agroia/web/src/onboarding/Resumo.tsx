@@ -1,4 +1,5 @@
 // Resumo no fim do questionário: perfil (calculado pela API), calendário, retrato do solo e próximos passos.
+import { passoNoIdioma } from "./passos";
 import type { CulturaBase, Fazenda, Indicador } from "../api/tipos";
 import { Pino } from "../components/icones";
 import { cx, Selo, Titulo } from "../components/ui";
@@ -149,7 +150,9 @@ export function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; cultura
         <Secao n={4} titulo={t("Próximos passos recomendados", "Suggested next steps")}>
           {fazenda.proximos_passos.length > 0 ? (
             <ol className="m-0 flex list-none flex-col gap-2.5 p-0">
-              {fazenda.proximos_passos.slice(0, 3).map((p, i) => (
+              {fazenda.proximos_passos.slice(0, 3).map((original, i) => {
+                const p = { id: original.id, ...passoNoIdioma(original, idioma) };
+                return (
                 <li key={p.id} className="flex gap-3 rounded-2xl bg-areia p-3">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sol text-sm font-extrabold">{i + 1}</span>
                   <span className="flex flex-col gap-0.5">
@@ -157,7 +160,8 @@ export function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; cultura
                     <span className="text-sm leading-snug text-suave">{p.texto}</span>
                   </span>
                 </li>
-              ))}
+                );
+              })}
             </ol>
           ) : (
             <span className="text-sm text-suave">{t("Nada pendente por agora.", "Nothing pending for now.")}</span>
