@@ -18,6 +18,7 @@ Os valores foram conferidos em fontes primárias (Embrapa, FAO-56, FAO ECOCROP, 
 Ao mudar um valor em `culturas.csv`, atualize também o arquivo da cultura.
 
 ## Convenções dos números
+- `ciclo_dias_min/max`: da semeadura (ou da emergência, quando a fonte só der isso; a diferença é de 5 a 10 dias) à maturação fisiológica, a mesma fase dos graus-dia. A colheita pode vir depois, com o grão secando no campo.
 - Planta de cobertura (sem `comercial` em `tipos`): ciclo, água e Kc valem até o **manejo no florescimento**, não até o grão.
 - Cobertura cortada verde: `kc_final` = `kc_medio` (FAO-56, cap. 6).
 - Kc medido em outro clima é convertido para a condição padrão do FAO-56 (eq. 62) e **limitado a 1,25** (FAO-56 eq. 72: no clima padrão, Kc max = max(1,2; Kcb + 0,05)). O valor medido fica nas evidências.
