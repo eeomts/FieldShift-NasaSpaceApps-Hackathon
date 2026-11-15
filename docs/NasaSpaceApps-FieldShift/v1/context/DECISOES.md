@@ -79,18 +79,17 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - **Uso do solo e histórico:** MapBiomas
   - **Validação:** ZARC; INMET/CEMADEN
   - **Contexto regional e renda:** IBGE PAM
-  - **Acesso:** Earthdata Search (login), earthaccess (código), AppEEARS (séries por ponto; **descartado em 15/11/2026, ver a nota abaixo**)
+  - **Acesso:** Earthdata Search (login), earthaccess (código)
 - **Opcionais (3), em `tools/extras/`:** FIRMS (risco de fogo; volta ao núcleo se a demo tiver Cerrado ou borda da Amazônia), Sentinel-1 (só se a demo tiver região muito nublada na safra), Embrapa Solos (depende da Q-07).
-- **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess e o AppEEARS cobrem), NASA Harvest e ARSET (referência e estudo, não fonte). **O NASA Harvest está em revisão: ver a proposta abaixo.**
+- **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess cobre), NASA Harvest e ARSET (referência e estudo, não fonte). **O NASA Harvest está em revisão: ver a proposta abaixo.**
 - **Consequência:** as notas das fontes que saíram foram apagadas e as citações a elas foram tiradas dos documentos do projeto. Os documentos que descrevem a lista oficial do desafio continuam citando todos os datasets dela.
 - **Nota de 15/11/2026 (revisão "projeto-dados 15_11_26"), renda: o que o motor faz hoje.** A linha "Contexto regional e renda: IBGE PAM" e a revisão da D-009 abaixo descrevem o plano, não o código. Hoje o motor **não lê** a PAM (`data/brasil/pam/`), o NASS (`data/eua/nass/`) nem as janelas do ZARC (`data/brasil/zarc/janelas.csv`). A nota de renda (`criterios.nota_renda`) é a **contagem de culturas de venda** (tipo `comercial`) da rotação, e o texto na tela diz: "Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota." A PAM e o NASS são dados preparados para quando o motor passar a lê-los; o ZARC também não entra no filtro de janela. Nenhuma decisão mudou: só o registro do estado real.
-- **Nota de 15/11/2026, AppEEARS descartado (decisão do usuário).** O projeto **não vai mais usar o AppEEARS**. Vale para a linha "Acesso" do núcleo acima, para o NDVI e o SMAP "por ponto" e para o texto da D-010 que o cita. Os arquivos `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico (nada foi apagado). Não existe `data/demo/appeears_eua/`. As fontes do clima, do solo e do relevo do app (NASA POWER, SoilGrids, SRTM) não mudam. Esta nota não cria decisão nova nem renumera nada.
 
 
 ### D-010 — O app também aceita fazendas nos EUA
 - **Status:** Decidido (Augusto, 15/11/2026; avisar a equipe)
 - **Amplia:** D-008 (escopo) · **Altera:** D-003 (datasets só dos EUA)
-- **Motivo:** o desafio Field Shift é da NASA, e os dados da NASA (POWER, SMAP, MODIS/VIIRS pelo AppEEARS, que foi descartado em 15/11/2026: ver a nota na D-009) e o SoilGrids cobrem os EUA do mesmo jeito que o Brasil. Muda só a parte das fontes nacionais.
+- **Motivo:** o desafio Field Shift é da NASA, e os dados da NASA (POWER, SMAP, MODIS/VIIRS) e o SoilGrids cobrem os EUA do mesmo jeito que o Brasil. Muda só a parte das fontes nacionais.
 - **Fontes dos EUA, no lugar das brasileiras** (detalhes em `data/README.md`, seção "EUA"):
   - **Município (IBGE)** → **condado** (Census TIGERweb), `data/eua/condados/`, chave `condado_id` (FIPS de 5 dígitos).
   - **ZARC** → datas usuais de plantio e colheita do **USDA NASS** por estado, `data/eua/nass/datas_plantio.csv`. É mais grosso: por estado, sem risco em %, sem tipo de solo nem ciclo, edição de 2010.
@@ -147,6 +146,14 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - O banco de **teste** usa a imagem `pgvector/pgvector:pg17`.
   - No chat v1 as ferramentas são internas (ficha, culturas, base de conhecimento, clima, comparação de rotações). O MCP do Harvest Portal (revisão da D-009) fica fora da v1.
   - Plano gratuito do Gemini: 20 chamadas por dia por modelo; para a demo é preciso ativar o faturamento.
+
+### D-012 — AppEEARS fora do projeto
+- **Status:** Decidido (15/11/2026)
+- **Decisão:** o AppEEARS não será usado. O pedido das séries por ponto (NDVI e SMAP dos pontos da demo) foi cancelado.
+- **Consequências:**
+  - O AppEEARS sai da D-009 e da D-010; o acesso aos dados da NASA fica com o Earthdata Search e o earthaccess. As fontes de clima, solo e relevo do app (NASA POWER, SoilGrids, SRTM) não mudam.
+  - A tarefa 5 da Pessoa 2 (pedido no AppEEARS) está cancelada. `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico.
+  - Outros documentos que ainda o citam (notas `tools/APPEEARS*.md`, arquitetura, guia de dados) são atualizados à parte, cada um pelo dono.
 
 ---
 
@@ -217,3 +224,4 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 15/11/2026 | **D-011:** chat e RAG com Gemini (`google-genai` + `gemini-embedding-001` 768d), sem framework de agentes, RAG com pgvector + busca textual no próprio Postgres. |
 | 15/11/2026 | Nota na D-009 (revisão "projeto-dados 15_11_26"): o motor ainda não lê a PAM, o NASS nem as janelas do ZARC; a renda é a contagem de culturas de venda. Sem decisão nova. |
 | 15/11/2026 | Nota na D-009: o projeto não vai mais usar o AppEEARS (decisão do usuário). `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico. |
+| 15/11/2026 | **D-012:** AppEEARS fora do projeto (pedido cancelado); sai da D-009 e da D-010, no lugar da nota de 15/11. |
