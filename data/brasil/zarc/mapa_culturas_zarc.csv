@@ -12,7 +12,7 @@ feijao_caupi,Feijão Caupi,Só sequeiro.
 girassol,Girassol,
 crotalaria,,Não está no ZARC (planta de cobertura).
 nabo_forrageiro,,Não está no ZARC (planta de cobertura).
-aveia,Aveia,"O dicionário não diz a espécie; a base é aveia-preta (Avena strigosa). Tem linhas de sequeiro e irrigado: filtrar ""Sequeiro""."
+aveia,,"Fora do ZARC de propósito (15/11, decisão do usuário): o ZARC tem ""Aveia"" (o dicionário não diz a espécie; janela de aveia de grão), e a aveia da base é a aveia-preta (Avena strigosa) de cobertura. Usar a janela de grão para a cobertura enganaria o produtor."
 guandu,,Não está no ZARC.
 pastagem,,"Não há ZARC de braquiária sozinha; ela só aparece em ""Milho 1ª Safra consorciado com Braquiária"" e ""Milho 2ª Safra consorciado com Braquiária"" (integração lavoura-pecuária)."
-arroz_irrigado,Arroz,"Linhas ""Irrigado"" (coluna Nome_Outros_Manejos) do mesmo nome ""Arroz"": na tábua 2025/2026 para PR, RS e SC (portarias 84 a 86 de 30/04/2025) e na de perenes/olerícolas/sem safra (safra ""SEM SAFRA"", clima ""Tropical"", grupo I, solos tipo 1 a 3; portarias 374 a 398 de 09/12/2020) para as outras UFs. Onde as duas têm a UF (PR), vale a tábua por safra."
+arroz_irrigado,Arroz,"Linhas ""Irrigado"" (coluna Nome_Outros_Manejos) do mesmo nome ""Arroz"": nas tábuas por safra para PR, RS e SC (portarias de 2025 e 2026) e na de perenes/olerícolas/sem safra (safra ""SEM SAFRA"", clima ""Tropical"", grupo I, solos tipo 1 a 3; portarias 374 a 398 de 09/12/2020) para as outras UFs. Por município, vale a safra mais recente que tiver aquele município (ver data/brasil/zarc/README.md)."

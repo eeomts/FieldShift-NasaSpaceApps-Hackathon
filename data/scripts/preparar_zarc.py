@@ -1,11 +1,22 @@
 """Prepara as janelas de plantio do ZARC (data/brasil/zarc/janelas.csv) a partir das tábuas de risco do MAPA.
 
-Entrada: uma ou mais tábuas de risco (CSV do portal dados.agricultura.gov.br, separador ';', UTF-8 com BOM),
-guardadas em data/brutos/zarc/, e o mapa data/brasil/zarc/mapa_culturas_zarc.csv (cultura_id -> nome no ZARC).
+Uso, da raiz do repositório (gera o janelas.csv do repositório: GO, RS e BA):
 
-Várias tábuas: para cada cultura, nome no ZARC e UF, vale só a tábua de safra mais recente que tem essa
-combinação (ex.: 2026/2027 > 2025/2026). A tábua "Perene, Olerícola e Sem Safra" (safra "SEM SAFRA" ou
-"PERENE") só entra onde nenhuma tábua de safra tem a combinação.
+    python3 -I data/scripts/preparar_zarc.py
+
+Outras opções: --ufs GO,MT (outro recorte), --todas (Brasil inteiro), --mapa, --saida e --tabuas.
+
+Entrada: as tábuas de risco (CSV do portal dados.agricultura.gov.br, separador ';', UTF-8 com BOM) guardadas em
+data/brutos/zarc/ (padrão: todas as dados-abertos-tabua-de-risco-safra-*.csv, ou seja, as de safra, como
+2025-2026 e 2026-2027, e a perene-olericola-sem-safra) e o mapa data/brasil/zarc/mapa_culturas_zarc.csv
+(cultura_id -> nome no ZARC; cultura com nome_zarc vazio não entra).
+
+Escolha da safra POR MUNICÍPIO: para cada cultura, nome no ZARC e município (geocodigo), vale só a tábua de
+safra mais recente que tem esse município (ex.: 2026/2027 > 2025/2026). A tábua "Perene, Olerícola e Sem Safra"
+(safra "SEM SAFRA" ou "PERENE") só entra onde nenhuma tábua de safra tem o município. A coluna safra diz de
+onde veio cada linha. Atenção: um município que a portaria nova tirou continua com a janela da safra anterior
+(ex.: milho 1ª safra no semiárido da BA); o stderr mostra, por cultura e UF, quantos municípios vieram de
+cada safra.
 
 Saída: uma linha por trecho contínuo de decêndios com o mesmo risco (20, 30 ou 40 %), por cultura, época
 (1 = 1º nome do mapa; 2 = 2º nome, a 2ª safra), município, tipo de solo, ciclo (grupo de cultivar) e nível de
@@ -15,23 +26,28 @@ uma linha só, com inicio_decendio > fim_decendio.
 Decêndios (tabela "períodos de semeadura" das portarias do ZARC): 36 por ano, 3 por mês, dias 1-10, 11-20 e
 21-fim do mês (fevereiro termina em 28). Decêndio 1 = 1 a 10 de janeiro; 36 = 21 a 31 de dezembro.
 
-Uso:
-    python3 -I data/scripts/preparar_zarc.py MAPA SAIDA TABUA [TABUA ...] [--ufs GO,RS,BA]
-Exemplo (o janelas.csv do repositório):
-    python3 -I data/scripts/preparar_zarc.py data/brasil/zarc/mapa_culturas_zarc.csv \\
-        data/brasil/zarc/janelas.csv \\
-        data/brutos/zarc/dados-abertos-tabua-de-risco-safra-2025-2026.csv \\
-        data/brutos/zarc/dados-abertos-tabua-de-risco-safra-perene-olericola-sem-safra.csv \\
-        --ufs GO,RS,BA
-Sem --ufs sai o Brasil inteiro (~110 MB, 1,58 milhão de janelas): grande demais para o Git.
+Sai com código 1 se a mesma chave (cultura, nome no ZARC, município, solo, ciclo, NM, safra) aparecer com
+riscos diferentes. Avisa (sem falhar) se o arquivo passar de 20 MB.
+
+Medição de 15/11/2026 (tábuas 2025/2026, 2026/2027 e perenes/sem safra; mapa sem aveia): GO, RS e BA dão
+363.514 janelas e 24,4 MB; o Brasil inteiro (--todas) dá 1.815.506 janelas e 122,4 MB (~70 s, ~1,7 GB de
+memória), grande demais para o Git.
 
 Só biblioteca padrão; lê as tábuas em streaming (cada uma tem centenas de MB), em duas passadas (~1 min).
 """
 import argparse
 import csv
 import sys
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
+
+RAIZ = Path(__file__).resolve().parents[2]
+MAPA = RAIZ / "data" / "brasil" / "zarc" / "mapa_culturas_zarc.csv"
+SAIDA = RAIZ / "data" / "brasil" / "zarc" / "janelas.csv"
+BRUTOS = RAIZ / "data" / "brutos" / "zarc"
+PADRAO_TABUAS = "dados-abertos-tabua-de-risco-safra-*.csv"
+UFS_PADRAO = "GO,RS,BA"
+LIMITE_MB = 20
 
 # Manejo (coluna Nome_Outros_Manejos da tábua) que cada cultura da base usa. O motor é de sequeiro; só o
 # arroz irrigado usa as linhas "Irrigado". Ver a coluna observacao do mapa.
@@ -49,11 +65,14 @@ RISCOS = {"20", "30", "40"}
 COLUNAS = ["cultura_id", "epoca", "municipio_id", "uf", "tipo_solo", "ciclo", "nivel_manejo", "safra",
            "risco_pct", "inicio_decendio", "fim_decendio", "inicio_data", "fim_data"]
 
+# Fevereiro com 28 dias, como na tabela de períodos de semeadura das portarias (item 3.3): o decêndio 6 vai de
+# 21/02 a 28/02 (fim_data "02-28"). Em ano bissexto, o dia 29/02 pertence ao decêndio 6; quem usar as datas
+# deve tratar 29/02 como parte do decêndio 6, não como dia fora de janela.
 FIM_MES = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
 def decendio_para_data(dec: int, fim: bool) -> str:
-    """Decêndio 1-36 -> 'MM-DD' do primeiro (fim=False) ou do último (fim=True) dia."""
+    """Decêndio 1-36 -> 'MM-DD' do primeiro (fim=False) ou do último (fim=True) dia (29/02: ver FIM_MES)."""
     if not 1 <= dec <= 36:
         raise ValueError(f"decêndio fora de 1-36: {dec}")
     mes, parte = divmod(dec - 1, 3)
@@ -117,35 +136,45 @@ def linhas_da_tabua(caminho: Path, por_nome: dict, ufs: set[str]):
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("mapa", type=Path, help="data/brasil/zarc/mapa_culturas_zarc.csv")
-    p.add_argument("saida", type=Path, help="CSV de saída (janelas.csv)")
-    p.add_argument("tabuas", type=Path, nargs="+", help="CSV(s) da tábua de risco do ZARC")
-    p.add_argument("--ufs", default="", help="UFs a manter, separadas por vírgula (vazio = todas)")
+    p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    p.add_argument("--mapa", type=Path, default=MAPA,
+                   help="mapa cultura_id -> nome no ZARC (padrão: data/brasil/zarc/mapa_culturas_zarc.csv)")
+    p.add_argument("--saida", type=Path, default=SAIDA, help="CSV de saída (padrão: data/brasil/zarc/janelas.csv)")
+    p.add_argument("--tabuas", type=Path, nargs="+", default=None,
+                   help=f"CSV(s) da tábua de risco (padrão: data/brutos/zarc/{PADRAO_TABUAS})")
+    recorte = p.add_mutually_exclusive_group()
+    recorte.add_argument("--ufs", default=UFS_PADRAO, help="UFs a manter, separadas por vírgula (padrão: %(default)s)")
+    recorte.add_argument("--todas", action="store_true", help="Brasil inteiro (não vai para o Git: grande demais)")
     a = p.parse_args()
 
+    tabuas = a.tabuas or sorted(BRUTOS.glob(PADRAO_TABUAS))
+    if not tabuas:
+        sys.exit(f"Nenhuma tábua em {BRUTOS}/{PADRAO_TABUAS} (ver data/brutos/README.md).")
     por_nome, epoca = ler_mapa(a.mapa)
-    ufs = {u.strip().upper() for u in a.ufs.split(",") if u.strip()}
+    ufs = set() if a.todas else {u.strip().upper() for u in a.ufs.split(",") if u.strip()}
 
-    # 1ª passada: qual safra vence para cada (cultura, nome no ZARC, UF).
+    # 1ª passada: qual safra vence para cada (cultura, nome no ZARC, município).
     vencedora: dict[tuple[str, str, str], str] = {}
-    for tabua in a.tabuas:
+    uf_do_municipio: dict[str, str] = {}
+    for tabua in tabuas:
         for cultura_id, lin in linhas_da_tabua(tabua, por_nome, ufs):
-            chave = (cultura_id, lin["Nome_cultura"], lin["UF"])
+            chave = (cultura_id, lin["Nome_cultura"], lin["geocodigo"])
+            uf_do_municipio[lin["geocodigo"]] = lin["UF"]
             safra = safra_de(lin)
             atual = vencedora.get(chave)
             if atual is None or prioridade(safra) > prioridade(atual):
                 vencedora[chave] = safra
 
-    # 2ª passada: só as linhas da safra vencedora viram janelas.
+    # 2ª passada: só as linhas da safra vencedora no município viram janelas.
     linhas = []
     vistos: dict[tuple, list[str]] = {}
-    duplicadas = divergentes = 0
+    duplicadas = 0
+    divergentes: list[tuple] = []
     combinacoes = Counter()
-    for tabua in a.tabuas:
+    for tabua in tabuas:
         for cultura_id, lin in linhas_da_tabua(tabua, por_nome, ufs):
             safra = safra_de(lin)
-            if vencedora[(cultura_id, lin["Nome_cultura"], lin["UF"])] != safra:
+            if vencedora[(cultura_id, lin["Nome_cultura"], lin["geocodigo"])] != safra:
                 continue
             solo = SOLO.get(lin["Cod_Solo"], lin["Cod_Solo"])
             ciclo = CICLO.get(lin["Cod_Ciclo"], lin["Cod_Ciclo"])
@@ -154,7 +183,8 @@ def main() -> int:
             chave = (cultura_id, lin["Nome_cultura"], lin["geocodigo"], solo, ciclo, nm, safra)
             if chave in vistos:
                 duplicadas += 1
-                divergentes += vistos[chave] != riscos
+                if vistos[chave] != riscos:
+                    divergentes.append(chave)
                 continue
             vistos[chave] = riscos
             combinacoes[(cultura_id, lin["Nome_cultura"], safra)] += 1
@@ -166,6 +196,14 @@ def main() -> int:
                     cultura_id, ep, lin["geocodigo"], lin["UF"], solo, ciclo, nm, safra, risco,
                     ini, fim, decendio_para_data(ini, False), decendio_para_data(fim, True))))
 
+    print(f"UFs: {','.join(sorted(ufs)) or 'todas'}; tábuas: {', '.join(t.name for t in tabuas)}", file=sys.stderr)
+    if divergentes:
+        print(f"ERRO: {len(divergentes)} chaves repetidas com riscos diferentes (nada foi gravado). Exemplos:",
+              file=sys.stderr)
+        for chave in divergentes[:10]:
+            print(f"  {chave}", file=sys.stderr)
+        return 1
+
     linhas.sort(key=lambda t: t[0])
     a.saida.parent.mkdir(parents=True, exist_ok=True)
     with a.saida.open("w", newline="", encoding="utf-8") as f:
@@ -173,16 +211,36 @@ def main() -> int:
         w.writerow(COLUNAS)
         w.writerows(t[1] for t in linhas)
 
-    print(f"UFs: {','.join(sorted(ufs)) or 'todas'}", file=sys.stderr)
+    print("Combinações município×solo×ciclo×NM por cultura, nome no ZARC e safra:", file=sys.stderr)
     for (cid, nome, safra), n in sorted(combinacoes.items()):
-        print(f"  {cid:16s} {nome:30s} {safra:10s} {n:7d} combinações município×solo×ciclo×NM", file=sys.stderr)
+        print(f"  {cid:16s} {nome:30s} {safra:10s} {n:7d}", file=sys.stderr)
     sem = sorted({c for v in por_nome.values() for c, _ in v} - {c for c, _, _ in combinacoes})
     if sem:
         print(f"  sem linhas nas tábuas: {', '.join(sem)}", file=sys.stderr)
+
+    # Municípios por safra onde a mesma cultura e UF mistura safras (o município ficou fora da tábua mais nova).
+    por_uf: dict[tuple[str, str, str], Counter] = defaultdict(Counter)
+    for (cid, nome, geo), safra in vencedora.items():
+        por_uf[(cid, nome, uf_do_municipio[geo])][safra] += 1
+    mistas = {k: v for k, v in por_uf.items() if len(v) > 1}
+    if mistas:
+        print("Cultura e UF com municípios de mais de uma safra (vale a mais recente que tem o município):",
+              file=sys.stderr)
+        for (cid, nome, uf), cont in sorted(mistas.items()):
+            partes = ", ".join(f"{s} {n}" for s, n in sorted(cont.items(), key=lambda t: -prioridade(t[0])))
+            print(f"  {cid:16s} {nome:30s} {uf}  municípios: {partes}", file=sys.stderr)
+
+    print("Janelas por cultura, UF e safra:", file=sys.stderr)
+    contagem = Counter((t[1][0], t[1][3], t[1][7]) for t in linhas)
+    for (cid, uf, safra), n in sorted(contagem.items()):
+        print(f"  {cid:16s} {uf}  {safra:10s} {n:8d}", file=sys.stderr)
+
     if duplicadas:
-        print(f"  AVISO: {duplicadas} linhas repetidas (mesma chave) ignoradas, {divergentes} com riscos diferentes"
-              " da 1ª (vale a 1ª)", file=sys.stderr)
-    print(f"{len(linhas)} janelas gravadas em {a.saida}", file=sys.stderr)
+        print(f"  {duplicadas} linhas repetidas (mesma chave e mesmos riscos) ignoradas", file=sys.stderr)
+    mb = a.saida.stat().st_size / 1e6
+    print(f"{len(linhas)} janelas gravadas em {a.saida} ({mb:.1f} MB)", file=sys.stderr)
+    if mb > LIMITE_MB:
+        print(f"AVISO: {a.saida.name} passou de {LIMITE_MB} MB ({mb:.1f} MB)", file=sys.stderr)
     return 0
 
 
