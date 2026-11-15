@@ -3,7 +3,7 @@ from logging.config import fileConfig
 from alembic import context
 
 from app import models  # noqa: F401  (registra as tabelas)
-from app.db import Base, get_engine
+from app.core.db import Base, get_engine
 
 if context.config.config_file_name:
     fileConfig(context.config.config_file_name)

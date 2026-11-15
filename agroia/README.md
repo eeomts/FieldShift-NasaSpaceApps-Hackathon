@@ -16,23 +16,25 @@ O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpace
 - **Salvamento por etapa:** o questionário salva a cada "Continuar", então dá para parar e voltar depois. Só conclui com o ponto marcado no mapa.
 - **Texto livre com IA (perguntas 8, 26a e 26b):** o Gemini separa o que o produtor escreveu em itens da base, e o produtor confirma um por um.
   - Sem chave do Gemini, ou se ele falhar, o texto é casado pelos nomes conhecidos e o produtor completa pela lista.
-- **Resumo final:** perfil do produtor (A, B, C ou D), meses com a terra descoberta, retrato do solo e próximos passos sugeridos.
+- **Resumo final:** perfil do produtor (A, B ou C) e papel (produtor ou técnico), meses com a terra descoberta, retrato do solo e próximos passos sugeridos.
 
 ## Estrutura
 
 ```text
 agroia/
 ├── api/                      # back-end (FastAPI)
-│   ├── app/
-│   │   ├── main.py           # cria a API e liga as rotas
-│   │   ├── config.py         # lê o .env (banco, JWT, Gemini, CORS)
-│   │   ├── db.py             # conexão com o PostgreSQL
-│   │   ├── models.py         # tabelas: usuario, fazenda, calendario_item
-│   │   ├── security.py       # senha (argon2) e token (JWT)
-│   │   ├── base.py           # carrega culturas/equipamentos e casa nomes por sinônimo
-│   │   ├── routers/          # rotas: auth, fazenda, onboarding
-│   │   ├── onboarding/       # formato das respostas, perfil A–D, retrato do solo
-│   │   └── llm/              # texto livre -> lista (Gemini, com a lista como reserva)
+│   ├── app/                  # em camadas: routers -> services -> repositories -> models
+│   │   ├── main.py           # cria a API, liga as rotas e trata os erros de negócio
+│   │   ├── core/             # config.py (.env), db.py (PostgreSQL), security.py (senha e JWT), erros.py
+│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item)
+│   │   ├── schemas/          # entrada e saída das rotas: auth.py, fazenda.py, onboarding.py (respostas)
+│   │   ├── repositories/     # acesso ao banco: usuario, fazenda
+│   │   ├── services/         # regras de negócio
+│   │   │   ├── auth_service.py      # cadastro, login, apagar conta
+│   │   │   ├── catalogo.py          # culturas/equipamentos (agroia/base) e casamento por sinônimo
+│   │   │   ├── interpretacao.py     # texto livre -> lista (Gemini, com a lista como reserva)
+│   │   │   └── onboarding/          # perfil.py (perfil A–C, papel, retrato do solo), fazenda_service.py
+│   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
 │   ├── tests/                # pytest (só rodam num Postgres local)
 │   ├── .env.example          # modelo de configuração
@@ -133,7 +135,7 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | `fazenda` | Uma por usuário. Todas as respostas em JSONB (`respostas`), mais as colunas que o resto do sistema consulta: local, perfil, irrigação, animais, terreno, prioridades, culturas excluídas, equipamentos, retrato do solo |
 | `calendario_item` | Cada cultura que o produtor confirmou, com os meses de plantio e colheita |
 
-Para mudar uma tabela, altere `app/models.py` e gere uma migração:
+Para mudar uma tabela, altere o model em `app/models/` e gere uma migração:
 
 ```bash
 uv run alembic revision --autogenerate -m "o que mudou"

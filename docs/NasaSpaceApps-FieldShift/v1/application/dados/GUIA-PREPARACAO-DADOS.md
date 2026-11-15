@@ -8,16 +8,19 @@
 
 | # | Tarefa | Tipo de trabalho | Quem | Esforço | Bloqueia |
 |---|---|---|---|---|---|
-| 1 | **Base de culturas** (`culturas.csv`) | Pesquisa agronômica | Alguém de agronomia | **Alto** | Motor inteiro, ZARC, PAM |
-| 2 | Sinônimos das culturas (`cultura_sinonimos.csv`) | Planilha | Qualquer pessoa | Baixo | Texto livre do onboarding |
-| 3 | Equipamentos (`equipamentos.csv`, `cultura_equipamentos.csv`) | Planilha | Qualquer pessoa | Baixo | Filtro da pergunta 26b |
+| 1 | **Parâmetros das culturas** (`data/catalogo/culturas.csv`) | Pesquisa agronômica | Alguém de agronomia | **Alto** | Motor inteiro, ZARC, PAM |
+| 2 | Sinônimos das culturas (campo `nomes` do `agroia/base/culturas.json`) | Revisão de lista | Qualquer pessoa | Baixo | Texto livre do onboarding |
+| 3 | O que cada cultura exige de equipamento (`cultura_equipamentos.csv`) | Planilha | Qualquer pessoa | Baixo | Filtro da pergunta 26b |
 | 4 | Pontos da demo (`pontos_demo.csv`) | Decisão do time + teste | Time | Baixo | AppEEARS, pré-cálculo |
 | 5 | Pedido no AppEEARS (NDVI e SMAP dos pontos) | Download | Quem tiver conta Earthdata | Médio (espera) | Cartão "meses descobertos" |
 | 6 | ZARC (tábua de risco) | Download | Qualquer pessoa | Médio | Janelas da base de culturas |
 | 7 | Códigos da PAM de cada cultura | Consulta | Qualquer pessoa | Baixo | Critério de renda |
 | 8 | Textos do RAG | Escrita | Quem escreve bem para o produtor | Médio | Agente |
-| 9 | `perguntas.yaml` | Conversão do `ONBOARDING.md` | Qualquer pessoa | Baixo | Onboarding |
 | 10 | Fotos de solo (pergunta 19) | Busca de imagens | Qualquer pessoa | Baixo | Onboarding |
+
+A antiga tarefa 9 (`perguntas.yaml`) saiu: o questionário já está implementado nas telas do app (`agroia/web/src/onboarding/`).
+
+**Fonte única do catálogo:** ids, nomes, sinônimos, família, grupo e tipos das culturas ficam em `agroia/base/culturas.json`; as categorias de equipamento, em `agroia/base/equipamentos.json`. Os arquivos de `data/catalogo/` usam esses mesmos ids e só acrescentam o que falta (parâmetros agronômicos e exigência de equipamento).
 
 **Ordem:** a tarefa 1 é o caminho crítico e começa já. As tarefas 4 e 5 também começam cedo, porque o AppEEARS demora para responder. O resto anda em paralelo.
 
@@ -32,9 +35,9 @@ A malha municipal do IBGE, a PAM em si e os dados do NASA POWER, SoilGrids e SRT
 | **UTF-8**, sem BOM | Acentos ("feijão") chegam certos no banco |
 | **Separador vírgula, decimal com ponto** (`4.5`, não `4,5`) | ⚠️ O Excel em português salva CSV com `;` e decimal com vírgula. **Edite no Google Sheets** e use Arquivo → Fazer download → CSV, que sai no formato certo |
 | **Vazio = não sei.** Nunca preencher 0 para "não sei" | Zero é um valor real; vazio vira "sem dado" e aparece como lacuna |
-| **Ids em `snake_case`, sem acento** (`feijao_caupi`, `aveia_preta`) | São chaves do banco e aparecem no código |
+| **Ids iguais aos do `agroia/base/culturas.json`** (`feijao_caupi`, `aveia`, `pastagem`) | São as chaves que o app usa; um id diferente quebra a ligação |
 | **Sim/não como `true` / `false`** | Formato que o carregador entende sem conversão |
-| **Listas dentro de uma célula separadas por `|`** (`comercial|fixadora_n`) | A vírgula já é o separador do CSV |
+| **Listas dentro de uma célula separadas por `|`** (`FAO-56|Embrapa`) | A vírgula já é o separador do CSV |
 | **Toda linha com fonte** | O app mostra de onde vem cada número; sem fonte, não entra |
 | **Unidade no nome da coluna** (`ciclo_dias_min`, `agua_ciclo_mm_max`) | Ninguém precisa adivinhar se é mm ou cm |
 
@@ -42,29 +45,27 @@ A malha municipal do IBGE, a PAM em si e os dados do NASA POWER, SoilGrids e SRT
 
 ---
 
-## 1. Base de culturas — `culturas.csv` (caminho crítico)
+## 1. Parâmetros das culturas — `data/catalogo/culturas.csv` (caminho crítico)
 
-**Para quê:** o motor filtra o que não cabe no clima do local e dá nota a cada estratégia comparando os dados da NASA com estes parâmetros. Sem ela, nada funciona.
+**Para quê:** o motor filtra o que não cabe no clima do local e dá nota a cada estratégia comparando os dados da NASA com estes parâmetros. Sem eles, nada funciona.
 
-**Culturas sugeridas (16).** Cobrem as rotações atuais típicas e as alternativas que o motor sugere:
+O app já conhece 40 culturas (`agroia/base/culturas.json`, com família, grupo, perene, tipos e sinônimos). Este CSV acrescenta **só os parâmetros agronômicos**, e só para as culturas que o motor vai usar nas estratégias.
 
-| Grupo | Culturas |
+**Culturas do motor (16)**, com os ids do app. Cobrem as rotações atuais típicas e as alternativas que o motor sugere:
+
+| Grupo | Culturas (id) |
 |---|---|
-| Comerciais atuais | soja, milho, feijão, trigo, arroz, algodão, mandioca |
-| Tolerantes à seca | sorgo, milheto, feijão-caupi, girassol |
-| Cobertura e adubo verde | crotalária, nabo forrageiro, aveia-preta, guandu |
-| Forrageira | braquiária |
+| Comerciais atuais | `soja`, `milho`, `feijao`, `trigo`, `arroz`, `algodao`, `mandioca` |
+| Tolerantes à seca | `sorgo`, `milheto`, `feijao_caupi`, `girassol` |
+| Cobertura e adubo verde | `crotalaria`, `nabo_forrageiro`, `aveia` (parâmetros da aveia-preta), `guandu` |
+| Forrageira | `pastagem` (parâmetros da braquiária) |
 
-**Colunas** (o modelo tem uma linha de exemplo do milho, **a conferir**):
+**Colunas** (o arquivo tem uma linha de exemplo do milho, **a conferir**):
 
 | Coluna | O que é | Unidade / valores | Fonte sugerida |
 |---|---|---|---|
-| `id` | Identificador | `snake_case` | — |
-| `nome` | Nome comum | texto | — |
-| `nome_cientifico` | Espécie | texto | Embrapa |
-| `familia_botanica` | Família (para quebra de ciclo de pragas) | ex.: `Poaceae`, `Fabaceae`, `Brassicaceae` | — |
-| `tipos` | Papéis da cultura | `comercial`, `cobertura`, `forrageira`, `fixadora_n`, `raiz_profunda`, `tolerante_seca` (separados por `|`) | — |
-| `perene` | Ocupa o campo o ano todo? | `true`/`false` | — |
+| `id` | Id da cultura no `agroia/base/culturas.json` | já preenchido | — |
+| `nome_cientifico` | Espécie usada como referência dos parâmetros | já preenchido | Embrapa |
 | `ciclo_dias_min`, `ciclo_dias_max` | Duração do plantio à colheita | dias | Embrapa, FAO-56 |
 | `temp_base_c` | Temperatura abaixo da qual não cresce (graus-dia) | °C | Literatura |
 | `temp_otima_min_c`, `temp_otima_max_c` | Faixa ideal | °C | FAO ECOCROP |
@@ -73,13 +74,10 @@ A malha municipal do IBGE, a PAM em si e os dados do NASA POWER, SoilGrids e SRT
 | `agua_ciclo_mm_min`, `agua_ciclo_mm_max` | Água necessária no ciclo | mm | FAO-56, FAO ECOCROP |
 | `kc_inicial`, `kc_medio`, `kc_final` | Coeficiente de cultura por fase | número (ex.: `1.2`) | **FAO-56, tabela 12** |
 | `profundidade_raiz_m` | Profundidade efetiva das raízes | m | FAO-56 |
-| `fixa_nitrogenio` | Leguminosa que fixa N? | `true`/`false` | — |
-| `raiz_profunda` | Rompe compactação? | `true`/`false` | — |
 | `cobertura_solo` | Quanto cobre o solo | `baixa`/`media`/`alta` | Embrapa |
 | `aporte_biomassa` | Palha deixada | `baixo`/`medio`/`alto` | Embrapa |
 | `valor_forrageiro` | Serve de comida para animais? | `nenhum`/`baixo`/`medio`/`alto` | — |
 | `codigo_pam` | Código da cultura na PAM (ver tarefa 7) | texto | API de agregados do IBGE |
-| `nome_zarc` | Nome da cultura no ZARC (ver tarefa 6) | texto | Tábua de risco |
 | `fontes` | De onde vieram os números | texto, várias separadas por `|` | — |
 | `confianca_parametros` | Quão seguro é o conjunto | `baixa`/`media`/`alta` | Julgamento de quem preencheu |
 
@@ -90,26 +88,26 @@ A malha municipal do IBGE, a PAM em si e os dados do NASA POWER, SoilGrids e SRT
 
 ---
 
-## 2. Sinônimos — `cultura_sinonimos.csv`
+## 2. Sinônimos — campo `nomes` do `agroia/base/culturas.json`
 
-**Para quê:** a IA casa o que o produtor escreve ("macaxeira", "capim pras vacas") com a base. Quanto mais nomes populares, melhor.
+**Para quê:** a IA e a lista reserva casam o que o produtor escreve ("macaxeira", "capim pras vacas") com a base. Quanto mais nomes populares, melhor.
 
-| Coluna | Exemplo |
-|---|---|
-| `cultura_id` | `mandioca` |
-| `nome` | `macaxeira` |
-| `idioma` | `pt`, `en` ou `es` |
+O arquivo já tem nomes em PT, EN e ES para as 40 culturas. A tarefa é **revisar e acrescentar nomes regionais**, por PR:
 
-**Meta:** pelo menos o nome em inglês e em espanhol de cada cultura, mais os nomes regionais conhecidos em português.
+```json
+{"id": "mandioca", "nomes": {"pt": ["mandioca", "macaxeira", "aipim", "maniva"], "en": ["cassava"], "es": ["yuca"]}}
+```
+
+**Meta:** os nomes regionais conhecidos em português de cada cultura do motor, e pelo menos um nome em inglês e um em espanhol.
 
 ---
 
-## 3. Equipamentos — `equipamentos.csv` e `cultura_equipamentos.csv`
+## 3. Exigência de equipamento — `data/catalogo/cultura_equipamentos.csv`
 
 **Para quê:** o filtro da pergunta 26b ("que máquinas você tem?") elimina culturas que o produtor não consegue plantar ou colher.
 
-- `equipamentos.csv`: a lista de categorias (o modelo já traz uma proposta; ajustar).
-- `cultura_equipamentos.csv`: para cada cultura, o que ela **exige** em cada etapa (`plantio` ou `colheita`). Se dá para fazer à mão, use `manual`.
+- As categorias já existem em `agroia/base/equipamentos.json` (`trator`, `plantadeira_graos`, `colhedora`, `pulverizador`, `preparo_solo`, `rocadeira`, `ensiladeira`, `irrigacao`, `tracao_animal`, `manual`). Só acrescente uma categoria nova lá, por PR, se faltar.
+- No CSV, para cada cultura do motor, o que ela **exige** em cada etapa (`plantio` ou `colheita`). Se dá para fazer à mão, use `manual`.
 
 ---
 
@@ -224,22 +222,18 @@ Fonte: Embrapa, guia de plantas de cobertura.
 
 ---
 
-## 9. `perguntas.yaml`
+## 9. ~~`perguntas.yaml`~~ (saiu)
 
-**Para quê:** o questionário do onboarding num formato que o código lê. Converter as perguntas do `application/ONBOARDING.md`.
-
-O arquivo `data/onboarding/perguntas.yaml` já mostra o formato com três perguntas de exemplo (sim/não, figuras e texto livre). Para cada pergunta:
-- `id`, `bloco`, `texto` em `pt` e `en`, `tipo` e `opcoes`.
-- `alimenta`: qual atributo do solo ou da ficha a resposta alimenta e com que valor (copiar da coluna "Para quê" do `ONBOARDING.md`).
+O questionário já está implementado nas telas do app (`agroia/web/src/onboarding/`), e o formato das respostas está em `agroia/api/app/schemas/onboarding.py`. Não é mais preciso converter as perguntas para um arquivo.
 
 ---
 
 ## 10. Fotos de solo (pergunta 19)
 
-- **12 fotos reais**: 6 de cor (escura, marrom, vermelha, amarelada, cinza, clara) e 6 de aspecto na mão (solta, fofa, gruda, torrão duro, racha, pedregosa).
+- **12 fotos reais**: 6 de cor (escura, marrom, vermelha, amarela, cinza, clara) e 6 de aspecto na mão (solta, fofa, gruda, torrões, racha, pedras).
 - De preferência **solos de lugares diferentes do Brasil**.
 - **Só imagens com licença que permita uso** (domínio público, Creative Commons, fotos próprias).
-- Nome do arquivo: `cor_escura.jpg`, `jeito_fofa.jpg`…
+- Nome do arquivo igual ao valor que o app usa: `cor_amarela.jpg`, `jeito_torroes.jpg`… (lista completa no `CREDITOS.md`)
 - Salvar em `data/onboarding/fotos-solo/` e, para cada foto, preencher uma linha no `CREDITOS.md` da mesma pasta: arquivo, autor, link e licença.
 
 ---
@@ -257,13 +251,12 @@ Isso alimenta a seção "dados usados" da submissão do Space Apps e a coluna "d
 
 ## Checklist final antes da carga
 
-- [ ] `culturas.csv` com as 16 culturas, sem `0` no lugar de "não sei", cada linha com `fontes`
-- [ ] Cada cultura com pelo menos o nome em inglês e espanhol em `cultura_sinonimos.csv`
-- [ ] `cultura_equipamentos.csv` cobrindo plantio e colheita de todas as culturas
+- [ ] `culturas.csv` com as 16 culturas do motor, sem `0` no lugar de "não sei", cada linha com `fontes`
+- [ ] Sinônimos regionais revisados no `agroia/base/culturas.json`
+- [ ] `cultura_equipamentos.csv` cobrindo plantio e colheita de todas as culturas do motor, com ids do `equipamentos.json`
 - [ ] `pontos_demo.csv` com todos os pontos marcados `soilgrids_ok = true`
 - [ ] Tarefa do AppEEARS concluída e CSVs guardados
-- [ ] `nome_zarc` e `codigo_pam` preenchidos onde existirem
+- [ ] `mapa_culturas_zarc.csv` e `codigo_pam` preenchidos onde existirem
 - [ ] Textos do RAG revisados com as regras de escrita
-- [ ] `perguntas.yaml` com todas as perguntas do `ONBOARDING.md`
-- [ ] 12 fotos de solo com créditos
+- [ ] 12 fotos de solo com créditos, com os nomes do `CREDITOS.md`
 - [ ] `FONTES.md` atualizado

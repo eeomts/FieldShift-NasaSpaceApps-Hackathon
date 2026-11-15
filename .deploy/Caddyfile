@@ -1,0 +1,44 @@
+{
+	# ninguém administra este Caddy pela API
+	admin off
+}
+
+# O endereço vem do SITE do .deploy/env/<ambiente>.env, pelo ./.deploy/agroia.
+# https://dominio -> certificado emitido e renovado sozinho
+# http://localhost -> HTTP puro, sem certificado
+# :80 -> atrás do nginx do host (PROXY), que cuida do certificado
+{$AGROIA_SITE} {
+	encode zstd gzip
+
+	# arquivo oculto nunca é servido
+	handle /.* {
+		respond 404
+	}
+
+	# API: tira o /api e repassa
+	handle_path /api/* {
+		reverse_proxy api:8000
+	}
+
+	# site: arquivo do build; rota do React cai no index.html
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+
+	header {
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy same-origin
+		-Server
+	}
+
+	# arquivos com hash no nome (o Vite gera em /assets) nunca mudam
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+
+	log {
+		output stderr
+	}
+}

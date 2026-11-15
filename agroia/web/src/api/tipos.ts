@@ -53,6 +53,7 @@ export interface Respostas {
   q12_analise?: SNS | null;
   q12_tem_resultado?: SNS | null;
   q12_ano?: number | null;
+  q12_laudo?: Laudo | null;
   q13_textura?: "arenosa" | "media" | "argilosa" | "nao_sei" | null;
   q14_encharca?: SNS | null;
   q15_casca?: SNS | null;
@@ -73,10 +74,26 @@ export interface Respostas {
   q26b_equipamentos?: Equipamento[];
 }
 
+/** Principais valores de uma análise de solo (pergunta 12). Tudo opcional. */
+export interface Laudo {
+  ph_agua?: number | null;
+  materia_organica_g_dm3?: number | null;
+  fosforo_mg_dm3?: number | null;
+  potassio_mg_dm3?: number | null;
+  argila_pct?: number | null;
+  ctc_cmolc_dm3?: number | null;
+  saturacao_bases_pct?: number | null;
+}
+
+/** Um item do retrato do solo. `valor` é a categoria que o motor usa; `texto` é o que aparece na tela. */
 export interface Indicador {
   atributo: string;
   valor: string;
+  texto: string | null;
+  fonte: "produtor" | "laudo";
+  origem: string;
   confianca: string;
+  numero?: number | null;
 }
 
 export interface Fazenda {
@@ -85,11 +102,12 @@ export interface Fazenda {
   passo_atual: number;
   onboarding_concluido: boolean;
   status_processamento: string;
-  perfil: "A" | "B" | "C" | "D" | null;
+  perfil: "A" | "B" | "C" | null;
+  papel: "produtor" | "tecnico" | null;
   modificadores: { irrigacao: string | null; animais: boolean | null };
   retrato_solo: {
     indicadores?: Indicador[];
-    figuras?: { cor: string | null; jeito: string | null; leitura: string; confianca: string } | null;
+    figuras?: { cor: string | null; jeito: string | null; leitura: string; confianca: string; atributos: Indicador[] } | null;
   };
   proximos_passos: { id: string; titulo: string; texto: string }[];
   meses_sem_cobertura: number[];
