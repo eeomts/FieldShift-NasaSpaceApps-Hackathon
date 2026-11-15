@@ -158,6 +158,21 @@ function CartaoCultura({ item, culturas, onChange, onRemover }: {
           <Xis size={18} />
         </button>
       </div>
+      {item.alternativas && item.alternativas.length >= 2 && (
+        <div role="group" aria-label="Qual destes você planta?" className="flex flex-col gap-2 rounded-xl bg-sol-claro p-3">
+          <span className="text-[13px] font-bold text-sol-texto">Qual destes você planta?</span>
+          {item.alternativas.map((id) => (
+            <button key={id} type="button" aria-label={`Escolher ${nomeCultura(culturas, id) ?? id}`}
+              onClick={() => {
+                const c = culturas.find((x) => x.id === id);
+                onChange({ ...item, cultura_id: id, perene: c ? c.perene : item.perene, alternativas: undefined });
+              }}
+              className="min-h-11 rounded-[14px] border-2 border-borda bg-white px-3 text-left text-sm font-bold">
+              {nomeCultura(culturas, id) ?? id}
+            </button>
+          ))}
+        </div>
+      )}
       <SeletorCultura rotulo="Trocar cultura" culturas={culturas} valor={item.cultura_id}
         onChange={(id) => {
           const c = culturas.find((x) => x.id === id);
@@ -211,6 +226,7 @@ export function PassoPlanta({ r, set, culturas }: PassoProps) {
             q8_culturas: res.itens.map((i) => ({
               cultura_id: i.id, texto_original: i.texto_original, inicio_mes: i.inicio_mes ?? null,
               fim_mes: i.fim_mes ?? null, perene: !!i.perene, consorcio_com: i.consorcio_com ?? [], ocupa: null,
+              alternativas: i.alternativas && i.alternativas.length > 1 ? i.alternativas : undefined,
             })),
           })
         }
