@@ -1,0 +1,366 @@
+{
+  "_leia": "Cenários de graus-dia da soja (soybean, sequeiro; Iowa e Delta do Arkansas) para scripts/gd_nasa_power.py. As fontes dão DATAS (semeadura e R7 = maturação fisiológica), não uma exigência em GDD 86/50: por isso o modo é 'fim' (GD = soma de max(0, Tmed - 10), sem teto, entre as datas da fonte, em cada ano de 2001-2020), e não 'alvo_com_teto'. Iowa: datas medidas no campo (Kessler et al. 2020). Arkansas/Memphis: datas de modelos publicados pela extensão (SoyStage; CropGro). 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "sutherland": {
+      "nome": "Sutherland-IA (ISU Northwest Research Farm; sítio Northwest de Kessler et al.)",
+      "lat": 42.93,
+      "lon": -95.54,
+      "elevacao_m": 422.49
+    },
+    "kanawha": {
+      "nome": "Kanawha-IA (ISU Northern Research Farm; sítio North Central de Kessler et al.)",
+      "lat": 42.91,
+      "lon": -93.79,
+      "elevacao_m": 364.88
+    },
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio Northeast de Kessler et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "ames": {
+      "nome": "Ames/Boone-IA (ISU Ag Engineering/Agronomy Farm; sítio Central de Kessler et al.)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "lewis": {
+      "nome": "Lewis-IA (ISU Armstrong Research Farm; sítio Southwest de Kessler et al.)",
+      "lat": 41.31,
+      "lon": -95.17,
+      "elevacao_m": 387.1
+    },
+    "chariton": {
+      "nome": "Chariton-IA (ISU McNay Research Farm; sítio South Central de Kessler et al.)",
+      "lat": 40.97,
+      "lon": -93.42,
+      "elevacao_m": 283.72
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; sítio Southeast de Kessler et al.)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    },
+    "memphis": {
+      "nome": "Memphis-TN (exemplo do SoyStage, Delta do Mississippi, em frente ao leste do Arkansas)",
+      "lat": 35.15,
+      "lon": -90.05,
+      "elevacao_m": 87.35
+    },
+    "dumas": {
+      "nome": "Dumas-AR (Delta do Arkansas, sul; local do CropGro no Arkansas Soybean Handbook)",
+      "lat": 33.89,
+      "lon": -91.49,
+      "elevacao_m": 49.96
+    },
+    "blytheville": {
+      "nome": "Blytheville-AR (Delta do Arkansas, norte; local do CropGro no Arkansas Soybean Handbook)",
+      "lat": 35.93,
+      "lon": -89.92,
+      "elevacao_m": 80.02
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "soja_sutherland_inicio_maio_r7",
+      "cultura": "soja",
+      "local": "sutherland",
+      "semeadura": "05-05",
+      "fim": "09-13",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Northwest: semeadura 05-05 (mediana das datas de 2014-2016 da Tab. 1, época 'inicio maio'), R7 no DOY 256 (09-13; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_sutherland_meados_maio_r7",
+      "cultura": "soja",
+      "local": "sutherland",
+      "semeadura": "05-20",
+      "fim": "09-22",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Northwest: semeadura 05-20 (mediana das datas de 2014-2016 da Tab. 1, época 'meados maio'), R7 no DOY 265 (09-22; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_kanawha_inicio_maio_r7",
+      "cultura": "soja",
+      "local": "kanawha",
+      "semeadura": "05-06",
+      "fim": "09-14",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio North Central: semeadura 05-06 (mediana das datas de 2014-2016 da Tab. 1, época 'inicio maio'), R7 no DOY 257 (09-14; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_kanawha_meados_maio_r7",
+      "cultura": "soja",
+      "local": "kanawha",
+      "semeadura": "05-21",
+      "fim": "09-21",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio North Central: semeadura 05-21 (mediana das datas de 2014-2016 da Tab. 1, época 'meados maio'), R7 no DOY 264 (09-21; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_nashua_inicio_maio_r7",
+      "cultura": "soja",
+      "local": "nashua",
+      "semeadura": "05-04",
+      "fim": "09-10",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Northeast: semeadura 05-04 (mediana das datas de 2014-2016 da Tab. 1, época 'inicio maio'), R7 no DOY 253 (09-10; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_nashua_meados_maio_r7",
+      "cultura": "soja",
+      "local": "nashua",
+      "semeadura": "05-19",
+      "fim": "09-13",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Northeast: semeadura 05-19 (mediana das datas de 2014-2016 da Tab. 1, época 'meados maio'), R7 no DOY 256 (09-13; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_ames_inicio_maio_r7",
+      "cultura": "soja",
+      "local": "ames",
+      "semeadura": "05-06",
+      "fim": "09-08",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Central: semeadura 05-06 (mediana das datas de 2014-2016 da Tab. 1, época 'inicio maio'), R7 no DOY 251 (09-08; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_ames_meados_maio_r7",
+      "cultura": "soja",
+      "local": "ames",
+      "semeadura": "05-20",
+      "fim": "09-19",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Central: semeadura 05-20 (mediana das datas de 2014-2016 da Tab. 1, época 'meados maio'), R7 no DOY 262 (09-19; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_lewis_inicio_maio_r7",
+      "cultura": "soja",
+      "local": "lewis",
+      "semeadura": "05-05",
+      "fim": "09-15",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Southwest: semeadura 05-05 (mediana das datas de 2014-2016 da Tab. 1, época 'inicio maio'), R7 no DOY 258 (09-15; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_lewis_meados_maio_r7",
+      "cultura": "soja",
+      "local": "lewis",
+      "semeadura": "05-20",
+      "fim": "09-22",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Southwest: semeadura 05-20 (mediana das datas de 2014-2016 da Tab. 1, época 'meados maio'), R7 no DOY 265 (09-22; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_chariton_inicio_maio_r7",
+      "cultura": "soja",
+      "local": "chariton",
+      "semeadura": "05-06",
+      "fim": "09-01",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio South Central: semeadura 05-06 (mediana das datas de 2014-2016 da Tab. 1, época 'inicio maio'), R7 no DOY 244 (09-01; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_chariton_meados_maio_r7",
+      "cultura": "soja",
+      "local": "chariton",
+      "semeadura": "05-19",
+      "fim": "09-17",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio South Central: semeadura 05-19 (mediana das datas de 2014-2016 da Tab. 1, época 'meados maio'), R7 no DOY 260 (09-17; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_crawfordsville_inicio_maio_r7",
+      "cultura": "soja",
+      "local": "crawfordsville",
+      "semeadura": "05-05",
+      "fim": "09-11",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Southeast: semeadura 05-05 (mediana das datas de 2014-2016 da Tab. 1, época 'inicio maio'), R7 no DOY 254 (09-11; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_crawfordsville_meados_maio_r7",
+      "cultura": "soja",
+      "local": "crawfordsville",
+      "semeadura": "05-19",
+      "fim": "09-16",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Kessler, Archontoulis & Licht 2020 (ISU), sítio Southeast: semeadura 05-19 (mediana das datas de 2014-2016 da Tab. 1, época 'meados maio'), R7 no DOY 259 (09-16; Tab. Suplementar 2, média dos anos e dos GM 2.2-3.9 medidos no campo). Modo 'fim': GD sem teto, Tb 10, entre as mesmas datas em 2001-2020."
+    },
+    {
+      "nome": "soja_memphis_soystage_mg42_0405_r7",
+      "cultura": "soja",
+      "local": "memphis",
+      "semeadura": "04-05",
+      "fim": "08-16",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Purcell, dos Santos & Salmerón, FSA2194 (Univ. of Arkansas, 2021), Fig. 5: SoyStage, Memphis-TN, GM 4.2, emergência 11/abr, R7 na média de 30 anos em 16/ago (127 dias da emergência). Semeadura = emergência - 6 dias (a fonte diz 4 a 14 dias da semeadura à emergência). Modo 'fim'."
+    },
+    {
+      "nome": "soja_dumas_mg4_0315_r7",
+      "cultura": "soja",
+      "local": "dumas",
+      "semeadura": "03-15",
+      "fim": "08-16",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 4, semeadura 15/mar, R7 ~16/ago (60 + 27 + 67 = 154 dias). Conferência dos extremos de semeadura; não define a faixa."
+    },
+    {
+      "nome": "soja_dumas_mg5_0315_r7",
+      "cultura": "soja",
+      "local": "dumas",
+      "semeadura": "03-15",
+      "fim": "09-01",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 5, semeadura 15/mar, R7 ~1/set (70 + 39 + 61 = 170 dias). Conferência dos extremos de semeadura; não define a faixa."
+    },
+    {
+      "nome": "soja_dumas_mg4_0615_r7",
+      "cultura": "soja",
+      "local": "dumas",
+      "semeadura": "06-15",
+      "fim": "09-20",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 4, semeadura 15/jun, R7 ~20/set (42 + 21 + 34 = 97 dias). Conferência dos extremos de semeadura; não define a faixa."
+    },
+    {
+      "nome": "soja_dumas_mg5_0615_r7",
+      "cultura": "soja",
+      "local": "dumas",
+      "semeadura": "06-15",
+      "fim": "09-28",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 5, semeadura 15/jun, R7 ~28/set (50 + 23 + 32 = 105 dias). Conferência dos extremos de semeadura; não define a faixa."
+    },
+    {
+      "nome": "soja_blytheville_mg4_0315_r7",
+      "cultura": "soja",
+      "local": "blytheville",
+      "semeadura": "03-15",
+      "fim": "08-16",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 4, semeadura 15/mar, R7 ~16/ago (60 + 27 + 67 = 154 dias). Conferência dos extremos de semeadura; não define a faixa."
+    },
+    {
+      "nome": "soja_blytheville_mg5_0315_r7",
+      "cultura": "soja",
+      "local": "blytheville",
+      "semeadura": "03-15",
+      "fim": "09-01",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 5, semeadura 15/mar, R7 ~1/set (70 + 39 + 61 = 170 dias). Conferência dos extremos de semeadura; não define a faixa."
+    },
+    {
+      "nome": "soja_blytheville_mg4_0615_r7",
+      "cultura": "soja",
+      "local": "blytheville",
+      "semeadura": "06-15",
+      "fim": "09-20",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 4, semeadura 15/jun, R7 ~20/set (42 + 21 + 34 = 97 dias). Conferência dos extremos de semeadura; não define a faixa."
+    },
+    {
+      "nome": "soja_blytheville_mg5_0615_r7",
+      "cultura": "soja",
+      "local": "blytheville",
+      "semeadura": "06-15",
+      "fim": "09-28",
+      "tb": 10,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Arkansas Soybean Production Handbook (MP197), cap. 2 (atualizado 4/2014), CropGro com clima de longo prazo de Dumas e Blytheville (datas médias dos dois locais): GM 5, semeadura 15/jun, R7 ~28/set (50 + 23 + 32 = 105 dias). Conferência dos extremos de semeadura; não define a faixa."
+    }
+  ]
+}

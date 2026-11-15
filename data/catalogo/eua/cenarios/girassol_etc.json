@@ -1,0 +1,133 @@
+{
+  "_leia": "Cenários de etc_nasa_power.py para o girassol (oilseed sunflower, Dakota do Norte). Kc do FAO-56 Tab. 12 (ini 0,35 do grupo Oil crops, mid 1,15, end 0,35), mid ajustado ao clima local pela eq. 62 com altura de 2,0 m (Tab. 12, Sunflower). Fases na proporção do FAO-56 Tab. 11 para o girassol (25/35/45/25 = 130 d), escaladas para a duração do ciclo dos ensaios da NDSU (semeadura -> maturação fisiológica). 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "fargo": {
+      "nome": "Fargo-ND (NDSU/USDA-ARS)",
+      "lat": 46.89,
+      "lon": -96.81,
+      "elevacao_m": 282.59
+    },
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "girassol_min_langdon_0525_105d",
+      "cultura": "girassol",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "fases_dias": [
+        20,
+        28,
+        37,
+        20
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 483,
+        "nota": "Menor demanda: norte de ND (Langdon), híbrido precoce (~105 d até a maturação nos ensaios da NDSU). Conferência: NDSU A1995 (2020), 'Seasonal water use by sunflower averages about 19 inches under irrigated conditions' (19 × 25,4 = 483 mm), sudeste de ND."
+      }
+    },
+    {
+      "nome": "girassol_med_fargo_0520_119d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "05-20",
+      "fases_dias": [
+        23,
+        32,
+        41,
+        23
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 483,
+        "nota": "Conferência do método: sudeste de ND (Fargo), ciclo médio de 119 d até R9 (NDSU A1995, Tab. 1) contra os 19 in (483 mm) da NDSU A1995 para o girassol irrigado."
+      }
+    },
+    {
+      "nome": "girassol_max_fargo_0520_130d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "05-20",
+      "fases_dias": [
+        25,
+        35,
+        45,
+        25
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 483,
+        "nota": "Maior demanda: sudeste de ND (Fargo, o local mais quente dos ensaios), híbrido tardio (~130 d até a maturação nos ensaios da NDSU)."
+      }
+    },
+    {
+      "nome": "girassol_max_carrington_0520_130d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "05-20",
+      "fases_dias": [
+        25,
+        35,
+        45,
+        25
+      ],
+      "kc": {
+        "ini": 0.35,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 483,
+        "nota": "Conferência: centro de ND (Carrington), híbrido tardio (~130 d)."
+      }
+    }
+  ]
+}

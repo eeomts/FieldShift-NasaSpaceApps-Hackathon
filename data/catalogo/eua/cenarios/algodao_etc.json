@@ -1,0 +1,85 @@
+{
+  "_leia": "Cenários de CONFERÊNCIA da água do algodão (scripts/etc_nasa_power.py). As colunas agua_ciclo_mm_min/max do algodão vêm de valores publicados (UGA Checkbook, Geórgia; Texas A&M, Lubbock), não deste cálculo; estes cenários mostram quanto o Kc x ET0 do NASA POWER dá nos mesmos locais e o desvio do POWER contra o lisímetro de Bushland-TX. Kc do FAO-56 Tab. 12 (Cotton: ini 0,35 do grupo Fibre Crops, mid 1,15, end 0,50), fases na proporção da linha 'Cotton 30 50 55 45 180 April Texas' da Tab. 11, ajustadas ao ciclo; sem eq. 62 (altura_m null), como o Kc da linha. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    },
+    "lubbock": {
+      "nome": "Lubbock-TX (Texas A&M AgriLife Research and Extension Center)",
+      "lat": 33.69,
+      "lon": -101.82,
+      "elevacao_m": 977.33
+    },
+    "bushland": {
+      "nome": "Bushland-TX (USDA-ARS Conservation and Production Research Laboratory)",
+      "lat": 35.19,
+      "lon": -102.1,
+      "elevacao_m": 1097.1
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "algodao_conf_tifton_0501_140d",
+      "cultura": "algodao",
+      "local": "tifton",
+      "semeadura": "05-01",
+      "fases_dias": [23, 39, 43, 35],
+      "kc": {"ini": 0.35, "mid": 1.15, "end": 0.5},
+      "altura_m": null,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 421,
+        "nota": "UGA 2021 Georgia Cotton Production Guide, Table 1 'UGA Checkbook Cotton Irrigation for Full Season' (2001-2016 historical average evapotranspiration): soma das 25 semanas = 16,59 in = 421 mm. Semeadura 1/mai + 140 dias (UGA B1252)."
+      }
+    },
+    {
+      "nome": "algodao_conf_lubbock_0515_150d",
+      "cultura": "algodao",
+      "local": "lubbock",
+      "semeadura": "05-15",
+      "fases_dias": [25, 42, 46, 37],
+      "kc": {"ini": 0.35, "mid": 1.15, "end": 0.5},
+      "altura_m": null,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 686,
+        "nota": "Porter (Texas A&M AgriLife Extension), Irrigation Management Decisions 2022, Lubbock: 'full water demand in an average year is approximately 27 inches' para o algodão = 686 mm (Texas High Plains ET Network). Semeadura 15/mai, 150 dias (meio de 130-160)."
+      }
+    },
+    {
+      "nome": "algodao_conf_bushland_2000_0517_182d",
+      "cultura": "algodao",
+      "local": "bushland",
+      "semeadura": "05-17",
+      "fases_dias": [30, 51, 56, 45],
+      "kc": {"ini": 0.35, "mid": 1.15, "end": 0.5},
+      "altura_m": null,
+      "anos": [2000, 2000],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 775,
+        "nota": "Howell, Evett, Tolk & Schneider 2002 (USCID/EWRI), Tab. 1 e 4: Bushland 2000, semeadura 17/mai, colheita 14/nov (182 dias), tratamento FULL, 'Measured ET, mm 775' (lisímetro de pesagem). Mede o desvio do POWER no High Plains."
+      }
+    },
+    {
+      "nome": "algodao_conf_bushland_2001_0516_168d",
+      "cultura": "algodao",
+      "local": "bushland",
+      "semeadura": "05-16",
+      "fases_dias": [28, 47, 51, 42],
+      "kc": {"ini": 0.35, "mid": 1.15, "end": 0.5},
+      "altura_m": null,
+      "anos": [2001, 2001],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 739,
+        "nota": "Howell et al. 2002: Bushland 2001, semeadura 16/mai, colheita 30/out (168 dias), FULL, 'Measured ET, mm [...] 739'."
+      }
+    }
+  ]
+}

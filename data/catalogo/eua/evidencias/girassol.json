@@ -1,0 +1,445 @@
+{
+  "id": "girassol",
+  "pais": "EUA",
+  "nome": "Girassol (oilseed sunflower)",
+  "nome_cientifico": "Helianthus annuus",
+  "familia_botanica": "Asteraceae",
+  "sistema": "oilseed sunflower (girassol oleícola), sequeiro, plantio direto, Dakota do Norte (semeadura de meados de maio a início de junho, colheita em outubro-novembro)",
+  "regiao_referencia": "Dakota do Norte (Fargo, Carrington, Langdon)",
+  "valores": {
+    "tipos": "comercial|tolerante_seca",
+    "perene": "false",
+    "ciclo_dias_min": "104",
+    "ciclo_dias_max": "137",
+    "graus_dia_ciclo_min": "1800",
+    "graus_dia_ciclo_max": "2270",
+    "temp_base_c": "4",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "25",
+    "tmax_critica_c": "35",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "440",
+    "agua_ciclo_mm_max": "560",
+    "kc_inicial": "0.35",
+    "kc_medio": "1.15",
+    "kc_final": "0.35",
+    "profundidade_raiz_m": "1.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "SUNFLOWER, OIL TYPE",
+    "calendario_usda": "All Sunflower",
+    "fontes": "SISTEMA: girassol oleícola de sequeiro da Dakota do Norte; o confeiteiro (non-oil) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita de ND)|Kandel, Endres & Buetow (eds.), NDSU Extension A1995 Sunflower Production Guide, dez. 2020 (Tab. 1 GDD e dias até R9; água 19 in; raiz efetiva ~4 ft; geada; épocas de semeadura; tolerância à seca)|NDAWN, Sunflower Growing Degree Days Help (Tb 44 °F, sem teto, R9 = 2310 GDD °F; lido em cópia do Internet Archive de 15/10/2026)|NDSU Extension A652, North Dakota Sunflower Variety Trial Results 2021, 2023, 2024 e 2025 (dias da semeadura à maturação dos híbridos oleícolas em Fargo, Carrington e Langdon)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/girassol_gd.json (graus-dia sem teto, Tb 4, na régua do NASA POWER, nas datas dos ensaios)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/girassol_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|Barni et al. 1993 via Ungaro et al. 2009, INMET (Tb 4 °C, reusada do Brasil)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz)|USDA NASS, Crop Production 2022 Summary (jan. 2023) e 2025 Summary (jan. 2026) (produtividade do girassol oleícola de ND 2021-2025)|van Donk, Merrill, Tanaka & Krupinsky, Transactions of the ASABE 51(5):1623-1632, 2008 (resíduo medido na colheita em Mandan-ND, cobertura medida, parâmetros do WEPS)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão 1999/2000)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (resíduo de girassol no pastejo)|PROXY: Feedipedia, Sunflower forage and crop residues (PB e digestibilidade da palhada; média mundial)|PROXY: C/N e k da palhada reusados do Brasil (Marcelo 2012; Embrapa CT 147)",
+    "confianca_parametros": "baixa"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "medido",
+      "nota": "Reusada do Brasil: Tb 4 °C determinada por Barni et al. 1993 (9 cultivares, 80 ambientes no RS), via Ungaro et al. 2009 (INMET). Mantida para o motor usar a mesma régua nos dois países. A fonte dos EUA usa outra Tb: 44 °F = 6,7 °C, sem teto (NDAWN; NDSU A1995). As exigências de graus-dia desta linha foram refeitas com Tb 4 no POWER (ver graus_dia_ciclo_min)."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "Semeadura -> maturação fisiológica (R9). Ensaios oficiais da NDSU (A652), híbridos oleícolas comerciais: o mais precoce = 104 dias (N5H493 CL, Fargo, semeado em 5/jun/2023, 'Days to PM'). Outros precoces: Fargo 2021 (19/mai) 110, Fargo 2024 (6/jun) 111, Langdon 2023 (23/mai) 110, Carrington 2021 (26/mai) 110. O testemunha precoce Honeycomb NS (germoplasma do USDA, não comercial) ficou em 99-104 dias e não entra. Critério: menor valor entre os híbridos oleícolas comerciais dos ensaios de 2021, 2023, 2024 e 2025 em Fargo, Carrington e Langdon (semeadura de 19/mai a 6/jun, dentro da janela usual de ND)."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "Maior valor do mesmo conjunto: 137 dias (CP4255E, Carrington, semeado em 30/mai/2023). Outros tardios: Carrington 2025 (6/jun) 131, Langdon 2024 (30/mai) 131, Carrington 2021 129, Fargo 117. Conferência: NDSU A1995, Tab. 1, R9 = 119 dias da semeadura em média. Colheita (Handbook 628, ND): 9/out-10/nov ('most active'), semanas depois de R9 (secagem no campo; nos ensaios, colheita em 17/out-22/nov) e fora do ciclo."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 4), scripts/gd_nasa_power.py com eua/cenarios/girassol_gd.json, nas datas de semeadura e nos dias até a maturação dos híbridos comerciais mais precoces de cada ensaio da NDSU: Langdon 2023 110 d = 1827; Langdon 2024 123 d = 1877; Fargo 2023 104 d = 1878; Carrington 2025 115 d = 1885; Fargo 2024 111 d = 1917; Carrington 2023 119 d = 1985; Carrington 2021 110 d = 2018; Fargo 2021 110 d = 2101 (mediana 1901). Mínimo = 1827 arredondado para baixo = 1800. Conferência: os 119 dias médios do A1995 (semeadura 20/mai em Fargo, 2001-2020) dão mediana 1948 (P10 1723, P90 2130). O modelo do NDAWN (2310 GDD °F até R9, Tb 44 °F) refeito no POWER (modo alvo_com_teto) dá só 1532 (Fargo) e 1549 (Carrington), atingidos em 92-98 dias, bem antes da maturação observada nos ensaios (104-137 dias): ver pendências."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO, mesmo script e arquivo, híbridos comerciais mais tardios de cada ensaio: Langdon 2023 117 d = 1902; Langdon 2024 131 d = 1936; Fargo 2024 117 d = 2018; Fargo 2023 115 d = 2048; Carrington 2025 131 d = 2051; Carrington 2023 137 d = 2146; Fargo 2021 116 d = 2192; Carrington 2021 129 d = 2275 (mediana 2050). Máximo = 2275 arredondado para baixo = 2270. Cada valor é de um só ano (o ano do ensaio)."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/girassol_etc.json, cenário girassol_min_langdon_0525_105d (norte de ND, semeadura 25/mai, híbrido precoce de 105 d até a maturação, fases 20/28/37/20 na proporção do FAO-56 Tab. 11, Kc 0,35/1,15/0,35 com o médio ajustado pela eq. 62, h = 2,0 m), 2001-2020: mediana 441 mm (P10 366, P90 504). Mínimo = 441 arredondado para baixo = 440. Conferência: NDSU A1995, 'Seasonal water use by sunflower averages about 19 inches under irrigated conditions' (483 mm, sudeste de ND, sem limitação de água); o cenário médio em Fargo (119 d) dá 506 mm (+4,7%)."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO, mesmo script e arquivo: híbrido tardio de 130 d (fases 25/35/45/25 do FAO-56 Tab. 11), semeadura 20/mai, 2001-2020: Carrington mediana 560 mm (P90 619) e Fargo 534 mm (P90 618). Máximo = 560 (Carrington, o local de maior demanda). Fica 16% acima dos 19 in médios da NDSU, como esperado para o híbrido mais tardio."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12: Kc ini do grupo 'h. Oil Crops' = 0,35, herdado pela linha Sunflower. Igual ao Brasil."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Sunflower 1,0-1,15 (nota 9: o valor baixo é para sequeiro com menor densidade). Mantido 1,15, o valor padrão (revisão de 14/11 do Brasil, coerente com o KcTr,x 1,10 do AquaCrop): os ensaios da NDSU usam 21.000 sementes/acre em linhas de 30 polegadas, densidade normal. Abaixo do teto de 1,25."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Sunflower: 0,35 (colheita depois da secagem no campo, que é a prática de ND)."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Sunflower 0,8-1,5 m; limite superior (sequeiro). Conferência: NDSU A1995, 'effective root depth of around 4 feet but can remove water from below this depth' (1,22 m efetivos)."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica, perene",
+      "valor_brasil": "Helianthus annuus, Asteraceae, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie, anual."
+    },
+    {
+      "coluna": "tipos",
+      "valor_brasil": "comercial|tolerante_seca",
+      "decisao": "conferido e mantido",
+      "motivo": "NDSU A1995: 'sunflower is perceived to be a drought-tolerant crop' pela raiz profunda. Linha de grão comercial."
+    },
+    {
+      "coluna": "fixa_nitrogenio, raiz_profunda",
+      "valor_brasil": "false, false",
+      "decisao": "reusado",
+      "motivo": "Botânica; raiz_profunda = false segue a decisão do Brasil (raiz sensível à compactação, não rompe camada compactada). A NDSU diz que a raiz é profunda (efetiva ~4 ft); ver pendências."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "4",
+      "decisao": "conferido e mantido",
+      "motivo": "O NDAWN e a NDSU usam Tb 44 °F (6,7 °C), sem teto. Mantida a Tb 4 do Brasil para o motor usar a mesma régua; as somas térmicas desta linha foram refeitas com Tb 4 no POWER."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
+      "valor_brasil": "20, 25, 35",
+      "decisao": "reusado",
+      "motivo": "Fisiologia da espécie. Não achei número de temperatura ótima ou crítica de calor na NDSU (o A1995 só diz que temperatura alta no enchimento muda a proporção oleico/linoleico)."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "NDSU A1995: 'Sunflowers are most susceptible at the bud (R4) and pollination stages (R5.0 to R5.9) [...] Temperatures of 30 F or less can cause damage'; e a geada antes da maturação reduz produtividade, óleo e peso."
+    },
+    {
+      "coluna": "kc_inicial, kc_medio, kc_final",
+      "valor_brasil": "0.35, 1.15, 0.35",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 12."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "valor_brasil": "1.5",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 22, limite superior; NDSU: raiz efetiva ~1,2 m que tira água abaixo disso."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "90, 130",
+      "decisao": "trocado",
+      "motivo": "Ensaios da NDSU 2021-2025: 104-137 dias da semeadura à maturação dos híbridos oleícolas comerciais em ND (o Brasil conta da emergência à colheita, Embrapa CT 13)."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "1500, 2100",
+      "decisao": "trocado",
+      "motivo": "Refeito no POWER (Tb 4, sem teto) nas datas dos ensaios da NDSU: 1800-2270. A faixa sobe uns 300 °C·dia em relação ao Brasil (Barni 1993: 1380-2010 da emergência)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "400, 700",
+      "decisao": "trocado",
+      "motivo": "Kc × ET0 do POWER em ND: 440-560 mm, em torno dos 19 in (483 mm) da NDSU."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 3,2 t/ha, C/N 39, k 0,0052, PB 5,7, DMO 46,2",
+      "decisao": "trocado",
+      "motivo": "Palhada medida em Mandan-ND (van Donk et al. 2008), cobertura medida na primavera, uso forrageiro da NDSU. C/N e k sem dado dos EUA em dia de calendário: reusados do Brasil como PROXY. PB e DMO: mesma Feedipedia (média mundial)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabela 'All Sunflower Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "All Sunflower Usual Planting and Harvesting Dates - States [...] North Dakota ...:   868.0    May 14 May 19 - Jun 8  Jun 15  Oct 1  Oct 9 - Nov 10  Nov 23"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Kandel, H.; Endres, G.; Buetow, R. (eds.), Sunflower Production Guide, NDSU Extension A1995, dezembro de 2020, p. 12, Tabela 1",
+      "url": "https://ndsu.edu/agriculture/sites/default/files/2023-12/a1995.pdf",
+      "trecho": "Table 1. Growing degree days: sunflower growth and development. [...] Average GDD units from planting and days from planting [...] R9 Bracts yellow - head back brown 2,310 119 [...] In sunflower, the base temperature of 44 F is used to determine growing degree days (GDD). [...] Source: North Dakota Agricultural Weather Network"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDAWN (North Dakota Agricultural Weather Network, NDSU), Sunflower Growing Degree Days Help (o site não respondeu; lido na cópia do Internet Archive de 15/10/2026)",
+      "url": "https://ndawn.ndsu.nodak.edu/help-sunflower-growing-degree-days.html",
+      "trecho": "Scientists have determined the lower base temperature for sunflower is 44 °F (6.7 °C). [...] no upper limit has been identified for sunflower. [...] If the daily Max and/or Min Temp < 44 F (6.7 °C) it's set equal to 44 °F [...] Growing degree days are accumulated beginning with the day after planting. [...] R9 2310"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Extension A652-21, North Dakota Sunflower Variety Trial Results for 2021 and Selection Guide, Tab. 6 (Fargo, B. Hulke, USDA-ARS) e Tab. 9 (Carrington)",
+      "url": "https://info.ext.nodak.edu/agriculture/sites/default/files/2021-12/as652_sunflower_2021.pdf",
+      "trecho": "Table 6. 2021 Sunflower - Oilseed - Fargo [...] Days to PM (DAP) [...] Croplan CP3845 67 110 [...] CP432E 64 110 [...] CHS Royal Hyb. 20-EXP05 68 116 [...] Planted: May 19. [...] Maturity checks: Honeycomb NS = 103 DAP, 8N270CLDM = 109 DAP, Falcon = 113 DAP, 559CL = 113 DAP. [...] Table 9. 2021 Sunflower - Oilseed - Carrington [...] Pioneer P63HE501 65 110 [...] Croplan CP450E 69 129 [...] Planted: May 26."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Extension A652-23, North Dakota Sunflower Variety Trial Results for 2023, Tab. 5 (Fargo), Tab. 8 (Carrington) e Tab. 9 (Langdon)",
+      "url": "https://www.ag.ndsu.edu:8000/agriculture/sites/default/files/2024-01/a652_23.pdf",
+      "trecho": "Table 5. 2023 Sunflower - Oilseed - Fargo [...] Days to PM [...] Nuseed N5H493 CL 64 104 [...] RAGT AC2202 64 115 [...] Planted: June 5th. [...] Table 8. 2023 Sunflower - Oilseed - Carrington [...] Croplan CP4255E 64 137 [...] Planted: May 30. [...] Table 9. 2023 Sunflower - Oilseed - Langdon [...] Dyna-Gro H50HO20CP 71 117 [...] Planted: May 23."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Extension A652-24, North Dakota Sunflower Variety Trial Results for 2024, Tab. 3 (Fargo) e Tab. 9 (Langdon)",
+      "url": "https://info.ext.nodak.edu/agriculture/sites/default/files/2025-02/a652-24.pdf",
+      "trecho": "Table 3. Sunflower Oilseed, Fargo, ND [...] Sunrich 4415 HO/DM/CLP 66 111 [...] Proseed E-2446 E 71 117 [...] Planted: June 6th. [...] Table 9. Sunflower Oilseed [...] Langdon, ND [...] Nuseed N4H205 E 76 123 [...] Croplan CP4255E 73 131 [...] Planting Date: May 30"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Extension A652-25, North Dakota Sunflower Variety Trial Results for 2025 and Selection Guide, Tab. 3 (Carrington)",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2025-12/a652-25.pdf",
+      "trecho": "Table 3. Oil Type Sunflower Carrignton, ND [...] Days to Flower / Days to Maturity DAP [...] Nuseed N4H205 E 70 115 [...] Winfield Un./Croplan CP4255E 68 131 [...] Planting Date = June 6; Harvest Date = November 6 and 12"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/girassol_gd.json (NASA POWER diário, comunidade AG; Tb 4, sem teto)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "girassol_ndawn_r9_fargo_0520: dias mediana 92 (80-113), GD mediana 1532, referência 1283 (+19,4%); girassol_ndawn_r9_carrington_0520: 98 dias, 1549; girassol_ndawn_r9_fargo_0605: 86 dias, 1518; girassol_a1995_fargo_0520_119d: mediana 1948 (P10 1723, P90 2130); ensaios (1 ano cada): fargo_2021 110 d 2101 / 116 d 2192; fargo_2023 104 d 1878 / 115 d 2048; fargo_2024 111 d 1917 / 117 d 2018; langdon_2023 110 d 1827 / 117 d 1902; langdon_2024 123 d 1877 / 131 d 1936; carrington_2021 110 d 2018 / 129 d 2275; carrington_2023 119 d 1985 / 137 d 2146; carrington_2025 115 d 1885 / 131 d 2051"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "profundidade_raiz_m",
+        "tipos"
+      ],
+      "fonte": "Kandel, H., Water Requirements for Sunflower, em NDSU Extension A1995 Sunflower Production Guide, 2020, p. 36-38 (texto igual ao da edição A-1331 de 2007, que cita M. Ennen, 1979, Sunflower water use)",
+      "url": "https://ndsu.edu/agriculture/sites/default/files/2023-12/a1995.pdf",
+      "trecho": "Sunflower has an effective root depth of around 4 feet but can remove water from below this depth. [...] Seasonal water use by sunflower averages about 19 inches under irrigated conditions. [...] These total water use values are typical for nondrought conditions in southeastern North Dakota."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/girassol_etc.json (NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "girassol_min_langdon_0525_105d: ET0 506, chuva 279, Kc mid 1,192, ETc mediana 441 (P10 366, P90 504); girassol_med_fargo_0520_119d: mediana 506 (referência 483, +4,7%); girassol_max_fargo_0520_130d: mediana 534 (P90 618); girassol_max_carrington_0520_130d: ET0 634, chuva 291, Kc mid 1,207, mediana 560 (P90 619)"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "NDSU Extension A1995 Sunflower Production Guide, 2020, 'Frost Damage' (p. 135-136) e 'Criteria for Hybrid Selection' (p. 35)",
+      "url": "https://ndsu.edu/agriculture/sites/default/files/2023-12/a1995.pdf",
+      "trecho": "Sunflowers are most susceptible at the bud (R4) and pollination stages (R5.0 to R5.9) of development. Temperatures of 30 F or less can cause damage to the anthers and stigmas of the pollinating disk flowers. [...] Yield, oil content and test weight often are reduced when a hybrid is damaged by frost before it is fully mature."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Ungaro, Castro, Farias, Barni, Ramos, Sentelhas, Girassol, in Monteiro (org.), Agrometeorologia dos cultivos, INMET, 2009, p. 205-221 (fonte da Tb do Brasil, reusada; trecho conferido na evidência do Brasil, data/catalogo/evidencias/girassol.json)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/579641/1/2009CL06.pdf",
+      "trecho": "BARNI et aI. (1993a), estudando nove cultivares (híbridos e populações), em 80 ambientes, no Estado do Rio Grande do Sul, determinaram uma temperatura base de 4°C, para todo o ciclo do girassol"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final",
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 11 e Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Sunflower 25 35 45 25 130 April/May Medit.; California [...] h. Oil Crops 0.35 1.15 0.35 [...] Sunflower 1.0-1.15 9 0.35 2.0"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Sunflower 0.8-1.5 0.45"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cobertura_solo",
+        "k_dia"
+      ],
+      "fonte": "van Donk, S.J.; Merrill, S.D.; Tanaka, D.L.; Krupinsky, J.M., Crop residue in North Dakota: measured and simulated by the Wind Erosion Prediction System, Transactions of the ASABE 51(5):1623-1632, 2008 (Mandan-ND, plantio direto, 1999-2001)",
+      "url": "https://infosys.ars.usda.gov/WindErosion/publications/pdf/Crop%20residue%20in%20North%20Dakota_measured%20and%20simulated.pdf",
+      "trecho": "Residue mass at the time of harvest was determined by hand sampling all aboveground biomass (excluding any residue mass from a previous crop) and subtracting the seed yield [...] Flax-sunflower 0.3254 0.5142 [...] Pea-sunflower 0.3729 0.5869 [...] Sunflower-sunflower 0.8486 0.3551 [...] Wheat-sunflower 0.4778 0.4286 [2000] [...] Flax-sunflower 0.4031 0.5755 [...] Pea-sunflower 0.6175 0.5449 [...] Sunflower-sunflower 0.5820 0.4222 [...] Wheat-sunflower 0.6321 0.5696 [2001, kg m-2] [...] Sunflower 0.0250 0.15 20.0 2.1 1.20 0.70 [...] Sequences with sunflower as the second crop had the lowest measured residue cover (58% on average) [...] storms flatten many residue stalks of crops such as sunflower"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA-ARS Northern Great Plains Research Laboratory (Mandan-ND), Crop Sequence Calculator, Introduction to Crop Production Parameters: Residue to Grain Ratio (1999/2000 Average)",
+      "url": "https://ars.usda.gov/ARSUserFiles/30640500/CSC/Web/PhaseII/Production/Crop_Production_Parameters.pdf",
+      "trecho": "Pounds of residue produced for each pound of grain. [...] Residue production can be calculated by multiplying the residue to grain ratio by seed yield (lb/a). [...] Wheat 2.25 1.76 0.77 1.20 3.25 3.66 1.45 3.84 1.90 0.94 [linha = resíduo anterior; coluna Sunflower = 3.84]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary (jan. 2026) e Crop Production 2022 Summary (jan. 2023), Sunflower Area Planted and Harvested, Yield, and Production by Type",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Oil [...] North Dakota ...:   1,970      1,800      1,940 [lb/acre, 2023-2025]; cropan23: North Dakota ...:   1,880      1,590      1,900 [2020-2022]"
+    },
+    {
+      "colunas": [
+        "uso_forrageiro"
+      ],
+      "fonte": "Lardy, G., Alternative Feeds for Ruminants, NDSU Extension AS1182, revisado em fevereiro de 2022, 'Sunflower Residue'",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2022-03/as1182_0.pdf",
+      "trecho": "The head contains the most feed value, followed by the top, middle and bottom thirds of the stalk. If residue cannot be collected behind the combine, grazing will afford good use, although the traditional late-fall sunflower harvest window usually limits the time before snow cover prevents grazing."
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Sunflower forage and crop residues, tabela 'Sunflower stover (stalks and heads)'",
+      "url": "https://www.feedipedia.org/node/143",
+      "trecho": "a much lower value (46%) has been reported for the whole stover (stalks and heads) [...] sunflower crop residues must be supplemented with ingredients rich in energy [...] [Crude protein % DM 5.7 (5.4-6.1, Nb 2); OM digestibility, Ruminant % 46.2 (Nb 1)]"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026 (nome da commodity e do tipo na tabela oficial; o QuickStats não foi consultado por falta de NASS_API_KEY)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Sunflower Area Planted and Harvested, Yield, and Production by Type - States and United States: 2023-2025 [...] Varietal type and State [...] Oil [...] Non-oil [...] All"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.6,
+      "max": 8.5,
+      "tipico": 5.6
+    },
+    "cn_palhada": {
+      "min": 34,
+      "max": 83,
+      "tipico": 39
+    },
+    "k_dia": {
+      "valor": 0.0052,
+      "min": 0.0041,
+      "max": 0.0071
+    },
+    "meia_vida_dias": {
+      "valor": 133
+    },
+    "condicao_decomposicao": "PROXY do Brasil: resíduo pós-colheita triturado, Jaboticabal-SP, plantio direto, 180 dias a partir da colheita na estação chuvosa (Marcelo 2012, média de 2 anos; ver data/catalogo/evidencias/girassol.json). Não achei k em dia de calendário medido nos EUA. Em ND a colheita é em outubro-novembro e o inverno congelado quase para a decomposição, então o k real nos 60 dias depois da colheita deve ser menor.",
+    "pb_pct": 5.7,
+    "digestibilidade_pct": {
+      "valor": 46.2,
+      "tipo": "OMD",
+      "n": 1,
+      "medicao": "medida",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes da palhada de girassol (Sunflower stover, stalks and heads), Feedipedia, valor medido (sem *), n = 1. Média mundial, não é dos EUA (PROXY). A NDSU (AS1182) não dá números para o resíduo de girassol."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Resíduo do girassol para grão depois da colheita (hastes e capítulos sem sementes, com sementes caídas), pastejado no fim do outono antes da neve (NDSU AS1182). Silagem de girassol é outro cenário e não entra.",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo na colheita (toda a parte aérea menos o grão), medido à mão em Mandan-ND, plantio direto, 1999-2001 (van Donk et al. 2008, Tab. 2): 8,49 (1999), 5,82, 5,14, 5,87, 3,55, 4,29 (2000), 5,76, 5,45, 4,22, 5,70 t/ha (2001), conforme o cultivo anterior. Típico = mediana dos 10 valores = (5,45 + 5,70)/2 = 5,6 t/ha; mínimo 3,6 (girassol sobre girassol, 2000); máximo 8,5 (1999). DESVIO do método padrão (razão × NASS): a razão resíduo/grão medida pelo USDA-ARS em Mandan (1999/2000) é 3,84 depois de trigo (3,53-5,33 conforme o cultivo anterior); vezes a produtividade do NASS para o girassol oleícola de ND em 2021-2025 (1590, 1900, 1970, 1800, 1940 lb/acre; mediana 1900 lb/acre = 2,13 t/ha) daria 8,2 t/ha (mínimo 6,8 em 2021; máximo 8,5 em 2023). Não usei porque a razão foi medida com produtividade de ~1300 lb/acre (5,6 / 3,84 = 1,45 t/ha) e o resíduo não cresce na mesma proporção do grão. Pelo índice de colheita de 0,33 do Brasil daria 4,3 t/ha. A medida direta (5,6) fica entre as duas contas. C/N: PROXY do Brasil (34 Embrapa CT 147; 39 e 83 Marcelo 2012; típico 39); não achei C/N do resíduo de girassol medido nos EUA.",
+      "cobertura": "O resíduo de girassol cobre pouco o solo por unidade de massa: no WEPS o fator massa-cobertura é 2,1 m²/kg, contra 6,5 do trigo (van Donk et al. 2008). Cobertura medida na primavera seguinte, depois da semeadura do trigo, em Mandan: média de 58% (35-87%) quando o girassol foi o segundo cultivo. A NDSU (A1995) recomenda não gradear os talos depois da colheita porque o solo fica 'extremely susceptible to wind and water erosion'. Com o k proxy, a régua dá 5,6 × e^(-0,0052×60) = 4,1 t/ha que sobram em 60 dias (classe 'media'), coerente com os 58% medidos (pela curva de Lopes et al. 1987, 58% de cobertura ≈ 2,9 t/ha).",
+      "decomposicao": "WEPS (van Donk et al. 2008, Tab. 1): k do girassol = 0,0250 por 'dia de decomposição' (dia com temperatura e umidade ótimas), o mais alto depois da soja (0,0300) e acima do trigo (0,0133). Não é k por dia de calendário, por isso não entrou no bloco. O valor do bloco é o do Brasil (Marcelo 2012: 0,0042 e 0,0063 → 0,0052; mínimo 0,0041 da Embrapa CT 147; máximo 0,0071 de Teodoro 2019).",
+      "colheita": "Handbook 628 (ND): colheita usual de 1/out a 23/nov, 'most active' de 9/out a 10/nov. Nos ensaios da NDSU de 2021-2025 a colheita foi de 17/out a 22/nov, 3 a 8 semanas depois da maturação fisiológica (secagem no campo)."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 5.6,
+      "ms_remanescente_t_ha": 4.1,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    }
+  ],
+  "pendencias": [
+    "graus_dia: o modelo oficial do NDAWN/NDSU (R9 = 2310 GDD °F, Tb 44 °F, sem teto) refeito no POWER dá só ~1530-1550 °C·dia (Tb 4) e é atingido em 86-98 dias, enquanto os ensaios da NDSU de 2021-2025 mostram 104-137 dias até a maturação e 1827-2275 °C·dia. A própria Tab. 1 do A1995 é incoerente no POWER: 2310 °F com 119 dias (os 119 dias dão 1948 em Fargo). Usei os ensaios (dias observados). Hipóteses: a tabela do NDAWN é antiga (híbridos dos anos 1980) ou de clima mais frio; o POWER pode estar mais quente que as estações do NDAWN. Resolveria: GDD do NDAWN até R9 medido em híbridos atuais, ou as séries das estações NDAWN de Fargo e Carrington para comparar com o POWER (o site do NDAWN não respondeu nesta sessão).",
+    "graus_dia: cada valor de ensaio é de um só ano; o mínimo (1827) e o máximo (2275) são extremos de 8 ensaios. Pelas medianas dos ensaios a faixa seria 1900-2050. 2021 foi um ano quente e seco em ND (o maior valor, Carrington 2021, é desse ano).",
+    "ciclo e graus-dia: só os ensaios de Fargo (USDA-ARS, B. Hulke) dizem 'Days to PM' (maturação fisiológica); Carrington e Langdon dizem 'Days to Maturity' sem definir o estádio. Os valores mais longos (Carrington, 129-137 dias) podem estar mais perto da maturação de colheita. Sem eles a faixa seria 104-131 dias e 1800-2190 °C·dia.",
+    "agua: CÁLCULO (Kc × ET0 do POWER); a única fonte de ND é a média de 19 in (483 mm) do girassol irrigado no sudeste do estado (NDSU A1995, que cita Ennen 1979). Resolveria: ET medida de girassol em ND por híbrido ou local (NDAWN Crop Water Use; USDA-ARS Mandan ou Sidney-MT).",
+    "temp_base_c = 4 (Brasil) contra 44 °F = 6,7 °C da NDSU/NDAWN. As somas térmicas desta linha já estão na Tb 4. Se o coordenador quiser a Tb americana, os cenários de girassol_gd.json podem ser refeitos trocando 'tb'.",
+    "raiz_profunda = false segue o Brasil (a raiz não rompe camada compactada). A NDSU destaca a raiz profunda (efetiva ~4 ft, tira água e nitrato abaixo de 2 ft); se a coluna for usada como 'explora camadas profundas', rever.",
+    "temp_otima_min_c, temp_otima_max_c e tmax_critica_c: sem fonte americana; reusados do Brasil.",
+    "regua: a palhada típica (5,6 t/ha) vem de medida direta em Mandan (1999-2001), não da conta razão × NASS pedida no método (que daria 8,2 t/ha e classe 'alto'). Decisão para o coordenador. C/N, k, PB e digestibilidade são PROXY (Brasil e Feedipedia), sem dado dos EUA; o k do WEPS (0,025) é por dia de decomposição ótimo, não por dia de calendário.",
+    "codigo_nass: 'SUNFLOWER, OIL TYPE' segue o relatório Crop Production (tipo 'Oil'); no QuickStats o commodity é 'SUNFLOWER' e a classe 'OIL TYPE'. Não conferido no QuickStats (sem NASS_API_KEY).",
+    "calendario_usda: o Handbook 628 só tem 'All Sunflower' (oleícola e confeiteiro juntos)."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 4,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max"
+    ]
+  }
+}

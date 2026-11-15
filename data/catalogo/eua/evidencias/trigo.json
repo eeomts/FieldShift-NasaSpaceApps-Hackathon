@@ -1,0 +1,461 @@
+{
+  "id": "trigo",
+  "pais": "EUA",
+  "nome": "Trigo de inverno (hard red winter wheat)",
+  "nome_cientifico": "Triticum aestivum",
+  "familia_botanica": "Poaceae",
+  "sistema": "hard red winter wheat (trigo duro vermelho de INVERNO), sequeiro, Kansas: semeadura no outono (set-out), dormência no inverno, maturação em junho do ano seguinte. ATENÇÃO: no Brasil a linha 'trigo' é trigo de PRIMAVERA (semeado no outono-inverno brasileiro, sem vernalização); aqui é outro tipo de cultivar e outro calendário. O trigo de primavera dos EUA (Dakota do Norte) fica em pendência.",
+  "regiao_referencia": "Kansas (noroeste: Colby; centro-oeste: Hays; centro-sul: Hutchinson)",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "230",
+    "ciclo_dias_max": "280",
+    "graus_dia_ciclo_min": "2000",
+    "graus_dia_ciclo_max": "2640",
+    "temp_base_c": "0",
+    "temp_otima_min_c": "15",
+    "temp_otima_max_c": "23",
+    "tmax_critica_c": "31",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "400",
+    "agua_ciclo_mm_max": "610",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "0.25",
+    "profundidade_raiz_m": "1.8",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "WHEAT, WINTER",
+    "calendario_usda": "Winter wheat",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do trigo de inverno no Kansas)|K-State, Kansas Crop Planting Guide L-818, 1996 (janelas de semeadura por zona; datas médias de geada)|Lollato, K-State Agronomy eUpdate 592, Optimum sowing dates and seeding rates for wheat in Kansas (janela ótima por região; semeadura real NASS 1994-2015)|Kansas Mesonet (K-State), Wheat Growth Stage (GDD do trigo: (Tmax+Tmin)/2 - 32 °F, sem teto; >3000 desde 1/jan = maturação fisiológica)|Kansas Mesonet (K-State), Winter Wheat Phenology (maturação ~2 semanas antes da colheita)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trigo_gd.json (graus-dia sem teto, Tb 0, na régua do NASA POWER, 2000-2020)|Paulsen et al., K-State Wheat Production Handbook C-529, 1997 (crescimento e desenvolvimento; geada na floração; raiz; água 16-24 pol.)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F, Tupper 79 °F)|FAO-56 Tab.12 Winter Wheat (Kc) e cap. 8 (Kc do trigo de inverno em período congelado)|FAO-56 Tab.22 Winter Wheat 1,5-1,8 m (raiz; limite superior)|Ferris et al. 1998 Ann. Bot. 82(5):631-639, mantido do Brasil (tmax na antese 31 °C)|FAO ECOCROP Triticum aestivum, mantido do Brasil (temperatura ótima)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do trigo de inverno no Kansas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Winter wheat) e 11.1a (resíduo acima do solo)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N da palha de trigo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição na superfície, Bushland-TX; resumo)|Stott et al., SSSAJ 54:92-98, 1990 (perda de palha de trigo no campo, WA, TX e IN; resumo)|Rogers et al., Agrosyst. Geosci. Environ. 2025, e70229 (decomposição e C/N de trigo duro vermelho, Idaho; resumo)|Ma et al., Agron. J. 91:401-409, 1999 (C/N da palha de trigo no leste do Colorado)|Waggoner, K-State Beef Tips, jul. 2022, dados de Cattlemen's Day 2014 (PB e IVDMD da palha de trigo)",
+    "confianca_parametros": "media"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Reusada do Brasil (Tb 0 °C, Embrapa CT 324) e conferida nos EUA: K-State MF3740 (2026), Tab. 1, 'Winter wheat 32 [°F] 79', e o Kansas Mesonet soma o GDD do trigo como (Tmax + Tmin)/2 - 32 °F, negativos = 0. 32 °F = 0 °C: mesma Tb e mesmo método (sem teto) do catálogo."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Semeadura -> maturação fisiológica, com a dormência de inverno incluída. Conta simples sobre números oficiais: semeadura tardia de 20/out (fim do 'most active' do Kansas, Handbook 628, e das janelas das zonas 2-3 da K-State L-818, 15/set-20/out e 25/set-20/out) até a maturação em 6/jun = início da colheita 'most active' do Kansas (20/jun, Handbook 628) menos 14 dias (Kansas Mesonet: 'the maturity occurred approximately 2 weeks prior to harvest'). 20/out a 6/jun = 230 dias (contando os dois dias). Conferência: em Hutchinson, de 1/jan a 6/jun o POWER soma mediana 1525 °C·dia, 8,5% abaixo do limiar de maturação do Mesonet (3000 °F·dia desde 1/jan = 1667), ou seja, a maturação real no centro-sul pode cair alguns dias depois de 6/jun."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Semeadura cedo no noroeste: 15/set (janela da zona 1 da K-State L-818: 10-30/set; início do 'most active' do Kansas no Handbook 628) até a maturação em 21/jun = fim da colheita 'most active' (5/jul) menos 14 dias (regra do Kansas Mesonet). 15/set a 21/jun = 280 dias. Conferência: em Colby, de 1/jan a 21/jun o POWER soma mediana 1685 °C·dia, +1,1% do limiar de maturação do Mesonet (1667). Faixa do sistema: a semeadura (set-out) e a região pesam mais que a cultivar; as cultivares de HRW diferem só alguns dias no espigamento."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (Tb 0, sem teto), scripts/gd_nasa_power.py com eua/cenarios/trigo_gd.json, safras 2000/01 a 2019/20. Cenário trigo_hutchinson_1020_0606 (centro-sul, semeadura 20/out, maturação 6/jun): mediana 2016 (P10 1775, P90 2320). Conferência independente pelo limiar do Kansas Mesonet: outono (20/out-31/dez) mediana 440 + 1667 (3000 °F·dia desde 1/jan, mesmo método, Tb 32 °F sem teto) = 2107. Mínimo = 2016 arredondado para baixo = 2000. Dias com Tmed <= 0 °C (dormência) somam zero; dias amenos de inverno somam, como no Mesonet."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO no POWER (mesmo script e arquivo). Cenário trigo_colby_0915_0621 (noroeste, semeadura 15/set, maturação 21/jun): mediana 2635 (P10 2272, P90 2973). Conferência pelo Mesonet: outono (15/set-31/dez) mediana 966 + 1667 = 2633. Máximo = 2640. Cenário típico (Hays, 1/out a 14/jun): mediana 2288; pelo Mesonet 709 + 1667 = 2376."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "K-State C-529 (1997), cap. Irrigation Management: 'Total seasonal water needs of wheat [...] are in the range of 16 to 24 inches for a wheat crop that is not water limited'. 16 pol. × 25,4 = 406 mm, arredondado para baixo = 400. Mesmo critério do Brasil (consumo sem déficit)."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte: 24 pol. × 25,4 = 610 mm (609,6). Conferência: a curva acumulada de Garden City-KS (trigo irrigado sem déficit, 1957-1959, Fig. 8 do C-529) passa de 20 pol. na fase de grão."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Winter Wheat 'with frozen soils' = 0,4 ('with non-frozen soils' = 0,7). O Kansas tem solo congelado no inverno (C-529 cita 'Freezing and thawing of soil'; dormência de dez a fev no calendário de produção), e o FAO-56 cap. 8 dá 'K c is about 0.4 for winter wheat during frozen periods in the region of northern China (latitude near 39°N)', latitude do Kansas. No Brasil (trigo de primavera) o Kc ini é 0,3."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Winter Wheat 1,15 (clima padrão). Abaixo do teto de 1,25. No Kansas semiárido e com vento a eq. 62 subiria (o FAO-56, Box 14, dá 1,02 a 1,25 conforme o clima); o motor ajusta no local."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Winter Wheat 0,25-0,4 (nota 10: o maior para colheita manual); 0,25 = colheita mecânica, a regra no Kansas. Igual ao Brasil."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Winter Wheat 1,5-1,8 m; limite superior (sequeiro, solo sem impedimento). Confere com o C-529: 'penetration to 6 feet under favorable conditions' (1,83 m). No Brasil (Spring Wheat) é 1,5."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica, tipos, perene, fixa_nitrogenio",
+      "valor_brasil": "Triticum aestivum, Poaceae, comercial, false, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie e mesmo papel (grão comercial anual). Muda o tipo de cultivar (inverno, com vernalização) e o calendário."
+    },
+    {
+      "coluna": "raiz_profunda",
+      "valor_brasil": "false",
+      "decisao": "conferido e mantido",
+      "motivo": "A raiz passa a 1,8 m (FAO-56 Winter Wheat), mas o critério do catálogo (sorgo e milheto true por recuperar solo compactado) não se aplica ao trigo; mantido false."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "0",
+      "decisao": "conferido e mantido",
+      "motivo": "K-State MF3740 e Kansas Mesonet usam 32 °F (= 0 °C), sem teto no Mesonet."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c",
+      "valor_brasil": "15, 23",
+      "decisao": "conferido e mantido",
+      "motivo": "A K-State MF3740 dá o limite superior da faixa ótima do trigo de inverno em 79 °F (26 °C), 3 °C acima do ECOCROP. Mantido 23 para o motor tratar os dois países igual (divergência em pendências)."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "valor_brasil": "31",
+      "decisao": "reusado",
+      "motivo": "Fisiologia da espécie (Ferris et al. 1998). Não achei limiar numérico da K-State para a antese; o C-529 só diz que o dano por calor aparece no enchimento de grão."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "O trigo de inverno resiste ao frio no vegetativo e na dormência, mas o C-529 diz que é 'quite resistant to most stresses except frost during flowering. Temperatures only slightly below freezing quickly kill the male flower parts'. A coluna fala da fase sensível (espigamento-floração em maio no Kansas)."
+    },
+    {
+      "coluna": "kc_inicial",
+      "valor_brasil": "0.3",
+      "decisao": "trocado",
+      "motivo": "FAO-56 Tab. 12 tem linha própria para Winter Wheat com solo congelado: 0,4."
+    },
+    {
+      "coluna": "kc_medio, kc_final",
+      "valor_brasil": "1.15, 0.25",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 12, Winter Wheat: mesmos valores da linha Spring Wheat."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "valor_brasil": "1.5",
+      "decisao": "trocado",
+      "motivo": "FAO-56 Tab. 22: Winter Wheat 1,5-1,8 m (Spring Wheat 1,0-1,5); C-529: até 6 pés."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "105, 175",
+      "decisao": "trocado",
+      "motivo": "Trigo de inverno: semeadura no outono e maturação em junho, com dormência: 230-280 dias."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "2000, 2600",
+      "decisao": "trocado",
+      "motivo": "Refeito no POWER para o Kansas (semeadura no outono à maturação em junho): 2000-2640. Coincide com a faixa brasileira, mas a soma vem de outro calendário (cerca de 25-35% dela no outono, antes da dormência)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "450, 650",
+      "decisao": "trocado",
+      "motivo": "K-State C-529: 16-24 pol. (400-610 mm) para trigo sem déficit hídrico."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 4,3 t/ha, C/N 65, k 0,0047, PB 26 (forragem verde de duplo propósito), DMS 68",
+      "decisao": "trocado",
+      "motivo": "Mesmo método com dados dos EUA: produtividade NASS do Kansas + IPCC (Winter wheat), C/N e decomposição de estudos dos EUA, forragem no cenário de grão (palha, K-State)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabela 'Winter Wheat Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Kansas .........:   8,800    Sep 10 Sep 15 - Oct 20 Nov 1   Jun 15 Jun 20 - Jul 5  Jul 15 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Shroyer et al., Kansas Crop Planting Guide, K-State L-818, novembro de 1996, Tab. 1 e introdução",
+      "url": "https://bookstore.ksre.ksu.edu/download/kansas-crop-planting-guide_L818",
+      "trecho": "Wheat               Sept 10–30         Sept 15–Oct 20                           Sept 25–Oct 20            Oct 5–25 [Zone 1 a Zone 4] [...] The average date of the first 32°F fall freeze is October 5 for the northwest and October 25 for the southeast."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Lollato, R., Optimum sowing dates and seeding rates for wheat in Kansas, K-State Agronomy eUpdate 592 (lido na cópia do Internet Archive de 18/07/2025; o site da eUpdate foi migrado)",
+      "url": "http://web.archive.org/web/20250718140124/https://eupdate.agronomy.ksu.edu/article/optimum-sowing-dates-and-seeding-rates-for-wheat-in-kansas-592-1",
+      "trecho": "optimum sowing window can start as early as September 10 th and last until the end of September (northwest Kansas), or it can start as late as October 5 th and last until October 20 th (southeast Kansas). [...] producers in Kansas planted approximately 50% of the crop prior to October 4 th , and about 90% of the crop prior to October 25 th during the 1994-2015 period"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Kansas Mesonet (K-State), Winter Wheat Phenology, metodologia (resumo da página)",
+      "url": "https://mesonet.k-state.edu/climate/products/wheat-pheno/",
+      "trecho": "the maturity occurred approximately 2 weeks prior to harvest [...] reaching 35% and 57% of GDD from January 1 to maturity date, respectively [jointing e espigamento]"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Kansas Mesonet (K-State), Wheat Growth Stage (ferramenta; legenda e fórmula da página, consultada em 15/11/2026)",
+      "url": "https://mesonet.k-state.edu/agriculture/wheat/gdd/",
+      "trecho": "Growing Degrees = Daily Max Air Temp + Daily Min Air Temp - 32 [÷] 2 Negative values are set to 0 [...] 2800 to 3000 Dough or kernels maturing More than 3000 Physiologically mature or approaching harvest [...] Jan 1 - [data]"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Soni, M. et al., Understanding Growing Degree Days: Temperature Limits and Their Role in Crop Growth and Development, K-State MF3740, junho de 2026, Tab. 1",
+      "url": "https://bookstore.ksre.ksu.edu/download/understanding-growing-degree-days_MF3740",
+      "trecho": "Table 1. Temperature thresholds for major crops in Kansas. Crop Tlower (°F) Tupper (°F) [...] Winter wheat 32 79 [...] Temperature thresholds can also vary across phenological stages, especially in wheat."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/trigo_gd.json (NASA POWER diário, comunidade AG, safras 2000/01 a 2019/20)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "trigo_colby_0915_0621: mediana 2635 (mín 2223, máx 2998, P10 2272, P90 2973); trigo_hays_1001_0614: mediana 2288 (P10 2075, P90 2707); trigo_hutchinson_1020_0606: mediana 2016 (P10 1775, P90 2320); conferência 1/jan à maturação contra 1667 do Mesonet: Colby 1685 (+1,1%), Hays 1609 (-3,5%), Hutchinson 1525 (-8,5%); outono (semeadura a 31/dez): Colby 966, Hays 709, Hutchinson 440"
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Paulsen, G.M., Growth and Development, em Wheat Production Handbook, K-State C-529, maio de 1997",
+      "url": "https://bookstore.ksre.ksu.edu/download/wheat-production-handbook_C529",
+      "trecho": "Wheat is highly self-pollinated and quite resistant to most stresses except frost during flowering. Temperatures only slightly below freezing quickly kill the male flower parts, sterilizing the florets so no grain is formed. [...] The maximum weight occurs about 4 weeks after flowering in Kansas."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Rogers, D.H. (cap. Irrigation Management), Wheat Production Handbook, K-State C-529, maio de 1997",
+      "url": "https://bookstore.ksre.ksu.edu/download/wheat-production-handbook_C529",
+      "trecho": "Wheat can develop an extension root system with penetration to 6 feet under favorable conditions. [...] Total seasonal water needs of wheat will vary widely depending on weather conditions but are in the range of 16 to 24 inches for a wheat crop that is not water limited."
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12 e nota 10",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Winter Wheat - with frozen soils 0.4 1.15 0.25-0.4 [...] - with non-frozen soils 0.7 1.15 0.25-0.4 [...] 10 The higher value is for hand-harvested crops."
+    },
+    {
+      "colunas": [
+        "kc_inicial"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), cap. 8, ETc durante períodos de neve e solo congelado",
+      "url": "https://www.fao.org/4/x0490e/x0490e0h.htm",
+      "trecho": "Similarly, K c is about 0.4 for winter wheat during frozen periods in the region of northern China (latitude near 39°N."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Spring Wheat 1.0-1.5 0.55 Winter Wheat 1.5-1.8 0.55"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, Winter Wheat yield por estado (2023-2025)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Kansas .............:   35.0         43.0        51.0 [bu/acre, 2023, 2024, 2025]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA NASS, Crop Production 2023 Summary, janeiro de 2024, Winter Wheat yield por estado (2021-2023)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/k3569432s/ns065v292/wd377h97d/cropan24.txt",
+      "trecho": "Kansas .............:   52.0        37.0        35.0 [bu/acre, 2021, 2022, 2023]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "IPCC 2019 Refinement to the 2006 Guidelines, Vol. 4, Cap. 11, Tabela 11.2 (Updated) e Tabela 11.1a",
+      "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf",
+      "trecho": "AGDM(T) = Crop(T) • Slope(T) + Intercept(T) [...] Winter wheat 1.61 ± 3% 0.40 ± 25% 0.67 [Tab. 11.1a: Winter Wheat [...] DRY 0.89]"
+    },
+    {
+      "colunas": [
+        "cn_palhada"
+      ],
+      "fonte": "USDA NRCS East National Technology Support Center, Carbon to Nitrogen Ratios in Cropping Systems, janeiro de 2011, Tabela 1",
+      "url": "https://sarep.ucdavis.edu/sites/g/files/dgvnsk9171/files/media/documents/NRCS-C_N_ratios_cropping_systems.pdf",
+      "trecho": "wheat straw 80:1"
+    },
+    {
+      "colunas": [
+        "cn_palhada",
+        "k_dia"
+      ],
+      "fonte": "Ghidey, F.; Alberts, E.E., Residue type and placement effects on decomposition: field study and model evaluation, Transactions of the ASAE 36(6):1611-1617, 1993 (Kingdom City, Missouri; sacolas de fibra de vidro instaladas em outubro de 1988)",
+      "url": "https://www.ars.usda.gov/ARSUserFiles/50701000/cswq-0265-ghidey.pdf",
+      "trecho": "Mass losses in one year for above-surface, surface, buried residue, and dead root were [...] 17, 36, 69, and 64% for wheat [...] Table 2. Initial C/N ratio [...] Wheat 74.1 44.1 [...] Initial carbon contents used for residue and dead root were 40, and 28%"
+    },
+    {
+      "colunas": [
+        "k_dia"
+      ],
+      "fonte": "Schomberg, H.H.; Steiner, J.L., Nutrient dynamics of crop residues decomposing on a fallow no-till soil surface, SSSAJ 63:607-613, 1999 (Bushland-TX, ago/1991-ago/1992; só o resumo, lido via OpenAlex)",
+      "url": "https://doi.org/10.2136/sssaj1999.03615995006300030025x",
+      "trecho": "Mass declined exponentially with decomposition coefficients (− r ) of 4.4, 1.5, 2.0, 1.7, and 1.1 g kg ‐1 d ‐1 for the five crop residues listed above [alfafa, milho, sorgo granífero, trigo de primavera e trigo de inverno]"
+    },
+    {
+      "colunas": [
+        "k_dia"
+      ],
+      "fonte": "Stott, D.E. et al., Wheat residue loss from fields under no-till management, SSSAJ 54:92-98, 1990 (5 locais em Washington, Texas e Indiana; só o resumo, lido via OpenAlex)",
+      "url": "https://doi.org/10.2136/sssaj1990.03615995005400010014x",
+      "trecho": "Thirty weeks after harvest, residue weight losses ranged from 35 to 42% and, after an additional 5 wk, losses ranged from 38 to 55%. [...] On chemical fallow plots, there was a 50 to 80% loss after a year."
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "cn_palhada"
+      ],
+      "fonte": "Rogers, C.W. et al., Barley, corn, and wheat residue decomposition as affected by tillage and nitrogen rate in semi-arid conditions, Agrosystems, Geosciences & Environment, 2025, e70229 (Aberdeen-ID, 2018-2020; só o resumo, lido via OpenAlex)",
+      "url": "https://doi.org/10.1002/agg2.70229",
+      "trecho": "Barley, corn, HRW, and SWW carbon:nitrogen (C:N) ratios were 74, 62, 105, and 87, respectively. [...] First‐order decay constants ranged from 0.00075 to 0.00300 day −1 for surface HRW and incorporated corn, respectively."
+    },
+    {
+      "colunas": [
+        "cn_palhada"
+      ],
+      "fonte": "Ma, L. et al., Decomposition of surface crop residues in long-term studies of dryland agroecosystems, Agronomy Journal 91:401-409, 1999 (Sterling, Stratton e Walsh, leste do Colorado)",
+      "url": "https://www.ars.usda.gov/ARSUserFiles/3495/101.%20091-03-0401.pdf",
+      "trecho": "Ghidey and Alberts (1993) measured C/N ratios for wheat, corn, and sorghum were 74, 29, and 21, respectively, while our estimated C/N ratios from measured N contents were 81, 61, and 53, respectively."
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Waggoner, J., Consider Application Rates and Costs Before Ammoniating Wheat Straw, K-State Beef Tips (Beef Bulletin), 1/07/2022, tabela com dados do K-State Cattlemen's Day 2014 (Garden City)",
+      "url": "https://www.k-state.edu/news/beef-tips/articles/2022/07/consider-application-rates-and-costs-before-ammoniating-wheat-straw.html",
+      "trecho": "Cattle producers often utilize crop residues such as wheat straw to sustain cows during drought conditions. However, the use of these forages is often limited by their low nutrient content and digestibility. [...] Item PRE 1.5% 3.0% [...] Crude Protein, % * 3.3 a 8.6 b 10.8 c [...] IVDMD, % † 31.0 a 42.0 b 46.2 c"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "Kellogg Biological Station LTER (Michigan State Univ.), Agronomic Yields - County, State and Regional, tabela extraída do USDA NASS QuickStats (citação secundária do nome do item)",
+      "url": "https://lter.kbs.msu.edu/datatables/85",
+      "trecho": "MI,\"WHEAT, WINTER \",2014,\"WHEAT, WINTER - YIELD, MEASURED IN BU / ACRE\",74.00,4.98"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.8,
+      "max": 5.4,
+      "tipico": 4.5
+    },
+    "cn_palhada": {
+      "min": 74,
+      "max": 105,
+      "tipico": 80
+    },
+    "k_dia": {
+      "valor": 0.00115,
+      "min": 0.00075,
+      "max": 0.0026
+    },
+    "meia_vida_dias": {
+      "valor": 603
+    },
+    "condicao_decomposicao": "Palha de trigo de inverno na superfície, sem incorporação, em estudos dos EUA: Bushland-TX (sacolas instaladas em agosto, 1 ano, Schomberg & Steiner 1999), Missouri (sacolas instaladas em outubro, 1 ano, Ghidey & Alberts 1993), Idaho semiárido irrigado (Rogers et al. 2025) e amostras de campo em WA, TX e IN (Stott et al. 1990). Não achei estudo de decomposição no Kansas.",
+    "pb_pct": 3.3,
+    "digestibilidade_pct": {
+      "valor": 31.0,
+      "tipo": "IVDMD",
+      "n": null,
+      "medicao": "medida",
+      "nota": "Palha de trigo sem tratamento (coluna PRE), K-State, Garden City (Cattlemen's Day 2014, via Beef Tips 2022). A fonte não informa o n. TDN 33,2 na mesma tabela (não é digestibilidade e não entra)."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Palha e restolho do trigo para grão depois da colheita (fardo de palha ou pastejo do restolho), cenário de grão. O pastejo do trigo verde no outono-inverno (duplo propósito, comum no centro-sul do Kansas e em Oklahoma; o C-529 manda retirar o gado antes do primeiro nó) é outro cenário, porque custa grão; não entra.",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo depois da colheita, pela Tab. 11.2 do IPCC 2019 para Winter wheat: AGDM = 1,61 × Crop + 0,40 (t MS/ha), com Crop = produtividade × 0,0673 (bu/acre -> t/ha, 60 lb/bu) × 0,89 (DRY, Tab. 11.1a). Produtividade NASS do trigo de inverno no Kansas, 2021-2025: 52, 37, 35, 43 e 51 bu/acre; mediana 43 -> Crop 2,58 t MS/ha -> 4,5 t/ha (típico). Mínimo = 2023 (35 bu/acre) -> 3,8; máximo = 2021 (52) -> 5,4. Mesmo critério de unidade do milho (o intercepto só faz sentido em t/ha). Não desconta o enfardamento da palha nem o pastejo do restolho. No oeste do Kansas o trigo vem antes de um pousio (trigo-pousio ou trigo-sorgo-pousio) e a palha fica no campo por 10-14 meses. C/N: 80 (NRCS, tabela nacional, sem n), 74,1 (Ghidey & Alberts, N medido e C assumido em 40%), 81 (Ma et al., Colorado, estimado do N), 105 (Rogers et al., trigo duro vermelho em Idaho). Típico = 80.",
+      "decomposicao": "k em dia⁻¹, um valor por estudo: Schomberg & Steiner 1999 (Bushland-TX, trigo de inverno na superfície): 1,1 g kg⁻¹ d⁻¹ = 0,0011; Ghidey & Alberts 1993 (Missouri, superfície): 36% perdidos em 1 ano -> k = -ln(0,645)/365 = 0,0012; Stott et al. 1990: 35-42% perdidos em 30 semanas -> k = -ln(0,65)/210 = 0,0021 a -ln(0,58)/210 = 0,0026; Rogers et al. 2025 (Idaho): 0,00075. Valor = mediana dos quatro estudos (0,00075; 0,0011; 0,0012; 0,0023 = meio de Stott) = 0,00115; T½ = 0,693/0,00115 = 603 d. Mínimo = Rogers (0,00075), máximo = Stott (0,0026). Palhada que sobra em 60 dias: 4,5 × e^(-0,00115×60) = 4,2 t/ha. A palha de trigo decompõe bem mais devagar nos EUA do que em Londrina-PR (0,0047 no Brasil).",
+      "colheita": "Colheita típica (Handbook 628, Kansas): início 15/jun, 'most active' 20/jun-5/jul, fim 15/jul. A maturação fisiológica vem cerca de 2 semanas antes (Kansas Mesonet), com o grão secando de 30-35% para 12-13% de umidade (C-529)."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.5,
+      "ms_remanescente_t_ha": 4.2,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    }
+  ],
+  "pendencias": [
+    "SISTEMA: a linha 'trigo' dos EUA é trigo de INVERNO (HRW, Kansas) e a do Brasil é trigo de PRIMAVERA. Mesmo id, outro calendário: ciclo de 230-280 dias, com dormência. O trigo de primavera dos EUA (hard red spring, Dakota do Norte; semeadura em abril-maio, colheita em agosto) fica para outra linha ou para o motor escolher pelo local. DECISÃO para o coordenador: o motor precisa saber que, nos EUA, o ciclo do trigo começa no outono e atravessa o ano.",
+    "graus-dia: a soma inclui a dormência de inverno (dias com Tmed > 0 °C somam, como no Kansas Mesonet). O motor deve somar os graus-dia de set-out até junho do ano seguinte, sem teto e com Tb 0. Não há conversão de teto: o Mesonet já usa o mesmo método do catálogo. Os 2000-2640 vêm de datas de semeadura e maturação do calendário oficial (não de cultivar); faltou um ensaio do Kansas com a data de maturação fisiológica medida por cultivar e data de semeadura. Resolveria: dados de fenologia dos ensaios da K-State (Kansas Wheat Performance Tests trazem só o espigamento, e só em algumas tabelas).",
+    "ciclo_dias: a maturação fisiológica = colheita do Handbook 628 menos 14 dias (regra do Kansas Mesonet, que cita Robertson et al. 2004; o original não foi lido). No centro-sul (Hutchinson) o POWER soma 8,5% menos que o limiar de maturação do Mesonet até 6/jun, então a maturação real pode vir uns 5 dias depois e o ciclo mínimo seria ~235 dias.",
+    "sensivel_geada = true pela fase sensível (geada no espigamento-floração, maio). O trigo de inverno tolera o frio no vegetativo; o motor não deve eliminar o trigo de inverno por geada no inverno, só por geada tardia na floração.",
+    "temp_otima_max_c: mantido 23 (ECOCROP, Brasil). A K-State MF3740 dá 79 °F (26 °C) como limite superior do ótimo do trigo de inverno. Se o coordenador preferir a fonte dos EUA, seria 26.",
+    "tmax_critica_c = 31 do Brasil (Ferris et al. 1998), sem limiar numérico da K-State para a antese.",
+    "agua_ciclo_mm: 16-24 pol. é número de extensão (C-529, 1997), sem a conta do clima de cada região do Kansas. Não refiz com etc_nasa_power.py: o ciclo com dormência pediria fases de Kc próprias do Kansas que não achei (FAO-56 Tab. 11 tem Idaho, 160/75/75/25 dias). Um cenário Kc × ET0 em Garden City conferiria o máximo.",
+    "kc_inicial 0,4 (solo congelado) vale para o noroeste e o centro do Kansas; no sul (Oklahoma, norte do Texas) com inverno sem solo congelado o FAO-56 dá 0,7.",
+    "regua: nenhum estudo de decomposição no Kansas; as quatro fontes de k são do Texas, Missouri, Idaho e de vários estados (três lidas só pelo resumo). Digestibilidade sem n. A palhada não desconta o enfardamento. O pastejo do trigo no outono-inverno (duplo propósito) não entrou no valor forrageiro.",
+    "codigo_nass: 'WHEAT, WINTER' conferido por citação secundária (tabela da KBS LTER com o item do QuickStats); no QuickStats o commodity é 'WHEAT' e a classe 'WINTER'. Não havia NASS_API_KEY no ambiente. calendario_usda: 'Winter wheat' = tabela 'Winter Wheat Usual Planting and Harvesting Dates' do relatório de 2010."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
+}

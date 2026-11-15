@@ -1,0 +1,43 @@
+{
+  "_leia": "Cenários de água do amendoim (runner, sul da Geórgia) para scripts/etc_nasa_power.py. O máximo da linha (agua_ciclo_mm_max) vem do cenário amendoim_max_tifton_0510_150d; o mínimo é publicado (UGA Checkbook, 18 polegadas) e o cenário de 135 dias fica como conferência. Kc do FAO-56 Tab. 12: ini 0,40 (grupo Legumes, herdado pela linha 'Groundnut (Peanut)'), mid 1,15, end 0,60; fases na proporção da linha 'Groundnut 35 45 35 25 140 May/June Mediterranean' da Tab. 11, ajustadas ao ciclo; sem eq. 62 (altura_m null), como o Kc da linha. Semeadura em 10/mai (UGA: janela ideal do fim de abril ao fim de maio). 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "amendoim_max_tifton_0510_150d",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "fases_dias": [38, 48, 38, 26],
+      "kc": {"ini": 0.4, "mid": 1.15, "end": 0.6},
+      "altura_m": null,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 560,
+        "nota": "agua_ciclo_mm_max = mediana arredondada para baixo. Cultivar de ciclo mais longo da UGA (Georgia-12Y, '150 days +'; Monfort, ago/2022)."
+      }
+    },
+    {
+      "nome": "amendoim_conf_tifton_0510_135d",
+      "cultura": "amendoim",
+      "local": "tifton",
+      "semeadura": "05-10",
+      "fases_dias": [34, 43, 34, 24],
+      "kc": {"ini": 0.4, "mid": 1.15, "end": 0.6},
+      "altura_m": null,
+      "anos": [2001, 2020],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 457,
+        "nota": "Conferência do mínimo: UGA 2026 Peanut Quick Reference Guide, 'The total estimated water requirement from the UGA Checkbook for peanuts is 18 inches' = 457 mm. Cultivar mais precoce citado pela UGA (Georgia-09B, 135-140 dias)."
+      }
+    }
+  ]
+}

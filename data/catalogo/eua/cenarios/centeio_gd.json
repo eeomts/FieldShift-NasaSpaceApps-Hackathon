@@ -1,0 +1,187 @@
+{
+  "_leia": "Cenários de graus-dia do centeio (cereal rye, cobertura de inverno depois do milho/soja, Iowa) para scripts/gd_nasa_power.py. A exigência vai da semeadura (outono) ao manejo (dessecação na primavera, perto da semeadura da soja). Tb 0 °C (32 °F, Practical Farmers of Iowa). As fontes dão datas, não GDD: modo 'fim'. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU Ag Engineering/Agronomy Farm; sítio de Sawyer et al. e de Jha & Yadav)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    },
+    "sutherland": {
+      "nome": "Sutherland-IA (ISU Northwest Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -95.54,
+      "elevacao_m": 422.49
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "centeio_nashua_1029_0425",
+      "cultura": "centeio",
+      "local": "nashua",
+      "semeadura": "10-29",
+      "fim": "04-25",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais tardia (29/out) e manejo no fim de abril (antes da soja); 179 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_nashua_1001_0505",
+      "cultura": "centeio",
+      "local": "nashua",
+      "semeadura": "10-01",
+      "fim": "05-05",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura típica (1/out) e manejo no início de maio; 217 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_nashua_0917_0520",
+      "cultura": "centeio",
+      "local": "nashua",
+      "semeadura": "09-17",
+      "fim": "05-20",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais cedo (17/set) e manejo mais tardio (20/mai); 246 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_sutherland_1029_0425",
+      "cultura": "centeio",
+      "local": "sutherland",
+      "semeadura": "10-29",
+      "fim": "04-25",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais tardia (29/out) e manejo no fim de abril (antes da soja); 179 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_sutherland_1001_0505",
+      "cultura": "centeio",
+      "local": "sutherland",
+      "semeadura": "10-01",
+      "fim": "05-05",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura típica (1/out) e manejo no início de maio; 217 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_sutherland_0917_0520",
+      "cultura": "centeio",
+      "local": "sutherland",
+      "semeadura": "09-17",
+      "fim": "05-20",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais cedo (17/set) e manejo mais tardio (20/mai); 246 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_ames_1029_0425",
+      "cultura": "centeio",
+      "local": "ames",
+      "semeadura": "10-29",
+      "fim": "04-25",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais tardia (29/out) e manejo no fim de abril (antes da soja); 179 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_ames_1001_0505",
+      "cultura": "centeio",
+      "local": "ames",
+      "semeadura": "10-01",
+      "fim": "05-05",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura típica (1/out) e manejo no início de maio; 217 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_ames_0917_0520",
+      "cultura": "centeio",
+      "local": "ames",
+      "semeadura": "09-17",
+      "fim": "05-20",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais cedo (17/set) e manejo mais tardio (20/mai); 246 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_crawfordsville_1029_0425",
+      "cultura": "centeio",
+      "local": "crawfordsville",
+      "semeadura": "10-29",
+      "fim": "04-25",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais tardia (29/out) e manejo no fim de abril (antes da soja); 179 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_crawfordsville_1001_0505",
+      "cultura": "centeio",
+      "local": "crawfordsville",
+      "semeadura": "10-01",
+      "fim": "05-05",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura típica (1/out) e manejo no início de maio; 217 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "centeio_crawfordsville_0917_0520",
+      "cultura": "centeio",
+      "local": "crawfordsville",
+      "semeadura": "09-17",
+      "fim": "05-20",
+      "tb": 0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "semeadura mais cedo (17/set) e manejo mais tardio (20/mai); 246 dias. Datas de Sawyer, Pantoja & Barker (ISU, 2014): centeio semeado depois da colheita do milho e da soja 'Sept. 17 earliest and Oct. 29 latest, most late September through early October'; controle 'at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May)'. Modo 'fim': GD = soma de max(0, Tmed - 0), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "_leia": "Cenários de graus-dia do girassol (oilseed sunflower, sequeiro, Dakota do Norte) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 4), sem teto (Tb 4 °C da linha do Brasil). (1) Cenários 'ndawn_r9': exigência do NDAWN/NDSU A1995 (R9 = maturação fisiológica = 2310 GDD °F da semeadura, Tb 44 °F, sem teto, Tmax e Tmin abaixo de 44 °F elevadas a 44 °F), convertida com 'alvo_com_teto' (teto 150 °F = sem teto na prática; o script eleva a Tmin à Tb, como o NDAWN). 'referencia.valor' = 2310 / 1,8 = 1283 °C·dia na Tb 6,7 °C. (2) Cenários de ensaio ('dias'): datas de semeadura e dias até a maturação dos híbridos oleícolas comerciais mais precoce e mais tardio de cada ensaio da NDSU (A652, 2021-2025), no ano do ensaio; esses cenários não têm 'referencia' (a fonte só dá dias) e a origem fica em 'fonte'. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "fargo": {
+      "nome": "Fargo-ND (NDSU/USDA-ARS)",
+      "lat": 46.89,
+      "lon": -96.81,
+      "elevacao_m": 282.59
+    },
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "girassol_ndawn_r9_fargo_0520",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "05-20",
+      "alvo_com_teto": {
+        "valor": 2310,
+        "unidade": "F",
+        "tb": 44,
+        "teto": 150
+      },
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1283,
+        "nota": "NDAWN Sunflower GDD Help e NDSU A1995 (2020), Tab. 1: R9 (maturação fisiológica) = 2310 GDD °F da semeadura, 119 dias em média. 2310 / 1,8 = 1283 °C·dia na Tb 6,7 °C. Semeadura 20/mai = meio da janela 'most active' de ND (19/mai-8/jun, Handbook 628)."
+      }
+    },
+    {
+      "nome": "girassol_ndawn_r9_carrington_0520",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "05-20",
+      "alvo_com_teto": {
+        "valor": 2310,
+        "unidade": "F",
+        "tb": 44,
+        "teto": 150
+      },
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1283,
+        "nota": "Mesma exigência do NDAWN (2310 GDD °F até R9), centro de ND."
+      }
+    },
+    {
+      "nome": "girassol_ndawn_r9_fargo_0605",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "06-05",
+      "alvo_com_teto": {
+        "valor": 2310,
+        "unidade": "F",
+        "tb": 44,
+        "teto": 150
+      },
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1283,
+        "nota": "Mesma exigência, semeadura tardia (fim da janela 'most active', 8/jun)."
+      }
+    },
+    {
+      "nome": "girassol_a1995_fargo_0520_119d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "05-20",
+      "dias": 119,
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência: NDSU A1995 (2020), Tab. 1, R9 = 119 dias da semeadura em média (mesma linha dos 2310 GDD °F). Semeadura 20/mai em Fargo, 2001-2020."
+    },
+    {
+      "nome": "girassol_ensaio_fargo_2021_precoce_110d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "05-19",
+      "dias": 110,
+      "tb": 4,
+      "anos": [
+        2021,
+        2021
+      ],
+      "fonte": "NDSU A652-21, Tab. 6 (Fargo, B. Hulke, oleícola): semeadura 19/mai/2021; 'Days to PM' 110 DAP (CP3845 e CP432E, os comerciais mais precoces; o testemunha precoce Honeycomb NS = 103)."
+    },
+    {
+      "nome": "girassol_ensaio_fargo_2021_tardio_116d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "05-19",
+      "dias": 116,
+      "tb": 4,
+      "anos": [
+        2021,
+        2021
+      ],
+      "fonte": "NDSU A652-21, Tab. 6: 116 DAP até a maturação fisiológica (20-EXP05, o mais tardio)."
+    },
+    {
+      "nome": "girassol_ensaio_fargo_2023_precoce_104d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "06-05",
+      "dias": 104,
+      "tb": 4,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A652-23, Tab. 5 (Fargo): semeadura 5/jun/2023; 'Days to PM' 104 DAP (N5H493 CL; Honeycomb NS = 99)."
+    },
+    {
+      "nome": "girassol_ensaio_fargo_2023_tardio_115d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "06-05",
+      "dias": 115,
+      "tb": 4,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A652-23, Tab. 5: 115 DAP (AC2202, o mais tardio)."
+    },
+    {
+      "nome": "girassol_ensaio_fargo_2024_precoce_111d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "06-06",
+      "dias": 111,
+      "tb": 4,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A652-24, Tab. 3 (Fargo): semeadura 6/jun/2024; 111 DAP até a maturação (4415 HO/DM/CLP; Honeycomb NS = 104)."
+    },
+    {
+      "nome": "girassol_ensaio_fargo_2024_tardio_117d",
+      "cultura": "girassol",
+      "local": "fargo",
+      "semeadura": "06-06",
+      "dias": 117,
+      "tb": 4,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A652-24, Tab. 3: 117 DAP (H47HO11EX, E-2446 E e AC2202)."
+    },
+    {
+      "nome": "girassol_ensaio_langdon_2023_precoce_110d",
+      "cultura": "girassol",
+      "local": "langdon",
+      "semeadura": "05-23",
+      "dias": 110,
+      "tb": 4,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A652-23, Tab. 9 (Langdon): semeadura 23/mai/2023; 'Days to Maturity' 110 DAP (os mais precoces)."
+    },
+    {
+      "nome": "girassol_ensaio_langdon_2023_tardio_117d",
+      "cultura": "girassol",
+      "local": "langdon",
+      "semeadura": "05-23",
+      "dias": 117,
+      "tb": 4,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A652-23, Tab. 9: 117 DAP (H50HO20CP, o mais tardio)."
+    },
+    {
+      "nome": "girassol_ensaio_langdon_2024_precoce_123d",
+      "cultura": "girassol",
+      "local": "langdon",
+      "semeadura": "05-30",
+      "dias": 123,
+      "tb": 4,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A652-24, Tab. 9 (Langdon): semeadura 30/mai/2024; 123 DAP (N4H205 E, o mais precoce)."
+    },
+    {
+      "nome": "girassol_ensaio_langdon_2024_tardio_131d",
+      "cultura": "girassol",
+      "local": "langdon",
+      "semeadura": "05-30",
+      "dias": 131,
+      "tb": 4,
+      "anos": [
+        2024,
+        2024
+      ],
+      "fonte": "NDSU A652-24, Tab. 9: 131 DAP (CP4255E e P64HE188)."
+    },
+    {
+      "nome": "girassol_ensaio_carrington_2021_precoce_110d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "05-26",
+      "dias": 110,
+      "tb": 4,
+      "anos": [
+        2021,
+        2021
+      ],
+      "fonte": "NDSU A652-21, Tab. 9 (Carrington, oleícola): semeadura 26/mai/2021; 'Days to Maturity' 110 DAP (P63HE501)."
+    },
+    {
+      "nome": "girassol_ensaio_carrington_2021_tardio_129d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "05-26",
+      "dias": 129,
+      "tb": 4,
+      "anos": [
+        2021,
+        2021
+      ],
+      "fonte": "NDSU A652-21, Tab. 9: 129 DAP (CP450E, H47H011 EX, NLKP74437, P64HE101)."
+    },
+    {
+      "nome": "girassol_ensaio_carrington_2023_precoce_119d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "05-30",
+      "dias": 119,
+      "tb": 4,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A652-23, Tab. 8 (Carrington): semeadura 30/mai/2023; 119 DAP (H45NS16CL; testemunha 8N270CLDM também 119)."
+    },
+    {
+      "nome": "girassol_ensaio_carrington_2023_tardio_137d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "05-30",
+      "dias": 137,
+      "tb": 4,
+      "anos": [
+        2023,
+        2023
+      ],
+      "fonte": "NDSU A652-23, Tab. 8: 137 DAP (CP4255E, o mais tardio)."
+    },
+    {
+      "nome": "girassol_ensaio_carrington_2025_precoce_115d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "06-06",
+      "dias": 115,
+      "tb": 4,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A652-25, Tab. 3 (Carrington): semeadura 6/jun/2025; 115 DAP (N4H205 E; a testemunha Hybrid 894 = 114)."
+    },
+    {
+      "nome": "girassol_ensaio_carrington_2025_tardio_131d",
+      "cultura": "girassol",
+      "local": "carrington",
+      "semeadura": "06-06",
+      "dias": 131,
+      "tb": 4,
+      "anos": [
+        2025,
+        2025
+      ],
+      "fonte": "NDSU A652-25, Tab. 3: 131 DAP (CP4255E e H47HO11 EX)."
+    }
+  ]
+}

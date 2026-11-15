@@ -1,0 +1,427 @@
+{
+  "id": "sorgo",
+  "pais": "EUA",
+  "nome": "Sorgo granífero (grain sorghum)",
+  "nome_cientifico": "Sorghum bicolor",
+  "familia_botanica": "Poaceae",
+  "sistema": "grain sorghum (milo), sequeiro, semeadura cheia de fim de maio a meados de junho no Kansas e de junho no oeste do Texas. O double-crop depois do trigo (semeadura no fim de junho e início de julho, híbrido precoce) fica como variante em pendência: os dias até a maturação quase não mudam, mas o risco de geada antes da maturação sobe.",
+  "regiao_referencia": "Kansas (Manhattan, Hays, Hutchinson); oeste do Texas (Lubbock)",
+  "valores": {
+    "tipos": "comercial|tolerante_seca|raiz_profunda",
+    "perene": "false",
+    "ciclo_dias_min": "84",
+    "ciclo_dias_max": "114",
+    "graus_dia_ciclo_min": "1490",
+    "graus_dia_ciclo_max": "1880",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "22",
+    "temp_otima_max_c": "34",
+    "tmax_critica_c": "36",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "400",
+    "agua_ciclo_mm_max": "686",
+    "kc_inicial": "0.3",
+    "kc_medio": "1.10",
+    "kc_final": "0.55",
+    "profundidade_raiz_m": "2.0",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "true",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "SORGHUM, GRAIN",
+    "calendario_usda": "Sorghum for grain",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do sorgo granífero no Kansas e no Texas)|Shroyer et al., K-State Kansas Crop Planting Guide L-818, 1996 (janela de semeadura por zona; primeira geada de outono)|Diawara, B., Effect of planting date on growth, development, and yield of grain sorghum hybrids, dissertação de mestrado, Kansas State University, 2012 (dias da semeadura à maturação fisiológica medidos em Manhattan e Hutchinson, 2010-2011)|Trostle, Lege & Keys, Texas A&M AgriLife Extension, 2026 Alternative Crop Options after Failed Cotton and Late-Season Crop Planting for the Texas South Plains (dias à maturação fisiológica por classe de maturidade; conferência)|Vanderlip, How a Sorghum Plant Develops, K-State S-3, 1993 (fases e dias após a emergência; conferência)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F, teto 100 °F; GDU da semeadura à camada preta 2673 e 3360 °F)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/sorgo_gd.json (GDU com teto convertidos para graus-dia sem teto, Tb 10, na régua do NASA POWER, 2001-2020)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (sorgo: Tlower 46 °F, Tupper 100 °F; conferência)|Rogers & Alam, Irrigation, em K-State Grain Sorghum Production Handbook C-687, 1998 (água 18-22 pol. no oeste, 1-2 a menos no leste; raiz até 6 pés)|Ciampitti et al., K-State Kansas Sorghum Management 2020, MF3046 (água 18-26 pol. no oeste; maturação 1-2 semanas antes da geada)|United Sorghum Checkoff Program, West Texas Production Guide, 2018 (ETc do sorgo irrigado 22-27 pol., USDA-ARS Bushland 2000-2009)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|Magalhães et al., Embrapa Cultivo do Sorgo 2015, e FAO ECOCROP, mantidos do Brasil (temperatura ótima)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al., mantido do Brasil (tmax na antese)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do sorgo granífero no Kansas e no Texas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Sorghum) e 11.1a (resíduo acima do solo)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição e N do resíduo de sorgo, Bushland-TX; resumo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Ma et al., Agron. J. 91:401-409, 1999 (C/N do resíduo de sorgo no leste do Colorado)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD da folha e do colmo do sorgo granífero)",
+    "confianca_parametros": "media"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Reusada do Brasil (Tb 10 °C) e conferida nos EUA: Gerik, Bean & Vanderlip (Texas A&M e K-State, B-6137): 'The base temperature or lower temperature limit of sorghum development is 50 degrees F' (= 10 °C). A K-State MF3740 (2026) lista 46 °F (7,8 °C) para o sorgo; ver pendências."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "Semeadura -> maturação fisiológica (camada preta). Diawara (K-State, 2012), ensaios de sequeiro em Manhattan e Hutchinson (2010-2011), três híbridos de maturidade diferente: semeadura de fim de maio, híbrido precoce DKS 28-05 = 84 dias (Hutchinson, 26/mai/2010) e 85 (Manhattan, 25/mai/2010). Converge com a Texas A&M AgriLife 2026 ('Early' <90 dias à maturação fisiológica no South Plains) e com o cálculo no POWER para o híbrido curto de Gerik et al. (mediana de 88 dias em Lubbock com semeadura em 20/jun; 94-98 em Hays e Manhattan). Mínimo = 84."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "Diawara 2012: semeadura de fim de maio, híbrido de ciclo cheio P84G62 = 107-108 dias em 2010 e 114 dias em Manhattan (30/mai/2011). Máximo = 114. Converge com a Texas A&M AgriLife 2026 ('Medium-long' 104-110, 'Long' 111+) e com a K-State S-3 (híbrido médio RS610 em Manhattan: maturação aos 95 dias da emergência, que vem 3-10 dias depois da semeadura). Semeaduras de fim de junho deram 80-117 dias (ver pendências). Colheita bem depois (ver regua.observacoes)."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 10), scripts/gd_nasa_power.py, modo alvo_com_teto, eua/cenarios/sorgo_gd.json, 2001-2020. Fonte: Gerik, Bean & Vanderlip (B-6137), híbrido de ciclo curto, camada preta a 2673 GDU °F desde a semeadura (Tb 50 °F, teto 100 °F, Tmin abaixo de 50 °F entra como 50); 2673/1,8 = 1485 °C·dia com teto e piso. Convertido ano a ano: Manhattan 20/mai mediana 1495 (98 dias), Hays 1/jun 1504 (94 dias), Lubbock 20/jun 1498 (88 dias). Mínimo = 1495 arredondado para baixo = 1490. A conversão muda pouco (+0,3 a +1,3%): no verão das Planícies a Tmin quase nunca fica abaixo de 10 °C e a Tmax raramente passa de 37,8 °C. Conferência: Kelly 2011 (citado por Diawara 2012) achou 1467 °C·dia para híbridos curtos."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO no POWER (mesmo script e arquivo). Híbrido de ciclo longo de Gerik et al., camada preta a 3360 GDU °F (1867 °C·dia com teto). Convertido: Manhattan 20/mai mediana 1872 (129 dias), Hays 1/jun 1878 (127 dias; 1 ano sem atingir em 250 dias), Lubbock 1/jun 1882 (113 dias). Máximo = 1880. Conferência: Kelly 2011 (via Diawara 2012) 1849 °C·dia para híbridos longos. O híbrido de ciclo cheio dos ensaios do Kansas (P84G62) maturou com menos dias (107-114) do que o longo de Gerik no POWER (127-129): o máximo de graus-dia fica um pouco acima do ciclo cheio usado hoje no Kansas."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "K-State C-687 (Rogers & Alam, 1998): 'Grain sorghum will use about 18 to 22 inches of water to produce a normal yield in the western part of Kansas. Its use requirements will be 1 to 2 inches less in the eastern part of the state.' Leste: 18 - 2 = 16 pol. × 25,4 = 406 mm, arredondado para baixo = 400. Mesmo critério do Brasil (consumo com produtividade plena)."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Oeste do Texas, o clima de maior demanda da região de referência: United Sorghum Checkoff, West Texas Production Guide (2018), com dados do USDA-ARS em Bushland-TX (2000-2009): 'Under fully irrigated conditions, seasonal sorghum ET will range from 22-27 inches'. 27 × 25,4 = 686 mm. No oeste do Kansas a K-State MF3046 (2020) dá 18 a 26 pol. (até 660 mm)."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Kc ini do grupo 'i. Cereals' = 0,3, que a linha 'Sorghum - grain' herda. Igual ao Brasil."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Sorghum grain 1,00-1,10; 1,10 = limite superior, coerente com o clima semiárido e de vento forte do oeste do Kansas e do Texas (a eq. 62 puxa para cima). Igual ao Brasil; abaixo do teto de 1,25."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Sorghum grain 0,55. Igual ao Brasil."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Sorghum grain 1,0-2,0 m; limite superior (sequeiro). A K-State C-687 diz que a raiz 'can extend to 6 feet in a friable soil' (1,83 m). Igual ao Brasil."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica, tipos, perene, fixa_nitrogenio",
+      "valor_brasil": "Sorghum bicolor, Poaceae, comercial|tolerante_seca|raiz_profunda, false, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie e mesmo papel (grão comercial). Tolerância à seca conferida: Handbook 628 ('well adapted to heat and tolerant of limited moisture conditions') e K-State C-687 ('drought-tolerant reputation')."
+    },
+    {
+      "coluna": "raiz_profunda",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "K-State C-687 e West Texas Guide: raiz até 6 pés em solo friável."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "10",
+      "decisao": "conferido e mantido",
+      "motivo": "Gerik et al. (B-6137): 50 °F = 10 °C. A K-State MF3740 dá 46 °F; mantido 10 (mesma régua nos dois países e mesma Tb da fonte da exigência)."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
+      "valor_brasil": "22, 34, 36",
+      "decisao": "reusado",
+      "motivo": "Fisiologia da espécie (Embrapa, ECOCROP, Prasad via Nguyen). O teto de 100 °F (37,8 °C) de Gerik e da MF3740 é o limite do cálculo de GDU, não o ótimo; não contradiz o 34."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "K-State C-687 e MF3046: escolher híbrido que chegue à maturação fisiológica 1-2 semanas antes da primeira geada; L-818: primeira geada de 0 °C em 5/out no noroeste e 25/out no sudeste do Kansas. Gerik et al.: tolera geada só na fase vegetativa inicial (GS I)."
+    },
+    {
+      "coluna": "kc_inicial, kc_medio, kc_final",
+      "valor_brasil": "0.3, 1.10, 0.55",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 12; 1,10 combina com o clima semiárido e de vento das Planícies."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "valor_brasil": "2.0",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 22, limite superior; K-State: até 6 pés."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "90, 130",
+      "decisao": "trocado",
+      "motivo": "Medido no Kansas da semeadura à maturação fisiológica (Diawara 2012): 84-114 dias. No Brasil a faixa ia até a colheita da safrinha."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "1470, 1870",
+      "decisao": "trocado",
+      "motivo": "A mesma fonte americana (Gerik et al., 2673-3360 GDU °F), agora convertida com o teto e o piso na régua do POWER: 1490-1880. Diferença pequena em relação ao Brasil (que dividiu por 1,8 sem tirar o teto)."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "380, 600",
+      "decisao": "trocado",
+      "motivo": "K-State (leste do Kansas, 16 pol.) a Bushland-TX (27 pol., irrigação plena): 400-686 mm."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 5,0 t/ha, C/N 66, k 0,0044, PB 4,2, DMO 53 (estimada)",
+      "decisao": "trocado",
+      "motivo": "Mesmo método com dados dos EUA: NASS (Kansas e Texas) + IPCC, decomposição em Bushland-TX e Missouri, C/N de estudos dos EUA, forragem da UNL (restolho de sorgo, IVDMD medida)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "calendario_usda",
+        "tipos"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, seção Sorghum e tabela 'Sorghum for Grain Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Most sorghum is grown in the central and southern Plains States, where it is well adapted to heat and tolerant of limited moisture conditions. [...] Kansas .........:   2,550    May 5  May 15 - Jun 20 Jul 15  Sep 10 Sep 25 - Nov 10 Nov 25 [...] Texas ..........:   2,050    Mar 1  Mar 11 - Jun 15 Jul 5   Jun 25 Jul 8 - Nov 16  Dec 6"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Diawara, B., Effect of planting date on growth, development, and yield of grain sorghum hybrids, M.S. thesis, Kansas State University, 2012, Tabelas 3.7, 3.8 e 3.9 (K-REx 2097/13944; lido na cópia do Internet Archive, PDF incompleto, texto extraído das páginas disponíveis)",
+      "url": "http://hdl.handle.net/2097/13944",
+      "trecho": "Table 3.7 [...] at Manhattan in 2010: 25 May P84G62 [...] 108 a 1653.2 a [...] 25 May DKS 28-05 [...] 85 d 1344.4 e [...] 25 May DKS 37-07 [...] 93 c 1458.7 b; Table 3.8 [...] Hutchinson in 2010: 26 May P84G62 [...] 107 a [...] 26 May DKS 28-05 [...] 84 d [...] 22 June DKS 28-05 [...] 80 e; Table 3.9 [...] Manhattan in 2011: 30 May P84G62 [...] 114 b [...] 28 June P84G62 [...] 117 a [Number of days from Planting to maturity; GDD for maturity]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Trostle, C.; Lege, K.; Keys, K., 2026 Alternative Crop Options after Failed Cotton and Late-Season Crop Planting for the Texas South Plains, Texas A&M AgriLife Extension, Lubbock, Tab. 3",
+      "url": "https://lubbock.tamu.edu/wp-content/uploads/sites/3/2026/06/Hailout-Replant-LatePlant-Guide-TX-South-Plains-Trostle-Lege-Keys-2026.pdf",
+      "trecho": "Table 3. Approximate days to half bloom and days to physiological maturity for grain sorghum hybrid maturities, Texas South Plains. [...] Early ≤58 <90 [...] Medium-early 59-63 90-96 [...] Medium 64-68 97-103 [...] Medium-long 69-73 104-110 [...] Long ≥74 111+ [...] *Uses ~32-35 days for grain fill to maturity (flowering to black layer) for all hybrids."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Vanderlip, R.L., How a Sorghum Plant Develops, K-State S-3, janeiro de 1993, Tab. 1",
+      "url": "https://bookstore.ksre.ksu.edu/download/how-a-sorghum-plant-develops_S3",
+      "trecho": "9 95 Physiological maturity. Maximum dry matter accumulation. *Approximate days required for hybrids of RS610 grown at Manhattan, Kansas. [...] Emergence–when the plant first breaks through the soil surface–generally occurs 3 to 10 days after planting."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Gerik, T.; Bean, B.; Vanderlip, R., Sorghum Growth and Development, Texas Cooperative Extension B-6137, julho de 2003, Tab. 1 (arquivo hospedado pela AgriLife Extension do condado de Leon)",
+      "url": "https://leon.agrilife.org/files/2024/08/Sorghum-Growth-and-Development-TAMU-SCSC-PU-069-2021.pdf",
+      "trecho": "The base temperature or lower temperature limit of sorghum development is 50 degrees F, while the upper limit is 100 degrees F. Air temperatures greater than 100 degrees F are entered as 100 degrees F, and temperatures less than 50 degrees F are entered as 50 degrees F. [...] Table 1. Cumulative growing degree units (F) from planting [...] Black Layer 2673 3360"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/sorgo_gd.json (NASA POWER diário, comunidade AG, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "sorgo_manhattan_0520_curto: dias mediana 98 (85-114), GD mediana 1495 (P10 1489, P90 1529), referência 1485 (+0,6%); sorgo_hays_0601_curto: 94 dias, 1504; sorgo_lubbock_0620_curto: 88 dias (73-104), 1498; sorgo_manhattan_0520_longo: 129 dias (108-193), 1872; sorgo_hays_0601_longo: 127 dias, 1878 (n = 19); sorgo_lubbock_0601_longo: 113 dias (92-130), 1882 (P10 1871, P90 1902); sorgo_hutchinson_0701_curto (double-crop): 101 dias (79-126), 1490 (n = 19)"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Soni, M. et al., Understanding Growing Degree Days, K-State MF3740, junho de 2026, Tab. 1",
+      "url": "https://bookstore.ksre.ksu.edu/download/understanding-growing-degree-days_MF3740",
+      "trecho": "Sorghum (Grain and Silage) 46 100"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "profundidade_raiz_m",
+        "tipos"
+      ],
+      "fonte": "Rogers, D.H.; Alam, M., Irrigation, em Grain Sorghum Production Handbook, K-State C-687, 1998",
+      "url": "https://bookstore.ksre.ksu.edu/download/kansas-grain-sorghum-production-handbook_C687",
+      "trecho": "Grain sorghum has a drought-tolerant reputation [...] Grain sorghum will use about 18 to 22 inches of water to produce a normal yield in the western part of Kansas. Its use requirements will be 1 to 2 inches less in the eastern part of the state. [...] Grain sorghum develops an extensive root system, which can extend to 6 feet in a friable soil."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max",
+        "sensivel_geada"
+      ],
+      "fonte": "Ciampitti, I.A. et al., Kansas Sorghum Management 2020, K-State MF3046, janeiro de 2020",
+      "url": "https://www.southeast.ksu.edu/program_areas/crop_production/sorghum/KS%20Sorghum%20Management_MF3046.pdf",
+      "trecho": "Grain sorghum uses about 18 to 26 inches of water to produce a normal yield in the western part of Kansas. Requirements are less in the eastern part of the state due to higher relative humidity and lower wind speeds. [...] Hybrid maturity is related to the probability of entering into physiological maturity one to two weeks before the first freeze."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "United Sorghum Checkoff Program, West Texas Production Guide, 2018, cap. Irrigation",
+      "url": "https://www.sorghumcheckoff.com/wp-content/uploads/2021/11/2018_04_19_WestTexasGuide_ea_New-Logo.pdf",
+      "trecho": "Over the 10 year period of 2000-2009, the peak daily grain sorghum ET was approximately 0.33 inches at the USDA Conservation and Production Research Laboratory near Bushland, Texas. [...] Under fully irrigated conditions, seasonal sorghum ET will range from 22-27 inches. Total water needed by the crop typically decreases moving north through West Texas."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Shroyer et al., Kansas Crop Planting Guide, K-State L-818, novembro de 1996, introdução e Tab. 1",
+      "url": "https://bookstore.ksre.ksu.edu/download/kansas-crop-planting-guide_L818",
+      "trecho": "The average date of the first 32°F fall freeze is October 5 for the northwest and October 25 for the southeast. [...] Sorghums            May 15–June 10     May 15–June 20                           May 15–June 20            May 1–15/June 5–25"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Gerik, Bean & Vanderlip, B-6137, 2003, Growth Stage I",
+      "url": "https://leon.agrilife.org/files/2024/08/Sorghum-Growth-and-Development-TAMU-SCSC-PU-069-2021.pdf",
+      "trecho": "Sorghum can tolerate high degrees of stress from drought, hail and freezing temperatures in GS I with little adverse affect on yield."
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "i. Cereals 0.3 1.15 0.4 [...] Sorghum - grain 1.00-1.10 0.55 1-2"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Sorghum - grain 1.0-2.0 0.55"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, Sorghum for grain yield por estado (2023-2025)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Kansas ...........:    52.0        65.0        90.0 [...] Texas ............:    49.0        62.0        53.0 [bu/acre, 2023, 2024, 2025]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA NASS, Crop Production 2023 Summary, janeiro de 2024, Sorghum for grain yield por estado (2021-2023)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/k3569432s/ns065v292/wd377h97d/cropan24.txt",
+      "trecho": "Kansas ...........:    78.0        39.0        52.0 [...] Texas ............:    61.0        53.0        49.0 [bu/acre, 2021, 2022, 2023]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "IPCC 2019 Refinement to the 2006 Guidelines, Vol. 4, Cap. 11, Tabela 11.2 (Updated) e Tabela 11.1a",
+      "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf",
+      "trecho": "Sorghum 0.88 ± 13% 1.33 ± 27% 0.36 [Tab. 11.1a: Sorghum [...] DRY 0.89]"
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "cn_palhada"
+      ],
+      "fonte": "Schomberg, H.H.; Steiner, J.L., Nutrient dynamics of crop residues decomposing on a fallow no-till soil surface, SSSAJ 63:607-613, 1999 (Bushland-TX, ago/1991-ago/1992; só o resumo, lido via OpenAlex)",
+      "url": "https://doi.org/10.2136/sssaj1999.03615995006300030025x",
+      "trecho": "Mass declined exponentially with decomposition coefficients (− r ) of 4.4, 1.5, 2.0, 1.7, and 1.1 g kg ‐1 d ‐1 for the five crop residues listed above [alfafa, milho, sorgo granífero, trigo de primavera, trigo de inverno] [...] Residue N declined from 38.7 to 16.0, 10.9 to 5.1, 12.2 to 6.4 [...] g kg ‐1 during the first 34 d"
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "cn_palhada"
+      ],
+      "fonte": "Ghidey, F.; Alberts, E.E., Residue type and placement effects on decomposition: field study and model evaluation, Transactions of the ASAE 36(6):1611-1617, 1993 (Kingdom City, Missouri; sacolas instaladas em outubro de 1988)",
+      "url": "https://www.ars.usda.gov/ARSUserFiles/50701000/cswq-0265-ghidey.pdf",
+      "trecho": "Mass losses in one year for above-surface, surface, buried residue, and dead root were [...] 45, 66, 80, and 76% for grain sorghum [...] Grain sorghum 21.3 36.4 [C/N do resíduo e da raiz]"
+    },
+    {
+      "colunas": [
+        "cn_palhada"
+      ],
+      "fonte": "Ma, L. et al., Decomposition of surface crop residues in long-term studies of dryland agroecosystems, Agronomy Journal 91:401-409, 1999 (leste do Colorado)",
+      "url": "https://www.ars.usda.gov/ARSUserFiles/3495/101.%20091-03-0401.pdf",
+      "trecho": "Ghidey and Alberts (1993) measured C/N ratios for wheat, corn, and sorghum were 74, 29, and 21, respectively, while our estimated C/N ratios from measured N contents were 81, 61, and 53, respectively."
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Rasby, R.J. et al., Grazing Crop Residues with Beef Cattle, University of Nebraska-Lincoln Extension EC278, revisado em agosto de 2014, Tabela 1 e texto",
+      "url": "https://extensionpubs.unl.edu/publication/ec278/pdf/view/ec278-2014.pdf",
+      "trecho": "Milo Grain 74 10.3-11.0 10.5 85-95 90 Leaf 66 6.0-11.0 8.0 51-59 56 Stalk 25 3.3-3.9 3.6 49-53 52 [% MS, faixa e média de PB, faixa e média de IVDMD] [...] This new green growth, commonly referred to as \"suckers,\" is usually high in toxic compound called prussic acid. If \"sucker\" growth occurs, cattle should not graze the stubble until at least seven days following a hard freeze."
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.2,
+      "max": 5.8,
+      "tipico": 4.1
+    },
+    "cn_palhada": {
+      "min": 21,
+      "max": 53,
+      "tipico": 33
+    },
+    "k_dia": {
+      "valor": 0.0025,
+      "min": 0.002,
+      "max": 0.003
+    },
+    "meia_vida_dias": {
+      "valor": 277
+    },
+    "condicao_decomposicao": "Resíduo de sorgo granífero na superfície, sem incorporação: Bushland-TX (sacolas de 1 mm instaladas em agosto de 1991, 1 ano, pousio em plantio direto, três regimes de água sem efeito na massa; Schomberg & Steiner 1999) e Kingdom City-MO (sacolas de fibra de vidro instaladas em outubro de 1988, 1 ano; Ghidey & Alberts 1993).",
+    "pb_pct": 5.8,
+    "digestibilidade_pct": {
+      "valor": 54.0,
+      "tipo": "IVDMD",
+      "n": null,
+      "medicao": "medida",
+      "nota": "Restolho de sorgo granífero (milo) no Nebraska (UNL EC278, Tab. 1): folha PB 8,0 e IVDMD 56; colmo PB 3,6 e IVDMD 52. A fonte não dá a proporção de folha e colmo no restolho do sorgo; usei a média simples dos dois (PB 5,8; IVDMD 54). Sem o grão caído (PB 10,5, IVDMD 90), que a UNL diz ser mal aproveitado. A fonte não informa o n. A UNL diz que IVDMD é 'approximately equal to TDN', mas a métrica medida é IVDMD."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Restolho do sorgo granífero pastejado depois da colheita do grão (folhas e colmos secos), cenário de grão. Silagem e sorgo forrageiro são outros cenários. Restrição: a rebrota verde ('suckers') tem ácido prússico; a UNL manda esperar 7 dias depois de uma geada forte para pastejar.",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo depois da colheita, pela Tab. 11.2 do IPCC 2019 para Sorghum: AGDM = 0,88 × Crop + 1,33 (t MS/ha), com Crop = produtividade × 0,0628 (bu/acre -> t/ha, 56 lb/bu) × 0,89 (DRY, Tab. 11.1a). Produtividade NASS 2021-2025: Kansas 78, 39, 52, 65, 90; Texas 61, 53, 49, 62, 53 bu/acre. Mediana dos 10 estado-anos = 57 bu/acre -> Crop 3,19 t MS/ha -> 4,1 t/ha (típico). Mínimo = Kansas 2022 (39 bu/acre, seca) -> 3,2; máximo = Kansas 2025 (90) -> 5,8. O R² da regressão do IPCC para o sorgo é baixo (0,36). Não desconta o pastejo do restolho. C/N, todos com N medido e C assumido em 40%: 21,3 (Ghidey & Alberts, Missouri, resíduo colhido na senescência), 33 (Schomberg & Steiner, Bushland: N inicial 12,2 g/kg -> 400/12,2 = 33, conta minha), 53 (Ma et al., Colorado). Típico = 33 (a mediana, do local mais próximo da região de referência). No Brasil o típico era 66.",
+      "decomposicao": "k em dia⁻¹, um por estudo: Schomberg & Steiner 1999 (Bushland-TX, superfície): 2,0 g kg⁻¹ d⁻¹ = 0,0020; Ghidey & Alberts 1993 (Missouri, superfície): 66% perdidos em 1 ano -> k = -ln(0,34)/365 = 0,0030. Valor = média dos dois = 0,0025; T½ = 0,693/0,0025 = 277 d. Palhada que sobra em 60 dias: 4,1 × e^(-0,0025×60) = 3,5 t/ha. Ma et al. 1999 (Colorado) só dão k em graus-dia (0,000361 por grau-dia, todas as culturas juntas), não usado.",
+      "colheita": "Colheita típica (Handbook 628): Kansas início 10/set, 'most active' 25/set-10/nov, fim 25/nov; Texas 'most active' 8/jul-16/nov (o sul do Texas semeia em março). A colheita vem semanas depois da maturação fisiológica: o grão sai de 25-40% de umidade na camada preta (K-State C-687) e perde ~0,7% ao dia (K-State MF3046, Manhattan 2019); muitos produtores esperam a geada para secar a planta."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.1,
+      "ms_remanescente_t_ha": 3.53,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    }
+  ],
+  "pendencias": [
+    "DOUBLE-CROP depois do trigo (semeadura no fim de junho e início de julho no centro-sul do Kansas): fica fora da faixa da linha. Medido por Diawara 2012 com semeadura de fim de junho: 80-99 dias para os híbridos precoce e médio e 99-117 para o cheio (em 2011 o cheio chegou à maturação junto com a geada). No POWER, híbrido curto semeado em 1/jul em Hutchinson: mediana 101 dias (79-126) e 1490 °C·dia (n = 19; em 1 ano não atingiu). Ciclo e graus-dia quase iguais aos da linha; o que muda é o risco de geada antes da maturação (primeira geada de 0 °C em 5-25/out, L-818) e a água (o trigo seca o perfil). DECISÃO para o coordenador: tratar no motor como data de semeadura mais tardia, não como outra linha.",
+    "ciclo_dias 84-114 vem de um só estudo de campo no Kansas (Diawara 2012, 2 anos, 2 locais, 3 híbridos), marcado como 'medido' porque converge com as classes da Texas A&M AgriLife (<90 a 111+ dias) e com a K-State S-3. Se o revisor quiser rigor máximo, seria 'estudo_unico' e a confiança cairia para 'baixa'. O PDF da dissertação veio truncado do Internet Archive (as Tabelas 3.7-3.9 foram lidas).",
+    "graus_dia: o máximo (1880, híbrido longo de Gerik et al.) leva 127-129 dias no Kansas no POWER, mais que o ciclo cheio medido (107-114). Os GDD da dissertação de Diawara para a maturação (1258-1806) não informam a Tb nem o teto e não foram usados.",
+    "temp_base_c: mantido 10 °C (Gerik et al., 50 °F). A K-State MF3740 (2026) usa 46 °F (7,8 °C) para o sorgo; com Tb 7,8 a exigência seria outra.",
+    "agua_ciclo_mm_max 686 vem do sorgo irrigado em Bushland-TX (norte do Texas, Panhandle), não de Lubbock; o guia diz que a demanda cai para o norte do oeste do Texas, então em Lubbock pode ser um pouco maior. Valores de extensão; não refiz com etc_nasa_power.py.",
+    "regua: C/N com C assumido (40%) em todas as fontes; só dois estudos de decomposição (Texas e Missouri), um lido só pelo resumo. A IVDMD do restolho é média simples de folha e colmo (a UNL não dá a proporção) e sem n.",
+    "codigo_nass: 'SORGHUM, GRAIN' por analogia com 'CORN, GRAIN' e com o nome 'Sorghum for grain' do Crop Production; não achei a string do QuickStats em fonte lida e não havia NASS_API_KEY no ambiente. Conferir no QuickStats (commodity SORGHUM, utilização GRAIN). calendario_usda: 'Sorghum for grain' = tabela 'Sorghum for Grain Usual Planting and Harvesting Dates - States' (2010)."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
+}

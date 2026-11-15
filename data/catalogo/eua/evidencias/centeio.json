@@ -1,0 +1,357 @@
+{
+  "id": "centeio",
+  "pais": "EUA",
+  "nome": "Centeio (cereal rye)",
+  "nome_cientifico": "Secale cereale",
+  "familia_botanica": "Poaceae",
+  "sistema": "cereal rye como cobertura de inverno em Iowa: semeado depois da colheita do milho (ou da soja) em set-out e dessecado na primavera, até a semeadura da soja (cobertura antes da soja, o arranjo recomendado pela ISU). A variante antes do milho (dessecada no mínimo 7 dias antes da semeadura do milho, com menos massa) fica em pendência. Não existe no catálogo do Brasil.",
+  "regiao_referencia": "Iowa",
+  "valores": {
+    "tipos": "cobertura",
+    "perene": "false",
+    "ciclo_dias_min": "178",
+    "ciclo_dias_max": "245",
+    "graus_dia_ciclo_min": "440",
+    "graus_dia_ciclo_max": "1610",
+    "temp_base_c": "0",
+    "temp_otima_min_c": "15",
+    "temp_otima_max_c": "20",
+    "tmax_critica_c": "31",
+    "sensivel_geada": "false",
+    "agua_ciclo_mm_min": "100",
+    "agua_ciclo_mm_max": "265",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "1.15",
+    "profundidade_raiz_m": "1.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "baixo",
+    "valor_forrageiro": "medio",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "RYE",
+    "calendario_usda": "Rye",
+    "fontes": "Sawyer, Pantoja & Barker, Corn and Soybean Production with a Winter Rye Cover Crop, ISU Research Farm Reports, 2014 (datas de semeadura e manejo; massa do centeio antes da soja e do milho em 5 fazendas de Iowa, 2009-2013)|Jha & Yadav, Termination Timing of Cereal Rye Cover Crop for Improved Weed Control in Soybean, ISU ICM News, 20/04/2021 (massa no manejo, Ames e Boone 2020)|Iowa Learning Farms & Practical Farmers of Iowa, Winter Cereal Rye Cover Crop Effect on Cash Crop Yield, Year 8 (2016) (massa no manejo em fazendas de Iowa)|Gailans, Practical Farmers of Iowa, Corn Following Cereal Rye Cover Crops, 05/04/2022 (Tb 32 °F do centeio)|USDA NRCS Iowa & ISU Extension, Cereal Rye Cover Crop Fact Sheet for Iowa (CROP 3244), maio 2025 (tolerância ao frio, época de semeadura, C/N, massa)|USDA NRCS East National Technology Support Center, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N do centeio de cobertura)|Ferreira de Almeida, Ramirez, Robinson & Basche, Cover Crop Species Decomposition and Nitrogen Release During the Corn Growing Season, UNL CropWatch, 2022 (decomposição e C/N, Mead-NE)|Heuzé, Tran & Nozière, Feedipedia, Rye forage (2015) e Rye, aerial part, fresh (raiz, temperaturas, PB e DMO)|FAO ECOCROP, ficha Secale cereale (EcoPortCode 1929), cópia do banco no GitHub OpenCLIM/ecocrop (TOPMN 15, TOPMX 20, TMAX 31 °C)|Undersander et al., Univ. of Wisconsin Extension, Rye (forage), 2009 (PB no emborrachamento)|Hartzler, ISU ICM News, Herbicide options for grazing cover crops, 09/12/2015 (restrição de pastejo pelos rótulos de herbicidas)|FAO-56 Tab.12 e Tab.11 (Kc e fases do trigo de inverno com solo congelado) (PROXY: winter wheat, Triticum aestivum)|FAO-56 cap. 6 (Kc end = Kc mid em cultura colhida verde; convenção para cobertura manejada verde)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/centeio_gd.json (graus-dia sem teto, Tb 0, da semeadura ao manejo, NASA POWER 2001-2020)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/centeio_etc.json (Kc proxy do trigo de inverno × ET0 do NASA POWER, 2001-2020)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (linha Rye só na Geórgia e em Oklahoma; centeio para grão)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (tabela Rye: área plantada x colhida)",
+    "confianca_parametros": "baixa"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "convencao_com_fonte",
+      "nota": "Tb 0 °C = 32 °F, a base usada no Iowa para o centeio de cobertura: 'For cereal rye, the base temperature is 32 degrees Fahrenheit' (Practical Farmers of Iowa, 2022; organização de pesquisa com agricultores, não é extensão oficial). A mesma Tb do trigo no catálogo do Brasil. O ECOCROP dá TMIN 3 °C, que é a média mínima do período de cultivo, não a Tb."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Semeadura -> manejo (dessecação). Sawyer et al. (ISU, 2014, 5 fazendas, 2009-2013): semeadura de 17/set a 29/out ('most late September through early October'); controle 'at or within one week of soybean planting', na maioria 'late April through early May'. Mínimo = semeadura mais tardia (29/out) até o fim de abril (25/abr) = 178 dias corridos. A semeadura da soja em Iowa vai de 8/mai a 2/jun (Handbook 628, 2010)."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte: semeadura mais cedo (17/set) até o controle mais tardio (20/mai) = 245 dias corridos. Típico (1/out -> 5/mai) = 216 dias. Conferência: Jha & Yadav (ISU 2021) semearam na 2ª semana de outubro de 2019 e dessecaram de 6 a 22/mai/2020 (até a semeadura da soja) = ~205-225 dias; PFI ano 8: semeadura de 9/set a 4/nov e amostragem no manejo de 14/abr a 12/mai."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 0), scripts/gd_nasa_power.py com eua/cenarios/centeio_gd.json, 2001-2020, entre as datas de Sawyer et al. As fontes não dão GDD da semeadura ao manejo. Menor mediana: Nashua (NE de Iowa), 29/out -> 25/abr = 444 (P10 283, P90 627); Sutherland 507; Ames 578; Crawfordsville 666. Mínimo = 440 (arredondado para baixo). Os dias com Tmed < 0 somam zero."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo: Crawfordsville (SE de Iowa), 17/set -> 20/mai = mediana 1609 (P10 1480, P90 2040); Ames 1473; Sutherland 1324; Nashua 1265. Máximo = 1610. Cenário típico (1/out -> 5/mai): Nashua 842, Sutherland 893, Ames 1027, Crawfordsville 1133."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/centeio_etc.json (Kc × ET0 FAO-56 do POWER, 2001-2020). Curva PROXY do trigo de inverno (FAO-56: Kc ini 0,4 com solo congelado; fase inicial até ~9/mar e desenvolvimento de 75 dias, como no trigo de inverno de Idaho semeado em outubro); o centeio é dessecado no meio do desenvolvimento. Nashua, 29/out -> 25/abr: média 108 mm (P10 89, P90 128) -> 100 (arredondado para baixo). Não achei medição americana do consumo de água do centeio até o manejo."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo: Crawfordsville, 17/set -> 20/mai, média 263 mm (P10 223, P90 300) -> 265. Típico (Ames, 1/out -> 5/mai): 187 mm. A chuva do POWER no mesmo período (mediana 274-468 mm) é maior que a ETc em todos os cenários."
+    },
+    "kc_inicial": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab. 12, Winter Wheat '- with frozen soils' Kc ini = 0,4 (o centeio não tem linha própria; Iowa tem solo congelado no inverno). PROXY: trigo de inverno."
+    },
+    "kc_medio": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab. 12, Winter Wheat Kc mid = 1,15. PROXY: trigo de inverno. Atenção: no manejo de Iowa o centeio ainda está no desenvolvimento; no cálculo da água o Kc chegou a 0,87-1,12 no dia do manejo."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "kc_final = kc_medio para cobertura dessecada verde (FAO-56 cap. 6: Kc end alto em cultura colhida verde), a mesma convenção do Brasil."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "Feedipedia, Rye forage (a própria espécie): 'Rye has an extensive, fibrous root system that may go as deep as 1.5 m.' O FAO-56 não tem centeio; o trigo de inverno vai a 1,5-1,8 m (Tab. 22). No manejo de abril-maio a raiz provavelmente não chegou ao máximo."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "todas",
+      "valor_brasil": "(não existe)",
+      "decisao": "trocado",
+      "motivo": "O centeio não está no catálogo do Brasil (está em agroia/base/culturas.json como cobertura). A Tb 0 segue a do trigo do Brasil (mesma régua para cereais de inverno); o resto vem de fontes dos EUA, do ECOCROP e do FAO-56."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "Sawyer, J.; Pantoja, J.; Barker, D., Corn and Soybean Production with a Winter Rye Cover Crop, Iowa State University Research Farm Reports, 2014 (Ames, Crawfordsville, Lewis, Nashua e Sutherland, 2009-2013), Tabela 1",
+      "url": "https://www.agronext.iastate.edu/soilfertility/info/2009-2013CoverCrop-NFertilization_ResearchFarmReport_3-7-14.pdf",
+      "trecho": "no-till drill planted at 1 bu/acre in the fall after soybean and corn harvest (Sept. 17 earliest and Oct. 29 latest, most late September through early October). The rye cover crop growth was controlled with Roundup in the spring, with the targeted control at least 7 days before corn planting and at or within one week of soybean planting (earliest Apr. 6 and latest May 20, most late April through early May). [Tab. 1, lb/acre:] Before corn 726 840 585 384 214; Before soybean 0: 1056 1249 766 519 635; 120: 1291 1462 880 551 742; 200: 1750 1989 869 724 768"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Jha, P.; Yadav, R., Termination Timing of Cereal Rye Cover Crop for Improved Weed Control in Soybean, Iowa State University ICM News, 20/04/2021",
+      "url": "https://crops.extension.iastate.edu/cropnews/2021/04/termination-timing-cereal-rye-cover-crop-improved-weed-control-soybean",
+      "trecho": "drill seeded at 60 lb/a in 2nd week of October, 2019 [...] Tabela 1: Ames, 6/mai/2020 (7 dias antes da semeadura da soja) 2142 lb/a; Ames, 13/mai (na semeadura) 3287 lb/a; Boone, 22/mai (na semeadura) 4658 lb/a; Boone, 27/mai (14 dias depois) 5731 lb/a (valores transcritos da tabela)"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Iowa Learning Farms & Practical Farmers of Iowa, Winter Cereal Rye Cover Crop Effect on Cash Crop Yield, Year 8 (2016), Tabelas 1 e 2",
+      "url": "https://practicalfarmers.org/wp-content/uploads/2026/03/17.FC_.CC.Winter_Rye_Effect_on_Yield_Year_8.pdf",
+      "trecho": "Holstein (NW Iowa) 9/9/15 Aerial 60 lb/ac Herbicide Soy 5/18/16 [...] Jefferson (West Central Iowa) 11/1/15 Drilled 60 lb/ac Herbicide Soy 5/15/16 [...] Holstein 834.71 5/12/16 [...] Jefferson 398.90 4/27/16 [...] aboveground cover crop biomass at locations ranged from trace amounts to 2,407 lb/ac prior to corn and from 55- 2,475 lb/ac prior to soybeans. Cover crop was typically terminated 7-10 days prior to planting."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Gailans, S., Corn Following Cereal Rye Cover Crops: Research Sheds Light on Planting Green, Practical Farmers of Iowa, 05/04/2022",
+      "url": "https://practicalfarmers.org/?p=15193",
+      "trecho": "For cereal rye, the base temperature is 32 degrees Fahrenheit."
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "cn_palhada",
+        "ms_palhada_t_ha",
+        "uso_forrageiro"
+      ],
+      "fonte": "USDA NRCS Iowa & Iowa State University Extension and Outreach, Cereal Rye Cover Crop Fact Sheet for Iowa (CROP 3244), maio de 2025",
+      "url": "https://nrcs-prod.azureedge.us/sites/default/files/2025-05/Cereal%20Rye%20Cover%20Crop%20Fact%20Sheet.pdf",
+      "trecho": "Minimum germination soil temperature: 34° F » Cold tolerance temperature: -30° F » Seeding date: Mid August to Late October [...] Rye cover crop (Vegetative) 26:1 » Rye cover crop (Anthesis) 37:1 [...] Dry matter = 2,500 - 6,000 lbs./acre per year (Biomass quantity is dependent on planting and termination dates and precipitation.) [...] Grazing quality Excellent"
+    },
+    {
+      "colunas": [
+        "cn_palhada"
+      ],
+      "fonte": "USDA NRCS East National Technology Support Center, Carbon to Nitrogen Ratios in Cropping Systems, janeiro de 2011, Tabela 1",
+      "url": "https://sarep.ucdavis.edu/sites/g/files/dgvnsk9171/files/media/documents/NRCS-C_N_ratios_cropping_systems.pdf",
+      "trecho": "rye cover crop (anthesis) 37:1 [...] rye cover crop (vegetative) 26:1"
+    },
+    {
+      "colunas": [
+        "k_dia",
+        "meia_vida_dias",
+        "cn_palhada"
+      ],
+      "fonte": "Ferreira de Almeida, T.; Ramirez II, S.; Robinson, E.; Basche, A., Cover Crop Species Decomposition and Nitrogen Release During the Corn Growing Season, UNL CropWatch, 03/05/2022 (Mead-NE, 2020-2021)",
+      "url": "https://cropwatch.unl.edu/2022/cover-crop-species-decomposition-and-nitrogen-release-during-corn-growing-season",
+      "trecho": "at the end of the season, 26% of its mass remained versus 20% of cereal rye mass [centeio dessecado em 29/04/2021 no estádio Feekes 7.0, ~5.500 lb/acre, C:N 21:1 em 26/04/2021; sacolas retiradas 2, 4, 7, 11 e 16 semanas depois (texto) ou até 27/09 (tabela)]"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c",
+        "sensivel_geada",
+        "digestibilidade_pct"
+      ],
+      "fonte": "Heuzé, V.; Tran, G.; Nozière, P., Rye forage, Feedipedia (INRAE, CIRAD, AFZ, FAO), 2015",
+      "url": "https://www.feedipedia.org/node/385",
+      "trecho": "Rye has an extensive, fibrous root system that may go as deep as 1.5 m. [...] Rye grows best at temperatures ranging from 15°C to 20°C but can tolerate a wider temperature range (3°C to 31°C). [...] Once well established it can withstand very cold conditions (down to -35°C). [...] Organic matter digestibility varies widely according to the stage of growth, falling from 84 to 59%"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ],
+      "fonte": "Feedipedia, Rye, aerial part, fresh (tabela de composição; valores pontuais)",
+      "url": "https://www.feedipedia.org/node/12543",
+      "trecho": "Crude protein % DM 15.1 (SD 6.0, 7.5-21.4, Nb 6) [...] OM digestibility, Ruminant % 69.8 (SD 5.2, Nb 4) * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "FAO ECOCROP, Secale cereale (EcoPortCode 1929), cópia integral do banco em GitHub OpenCLIM/ecocrop, EcoCrop_DB.csv",
+      "url": "https://github.com/OpenCLIM/ecocrop/blob/main/EcoCrop_DB.csv",
+      "trecho": "1929, Secale cereale, rye [...] TOPMN 15, TOPMX 20, TMIN 3, TMAX 31 [...] KTMPR -18"
+    },
+    {
+      "colunas": [
+        "pb_pct"
+      ],
+      "fonte": "Undersander, D. et al., Rye, University of Wisconsin Extension (Forage), 2009",
+      "url": "https://fyi.extension.wisc.edu/forage/files/2017/06/Rye_090507_final-1.pdf",
+      "trecho": "CP (%) 16.2 13.3–19.0 [...] Nutrient removal (lb/acre) dry matter basis, harvested at boot stage [...] Forage quality declines rapidly with increasing maturity beyond boot stage"
+    },
+    {
+      "colunas": [
+        "uso_forrageiro"
+      ],
+      "fonte": "Hartzler, B., Herbicide options for grazing cover crops, Iowa State University ICM News, 09/12/2015",
+      "url": "https://crops.extension.iastate.edu/post/herbicide-options-grazing-cover-crops",
+      "trecho": "consider restrictions on labels of herbicides used earlier in the growing season"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12 e Tabela 11 (PROXY: winter wheat)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "i. Cereals 0.3 1.15 0.4 [...] Winter Wheat - with frozen soils 0.4 1.15 0.25-0.4 [...] - with non-frozen soils 0.7 1.15 0.25-0.4 [Tab. 11:] Winter Wheat [...] 160 75 75 25 335 October Idaho, USA"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22 (conferência; trigo de inverno)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Winter Wheat 1.5-1.8 0.55"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/centeio_gd.json (NASA POWER diário, comunidade AG, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "centeio_nashua_1029_0425: mediana 444 (P10 283, P90 627); centeio_sutherland_1029_0425: 507; centeio_ames_1029_0425: 578; centeio_crawfordsville_1029_0425: 666; típico 1001_0505: 842/893/1027/1133; 0917_0520: Nashua 1265, Sutherland 1324, Ames 1473, Crawfordsville 1609 (P10 1480, P90 2040)"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/centeio_etc.json (NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "centeio_nashua_1029_0425: média 108 mm (P10 89, P90 128), ET0 198, chuva 274; centeio_ames_1001_0505: média 187 (ET0 333, chuva 339); centeio_crawfordsville_0917_0520: média 263 (P10 223, P90 300), ET0 456, chuva 468"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, tabela Rye",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Rye Area Planted and Harvested, Yield, and Production - States and United States: 2023-2025 [...] United States ......:  2,293      2,206      2,229         322        402        341 [área plantada x colhida, 1.000 acres]"
+    },
+    {
+      "colunas": [
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabelas por estado (Geórgia e Oklahoma)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Rye ....................:    25      Sep 23 Oct 4 - Nov 25  Dec 9   May 15 May 25 - Jun 20 Jun 25 [Geórgia] [...] Rye ....................:     40     Sep 3  Sep 10 - Oct 15 Oct 28  Jun 3  Jun 10 - Jul 2  Jul 11 [Oklahoma]"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 0.45,
+      "max": 5.2,
+      "tipico": 0.97
+    },
+    "cn_palhada": {
+      "min": 21,
+      "max": 37,
+      "tipico": 26
+    },
+    "k_dia": {
+      "valor": 0.0105,
+      "min": 0.0105,
+      "max": 0.0144
+    },
+    "meia_vida_dias": {
+      "valor": 66
+    },
+    "condicao_decomposicao": "Centeio de cobertura dessecado em 29/04/2021 (Feekes 7) em sacolas na superfície, sob milho em plantio direto, Mead-NE, até o fim da safra (UNL CropWatch 2022). Um só estudo.",
+    "pb_pct": 15.1,
+    "digestibilidade_pct": {
+      "valor": 69.8,
+      "tipo": "OMD",
+      "n": 4,
+      "medicao": "estimada",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes do centeio fresco (Rye, aerial part, fresh), Feedipedia, calculada por equação (*), Nb 4. A Feedipedia diz que a OMD cai de 84 para 59% com a maturidade; o centeio de Iowa é dessecado antes do emborrachamento, na faixa alta."
+    },
+    "uso_forrageiro": "com_restricao",
+    "cenario_forragem": "Centeio de cobertura pastejado (ou cortado) na primavera, no vegetativo ao emborrachamento, antes da dessecação. PB 15,1% (Feedipedia, n 6); conferência nos EUA: 16,2% no emborrachamento (Wisconsin, faixa 13,3-19,0). 'com_restricao' porque os rótulos dos herbicidas usados no milho ou na soja anterior podem proibir o pastejo da cobertura (Hartzler, ISU 2015) e a massa no manejo é pequena (~1 t/ha).",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Massa no manejo (dessecação), centeio antes da soja em Iowa, um valor por estudo (mediana): Sawyer et al. 2014 (5 fazendas, 2009-2013, 15 médias por sítio x dose de N do milho anterior): mediana 869 lb/acre × 1,121 = 0,97 t/ha; Jha & Yadav 2021 (manejo até a semeadura da soja: 2142, 3287 e 4658 lb/acre): mediana 3287 = 3,68 t/ha; PFI ano 8 (2016, sítios antes da soja: 834,71 e 398,90 lb/acre): 617 = 0,69 t/ha. Típico = mediana dos três estudos = 0,97 t/ha. Mínimo = Jefferson 2016 (398,90 lb/acre = 0,45 t/ha); máximo = Boone 2020 na semeadura da soja (4658 lb/acre = 5,22 t/ha). Ficaram de fora: o manejo 14 dias depois da semeadura da soja (5731 lb/acre, outro sistema, 'planting green' tardio) e a faixa do fact sheet NRCS/ISU (2.500-6.000 lb/acre = 2,8-6,7 t/ha por ano), que é potencial com manejo tardio e não tem n. Antes do milho a massa é menor (Sawyer: 214-840 lb/acre = 0,24-0,94 t/ha). C/N: 26 (NRCS, vegetativo; típico, porque o centeio de Iowa é dessecado antes do emborrachamento), 37 (NRCS, antese) e 21 (medido em Mead-NE no Feekes 7).",
+      "decomposicao": "UNL 2022: 20% da massa restante no fim da safra. O texto diz retiradas até 16 semanas depois da amostragem (112 d: k = -ln(0,20)/112 = 0,0144/dia) e a tabela mostra a última data em 27/09 (154 d desde 26/04: k = -ln(0,20)/154 = 0,0105/dia). Valor = 0,0105 (o mais lento, conservador para a cobertura); T½ = 0,693/0,0105 = 66 d. A decomposição é no verão (maio-setembro), depois do manejo: é o período da régua. Palhada que sobra em 60 dias: 0,97 × e^(-0,0105×60) = 0,52 t/ha.",
+      "geada": "sensivel_geada = false: o centeio tolera -30 °F (-34 °C; fact sheet NRCS/ISU) e é dessecado antes do espigamento, a fase sensível.",
+      "codigos": "codigo_nass 'RYE' e calendario_usda 'Rye' são do centeio para GRÃO. O Handbook 628 só tem linha de centeio na Geórgia e em Oklahoma (nenhuma em Iowa). Em 2023-2025 só ~15% da área plantada de centeio dos EUA foi colhida (NASS), o resto é cobertura ou forragem. Não usar a produtividade do NASS para a palhada nem as datas do Handbook para o ciclo desta linha."
+    },
+    "resultado": {
+      "aporte_biomassa": "baixo",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 0.97,
+      "ms_remanescente_t_ha": 0.52,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "baixa",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    }
+  ],
+  "pendencias": [
+    "Sistema: a linha é o centeio ANTES DA SOJA (semeado depois do milho), manejado até a semeadura da soja. Antes do milho a ISU recomenda dessecar pelo menos 7-14 dias antes do plantio, e a massa cai para 0,24-0,94 t/ha (Sawyer 2014); o ciclo também fica mais curto (manejo em abril). Se o motor precisar das duas, criar uma variante 'antes do milho'.",
+    "temp_base_c = 0 vem de uma organização de agricultores (PFI), não da extensão oficial. Um resumo de 2017 da ISU (Kaspar e colaboradores) usa base 0 °C para o centeio em Iowa, mas só foi visto em resultado de busca; outro modelo (crimper, Agron. J. 2009) usou 4,4 °C. Resolveria: o artigo da ISU sobre fenologia do centeio em Iowa.",
+    "graus_dia e ciclo: dependem só das datas de semeadura e manejo (decisão de manejo), não de um alvo fisiológico. A faixa 440-1610 °C·dia é larga e não elimina quase nenhum local de Iowa. Sugestão para o motor: usar o filtro de graus-dia da cobertura só como teste de frio (como a mandioca no Brasil).",
+    "agua: CÁLCULO com Kc PROXY do trigo de inverno (FAO-56) e fases adaptadas do trigo de Idaho; sem medição americana do consumo de água do centeio até o manejo. Resolveria: medições de umidade do solo sob centeio em Iowa (ex.: Qi & Helmers, ISU) ou lisímetro.",
+    "kc_inicial, kc_medio: PROXY do trigo de inverno (FAO-56 não tem centeio). No manejo de Iowa o centeio ainda está no desenvolvimento; o Kc no dia do manejo foi 0,87-1,12 no cálculo, abaixo do kc_medio da coluna.",
+    "regua: k de um só estudo (Nebraska, artigo de extensão, com o intervalo ambíguo entre texto e tabela); Ruffo & Bollero 2003 (Agron. J., Illinois: 5% da massa de centeio restante no fim da safra) só foi visto no resumo, sem as datas. Digestibilidade estimada (Feedipedia, por equação). A massa típica (0,97 t/ha) depende muito da data de manejo: com o manejo na semeadura da soja ou depois ('planting green') passa de 3 t/ha.",
+    "profundidade_raiz_m = 1,5 m é o máximo da espécie (Feedipedia); no manejo de abril-maio a raiz deve ser menor. Sem medição em Iowa.",
+    "codigo_nass e calendario_usda referem-se ao centeio para grão (não à cobertura); ver regua.observacoes.codigos. 'RYE' não foi conferido no QuickStats (sem NASS_API_KEY); o nome vem do relatório Crop Production."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 6,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "kc_inicial",
+      "kc_medio"
+    ]
+  }
+}

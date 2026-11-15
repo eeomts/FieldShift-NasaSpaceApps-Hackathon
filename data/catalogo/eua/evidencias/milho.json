@@ -26,9 +26,9 @@
     "profundidade_raiz_m": "1.7",
     "fixa_nitrogenio": "false",
     "raiz_profunda": "false",
-    "cobertura_solo": "",
-    "aporte_biomassa": "",
-    "valor_forrageiro": "",
+    "cobertura_solo": "alta",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "baixo",
     "codigo_pam": "",
     "nome_zarc": "",
     "codigo_nass": "CORN, GRAIN",
@@ -83,164 +83,305 @@
     }
   },
   "reuso_brasil": [
-    {"coluna": "nome_cientifico, familia_botanica, tipos, perene", "valor_brasil": "Zea mays, Poaceae, comercial, false", "decisao": "reusado", "motivo": "Mesma espécie e mesmo papel (grão comercial anual)."},
-    {"coluna": "fixa_nitrogenio, raiz_profunda", "valor_brasil": "false, false", "decisao": "reusado", "motivo": "Botânica (Poaceae, raiz fasciculada); raiz 1,7 m do FAO-56 é a mesma."},
-    {"coluna": "temp_base_c", "valor_brasil": "10", "decisao": "conferido e mantido", "motivo": "O GDD americano do milho usa Tb 50 °F = 10 °C (Nielsen, Purdue)."},
-    {"coluna": "temp_otima_min_c, temp_otima_max_c", "valor_brasil": "24, 30", "decisao": "conferido e mantido", "motivo": "O teto do método 86/50 (86 °F = 30 °C) confere com o máximo de 30 °C. Não achei fonte americana para o mínimo de 24 °C; mantido do Brasil."},
-    {"coluna": "tmax_critica_c", "valor_brasil": "33", "decisao": "conferido e mantido", "motivo": "ISU: pólen deixa de ser viável 'once temperatures reach the mid 90's' (~34-35 °C) e acima de 95 °F (35 °C) os estilos-estigmas secam. A fonte americana fica 1-2 °C acima; mantido 33 para o motor tratar os dois países igual (divergência em pendências)."},
-    {"coluna": "sensivel_geada", "valor_brasil": "true", "decisao": "conferido e mantido", "motivo": "Purdue: só depois da camada preta (R6) o grão 'is generally considered to be safe from the effects of a subsequent killing fall freeze'."},
-    {"coluna": "kc_inicial, kc_medio, kc_final", "valor_brasil": "0.3, 1.2, 0.35", "decisao": "conferido e mantido", "motivo": "FAO-56 Tab. 12; o 0,35 corresponde à colheita depois da secagem no campo, que é a regra no Corn Belt."},
-    {"coluna": "profundidade_raiz_m", "valor_brasil": "1.7", "decisao": "conferido e mantido", "motivo": "FAO-56 Tab. 22, limite superior."},
-    {"coluna": "ciclo_dias_min, ciclo_dias_max", "valor_brasil": "110, 145", "decisao": "trocado", "motivo": "Calendário dos EUA: 123-140 dias da semeadura a R6 (ISU, Iowa). No Brasil a faixa é da emergência a R6 (grupos do ZARC)."},
-    {"coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max", "valor_brasil": "1500, 1900", "decisao": "trocado", "motivo": "Exigência dos híbridos do Corn Belt (2500-2750 GDD °F) refeita no POWER sem teto: 1300-1520. Os híbridos americanos são de ciclo mais curto em soma térmica do que o 'normal' brasileiro, e as noites frias de maio e setembro somam pouco sem teto."},
-    {"coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max", "valor_brasil": "500, 800", "decisao": "trocado", "motivo": "Extensão de Iowa: 20-22,3 polegadas (508-566 mm) no ciclo."},
-    {"coluna": "regua", "valor_brasil": "palhada 7,0 t/ha, C/N 76, k 0,0045, PB 3,9, DMO 49", "decisao": "trocado", "motivo": "Mesmo método com dados dos EUA: produtividade NASS + IPCC, decomposição medida em Ames-IA, C/N medida em Ames e NRCS, forragem UNL."}
+    {
+      "coluna": "nome_cientifico, familia_botanica, tipos, perene",
+      "valor_brasil": "Zea mays, Poaceae, comercial, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie e mesmo papel (grão comercial anual)."
+    },
+    {
+      "coluna": "fixa_nitrogenio, raiz_profunda",
+      "valor_brasil": "false, false",
+      "decisao": "reusado",
+      "motivo": "Botânica (Poaceae, raiz fasciculada); raiz 1,7 m do FAO-56 é a mesma."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "10",
+      "decisao": "conferido e mantido",
+      "motivo": "O GDD americano do milho usa Tb 50 °F = 10 °C (Nielsen, Purdue)."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c",
+      "valor_brasil": "24, 30",
+      "decisao": "conferido e mantido",
+      "motivo": "O teto do método 86/50 (86 °F = 30 °C) confere com o máximo de 30 °C. Não achei fonte americana para o mínimo de 24 °C; mantido do Brasil."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "valor_brasil": "33",
+      "decisao": "conferido e mantido",
+      "motivo": "ISU: pólen deixa de ser viável 'once temperatures reach the mid 90's' (~34-35 °C) e acima de 95 °F (35 °C) os estilos-estigmas secam. A fonte americana fica 1-2 °C acima; mantido 33 para o motor tratar os dois países igual (divergência em pendências)."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "Purdue: só depois da camada preta (R6) o grão 'is generally considered to be safe from the effects of a subsequent killing fall freeze'."
+    },
+    {
+      "coluna": "kc_inicial, kc_medio, kc_final",
+      "valor_brasil": "0.3, 1.2, 0.35",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 12; o 0,35 corresponde à colheita depois da secagem no campo, que é a regra no Corn Belt."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "valor_brasil": "1.7",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 22, limite superior."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "110, 145",
+      "decisao": "trocado",
+      "motivo": "Calendário dos EUA: 123-140 dias da semeadura a R6 (ISU, Iowa). No Brasil a faixa é da emergência a R6 (grupos do ZARC)."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "1500, 1900",
+      "decisao": "trocado",
+      "motivo": "Exigência dos híbridos do Corn Belt (2500-2750 GDD °F) refeita no POWER sem teto: 1300-1520. Os híbridos americanos são de ciclo mais curto em soma térmica do que o 'normal' brasileiro, e as noites frias de maio e setembro somam pouco sem teto."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "500, 800",
+      "decisao": "trocado",
+      "motivo": "Extensão de Iowa: 20-22,3 polegadas (508-566 mm) no ciclo."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 7,0 t/ha, C/N 76, k 0,0045, PB 3,9, DMO 49",
+      "decisao": "trocado",
+      "motivo": "Mesmo método com dados dos EUA: produtividade NASS + IPCC, decomposição medida em Ames-IA, C/N medida em Ames e NRCS, forragem UNL."
+    }
   ],
   "evidencias": [
     {
-      "colunas": ["ciclo_dias_min", "ciclo_dias_max", "calendario_usda"],
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "calendario_usda"
+      ],
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabela 'Corn for Grain Usual Planting and Harvesting Dates - States'",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "Illinois .......:  11,800    Apr 14 Apr 21 - May 23 Jun 5   Sep 14 Sep 23 - Nov 5  Nov 20 [...] Iowa ...........:  13,400    Apr 19 Apr 25 - May 18 May 26  Sep 21 Oct 5 - Nov 9   Nov 21 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
     },
     {
-      "colunas": ["ciclo_dias_min", "ciclo_dias_max", "graus_dia_ciclo_min", "graus_dia_ciclo_max"],
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
       "fonte": "Elmore, R., Corn Hybrids Adjust to Late Planting Dates, Iowa State University Integrated Crop Management News, 28/04/2011, Tabela 1 (imagem; valores transcritos)",
       "url": "https://crops.extension.iastate.edu/cropnews/2011/04/corn-hybrids-adjust-late-planting-dates",
       "trecho": "Two Iowa locations with hybrids of typical relative maturities (RM) for those locations. † Days to maturity from planting and maturity date were estimated with Hybrid Maize [...] Tabela: Nashua (105 RM, 2533 GDD): 25 April 140 dias (12-Sep); 2 May 139; 9 May 137; 16 May 135 (28-Sep). Lewis (110 RM, 2657 GDD): 25 April 129 (1-Sep); 2 May 125; 9 May 123 (9-Sep); 16 May 124 (17-Sep)."
     },
     {
-      "colunas": ["ciclo_dias_min", "ciclo_dias_max"],
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
       "fonte": "Abendroth, L.; Elmore, R., Delayed planting: Hybrids adjust to planting dates, Iowa State University Encyclopedia (ICM IC-498(8), 2007), resumindo Nielsen et al. 2002, Agron. J. 94:549-558 (Indiana e Ohio; artigo original não lido)",
       "url": "https://crops.extension.iastate.edu/encyclopedia/delayed-planting-hybrids-adjust-planting-dates",
       "trecho": "three hybrids with relative maturity ratings of 106, 111, and 115 [...] days from planting to silking were 75, 66, and 61, respectively, for Early, Mid, and Late planting dates [...] days from silking to physiological maturity were 63, 66, and 68"
     },
     {
-      "colunas": ["graus_dia_ciclo_min", "graus_dia_ciclo_max"],
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
       "fonte": "Elmore, R., Corn and Dry Soils at Planting, Looking Ahead to 2013 - Part II, Iowa State University ICM News, 11/02/2013",
       "url": "https://crops.extension.iastate.edu/cropnews/2013/02/corn-and-dry-soils-planting-looking-ahead-2013-part-ii",
       "trecho": "GDU = Growing Degree Units; 2300 = about 95 RM; 2400 = about 100 RM; 2500 = about 105 RM; 2600 = about 110 RM. [...] The full-season hybrids at the northwest (NW), northern and northeast (NE) locations required 2500 GDD (about 105 days RM) [...] At the west central, central, southwest (SW), and southeast (SE) locations, the full-season hybrids required 2600 GDD (110 days)"
     },
     {
-      "colunas": ["graus_dia_ciclo_min", "graus_dia_ciclo_max"],
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
       "fonte": "Archontoulis, S., Corn Grain Moisture August 28, 2025, Iowa State University ICM News, 29/08/2025 (Boone, centro de Iowa)",
       "url": "https://crops.extension.iastate.edu/post/corn-grain-moisture-august-28-2025",
       "trecho": "Hybrids with 110-day relative maturity, the most common in this region, averaged around 38% grain moisture. [...] Typically, a 110-day hybrid requires about 2,650 °F-days to reach maturity."
     },
     {
-      "colunas": ["graus_dia_ciclo_max"],
+      "colunas": [
+        "graus_dia_ciclo_max"
+      ],
       "fonte": "Nafziger, E., Late-Season Dry Weather and Corn, farmdoc, University of Illinois, 11/09/2013",
       "url": "https://farmdoc.illinois.edu/field-crop-production/crop_production/late-season-dry-weather-and-corn.html",
       "trecho": "At Champaign, GDD accumulations from May 1, May 15, and May 30 through September 10 totaled 2,760, 2,590, and 2,310, respectively. Mid-season hybrids used in central Illinois typically need 2,700 to 2,750 GDD from planting to maturity [...] Those planted in mid-May should mature by September 20 or so"
     },
     {
-      "colunas": ["temp_base_c", "temp_otima_max_c", "graus_dia_ciclo_min", "graus_dia_ciclo_max"],
+      "colunas": [
+        "temp_base_c",
+        "temp_otima_max_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
       "fonte": "Nielsen, R.L., Heat Unit Concepts Related to Corn Development, Purdue University Corny News Network, atualizado em abril de 2020",
       "url": "https://www.agry.purdue.edu/ext/corn/news/timeless/HeatUnits.html",
       "trecho": "This Modified GDD method calculates daily accumulation of GDD as the average daily temperature (degrees F) minus 50. [...] Daily maximums greater than 86 degrees F are set equal to 86 in the calculation of the daily average temperature. Similarly, daily minimums less than 50 degrees F are set equal to 50 in the calculation."
     },
     {
-      "colunas": ["graus_dia_ciclo_min", "graus_dia_ciclo_max", "ciclo_dias_max"],
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "ciclo_dias_max"
+      ],
       "fonte": "Nielsen, R.L., Interpreting Corn Hybrid Maturity Ratings in the U.S., Purdue University, janeiro de 2025 (conferência; Indiana)",
       "url": "https://www.agry.purdue.edu/ext/corn/news/timeless/HybridMaturity.html",
       "trecho": "a typical 111-\"day\" hybrid planted in westcentral Indiana on April 20 will reach physiological maturity in about 145 days, but can range from about 130 to 170 days [...] Typical GDD ratings (Fahrenheit-based) for hybrids commonly grown in Indiana range from about 2500 (earlier maturity hybrids) to 2800 GDD (later maturity)."
     },
     {
-      "colunas": ["graus_dia_ciclo_min", "graus_dia_ciclo_max"],
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
       "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/milho_gd.json (NASA POWER diário, comunidade AG, 2001-2020; Champaign só 2013)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
       "trecho": "milho_nashua_0425_105rm_140d: mediana 1326 (mín 1072, máx 1660, P10 1087, P90 1434), referência 1407 (-5,7%); milho_nashua_0516_105rm_135d: mediana 1339 (-4,8%); milho_lewis_0425_110rm_129d: mediana 1411 (-4,4%); milho_lewis_0509_110rm_123d: mediana 1460 (P10 1238, P90 1620), referência 1476 (-1,1%); milho_champaign_2013_0501_0910: 1495 contra 1533 (-2,5%); milho_champaign_2013_0515_0920: 1520 contra 1514 (+0,4%)"
     },
     {
-      "colunas": ["agua_ciclo_mm_min", "agua_ciclo_mm_max"],
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
       "fonte": "Licht, M.; Archontoulis, S.; Hatfield, J., Corn Water Use and Evapotranspiration, Iowa State University ICM News, 26/06/2017 (APSIM calibrado no centro de Iowa)",
       "url": "https://crops.extension.iastate.edu/cropnews/2017/06/corn-water-use-and-evapotranspiration",
       "trecho": "Evapotranspiration and plant transpiration values from planting through crop maturity for a 110-day corn hybrid growing in central Iowa. [...] Typically, a 150 bu/ac corn uses 16 inches of water, 200 bu/ac corn uses 20 inches of water, and 250 bu/ac corn uses 22 inches of water."
     },
     {
-      "colunas": ["agua_ciclo_mm_max"],
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
       "fonte": "Iowa State University Extension, Crop water use or evapotranspiration (Encyclopedia)",
       "url": "https://crops.extension.iastate.edu/encyclopedia/crop-water-use-or-evapotranspiration",
       "trecho": "The total amount of water used by a corn and a soybean crop would normally be the same (22.3, 21.5, and 22.1 inches in north central, southwestern, and southeastern Iowa, respectively)."
     },
     {
-      "colunas": ["tmax_critica_c"],
+      "colunas": [
+        "tmax_critica_c"
+      ],
       "fonte": "Iowa State University Extension, Corn pollination: effect of high temperature and stress (Encyclopedia; texto de R. Elmore, UNL Crop Watch 2005)",
       "url": "https://crops.extension.iastate.edu/encyclopedia/corn-pollination-effect-high-temperature-and-stress",
       "trecho": "Temperatures greater than 95° F with low relative humidity will desiccate exposed silks, but not impact silk elongation rates greatly. Pollen is no longer viable once temperatures reach the mid 90's or greater, especially with low relative humidity."
     },
     {
-      "colunas": ["sensivel_geada"],
+      "colunas": [
+        "sensivel_geada"
+      ],
       "fonte": "Nielsen, R.L., Predicting Corn Grain Maturity Dates for Delayed Plantings, Purdue University Corny News Network, 16/09/2019",
       "url": "https://agry.purdue.edu/ext/corn/news/timeless/RStagePrediction.html",
       "trecho": "Kernel dry weight reaches its maximum at this point and the grain is generally considered to be safe from the effects of a subsequent killing fall freeze. [...] Physiological maturity (kernel black layer) for adapted corn hybrids occurs approximately 65 days after silking in the central Corn Belt"
     },
     {
-      "colunas": ["kc_inicial", "kc_medio", "kc_final"],
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
       "fonte": "FAO-56 (Allen et al. 1998), Tabela 12 e nota 11",
       "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
       "trecho": "i. Cereals 0.3 [...] Maize, Field (grain) (field corn) 1.20 0.60-0.35 [...] The second Kc end value is for harvest after complete field drying of the grain (to about 18% moisture, wet mass basis)."
     },
     {
-      "colunas": ["profundidade_raiz_m"],
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
       "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
       "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
       "trecho": "Maize, Field (grain) (field corn) 1.0-1.7 0.55 [...] The larger values for Zr are for soils having no significant layering or other characteristics that can restrict rooting depth."
     },
     {
-      "colunas": ["ciclo_dias_max"],
+      "colunas": [
+        "ciclo_dias_max"
+      ],
       "fonte": "FAO-56 (Allen et al. 1998), Tabela 11 (conferência; Idaho, semeadura à colheita)",
       "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
       "trecho": "Maize (grain) [...] 30 40 50 50 170 April Idaho, USA"
     },
     {
-      "colunas": ["ms_palhada_t_ha"],
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
       "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, Corn for grain: yield por estado",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
       "trecho": "Illinois ........:   206.0       217.0       214.0 [...] Iowa ............:   201.0       211.0       210.0 [bu/acre, 2023, 2024, 2025]"
     },
     {
-      "colunas": ["ms_palhada_t_ha"],
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
       "fonte": "IPCC 2019 Refinement to the 2006 Guidelines, Vol. 4, Cap. 11, Tabela 11.2 (Updated) e Tabela 11.1a",
       "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf",
       "trecho": "AGDM(T) = Crop(T) • Slope(T) + Intercept(T) [...] Maize 1.03 ± 3% 0.61 ± 19% 0.76 [Tab. 11.1a, Maize: dry matter fraction of harvested product (DRY) 0.87]"
     },
     {
-      "colunas": ["cn_palhada", "k_dia", "meia_vida_dias"],
+      "colunas": [
+        "cn_palhada",
+        "k_dia",
+        "meia_vida_dias"
+      ],
       "fonte": "Al-Kaisi, M.M.; Guzman, J.G., Effects of tillage and nitrogen rate on decomposition of transgenic Bt and near-isogenic non-Bt maize residue, Soil & Tillage Research 129:32-39, 2013 (ISU, Ames-IA, sacolas instaladas em novembro, 2004-2007)",
       "url": "https://crops.extension.iastate.edu/files/inline-files/btvsnonbtpaper-2013.pdf",
       "trecho": "Table 1 [...] Bt 44.2 0.97 [...] 47.0; Non-Bt 42.1 0.98 [...] 47.1 [C:N] [...] Table 2 [...] Bt NT 0.0032 [...] 216 (2005); Non-Bt NT 0.0022 [...] 315 (2006); Bt NT 0.0027 [...] 256 (2007) [...] after 12 months in the field where 34-49% of the maize residue still remained."
     },
     {
-      "colunas": ["k_dia"],
+      "colunas": [
+        "k_dia"
+      ],
       "fonte": "Al-Kaisi & Guzman 2013 (mesmo artigo), resultados de campo no inverno",
       "url": "https://crops.extension.iastate.edu/files/inline-files/btvsnonbtpaper-2013.pdf",
       "trecho": "In 2005, around 11-22% of the maize residue mass was decomposed over winter when the ground was predominately frozen [...] In 2006, 12-26% of the maize residue mass was decomposed over winter [...] The largest decreases in maize residue mass occurred after the first three months after harvest, which resulted in an average loss of 43% over the winter."
     },
     {
-      "colunas": ["cn_palhada"],
+      "colunas": [
+        "cn_palhada"
+      ],
       "fonte": "USDA NRCS East National Technology Support Center, Carbon to Nitrogen Ratios in Cropping Systems, janeiro de 2011, Tabela 1",
       "url": "https://sarep.ucdavis.edu/sites/g/files/dgvnsk9171/files/media/documents/NRCS-C_N_ratios_cropping_systems.pdf",
       "trecho": "Table 1. Carbon to nitrogen ratios of crop residues and other organic materials [...] corn stover 57:1"
     },
     {
-      "colunas": ["pb_pct", "digestibilidade_pct", "uso_forrageiro"],
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ],
       "fonte": "Rasby, R.J. et al., Grazing Crop Residues with Beef Cattle, University of Nebraska-Lincoln Extension EC278, revisado em agosto de 2014, Tabela 2",
       "url": "https://extensionpubs.unl.edu/publication/ec278/pdf/view/ec278-2014.pdf",
       "trecho": "Table 2. Proportions and quality of residue in irrigated and dryland field corn residue [...] Dryland (Rainfed): Grain 4.0 12.8 90.8; Leaf and husk 51.0 6.4 49.7; Stalk 33.0 5.9 47.8; Cob 12.0 4.6 36.2 [proporção %, PB %, IVDMD %] [...] Cows grazing corn residue or grain sorghum stubble will consume 25-50 percent of the available residue in 30-100 days"
     },
     {
-      "colunas": ["codigo_nass"],
+      "colunas": [
+        "codigo_nass"
+      ],
       "fonte": "Kellogg Biological Station LTER (Michigan State Univ.), Agronomic Yields - County, State and Regional, tabela extraída do USDA NASS QuickStats (citação secundária do nome do item)",
       "url": "https://lter.kbs.msu.edu/datatables/85",
       "trecho": "MI | CORN, GRAIN | 2014 | CORN, GRAIN - YIELD, MEASURED IN BU / ACRE | 167.0 | 10.48"
     }
   ],
   "regua": {
-    "ms_palhada_t_ha": {"min": 11.9, "max": 12.8, "tipico": 12.4},
-    "cn_palhada": {"min": 47, "max": 57, "tipico": 47},
-    "k_dia": {"valor": 0.0027, "min": 0.0022, "max": 0.0032},
-    "meia_vida_dias": {"valor": 257},
+    "ms_palhada_t_ha": {
+      "min": 11.9,
+      "max": 12.8,
+      "tipico": 12.4
+    },
+    "cn_palhada": {
+      "min": 47,
+      "max": 57,
+      "tipico": 47
+    },
+    "k_dia": {
+      "valor": 0.0027,
+      "min": 0.0022,
+      "max": 0.0032
+    },
+    "meia_vida_dias": {
+      "valor": 257
+    },
     "condicao_decomposicao": "Folhas e colmos de milho em sacolas de náilon (2 mm) presas na superfície do solo em plantio direto, instaladas em novembro logo depois da colheita, Ames-IA, 12 meses (inverno com solo congelado), 2005-2007; k ajustado pelos autores (Al-Kaisi & Guzman 2013, Tab. 2).",
     "pb_pct": 6.3,
     "digestibilidade_pct": {
@@ -256,9 +397,41 @@
     "observacoes": {
       "coleta": "Palhada = resíduo acima do solo depois da colheita do grão, pela Tab. 11.2 do IPCC 2019: AGDM = 1,03 × Crop + 0,61 (t MS/ha), com Crop = produtividade × 0,0628 (bu/acre -> t/ha, 56 lb/bu) × 0,87 (DRY do IPCC, Tab. 11.1a). Produtividade NASS de IA e IL em 2023-2025: média 209,8 bu/acre -> Crop 11,46 t MS/ha -> 12,4 t/ha (típico). Mínimo = Iowa 2023 (201 bu/acre) -> 11,9; máximo = Illinois 2024 (217) -> 12,8. Com 150 bu/acre daria 9,1 t/ha. O cabeçalho da Tab. 11.2 de 2019 diz kg MS/ha, mas o intercepto 0,61 só faz sentido em t/ha (como nas Diretrizes de 2006): usei t/ha. Não desconta a retirada de palha (enfardamento) nem o pastejo. C/N: 47,0 e 47,1 medidas em folhas e colmos frescos em Ames (Al-Kaisi & Guzman 2013) e 57 do NRCS (2011, tabela nacional, sem n); típico = a medida em Iowa.",
       "decomposicao": "k = constante de primeira ordem ajustada pelos autores para o resíduo na superfície (plantio direto) em Ames-IA: 0,0032 (2005), 0,0022 (2006) e 0,0027 (2007) por dia; valor = 0,0027 (mediana), T½ = 0,693/0,0027 = 257 d (o artigo dá 256). Conferência pelas massas: 34-49% restantes depois de 12 meses -> k = -ln(0,34)/365 = 0,0030 e -ln(0,49)/365 = 0,0020. Nos 3 primeiros meses depois da colheita (o horizonte de 60 dias da régua cai no inverno de Iowa): perdas de 11-22% (2005) e 12-26% (2006) -> k = 0,0013-0,0033; 43% em 2007 (março quente) -> 0,0062. Palhada que sobra em 60 dias: 12,4 × e^(-0,0027×60) = 10,6 t/ha."
+    },
+    "resultado": {
+      "aporte_biomassa": "alto",
+      "cobertura_solo": "alta",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 12.4,
+      "ms_remanescente_t_ha": 10.55,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
     }
   },
-  "mudancas": [],
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "alto",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "alta",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    }
+  ],
   "pendencias": [
     "Variante irrigada (Nebraska, pivô) fica para outra linha ou para o motor: água e produtividade (palhada) são outras; ciclo e Kc mudam pouco.",
     "ciclo_dias: definido da SEMEADURA à maturação fisiológica (R6), igual aos graus-dia. No Brasil a faixa é da emergência a R6 (grupos do ZARC), cerca de 5-7 dias a menos. Os 123-140 dias vêm de simulação (Hybrid-Maize) publicada pela ISU para Nashua e Lewis; a conferência em campo (Nielsen et al. 2002, 129-138 dias) é de Indiana e Ohio. Faltou uma fonte com dias até R6 medidos em Illinois. O Handbook 628 só dá semeadura e colheita; a colheita vem 2-8 semanas depois de R6 (secagem no campo). Confirmar com o coordenador se o motor espera semeadura->R6 ou semeadura->colheita.",
@@ -271,5 +444,13 @@
     "regua: digestibilidade sem n (a UNL não informa); só duas fontes de C/N nos EUA; a palhada não desconta enfardamento nem pastejo. O k de Ames (inverno congelado) é bem menor que o do Brasil (0,0045), e a palhada que sobra em 60 dias fica em 10,6 t/ha.",
     "codigo_nass: 'CORN, GRAIN' conferido por citação secundária (tabela da KBS LTER com o item do QuickStats); no QuickStats o commodity é 'CORN' e a utilização 'GRAIN'. Conferir no próprio QuickStats (exige chave da API).",
     "calendario_usda: o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto (vem do catálogo da série)."
-  ]
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
 }
