@@ -113,25 +113,6 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - O NASA Harvest sai da lista "Fora do projeto" e entra no núcleo, na linha **Contexto regional e renda** (portal, como contexto), na linha **Vegetação** (`crop-cycle-detection`) e numa nova linha **Chat** (MCP).
   - **Feito em 14/11/2026 (independe da aprovação):** os arquivos foram renomeados para o padrão `<NOME>.md`: `NASA_HARVEST.md` (GitHub), `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `NASA_HARVEST_PORTAL_MCP.md`, `NASA_HARVEST_PORTAL_MCP_IMPLEMENTACAO.md` e `NASA_POWER_X_HARVEST_PORTAL.md`. O `arquitetura-completa-field-shift.md` foi para `application/architecture/ARQUITETURA-COMPLETA.md`. As citações a nomes antigos foram corrigidas.
   - Ainda em aberto: o `fluxo-aplicativo-power-harvest-mcp.md` e o `comunicacao-entre-apis.md` são citados, mas não existem no repositório.
-### D-010 — Escopo do catálogo de culturas: Brasil e EUA
-- **Status:** Decidido (Yury, Pessoa 1, 15/11/2026) para o catálogo de culturas. Falta a equipe rever a D-003 para as outras fontes.
-- **Motivo:** o questionário já foi revisado para escopo global e testado em fazendas dos EUA (`data/onboarding/relatorio-revisao-questionario.md`), e os testes de chat do produtor americano (`TESTES_CHAT_SR_SMITH.md`) pedem culturas que o catálogo do Brasil não tem ou trata com outro sistema (centeio de cobertura, trigo de inverno, arroz inundado, amendoim).
-- **Consequências:**
-  - Novo catálogo `data/catalogo/eua/`, no mesmo formato do Brasil, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc`. Guia em `data/catalogo/eua/README.md`; construído pelo agente `agroai-dataset-eua`.
-  - Para o catálogo dos EUA, entram fontes que a D-003 deixava de fora: USDA NASS QuickStats (no lugar da PAM), USDA Agricultural Handbook 628 e RMA (no lugar do ZARC), extensão das universidades land-grant e USDA-ARS/NRCS (no lugar da Embrapa).
-  - A régua das colunas qualitativas, a regra de confiança e as regras do motor são as mesmas do Brasil (`data/catalogo/evidencias/README.md`), para as notas serem comparáveis.
-  - **Em aberto com a equipe:** se a D-003 cai também para solo (SSURGO), histórico de culturas (CDL) e clima (PRISM) nos pontos dos EUA.
-  - **Resolvido (15/11):** o id `arroz_irrigado` entrou no `agroai/base/culturas.json` (commit f910193). "arroz irrigado", "arroz de várzea", "flooded rice" e afins casam com ele; "arroz" e "rice" sozinhos ficam ambíguos e o app pede que o produtor escolha (não decide pelo país).
-  - **Decisões da revisão dos lotes 1 e 2 dos EUA (15/11, `reviews/lotes-1-2-eua 15_11_26/`), valem para os dois catálogos:**
-    - a água não elimina cultura de sequeiro, só marca "água no limite" (regra 1 do motor); só o arroz irrigado sem várzea ou irrigação é eliminado;
-    - graus-dia: o motor compara a mediana local; nas coberturas não elimina;
-    - `tmax_critica_c` só gera aviso na fase sensível; vazio nas coberturas que morrem ou são manejadas antes de florescer;
-    - perenes forrageiras (`pastagem`, `alfafa`) não usam ciclo nem graus-dia (`vazio_nao_se_aplica`); água anual;
-    - colunas novas de janela, região e texto para o produtor (`semeadura_*`, `manejo_*`, `tipo_manejo`, `condicao_semeadura`, `estados_validos`, `lacuna_informacao`, `risco_revisao_local`); no Brasil entram vazias até haver fonte;
-    - aveia e nabo dos EUA continuam com semeadura em agosto e setembro: a janela e a condição impedem que sejam sugeridos depois do milho ou da soja colhidos em outubro;
-    - critério de `estudo_unico` escrito (1 local, 1 ano ou 1 cultivar); o sorgo dos EUA fica `media`;
-    - ervilhaca dos EUA só no Corn Belt (Sudeste em arranjo regional); centeio com palhada típica 0,97 t/ha; girassol e amendoim com a palhada medida na região.
-
 ### D-011 — IA do chat e do RAG: Gemini, sem framework de agentes
 - **Status:** Decidido (15/11/2026)
 - **Decisão:**
@@ -154,6 +135,25 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - O AppEEARS sai da D-009 e da D-010; o acesso aos dados da NASA fica com o Earthdata Search e o earthaccess. As fontes de clima, solo e relevo do app (NASA POWER, SoilGrids, SRTM) não mudam.
   - A tarefa 5 da Pessoa 2 (pedido no AppEEARS) está cancelada. `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico.
   - Outros documentos que ainda o citam (notas `tools/APPEEARS*.md`, arquitetura, guia de dados) são atualizados à parte, cada um pelo dono.
+
+### D-013 — Escopo do catálogo de culturas: Brasil e EUA
+- **Status:** Decidido (Yury, Pessoa 1, 15/11/2026) para o catálogo de culturas. Registrada antes como uma segunda D-010; renumerada em 15/11/2026. Falta a equipe rever a D-003 para as outras fontes.
+- **Motivo:** o questionário já foi revisado para escopo global e testado em fazendas dos EUA (`data/onboarding/relatorio-revisao-questionario.md`), e os testes de chat do produtor americano (`TESTES_CHAT_SR_SMITH.md`) pedem culturas que o catálogo do Brasil não tem ou trata com outro sistema (centeio de cobertura, trigo de inverno, arroz inundado, amendoim).
+- **Consequências:**
+  - Novo catálogo `data/catalogo/eua/`, no mesmo formato do Brasil, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc`. Guia em `data/catalogo/eua/README.md`; construído pelo agente `agroai-dataset-eua`.
+  - Para o catálogo dos EUA, entram fontes que a D-003 deixava de fora: USDA NASS QuickStats (no lugar da PAM), USDA Agricultural Handbook 628 e RMA (no lugar do ZARC), extensão das universidades land-grant e USDA-ARS/NRCS (no lugar da Embrapa).
+  - A régua das colunas qualitativas, a regra de confiança e as regras do motor são as mesmas do Brasil (`data/catalogo/evidencias/README.md`), para as notas serem comparáveis.
+  - **Em aberto com a equipe:** se a D-003 cai também para solo (SSURGO), histórico de culturas (CDL) e clima (PRISM) nos pontos dos EUA.
+  - **Resolvido (15/11):** o id `arroz_irrigado` entrou no `agroai/base/culturas.json` (commit f910193). "arroz irrigado", "arroz de várzea", "flooded rice" e afins casam com ele; "arroz" e "rice" sozinhos ficam ambíguos e o app pede que o produtor escolha (não decide pelo país).
+  - **Decisões da revisão dos lotes 1 e 2 dos EUA (15/11, `reviews/lotes-1-2-eua 15_11_26/`), valem para os dois catálogos:**
+    - a água não elimina cultura de sequeiro, só marca "água no limite" (regra 1 do motor); só o arroz irrigado sem várzea ou irrigação é eliminado;
+    - graus-dia: o motor compara a mediana local; nas coberturas não elimina;
+    - `tmax_critica_c` só gera aviso na fase sensível; vazio nas coberturas que morrem ou são manejadas antes de florescer;
+    - perenes forrageiras (`pastagem`, `alfafa`) não usam ciclo nem graus-dia (`vazio_nao_se_aplica`); água anual;
+    - colunas novas de janela, região e texto para o produtor (`semeadura_*`, `manejo_*`, `tipo_manejo`, `condicao_semeadura`, `estados_validos`, `lacuna_informacao`, `risco_revisao_local`); no Brasil entram vazias até haver fonte;
+    - aveia e nabo dos EUA continuam com semeadura em agosto e setembro: a janela e a condição impedem que sejam sugeridos depois do milho ou da soja colhidos em outubro;
+    - critério de `estudo_unico` escrito (1 local, 1 ano ou 1 cultivar); o sorgo dos EUA fica `media`;
+    - ervilhaca dos EUA só no Corn Belt (Sudeste em arranjo regional); centeio com palhada típica 0,97 t/ha; girassol e amendoim com a palhada medida na região.
 
 ---
 
@@ -220,8 +220,9 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 14/11/2026 | **D-009:** fontes do MVP definidas (17 no núcleo, 3 opcionais, 19 fora). Substitui D-002 e D-005; D-003, D-008 e I-2 ajustados. |
 | 14/11/2026 | Proposta de revisão da D-009: NASA Harvest volta como contexto de mercado (Harvest Portal), no chat (MCP) e na detecção de ciclos (`crop-cycle-detection`). A confirmar com a equipe. |
 | 15/11/2026 | **D-010:** o app também aceita fazendas nos EUA. Amplia a D-008 e altera a D-003 (Census, CDL e NASS QuickStats entram para as fazendas dos EUA). |
-| 15/11/2026 | **D-010:** catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |
+| 15/11/2026 | **D-013** (antes, uma segunda D-010): catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |
 | 15/11/2026 | **D-011:** chat e RAG com Gemini (`google-genai` + `gemini-embedding-001` 768d), sem framework de agentes, RAG com pgvector + busca textual no próprio Postgres. |
 | 15/11/2026 | Nota na D-009 (revisão "projeto-dados 15_11_26"): o motor ainda não lê a PAM, o NASS nem as janelas do ZARC; a renda é a contagem de culturas de venda. Sem decisão nova. |
 | 15/11/2026 | Nota na D-009: o projeto não vai mais usar o AppEEARS (decisão do usuário). `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico. |
 | 15/11/2026 | **D-012:** AppEEARS fora do projeto (pedido cancelado); sai da D-009 e da D-010, no lugar da nota de 15/11. |
+| 15/11/2026 | Segunda D-010 (escopo do catálogo de culturas) renumerada para **D-013**. |

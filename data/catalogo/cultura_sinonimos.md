@@ -43,7 +43,7 @@
 | `guandu` | Guandu | — (não está no ZARC) | PT: guandu, feijão-guandu, andu · EN: pigeon pea | guando (PT) |
 | `pastagem` | Braquiária (Brasil) · Festuca alta (EUA) | — (não está no ZARC) | PT: pasto, pastagem, capim, braquiária, braquiaria, capim pras vacas · EN: pasture, grass, grazing, brachiaria | capim-braquiária (PT), braquiarão (PT), marandu (PT), brizantha (PT), braquiara (PT, erro comum), palisade grass (EN), festuca (PT), festuca alta (PT), tall fescue (EN, EUA), fescue (EN, EUA) |
 
-## Culturas que só estão no catálogo dos EUA (D-010)
+## Culturas que só estão no catálogo dos EUA (D-013)
 
 Estas culturas já existem no app, mas não no motor do Brasil. Os nomes novos são os que o catálogo dos EUA usa (`data/catalogo/eua/culturas.csv`).
 
