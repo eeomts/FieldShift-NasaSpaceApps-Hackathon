@@ -14,7 +14,6 @@ from app.services.motor.parametros import (
     K_LIMITE_BAIXA,
     K_LIMITE_MEDIA,
     K_REFERENCIA,
-    PRAGAS_DESCONTO_MESMA_FAMILIA,
     RENDA_MAXIMA,
     RENDA_POR_COMERCIAIS,
     TERRA_PESO_BIOMASSA,
@@ -196,17 +195,18 @@ def nota_pragas(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMot
     n = len(familias)
     if n == 0:
         return _sem_dado("pragas", "Sem dados suficientes de família botânica das culturas.", lac)
-    distintas = len(set(familias))
     if n < 2:
         nota = 0.0
         texto = "Só há uma cultura na rotação: nada quebra o ciclo de pragas e doenças."
     else:
+        # Embrapa Soja (alternar espécies); VALIDACAO-PARAMETROS-MOTOR.md 2.7: nota = 1 − trocas sem mudar de família ÷ trocas.
+        # Sem número escolhido e sem premiar nem punir o total de culturas. Consórcio (itens no mesmo mês) segue a ordem do calendário.
         seguidos = [(familias[i], familias[i + 1]) for i in range(n - 1)]
         if n >= 3:
             seguidos.append((familias[-1], familias[0]))  # a rotação é um ciclo: a última volta para a primeira
-        repetidos = sum(a == b for a, b in seguidos)
-        nota = _limita((distintas - 1) / (n - 1) - PRAGAS_DESCONTO_MESMA_FAMILIA * repetidos)
-        texto = f"A rotação tem {distintas} família(s) de plantas em {n} culturas, com {repetidos} par(es) seguido(s) da mesma família."
+        mudam = sum(a != b for a, b in seguidos)
+        nota = _limita(mudam / len(seguidos))
+        texto = f"{mudam} de {len(seguidos)} trocas de cultura mudam de família de planta."
     evid = [Evidencia("Famílias botânicas na rotação", ", ".join(dict.fromkeys(familias)), None, FONTE_BASE, None)]
     return NotaCriterio("pragas", nota, texto, evid), lac
 

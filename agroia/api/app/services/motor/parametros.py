@@ -58,7 +58,7 @@ K_LIMITE_BAIXA = 0.015
 K_LIMITE_MEDIA = 0.030
 K_REFERENCIA = 0.0225  # centro da classe "média" de Mannigel et al. 2002 (0,015 a 0,030): fator = K / K_REFERENCIA, como na USLE (A = R·K·LS·C·P, AH 537)
 FATOR_K_SEM_DADO = 1.0  # escolha de produto (VALIDACAO-PARAMETROS-MOTOR.md): neutro, a classe média
-PRAGAS_DESCONTO_MESMA_FAMILIA = 0.2  # por par seguido da mesma família
+# Pragas: sem constante; a nota é a fração de trocas de cultura que mudam de família (Embrapa Soja; VALIDACAO-PARAMETROS-MOTOR.md 2.7)
 RENDA_POR_COMERCIAIS = {0: 0.0, 1: 0.5, 2: 0.8}  # 3 ou mais: RENDA_MAXIMA
 RENDA_MAXIMA = 1.0
 

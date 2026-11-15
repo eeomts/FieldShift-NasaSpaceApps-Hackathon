@@ -4,10 +4,10 @@ import pytest
 from app.services.motor.catalogo import FaixaPalhada, catalogo_do_pais
 from app.services.motor.criterios import calcular_notas, classe_do_k
 from app.services.motor.declive import fator_do_declive, ls_rusle
-from app.services.solo.derivados import erodibilidade_k
 from app.services.motor.entradas import Erodibilidade
 from app.services.motor.modelo import Estrategia
 from app.services.motor.relevo_service import Relevo
+from app.services.solo.derivados import erodibilidade_k
 from motor_helpers import PLANO, clima, cultura, entradas, item
 
 
@@ -187,12 +187,41 @@ def test_pragas_duas_familias_distintas_dao_um():
     assert n["pragas"].nota == 1.0
 
 
-def test_pragas_mesma_familia_seguida_desconta_e_nunca_fica_negativa():
+def test_pragas_mesma_familia_seguida_da_zero_e_voltar_para_a_mesma_familia_nao_pune_duas_vezes():
     n, _ = notas([item("a", 1, 3), item("b", 4, 6)], [cultura("a"), cultura("b")])
     assert n["pragas"].nota == 0.0
     a, b = cultura("a"), cultura("b", familia_botanica="Fabaceae")
-    n, _ = notas([item("a", 1, 3), item("b", 4, 6), item("a", 7, 9)], [a, b])  # P F P: (2-1)/(3-1) = 0,5; a volta P->P desconta 0,2
-    assert n["pragas"].nota == pytest.approx(0.3)
+    n, _ = notas([item("a", 1, 3), item("b", 4, 6), item("a", 7, 9)], [a, b])  # P F P: P->F, F->P mudam; a volta P->P não: 2 de 3
+    assert n["pragas"].nota == pytest.approx(2 / 3)
+    assert n["pragas"].explicacao == "2 de 3 trocas de cultura mudam de família de planta."
+
+
+# tabela 2.7 do VALIDACAO-PARAMETROS-MOTOR.md, com as famílias do catálogo real do Brasil, na ordem do ano
+CASOS_PRAGAS = [
+    (["soja"], 0.0),
+    (["soja", "milho"], 1.0),
+    (["soja", "milho", "trigo"], 2 / 3),
+    (["soja", "milho", "crotalaria"], 2 / 3),
+    (["soja", "milho", "nabo_forrageiro"], 1.0),
+    (["milho", "milheto"], 0.0),
+    (["soja", "feijao"], 0.0),
+    (["aveia", "soja", "trigo", "milho"], 0.5),
+]
+
+
+@pytest.mark.parametrize("ids, esperado", CASOS_PRAGAS)
+def test_pragas_casos_da_tabela_da_validacao(ids, esperado):
+    br = catalogo_do_pais("BR")
+    itens = [item(id_, 1 + 2 * i, 2 + 2 * i) for i, id_ in enumerate(ids)]
+    n, _ = notas(itens, [br[i] for i in ids])
+    assert n["pragas"].nota == pytest.approx(esperado)
+
+
+def test_pragas_acrescentar_cultura_de_familia_nova_ou_ja_presente_nao_derruba_a_nota():
+    br = catalogo_do_pais("BR")
+    dois, _ = notas([item("soja", 1, 2), item("milho", 3, 4)], [br["soja"], br["milho"]])
+    tres, _ = notas([item("soja", 1, 2), item("milho", 3, 4), item("trigo", 5, 6)], [br["soja"], br["milho"], br["trigo"]])
+    assert dois["pragas"].nota == 1.0 and tres["pragas"].nota == pytest.approx(2 / 3)  # antes caía de 1,0 para 0,3
 
 
 def test_pragas_ordena_pelo_mes_de_inicio():
