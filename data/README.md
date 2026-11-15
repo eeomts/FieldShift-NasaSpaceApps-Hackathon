@@ -78,7 +78,9 @@ data/
 │   └── nass/
 │       ├── mapa_culturas_nass.csv  # cultura_id → nome no NASS
 │       ├── datas_plantio.csv       # datas usuais de plantio/colheita por estado (no lugar do ZARC)
-│       └── producao_condado.csv    # produção por condado (no lugar da PAM; precisa de NASS_API_KEY)
+│       ├── producao_condado.csv    # produção por condado (no lugar da PAM; precisa de NASS_API_KEY)
+│       ├── producao_estado.csv     # produção por estado (onde o condado não tem dado)
+│       └── fator_algodao_caroco.csv  # fator pluma -> algodão em caroço por estado e ano
 ├── rag/                            # Pessoa 3 (textos .md)
 ├── onboarding/
 │   └── fotos-solo/                 # Pessoa 3 (+ CREDITOS.md)
