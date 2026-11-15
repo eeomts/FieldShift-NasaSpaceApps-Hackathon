@@ -82,4 +82,11 @@ Full statement: [Use of AI](docs/07-ai-use.md).
 
 ## Team
 
-[TODO: team name and members]
+**Team: NOME DO GRUPO** (yes, that is our real team name: it means "GROUP NAME" in Portuguese)
+
+- Arthur Miranda
+- Augusto Aparecido
+- Guilherme Melo
+- Mateus Oliveira
+- Yury Turatti
+- Pedro Otavio Barbosa
