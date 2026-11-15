@@ -43,7 +43,11 @@
     "condicao_semeadura": "apos_colheita_graos|a_lanco_lavoura_em_pe",
     "estados_validos": "GA",
     "lacuna_informacao": "Não achamos medição de quanta água o trevo-encarnado usa na Geórgia nem da profundidade das raízes; usamos os números de um trevo parecido. A temperatura em que ele começa a crescer vem de um só estudo. A quantidade de palha muda muito com a data em que o trevo é morto.",
-    "risco_revisao_local": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. No Alabama e no Tennessee a época de semear e de matar é outra; no Meio-Oeste e em lugares mais frios ele pode morrer no inverno, e estes números não valem."
+    "risco_revisao_local": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. No Alabama e no Tennessee a época de semear e de matar é outra; no Meio-Oeste e em lugares mais frios ele pode morrer no inverno, e estes números não valem.",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "origem": {
     "temp_base_c": {
@@ -89,6 +93,14 @@
     "profundidade_raiz_m": {
       "tipo": "proxy",
       "nota": "FAO-56 Tab. 22, 'Clover hay, Berseem 0.6-0.9': limite superior 0,9 m. PROXY: outra espécie do gênero. Não achei profundidade medida do trevo-encarnado; a Feedipedia só descreve 'a central taproot and many fibrous lateral roots', e o ECOCROP dá profundidade de solo ótima 'medium (50-150 cm)'."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: na Geórgia o trevo-encarnado passa o inverno e tolera o frio do sistema. SARE MCCP: 'In Hardiness Zone 8—the warmer half of the Southeast—crimson clover will overwinter dependably with only infrequent winterkill' (Chart 3A: rústico até a zona 7). Tolerância publicada: 'Cold temperature tolerance: 10° F' (-12,2 °C; NRCS/ISU CROP 3272, sem altura declarada). Conferência, 10/09 a 24/04 de 2001-2019, conferência própria com o NASA POWER (T2M_MIN diária, ar a 2 m, mesma medida do motor), arquivos do cache data/brutos/nasa_power, contando os anos com pelo menos um dia abaixo do limiar: Watkinsville (Piedmont) mínimo absoluto -13,5 °C, 1 de 19 anos abaixo de -12,2; Tifton (Coastal Plain) -8,7 °C, nenhum ano. Fica muito abaixo dos 30% dos anos da regra 17. Não é coluna do filtro de confiança."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: sem limiar de dano no sistema, não há fase sensível (ver tmin_critica_c)."
     }
   },
   "reuso_brasil": [
@@ -319,6 +331,17 @@
       "fonte": "Balkcom, K.; Schomberg, H.; Lee, R.D., Chapter 5: Cover Crop Management, em Conservation Tillage Systems in the Southeast, SARE, 2020, Tab. 5.4 (relida em 15/11 para as colunas do Alabama e do Tennessee)",
       "url": "https://www.sare.org/wp-content/uploads/Chapter-5-tables_Conservation-Tillage.pdf",
       "trecho": "ALABAMA [3] [...] North Central South [...] TENNESSEE [4] SPRING FALL [...] Clover, crimson Aug 25–Oct 1 | Sept 1– Oct 15 | Sept 15– Nov 15 [...] | Aug 15– Oct 1"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Clark, A. (ed.), Managing Cover Crops Profitably, 3ª edição, SARE Handbook 9, 2007, capítulo Crimson Clover, p. 130 (já citado); e USDA NRCS Iowa & ISU, Crimson Clover Cover Crop Fact Sheet for Iowa (CROP 3272), 2025 (já citado)",
+      "url": "https://www.sare.org/wp-content/uploads/Managing-Cover-Crops-Profitably.pdf",
+      "trecho": "In Hardiness Zone 8—the warmer half of the Southeast—crimson clover will overwinter dependably with only infrequent winterkill. | NRCS/ISU: Cold temperature tolerance: 10° F [vazio justificado: no POWER, só 1 de 19 anos abaixo de -12,2 °C em Watkinsville-GA]"
     }
   ],
   "regua": {
@@ -557,6 +580,12 @@
       "antes": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. Fora da Geórgia, como no Meio-Oeste, ele pode morrer no inverno e estes números não valem.",
       "depois": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. No Alabama e no Tennessee a época de semear e de matar é outra; no Meio-Oeste e em lugares mais frios ele pode morrer no inverno, e estes números não valem.",
       "motivo": "Revisão 'eua-nass-janelas 15_11_26', B-01: o texto antigo dava a entender que o trevo não serve fora da Geórgia, mas o Alabama e o Tennessee têm arranjos calculados (regua.arranjos); o que muda lá é a época de semear e de matar."
+    },
+    {
+      "coluna": "tmin_critica_c/fase_sensivel_frio/fase_frio_inicio_frac/fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): tolera o frio da Geórgia (SARE: 'will overwinter dependably'; tolerância de 10 °F do NRCS/ISU, atingida em 1 de 19 anos em Watkinsville no POWER). Origem vazio_nao_se_aplica."
     }
   ],
   "pendencias": [
@@ -571,7 +600,8 @@
     "Janela de manejo: o SARE Southeast (cap. 5) recomendaria, pelo que se viu só no resultado de busca (página não abriu), dessecar as coberturas de inverno 2 a 4 semanas antes da cultura de verão, e o SARE MCCP diz para esperar 2 a 3 semanas depois de matar o trevo; a linha usa 10-14 dias (NRCS). Com 2-4 semanas o manejo iria de ~22/fev a ~20/abr. Resolveria: guia de milho da UGA com o intervalo da dessecação do trevo antes do milho.",
     "Sistema: o SARE MCCP avisa que a semeadura cedo do milho e a colheita tardia do algodão 'limit a traditional winter-annual role for crimson clover' e que ele funciona melhor antes do sorgo. A linha mantém o trevo antes do milho (sistema da UGA C1077 e do SARE Southeast); o manejo cedo (8/mar) dá pouca massa.",
     "estados_validos: só GA. Alabama e Tennessee foram calculados (15/11) e ficaram em regua.arranjos.alabama (GD 800-2650, água 90-430 mm, ciclo 116-256 d, semeadura 25/ago-15/nov, manejo 11/mar-8/mai) e regua.arranjos.tennessee (GD 790-2430, água 160-515 mm, ciclo 172-273 d, semeadura 15/ago-1/out, manejo 22/mar-15/mai). Os graus-dia ficam perto da linha, mas janela, ciclo e água não. DECISÃO do coordenador: (a) manter os arranjos (o motor ainda não lê regua.arranjos, então AL e TN mostram 'sem dado para sua região' até isso entrar); ou (b) pôr AL em estados_validos com a janela da Geórgia: no norte e no centro do AL os números cabem quase todos na linha (norte GD 940-2287 e água 145-426 mm; centro 1060-2646 e 127-428 mm), e só a semeadura tardia do sul (até 15/nov) sai da faixa. Fraco: janelas só do SARE (Alabama Extension ANR-2845 e ANR-2139 não dão datas do trevo-encarnado por região), manejo pela regra do NRCS sobre a data do milho, coordenadas aproximadas das estações. Resolveria: guia de coberturas da Alabama Extension ou da UT Extension com datas de semeadura e dessecação antes do milho.",
-    "tmax_critica_c vazio: dessecado antes de completar o ciclo; o TMAX 28 °C do ECOCROP é limite de crescimento, não de dano (fica na evidência)."
+    "tmax_critica_c vazio: dessecado antes de completar o ciclo; o TMAX 28 °C do ECOCROP é limite de crescimento, não de dano (fica na evidência).",
+    "Dano por frio (15/11): colunas vazias porque a linha é só da Geórgia, onde o trevo-encarnado tolera o frio. Os arranjos regua.arranjos.alabama e .tennessee não têm colunas de frio: no Tennessee, mais frio, a mínima pode passar de 10 °F (-12,2 °C, NRCS/ISU) com frequência; se o motor passar a ler os arranjos, conferir lá com o POWER e, se passar de 30% dos anos, usar -12,2 °C com fase ciclo_todo."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

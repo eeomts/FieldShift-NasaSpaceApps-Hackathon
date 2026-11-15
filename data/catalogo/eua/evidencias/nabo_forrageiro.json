@@ -43,7 +43,11 @@
     "lacuna_informacao": "Ainda não há medição nos Estados Unidos de quanta água o nabo de cobertura usa nem da temperatura em que ele começa a crescer; usamos um cálculo com o clima da NASA e dados de uma planta parecida, a canola. A data em que o frio mata o nabo também é aproximada.",
     "risco_revisao_local": "Só funciona semeado de começo de agosto a meados de setembro, depois de trigo ou silagem, ou a lanço na lavoura em pé. Depois do milho ou da soja colhidos em outubro rende quase nada. Sozinho deixa pouca palha contra a erosão. Confirme a data e a mistura com a extensão.",
     "fontes": "USDA NRCS Iowa & ISU Extension, Radish Cover Crop Fact Sheet for Iowa (CROP 3203), maio 2025 (janela de semeadura do MCCC, tolerância ao frio 15 °F, C/N 19-20:1, massa 1.200-3.000 lb/acre, pastejo, resíduo pouco duradouro)|USDA NRCS Booneville PMC, Plant Guide Oilseed radish (Raphanus sativus), 2012 (raiz pivotante a seis pés; morre abaixo de 20 °F; pelo menos 60 dias de crescimento antes da morte pelo frio)|Weil, White & Lawley, Forage Radish: New Multi-Purpose Cover Crop for the Mid-Atlantic, Univ. of Maryland Fact Sheet 824 (dossel fechado em 3-4 semanas; tolera geada até 25 °F; raiz a seis pés; resíduo some até março)|Cavadini & Kladivko, Can Radish Cover Crops be Used to Manage Soil Phosphorus?, Purdue AY-359-W, maio 2025 (Lafayette-IN: semeado na última semana de agosto, 2.260 lb/acre de parte aérea em novembro, morto pelo inverno)|USDA NRCS Plant Materials Program, Evaluation of Cool Season Cover Crops in the North Central Region, 2020 (12 cultivares de nabo daikon/forrageiro morreram no inverno em KS, MI e MO)|Univ. of Wisconsin Extension, Cover crop options for planting after winter wheat (palhada do nabo solteiro insuficiente contra erosão)|MCCC, Indiana Cover Crop Recipe: Post Wheat, Going to Soybean or Corn: Use Oats and Radish Mix, 2022 (semeadura em agosto; morte pelo inverno)|SARE LNC13-352, ISU (amostragem de outono na 2ª semana de novembro em Iowa)|Lenz, Cox-O'Neill, Hales & Drewnoski, Crop Forage Turfgrass Manage., 2019 (PB e IVOMD da parte aérea do nabo; enxofre; lido no resumo)|Nebraska Beef Cattle Report 2018 (folhas de nabo e nabiça de novembro a janeiro, Clay Center-NE; resumo)|Fietz, Silva, Comunello & Souza, Water requirement of oilseed radish, CIGR/CONBEA 2008, Embrapa Agropecuária Oeste (Kc medido em lisímetro: 0,91 no vegetativo)|FAO-56 Tab. 12 (grupo a. Small Vegetables Kc ini 0,7; Radish Kc mid 0,90), Tab. 11 (fases do rabanete) e Tab. 22 (Radishes 0,3-0,5 m, rabanete de horta)|FAO-56 cap. 6 (Kc end alto em cultura colhida verde; convenção para cobertura que morre verde)|Dalmago et al., Pesq. agropec. bras. 48(6), 2013 (Tb 5 °C da canola) (PROXY: canola, Brassica napus, para temp_base_c)|FAO ECOCROP Raphanus sativus var. oleiferus (cópia OpenCLIM/ecocrop: TOPMN 12, TOPMX 25; TMAX 30 só registro, tmax_critica_c vazio porque o nabo de outono não floresce)|Thorup-Kristensen, Plant and Soil 288:233-248, 2006 (raiz do fodder radish a ~2,0 m; conferência)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/nabo_forrageiro_gd.json (graus-dia sem teto, Tb 5, da semeadura à morte pelo frio, NASA POWER 2001-2020)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/nabo_forrageiro_etc.json (Kc FAO-56 do rabanete × ET0 do NASA POWER, 2001-2020)|Drewnoski, MacDonald, Ulmer & Cox, Value of Oats and Brassicas for Fall Forage, UNL CropWatch, 01/12/2016 (PB das folhas de brássicas)|University of Illinois Extension, Quick Guide to Cover Crops for Forage, 2019, e Frillman, Winter-kill cover crops, 2023 (nabo semeado no fim do verão e morto no inverno em Illinois)|UNL CropWatch 2016 (misturas de aveia e brássicas depois do trigo e da silagem)",
-    "confianca_parametros": "baixa"
+    "confianca_parametros": "baixa",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "origem": {
     "temp_base_c": {
@@ -93,6 +97,14 @@
     "tmax_critica_c": {
       "tipo": "vazio_nao_se_aplica",
       "nota": "Vazio: nesta linha o nabo é semeado em agosto-setembro e morre no inverno em roseta, sem florescer (NRCS Plant Guide; NRCS PMC 2020). O tmax_critica_c só vale numa fase sensível que a cultura atravessa no sistema (evidencias/README, regra 11); o TMAX 30 do ECOCROP é limite de crescimento, não de dano, e fica só como registro na evidência (no Brasil entra porque lá o nabo é manejado no florescimento). Não é coluna do filtro de confiança."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: tipo_manejo = morte_pelo_frio. O fim do ciclo desta linha é a morte do nabo pelo frio do inverno (NRCS 2012: 'at least 60 days of plant growth before winterkill'), então o frio é o manejo, não um dano antes dele (evidencias/README, 'Dano por frio'). As tolerâncias publicadas (25 °F UMD, 20 °F NRCS, 15 °F NRCS/ISU) servem só para a data da morte (manejo_inicio/fim). Não é coluna do filtro de confiança."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: o frio é o manejo desta linha, não há fase sensível antes dele (ver tmin_critica_c)."
     }
   },
   "reuso_brasil": [
@@ -379,6 +391,17 @@
       "fonte": "Frillman, N., Harness the power of nature with winter-kill cover crops, University of Illinois Extension (blog de horticultura), 04/08/2023 (só apoio: texto voltado a hortas)",
       "url": "https://extension.illinois.edu/blogs/flowers-fruits-and-frass/2023-08-04-harness-power-nature-winter-kill-cover-crops",
       "trecho": "Oilseed radish grows vigorously in fall, and releases nutrients back to the soil, when it dies in winter. [...] To maximize the benefits of winter-kill cover crops, establish in late August or early September."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "USDA NRCS Booneville Plant Materials Center, Plant Guide: Oilseed radish (Raphanus sativus), 2012 (já citado)",
+      "url": "https://plants.usda.gov/DocumentLibrary/plantguide/pdf/pg_rasa2.pdf",
+      "trecho": "Plants cannot survive freezing temperatures of 20⁰F or below (Sundermeier, 2008). [...] Planting times should allow at least 60 days of plant growth before winterkill (Sundermeier, 2008). [vazio justificado: tipo_manejo = morte_pelo_frio]"
     }
   ],
   "regua": {
@@ -520,6 +543,12 @@
       "antes": "",
       "depois": "Só funciona semeado de começo de agosto a meados de setembro, depois de trigo ou silagem, ou a lanço na lavoura em pé. Depois do milho ou da soja colhidos em outubro rende quase nada. Sozinho deixa pouca palha contra a erosão. Confirme a data e a mistura com a extensão.",
       "motivo": "Revisão dos lotes 1 e 2 (15/11), M-11: texto para o produtor (confiança baixa)"
+    },
+    {
+      "coluna": "tmin_critica_c/fase_sensivel_frio/fase_frio_inicio_frac/fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): tipo_manejo = morte_pelo_frio: a morte pelo frio é o fim do ciclo, não dano antes do manejo (README, 'Dano por frio'). Origem vazio_nao_se_aplica."
     }
   ],
   "pendencias": [
@@ -535,7 +564,8 @@
     "DECISÃO do usuário (15/11): manter só a linha de semeadura em agosto e setembro, sem variante. Pela regra 12 do motor, o nabo não aparece depois do milho ou da soja colhidos em outubro.",
     "tmax_critica_c vazio (revisão de 15/11, M-04): o nabo de outono morre no inverno em roseta, sem florescer. O TMAX 30 do ECOCROP fica só como registro (no Brasil vale porque o manejo é no florescimento).",
     "Janela (manejo_inicio 11-14, manejo_fim 12-05): convenção com fonte, as mesmas datas do ciclo. A tolerância publicada ao frio varia (25, 20 e 15 °F). Resolveria: série da data da primeira noite abaixo de ~20 °F (-7 °C) por local, ou um ensaio de Iowa com a data da morte.",
-    "estados_validos = IA|IL|IN|NE: IL e NE só com fonte da janela e da morte pelo inverno (University of Illinois Extension 2019 e 2023, este um texto para hortas; Lenz et al. 2019; UNL 2016), sem cálculo de graus-dia e água nesses estados (o cálculo usou locais de Iowa e Lafayette-IN). KS, MI e MO têm só a morte pelo inverno (NRCS PMC 2020, semeadura de 12 a 22/set), sem janela lida: ficaram de fora."
+    "estados_validos = IA|IL|IN|NE: IL e NE só com fonte da janela e da morte pelo inverno (University of Illinois Extension 2019 e 2023, este um texto para hortas; Lenz et al. 2019; UNL 2016), sem cálculo de graus-dia e água nesses estados (o cálculo usou locais de Iowa e Lafayette-IN). KS, MI e MO têm só a morte pelo inverno (NRCS PMC 2020, semeadura de 12 a 22/set), sem janela lida: ficaram de fora.",
+    "Dano por frio (15/11): colunas vazias porque o fim do ciclo é a morte pelo frio (tipo_manejo = morte_pelo_frio). O motor não deve testar frio nesta linha; a data da morte segue nas colunas de manejo."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

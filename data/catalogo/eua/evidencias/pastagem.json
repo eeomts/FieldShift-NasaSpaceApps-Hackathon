@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "",
     "calendario_usda": "",
-    "fontes": "Lacefield, Henning & Phillips, Univ. of Kentucky AGR-59, Tall Fescue, rev. 2003 (endófito em mais de 85% dos pastos do Kentucky; qualidade por estação; época de semeadura; produção de 2-4 t curtas/acre; raiz profunda)|USDA NRCS, Plant Guide Tall Fescue, Lolium arundinaceum (LOAR10), National Plant Data Center, 2001/2006 (cresce com o solo a 40 °F; adaptação; ~75% dos estandes dos EUA com endófito; raiz relativamente profunda)|Ball, Lacefield & Hoveland, The Wonder Grass - The Story of Tall Fescue in the United States, Oregon Tall Fescue Commission, 2019 (30-40 milhões de acres; 'Fescue Belt'; Epichloë coenophiala; festucose)|Flournoy, Baldwin, Stewart, Philley, Reddy, McCurdy (Mississippi State) & Kreuser (UNL), Determining Base Temperature for Warm- and Cool-Season Turfgrasses, resumo/pôster 2016-15-565 (Tb 4,25 °C da festuca Falcon V em câmara)|FAO ECOCROP, Festuca arundinacea, código 6102 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop) (temperatura ótima 15-22 °C, mínima 5 °C)|PROXY: FAO-56 Tab.12, Grazing Pasture - Rotated Grazing (Kc 0,40/0,85-1,05/0,85; categoria genérica de pastagem) e nota 15 (gramíneas de clima frio incluem a festuca); Tab.11 nota 4 (estação do pasto de gramínea); Tab.22 Grazing Pasture 0,5-1,5 m (raiz, limite superior)|UC ANR Center for Landscape & Urban Horticulture, ET: Evapotranspiration and Plant Water Use (ETo = uso de água da festuca alta bem irrigada, a planta de referência)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/pastagem_etc.json (água ANUAL sem déficit, Kc x ET0 do NASA POWER, Columbia-MO e Lexington-KY, 2001-2020)|Mississippi State Univ. Extension, Tall Fescue (Festuca arundinacea) (PB 12-15%, digestibilidade da MS 69-74%, tolerância à seca; conferência)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Other Hay (por que não há código da festuca)|Sedivec, Meehan et al., NDSU R1061, Determining Grazing Readiness for Native and Tame Pastures, rev. 2023 (base 32 °F para gramíneas de clima frio; alternativa de Tb nas pendências)|Smith, Lacefield, Burris, Ditsch, Coleman, Lehmkuhler & Henning, Univ. of Kentucky ID-143, Rotational Grazing, rev. 2011 (Tab. 6: festuca, entrada 4-8 pol., saída 2-3 pol., 15-30 dias de descanso; manejo, fora das colunas)|Bailey, E. (MU Extension), The value of grazing management with current commodity prices, Progressive Cattle, 9/mai/2022 (descanso da festuca por estação; coluna de revista, manejo fora das colunas)|PERENE FORRAGEIRA (padrão da pastagem do Brasil e da alfafa dos EUA): ciclo e graus-dia não se aplicam; água e Kc ANUAIS",
+    "fontes": "Lacefield, Henning & Phillips, Univ. of Kentucky AGR-59, Tall Fescue, rev. 2003 (endófito em mais de 85% dos pastos do Kentucky; qualidade por estação; época de semeadura; produção de 2-4 t curtas/acre; raiz profunda)|USDA NRCS, Plant Guide Tall Fescue, Lolium arundinaceum (LOAR10), National Plant Data Center, 2001/2006 (cresce com o solo a 40 °F; adaptação; ~75% dos estandes dos EUA com endófito; raiz relativamente profunda)|Ball, Lacefield & Hoveland, The Wonder Grass - The Story of Tall Fescue in the United States, Oregon Tall Fescue Commission, 2019 (30-40 milhões de acres; 'Fescue Belt'; Epichloë coenophiala; festucose)|Flournoy, Baldwin, Stewart, Philley, Reddy, McCurdy (Mississippi State) & Kreuser (UNL), Determining Base Temperature for Warm- and Cool-Season Turfgrasses, resumo/pôster 2016-15-565 (Tb 4,25 °C da festuca Falcon V em câmara)|FAO ECOCROP, Festuca arundinacea, código 6102 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop) (temperatura ótima 15-22 °C, mínima 5 °C)|PROXY: FAO-56 Tab.12, Grazing Pasture - Rotated Grazing (Kc 0,40/0,85-1,05/0,85; categoria genérica de pastagem) e nota 15 (gramíneas de clima frio incluem a festuca); Tab.11 nota 4 (estação do pasto de gramínea); Tab.22 Grazing Pasture 0,5-1,5 m (raiz, limite superior)|UC ANR Center for Landscape & Urban Horticulture, ET: Evapotranspiration and Plant Water Use (ETo = uso de água da festuca alta bem irrigada, a planta de referência)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/pastagem_etc.json (água ANUAL sem déficit, Kc x ET0 do NASA POWER, Columbia-MO e Lexington-KY, 2001-2020)|Mississippi State Univ. Extension, Tall Fescue (Festuca arundinacea) (PB 12-15%, digestibilidade da MS 69-74%, tolerância à seca; conferência)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Other Hay (por que não há código da festuca)|Sedivec, Meehan et al., NDSU R1061, Determining Grazing Readiness for Native and Tame Pastures, rev. 2023 (base 32 °F para gramíneas de clima frio; alternativa de Tb nas pendências)|Smith, Lacefield, Burris, Ditsch, Coleman, Lehmkuhler & Henning, Univ. of Kentucky ID-143, Rotational Grazing, rev. 2011 (Tab. 6: festuca, entrada 4-8 pol., saída 2-3 pol., 15-30 dias de descanso; manejo, fora das colunas)|Bailey, E. (MU Extension), The value of grazing management with current commodity prices, Progressive Cattle, 9/mai/2022 (descanso da festuca por estação; coluna de revista, manejo fora das colunas)|PERENE FORRAGEIRA (padrão da pastagem do Brasil e da alfafa dos EUA): ciclo e graus-dia não se aplicam; água e Kc ANUAIS|Baxter (UGA-Tifton), Are my winter forages going to be okay?, UGA Forage Extension Team, 21/01/2026 (festuca: cera na folha reduz o dano do frio; açúcar sobe depois da geada; dano por frio)|Interrante, Stein, Trammell, Webb & Butler, Tall fescue germplasm response to freezing temperatures, Agric. Environ. Lett. 5, 2020 (LT50 de -5,5 a -6,0 °C em câmara; só o resumo; dano por frio, não usado como limiar)",
     "confianca_parametros": "baixa",
     "semeadura_inicio": "08-15",
     "semeadura_fim": "10-15",
@@ -43,7 +43,11 @@
     "condicao_semeadura": "",
     "estados_validos": "KY|MO|TN|VA|WV|IL|IN|OH|AR|NC",
     "lacuna_informacao": "Não achamos medição de quanta água a festuca usa por ano no Missouri ou no Kentucky; calculamos com o clima local e um coeficiente geral de pastagem. Também não sabemos quanta palha fica quando o pasto é dessecado para plantar lavoura.",
-    "risco_revisao_local": "Muitos pastos antigos de festuca (Kentucky 31) têm um fungo que intoxica o gado, sobretudo no calor: menos ganho de peso e menos leite. Confirme com a extensão se a sua variedade é sem fungo ou de fungo amigável e como manejar o pastejo no verão."
+    "risco_revisao_local": "Muitos pastos antigos de festuca (Kentucky 31) têm um fungo que intoxica o gado, sobretudo no calor: menos ganho de peso e menos leite. Confirme com a extensão se a sua variedade é sem fungo ou de fungo amigável e como manejar o pastejo no verão.",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "origem": {
     "temp_base_c": {
@@ -89,6 +93,10 @@
     "profundidade_raiz_m": {
       "tipo": "proxy",
       "nota": "FAO-56 Tab. 22, Grazing Pasture 0,5-1,5 m; limite superior (sequeiro). Categoria genérica: proxy. O UK AGR-59 e o NRCS só dizem que a festuca tem raiz profunda ('deep-rooted'; 'comparatively deep-rooted'), sem número."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: na festuca alta estabelecida do Fescue Belt a geada só queima folha, e a planta continua crescendo e sendo pastejada no inverno. UGA (Baxter, 2026): a camada de cera 'lessens the damage caused by colder temperatures and forage quality remains high' e, depois de uma geada, o açúcar sobe, o que a torna 'ideal for stockpiling and winter grazing use'; UK AGR-59: cresce em temperatura mais baixa que outras gramíneas, mantém a cor verde e é diferida até novembro ou dezembro; NRCS: cresce com o solo a 40 °F. O único limiar de morte achado é de câmara de congelamento (Interrante et al. 2020: LT50 de -5,5 a -6,0 °C em plântulas e plantas perfilhadas, lido só no resumo): é a temperatura do ar da câmara sobre plantas em vaso, não a mínima do abrigo a 2 m de um pasto no campo, onde a coroa fica protegida pelo solo; não há relação publicada para converter. A morte de inverno (winterkill) existe, mas a UGA diz que depende da temperatura do ar e do solo, da topografia, da idade e do estádio da planta, sem número no abrigo. Com sensivel_geada = false e a coluna vazia, o motor não aplica teste de frio (regra 17). Fase e frações vazias."
     }
   },
   "reuso_brasil": [
@@ -322,6 +330,23 @@
       "fonte": "Bailey, E. (Assistant Professor and State Beef Nutritionist, University of Missouri Extension), The value of grazing management with current commodity prices, Progressive Cattle, 9 de maio de 2022 (coluna de revista, não revisada)",
       "url": "https://agproud.com/articles/55237-the-value-of-grazing-management-with-current-commodity-prices",
       "trecho": "For tall fescue, the recovery period needed in the spring is much less than during the fall. [...] I generally shoot for a minimum of three weeks recovery in the spring and double that during summer and fall."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "Baxter, L. (UGA-Tifton, especialista estadual em forragem), Are my winter forages going to be okay?, UGA Forage Extension Team (post de S. Tanner), 21/01/2026",
+      "url": "https://site.extension.uga.edu/forageteam/?p=721",
+      "trecho": "Many cool season forages can handle subfreezing temps for short periods and the degree of damage depends on air temperature, soil temperature, topography, winter precipitation, stand health, stand age, and stage of growth. [...] Tall fescue is unique because it has waxy layer which lessens the damage caused by colder temperatures and forage quality remains high in comparison to other species. [...] after experiencing a freeze, sugar content increases. This makes tall fescue ideal for stockpiling and winter grazing use."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Interrante, S.M., Stein, J.D., Trammell, M.A., Webb, S.L. & Butler, T.J., Tall fescue germplasm response to freezing temperatures, Agricultural & Environmental Letters 5, 2020, doi:10.1002/ael2.20017 (lido só o resumo, via Crossref)",
+      "url": "https://doi.org/10.1002/ael2.20017",
+      "trecho": "evaluate survival and freeze-tolerance thresholds of 'Flecha' summer-dormant (SD) and 'Texoma Max QII' summer-active (SA) tall fescue at seedling (1-2 leaves) and tillered (5-6 leaves) growth stages using controlled environment freezing chambers. [...] Predicted lethal temperature at which 50% mortality occurs (LT50) was -5.7 and -5.5 °C for SA and SD seedlings, respectively, and -6.0 and -5.7 °C for SA and SD tillered plants, respectively."
     }
   ],
   "regua": {
@@ -408,6 +433,18 @@
       "antes": "",
       "depois": "descanso, altura de entrada e de saída do pastejo rotacionado",
       "motivo": "Revisão do lote 3, M-07: referência de manejo fora das colunas (UK ID-143 Tab. 6, UK AGR-59, coluna de E. Bailey da MU Extension); soma térmica por corte sem fonte."
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado em origem.tmin_critica_c)",
+      "motivo": "REVISÃO 15/11 (dano por frio): Festuca alta: a geada só queima folha; a festuca segue verde e é pastejada no inverno (UGA 2026; UK AGR-59). O LT50 de câmara (Interrante et al. 2020) é ar da câmara sobre plantas em vaso, sem relação com o abrigo. Vazio, vazio_nao_se_aplica."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista anterior)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "REVISÃO 15/11 (dano por frio): entraram Baxter (UGA-Tifton); Interrante."
     }
   ],
   "pendencias": [
@@ -423,7 +460,8 @@
     "regua: digestibilidade 69,7% = média das três estações da Tab. 3 do AGR-59 ('Digestible Dry Matter', método e n não informados; tratada como estimada); a Mississippi State dá 69-74%. A mesma publicação cita IVDMD de 58,1% (primavera) e 56,2% (outono) para Kentucky 31 sem endófito (dados de Iowa, 1988): com esse número a classe cairia para 'medio'. A PB de 19,7% é de folhas verdes (Tab. 3); a planta inteira em pasto fica em 12-15% (Mississippi State). Resolveria: NASEM 2016/2021 (tabela de alimentos, festuca fresca) ou Dairy One por estação.",
     "codigo_nass vazio: o NASS não estima pasto por espécie. A festuca enfardada cai em 'Other Hay' (HAY, (EXCL ALFALFA) no QuickStats), que mistura todas as gramíneas e misturas (trevo-timothy, bermuda, campo nativo, cereais); não serve para a festuca. calendario_usda vazio: o relatório de 2010 só tem datas de colheita de 'Other Hay' (Kentucky 15/mai-10/out; Missouri 17/mai-5/ago), não do pasto.",
     "Janela de semeadura (08-15 a 10-15) é a da implantação do pasto (AGR-59, 'Primary seeding date'); há uma janela secundária de 1/fev a 15/abr. Não é cobertura: tipo_manejo e condicao_semeadura ficam vazios. Não incluí 'cobertura' em tipos para o motor não sugerir a festuca entre duas safras de grão.",
-    "MANEJO (referência, fora das colunas; o motor não usa). Pastejo rotacionado da festuca no Kentucky (UK ID-143, Rotational Grazing, rev. 2011, Tab. 6, guia tirado do Forage Pocket Guide de Ball, Lacefield & Hoveland 1999): entrar com o gado quando o pasto tiver 4 a 8 polegadas (10-20 cm), tirar com 2 a 3 polegadas (5-8 cm) e dar 15 a 30 dias de descanso; a Tab. 5 diz que o descanso vai de 10 dias ou menos nas gramíneas em crescimento rápido a 30 dias ou mais no crescimento lento. O UK AGR-59 pede manter 3 a 4 polegadas (8-10 cm) na primavera e no verão. Por estação (Missouri): Eric Bailey, especialista de bovinos de corte da MU Extension, coluna na revista Progressive Cattle (9/mai/2022, não é publicação revisada), mira no mínimo três semanas de descanso na primavera e o dobro (cerca de seis semanas) no verão e no outono. Soma térmica (graus-dia) por corte ou por pastejo da festuca: sem fonte. Resolveria: Missouri Grazing Manual (MU M157) ou o guia de pastejo de leite da MU (M181), que deram 403."
+    "MANEJO (referência, fora das colunas; o motor não usa). Pastejo rotacionado da festuca no Kentucky (UK ID-143, Rotational Grazing, rev. 2011, Tab. 6, guia tirado do Forage Pocket Guide de Ball, Lacefield & Hoveland 1999): entrar com o gado quando o pasto tiver 4 a 8 polegadas (10-20 cm), tirar com 2 a 3 polegadas (5-8 cm) e dar 15 a 30 dias de descanso; a Tab. 5 diz que o descanso vai de 10 dias ou menos nas gramíneas em crescimento rápido a 30 dias ou mais no crescimento lento. O UK AGR-59 pede manter 3 a 4 polegadas (8-10 cm) na primavera e no verão. Por estação (Missouri): Eric Bailey, especialista de bovinos de corte da MU Extension, coluna na revista Progressive Cattle (9/mai/2022, não é publicação revisada), mira no mínimo três semanas de descanso na primavera e o dobro (cerca de seis semanas) no verão e no outono. Soma térmica (graus-dia) por corte ou por pastejo da festuca: sem fonte. Resolveria: Missouri Grazing Manual (MU M157) ou o guia de pastejo de leite da MU (M181), que deram 403.",
+    "DANO POR FRIO (revisão 15/11): tmin_critica_c, fase_sensivel_frio e frações VAZIAS. Na festuca estabelecida a geada só queima folha e não tira produção (UGA 2026: cera na folha, qualidade mantida, açúcar sobe depois da geada, ideal para diferimento e pastejo de inverno; UK AGR-59: diferida até nov/dez). sensivel_geada = false CONFERE com as fontes; não há contradição. Morte de inverno da planta existe, mas sem limiar no abrigo: o LT50 de -5,5 a -6,0 °C de Interrante et al. 2020 é de câmara de congelamento (ar da câmara, plantas em vaso; lido só o resumo, sem saber se houve aclimatação) e não serve como mínima do ar a 2 m de um pasto no Missouri ou no Kentucky. A UGA aponta a planta jovem como a mais sensível ('More advanced growth stages will be less susceptible to winter kill compared to tender young growth'): é o ano de implantação, que a linha perene não separa. Resolveria: ensaio de campo de sobrevivência de inverno da festuca com a mínima do abrigo (ex.: ensaios de cultivares da UK, série PR de relatórios de forragem, se registrarem perda de estande por frio)."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

@@ -33,8 +33,12 @@
     "nome_zarc": "",
     "codigo_nass": "HAY, ALFALFA",
     "calendario_usda": "Alfalfa Hay",
-    "fontes": "Irmak, Hay, Anderson, Kranz & Yonts, UNL Extension NebGuide G1778, Irrigation Management and Crop Characteristics of Alfalfa, out. 2007 (uso sazonal de água 30-38 in no Nebraska; green-up no início/meados de abril; raízes de 8-12 pés; intervalo de 30-40 dias entre cortes, só referência de manejo)|Beckman & Volesky, UNL CropWatch, Pasture and Forage Minute: First Alfalfa Cutting, 04/05/2026 (primeiro corte com 750 GDD do green-up; referência de manejo)|Gruss, Iowa State Univ. ICM Blog, When Should I Take My Final Alfalfa Cutting?, 10/09/2025 (GDD da alfafa com Tb 41 °F, sem teto; geada que mata a parte aérea a 24 °F)|Beckman, UNL CropWatch, Pasture and Forage Minute: Winterizing Alfalfa, 25/10/2021 (GDD base 41 °F no Nebraska)|UC IPM, Alfalfa harvest phenology model, citando Sharratt, Sheaffer & Baker 1989, Field Crops Res. 21:95-102 (graus-dia até 1/10 de flor; artigo original não lido; referência de manejo)|REFERÊNCIA DE MANEJO (não entra nas colunas): scripts/gd_nasa_power.py, cenários eua/cenarios/alfafa_gd.json (graus-dia do green-up ao primeiro corte e entre cortes, Mead e North Platte-NE, 2001-2020)|FAO-56 Tab.11 (estação da alfafa, da última à primeira geada de -4 °C), Tab.12 (Kc, Alfalfa Hay - averaged cutting effects 0,40/0,95/0,90) e texto 'Kc curves for forage crops'|FAO-56 Tab.22 (raiz, Alfalfa for hay 1,0-2,0 m; limite superior)|CONFERÊNCIA: scripts/etc_nasa_power.py, cenários eua/cenarios/alfafa_etc.json (ETc anual com Kc médio de cortes, Mead e North Platte-NE, 2001-2020)|FAO ECOCROP, Medicago sativa, código 1428 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop) (temperatura ótima 21-27 °C, mínima 5 °C)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Alfalfa Hay (colheita no Nebraska 19/mai-15/out)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024), Alfalfa and Alfalfa Mixtures for Hay (produtividade NE e CA 2021-2025)|Hanson, Bali & Sanden, UC ANR Pub. 8293, Irrigating Alfalfa in Arid Regions, 2008 (ET sazonal na Califórnia; cortes a cada 28-30 dias)|Putnam, UC ANR Pub. 8287, Alfalfa Production Systems in California, 2008 (fixação de N2; cortes a cada 26-28 dias)|Hanson, Orloff, Bali, Sanden & Putnam, UC, Coping with low water years (ET medida da alfafa irrigada sem déficit, 31,9-65,2 in)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Alfalfa hay, node 11743 (PB 18,2% MS, n=1358; digestibilidade da MO 61,8%, n=80, média por equação)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N do feno de alfafa maduro 25:1; referência, não usada na régua)|PERENE FORRAGEIRA (padrão da pastagem, decisão do usuário 15/11): ciclo e graus-dia não se aplicam; água e Kc ANUAIS (estação de crescimento)",
-    "confianca_parametros": "alta"
+    "fontes": "Irmak, Hay, Anderson, Kranz & Yonts, UNL Extension NebGuide G1778, Irrigation Management and Crop Characteristics of Alfalfa, out. 2007 (uso sazonal de água 30-38 in no Nebraska; green-up no início/meados de abril; raízes de 8-12 pés; intervalo de 30-40 dias entre cortes, só referência de manejo)|Beckman & Volesky, UNL CropWatch, Pasture and Forage Minute: First Alfalfa Cutting, 04/05/2026 (primeiro corte com 750 GDD do green-up; referência de manejo)|Gruss, Iowa State Univ. ICM Blog, When Should I Take My Final Alfalfa Cutting?, 10/09/2025 (GDD da alfafa com Tb 41 °F, sem teto; geada que mata a parte aérea a 24 °F)|Beckman, UNL CropWatch, Pasture and Forage Minute: Winterizing Alfalfa, 25/10/2021 (GDD base 41 °F no Nebraska)|UC IPM, Alfalfa harvest phenology model, citando Sharratt, Sheaffer & Baker 1989, Field Crops Res. 21:95-102 (graus-dia até 1/10 de flor; artigo original não lido; referência de manejo)|REFERÊNCIA DE MANEJO (não entra nas colunas): scripts/gd_nasa_power.py, cenários eua/cenarios/alfafa_gd.json (graus-dia do green-up ao primeiro corte e entre cortes, Mead e North Platte-NE, 2001-2020)|FAO-56 Tab.11 (estação da alfafa, da última à primeira geada de -4 °C), Tab.12 (Kc, Alfalfa Hay - averaged cutting effects 0,40/0,95/0,90) e texto 'Kc curves for forage crops'|FAO-56 Tab.22 (raiz, Alfalfa for hay 1,0-2,0 m; limite superior)|CONFERÊNCIA: scripts/etc_nasa_power.py, cenários eua/cenarios/alfafa_etc.json (ETc anual com Kc médio de cortes, Mead e North Platte-NE, 2001-2020)|FAO ECOCROP, Medicago sativa, código 1428 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop) (temperatura ótima 21-27 °C, mínima 5 °C)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Alfalfa Hay (colheita no Nebraska 19/mai-15/out)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024), Alfalfa and Alfalfa Mixtures for Hay (produtividade NE e CA 2021-2025)|Hanson, Bali & Sanden, UC ANR Pub. 8293, Irrigating Alfalfa in Arid Regions, 2008 (ET sazonal na Califórnia; cortes a cada 28-30 dias)|Putnam, UC ANR Pub. 8287, Alfalfa Production Systems in California, 2008 (fixação de N2; cortes a cada 26-28 dias)|Hanson, Orloff, Bali, Sanden & Putnam, UC, Coping with low water years (ET medida da alfafa irrigada sem déficit, 31,9-65,2 in)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Alfalfa hay, node 11743 (PB 18,2% MS, n=1358; digestibilidade da MO 61,8%, n=80, média por equação)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N do feno de alfafa maduro 25:1; referência, não usada na régua)|PERENE FORRAGEIRA (padrão da pastagem, decisão do usuário 15/11): ciclo e graus-dia não se aplicam; água e Kc ANUAIS (estação de crescimento)|Teutsch, Henning, Smith, Keene & Dixon, Univ. of Kentucky AGR-236, Managing Frost Damaged Alfalfa Stands, 2018 (geada leve, moderada e severa; rebrota da coroa; plântula morta com 4 h a 26 °F; sensor do ar a 4-6 pés; dano por frio)|Undersander, UW-Madison Extension, Frosted Alfalfa, 2016 (meristema congela com 24 °F por 4 h ou mais; rebrota da coroa; dano por frio)|Cosgrove & Undersander, UW Extension, Focus on Forage 5(8), Evaluating and Managing Alfalfa Stands for Winter Injury (tolera 5-15 °F; neve isola o solo; dano por frio)|Ohio State Univ. Extension, C.O.R.N. Newsletter 2014-08, Evaluate Alfalfa Stands For Winter Injury (5-15 °F medidos na coroa = solo a 2 pol.; dano por frio)",
+    "confianca_parametros": "alta",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "origem": {
     "temp_base_c": {
@@ -80,6 +84,10 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Alfalfa for hay 1,0-2,0 m; limite superior (solo sem impedimento). A UNL G1778 diz que as raízes ativas chegam a 8-12 pés (2,4-3,7 m), mas que a alfafa tira '75 to 90 percent of its moisture from the upper four feet of soil' (1,2 m)."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Vazio = não sei o limiar no abrigo. Duas coisas diferentes: (1) GEADA na alfafa estabelecida: queima folha ou mata a ponta e os caules, e a rebrota vem das gemas da coroa. UK AGR-236 (Teutsch et al. 2018): abaixo de 28 °F (-2,2 °C) só folhas, 'Alfalfa will normally outgrow this damage'; abaixo de 26 °F (-3,3 °C) os caules morrem e 'Regrowth will come from crown buds'; UW (Undersander 2016): o meristema só congela com 24 °F (-4,4 °C) ou menos por 4 h ou mais. A perda é do 1º corte (atraso e menos massa), não do estande, e depende do estádio: em Lexington-KY a geada de 2007 (22 °F nas estações, com 303 GDD50) matou a parte aérea até a coroa, e a de 2017 (16 °F, 156 GDD50), mais fria, não. A AGR-236 avisa que o sensor do ar fica a 4-6 pés e a alfafa a 6-12 polegadas: as temperaturas da planta não são as do abrigo. (2) MORTE DE INVERNO (perda do estande): existe e tem limiar, mas na COROA: 5 a 15 °F (-15 a -9,4 °C) medidos na coroa ou no solo a 2 polegadas (OSU 2014; UW Focus on Forage), e a neve muda a temperatura do solo em 10 °F com 4 polegadas (UW). A OSU registra ar perto ou abaixo de 0 °F (-17,8 °C) com o solo a 2 polegadas em 26 °F ou mais: não há relação publicada entre a mínima do ar e a da coroa. A coluna fica vazia e, com sensivel_geada = false, o motor não aplica teste de frio (regra 17). Fase e frações vazias."
     }
   },
   "reuso_brasil": [
@@ -341,6 +349,49 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"HAY, ALFALFA - ACRES HARVESTED\" (2023, NATIONAL): commodity_desc 'HAY', class_desc 'ALFALFA', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA HARVESTED', unit_desc 'ACRES'; registros SURVEY: STATE 6218, COUNTY 71641"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "Teutsch, C., Henning, J., Smith, R., Keene, T. & Dixon, M., Managing Frost Damaged Alfalfa Stands, University of Kentucky Cooperative Extension AGR-236, emitido em 3/2018",
+      "url": "https://publications.ca.uky.edu/sites/publications.ca.uky.edu/files/AGR236.pdf",
+      "trecho": "Sensors to measure air temperature are normally installed four to six feet above the soil surface and in a radiation shield. In contrast, the height of alfalfa exposed to spring frosts is likely to be 6 to 12 inches above the soil surface. [...] Light frost damage. Alfalfa leaves may be impacted when temperatures drop below 28°F. [...] Alfalfa will normally outgrow this damage [...] Severe frost damage. Stems that were growing at the time of the frost will not regrow. Regrowth will come from crown buds at the base of the plant."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "UK AGR-236 (2018), Predicting Sensitivity to Late Freezes, Tab. 1, e New Alfalfa Seedings",
+      "url": "https://publications.ca.uky.edu/sites/publications.ca.uky.edu/files/AGR236.pdf",
+      "trecho": "Stands of alfalfa were generally killed back to the crown in 2007 (Figure 1) but not in 2017 (Figure 3) even though the absolute temperatures experienced were lower in 2017. [...] Lexington, KY 8-April 303 22 16-March 156 16 [...] Four or more hours of exposure to 26°F can kill seedlings at this growth stage."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "Undersander, D. (University of Wisconsin-Madison Extension), Frosted Alfalfa, 2016",
+      "url": "https://fyi.extension.wisc.edu/forage/files/2017/01/Frosted-Alfalfa.pdf",
+      "trecho": "Night time temperatures must fall to 24oF or lower for four or more hours to freeze the alfalfa meristem at the top of the plant stem. [...] new growth will occur from developing crown buds. When entire tops are frosted significant yield loss will occur."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Cosgrove, D. (UW-River Falls) & Undersander, D. (UW-Madison), Evaluating and Managing Alfalfa Stands for Winter Injury, Focus on Forage vol. 5 n. 8, University of Wisconsin Extension",
+      "url": "https://fyi.extension.wisc.edu/forage/files/2014/01/StandEvaluationFOF.pdf",
+      "trecho": "The processes described above allow alfalfa to tolerate temperatures as low as 5 to15 oF, depending on variety and past management. [...] Snow is an excellent insulator. [...] As little as 4 inches of snow can result in a 10o F difference in soil temperatures."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Ohio State University Extension, Evaluate Alfalfa Stands For Winter Injury, C.O.R.N. Newsletter 2014-08 (sem autor na página)",
+      "url": "https://agcrops.osu.edu/newsletter/corn-newsletter/2014-08/evaluate-alfalfa-stands-winter-injury",
+      "trecho": "temperatures in the 5 to 15 degree F range as measured at the alfalfa crown can begin to damage the plant [...] Generally, the soil temperature at a 2 inch depth is associated with the temperature of the alfalfa crown. [...] For many areas of the state, however, soil temperatures at the 2-inch depth remained at or above 26F even through the coldest days this winter."
     }
   ],
   "regua": {
@@ -499,6 +550,18 @@
       "antes": "pendência: codigo_nass: 'HAY, ALFALFA' é o commodity HAY com a classe ALFALFA do QuickStats, na mesma forma 'COMMODITY, CLASSE' dos short_desc usados em data/scripts/baixa... | observacoes.codigos: NÃO conferido no QuickStats (15/11): forma inferida do padrão dos short_desc do script do time (data/scripts/baixar_nass...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'HAY, ALFALFA - ACRES HARVESTED', registros SURVEY: STATE 6218, COUNTY 71641; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado em origem.tmin_critica_c)",
+      "motivo": "REVISÃO 15/11 (dano por frio): Alfafa: a geada na planta estabelecida mata a parte aérea e a rebrota vem da coroa (UK AGR-236; UW 2016); a perda do estande no inverno tem limiar só na coroa/solo a 2 pol. (5-15 °F; OSU 2014, UW Focus on Forage), sem relação publicada com a mínima do ar. Vazio, vazio_nao_sei."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista anterior)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "REVISÃO 15/11 (dano por frio): entraram Teutsch; Undersander; Cosgrove & Undersander; Ohio State Univ. Extension."
     }
   ],
   "pendencias": [
@@ -515,7 +578,8 @@
     "regua: palhada, C/N e k sem dado (aporte_biomassa e cobertura_solo vazios). Resolveria: massa de restolho e de rebrota de outono no encerramento da alfafa antes do milho (ensaios da Univ. of Minnesota, Yost et al., ou da UW-Madison) e decomposição de coroas e raízes.",
     "regua: OMD 61,8% é média estimada por equação (Feedipedia) e mistura países. Resolveria: NASEM 2021 (tabela de alimentos), Dairy One (só IVTD) ou ensaios da UNL com DMD in vivo do feno de alfafa.",
     "calendario_usda: 'Alfalfa Hay' é o nome da seção no relatório de 2010; o relatório não dá datas de semeadura da alfafa ((NA)), só de colheita.",
-    "B-05 (RESOLVIDO 15/11): alfafa_etc.json e alfafa_gd.json refeitos com 2001-2020, a mesma base dos outros cenários; as séries 2001-2020 de Mead e North Platte foram baixadas pelos scripts do repositório para data/brutos/nasa_power/. Água (conferência): Mead mediana 832 mm (antes 841, 2005-2024), North Platte 955 mm (antes 953), contra 762-965 mm da UNL G1778; chuva mediana da estação 600 e 494 mm. Graus-dia (referência de manejo): primeiro corte 406 e 397 °C·dia em 44 e 48 dias (antes 405 e 397); ciclos de verão 504-571 °C·dia (antes 501-570). Nenhuma coluna da linha muda: a água vem da UNL G1778 (publicado) e o motor não usa graus-dia na alfafa."
+    "B-05 (RESOLVIDO 15/11): alfafa_etc.json e alfafa_gd.json refeitos com 2001-2020, a mesma base dos outros cenários; as séries 2001-2020 de Mead e North Platte foram baixadas pelos scripts do repositório para data/brutos/nasa_power/. Água (conferência): Mead mediana 832 mm (antes 841, 2005-2024), North Platte 955 mm (antes 953), contra 762-965 mm da UNL G1778; chuva mediana da estação 600 e 494 mm. Graus-dia (referência de manejo): primeiro corte 406 e 397 °C·dia em 44 e 48 dias (antes 405 e 397); ciclos de verão 504-571 °C·dia (antes 501-570). Nenhuma coluna da linha muda: a água vem da UNL G1778 (publicado) e o motor não usa graus-dia na alfafa.",
+    "DANO POR FRIO (revisão 15/11): tmin_critica_c, fase_sensivel_frio e frações VAZIAS (não sei o limiar no abrigo). (1) Morte de inverno (perda do estande) é o dano à produção que importa no Nebraska, mas o limiar publicado é na coroa ou no solo a 2 polegadas (5 a 15 °F = -15 a -9,4 °C; OSU 2014; Cosgrove & Undersander, UW), e a neve muda essa temperatura (4 pol. = 10 °F, UW). Sem relação publicada entre a mínima do ar a 2 m e a temperatura da coroa, não converti. Resolveria: série de solo a 5 cm do NASA POWER ou de uma rede de estações (ex.: Nebraska Mesonet) com um critério publicado de risco de morte de inverno; ou o índice de risco de winterkill da UW (GDD base 41 °F até a geada de 25 °F, citado em Beckman 2021), que é de manejo do último corte e não de limiar. (2) Geada de primavera: abaixo de 26 °F (-3,3 °C) na planta, com mais de ~300 GDD50 no Kentucky, os caules morrem e o 1º corte atrasa e perde massa ('When entire tops are frosted significant yield loss will occur', UW 2016), mas o estande rebrota da coroa; a temperatura é a da planta (6-12 pol.), e a AGR-236 mostra que a mesma mínima nas estações (16 °F em 2017 contra 22 °F em 2007) deu danos opostos conforme o estádio. (3) Plântula: 4 h ou mais a 26 °F matam plântulas a partir da 2ª folha trifoliolada (AGR-236). É o ano de implantação; um limiar de ano todo na linha perene eliminaria a alfafa em todo inverno do Nebraska, então não entra. (4) sensivel_geada = false: CONFERE para o estande estabelecido (a geada não mata a planta; Gruss/ISU: a geada de -4 °C só encerra a parte aérea). Contradiz em parte as fontes em dois casos que a linha não separa: a geada tardia de primavera que tira o 1º corte e a plântula do ano de implantação. Não mudei a coluna."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

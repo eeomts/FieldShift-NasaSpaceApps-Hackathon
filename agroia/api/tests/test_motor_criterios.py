@@ -1,7 +1,8 @@
 """Seis critérios 0-1: fórmula, limites 0 e 1, explicação, evidências e lacunas."""
 import pytest
 
-from app.services.motor.criterios import calcular_notas
+from app.services.motor.criterios import calcular_notas, classe_do_k
+from app.services.motor.entradas import Erodibilidade
 from app.services.motor.modelo import Estrategia
 from app.services.motor.relevo_service import Relevo
 from motor_helpers import PLANO, clima, cultura, entradas, item
@@ -219,3 +220,38 @@ def test_so_cultura_fora_do_catalogo_deixa_as_notas_de_cultura_sem_dado():
     n, lac = notas([item(None, 1, 3, texto="amendoim")], [cultura("a")])
     assert all(n[c].nota is None for c in ("agua", "terra", "pragas", "renda", "animais"))
     assert n["erosao"].nota is not None  # o calendário sozinho já diz quando o solo está coberto
+
+
+# --- erosão com a erodibilidade K do solo (SoilGrids): 1 - (1 - parcela) x fator do declive x fator do K
+@pytest.mark.parametrize("k, classe, fator", [(0.0145, "baixa", 0.75), (0.02, "media", 1.0), (0.034, "media", 1.0), (0.035, "alta", 1.25), (0.05, "alta", 1.25)])
+def test_erosao_fator_da_erodibilidade(k, classe, fator):
+    e = Erodibilidade(k_usle=k)
+    n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"), erodibilidade=e)
+    assert classe_do_k(k) == classe
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5 * fator)  # parcela 2/3, declive 0,5
+    assert not any("erodibilidade" in l for l in lac)
+
+
+def test_erosao_sem_k_usa_fator_neutro_e_registra_lacuna():
+    n, lac = notas([item("c", 1, 2)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("suave_ondulado", None, "q7"), erodibilidade=None)
+    assert n["erosao"].nota == pytest.approx(1 - (1 / 3) * 0.5)  # o mesmo de antes do K
+    assert any("erodibilidade" in l for l in lac)
+
+
+def test_erosao_com_k_alto_em_declive_forte_nao_passa_de_zero():
+    n, _ = notas([item("c", 7, 9)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("forte_ondulado", 30.0, "SRTM"), erodibilidade=Erodibilidade(0.05))
+    assert n["erosao"].nota == 0.0
+
+
+def test_erosao_k_alto_piora_e_k_baixo_melhora_a_nota():
+    kw = dict(clima=clima(forte=FORTE_NO_VERAO), relevo=Relevo("ondulado", None, "q7"))
+    baixo, _ = notas([item("c", 1, 2)], [cultura("c")], erodibilidade=Erodibilidade(0.01), **kw)
+    alto, _ = notas([item("c", 1, 2)], [cultura("c")], erodibilidade=Erodibilidade(0.05), **kw)
+    assert baixo["erosao"].nota > alto["erosao"].nota
+
+
+def test_erosao_evidencia_do_k_com_valor_unidade_e_fonte():
+    n, _ = notas([item("c", 1, 3)], [cultura("c")], clima=clima(forte=FORTE_NO_VERAO), relevo=PLANO, erodibilidade=Erodibilidade(0.0145))
+    k = n["erosao"].evidencias[-1]
+    assert k.valor == 0.0145 and k.unidade == "t·ha·h/(ha·MJ·mm)" and k.fonte == "SoilGrids 2.0 (ISRIC)"
+    assert "baixa" in k.texto and "erodibilidade baixa" in n["erosao"].explicacao

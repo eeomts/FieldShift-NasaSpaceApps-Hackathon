@@ -23,10 +23,16 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40112",
     "nome_zarc": "Feijão|Feijão 2ª Safra",
-    "fontes": "Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 2 Clima (temperatura ideal ~29 °C de dia e 21 °C de noite; calor no pré-florescimento/florescimento)|Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 8 Irrigação (água no ciclo 250-400 mm)|Embrapa Arroz e Feijão Circular Técnica 89 2011 (ciclo das cultivares 70-90 d; água 300-400 mm)|Embrapa Agropecuária Oeste Circular Técnica 45 2018 (ciclo superprecoce 60-65 d BRS FC104; Tmax >30 °C na fase reprodutiva; demanda hídrica 243.8 mm)|MAPA ZARC Feijão 2ª safra PR Portaria SPA/MAPA 251/2024 (abscisão de flores >30 °C dia e >25 °C noite; <12 °C retarda o crescimento; risco de geada Tmin <=3 °C; grupos de ciclo; +30 d no ciclo em regiões frias do Sul)|Del Peloso et al. Embrapa Arroz e Feijão 2009 cap. 4 (classes de ciclo: precoce <75 d a tardio >90 d)|Embrapa Arroz e Feijão Catálogo de cultivares de feijão 2012 (classe tardio >95 d; BRS Vereda tardia)|Otsubo et al. Embrapa Agropecuária Oeste Comunicado Técnico 113 2005 BRS Vereda (93 d da emergência à maturação fisiológica)|Souza Filho & Andrade PESAGRO-RIO nº 124 2018 (VCU feijão preto ciclo normal: 98 d emergência-colheita)|Tisot et al. 2005 Rev. Bras. Agrometeorologia 13(1) (Tb 10 °C; 1158 GD da semeadura a R9 aos 96 DAS; colheita aos 110 DAS)|Medeiros et al. 2000 Pesq. Agropec. Bras. 35(9) (Tb 10 °C; 1155 GD da emergência à colheita)|Miranda & Campelo Júnior 2010 Pesq. Agropec. Trop. 40(2) (978-1262 GD da semeadura à maturação com Tb 10 °C)|Arruda, Tubelis & Nascimento 1980 Pesq. Agropec. Bras. 15(4) (21 °C aceito como ótimo; limiar térmico de produtividade 19-20 °C de média diária)|Justino, Heinemann et al. Embrapa Arroz e Feijão Anais XXII CBAGRO 2023 (temperaturas cardinais 12/21/29 °C)|Embrapa Tabuleiros Costeiros Circular Técnica 21 2001 (ótimo 18-30 °C, ideal ~20 °C; fixação simbiótica de N 30-120 kg/ha)|FAO ECOCROP Phaseolus vulgaris (ótimo 16-25 °C)|Farinelli et al. 2010 Bragantia 69(1) (dano de geada no feijoeiro: 82-98% das plantas afetadas e morte de plantas)|FAO-56 Tab.11 (duração total 95-110 d)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "fontes": "Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 2 Clima (temperatura ideal ~29 °C de dia e 21 °C de noite; calor no pré-florescimento/florescimento)|Embrapa - Feijão: o produtor pergunta a Embrapa responde 2. ed. 2014 cap. 8 Irrigação (água no ciclo 250-400 mm)|Embrapa Arroz e Feijão Circular Técnica 89 2011 (ciclo das cultivares 70-90 d; água 300-400 mm)|Embrapa Agropecuária Oeste Circular Técnica 45 2018 (ciclo superprecoce 60-65 d BRS FC104; Tmax >30 °C na fase reprodutiva; demanda hídrica 243.8 mm)|MAPA ZARC Feijão 2ª safra PR Portaria SPA/MAPA 251/2024 (abscisão de flores >30 °C dia e >25 °C noite; <12 °C retarda o crescimento; risco de geada Tmin <=3 °C; grupos de ciclo; +30 d no ciclo em regiões frias do Sul)|Del Peloso et al. Embrapa Arroz e Feijão 2009 cap. 4 (classes de ciclo: precoce <75 d a tardio >90 d)|Embrapa Arroz e Feijão Catálogo de cultivares de feijão 2012 (classe tardio >95 d; BRS Vereda tardia)|Otsubo et al. Embrapa Agropecuária Oeste Comunicado Técnico 113 2005 BRS Vereda (93 d da emergência à maturação fisiológica)|Souza Filho & Andrade PESAGRO-RIO nº 124 2018 (VCU feijão preto ciclo normal: 98 d emergência-colheita)|Tisot et al. 2005 Rev. Bras. Agrometeorologia 13(1) (Tb 10 °C; 1158 GD da semeadura a R9 aos 96 DAS; colheita aos 110 DAS)|Medeiros et al. 2000 Pesq. Agropec. Bras. 35(9) (Tb 10 °C; 1155 GD da emergência à colheita)|Miranda & Campelo Júnior 2010 Pesq. Agropec. Trop. 40(2) (978-1262 GD da semeadura à maturação com Tb 10 °C)|Arruda, Tubelis & Nascimento 1980 Pesq. Agropec. Bras. 15(4) (21 °C aceito como ótimo; limiar térmico de produtividade 19-20 °C de média diária)|Justino, Heinemann et al. Embrapa Arroz e Feijão Anais XXII CBAGRO 2023 (temperaturas cardinais 12/21/29 °C)|Embrapa Tabuleiros Costeiros Circular Técnica 21 2001 (ótimo 18-30 °C, ideal ~20 °C; fixação simbiótica de N 30-120 kg/ha)|FAO ECOCROP Phaseolus vulgaris (ótimo 16-25 °C)|Farinelli et al. 2010 Bragantia 69(1) (dano de geada no feijoeiro: 82-98% das plantas afetadas e morte de plantas)|FAO-56 Tab.11 (duração total 95-110 d)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|NDSU Extension, Fall Frost Damage to Field Crops (flores e vagens verdes danificadas pela geada)|Embrapa Arroz e Feijão Circular Técnica 89 2011 Tab. 18 (35 dias até a floração num ciclo de 80; fase do frio)|NDSU Carrington REC, 2025 Variety Trial Data, Dry Edible Bean - Dryland (34-35 °F no enchimento, junto com mofo-branco, 'impacted yield')|FAO Frost Protection vol. 1, Tab. 4.5 (Ventskevich 1958; feijão -2/-3 °C na floração e -3/-4 °C na frutificação, no abrigo; conferência, conflita)",
     "confianca_parametros": "alta",
     "graus_dia_ciclo_min": "980",
-    "graus_dia_ciclo_max": "1270"
+    "graus_dia_ciclo_max": "1270",
+    "tmin_critica_c": "3",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.44",
+    "fase_frio_fim_frac": "1.00",
+    "tmin_dias_seguidos": "",
+    "tmin_efeito": "aviso"
   },
   "mudancas": [
     {
@@ -106,6 +112,42 @@
       "antes": "(coluna nova)",
       "depois": "980-1270",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "3",
+      "motivo": "REVISÃO 15/11 (dano por frio): ZARC Feijão (Port. SPA/MAPA 251/2024): Tmin <= 3 °C no abrigo; Farinelli et al. 2010 mediram dano com 2,4 °C no abrigo. Origem: publicado."
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao",
+      "motivo": "REVISÃO 15/11 (dano por frio): flores e vagens verdes são danificadas pela geada; vagens amarelas escapam (NDSU). A janela começa na floração."
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.44",
+      "motivo": "REVISÃO 15/11 (dano por frio): início da floração aos 35 dias de um ciclo de 80 (Embrapa CT 89, Tab. 18). Origem: publicado."
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): maturação fisiológica = fim do ciclo da linha."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "3",
+      "depois": "3",
+      "motivo": "REVISÃO 15/11 (revisão do frio): decisão do usuário, dano medido e o mesmo valor nos dois países. O número fica, mas a base passa do ZARC (critério de risco, agora só conferência) para o dano medido: Farinelli et al. 2010 (2,4 °C, morte de plantas e produtividade menor) e Carrington 2025 (1,1-1,7 °C, 'impacted yield'). Origem: publicado -> estudo_unico."
+    },
+    {
+      "coluna": "tmin_efeito",
+      "antes": "(vazio)",
+      "depois": "aviso",
+      "motivo": "REVISÃO 15/11 (revisão do frio): nas fontes do limiar a perda é parcial (Farinelli 2010: severidade média até 3,75 de 5 e rebrota; Carrington 2025: ensaio colhido), não a perda da lavoura."
     }
   ],
   "evidencias": [
@@ -454,6 +496,57 @@
       "fonte": "Miranda, M.N.; Campelo Júnior, J.H. Pesq. Agropec. Trop. 40(2):180-185, 2010, Tabela 2 (Carioca, Colorado do Oeste-RO)",
       "url": "https://www.redalyc.org/pdf/2530/253020107010.pdf",
       "trecho": "Tabela 2. Graus-dia acumulados no subperíodo semeadura-maturação [...] Tb = 10°C [...] Média 1261,9 (T1, entressafra irrigada, 87 dias); 977,6 (T2, safra normal irrigada, 81 dias); 1236,5 (T3, safra normal sem irrigação, 101 dias)"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "CONFERÊNCIA (critério de risco, não de dano): MAPA, Portaria SPA/MAPA nº 251/2024, ZARC Feijão 2ª safra Paraná 2024/2025, Nota Técnica, item I (Temperatura do ar)",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2024-2025/parana-pr/PO41831.PDF",
+      "trecho": "Foi considerado o risco de ocorrência de temperaturas muito baixas e deletérias à cultura, por meio da probabilidade de ocorrência de valores de temperaturas mínimas menores ou iguais a 3°C no abrigo meteorológico"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "tmin_efeito"
+      ],
+      "fonte": "Farinelli, R.; Fornasieri Filho, D.; Bordin, L.; Penariol, F.G.; Volpe, C.A. Efeitos de geada no desenvolvimento do feijoeiro em sucessão a espécies vegetais e adubação nitrogenada. Bragantia 69(1):249-252, 2010 (Jaboticabal-SP, cv. Pérola, semeadura 1/6/2000, geada de 17/7/2000; conferido no PDF em 15/11/2026)",
+      "url": "https://scielo.br/pdf/brag/v69n1/31.pdf",
+      "trecho": "a temperatura em que é promovida a formação de geada no feijoeiro está situada em aproximadamente 3 °C [...] quando as plantas estavam com a quarta e quinta folha trifoliolada desenvolvidas [...] sendo atingida temperatura mínima de 2,4 °C com -4,3 °C na relva, culminado com a formação da geada [...] sendo visíveis plantas com poucas folhas, ausência de parte aérea e morte de plantas. [...] a formação e emissão de novos ramos e folhas foram promovidas em função da adubação nitrogenada de cobertura, sendo restabelecido seu crescimento e favorecidos ganhos de produtividade. Os danos mais severos da geada no feijoeiro em sucessão às gramíneas foram correspondentes às produtividades inferiores [...] [Tabela 1: plantas afetadas 57,3 a 98,0%; severidade 1,00 a 3,75] [...] 5 (morte total de plantas)"
+    },
+    {
+      "fonte": "NDSU Extension, Fall Frost Damage to Field Crops (página da NDSU Agriculture, sem autor nem data na página; lida em 15/11/2026)",
+      "url": "https://www.ndsu.edu/agriculture/ag-hub/fall-frost-damage-field-crops",
+      "trecho": "PINTO & NAVY BEANS: are very sensitive to frost (30-32 degree range). Earlier pods with yellow to brown color are sufficiently mature to escape damage. Late green pods or flowers are easily damaged by frost. [...] Remember temperatures of 32 degrees at weather stations or farmsteads may result in temperatures of 28 to 29 degrees in low lying areas of fields.",
+      "colunas": [
+        "fase_sensivel_frio"
+      ]
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Embrapa Arroz e Feijão, Circular Técnica 89: Recomendações técnicas para o cultivo do feijoeiro-comum nas regiões Norte e Nordeste, 2011, Tabela 18",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/916406/1/CIRCTECNICA89.pdf",
+      "trecho": "Germinação ao início da floração 35 [...] Floração 25 [...] Desenvolvimento de vagens à maturação 20 [Duração (dias)]"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "tmin_efeito"
+      ],
+      "fonte": "NDSU Carrington REC, 2025 Variety Trial Data, Dry Edible Bean - Dryland (conferido no PDF em 15/11/2026)",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/carrington-rec/2025%20trial%20results/2025-trial-results-dry-bean-dryland-carrington",
+      "trecho": "Planting Date = June 2; Harvest Date = September 30; Previous Crop = Durum [...] White mold and low temperatures on September 3, 4, 6 and 7 (35℉, 34℉, 35℉, and 34℉) impacted yield."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "FAO, Frost Protection: fundamentals, practice and economics, vol. 1, Tabela 4.5 ('SOURCE: After Ventskevich, 1958') e, para a medida no abrigo, o capítulo sobre dano por geada (https://www.fao.org/4/y7223e/y7223e07.htm); CONFERÊNCIA, lida em 15/11/2026 (conflita com o valor da linha: ver pendências)",
+      "url": "https://www.fao.org/4/y7223e/y7223e0a.htm",
+      "trecho": "A range of critical damage temperatures (°C) for grain, forage and silage crops [...] GERMINATION FLOWERING FRUITING [...] Beans -5, -6 -2, -3 -3, -4 [...] SOURCE: After Ventskevich, 1958. || This damaging plant tissue temperature is correlated with air temperatures called \"critical temperatures\" measured in standard instrument shelters."
     }
   ],
   "pendencias": [
@@ -465,12 +558,15 @@
     "Nenhuma fonte primária foi lida para cobertura_solo (baixa), aporte_biomassa (baixo) e valor_forrageiro (baixo). Esses valores vêm do julgamento agronômico do rascunho (pouca palhada, decomposição rápida, uso forrageiro só da palha).",
     "sensivel_geada = true agora tem fonte de campo (Farinelli et al. 2010, Bragantia/IAC): uma geada com 2,4 °C no abrigo e −4,3 °C na relva atingiu 82-98% das plantas, com perda da parte aérea e morte de plantas. O feijoeiro brotou de novo e produziu. Ainda falta uma frase da própria Embrapa sobre geada (o cap. 2 do 500 Perguntas só fala em baixas temperaturas que atrasam a germinação e alongam o ciclo).",
     "graus-dia: As três fontes usam cultivares do grupo carioca de ciclo normal. Não há medição com Tb 10 para superprecoces (BRS FC104) nem tardias; o mínimo só cobre o superprecoce se a Tmed for ~24 °C.",
-    "graus-dia: Miranda & Campelo Júnior 2010 acharam Tb 15 na safra irrigada em Rondônia; com Tb 15 os números seriam outros."
+    "graus-dia: Miranda & Campelo Júnior 2010 acharam Tb 15 na safra irrigada em Rondônia; com Tb 15 os números seriam outros.",
+    "Frio (15/11): a fase ficou do início da floração à maturação (flores e vagens verdes, NDSU). Mas Farinelli et al. 2010 mediram dano no vegetativo (4ª-5ª folha trifoliolada, feijão de inverno em SP), com morte de plantas e menor produtividade. Nenhuma fonte lida diz 'qualquer fase', por isso não usei ciclo_todo; com as duas fontes juntas, ciclo_todo (0 a 1) seria defensável para o feijão de inverno do Centro-Oeste e Sudeste. Decisão do coordenador.",
+    "Frio (15/11): conflito com a FAO. A Tab. 4.5 do Frost Protection (FAO, 'After Ventskevich, 1958', temperaturas críticas no abrigo) dá dano ao feijão ('Beans', sem dizer a espécie) com -2/-3 °C na floração e -3/-4 °C na frutificação, bem abaixo dos 3 °C da linha. As duas medições de campo que sustentam os 3 °C (Farinelli 2010: 2,4 °C; Carrington 2025: 1,1-1,7 °C) mostram perda acima de 0 °C, mas são fracas: Farinelli não tem parcela sem geada e o dano foi no vegetativo (fora da fase da linha); Carrington mistura frio e mofo-branco e não mede a perda. Por isso o efeito é 'aviso' (perda parcial), e não 'elimina'. Resolveria: ensaio com perda de produção medida contra parcela sem frio, com a mínima do abrigo (IAC, IDR-Paraná ou NDSU)."
   ],
   "pendencias_resolvidas": [
     "ciclo_dias_max = 100 é uma estimativa. A Embrapa classifica como tardias as cultivares com mais de 90 dias da emergência à maturação, e somando cerca de 5 a 10 dias da semeadura à emergência o total fica perto de 100. A FAO-56 Tab.11 dá 95 a 110 dias. Nenhuma fonte brasileira lida diz literalmente 100 dias. O ZARC do PR soma 30 dias ao ciclo no feijão de 2ª safra em regiões frias do Sul, mas isso não entrou na faixa.",
     "Na faixa ótima de 18 a 25 °C, o limite inferior vem da Circ. Téc. 21 da Embrapa Tabuleiros (18 a 30 °C) e o superior do ECOCROP (16 a 25 °C). As fontes não coincidem: o ECOCROP começa em 16 °C, e a Embrapa fala em cerca de 29 °C de dia e 21 °C à noite, com ótimo de 21 °C. A faixa de 18 a 24 °C da matéria Epamig/Embrapa é texto de divulgação e não foi usada.",
-    "Lida em fonte primária, sensivel_geada = true se apoia só no critério de risco do ZARC (Tmin <= 3 °C). Não li um trecho da Embrapa que descreva diretamente o dano por geada."
+    "Lida em fonte primária, sensivel_geada = true se apoia só no critério de risco do ZARC (Tmin <= 3 °C). Não li um trecho da Embrapa que descreva diretamente o dano por geada.",
+    "Frio (15/11): o ZARC não diz em que fase aplica o critério de 3 °C. A linha dos EUA usa 0 °C (32 °F, NDSU); o coordenador decide se unifica. (Resolvida. Motivo: 15/11: decisão do usuário, dano medido nos dois países.)"
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -571,6 +667,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "medido",
       "nota": "semeadura -> maturação fisiológica; Tb 10; Valores já coletados em evidencias/feijao.json (Tb 10, média simples sem teto, igual ao motor). Tisot et al. 2005: 1158 GD da SEMEADURA a R9 (96 DAS), sem conversão; fase semeadura->emergência = 77,9 GD. Medeiros et al. 2000: 1155 GD da EMERGÊNCIA à colheita; somando a semeadura->emergência de Tisot (78): 1233 da semeadura à colheita (colheita > maturação, então é teto da faixa). Miranda & Campelo Júnior 2010: 978 a 1262 GD da SEMEADURA à maturação (81-101 dias), sem conversão. Faixa: 980 (Miranda T2, 81 dias) a 1270 (Miranda T1, 1262, arredondado). | plausibilidade: Mínimo: 980/(24 − 10) = 70 dias, igual ao superprecoce (60-65 dias da emergência + ~5 de emergência). Máximo: 1270/(21,5 − 10) = 110 dias (tardio em região mais fria), igual a ciclo_dias_max 110. Contra ciclo_dias 60-110 do CSV. Coerente."
+    },
+    "tmin_critica_c": {
+      "tipo": "estudo_unico",
+      "nota": "Limiar de dano medido, o mesmo nas linhas do Brasil e dos EUA (decisão do usuário de 15/11: dano medido nos dois países), pelo abrigo mais alto com perda de produção registrada. Farinelli et al. 2010 (Jaboticabal-SP, cv. Pérola, feijão de inverno irrigado, geada de 17/7/2000 na 4ª-5ª folha trifoliolada): 'temperatura mínima de 2,4 °C com -4,3 °C na relva', 57-98% das plantas afetadas, 'morte de plantas', e 'os danos mais severos da geada [...] foram correspondentes às produtividades inferiores'. Ensaio de Carrington-ND de 2025 (NDSU): mínimas de 34-35 °F (1,1-1,7 °C) em 3, 4, 6 e 7/set, no enchimento, que junto com o mofo-branco 'impacted yield'. 'Abaixo de 3' pega os dois casos e bate com a formação de geada no feijoeiro a 'aproximadamente 3 °C' (Brunini et al. 1998, citado por Farinelli). estudo_unico: cada fonte é 1 local, 1 ano e 1 evento; Farinelli não tem parcela sem geada (a perda é comparada entre tratamentos) e não escreve 'abrigo' (só contrasta a mínima com a relva); Carrington mistura frio e mofo-branco e não mede a perda. tmin_efeito = aviso: nas duas fontes a perda é parcial, não a perda da lavoura (Farinelli: severidade média de 1,00 a 3,75 numa escala em que 5 = morte total de plantas, e o feijoeiro rebrotou, 'sendo restabelecido seu crescimento'; Carrington: ensaio colhido em 30/set, com produtividade publicada). tmin_dias_seguidos vazio: nenhuma fonte diz duração. Conferências: NDSU, Fall Frost Damage (pinto e navy 'very sensitive to frost (30-32 degree range)'; 32 °F na estação podem ser 28-29 °F nas baixadas); FAO Frost Protection Tab. 4.5 (Ventskevich 1958; feijão -2/-3 °C na floração e -3/-4 °C na frutificação, no abrigo: conflito em pendências); ZARC Feijão 2ª safra PR (Port. SPA/MAPA 251/2024): Tmin <= 3 °C no abrigo, critério de risco, não de dano (o mesmo número por outro caminho, não é a fonte do valor)."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Fase = do início da floração à maturação fisiológica: flores e vagens verdes são as partes danificadas pela geada; vagens já amarelas escapam (NDSU, mesma espécie). Durações da Embrapa (CT 89, Tab. 18, ciclo de 80 dias): germinação -> início da floração 35 dias; floração 25; vagens -> maturação 20. Início = 35/80 = 0,4375 -> 0.44 (usei a proporção do próprio ciclo da fonte, 80 dias, perto do ciclo médio da linha, (60 + 110)/2 = 85; com 85 daria 35/85 = 0,41); fim = maturação = fim do ciclo = 1.00. Conta simples sobre tabela oficial."
     }
   },
   "confianca_calculo": {

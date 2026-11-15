@@ -94,13 +94,13 @@ O app já conhece 40 culturas (`agroia/base/culturas.json`, com família, grupo,
 
 **Para quê:** a IA e a lista reserva casam o que o produtor escreve ("macaxeira", "capim pras vacas") com a base. Quanto mais nomes populares, melhor.
 
-O arquivo já tem nomes em PT, EN e ES para as 40 culturas. A tarefa é **revisar e acrescentar nomes regionais**, por PR:
+O app tem só português e inglês: cada cultura tem nomes em PT e EN. A tarefa é **revisar e acrescentar nomes regionais**, por PR:
 
 ```json
-{"id": "mandioca", "nomes": {"pt": ["mandioca", "macaxeira", "aipim", "maniva"], "en": ["cassava"], "es": ["yuca"]}}
+{"id": "mandioca", "nomes": {"pt": ["mandioca", "macaxeira", "aipim", "maniva"], "en": ["cassava"]}}
 ```
 
-**Meta:** os nomes regionais conhecidos em português de cada cultura do motor, e pelo menos um nome em inglês e um em espanhol.
+**Meta:** os nomes regionais conhecidos em português de cada cultura do motor, e pelo menos um nome em inglês.
 
 ---
 

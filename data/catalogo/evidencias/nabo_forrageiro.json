@@ -35,7 +35,11 @@
     "condicao_semeadura": "apos_colheita_graos",
     "estados_validos": "MS|PR|RS",
     "lacuna_informacao": "Não há medição no Brasil da temperatura em que o nabo começa a crescer nem da profundidade das raízes. O uso de água foi medido em um só ensaio; o resto é um cálculo com o clima. Usamos dados da canola e do rabanete, plantas parecidas.",
-    "risco_revisao_local": "Semeie de abril a maio, depois da colheita da soja ou do milho, e maneje no florescimento, antes de formar semente. No Cerrado a semeadura é em março. O nabo hospeda o mofo-branco: evite antes da soja em área com a doença. Confirme a época com a Emater ou a cooperativa."
+    "risco_revisao_local": "Semeie de abril a maio, depois da colheita da soja ou do milho, e maneje no florescimento, antes de formar semente. No Cerrado a semeadura é em março. O nabo hospeda o mofo-branco: evite antes da soja em área com a doença. Confirme a época com a Emater ou a cooperativa.",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "mudancas": [
     {
@@ -241,6 +245,12 @@
       "antes": "(vazio)",
       "depois": "Semeie de abril a maio, depois da colheita da soja ou do milho, e maneje no florescimento, antes de formar semente. No Cerrado a semeadura é em março. O nabo hospeda o mofo-branco: evite antes da soja em área com a doença. Confirme a época com a Emater ou a cooperativa.",
       "motivo": "REVISÃO 15/11 (pacote 9): texto para o produtor (confiança baixa): época, manejo no florescimento, Cerrado em março e mofo-branco (IPR 210; COMIGO 2020)."
+    },
+    {
+      "coluna": "tmin_critica_c/fase_sensivel_frio/fase_frio_inicio_frac/fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): cobertura de outono-inverno que tolera o frio do sistema (Embrapa CPAO: 'Tolerante à seca e à geada'; morte só abaixo de 25 °F a 20 °F, SARE MCCP e NRCS). No POWER, abril-setembro, só 1 de 15 anos abaixo de -3,9 °C em Ponta Grossa-PR. Origem vazio_nao_se_aplica."
     }
   ],
   "evidencias": [
@@ -645,6 +655,28 @@
       "fonte": "Carvalho, Oliveira, Coser, Gonçalves, Marchão, Pulrolnik & Sá, Plantas de cobertura do solo recomendadas para a entressafra de milho em Sistema Plantio Direto no cerrado, Embrapa Cerrados Comunicado Técnico 181, 2018 (Planaltina-DF; nabo nas Tabelas 1 e 2, fora da Tabela 3 das recomendadas)",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1097400/1/CT181.pdf",
       "trecho": "Para o cultivo dessas plantas de cobertura na entressafra do milho, é importante que a semeadura seja feita até a segunda quinzena de março [...] O manejo dessas plantas de cobertura pode ser mecânico, por meio de rolo-faca, roçadeira ou triton; e químico, com aplicação de dessecantes/herbicidas. [Tabela 2: Nabo-forrageiro 1,9 t/ha de MS, tempo de reciclagem 96 dias]"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Clark, A. (ed.), Managing Cover Crops Profitably, 3ª edição, SARE Handbook 9, 2007, capítulo Brassicas and Mustards (radish)",
+      "url": "https://www.sare.org/wp-content/uploads/Managing-Cover-Crops-Profitably.pdf",
+      "trecho": "Oilseed radish is less affected by frost than forage radish, but may be killed by heavy frost below 25° F. [vazio justificado: no POWER, abril-setembro, só 1 de 15 anos abaixo de -3,9 °C em Ponta Grossa-PR e nenhum em Santa Maria-RS, Londrina-PR e Dourados-MS]"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995, cap. 7.2; e Jacobs, Plant fact sheet for oilseed radish, USDA-NRCS, 2012 (já citados)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "Tolerante à seca e à geada [...] | NRCS (plants.usda.gov/DocumentLibrary/factsheet/pdf/fs_rasa2.pdf): Plants cannot survive freezing temperatures of 20⁰F or below."
     }
   ],
   "pendencias": [
@@ -663,7 +695,8 @@
     "Janela da linha (15/11): semeadura 01/04 a 31/05 = região dos números da linha (Dourados-MS e Sul: água e graus-dia com semeadura em 01/04, 01/05 e 31/05). Fontes: Hernani 1995 (Dourados: 'abril', bons rendimentos 'em maio') e IDR-Paraná IPR 210 ('entre abril e junho'). Junho no PR ficou fora da linha porque os números não cobrem essa época. Busca do resultado (não lido): documento da Embrapa sobre oleaginosas de inverno dá 'segunda quinzena de março e a primeira quinzena de maio' no MS (core.ac.uk/download/33885803.pdf, download falhou).",
     "Manejo (15/11): 31/05 a 28/09 é semeadura + ciclo da linha (01/04 + 60 d; 31/05 + 120 d), não data publicada. O início (60 d) vem do ciclo mínimo de cultivar precoce (Mascarenhas 2010; IPR 210: 'Início da floração: 50-60 dias'); as cultivares de cobertura do MS e do PR florescem aos 100-120 dias, então o manejo típico é de julho a setembro. tipo_manejo = dessecacao (Kochhann 2003: glifosato + Triton na floração plena); Hernani 1995 prefere rolo-faca ou herbicida, e a rolagem também serve.",
     "estados_validos = MS|PR|RS (15/11). SC ficou fora só por falta de fonte lida com a janela (busca da Epagri sem a época); a janela do PR e do RS deve valer lá: decisão para o coordenador. GO fica no arranjo regua.arranjos.cerrado (não na linha). BA (demo) fica fora: não achei fonte de nabo na BA.",
-    "Arranjo cerrado (15/11): janela de março (01/03 a 31/03) com fonte fraca: o CT 181 da Embrapa Cerrados manda semear as coberturas da entressafra 'até a segunda quinzena de março', mas não recomenda o nabo (só o avalia: 1,9 t/ha); a semeadura em março em MG vem de Alvarenga et al. 2001, lido só pela citação do anuário da COMIGO 2020. Início em 01/03 é convenção (colheita da soja 'em março ou abril' e milho safrinha até o fim de fevereiro, COMIGO 2020). Ciclo, graus-dia e água do Cerrado não foram calculados: usar os da linha até haver dado. O que resolveria: um sistema de produção da Embrapa Cerrados ou da Fundação MT/GO com a época do nabo."
+    "Arranjo cerrado (15/11): janela de março (01/03 a 31/03) com fonte fraca: o CT 181 da Embrapa Cerrados manda semear as coberturas da entressafra 'até a segunda quinzena de março', mas não recomenda o nabo (só o avalia: 1,9 t/ha); a semeadura em março em MG vem de Alvarenga et al. 2001, lido só pela citação do anuário da COMIGO 2020. Início em 01/03 é convenção (colheita da soja 'em março ou abril' e milho safrinha até o fim de fevereiro, COMIGO 2020). Ciclo, graus-dia e água do Cerrado não foram calculados: usar os da linha até haver dado. O que resolveria: um sistema de produção da Embrapa Cerrados ou da Fundação MT/GO com a época do nabo.",
+    "Dano por frio (15/11): colunas vazias porque o nabo tolera o frio do sistema (ver origem.tmin_critica_c). Não conferi os Campos de Cima da Serra e a Serra do RS (Vacaria, Bom Jesus), mais frios e sem arquivo no cache do POWER. Se a linha ou um arranjo for usado lá, o candidato é -6,7 °C (20 °F, morte da planta, NRCS 2012) com fase ciclo_todo; a fonte não diz a altura da medição."
   ],
   "pendencias_resolvidas": [
     "temp_base_c ficou VAZIA: não achei Tb de crescimento/graus-dia medida para R. sativus var. oleiferus (só Tb de germinação do rabanete, ~15 °C em hidrotermal time, que não serve para crescimento). Thorup-Kristensen 2001 fala em ~750 °C·d até 1 m de raiz, mas não li a base usada.",
@@ -782,6 +815,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "semeadura -> manejo no florescimento; Tb 5; Não achei soma térmica publicada para o nabo forrageiro (nem Tb medida; a Tb 5 do CSV é PROXY da canola). Todas as somas abaixo são CÁLCULO com Tb 5: dias publicados até o florescimento pleno × Tmed do NASA POWER. Mínimo: Dourados-MS, Fietz et al. 2008, cv. CATI AL 1000 semeada em 31/05/2007; emergência -> florescimento pleno = 27 + 21 = 48 d; + ~6 d da semeadura à emergência (não publicado; CÁLCULO) = 54 d; POWER diário 31/05 -> 24/07/2007 = 809 °C dia (Tmed 20,0 °C). Sul: Dois Vizinhos-PR, Ziech et al. 2015, nabo no FINAL do florescimento aos 93 DAS (sem. 5/7/2010) e 112 DAS (sem. 12/5/2011): POWER 1158 e 1243 °C dia (Tmed 17,5 e 16,1 °C). Como é o fim da floração, o pleno florescimento veio antes, com menos soma. Máximo: Dourados, Hernani et al. 1995 (cultivares antigas Siletina/Sileta Nova/Minowase), semeadura em abril e florescimento pleno aos 100-120 dias; Tmed POWER (climatologia) abr 24,0, mai 20,0, jun 19,0, jul 18,8, ago 21,0 -> média do período ~20 °C: 100 × 15 = 1500; 120 × 15,1 ≈ 1810. | plausibilidade: Tmed 15-20 °C no outono-inverno. 800/(20 − 5) = 53 d; 1800/(20 − 5) = 120 d (Dourados). No Sul (Tmed ~15): 800/10 = 80 d; 1800/10 = 180 d, acima do ciclo_dias_max 120 do CSV. CSV: ciclo_dias 60-120. O mínimo bate em todo lugar; o máximo só bate no MS, de onde veio."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: o nabo da linha é cobertura de outono-inverno (MS, PR e RS; semeadura em abril-maio, dessecação no florescimento, de junho a setembro) e tolera o frio desse sistema. Embrapa CPAO (Hernani et al. 1995): 'Tolerante à seca e à geada'. Tolerâncias publicadas, sem altura de medição declarada: o nabo oleaginoso 'may be killed by heavy frost below 25° F' (-3,9 °C; SARE MCCP 2007) e 'cannot survive freezing temperatures of 20⁰F or below' (-6,7 °C; NRCS 2012). Conferência com o POWER, abril a setembro, conferência própria com o NASA POWER (T2M_MIN diária, ar a 2 m, mesma medida do motor), arquivos do cache data/brutos/nasa_power, contando os anos com pelo menos um dia abaixo do limiar: Ponta Grossa-PR (2005-2019) mínimo absoluto -5,1 °C, 1 de 15 anos abaixo de -3,9 e nenhum abaixo de -6,7; Santa Maria-RS (2001-2019) -3,4 °C, nenhum ano abaixo de -3,9; Londrina-PR -1,8 °C; Dourados-MS -0,3 °C. Fica muito abaixo dos 30% dos anos da regra 17. Geada no florescimento só tira semente, e a cobertura é manejada nessa fase. Com sensivel_geada = false e as colunas vazias, o motor não faz teste de frio. Não é coluna do filtro de confiança."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: sem limiar de dano no sistema, não há fase sensível (ver tmin_critica_c)."
     }
   },
   "confianca_calculo": {

@@ -33,10 +33,14 @@
     "nome_zarc": "",
     "codigo_nass": "SORGHUM, GRAIN",
     "calendario_usda": "Sorghum for grain",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do sorgo granífero no Kansas e no Texas)|Shroyer et al., K-State Kansas Crop Planting Guide L-818, 1996 (janela de semeadura por zona; primeira geada de outono)|Diawara, B., Effect of planting date on growth, development, and yield of grain sorghum hybrids, dissertação de mestrado, Kansas State University, 2012 (dias da semeadura à maturação fisiológica medidos em Manhattan e Hutchinson, 2010-2011)|Trostle, Lege & Keys, Texas A&M AgriLife Extension, 2026 Alternative Crop Options after Failed Cotton and Late-Season Crop Planting for the Texas South Plains (dias à maturação fisiológica por classe de maturidade; conferência)|Vanderlip, How a Sorghum Plant Develops, K-State S-3, 1993 (fases e dias após a emergência; conferência)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F, teto 100 °F; GDU da semeadura à camada preta 2673 e 3360 °F)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/sorgo_gd.json (mínimo pela mediana 2001-2020 em Manhattan com o ciclo mais curto; máximo = GDU com teto de Gerik et al. convertidos para graus-dia sem teto, Tb 10, na régua do NASA POWER)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (sorgo: Tlower 46 °F, Tupper 100 °F; conferência)|Rogers & Alam, Irrigation, em K-State Grain Sorghum Production Handbook C-687, 1998 (água 18-22 pol. no oeste, 1-2 a menos no leste; raiz até 6 pés)|Ciampitti et al., K-State Kansas Sorghum Management 2020, MF3046 (água 18-26 pol. no oeste; maturação 1-2 semanas antes da geada)|United Sorghum Checkoff Program, West Texas Production Guide, 2018 (ETc do sorgo irrigado 22-27 pol., USDA-ARS Bushland 2000-2009)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|Magalhães et al., Embrapa Cultivo do Sorgo 2015, e FAO ECOCROP, mantidos do Brasil (temperatura ótima)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al., mantido do Brasil (tmax na antese)|Bell, Trostle, Schnell & Heflin, Texas A&M AgriLife SCSC-2026-09, 2026 (dano ao pólen acima de ~97 °F do emborrachamento à floração; conferência americana da tmax)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do sorgo granífero no Kansas e no Texas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Sorghum) e 11.1a (resíduo acima do solo)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição e N do resíduo de sorgo, Bushland-TX; resumo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Ma et al., Agron. J. 91:401-409, 1999 (C/N do resíduo de sorgo no leste do Colorado)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD da folha e do colmo do sorgo granífero)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do sorgo granífero no Kansas e no Texas)|Shroyer et al., K-State Kansas Crop Planting Guide L-818, 1996 (janela de semeadura por zona; primeira geada de outono)|Diawara, B., Effect of planting date on growth, development, and yield of grain sorghum hybrids, dissertação de mestrado, Kansas State University, 2012 (dias da semeadura à maturação fisiológica medidos em Manhattan e Hutchinson, 2010-2011)|Trostle, Lege & Keys, Texas A&M AgriLife Extension, 2026 Alternative Crop Options after Failed Cotton and Late-Season Crop Planting for the Texas South Plains (dias à maturação fisiológica por classe de maturidade; conferência)|Vanderlip, How a Sorghum Plant Develops, K-State S-3, 1993 (fases e dias após a emergência; conferência)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F, teto 100 °F; GDU da semeadura à camada preta 2673 e 3360 °F)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/sorgo_gd.json (mínimo pela mediana 2001-2020 em Manhattan com o ciclo mais curto; máximo = GDU com teto de Gerik et al. convertidos para graus-dia sem teto, Tb 10, na régua do NASA POWER)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (sorgo: Tlower 46 °F, Tupper 100 °F; conferência)|Rogers & Alam, Irrigation, em K-State Grain Sorghum Production Handbook C-687, 1998 (água 18-22 pol. no oeste, 1-2 a menos no leste; raiz até 6 pés)|Ciampitti et al., K-State Kansas Sorghum Management 2020, MF3046 (água 18-26 pol. no oeste; maturação 1-2 semanas antes da geada)|United Sorghum Checkoff Program, West Texas Production Guide, 2018 (ETc do sorgo irrigado 22-27 pol., USDA-ARS Bushland 2000-2009)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|Magalhães et al., Embrapa Cultivo do Sorgo 2015, e FAO ECOCROP, mantidos do Brasil (temperatura ótima)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al., mantido do Brasil (tmax na antese)|Bell, Trostle, Schnell & Heflin, Texas A&M AgriLife SCSC-2026-09, 2026 (dano ao pólen acima de ~97 °F do emborrachamento à floração; conferência americana da tmax)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do sorgo granífero no Kansas e no Texas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Sorghum) e 11.1a (resíduo acima do solo)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição e N do resíduo de sorgo, Bushland-TX; resumo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Ma et al., Agron. J. 91:401-409, 1999 (C/N do resíduo de sorgo no leste do Colorado)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD da folha e do colmo do sorgo granífero)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Staggenborg et al., K-State MF-2234, 1996 (geada no enchimento do sorgo: perda máxima a 28 °F; estudo em câmara de Staggenborg & Vanderlip 1996)",
     "confianca_parametros": "media",
     "semeadura_inicio": "05-15",
-    "semeadura_fim": "06-20"
+    "semeadura_fim": "06-20",
+    "tmin_critica_c": "-2",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.67",
+    "fase_frio_fim_frac": "1.00"
   },
   "origem": {
     "temp_base_c": {
@@ -82,6 +86,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Sorghum grain 1,0-2,0 m; limite superior (sequeiro). A K-State C-687 diz que a raiz 'can extend to 6 feet in a friable soil' (1,83 m). Igual ao Brasil."
+    },
+    "tmin_critica_c": {
+      "tipo": "estudo_unico",
+      "nota": "Ar a 2 m (abrigo), lido como a extensão aplica o número no campo. K-State MF-2234 (Staggenborg & Vanderlip 1996, Agron. J. 88:473, plantas expostas em câmara a 32, 28 e 24 °F no enchimento): a 32 °F não há perda; a perda é máxima com 2 h ou mais a 28 °F (-2,2 °C) ou menos, quando o grão para de encher. 28 °F -> -2. Estudo único em câmara = estudo_unico. Mesmo valor da linha do Brasil."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Fase: da meia floração (half bloom) à camada preta. Ciclo da linha da semeadura à camada preta (84-114 d, médio 99). Texas A&M (Trostle et al. 2026, Tab. 3): híbrido 'Medium' (97-103 d à maturação, o que corresponde ao ciclo médio da linha) chega à meia floração em 64-68 dias, meio 66 -> 66/99 = 0,67. Fim = camada preta = fim do ciclo = 1,00 (a tabela usa 32-35 dias de enchimento). O sorgo tolera geada na fase vegetativa (Gerik et al. B-6137, GS I)."
     }
   },
   "reuso_brasil": [
@@ -156,6 +168,12 @@
       "valor_brasil": "palhada 5,0 t/ha, C/N 66, k 0,0044, PB 4,2, DMO 53 (estimada)",
       "decisao": "trocado",
       "motivo": "Mesmo método com dados dos EUA: NASS (Kansas e Texas) + IPCC, decomposição em Bushland-TX e Missouri, C/N de estudos dos EUA, forragem da UNL (restolho de sorgo, IVDMD medida)."
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio",
+      "valor_brasil": "-2, enchimento_grao",
+      "decisao": "conferido e mantido",
+      "motivo": "Mesmo limiar nos dois países (fonte americana, fisiologia da espécie). Frações pelo ciclo de cada linha: 0,59-1,00 no Brasil (ciclo da emergência, 110 d) e 0,67-1,00 nos EUA (Texas A&M, ciclo da semeadura, 99 d)."
     }
   ],
   "evidencias": [
@@ -427,6 +445,32 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"SORGHUM, GRAIN - ACRES HARVESTED\" (2023, NATIONAL): commodity_desc 'SORGHUM', class_desc 'ALL CLASSES', util_practice_desc 'GRAIN', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA HARVESTED', unit_desc 'ACRES'; registros SURVEY: STATE 2454, COUNTY 56339"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Staggenborg, S.; Fjell, D.; Dhuyvetter, K.; Vanderlip, R., Fall Freeze Damage in Summer Grain Crops, K-State Research and Extension MF-2234, agosto de 1996 (resume Staggenborg & Vanderlip, Agron. J. 88:473-477, 1996, artigo não lido)",
+      "url": "https://bookstore.ksre.ksu.edu/pubs/MF2234.pdf",
+      "trecho": "Sorghum plants were exposed to temperatures of 32°F, 28°F, and 24°F for 2, 4 and 8 hours during grainfill. The results indicate that sorghum grain weight is not reduced by temperatures of 32°F (Figure 1). However, as the air temperatures decrease below freezing, the amount of damage to a sorghum plant increases and seed weight decreases. Maximum damage occurs when plants are exposed for 2 hours or more at a temperature of 28°F or lower. [...] grain sorghum exposed to air temperatures of 28°F or lower, is unable to continue filling grain from carbohydrates stored in the stem or remaining leaves."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Trostle, C.; Lege, K.; Keys, K., 2026 Alternative Crop Options after Failed Cotton and Late-Season Crop Planting for the Texas South Plains, Texas A&M AgriLife Extension, Lubbock, Tab. 3",
+      "url": "https://lubbock.tamu.edu/wp-content/uploads/sites/3/2026/06/Hailout-Replant-LatePlant-Guide-TX-South-Plains-Trostle-Lege-Keys-2026.pdf",
+      "trecho": "Table 3. Approximate days to half bloom and days to physiological maturity for grain sorghum hybrid maturities, Texas South Plains. [...] Medium 64-68 97-103 [...] *Uses ~32-35 days for grain fill to maturity (flowering to black layer) for all hybrids."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003, Growth Stage I",
+      "url": "https://leon.agrilife.org/files/2024/08/Sorghum-Growth-and-Development-TAMU-SCSC-PU-069-2021.pdf",
+      "trecho": "Sorghum can tolerate high degrees of stress from drought, hail and freezing temperatures in GS I with little adverse affect on yield."
     }
   ],
   "regua": {
@@ -534,6 +578,30 @@
       "antes": "pendência: codigo_nass: 'SORGHUM, GRAIN' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_... | observacoes.codigos: codigo_nass 'SORGHUM, GRAIN'. short_desc 'SORGHUM, GRAIN - ACRES HARVESTED' e 'SORGHUM, GRAIN - PRODUCTION, MEASURED IN ...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'SORGHUM, GRAIN - ACRES HARVESTED', registros SURVEY: STATE 2454, COUNTY 56339; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-2",
+      "motivo": "REVISÃO 15/11 (dano por frio): perda de grão máxima a 28 °F = -2,2 °C no enchimento (K-State MF-2234, Staggenborg & Vanderlip 1996)"
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao",
+      "motivo": "REVISÃO 15/11 (dano por frio): dano no enchimento de grãos; tolera geada na fase vegetativa (Gerik et al. B-6137)"
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.67",
+      "motivo": "REVISÃO 15/11 (dano por frio): meia floração 64-68 d do híbrido Medium (Texas A&M 2026, Tab. 3), meio 66 / ciclo médio 99 d"
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): fim na camada preta = fim do ciclo da linha"
     }
   ],
   "pendencias": [
@@ -546,7 +614,8 @@
     "temp_otima_min_c 22 e temp_otima_max_c 34: sem fonte americana, mantidos do Brasil (Embrapa 2015 e FAO ECOCROP; fisiologia da espécie). Nas fontes dos EUA lidas (Gerik et al. B-6137, K-State MF3740, Texas A&M SCSC-2026-09) só há a Tb, o teto de 100 °F do cálculo de graus-dia e o ideal de 70 °F para germinação. tmax_critica_c 36 = dano ao pólen do emborrachamento à floração, agora com fonte americana (Texas A&M SCSC-2026-09: ~97 °F = 36,1 °C, citando Djanaguiraman et al. 2018, K-State); o artigo de Djanaguiraman não foi lido. Resolveria a faixa ótima: tabela de temperatura ótima de crescimento de um manual da K-State ou da Texas A&M.",
     "graus_dia_min (revisão do lote 3, 15/11): 1280 segue a convenção (Manhattan 25/mai + ciclo_dias_min 84 d, mediana 1284) e fica ~210 °C·dia abaixo da exigência do híbrido curto de Gerik et al. convertida no POWER (1490-1504, atingida em 88-98 dias). O ciclo de 84-85 d foi medido num só ano (2010, quente). Resolveria: dias até a camada preta do híbrido precoce em mais anos no Kansas (ensaios de híbridos da K-State).",
     "calendario_usda: 'Sorghum for grain' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass).",
-    "semeadura_inicio/fim (05-15 a 06-20) = 'most active' do Handbook 628 (2010) no Kansas (início 5/mai, fim 15/jul). Oeste do Texas, a outra região: o Handbook só tem o Texas inteiro, 'most active' 11/mar-15/jun (o sul do Texas semeia em março). Conferência com cenarios/sorgo_gd.json (graus-dia e ciclo NÃO mudados): Manhattan, Hays e Hutchinson semeiam de 20/mai a 1/jun (dentro); Lubbock 20/jun fica depois do 'most active' do Texas (até 15/jun), mas antes do fim (5/jul); Hutchinson 1/jul é o double-crop, fora da linha (depois do 'most active' do Kansas, antes do fim de 15/jul)."
+    "semeadura_inicio/fim (05-15 a 06-20) = 'most active' do Handbook 628 (2010) no Kansas (início 5/mai, fim 15/jul). Oeste do Texas, a outra região: o Handbook só tem o Texas inteiro, 'most active' 11/mar-15/jun (o sul do Texas semeia em março). Conferência com cenarios/sorgo_gd.json (graus-dia e ciclo NÃO mudados): Manhattan, Hays e Hutchinson semeiam de 20/mai a 1/jun (dentro); Lubbock 20/jun fica depois do 'most active' do Texas (até 15/jun), mas antes do fim (5/jul); Hutchinson 1/jul é o double-crop, fora da linha (depois do 'most active' do Kansas, antes do fim de 15/jul).",
+    "DANO POR FRIO (15/11): tmin_critica_c = -2 (28 °F) da meia floração à camada preta (0,67-1,00), estudo em câmara (Staggenborg & Vanderlip 1996, via K-State MF-2234); ver a ressalva câmara x abrigo na linha do Brasil. O risco real no Kansas é a geada de outono antes da camada preta, maior no double-crop depois do trigo (ver a pendência do double-crop): com semeadura no fim de junho, a fase sensível cai em setembro e outubro."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

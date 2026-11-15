@@ -11,6 +11,7 @@ import { Estrategias } from "../components/estrategias/Estrategias";
 import {
   Buscando, CartaoNdvi, CartaoUmidade, CHUVA_FORTE_MM, ChuvaRecente, chuvaTexto, dataCurta, diaSemana, numero, posicaoNoAno, PrevisaoSemana, SemDado, textoAviso, textoFalta,
 } from "../components/satelite/Satelite";
+import { SuaTerra } from "../components/solo/SuaTerra";
 import { Brilho, Pino, Sair } from "../components/icones";
 import { Aviso, BotaoContorno, Carregando, cx } from "../components/ui";
 import { INICIAIS_MESES, MESES_LONGOS, useIdioma } from "../i18n";
@@ -276,6 +277,13 @@ export function Dashboard() {
               : t("NASA MODIS NDVI (MOD13Q1) · 250 m · a cada 16 dias", "NASA MODIS NDVI (MOD13Q1) · 250 m · every 16 days")}
           </span>
         </div>
+
+        {/* Sua terra: síntese do solo (retrato_solo.sintese de GET /fazenda) */}
+        {fazenda.onboarding_concluido && (
+          <div className="lg:col-span-8">
+            <SuaTerra inicial={fazenda} />
+          </div>
+        )}
 
         {/* Estratégias: comparação real de rotações (GET /fazenda/estrategias) */}
         <div className="lg:col-span-8">

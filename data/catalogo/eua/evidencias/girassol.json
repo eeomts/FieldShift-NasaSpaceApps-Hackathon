@@ -38,7 +38,11 @@
     "lacuna_informacao": "Não há medição na Dakota do Norte de quanta água o girassol de sequeiro usa; usamos um cálculo com o clima da NASA. O calor mínimo para amadurecer foi calculado com 20 anos de clima no lugar mais frio dos ensaios; o máximo vem de ensaios de um só ano, e a tabela oficial do estado dá outro valor.",
     "risco_revisao_local": "Em ano seco a chuva da estação fica abaixo do que o girassol usaria com produção plena. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido, a data de semeadura e se ele amadurece antes da geada de outono.",
     "semeadura_inicio": "05-19",
-    "semeadura_fim": "06-08"
+    "semeadura_fim": "06-08",
+    "tmin_critica_c": "-1.1",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.59",
+    "fase_frio_fim_frac": "0.70"
   },
   "origem": {
     "temp_base_c": {
@@ -84,6 +88,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Sunflower 0,8-1,5 m; limite superior (sequeiro). Conferência: NDSU A1995, 'effective root depth of around 4 feet but can remove water from below this depth' (1,22 m efetivos)."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "NDSU Extension A1995 (2020), 'Frost Damage': no botão (R4) e na polinização (R5.0-R5.9), 'Temperatures of 30 F or less' danificam anteras e estigmas e deixam anéis de grão sem formar no capítulo. 30 °F = (30 - 32) x 5/9 = -1,1 °C. A fonte fala de temperatura (do ar), não de relva ou tecido. Depois da polinização e de 10 a 14 dias da secagem das pétalas a planta aguenta 25 °F com dano pequeno."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Floração R4 a R6 pela Tab. 1 do A1995 (dias da semeadura, NDAWN): R4 aos 71 dias e R6 ('Flowering complete') aos 84 dias. Ciclo médio da linha (104 + 137) / 2 = 120,5: 71 / 120,5 = 0,59 e 84 / 120,5 = 0,70. Conferência nos ensaios A652: 'Days to Flower' 64 a 76 dias com maturação em 104 a 137 dias (ex.: Carrington 2025, N4H205 E, 70 e 115 dias = 0,61)."
     }
   },
   "reuso_brasil": [
@@ -385,6 +397,24 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"SUNFLOWER, OIL TYPE - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'SUNFLOWER', class_desc 'OIL TYPE', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 661, COUNTY 6113"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Kandel, H.; Endres, G.; Buetow, R. (eds.), Sunflower Production Guide, NDSU Extension A1995, dezembro de 2020, 'Frost Damage', p. 136-137",
+      "url": "https://ndsu.edu/agriculture/sites/default/files/2023-12/a1995.pdf",
+      "trecho": "Sunflower seedlings in the cotyledonary stage (VE) can withstand temperatures down to 26 F when just emerging from the soil. [...] Sunflowers are most susceptible at the bud (R4) and pollination stages (R5.0 to R5.9) of development. Temperatures of 30 F or less can cause damage to the anthers and stigmas of the pollinating disk flowers. [...] The result of the frost damage in the flowering period is circular bands of undeveloped seed [...] Once pollination is completed and 10 to 14 days after petal drying occurs, the sunflower plants can withstand frost temperatures as low as 25 F and have only minor damage."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Kandel, H.; Endres, G.; Buetow, R. (eds.), Sunflower Production Guide, NDSU Extension A1995, dezembro de 2020, p. 12, Tabela 1",
+      "url": "https://ndsu.edu/agriculture/sites/default/files/2023-12/a1995.pdf",
+      "trecho": "Average GDD units from planting and days from planting [...] R4 Bud open ray flowers visible 1,469 71 [...] R5.1 Early flower 1,609 73 [...] R6 Flowering complete 1,889 84 [...] R9 Bracts yellow - head back brown 2,310 119"
     }
   ],
   "regua": {
@@ -505,6 +535,18 @@
       "antes": "pendência: codigo_nass: 'SUNFLOWER, OIL TYPE' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo s... | observacoes.codigos: codigo_nass 'SUNFLOWER, OIL TYPE'. short_desc 'SUNFLOWER, OIL TYPE - ...' = commodity_desc 'SUNFLOWER' + class_desc 'OIL...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'SUNFLOWER, OIL TYPE - ACRES PLANTED', registros SURVEY: STATE 661, COUNTY 6113; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-1.1",
+      "motivo": "REVISÃO 15/11 (dano por frio): 30 °F ou menos no botão e na polinização danificam as flores do disco (NDSU A1995). Origem: publicado"
+    },
+    {
+      "coluna": "fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "floracao, 0.59, 0.70",
+      "motivo": "REVISÃO 15/11 (dano por frio): R4 aos 71 dias e R6 aos 84 dias (NDSU A1995, Tab. 1) sobre o ciclo médio de 120,5 dias. Origem: publicado"
     }
   ],
   "pendencias": [
@@ -517,7 +559,8 @@
     "temp_otima_min_c, temp_otima_max_c e tmax_critica_c: sem fonte americana; reusados do Brasil.",
     "DECISÃO (revisão de 15/11, do arquiteto, aceita pelo usuário): a palhada fica a massa medida em Mandan-ND (van Donk et al. 2008), típico 5,6 t/ha, faixa 3,6-8,5, classe 'medio'. A regra 6 do motor só escala a palhada pelo IPCC na soja, no milho, no trigo, no arroz e no sorgo; nas demais culturas vale o típico do bloco regua. O método razão × NASS (3,84 × mediana de 2,13 t/ha = 8,2 t/ha, classe 'alto') fica só como conferência em regua.observacoes.coleta. Continua fraco: C/N, k, PB e digestibilidade são PROXY (Brasil e Feedipedia), sem dado dos EUA; o k do WEPS (0,025) é por dia de decomposição ótimo, não por dia de calendário.",
     "calendario_usda: 'Sunflower, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Oleícola e confeiteiro juntos ('Sunflower, all').",
-    "semeadura_inicio/fim (05-19 a 06-08) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 14/mai, fim 15/jun), oleícola e confeiteiro juntos. Bate com cenarios/girassol_gd.json (semeaduras de 19/mai a 6/jun)."
+    "semeadura_inicio/fim (05-19 a 06-08) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 14/mai, fim 15/jun), oleícola e confeiteiro juntos. Bate com cenarios/girassol_gd.json (semeaduras de 19/mai a 6/jun).",
+    "dano por frio: na Dakota do Norte o risco mais comum é a geada do começo do outono no enchimento (R6 a R8). A NDSU diz que a geada antes da maturação reduz produtividade, óleo e peso do grão, mas o único número dessa fase é 25 °F com 'only minor damage' depois de 10 a 14 dias da secagem das pétalas; entre R6 e esse ponto não há limiar. A coluna só aceita uma fase: ficou a floração, que tem limiar com fonte. Os dias de R4 e R6 vêm da Tab. 1 do A1995, que no POWER já se mostrou incoerente (ver a pendência de graus-dia); os ensaios A652 dão frações parecidas."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

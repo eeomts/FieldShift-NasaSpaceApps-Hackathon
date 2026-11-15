@@ -211,6 +211,7 @@ class Ferramentas:
                     {k: i.get(k) for k in ("atributo", "valor", "texto", "confianca", "fonte")} for i in retrato.get("indicadores", [])
                 ],
                 "leitura_cor_e_jeito": figuras.get("leitura"),
+                "sintese": _sintese_compacta(retrato.get("sintese")),
             },
         }
         return Resultado(_poda(dados), [Fonte(tipo="fazenda", titulo=FONTE_FICHA)])
@@ -383,6 +384,20 @@ class Ferramentas:
         analise = replace(analise, fontes=[_CENTRO_DA_CELULA.sub("", s) for s in analise.fontes])
         detalhe = _corta("; ".join(analise.fontes), 250)
         return Resultado(_poda(_analise_compacta(analise)), [Fonte(tipo="analise", titulo=FONTE_ANALISE, detalhe=detalhe)])
+
+
+def _sintese_compacta(sintese: list[dict] | None) -> list[dict]:
+    """Textura, matéria orgânica e acidez já fundidas (valor, confiança, de onde veio e a divergência); o mapa global vem como "soilgrids"."""
+    return [
+        {
+            "atributo": a.get("atributo"),
+            "valor": a.get("valor"),
+            "confianca": a.get("confianca"),
+            "evidencias": [{k: e.get(k) for k in ("fonte", "valor", "texto")} for e in a.get("evidencias") or []],
+            "divergencia": a.get("divergencia"),
+        }
+        for a in sintese or []
+    ]
 
 
 def _pontos(v: float | None) -> int | None:

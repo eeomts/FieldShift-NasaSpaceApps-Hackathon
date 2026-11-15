@@ -8,7 +8,7 @@ O catálogo de culturas e equipamentos **mora no app**, em `agroia/base/`:
 
 | O quê | Onde | Quem mexe |
 |---|---|---|
-| Ids, nomes e **sinônimos em PT/EN/ES**, família, grupo, perene, tipos (fixadora de N, cobertura, raiz profunda, tolerante à seca) | `agroia/base/culturas.json` | Pessoa 3 (sinônimos), por PR |
+| Ids, nomes e **sinônimos em PT/EN**, família, grupo, perene, tipos (fixadora de N, cobertura, raiz profunda, tolerante à seca) | `agroia/base/culturas.json` | Pessoa 3 (sinônimos), por PR |
 | Categorias de equipamento e seus sinônimos | `agroia/base/equipamentos.json` | Pessoa 2, só se faltar categoria |
 | **Parâmetros agronômicos** (ciclo, temperatura, água, Kc, raiz, cobertura, código da PAM) | `data/catalogo/culturas.csv` | Pessoa 1 |
 

@@ -22,7 +22,7 @@ assert os.environ["DB_HOST"] in ("127.0.0.1", "localhost"), "testes só rodam em
 @pytest.fixture(autouse=True)
 def limpa_banco():
     with get_engine().begin() as c:
-        c.execute(text("TRUNCATE usuario, documento, busca_log, clima_celula, relevo_ponto CASCADE"))  # trecho e clima_mensal caem em cascata
+        c.execute(text("TRUNCATE usuario, documento, busca_log, clima_celula, relevo_ponto, solo_ponto CASCADE"))  # trecho e clima_mensal caem em cascata
     yield
 
 
@@ -35,3 +35,13 @@ def client() -> TestClient:
 def auth(client) -> dict:
     r = client.post("/auth/register", json={"nome": "Marta", "email": "marta@exemplo.com", "senha": "segredo123"})
     return {"Authorization": f"Bearer {r.json()['token']}"}
+
+
+@pytest.fixture(autouse=True)
+def cliente_solo(monkeypatch):
+    """O SoilGrids nunca vai à rede nos testes: a tarefa em segundo plano usa este cliente falso (muda `.resposta` para variar)."""
+    from solo_helpers import ClienteFalso
+
+    cliente = ClienteFalso()
+    monkeypatch.setattr("app.services.solo.processamento.get_cliente", lambda: cliente)
+    return cliente
