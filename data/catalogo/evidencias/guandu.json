@@ -1,0 +1,275 @@
+{
+  "id": "guandu",
+  "valores": {
+    "tipos": "cobertura|forrageira|fixadora_n|raiz_profunda|tolerante_seca",
+    "perene": "false",
+    "ciclo_dias_min": "90",
+    "ciclo_dias_max": "150",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "18",
+    "temp_otima_max_c": "38",
+    "tmax_critica_c": "40",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "437",
+    "agua_ciclo_mm_max": "839",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "",
+    "profundidade_raiz_m": "2.0",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "true",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "alto",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (guandu cv. Kaki em Senador Canedo-GO: 50% do florescimento aos 137/124/94 dias com semeadura em 12/nov, 7/jan e 4/mar; sensível ao fotoperíodo, dias curtos; 46,6 t/ha de fitomassa verde na semeadura de novembro)|Matta, Oliveira, Verzignassi, Castro, Novo & Godoy, Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026 (92 DAE ao início e 97 DAE a 50% do florescimento; 120 dias ao florescimento e 180 dias à semente com plantio em fevereiro; Guatã cerca de 30 dias mais precoce que a BRS Mandarim; 15 t/ha MS e ~380 kg/ha N na parte aérea com semeadura em novembro, 7 t/ha e ~180 kg/ha N em janeiro; ciclo anual/bianual; geada: suscetível; déficit hídrico: alta tolerância; aptidão para cobertura do solo: média; aptidão para pastagem: forte; raiz pivotante)|Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim, s.d. (FBN até 280 kg/ha/ano de N; biodescompactador natural; vida útil de até 4 anos em pasto; ~20% de proteína; resiste à escassez de água; não tolera encharcamento)|Pereira, J., Embrapa-CPAC (Cerrados), Circular Técnica 20, O feijão guandu: uma opção para a agropecuária brasileira, 1985 (anual ou semiperene, 2-3 anos; ciclo total 150-360 dias; bom desenvolvimento até 40 °C; suporta geadas leves, perdas a -3,3 °C e morte a -4,14 °C; cultivado com 500-1.000 mm/ano; raiz pivotante penetra solos compactados; crescimento inicial lento)|Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, Consorciação com guandu na recuperação de pastagens degradadas, 2017 (roçada anual; florescimento no início da estação seca; palatável só após o florescimento; 18-20% de proteína bruta; estande dura cerca de três anos)|FAO ECOCROP Cajanus cajan, código 576 (ótimo 18-38 °C, absoluto 10-45 °C; chuva ótima 600-1.500 mm/ano; ciclo 90-365 d; perene, muitas vezes cultivado como anual; não tolera geada) — números lidos na cópia do banco EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial estava fora do ar; notas da ficha lidas no Wayback Machine (cropView?id=576, 2018)|Cook et al., Tropical Forages (tropicalforages.info), Cajanus cajan (raiz pivotante até 2 m; geralmente cultivado entre 18 e 30 °C e tolera mais de 35 °C; não tolera geada; tolera seca; florescimento 60 dias nas cultivares precoces e 180-250 dias nas arbóreas; pouco palatável até os animais se acostumarem)|Patel, Savani & Shekh, Annals of Arid Zone 35(2):117-120, 1996 (ET em lisímetro de pesagem, cv. GT-100, Anand, Índia: 437-458 mm da emergência a 50% da floração, cerca de 83 dias; 800-839 mm no ciclo de 147 dias até a maturação; pico de 8,6 mm/dia)|Mahendraraj et al., Experimental Results 2:e39, 2021, doi:10.1017/exp.2021.31 (Tb de 8,4 °C para germinação e 10,8 °C para emergência; cita Carberry et al. com Tb de 9,9 °C para germinação) (PROXY: temperatura base da germinação e emergência, não do ciclo todo)|Câmara & Godoy, Nativa 7(4):343-348, 2019 (raízes de guandu amostradas até 1 m, 64% nos primeiros 20 cm; até 8,98 t/ha MS na parte aérea)|Alvarenga, Costa, Moura Filho & Regazzi, R. Bras. Ci. Solo 20:319-326, 1996 (em casa de vegetação, as raízes do guandu foram reduzidas dentro e abaixo da camada compactada)|FAO-56 Tab.12, grupo e. Legumes (Leguminosae): Kc ini 0.4 e Kc mid 1.15 (PROXY: grupo das leguminosas do FAO-56, porque o FAO-56 não traz o guandu)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "perene",
+      "antes": "true",
+      "depois": "false",
+      "motivo": "Como cobertura em rotação, o guandu é manejado no florescimento, em 3 a 5 meses. A Embrapa classifica a BRS Guatã como 'Anual/Bianual' e indica uso 'após milho, soja, sorgo, trigo'. A CPAC (1985) o chama de 'anual ou semiperene'. O ECOCROP diz que é perene, mas 'often grown as a warm-season annual'. Ele só fica no campo o ano todo no consórcio com pastagem (3 a 4 anos, Mandarim). Ver pendências."
+    },
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "150",
+      "depois": "90",
+      "motivo": "O ciclo agora vai até o manejo no florescimento, e não até o grão. A BRS Guatã chega a 50% de flores aos 97 dias após a emergência e começa a florescer 86 dias após o plantio de março. O cv. Kaki chegou a 50% de flores aos 94 dias com semeadura em 4/mar (Amabile et al. 2000). O valor de 150 era o ciclo total até o grão (CPAC 1985: 150-360)."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "365",
+      "depois": "150",
+      "motivo": "O cv. Kaki levou 137 dias até 50% de flores com semeadura em 12/nov (Amabile 2000). A Guatã, semeada em novembro, chegou ao pleno florescimento em abril (cerca de 150 dias). A Mandarim floresce cerca de 30 dias depois da Guatã, que leva 'quatro meses', ou seja, cerca de 5 meses. Os 365 dias do rascunho valem para o grão ou o uso perene. Até o grão: 180 dias (Guatã, plantio em fevereiro) e 150-360 dias (CPAC 1985)."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "",
+      "depois": "10",
+      "motivo": "Não achei Tb do desenvolvimento até a floração. Usei a Tb da emergência de 10,8 °C e a da germinação de 8,4 °C (Mahendraraj et al. 2021, 6 genótipos), e a de 9,9 °C citada de Carberry et al. O mínimo absoluto do ECOCROP também é 10 °C. Os valores são da germinação e emergência, por isso entram como PROXY."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "29",
+      "depois": "38",
+      "motivo": "O ECOCROP (código 576) dá ótimo de 18 a 38 °C e absoluto de 10 a 45 °C. Não achei fonte para 29. A Tropical Forages diz 'generally grown in temperatures of 18–30 ºC' e que tolera mais de 35 °C. Se a equipe preferir uma faixa conservadora, use 30 (ver pendências)."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "",
+      "depois": "40",
+      "motivo": "CPAC (1985), citando Seiffert & Thiago (1983): 'se desenvolve bem até a 40 °C'. Não é um limiar de floração medido. O máximo absoluto do ECOCROP é 45 °C."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "",
+      "depois": "437",
+      "motivo": "ET medida em lisímetro de pesagem da emergência até 50% da floração (fases P1 a P5, cerca de 83 dias): 437 mm em 1993 e 458 mm em 1992 (Patel et al. 1996, Índia). Corresponde ao uso como cobertura, cortada na floração."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "",
+      "depois": "839",
+      "motivo": "ET do ciclo completo até a maturação, 147 dias: 839 mm em 1992 e 799,5 mm em 1993 (Patel et al. 1996). Vale para o ciclo longo ou de grão. Para comparação, a CPAC (1985) cita cultivo com 500-1.000 mm/ano e o ECOCROP dá chuva ótima de 600-1.500 mm/ano."
+    },
+    {
+      "coluna": "kc_inicial",
+      "antes": "",
+      "depois": "0.4",
+      "motivo": "PROXY: grupo e. Legumes do FAO-56 Tab.12 (Kc ini 0.4). Não achei Kc medido para o guandu com valores legíveis. Os relatórios de lisímetro de Akola (PoCRA) e o estudo de Vidarbha (core.ac.uk) estavam inacessíveis."
+    },
+    {
+      "coluna": "kc_medio",
+      "antes": "",
+      "depois": "1.15",
+      "motivo": "PROXY: grupo e. Legumes do FAO-56 Tab.12 (Kc mid 1.15; o mesmo valor de 'Beans, dry and Pulses'). Fica pendente trocar por um Kc medido."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "antes": "",
+      "depois": "2.0",
+      "motivo": "Tropical Forages: 'deep taproot (to 2 m)'. A ficha do ECOCROP diz 'deep and quick growing taproot'. Câmara & Godoy (2019) acharam raízes até o limite da amostragem (1 m), com 64% nos primeiros 20 cm. O FAO-56 Tab.22 não traz o guandu."
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "alta",
+      "depois": "media",
+      "motivo": "A ficha da BRS Guatã (Embrapa 2026) dá 'Aptidão para cobertura do solo: Média' e 'Velocidade de cobertura inicial do solo: Baixa/Média'. A CPAC (1985) diz que é uma das leguminosas de adubo verde de 'crescimento mais lento'. A Tropical Forages diz 'growth is slow until the taproot develops'."
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "medio",
+      "depois": "alto",
+      "motivo": "Embrapa: 'Aptidão para pastagem: Forte' (BRS Guatã); grãos e forragem com '~20% de proteína e boa digestibilidade' (BRS Mandarim); usado como banco de proteína na seca (Circ. Téc. 75). Ressalva: os animais só comem o guandu depois do florescimento, e a Tropical Forages o chama de 'moderately unpalatable'."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|FAO ECOCROP (temperatura)|Embrapa (guandu como adubo verde)|sem Kc nem raiz no FAO-56",
+      "depois": "(ver valores.fontes)",
+      "motivo": "Troquei as fontes genéricas por referências conferidas."
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "baixa",
+      "depois": "media",
+      "motivo": "Ciclo, temperaturas, geada, N, biomassa e as colunas qualitativas têm fonte primária, a maioria da Embrapa. Kc e Tb são PROXY. A água vem de um único estudo na Índia."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Amabile, Fancelli & Carvalho, Comportamento de espécies de adubos verdes em diferentes épocas de semeadura e espaçamentos na região dos Cerrados, Pesq. agropec. bras. 35(1):47-54, 2000",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/5695/2799/20586",
+      "trecho": "TABELA 3. Número de dias para atingir 50% do florescimento ... Guandu 137Aa 124Bb 94Cc [12 de novembro, 7 de janeiro, 4 de março]"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "perene",
+        "sensivel_geada",
+        "cobertura_solo",
+        "valor_forrageiro",
+        "tipos"
+      ],
+      "fonte": "Matta et al., Embrapa Pecuária Sudeste, Comunicado Técnico 120, BRS Guatã - nova cultivar de Cajanus cajan, 2026",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "Ciclo até florescimento (dias) 120 (plantio em fevereiro) | Ciclo até produção de sementes (dias) 180 | Ciclo vegetativo Anual/Bianual | Geada Suscetível | Déficit Hídrico Alta | Aptidão para pastagem Forte | Aptidão para cobertura do solo Média | Velocidade de cobertura inicial do solo Baixa/Média"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Matta et al., Embrapa Comunicado Técnico 120, 2026",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "92 dias da emergência das plântulas ao início do florescimento, 97 dias da emergência até metade das plantas estarem em florescimento ... A BRS Guatã é de ciclo normal e, comparativamente à BRS Mandarim, é mais precoce em torno de 30 dias, atingindo 50% de florescimento após quatro meses."
+    },
+    {
+      "colunas": [
+        "aporte_biomassa",
+        "fixa_nitrogenio"
+      ],
+      "fonte": "Matta et al., Embrapa Comunicado Técnico 120, 2026",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1188137/1/2026-cppse-com-tec-120-fpm-brs-guata-nova-cultivar-cajanus-cajan.pdf",
+      "trecho": "com semeadura realizada em novembro de 2024 ... produtividade de matéria seca de 15 t.ha-1 e aporte em torno de 380 kg de N.ha-1 fornecido pela parte aérea ... janeiro de 2025 ... 7 t.ha-1 e com aporte em torno de 180 kg de N.ha-1"
+    },
+    {
+      "colunas": [
+        "fixa_nitrogenio",
+        "raiz_profunda",
+        "valor_forrageiro",
+        "tipos"
+      ],
+      "fonte": "Embrapa Pecuária Sudeste/Unipasto, folder Guandu BRS Mandarim",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1148447/1/GuanduBrsMandarim.pdf",
+      "trecho": "Biodescompactador natural do solo: seu vigoroso sistema radicular penetra no solo compactado ... A fixação de nitrogênio pode chegar a 280 kg/ha/ano ... forragem contêm aproximadamente 20% de proteína e boa digestibilidade"
+    },
+    {
+      "colunas": [
+        "perene",
+        "ciclo_dias_max",
+        "tmax_critica_c",
+        "sensivel_geada",
+        "agua_ciclo_mm_min",
+        "raiz_profunda",
+        "cobertura_solo"
+      ],
+      "fonte": "Pereira, J., O feijão guandu: uma opção para a agropecuária brasileira, Embrapa-CPAC Circular Técnica 20, 1985",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/549433/1/cirtec20.pdf",
+      "trecho": "leguminosa arbustiva, anual ou semiperene, atingindo de dois a três anos de idade ... O ciclo varia de 150 a 360 dias ... se desenvolve bem até a 40 °C e suporta geadas leves sem ocorrer desfolha, mas sofre perdas a -3,3 °C e morte total a -4,14 °C. É cultivada sob condições de precipitação que vão de 500 a 1.000 mm per ano. ... Sua raiz pivotante penetra com certa facilidade em solos compactados e adensados"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro",
+        "perene"
+      ],
+      "fonte": "Oliveira, P.P.A., Embrapa Pecuária Sudeste, Circular Técnica 75, 2017",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1069192/1/Circula75.pdf",
+      "trecho": "na época seca, o guandu fornece forragem de alto teor proteico aos animais, pois é palatável somente após o florescimento, que ocorre no início da estação seca"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "temp_base_c",
+        "tmax_critica_c",
+        "perene"
+      ],
+      "fonte": "FAO ECOCROP, Cajanus cajan (Ecocrop code 576); números da cópia EcoCrop_DB.csv (OpenCLIM) e notas da ficha via Wayback Machine",
+      "url": "https://raw.githubusercontent.com/OpenCLIM/ecocrop/main/EcoCrop_DB.csv",
+      "trecho": "576,Cajanus cajan ... LISPA=perennial; TOPMN=18; TOPMX=38; TMIN=10; TMAX=45; ROPMN=600; ROPMX=1500; GMIN=90; GMAX=365 | ficha: 'Perennial, often grown as a warm-season annual. Growing period is 90-180 days for annual-production'; 'Does not tolerate frost'"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "temp_otima_max_c",
+        "sensivel_geada",
+        "valor_forrageiro"
+      ],
+      "fonte": "Cook et al., Tropical Forages, Cajanus cajan fact sheet",
+      "url": "https://tropicalforages.info/text/entities/cajanus_cajan.htm",
+      "trecho": "1–4 m tall with a deep taproot (to 2 m) ... grows in temperatures >35 ºC ... but generally grown in temperatures of 18–30 ºC ... Leaf cannot tolerate frost ... Moderately unpalatable until stock become accustomed to the taste"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Patel, Savani & Shekh, Comparison of evapotranspiration with pan evaporation in pigeonpea at Anand, Annals of Arid Zone 35(2):117-120, 1996",
+      "url": "https://epubs.icar.org.in/index.php/AAZ/article/download/65240/27553/163934",
+      "trecho": "Tabela 1 (ET mm, P1-P5 até 50% flowering): 1992 30.7+54.4+86.9+136.1+150.3; 1993 21.9+44.5+90.5+206.4+74.1 | Seasonal evapotranspiration (mm) 839.0 799.5 ... Crop duration (days) 147"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Mahendraraj et al., Genotypic variation in cardinal temperatures and thermal time for germination and seedling emergence of pigeonpea, Experimental Results 2:e39, 2021",
+      "url": "https://era.dpi.qld.gov.au/id/eprint/8410/1/genotypic-variation-in-cardinal-temperatures-and-thermal-time-for-germination-and-seedling-emergence-of-pigeonpea-cajanus-cajan-l-millsp.pdf",
+      "trecho": "Estimated Tb for 50% germination and emergence were 8.4 and 10.8°C, respectively, with no significant differences between genotypes."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "aporte_biomassa"
+      ],
+      "fonte": "Câmara & Godoy, Desempenho de guandu associado à subsolagem quanto à produção de fitomassa e descompactação de solo, Nativa 7(4):343-348, 2019",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1110924/1/Guandu.pdf",
+      "trecho": "as raízes das plantas de cobertura concentraram-se nos primeiros 20 cm de solo ... (0-20, 20-40, 40-60, 60-80 e 80-100 cm)"
+    },
+    {
+      "colunas": [
+        "raiz_profunda"
+      ],
+      "fonte": "Alvarenga et al., Crescimento de raízes de leguminosas em camadas de solo compactadas artificialmente, R. Bras. Ci. Solo 20, 1996",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/477307/1/Crescimentoraizes.pdf",
+      "trecho": "As leguminosas, com exceção do mata-pasto, tiveram os sistemas radiculares significativamente reduzidos dentro da camada compactada e abaixo dela"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio"
+      ],
+      "fonte": "Allen et al., FAO-56, Tabela 12 (PROXY)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "e. Legumes (Leguminosae) 0.4 1.15 0.55"
+    }
+  ],
+  "pendencias": [
+    "Kc: não há Kc medido para o guandu. Os Kc 0.4 e 1.15 são PROXY do grupo Legumes do FAO-56. Os relatórios de Kc em lisímetro de pigeonpea da PDKV Akola (mahapocra.gov.in, Phase VIII-X) recusaram conexão, e o artigo de Vidarbha (core.ac.uk/outputs/690753542) caiu no bloqueio da Cloudflare. Vale tentar de outra rede. kc_final ficou vazio pela convenção (corte na floração).",
+    "temp_base_c = 10 vem de PROXY da germinação e emergência (Mahendraraj 2021: 8,4 e 10,8 °C) e do mínimo absoluto do ECOCROP. Não achei Tb fenológica da floração. O artigo de Omanga et al. (Quênia) não estava acessível.",
+    "temp_otima_max_c: o ECOCROP dá 38 °C, mas a Tropical Forages dá a faixa usual de 18-30 °C. Escolhi 38 para seguir o padrão das outras culturas (ECOCROP). Se o app pontuar pela média do ar, 30 é mais conservador.",
+    "Os números do ECOCROP vieram da cópia EcoCrop_DB.csv (OpenCLIM). O site oficial (ecocrop.apps.fao.org) deu erro de banco em todas as tentativas. Conferi a cópia com os valores que outros agentes leram no site oficial (Crotalaria 20-30/4-40, Helianthus 17-34/5-45, Sorghum 22-35): bateram.",
+    "tmax_critica_c = 40 diz que o guandu 'se desenvolve bem até 40 °C' (CPAC 1985). Não é um limiar de aborto floral medido. Não achei esse limiar específico do guandu.",
+    "agua_ciclo: o único dado medido é de um estudo indiano (Anand, cv. GT-100 precoce, semiárido, irrigado). Os 437 mm cobrem cerca de 83 dias até a floração; ciclos brasileiros de 90 a 150 dias tendem a gastar mais. Os 839 mm são do ciclo completo até o grão.",
+    "profundidade_raiz_m = 2.0 vem da Tropical Forages ('taproot to 2 m'). O livreto de botânica do ICRISAT ('may extend down more than 2 m, but extensive development ... upper 60 cm') só apareceu em trecho de busca: o PDF (oar.icrisat.org/10485) deu 401, então não entra como evidência. A medição brasileira (Nativa 2019) só foi até 1 m.",
+    "raiz_profunda = true segue a Embrapa ('biodescompactador natural', CPAC 1985, Mandarim). Ressalva: em vaso, Alvarenga et al. (1996) viram as raízes do guandu reduzidas dentro e abaixo da camada compactada.",
+    "perene = false pressupõe o uso em rotação, manejado no florescimento. No consórcio com pastagem (BRS Mandarim) ele fica 3 a 4 anos com roçada anual. Se o app modelar esse uso, perene seria true.",
+    "ciclo_dias_max = 150 pode ser curto para cultivares tardias de porte alto semeadas cedo na primavera. A Tropical Forages cita 180-250 dias até a floração nas arbóreas, mas não achei número brasileiro para a Mandarim semeada em outubro. Não achei fonte oficial do IDR-Paraná para o ciclo da IAPAR 43 Aratã (anão). Só uma página comercial, que não usei, cita 120-150 dias até a floração.",
+    "O Comunicado Técnico 119 da Embrapa (BRS Guatã, 2025) deu 'Identificador inválido' no ainfo e não foi lido."
+  ]
+}

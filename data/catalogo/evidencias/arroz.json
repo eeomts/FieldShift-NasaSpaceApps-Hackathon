@@ -1,0 +1,202 @@
+{
+  "id": "arroz",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "95",
+    "ciclo_dias_max": "115",
+    "temp_base_c": "11",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "35",
+    "tmax_critica_c": "35",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "400",
+    "agua_ciclo_mm_max": "600",
+    "kc_inicial": "0.3",
+    "kc_medio": "1.2",
+    "kc_final": "0.6",
+    "profundidade_raiz_m": "1.0",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "fontes": "SISTEMA: arroz de terras altas (sequeiro); não representa o arroz irrigado por inundação (RS/SC)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Clima (faixa ótima 20-35 °C; esterilidade >35 °C na floração; sensibilidade ao frio)|Embrapa Arroz e Feijão, Catálogo de cultivares de arroz, 2013 (ciclo das cultivares de terras altas 102-115 d)|Embrapa Roraima, Circular Técnica 08, 2011 (ciclo das cultivares de terras altas 95-115 d)|Embrapa Agrossilvipastoril, Jornada Científica 2024, citando Crusciol et al. 2013 Agronomy Journal 105:237 (água 400-600 mm, terras altas só com chuva)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Irrigação (necessidade total ~600 mm do terras altas por aspersão)|Embrapa Arroz e Feijão, Comunicado Técnico 214, 2013 (Kc decendial de lisímetro do terras altas, ciclo 110 d; conferência de Kc médio)|FAO-56 Tab.12 (Kc médio 1.20 e final 0.60 de Rice; Kc ini 0.3 herdado do grupo Cereals, pois o 1.05 de Rice é para arroz inundado)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite superior = sequeiro)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C; medida em arroz irrigado, mesma espécie)",
+    "confianca_parametros": "media"
+  },
+  "mudancas": [
+    {
+      "coluna": "kc_inicial",
+      "antes": "1.05",
+      "depois": "0.3",
+      "motivo": "FAO-56 diz que o Kc ini 1.05 de Rice é para arroz em lâmina d'água (evaporação da lâmina). A linha passa a representar o arroz de terras altas (sequeiro), sem lâmina, então herda o Kc ini do grupo i. Cereals (0.3), como as demais culturas do catálogo. O Kc decendial medido pela Embrapa em lisímetro no terras altas começa em 0.60 (primeiro decêndio), registrado como alternativa nas pendências."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "450",
+      "depois": "400",
+      "motivo": "O 450-700 vinha da FAO para arroz irrigado. Para terras altas, a Embrapa (citando Crusciol et al. 2013) dá 400-600 mm de chuva bem distribuída."
+    },
+    {
+      "coluna": "agua_ciclo_mm_max",
+      "antes": "700",
+      "depois": "600",
+      "motivo": "Mesma fonte (400-600 mm). A Embrapa (500 Perguntas, Irrigação) também dá ~600 mm de necessidade total para o terras altas irrigado por aspersão, o que confirma o teto."
+    },
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "100",
+      "depois": "95",
+      "motivo": "Na tabela da Circular Técnica 08 da Embrapa Roraima, a BRS Primavera aparece com 95 dias. No catálogo nacional (2013) o menor ciclo do terras altas é 102 d (BRS Pepita)."
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "150",
+      "depois": "115",
+      "motivo": "Os 150 d valem para cultivares irrigadas de ciclo longo. As cultivares de terras altas do catálogo Embrapa 2013 vão até 115 d (BRS Bonança), e as da Circular de Roraima também (BRS Monarca/Apinajé). A Embrapa classifica até 115 d como precoce."
+    },
+    {
+      "coluna": "temp_base_c",
+      "antes": "10",
+      "depois": "11",
+      "motivo": "É a única Tb que achei em fonte Embrapa: 11 °C (Infeld et al. 1998, usada pela Embrapa Clima Temperado no GD Arroz). Foi medida em arroz irrigado, mas a temperatura base é da espécie e não do sistema."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "30",
+      "depois": "35",
+      "motivo": "Embrapa: 'A temperatura ótima para o desenvolvimento do arroz situa-se entre 20°C e 35°C'. O 30 vinha do ECOCROP, que não consegui abrir (exige login), então não foi conferido."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "RASCUNHO A CONFERIR|FAO-56 ...|FAO IWM Manual 3 (água)|FAO ECOCROP (temperatura)|Embrapa Arroz e Feijão (ciclo)",
+      "depois": "ver valores.fontes",
+      "motivo": "Saem do campo: o manual FAO de água (arroz inundado) e o ECOCROP (não lido). Entram as fontes Embrapa específicas do terras altas."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "kc_inicial"
+      ],
+      "fonte": "FAO, Irrigation and Drainage Paper 56, cap. 6 (texto da Tab.12/Tab.14), 1998",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Kc ini for paddy rice. For rice growing in paddy fields with a water depth of 0.10-0.20 m, the ETc during the initial stage mainly consists of evaporation from the standing water. The Kc ini in Table 12 is 1.05"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 Tab.12 (t12.txt extraído)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "i. Cereals 0.3 1.15 0.4 ... Rice 1.05 1.20 0.90-0.60 1"
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_inicial",
+        "kc_final"
+      ],
+      "fonte": "Silva, Heinemann, Assad, Stone. Risco Climático para o Arroz de Terras Altas nos Estados de Goiás e Mato Grosso. Embrapa Arroz e Feijão, Comunicado Técnico 214, 2013",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/977012/1/comunicadotecnico214.pdf",
+      "trecho": "Tabela 1. Coeficientes de cultura decendiais para o arroz de terras altas. 110 [dias]: 0,60 0,70 0,91 1,06 1,15 1,17 1,20 1,19 1,15 1,01 0,90 (obtidos experimentalmente em lisímetro)"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 Tab.22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Rice 0.5-1.0 ... The smaller values for Zr may be used for irrigation scheduling and the larger values for modeling soil water stress or for rainfed conditions."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Silva, S. C. Clima. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964838/1/CNPAF2013500PR6.pdf",
+      "trecho": "A temperatura ótima para o desenvolvimento do arroz situa-se entre 20°C e 35°C. [...] de 30°C a 33°C para a floração e de 20°C a 25°C para a maturação."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Silva, S. C. Clima. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964838/1/CNPAF2013500PR6.pdf",
+      "trecho": "O estádio mais sensível do arroz a altas temperaturas é a floração [...] A ocorrência de temperaturas superiores a 35°C pode causar esterilidade de espiguetas, principalmente se a cultura estiver sob limitado suprimento de água."
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Silva, S. C. Clima. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964838/1/CNPAF2013500PR6.pdf",
+      "trecho": "Dependendo da sensibilidade das cultivares, temperaturas inferiores a 15°C ou 20°C induzem à esterilidade das espiguetas. [...] que a semeadura não seja efetuada antes que a temperatura se estabilize acima de 12°C"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Embrapa Agrossilvipastoril / Embrapa Arroz e Feijão, Jornada Científica (resumo sobre arroz em ILPF, Sinop-MT), 2024, citando Crusciol et al., Agronomy Journal 105(1):237-246, 2013",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1175235/1/jornada-cientifica-cpamt-p70.pdf",
+      "trecho": "dependendo apenas da água das chuvas para produção, entre 400 mm e 600mm bem distribuídos ao longo da safra (Crusciol et al., 2013)"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Irrigação. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964866/1/CNPAF2013500PR10.pdf",
+      "trecho": "Para o arroz de terras altas irrigado por aspersão, a necessidade total de água situa-se em torno de 600 mm."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Arroz e Feijão, Catálogo de cultivares de arroz, 2013 (tabela Arroz de Terras Altas)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/961698/1/catalogo.pdf",
+      "trecho": "Ciclo (dias): BRS ESMERALDA 105 a 110; BRSGO SERRA DOURADA 107; BRS MONARCA 112; BRS SERTANEJA 110; BRS PEPITA 102; BRS BONANÇA 115; BRS PRIMAVERA 105"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Embrapa Roraima, Atributos Agronômicos de Cultivares Preferenciais de Arroz Recomendadas para Roraima, Circular Técnica 08, 2011",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1029661/1/CIT123N08.pdf",
+      "trecho": "Tabela 3. Cultivares preferenciais de arroz de sequeiro (terras altas) [...] Ciclo (dias): BRS Primavera 95; BRS Bonança 105; BRS Sertaneja 100; BRS Pepita 100; BRS Monarca 115; BRS Apinajé 115"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max"
+      ],
+      "fonte": "Cultivares. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964848/1/CNPAF2013500PR4.pdf",
+      "trecho": "De acordo com o número de dias decorridos entre o plantio e a maturação de colheita [...] Precoces: até 115 dias. Intermediárias: de 115 a 135 dias. Tardias: mais de 135 dias."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Steinmetz et al., Estádios de desenvolvimento de 10 cultivares de arroz irrigado expressos em graus-dia, XV Congresso Brasileiro de Agrometeorologia, Embrapa Clima Temperado, 2007",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/743981/1/CBAgro152007Estadios2081.pdf",
+      "trecho": "temperatura base (Tb) de 11ºC (INFELD et al., 1998), da emergência (i=1) até a data de cada estádio"
+    }
+  ],
+  "pendencias": [
+    "Decisão de sistema: a linha representa o arroz de TERRAS ALTAS (sequeiro, Cerrado/Centro-Norte). O arroz irrigado por inundação (RS/SC) fica fora, porque não entra em rotação de sequeiro. Se o app precisar dele, crie uma linha separada (Kc ini 1.05-1.20 conforme a FAO-56 Tab.14, água de 688 a 1.210 mm segundo a Embrapa, ciclo até ~150 d). Talvez valha renomear para 'Arroz de terras altas'.",
+    "kc_inicial: usei 0.3 (FAO-56, grupo Cereals) para manter o mesmo critério das outras culturas. A Embrapa mediu em lisímetro, no terras altas, Kc de 0.60 no 1º decêndio (CT 214). É uma alternativa local e realista para semeadura na época chuvosa, quando o solo fica úmido com frequência. Quem consolidar decide se o catálogo usa Tab.12 pura ou valores medidos no Brasil.",
+    "kc_final: mantive 0.6 (limite inferior da faixa FAO de 0.90-0.60, colheita com grão seco). O Kc medido pela Embrapa no último decêndio é 0.90. Não achei regra que defina qual ponta da faixa usar para o terras altas.",
+    "temp_base_c = 11 °C vem de arroz IRRIGADO no RS (Infeld et al. 1998, via Embrapa Clima Temperado). Não achei Tb publicada para cultivares de terras altas. O 10 °C do rascunho não tinha fonte lida.",
+    "temp_otima_max_c = 35 é igual a tmax_critica_c = 35, como no texto Embrapa (ótima 20-35 °C; acima de 35 °C esterilidade). Se o app precisar de ótima < crítica, uma opção com a mesma fonte é usar 33 °C, o teto da faixa ótima na floração (30-33 °C).",
+    "Água 400-600 mm: a fonte é um resumo de evento Embrapa (2024) que cita Crusciol et al. 2013 (Agronomy Journal). Não li o artigo original. Conferência que fiz: a média dos Kc decendiais da Embrapa (~1.0) x 110 d x ETo de 4-5 mm/d dá ~440-550 mm. Mas a ETo usada aí é da minha memória, não de fonte.",
+    "FAO ECOCROP não abriu (redireciona para login Google), então saiu das fontes. O temp ótima 20-30 do rascunho não foi conferido.",
+    "Colunas qualitativas sem fonte primária lida, ficaram como julgamento agronômico: tipos=comercial (não marquei tolerante_seca, porque a Embrapa diz que o arroz é muito sensível ao estresse hídrico na floração), raiz_profunda=false, cobertura_solo=media, aporte_biomassa=medio, valor_forrageiro=baixo (palha). fixa_nitrogenio=false é certo (Poaceae).",
+    "Ciclo 95-115 d é da semeadura/emergência até a maturação de colheita das cultivares Embrapa de terras altas. Cultivares privadas (ex.: AN Cambará) e cultivares antigas de ciclo médio podem passar de 115 d."
+  ]
+}
