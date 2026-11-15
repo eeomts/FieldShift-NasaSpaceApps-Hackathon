@@ -30,22 +30,22 @@ O banco de produção é um PostgreSQL 17 numa VPS da equipe, com as tabelas das
 
 ## Rodar o app
 
-Precisa de Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 20+ e Docker. O jeito abaixo roda tudo no seu computador, com um banco local e sem gastar o Gemini. O passo a passo completo (inclusive contra a VPS), os testes e a solução de problemas estão em **[`agroia/README.md`](agroia/README.md)**.
+Precisa de Python 3.12+, [uv](https://docs.astral.sh/uv/), Node 20+ e Docker. O jeito abaixo roda tudo no seu computador, com um banco local e sem gastar o Gemini. O passo a passo completo (inclusive contra a VPS), os testes e a solução de problemas estão em **[`agroai/README.md`](agroai/README.md)**.
 
 ```bash
-# 0. Banco local (só na primeira vez; depois, `docker start agroia-dev`)
-docker run -d --name agroia-dev -p 127.0.0.1:55432:5432 \
+# 0. Banco local (só na primeira vez; depois, `docker start agroai-dev`)
+docker run -d --name agroai-dev -p 127.0.0.1:55432:5432 \
   -e POSTGRES_USER=agricultura_app -e POSTGRES_PASSWORD=dev -e POSTGRES_DB=agricultura \
   pgvector/pgvector:pg17
 
 # 1. API (terminal 1)
-cd agroia/api
+cd agroai/api
 uv sync
 env $(grep -v '^#' .env.dev) uv run alembic upgrade head
 env $(grep -v '^#' .env.dev) uv run uvicorn app.main:app --reload --port 8000
 
 # 2. Site (terminal 2)
-cd agroia/web
+cd agroai/web
 npm install
 npm run dev                       # abre em http://localhost:5173
 ```
@@ -54,7 +54,7 @@ npm run dev                       # abre em http://localhost:5173
 
 ```text
 .
-├── agroia/                         # 💻 o código do app
+├── agroai/                         # 💻 o código do app
 │   ├── api/                        # back-end: FastAPI + PostgreSQL
 │   ├── web/                        # front-end: React + Vite + TypeScript
 │   └── base/                       # culturas e equipamentos usados pelo questionário
@@ -86,7 +86,7 @@ npm run dev                       # abre em http://localhost:5173
 | Entender o desafio do zero | [Desafio explicado do zero](docs/NasaSpaceApps-FieldShift/v1/.md/desafio-field-shift-nasa-space-apps-explicado-do-zero.md) |
 | Saber o que já foi decidido | [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md) |
 | Saber o que vamos construir | [`site-contexto.md`](docs/NasaSpaceApps-FieldShift/v1/application/site-contexto.md) e [`architecture/README.md`](docs/NasaSpaceApps-FieldShift/v1/application/architecture/README.md) |
-| Mexer no código | [`agroia/README.md`](agroia/README.md) |
+| Mexer no código | [`agroai/README.md`](agroai/README.md) |
 | Ajudar com os dados | [`data/README.md`](data/README.md) e o [guia de preparação](docs/NasaSpaceApps-FieldShift/v1/application/dados/GUIA-PREPARACAO-DADOS.md) |
 | Saber como acessar uma fonte | a nota da fonte em [`tools/`](docs/NasaSpaceApps-FieldShift/v1/tools/) |
 
@@ -135,6 +135,6 @@ A lista completa está em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/conte
 
 - Trabalhe numa branch (`feat/...`, `fix/...`, `docs/...`, `data/...`) e abra um PR para a `main`.
 - **Nunca suba o `.env`** nem senhas. Use o `.env.example` como modelo.
-- Rode os testes da API antes de abrir o PR (`cd agroia/api && uv run pytest`).
+- Rode os testes da API antes de abrir o PR (`cd agroai/api && uv run pytest`).
 - Decisões novas entram no `DECISOES.md` com número, status e motivo. Uma decisão que mudou não é apagada: ela é marcada como **Substituída**.
 - Itens marcados com **[verificar]** precisam ser confirmados na fonte oficial antes de virar código ou entrar no pitch.

@@ -40,7 +40,7 @@ Uma linha por município × cultura × ano. Todos os municípios que o SIDRA dev
 | Coluna | Conteúdo |
 |---|---|
 | `municipio_id` | código IBGE de 7 dígitos (o mesmo de `brasil/municipios/municipios.csv`) |
-| `cultura_id` | id da base (`agroia/base/culturas.json`) |
+| `cultura_id` | id da base (`agroai/base/culturas.json`) |
 | `ano` | ano civil da colheita |
 | `area_plantada_ha` | área plantada ou destinada à colheita (variável 8331), ha |
 | `area_colhida_ha` | área colhida (216), ha |

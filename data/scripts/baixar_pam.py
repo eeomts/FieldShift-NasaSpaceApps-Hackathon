@@ -36,7 +36,7 @@ import requests
 
 RAIZ = Path(__file__).resolve().parents[2]
 CATALOGO = RAIZ / "data" / "catalogo" / "culturas.csv"
-BASE = RAIZ / "agroia" / "base" / "culturas.json"
+BASE = RAIZ / "agroai" / "base" / "culturas.json"
 SAIDA = RAIZ / "data" / "brasil" / "pam" / "producao_municipal.csv"
 TABELA = 5457
 API = "https://apisidra.ibge.gov.br/values"

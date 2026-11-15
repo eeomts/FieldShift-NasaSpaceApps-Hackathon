@@ -1,6 +1,6 @@
 ---
 name: revisar
-description: "Revisao de codigo do AgroAI com tres revisores independentes (revisor-cetico, revisor-purista, revisor-negocio) coordenados pela sessao principal: rodada 1 em paralelo, giro em que cada um responde aos achados dos outros, resumo consolidado, depois (se o usuario quiser) proposta do agroia-arquiteto e implementacao pelo agroia-backend/agroia-frontend. Grava tudo em reviews/. Uso: /revisar [alvo] [regra de negocio]."
+description: "Revisao de codigo do AgroAI com tres revisores independentes (revisor-cetico, revisor-purista, revisor-negocio) coordenados pela sessao principal: rodada 1 em paralelo, giro em que cada um responde aos achados dos outros, resumo consolidado, depois (se o usuario quiser) proposta do agroai-arquiteto e implementacao pelo agroai-backend/agroai-frontend. Grava tudo em reviews/. Uso: /revisar [alvo] [regra de negocio]."
 argument-hint: "[alvo: vazio = diff atual | #<pr> | <hash> | <de>..<ate>] [regra de negocio]"
 disable-model-invocation: true
 ---
@@ -80,7 +80,7 @@ Mostre na conversa: veredito de cada revisor, contagem por severidade, CRÍTICO/
 AskUserQuestion: "Enviar as sugestões da revisão de <alvo> para o arquiteto?" Sim / Não. Não → passo 7.
 
 ## 5. Arquiteto
-Chame `agroia-arquiteto` como subagente:
+Chame `agroai-arquiteto` como subagente:
 ```
 MODO REVISAO
 Alvo: <comando> | Arquivos: <lista>
@@ -92,7 +92,7 @@ Grave a resposta em `NN-arquiteto.md`. Mostre: pontos que procedem com o agente 
 
 ## 6. Pergunta 2
 AskUserQuestion: "Chamar os agentes de implementação?" com a lista `id -> agente` no texto. Sim / Não.
-- Sim: dispare os pacotes (`agroia-backend` e `agroia-frontend` em paralelo quando não dependem um do outro, com o mesmo contrato). Pontos `FORA` não são implementados. Ao terminar: confira o diff, rode `pytest` e `tsc`, grave `NN-implementacao.md` (ponto → feito/não feito, arquivos, observações).
+- Sim: dispare os pacotes (`agroai-backend` e `agroai-frontend` em paralelo quando não dependem um do outro, com o mesmo contrato). Pontos `FORA` não são implementados. Ao terminar: confira o diff, rode `pytest` e `tsc`, grave `NN-implementacao.md` (ponto → feito/não feito, arquivos, observações).
 
 ## 7. Fechamento
 ```
@@ -104,4 +104,4 @@ Implementação: <não chamada | feitos / pendentes>
 Pendente com você: <perguntas, FORA, testes de tela, migration na VPS>
 Arquivos: <caminhos em reviews/>
 ```
-Se houve implementação, termine com a sugestão de commit (skill `commit-agroia`). Só commitar se o usuário pedir.
+Se houve implementação, termine com a sugestão de commit (skill `commit-agroai`). Só commitar se o usuário pedir.

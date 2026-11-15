@@ -1,21 +1,21 @@
-# Suba sempre pelo ./.deploy/agroia: ele le o .deploy/env/<ambiente>.env e preenche estas variaveis.
+# Suba sempre pelo ./.deploy/agroai: ele le o .deploy/env/<ambiente>.env e preenche estas variaveis.
 
 services:
 
   web:
     build:
-      context: ../agroia/web
+      context: ../agroai/web
       dockerfile: ../../.deploy/web.Dockerfile
     restart: always
     depends_on:
       api:
         condition: service_healthy
     environment:
-      AGROIA_SITE: ${AGROIA_SITE:?suba pelo ./.deploy/agroia}
+      AGROAI_SITE: ${AGROAI_SITE:?suba pelo ./.deploy/agroai}
     ports:
-      - "${AGROIA_PORTA_HTTP:?suba pelo ./.deploy/agroia}:80"
-      - "${AGROIA_PORTA_HTTPS:-443}:443"
-      - "${AGROIA_PORTA_HTTPS:-443}:443/udp"
+      - "${AGROAI_PORTA_HTTP:?suba pelo ./.deploy/agroai}:80"
+      - "${AGROAI_PORTA_HTTPS:-443}:443"
+      - "${AGROAI_PORTA_HTTPS:-443}:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy:/data
@@ -33,13 +33,13 @@ services:
         condition: service_healthy
         required: false
     environment:
-      DB_HOST: ${DB_HOST:?suba pelo ./.deploy/agroia}
+      DB_HOST: ${DB_HOST:?suba pelo ./.deploy/agroai}
       DB_PORT: ${DB_PORT:-5432}
-      DB_NAME: ${DB_NAME:?suba pelo ./.deploy/agroia}
-      DB_USER: ${DB_USER:?suba pelo ./.deploy/agroia}
-      DB_PASSWORD: ${DB_PASSWORD:?suba pelo ./.deploy/agroia}
+      DB_NAME: ${DB_NAME:?suba pelo ./.deploy/agroai}
+      DB_USER: ${DB_USER:?suba pelo ./.deploy/agroai}
+      DB_PASSWORD: ${DB_PASSWORD:?suba pelo ./.deploy/agroai}
       DB_SSLMODE: ${DB_SSLMODE:-prefer}
-      JWT_SECRET: ${JWT_SECRET:?suba pelo ./.deploy/agroia}
+      JWT_SECRET: ${JWT_SECRET:?suba pelo ./.deploy/agroai}
       JWT_EXPIRES_MIN: ${JWT_EXPIRES_MIN:-10080}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.8-flash}
@@ -61,12 +61,12 @@ services:
       dockerfile: db.Dockerfile
     restart: always
     environment:
-      POSTGRES_DB: ${DB_NAME:?suba pelo ./.deploy/agroia}
-      POSTGRES_USER: ${DB_USER:?suba pelo ./.deploy/agroia}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:?suba pelo ./.deploy/agroia}
+      POSTGRES_DB: ${DB_NAME:?suba pelo ./.deploy/agroai}
+      POSTGRES_USER: ${DB_USER:?suba pelo ./.deploy/agroai}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?suba pelo ./.deploy/agroai}
     ports:
       # so esta maquina enxerga (para DBeaver/psql); nunca 0.0.0.0
-      - "127.0.0.1:${AGROIA_PORTA_BANCO:-5434}:5432"
+      - "127.0.0.1:${AGROAI_PORTA_BANCO:-5434}:5432"
     volumes:
       - banco:/var/lib/postgresql/data
     healthcheck:

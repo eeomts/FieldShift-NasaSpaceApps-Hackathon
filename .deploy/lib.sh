@@ -58,7 +58,7 @@ pg() {
     programa=$1
     shift
     if [ "$DB_HOST" = "db" ]; then
-        ./.deploy/agroia "$AMBIENTE" exec -T -e PGPASSWORD="$DB_PASSWORD" db \
+        ./.deploy/agroai "$AMBIENTE" exec -T -e PGPASSWORD="$DB_PASSWORD" db \
             "$programa" -U "$DB_USER" -d "$DB_NAME" "$@"
     else
         docker run --rm -i -e PGPASSWORD="$DB_PASSWORD" --add-host host.docker.internal:host-gateway \

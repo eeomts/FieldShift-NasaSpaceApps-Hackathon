@@ -94,11 +94,11 @@ Modificadores: **irrigação** e **criação de animais**.
 /cadastro          Criar conta
 /onboarding        Questionário da fazenda (só no primeiro acesso; pode pular e voltar)
 /dashboard         Aba 1
-/agroia            Aba 2
+/agroai            Aba 2
 /fazenda           Ver/editar respostas do questionário
 ```
 
-Rotas protegidas: `/onboarding`, `/dashboard`, `/agroia` e `/fazenda`. Sem onboarding concluído, o usuário vai para `/onboarding`.
+Rotas protegidas: `/onboarding`, `/dashboard`, `/agroai` e `/fazenda`. Sem onboarding concluído, o usuário vai para `/onboarding`.
 
 ---
 
@@ -305,7 +305,7 @@ GET  /chat/{conversa_id}                                          → histórico
 
 ### 8.3 Estrutura de pastas
 ```text
-agroia/
+agroai/
 ├── web/                     # React
 │   └── src/
 │       ├── pages/           # Login, Cadastro, Onboarding, Dashboard, AgroAI, Fazenda

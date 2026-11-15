@@ -2,7 +2,7 @@
 
 > 14/11/2026 · Proposta da Pessoa 3 para o prompt do agente do chat.
 >
-> **Onde entra:** em `agroia/api/app/services/agente/prompt.py`, na constante `_REGRAS`, logo depois da regra 10 e antes de `FERRAMENTAS`. O modelo é o Gemini (`modelo.py`), e o texto vai como `system_instruction`.
+> **Onde entra:** em `agroai/api/app/services/agente/prompt.py`, na constante `_REGRAS`, logo depois da regra 10 e antes de `FERRAMENTAS`. O modelo é o Gemini (`modelo.py`), e o texto vai como `system_instruction`.
 >
 > **Por quê:** as regras atuais (1 a 10) cobrem bem os números, a prescrição, a previsão, o idioma e a linguagem. Mas **não dizem o que a IA responde e o que ela recusa**. Sem isso, a IA tende a responder qualquer assunto ("quem ganhou o jogo?", "escreve um e-mail pro banco") ou a responder de cabeça o que o app não cobre (preço, crédito, doença específica). Os roteiros de teste (`examples/tests/`) mostraram esses casos.
 
@@ -60,7 +60,7 @@ Rodar cada mensagem no chat (fazenda de teste no Brasil e uma nos EUA) e marcar 
 
 ## Observações para quem for aplicar
 
-- **Ordem:** o bloco vem depois da regra 10 para não mudar a numeração das regras atuais, que podem estar citadas em testes (`agroia/api/tests/test_chat.py`).
+- **Ordem:** o bloco vem depois da regra 10 para não mudar a numeração das regras atuais, que podem estar citadas em testes (`agroai/api/tests/test_chat.py`).
 - **Tamanho:** são 7 linhas a mais no prompt de sistema. O Gemini segue melhor regras curtas e numeradas, como as que já existem.
 - **Regra 17 × regra 1:** a regra 1 proíbe calcular "médias nem estimativas". A 17 deixa claro que conversão de unidade é permitida, para o modelo não recusar converter °F ou acres.
 - **Teste automático:** os casos 1, 4, 8, 9 e 11 dão um bom teste com o modelo falso que o `modelo.py` já permite injetar. Basta conferir que a resposta não chama a ferramenta de clima e contém a frase de recusa.

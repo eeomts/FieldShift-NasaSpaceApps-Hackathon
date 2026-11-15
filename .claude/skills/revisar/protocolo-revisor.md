@@ -13,10 +13,10 @@ Você NÃO altera nada: nem arquivo, nem git, nem banco. Pode rodar:
 - git de leitura: `git status`, `git diff`, `git log`, `git show`, `git blame`, `git ls-files`, `gh pr diff`, `gh pr view`.
 - Testes da API, no banco de teste LOCAL (nunca na VPS):
   ```bash
-  cd agroia/api && set -a && . ./.env.test && set +a && .venv/Scripts/python.exe -m pytest -q
+  cd agroai/api && set -a && . ./.env.test && set +a && .venv/Scripts/python.exe -m pytest -q
   ```
   (ou `uv run pytest -q`). O teste apaga os dados do banco de teste: é esperado.
-- Checagem de tipos do front: `cd agroia/web && npx tsc -p tsconfig.json --noEmit`.
+- Checagem de tipos do front: `cd agroai/web && npx tsc -p tsconfig.json --noEmit`.
 - Leitura de qualquer arquivo com Read/Grep/Glob.
 
 Se um comando não funcionar no ambiente, diga no relatório; não invente o resultado.

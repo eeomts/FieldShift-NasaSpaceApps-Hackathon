@@ -7,16 +7,16 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     UV_COMPILE_BYTECODE=1 \
     UV_LINK_MODE=copy \
-    PATH="/app/agroia/api/.venv/bin:$PATH"
+    PATH="/app/agroai/api/.venv/bin:$PATH"
 
-WORKDIR /app/agroia/api
+WORKDIR /app/agroai/api
 
 # dependências primeiro: só reinstala quando o uv.lock muda
-COPY agroia/api/pyproject.toml agroia/api/uv.lock ./
+COPY agroai/api/pyproject.toml agroai/api/uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-COPY agroia/api/ ./
-COPY agroia/base/ /app/agroia/base/
+COPY agroai/api/ ./
+COPY agroai/base/ /app/agroai/base/
 # o catálogo inclui cultura_equipamentos.csv e eua/ (o culturas.csv dos EUA pode ainda não existir)
 COPY data/catalogo/ /app/data/catalogo/
 COPY data/rag/ /app/data/rag/
@@ -24,8 +24,8 @@ COPY data/demo/pontos_demo.csv /app/data/demo/pontos_demo.csv
 COPY data/brasil/municipios/municipios.geojson /app/data/brasil/municipios/municipios.geojson
 COPY data/eua/condados/condados.geojson /app/data/eua/condados/condados.geojson
 
-RUN useradd --system --no-create-home agroia && chown -R agroia /app
-USER agroia
+RUN useradd --system --no-create-home agroai && chown -R agroai /app
+USER agroai
 
 COPY --chmod=755 --from=deploy api-entrypoint.sh /usr/local/bin/entrypoint
 

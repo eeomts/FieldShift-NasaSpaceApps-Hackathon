@@ -13,7 +13,7 @@ Qualquer script que ler o arquivo vai quebrar ou pegar a linha vazia.
 
 ## O que fazer
 1. Apague as linhas 1 a 17 (o modelo vazio). Fica o seu cabeçalho (linha 18) e as suas 16 linhas.
-2. Troque os dois ids para os do app (`agroia/base/culturas.json` é a fonte única dos ids):
+2. Troque os dois ids para os do app (`agroai/base/culturas.json` é a fonte única dos ids):
    - `aveia_preta` → `aveia`
    - `braquiaria` → `pastagem`
 3. Renomeie as evidências do mesmo jeito: `data/catalogo/evidencias/aveia_preta.json` → `aveia.json` e `braquiaria.json` → `pastagem.json` (e o `id` dentro de cada uma, se houver).
@@ -21,7 +21,7 @@ Qualquer script que ler o arquivo vai quebrar ou pegar a linha vazia.
 
 ## Pronto quando
 - [ ] O arquivo tem **1 cabeçalho e 16 linhas**.
-- [ ] Todo `id` existe em `agroia/base/culturas.json`.
+- [ ] Todo `id` existe em `agroai/base/culturas.json`.
 - [ ] Os nomes das evidências batem com os ids.
 - [ ] Confere com: `python -c "import csv; l=list(csv.DictReader(open('data/catalogo/culturas.csv', encoding='utf-8'))); print(len(l), sorted(r['id'] for r in l))"`
 
