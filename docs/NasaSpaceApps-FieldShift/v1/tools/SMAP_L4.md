@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # SMAP L4 no Field Shift Brasil
 
 Complemento à *Documentação do Projeto* e ao *Banco de Dados NASA*. Explica por que usar o SMAP L4, como ele entra na ferramenta e onde o produtor vê o resultado, com um caso hipotético que junta o SMAP L4 aos outros datasets.

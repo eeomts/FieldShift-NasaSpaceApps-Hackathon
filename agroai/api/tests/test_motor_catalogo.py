@@ -1,5 +1,6 @@
 """Catálogo do motor: BR (17) e EUA (18), vazio = None, janela, régua das evidências e equipamentos."""
 import csv
+import importlib.util
 import logging
 from dataclasses import replace
 
@@ -18,6 +19,7 @@ from app.services.motor.catalogo import (
     janela_de_semeadura,
     ler_catalogo,
 )
+from app.services.motor.parametros import FASES_FRIO_TEXTO
 
 
 @pytest.fixture(autouse=True)
@@ -351,3 +353,54 @@ def test_arranjo_regional_nao_mexe_nos_campos_do_frio():
     erv = catalogo_do_pais("US")["ervilhaca"]
     ga = cultura_no_estado(replace(erv, tmin_critica_c=-8.0, fase_sensivel_frio="ciclo_todo"), "GA")
     assert ga.arranjo_aplicado == "sudeste" and ga.tmin_critica_c == -8.0 and ga.fase_sensivel_frio == "ciclo_todo"
+
+
+# --- M4: o nome da cultura no motor é o de exibição do culturas.json; o do CSV fica em nome_base
+def test_nome_do_motor_e_o_de_exibicao_do_json_e_o_do_csv_vai_para_nome_base():
+    eua = catalogo_do_pais("US")
+    assert (eua["soja"].nome, eua["soja"].nome_base) == ("Soja", "Soja (soybean)")
+    assert (eua["pastagem"].nome, eua["pastagem"].nome_base) == ("Pasto", "Festuca alta (tall fescue)")
+    br = catalogo_do_pais("BR")
+    assert (br["aveia"].nome, br["aveia"].nome_base) == ("Aveia", "Aveia-preta")
+    assert (br["pastagem"].nome, br["pastagem"].nome_base) == ("Pasto", "Braquiária")
+    for pais in ("BR", "US"):
+        for c in catalogo_do_pais(pais).values():
+            assert c.nome == base_do_app.nome_exibicao(base_do_app.culturas()[c.id], "pt") and "(" not in c.nome
+            assert c.nome_base
+
+
+def test_cultura_fora_do_json_mantem_o_nome_do_csv(tmp_path):
+    arquivo = tmp_path / "culturas.csv"
+    arquivo.write_text("id,nome,tipos\nmaxixe,Maxixe (gherkin),comercial\nsoja,Soja (soybean),comercial\n", encoding="utf-8")
+    c = ler_catalogo(arquivo, "US")
+    assert (c["maxixe"].nome, c["maxixe"].nome_base) == ("Maxixe (gherkin)", "Maxixe (gherkin)")
+    assert (c["soja"].nome, c["soja"].nome_base) == ("Soja", "Soja (soybean)")
+
+
+def test_dias_seguidos_de_frio_vazio_vale_1_e_arredonda():
+    c = catalogo_do_pais("BR")
+    assert c["soja"].tmin_dias_seguidos is None and c["soja"].dias_seguidos_de_frio == 1
+    assert c["arroz_irrigado"].dias_seguidos_de_frio == 3
+    assert replace(c["soja"], tmin_dias_seguidos=0.0).dias_seguidos_de_frio == 1
+    assert replace(c["soja"], tmin_dias_seguidos=2.6).dias_seguidos_de_frio == 3
+
+
+# --- M2: o texto do frio cobre as fases e os valores que o montar_csv.py aceita
+def _montar_csv():
+    spec = importlib.util.spec_from_file_location("montar_csv_motor_catalogo", RAIZ_REPO / "data" / "catalogo" / "scripts" / "montar_csv.py")
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
+def test_fases_de_frio_com_texto_sao_as_do_montar_csv():
+    assert set(FASES_FRIO_TEXTO) == _montar_csv().FASES_FRIO - {""}
+
+
+def test_fase_e_efeito_de_frio_dos_dois_csv_sao_permitidos():
+    montar = _montar_csv()
+    for pais in ("BR", "US"):
+        for c in catalogo_do_pais(pais).values():
+            assert (c.fase_sensivel_frio or "") in montar.FASES_FRIO, (pais, c.id)
+            assert (c.tmin_efeito or "") in montar.EFEITOS_FRIO, (pais, c.id)
+            assert c.fase_sensivel_frio is None or c.fase_sensivel_frio in FASES_FRIO_TEXTO, (pais, c.id)  # com texto próprio, não o genérico

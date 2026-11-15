@@ -100,6 +100,10 @@
     "tmin_dias_seguidos": {
       "tipo": "publicado",
       "nota": "2 = 'two consecutive nights' de 50 °F ou menos (MP192 cap. 2, Management Key), na mesma frase do limiar de 10 °C. A fonte diz '50°F or less'; a regra 17 conta Tmin abaixo de 10 °C (diferença de borda)."
+    },
+    "tmax_critica_c": {
+      "tipo": "publicado",
+      "nota": "Número americano (revisão 15/11/2026, ponto A4: o número dos EUA vence). Moldenhauer, Counce e Hardke, Arkansas Rice Production Handbook (MP192), cap. 2: 'During flowering, air temperatures > 95°F may increase blanking'. 95 °F = (95 - 32) x 5/9 = 35,0 °C, temperatura do ar na floração. Igual ao valor do Brasil (SOSBAI)."
     }
   },
   "reuso_brasil": [
@@ -570,6 +574,12 @@
       "antes": "nota com 'a regra 17 conta um dia só'",
       "depois": "grupo japônica tropical com fonte (MP192 cap. 2; SOSBAI cap. 3.2 e 6)",
       "motivo": "REVISÃO 15/11 (revisão do frio): exceção de grupo de cultivar (README, 'Dano por frio')"
+    },
+    {
+      "coluna": "origem.tmax_critica_c, pendencias",
+      "antes": "tmax_critica_c 35 sem bloco em origem; sem pendência de temp_otima",
+      "depois": "tmax_critica_c 35 (sem mudança), origem publicado (MP192 '> 95°F'); pendência de temp_otima_min_c/max_c aguardando decisão",
+      "motivo": "REVISÃO 15/11/2026 (2ª revisão projeto-dados, ponto A4; decisão do usuário: o número americano vence). tmax_critica_c tem número dos EUA e fica. temp_otima_min_c/max_c (20/33, só SOSBAI) não foram mexidos: o usuário ainda não decidiu se esvazia."
     }
   ],
   "pendencias": [
@@ -585,7 +595,8 @@
     "regua: decomposição e N da palha são da Califórnia (Linquist et al. 2006), com a duração das sacolas estimada em 150 dias; C/N calculada com C de 40% (premissa). PB e digestibilidade são a média mundial da Feedipedia (PROXY). A palhada pelo IPCC (9,6 t/ha) fica entre a medida da Califórnia (7,0) e a conta da Univ. of Arkansas (12,3). No Arkansas muita palha é queimada, rolada ou fica sob a inundação de inverno (aves aquáticas); isso não foi descontado. Resolveria: medidas de palha e decomposição no Delta (USDA-ARS Jonesboro ou Univ. of Arkansas).",
     "calendario_usda: 'Rice, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Todas as classes ('Rice, all').",
     "semeadura_inicio/fim (04-14 a 05-19) = 'most active' do Handbook 628 (2010) no Arkansas (início 6/abr, fim 2/jun); em data/eua/nass/datas_plantio.csv a linha está como cultura_id 'arroz'. Bate com cenarios/arroz_irrigado_gd.json (18/abr, 2/mai e 19/mai em Stuttgart); as conferências de Humnoke (8 e 10/abr) ficam poucos dias antes do 'most active', dentro do início de 6/abr.",
-    "FRIO (revisão 15/11): a tolerância ao frio da japônica do sul dos EUA que o MP192 demonstra é na plântula (geada de 2007), não na microsporogênese; o limiar de 10 °C/2 noites é recomendação de manejo da extensão, sem ensaio citado. Resolveria: ensaio de esterilidade por frio na fase reprodutiva com cultivares do Arkansas (B.R. Wells Rice Research Studies). No Delta o risco é baixo (0-1 de 19 anos em Stuttgart com qualquer critério, simulação do coordenador)."
+    "FRIO (revisão 15/11): a tolerância ao frio da japônica do sul dos EUA que o MP192 demonstra é na plântula (geada de 2007), não na microsporogênese; o limiar de 10 °C/2 noites é recomendação de manejo da extensão, sem ensaio citado. Resolveria: ensaio de esterilidade por frio na fase reprodutiva com cultivares do Arkansas (B.R. Wells Rice Research Studies). No Delta o risco é baixo (0-1 de 19 anos em Stuttgart com qualquer critério, simulação do coordenador).",
+    "temp_otima_min_c e temp_otima_max_c (20 e 33): AGUARDAM DECISÃO DO USUÁRIO (2ª revisão projeto-dados 15/11/2026, ponto A4, 'Fora da implementação': esvaziar?). Só têm fonte brasileira (SOSBAI 2025, Tab. 3.2, via Yoshida 1981); o MP192 diz que é difícil fixar a ótima e só dá a da germinação (~87 °F, 30,6 °C). Pela regra 'sem número americano, fica vazio' iriam para vazio (vazio_nao_sei); não mexidos até a resposta. tmax_critica_c (35) fica: MP192 '> 95°F' na floração."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

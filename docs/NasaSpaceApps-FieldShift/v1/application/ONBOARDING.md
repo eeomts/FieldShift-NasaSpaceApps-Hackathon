@@ -221,3 +221,13 @@ texto livre → IA extrai uma lista estruturada → casa com a base (culturas / 
 - Definir as faixas de tamanho de área da pergunta 2 de forma que sirvam em vários países.
 - Montar a base de culturas com sinônimos e a lista de equipamentos.
 - Escolher o modelo de IA e o formato de saída (JSON com esquema validado).
+
+## Deploy na VPS
+
+Depois de subir uma versão nova da API, confira estes três passos. Os comandos rodam de dentro de `agroai/api` (no container da API ou no ambiente local).
+
+1. **Migration.** Ela roda sozinha. O `.deploy/api-entrypoint.sh` faz `alembic upgrade head` antes de servir; se falhar, o container cai e o restart tenta de novo. Não precisa rodar à mão. A 0008 (`clima_mensal.tmin_diaria`, Tmin de cada dia, usada pela regra 17 do frio por fase) só cria a coluna: as linhas de clima já gravadas ficam com `NULL`.
+2. **Pré-aquecer o clima da demo.** A primeira análise de cada célula baixa o NASA POWER de novo depois da 0008, porque a coluna nova está vazia nas células já guardadas. Isso deixa a primeira tela lenta. Para evitar, rode `python -m app.cli.clima demo`: ele baixa e mostra as 6 células da demo, 3 do Brasil (`data/demo/pontos_demo.csv`) e 3 dos EUA (`data/demo/pontos_demo_eua.csv`).
+3. **Base de conhecimento do chat (RAG).** O entrypoint já roda `python -m app.cli.rag ingerir` ao subir e reprocessa só o que mudou; sem chave ou com o Gemini fora, a API sobe sem atualizar o RAG. Depois de mudar qualquer texto de `data/rag/*.md`, rode `python -m app.cli.rag ingerir` (ou `--forcar` para reprocessar tudo) e confira a saída.
+
+Nunca coloque chave, senha ou IP em arquivo versionado: tudo vem do `.env`.

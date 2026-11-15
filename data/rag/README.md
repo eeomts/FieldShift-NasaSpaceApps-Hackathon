@@ -5,7 +5,7 @@ Cada arquivo `.md` desta pasta vira trechos que o agente busca para explicar as 
 | Arquivo | Conteúdo |
 |---|---|
 | `metodologia-indicadores.md` | Como cada indicador é calculado e o que significa (geada, déficit hídrico, meses descobertos, erosão…) |
-| `o-que-mede-cada-satelite.md` | NASA POWER, SoilGrids, SRTM, MODIS/VIIRS, SMAP, IMERG: o que cada um vê e o limite de escala |
+| `o-que-mede-cada-satelite.md` | NASA POWER, SoilGrids, SRTM (usados) e MODIS/VIIRS, SMAP, IMERG (só referência, não usados nesta versão): o que cada um vê e o limite de escala |
 | `fichas-culturas.md` | Uma seção por cultura da base: as 17 do Brasil (`data/catalogo/culturas.csv`) e as 18 dos EUA (`data/catalogo/eua/culturas.csv`) |
 | `glossario-produtor.md` | O glossário científico reescrito em linguagem de produtor |
 

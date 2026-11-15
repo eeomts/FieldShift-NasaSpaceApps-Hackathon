@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Field Shift — Referência de APIs para RAG
 
 > Projeto: Field Shift (NASA Space Apps Challenge 2026) · Atualizado em 2026-11-14

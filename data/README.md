@@ -10,12 +10,12 @@ O catálogo de culturas e equipamentos **mora no app**, em `agroai/base/`:
 
 | O quê | Onde | Quem mexe |
 |---|---|---|
-| Ids, nomes e **sinônimos em PT/EN**, família, grupo, perene, tipos (fixadora de N, cobertura, raiz profunda, tolerante à seca) | `agroai/base/culturas.json` | Pessoa 3 (sinônimos), por PR |
+| Ids, nomes e **sinônimos em PT/EN**, família, grupo, perene e tipos (fixadora de N, cobertura, raiz profunda, tolerante à seca) como padrão global, mais o bloco `por_pais` com `perene` e `tipos` de cada país | `agroai/base/culturas.json` | Pessoa 3 (sinônimos), por PR |
 | Categorias de equipamento e seus sinônimos | `agroai/base/equipamentos.json` | Pessoa 2, só se faltar categoria |
 | **Parâmetros agronômicos do Brasil**: 17 culturas (ciclo, temperatura, água, Kc, raiz, cobertura, código da PAM) | `data/catalogo/culturas.csv` | Pessoa 1 |
 | **Parâmetros agronômicos dos EUA**: 18 culturas, no mesmo formato, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc` (decisão D-010 do catálogo, 15/11/2026) | `data/catalogo/eua/culturas.csv` (guia em `catalogo/eua/README.md`) | Pessoa 1 |
 
-Os dois `culturas.csv` usam **os mesmos ids** do `culturas.json` e não repetem o que já está lá. Para criar uma cultura nova, ela entra primeiro no `culturas.json`.
+Os dois `culturas.csv` usam **os mesmos ids** do `culturas.json` e não repetem o que já está lá (nomes, sinônimos, família, grupo). A exceção são `perene` e `tipos`: o CSV repete os dois **por país**, porque o valor pode mudar de um país para outro. Esse valor vem do bloco `por_pais` do `culturas.json` (`por_pais.BR` e `por_pais.US`, só para os ids que existem no CSV daquele país), e o `montar_csv.py` confere: se faltar o bloco do país ou o valor for diferente, ele aponta PROBLEMA. Para mudar `perene` ou `tipos`, mude o `por_pais` e a evidência juntos. Para criar uma cultura nova, ela entra primeiro no `culturas.json`.
 
 **Os dois `culturas.csv` são gerados** das evidências (`catalogo/evidencias/<id>.json` no Brasil e `catalogo/eua/evidencias/<id>.json` nos EUA) por `catalogo/scripts/montar_csv.py`. Para mudar um valor, edite a evidência e rode o script com `--apply`; o teste `agroai/api/tests/test_dados_consistencia.py` confere, byte a byte, que o CSV versionado é igual ao gerado. O que cada regra do motor faz com esses parâmetros está em `catalogo/evidencias/README.md`.
 

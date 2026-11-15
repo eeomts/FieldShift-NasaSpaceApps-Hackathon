@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # MODIS e VIIRS — Análise e documentação
 
 ## Índices de vegetação em séries longas (250–1000 m)

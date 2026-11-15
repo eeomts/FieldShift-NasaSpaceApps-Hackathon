@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Comparativo das ferramentas — análise do Yury
 
 > 14/11/2026. Comparação de cada ferramenta do `tools/PROS-E-CONTRAS-FERRAMENTAS.md` com a arquitetura da aplicação (`application/architecture/README.md`, `INTEGRACAO-DE-DADOS.md`, `MOTOR-DE-ANALISE.md`). A pergunta é: **essa ferramenta alimenta algum cálculo do motor ou alguma tela que outra não alimente?** É uma opinião para a discussão; a decisão final vai para a D-010 no `context/DECISOES.md`.

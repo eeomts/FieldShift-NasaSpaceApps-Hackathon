@@ -16,7 +16,7 @@ FONTES: list[FonteStatus] = [
         "a evapotranspiração (ET0) é calculada pelo AgroAI com o método FAO-56",
         True,
     ),
-    FonteStatus("base de culturas do AgroAI", "parâmetros de 17 culturas no Brasil, com fontes", True),
+    FonteStatus("base de culturas do AgroAI", "parâmetros de 17 culturas no Brasil e de 18 nos EUA, com fontes", True),
     FonteStatus("textos da base de conhecimento do AgroAI", "explicações de conceitos", True),
     FonteStatus("respostas do produtor no cadastro da fazenda", "ficha da fazenda", True),
     FonteStatus("comparação de rotações do AgroAI", "notas de água, terra, erosão, pragas, renda e animais para a rotação atual e alternativas", True),
@@ -27,7 +27,12 @@ FONTES: list[FonteStatus] = [
     FonteStatus("MODIS/VIIRS", "NDVI, o verde da lavoura", False),
     FonteStatus("IBGE PAM", "produção agrícola por município", False),
     FonteStatus("ZARC", "janelas de plantio", False),
-    FonteStatus("USDA NASS", "produção nos EUA", False),
+    FonteStatus(
+        "USDA NASS, datas de plantio (Handbook 628)",
+        "janela de semeadura das culturas de venda e das coberturas dos EUA; o motor só sugere uma cultura nos meses em que ela costuma ser semeada",
+        True,
+    ),
+    FonteStatus("USDA NASS, produção por condado", "área e produção por condado nos EUA (o app ainda não usa esses números)", False),
 ]
 
 

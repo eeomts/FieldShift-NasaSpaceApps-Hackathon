@@ -250,7 +250,7 @@ As seções abaixo valem para fazendas nos Estados Unidos. A mesma cultura pode 
 
 A soja (Glycine max) nos Estados Unidos é plantada para grão na primavera, principalmente no Cinturão do Milho (Corn Belt), em rotação com o milho. Como no Brasil, é uma leguminosa que pega nitrogênio do ar e quase não precisa de adubo nitrogenado.
 
-Na base do Field Shift para os Estados Unidos, a soja tem ciclo de 117 a 133 dias (de 1.200 a 1.860 graus-dia), é sensível a geada, usa de 500 a 635 mm de água no ciclo, cresce melhor entre 20 e 30 °C e fixa nitrogênio. A janela de semeadura da base vai de 8 de maio a 2 de junho, medida em fazendas de pesquisa de Iowa. Deixa uma quantidade média de palhada. Confiança dos números: média.
+Na base do Field Shift para os Estados Unidos, a soja tem ciclo de 117 a 133 dias (de 1.200 a 1.860 graus-dia), é sensível a geada, usa de 500 a 635 mm de água no ciclo, cresce bem com temperatura até 30 °C, sofre com calor acima de 40 °C e fixa nitrogênio. Para os Estados Unidos não temos o número do começo da faixa ótima de temperatura. A janela de semeadura da base vai de 8 de maio a 2 de junho, medida em fazendas de pesquisa de Iowa. Deixa uma quantidade média de palhada. Confiança dos números: média.
 
 Cuidados com a soja nos Estados Unidos: semear tarde encurta o ciclo e reduz a produção; o grupo de maturação da cultivar precisa combinar com a latitude da fazenda. Soja atrás de soja aumenta doenças e nematoides.
 
@@ -262,7 +262,7 @@ Fonte: Iowa State University (ensaios de época de semeadura); University of Ark
 
 O milho (Zea mays) é a principal cultura dos Estados Unidos, plantado para grão na primavera no Cinturão do Milho, em estados como Iowa e Illinois, quase sempre em rotação com a soja.
 
-Na base do Field Shift para os Estados Unidos, o milho tem ciclo de 123 a 140 dias (de 1.250 a 1.520 graus-dia), é sensível a geada, usa de 500 a 566 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita palhada. A janela de semeadura da base vai de 25 de abril a 18 de maio, a data usual em Iowa e Illinois segundo o USDA. Confiança dos números: média.
+Na base do Field Shift para os Estados Unidos, o milho tem ciclo de 123 a 140 dias (de 1.250 a 1.520 graus-dia), é sensível a geada, usa de 500 a 566 mm de água no ciclo, cresce bem com temperatura até 30 °C, sofre com calor acima de 35 °C na floração e deixa muita palhada. Para os Estados Unidos não temos o número do começo da faixa ótima de temperatura. A janela de semeadura da base vai de 25 de abril a 18 de maio, a data usual em Iowa e Illinois segundo o USDA. Confiança dos números: média.
 
 Cuidados com o milho nos Estados Unidos: semear tarde pede híbridos de ciclo mais curto; a geada de outono pode pegar a lavoura antes da maturação. Milho atrás de milho aumenta pragas como a larva-alfinete (rootworm) e pede mais nitrogênio. A palhada protege o solo no inverno, mas a silagem tira essa palha do campo.
 
@@ -274,7 +274,7 @@ Fonte: USDA NASS, datas usuais de semeadura e colheita (Agricultural Handbook 62
 
 O trigo da base dos Estados Unidos é o trigo de inverno duro vermelho (hard red winter wheat), plantado no outono nas Grandes Planícies, como no Kansas, e colhido no começo do verão. Ele passa o inverno no campo, cobrindo o solo.
 
-Na base do Field Shift para os Estados Unidos, o trigo de inverno tem ciclo de 230 a 280 dias (de 2.000 a 2.650 graus-dia), cresce mesmo com frio (temperatura base de 0 °C), vai melhor entre 15 e 23 °C, sofre com calor acima de 31 °C e usa de 400 a 610 mm de água no ciclo. A janela de semeadura da base vai de 15 de setembro a 20 de outubro, a usual no Kansas. Deixa palhada média. Confiança dos números: média.
+Na base do Field Shift para os Estados Unidos, o trigo de inverno tem ciclo de 230 a 280 dias (de 2.000 a 2.650 graus-dia), cresce mesmo com frio (temperatura base de 0 °C), vai bem com temperatura até 26 °C e usa de 400 a 610 mm de água no ciclo. Para os Estados Unidos não temos o número do começo da faixa ótima de temperatura nem o limite de calor que prejudica o trigo, por isso a base não informa esses dois números. A janela de semeadura da base vai de 15 de setembro a 20 de outubro, a usual no Kansas. Deixa palhada média. Confiança dos números: média.
 
 Cuidados com o trigo de inverno: semear cedo demais favorece pragas e doenças de outono; semear tarde deixa a planta fraca para o inverno. Geada tardia na primavera, na fase de espiga, e calor forte no enchimento do grão derrubam a produção. O trigo de primavera, plantado no norte, é outra cultura e não entra nesta linha.
 
@@ -286,7 +286,7 @@ Fonte: USDA NASS (Agricultural Handbook 628); Kansas State University (guia de s
 
 O algodão da base dos Estados Unidos é o algodão herbáceo (upland cotton), plantado no Sul do país, em estados como a Geórgia e o Texas, para fibra e caroço.
 
-Na base do Field Shift para os Estados Unidos, o algodão tem ciclo de 130 a 160 dias (de 1.270 a 1.590 graus-dia), é sensível a geada, precisa de calor (temperatura base de 15 °C), cresce melhor entre 20 e 30 °C, sofre com calor acima de 38 °C e usa de 420 a 690 mm de água no ciclo. A janela de semeadura da base vai de 8 de abril a 7 de junho, as datas usuais da Geórgia e do Texas segundo o USDA. Deixa pouca palhada e tem pouco valor como forragem. Confiança dos números: média.
+Na base do Field Shift para os Estados Unidos, o algodão tem ciclo de 130 a 160 dias (de 1.270 a 1.590 graus-dia), é sensível a geada, precisa de calor (temperatura base de 15 °C), cresce bem com temperatura até 34 °C (acima disso a fonte americana deixa de contar o calor como ganho) e usa de 420 a 690 mm de água no ciclo. Para os Estados Unidos não temos o número do começo da faixa ótima de temperatura nem o do calor que prejudica o algodão. A janela de semeadura da base vai de 8 de abril a 7 de junho, as datas usuais da Geórgia e do Texas segundo o USDA. Deixa pouca palhada e tem pouco valor como forragem. Confiança dos números: média.
 
 Cuidados com o algodão nos Estados Unidos: como deixa pouca palha, o solo fica exposto depois da colheita se não houver planta de cobertura. Pede adubo, controle de pragas e máquinas próprias, e precisa de descaroçador por perto.
 
@@ -324,7 +324,7 @@ Fonte: USDA NASS (Agricultural Handbook 628); University of Arkansas, manual de 
 
 O feijão da base dos Estados Unidos é o feijão seco comestível (dry edible bean), como o carioca americano (pinto) e o feijão branco (navy), plantado no norte do país, na Dakota do Norte e em Minnesota. É uma leguminosa: fixa nitrogênio do ar.
 
-Na base do Field Shift para os Estados Unidos, o feijão tem ciclo de 86 a 113 dias (de 800 a 1.130 graus-dia), é sensível a geada, cresce melhor entre 18 e 25 °C, sofre com calor acima de 30 °C e usa de 380 a 432 mm de água no ciclo. A janela de semeadura da base vai de 19 de maio a 6 de junho. O Field Shift só sugere esta linha na Dakota do Norte e em Minnesota. Deixa palhada média. Confiança dos números: média.
+Na base do Field Shift para os Estados Unidos, o feijão tem ciclo de 86 a 113 dias (de 800 a 1.130 graus-dia), é sensível a geada, sofre com calor acima de 32 °C na floração (número de baixa confiança, tirado de um guia de horta de Utah, onde o ar é seco) e usa de 380 a 432 mm de água no ciclo. Para os Estados Unidos não temos a faixa ótima de temperatura do feijão seco. A janela de semeadura da base vai de 19 de maio a 6 de junho. O Field Shift só sugere esta linha na Dakota do Norte e em Minnesota. Deixa palhada média. Confiança dos números: média.
 
 Cuidados com o feijão seco: geada no fim da primavera mata a plântula, e geada cedo no outono pega a lavoura antes de secar. É sensível ao mofo-branco em anos úmidos, e o comprador costuma pedir uma classe de grão.
 
@@ -336,7 +336,7 @@ Fonte: NDSU, ensaios de variedades de feijão seco em Carrington e Langdon; Mich
 
 O sorgo da base dos Estados Unidos é o sorgo granífero (grain sorghum, também chamado milo), plantado nas Grandes Planícies, no Kansas e no Texas, onde chove menos que no Cinturão do Milho.
 
-Na base do Field Shift para os Estados Unidos, o sorgo tem ciclo de 84 a 114 dias (de 1.280 a 1.880 graus-dia), raiz de até 2 metros, é tolerante à seca, sensível a geada, usa de 400 a 686 mm de água no ciclo, cresce melhor entre 22 e 34 °C e sofre com calor acima de 36 °C. A janela de semeadura da base vai de 15 de maio a 20 de junho, a usual no Kansas e no Texas. Deixa palhada média. Confiança dos números: média.
+Na base do Field Shift para os Estados Unidos, o sorgo tem ciclo de 84 a 114 dias (de 1.280 a 1.880 graus-dia), raiz de até 2 metros, é tolerante à seca, sensível a geada, usa de 400 a 686 mm de água no ciclo, cresce bem a partir de 22 °C e até cerca de 38 °C (acima disso a fonte americana deixa de contar o calor como ganho) e tem o pólen prejudicado com calor acima de 36 °C na floração. A janela de semeadura da base vai de 15 de maio a 20 de junho, a usual no Kansas e no Texas. Deixa palhada média. Confiança dos números: média.
 
 Cuidados com o sorgo granífero: semeado tarde, pode não amadurecer antes da primeira geada de outono. Como é um capim, como o milho e o trigo, é melhor alternar com leguminosas.
 
@@ -348,9 +348,9 @@ Fonte: USDA NASS (Agricultural Handbook 628); Kansas State University (guia de s
 
 O girassol (Helianthus annuus) da base dos Estados Unidos é o girassol oleícola de sequeiro da Dakota do Norte, plantado para óleo. O girassol de confeitaria fica de fora. É de outra família, o que diversifica rotações de trigo, milho e soja.
 
-Na base do Field Shift para os Estados Unidos, o girassol tem ciclo de 104 a 137 dias (de 1.560 a 2.270 graus-dia), é tolerante à seca, sensível a geada, cresce melhor entre 20 e 25 °C, sofre com calor acima de 35 °C, tem raiz de 1,5 metro e usa de 440 a 560 mm de água no ciclo. A janela de semeadura da base vai de 19 de maio a 8 de junho, a usual na Dakota do Norte. Confiança dos números: baixa.
+Na base do Field Shift para os Estados Unidos, o girassol tem ciclo de 104 a 137 dias (de 1.560 a 2.270 graus-dia), é tolerante à seca, sensível a geada, tem raiz de 1,5 metro e usa de 440 a 560 mm de água no ciclo. A janela de semeadura da base vai de 19 de maio a 8 de junho, a usual na Dakota do Norte. Confiança dos números: baixa.
 
-O que falta saber: não há medição na Dakota do Norte de quanta água o girassol de sequeiro usa; a base usa um cálculo com o clima da NASA. O calor mínimo para amadurecer foi calculado com 20 anos de clima no lugar mais frio dos ensaios.
+O que falta saber: para os Estados Unidos não temos a faixa ótima de temperatura nem o limite de calor do girassol, porque a fonte americana usada não traz esses números; não há medição na Dakota do Norte de quanta água o girassol de sequeiro usa; a base usa um cálculo com o clima da NASA. O calor mínimo para amadurecer foi calculado com 20 anos de clima no lugar mais frio dos ensaios.
 
 Cuidados com o girassol: em ano seco a chuva da estação fica abaixo do que ele usaria com produção plena. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido, a data de semeadura e se ele amadurece antes da geada de outono.
 

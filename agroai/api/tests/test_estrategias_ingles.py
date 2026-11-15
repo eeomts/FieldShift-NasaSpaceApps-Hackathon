@@ -112,8 +112,22 @@ def test_frases_soltas(pt, en):
         "Trigo: em 35% dos anos houve geada na florada (mínima abaixo de -2 °C) e ela é sensível.",
         "Arroz irrigado: frio na florada em 45% dos anos (mínima abaixo de 15 °C por 3 dias seguidos); o dano é parcial, validar localmente.",
         "Pasto: em 60% dos anos houve geada ao longo do ano (mínima abaixo de -3 °C) e ela é sensível.",
-        "Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio.",
-        "Milho: sem a mínima diária do local para a fase todo o ciclo, não checamos o frio.",
+        "Soja: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio no enchimento dos grãos.",
+        "Milho: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio em todo o ciclo.",
+        "Trigo: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio na emergência das plantas.",
+        "Aveia: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio no crescimento das plantas.",
+        "Pasto: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio ao longo do ano.",
+        "Feijão: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio na fase sensível.",
+        "Arroz irrigado: o frio na florada foi checado em só 24 dos 30 anos, por falta de temperatura mínima do local; poucos para decidir.",
+        "Soja: sem o ciclo na base, não checamos o frio.",
+        # regra 2 na cobertura: só aviso
+        "Centeio: pode não completar o ciclo antes do manejo; o calor do período dá 800 graus-dia na metade dos anos (2001–2020) e ela precisa de pelo menos 1.200.",
+        # A1: cobertura semeada no mês da colheita
+        "Plantar Centeio logo depois da colheita (out–abr)",
+        "Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita.",
+        "Trevo: a semeadura é em março, logo depois da colheita de Soja; depende da data da sua colheita.",
+        # M8: nenhuma cobertura serve para o período sem planta
+        "Nenhuma planta de cobertura da nossa base serve para o seu período sem planta (jul–set) na sua região, pela época de semear ou pelo clima. Confirme com seu agrônomo.",
         # renda: frase acrescentada à explicação
         "A rotação tem 2 cultura(s) para vender: Milho, Feijão. Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota.",
         # regra 12 (candidatas): lacunas da janela de semeadura
@@ -126,6 +140,29 @@ def test_frases_da_revisao_de_dados_sem_portugues(pt):
     en = traduzir(pt)
     assert en != pt
     assert not _PT.search(en), en
+
+
+def test_frases_novas_da_revisao_em_ingles_exatas():
+    assert traduzir("Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita.") == (
+        "Rye: sowing is in October, right after the harvest of Corn and Soybean; it depends on your harvest date."
+    )
+    assert traduzir("Plantar Centeio logo depois da colheita (out–abr)") == "Plant Rye right after the harvest (Oct–Apr)"
+    assert traduzir("Milho: não temos a temperatura mínima de cada dia do seu local, então não checamos o frio em todo o ciclo.") == (
+        "Corn: we don't have the daily minimum temperature for your location, so we did not check the cold over the whole cycle."
+    )
+    assert traduzir("Arroz irrigado: o frio na florada foi checado em só 24 dos 30 anos, por falta de temperatura mínima do local; poucos para decidir.") == (
+        "Irrigated rice: the cold during flowering was checked in only 24 of 30 years, for lack of the local minimum temperature; too few to decide."
+    )
+    assert traduzir("Nenhuma planta de cobertura da nossa base serve para o seu período sem planta (jul–set) na sua região, pela época de semear ou pelo clima. Confirme com seu agrônomo.") == (
+        "No cover crop in our database fits your period without plants (Jul–Sep) in your region, because of sowing time or climate. Check with your agronomist."
+    )
+
+
+def test_nomes_de_exibicao_em_portugues_viram_o_nome_em_ingles_do_json():
+    """O motor usa o nome do culturas.json (sem o "(inglês)" do CSV); a conta em inglês troca esse nome pelo da tela."""
+    assert traduzir("Soja: sem Kc nem faixa de água na base, não checamos a água.") == "Soybean: no Kc or water range in our database, so we did not check water."
+    assert traduzir("Pasto: sem exigência de graus-dia na base, não checamos o calor do ciclo.").startswith("Pasture: ")
+    assert traduzir("Plantar Aveia no período vazio (jul–set)") == "Plant Oat in the empty period (Jul–Sep)"
 
 
 def test_frio_traduz_limiar_e_dias_seguidos():
@@ -149,7 +186,7 @@ def test_frio_traduz_limiar_e_dias_seguidos():
         ("Milho: sem anos suficientes de clima para checar o calor do ciclo.", "Corn: not enough years of climate data to check the season's heat."),
         ("Algodão: a chuva do período (104 mm) cobre só 22% da água que a cultura usa (474 mm); sem irrigação não fecha.",
          "Cotton: the period's rain (104 mm) covers only 22% of the water the crop uses (474 mm); without irrigation it cannot finish."),
-        ("Trigo: em 40% dos anos (1991–2020) a mínima ficou abaixo de 1 °C na floração (dez a jan); o frio nessa fase tira produção.",
+        ("Trigo: em 40% dos anos (1991–2020) a mínima ficou abaixo de 1 °C na florada (dez a jan); o frio nessa fase tira produção.",
          "Wheat: in 40% of the years (1991–2020) the low fell below 1 °C at flowering (Dec to Jan); cold in this stage cuts yield."),
         ("Soja: em 40% dos anos (1991–2020) a mínima ficou abaixo de -2,2 °C por 3 dias seguidos no enchimento dos grãos (nov a fev); a geada nessa fase tira produção.",
          "Soybean: in 40% of the years (1991–2020) the low fell below -2.2 °C for 3 days in a row during grain fill (Nov to Feb); frost in this stage cuts yield."),
@@ -174,5 +211,5 @@ def test_textos_do_catalogo_ficam_fora_das_lacunas_em_ingles():
     from app.services.motor.ingles import lacunas_em_ingles
 
     crot = catalogo_do_pais("BR")["crotalaria"]
-    lacunas = [f"{crot.nome}: {crot.lacuna_informacao}", f"{crot.nome}: {crot.risco_revisao_local}", "Milho: sem anos suficientes de clima para checar o frio."]
-    assert lacunas_em_ingles(lacunas) == ["Corn: not enough years of climate data to check cold."]
+    lacunas = [f"{crot.nome}: {crot.lacuna_informacao}", f"{crot.nome}: {crot.risco_revisao_local}", "Milho: sem anos suficientes de clima para checar o calor do ciclo."]
+    assert lacunas_em_ingles(lacunas) == ["Corn: not enough years of climate data to check the season's heat."]

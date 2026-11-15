@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # NASA Harvest no GitHub (`github.com/nasaharvest`): análise e documentação
 
 ## O que existe nos repositórios e o que o Field Shift pode reaproveitar

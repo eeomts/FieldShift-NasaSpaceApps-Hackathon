@@ -14,9 +14,9 @@
     "graus_dia_ciclo_min": "1250",
     "graus_dia_ciclo_max": "1520",
     "temp_base_c": "10",
-    "temp_otima_min_c": "24",
+    "temp_otima_min_c": "",
     "temp_otima_max_c": "30",
-    "tmax_critica_c": "33",
+    "tmax_critica_c": "35",
     "sensivel_geada": "true",
     "agua_ciclo_mm_min": "500",
     "agua_ciclo_mm_max": "566",
@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "CORN, GRAIN",
     "calendario_usda": "Corn for grain",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita IA/IL)|Elmore, ISU Integrated Crop Management News, Corn Hybrids Adjust to Late Planting Dates, 2011, Tab. 1 (dias até R6 e GDD por RM, Nashua e Lewis-IA)|Abendroth & Elmore, ISU Encyclopedia, Delayed planting: hybrids adjust to planting dates, 2007 (dias até R1 e R6, dados de Nielsen et al. 2002)|Elmore, ISU ICM News, Corn and Dry Soils at Planting Part II, 2013 (GDD por RM em Iowa)|Archontoulis, ISU ICM News, Corn Grain Moisture August 28, 2025 (110 RM ~ 2650 °F-days)|Nafziger, farmdoc Univ. of Illinois, Late-Season Dry Weather and Corn, 2013 (GDD do centro de Illinois)|Nielsen, Purdue, Heat Unit Concepts Related to Corn Development, 2020 (Tb 50 °F, teto 86/50)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/milho_gd.json (graus-dia sem teto na régua do NASA POWER)|Licht, Archontoulis & Hatfield, ISU ICM News, Corn Water Use and Evapotranspiration, 2017 (água por produtividade)|ISU Encyclopedia, Crop water use or evapotranspiration (água por região de Iowa)|ISU Encyclopedia, Corn pollination: effect of high temperature and stress (tmax crítica, conferência)|Nielsen, Purdue, Predicting Corn Grain Maturity Dates for Delayed Plantings, 2019 (geada)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade IA/IL 2023-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (resíduo acima do solo)|Al-Kaisi & Guzman, Soil & Tillage Research 129:32-39, 2013 (decomposição e C/N, Ames-IA)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD do resíduo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Nielsen, Purdue Corny News Network, set. 2002 (killing frost: ar a 28 °F = -2 °C)|Staggenborg et al., K-State MF-2234, 1996 (folhas do milho sofrem abaixo de 29 °F)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita IA/IL)|Elmore, ISU Integrated Crop Management News, Corn Hybrids Adjust to Late Planting Dates, 2011, Tab. 1 (dias até R6 e GDD por RM, Nashua e Lewis-IA)|Abendroth & Elmore, ISU Encyclopedia, Delayed planting: hybrids adjust to planting dates, 2007 (dias até R1 e R6, dados de Nielsen et al. 2002)|Elmore, ISU ICM News, Corn and Dry Soils at Planting Part II, 2013 (GDD por RM em Iowa)|Archontoulis, ISU ICM News, Corn Grain Moisture August 28, 2025 (110 RM ~ 2650 °F-days)|Nafziger, farmdoc Univ. of Illinois, Late-Season Dry Weather and Corn, 2013 (GDD do centro de Illinois)|Nielsen, Purdue, Heat Unit Concepts Related to Corn Development, 2020 (Tb 50 °F; teto 86 °F do graus-dia 86/50, usado como temperatura ótima máxima: 30 °C)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/milho_gd.json (graus-dia sem teto na régua do NASA POWER)|Licht, Archontoulis & Hatfield, ISU ICM News, Corn Water Use and Evapotranspiration, 2017 (água por produtividade)|ISU Encyclopedia, Crop water use or evapotranspiration (água por região de Iowa)|ISU Encyclopedia, Corn pollination: effect of high temperature and stress (temperatura crítica de calor: acima de 95 °F = 35 °C os estilos-estigmas secam)|Nielsen, Purdue, Predicting Corn Grain Maturity Dates for Delayed Plantings, 2019 (geada)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade IA/IL 2023-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (resíduo acima do solo)|Al-Kaisi & Guzman, Soil & Tillage Research 129:32-39, 2013 (decomposição e C/N, Ames-IA)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD do resíduo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Nielsen, Purdue Corny News Network, set. 2002 (killing frost: ar a 28 °F = -2 °C)|Staggenborg et al., K-State MF-2234, 1996 (folhas do milho sofrem abaixo de 29 °F)",
     "confianca_parametros": "media",
     "semeadura_inicio": "04-25",
     "semeadura_fim": "05-18",
@@ -94,6 +94,18 @@
     "fase_frio_frac": {
       "tipo": "publicado",
       "nota": "Fase: do embonecamento (R1) à maturação fisiológica (R6); depois de R6 o grão está 'safe from frost' (Purdue). Ciclo da linha da semeadura a R6 (123-140 d, médio 131,5). Nielsen et al. 2002 (via ISU): semeadura ao embonecamento 75, 66 e 61 dias (cedo, meio, tarde), média 67,3 -> 67,3/131,5 = 0,51. Fim = R6 = fim do ciclo = 1,00 (conferência: R6 cerca de 65 dias após o embonecamento, Purdue; 131,5 - 65 = 66,5)."
+    },
+    "temp_otima_min_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano para o limite inferior da faixa ótima do milho (as fontes dos EUA lidas dão só a Tb de 50 °F e o teto de 86 °F do graus-dia). O 24 °C do Brasil saiu em 15/11/2026 (decisão do usuário: sem número americano, fica vazio = não sei)."
+    },
+    "temp_otima_max_c": {
+      "tipo": "publicado",
+      "nota": "Teto do cálculo de graus-dia da fonte, não ótimo fisiológico medido: Purdue (Nielsen 2020), método 86/50, 'Daily maximums greater than 86 degrees F are set equal to 86'. 86 °F = (86 - 32)/1,8 = 30,0 °C. Vale como temp_otima_max_c por decisão do usuário (15/11/2026, NOVO-3)."
+    },
+    "tmax_critica_c": {
+      "tipo": "publicado",
+      "nota": "ISU Extension (Corn pollination: effect of high temperature and stress): 'Temperatures greater than 95° F with low relative humidity will desiccate exposed silks'; o pólen deixa de ser viável 'once temperatures reach the mid 90's'. 95 °F = (95 - 32)/1,8 = 35,0 °C. Fase sensível: polinização (embonecamento). Trocado do 33 do Brasil em 15/11/2026 (número americano vence)."
     }
   },
   "reuso_brasil": [
@@ -116,16 +128,22 @@
       "motivo": "O GDD americano do milho usa Tb 50 °F = 10 °C (Nielsen, Purdue)."
     },
     {
-      "coluna": "temp_otima_min_c, temp_otima_max_c",
-      "valor_brasil": "24, 30",
+      "coluna": "temp_otima_min_c",
+      "valor_brasil": "24",
+      "decisao": "trocado",
+      "motivo": "15/11/2026: sem número americano para o mínimo da faixa ótima; pela decisão do usuário (sem número americano = vazio), o campo fica vazio (não sei) em vez de reusar o 24 do Brasil."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "valor_brasil": "30",
       "decisao": "conferido e mantido",
-      "motivo": "O teto do método 86/50 (86 °F = 30 °C) confere com o máximo de 30 °C. Não achei fonte americana para o mínimo de 24 °C; mantido do Brasil."
+      "motivo": "O teto do método 86/50 da Purdue (86 °F = 30,0 °C) dá o mesmo 30. É o teto do cálculo de graus-dia da fonte, aceito como temp_otima_max_c por decisão do usuário (15/11/2026)."
     },
     {
       "coluna": "tmax_critica_c",
       "valor_brasil": "33",
-      "decisao": "conferido e mantido",
-      "motivo": "ISU: pólen deixa de ser viável 'once temperatures reach the mid 90's' (~34-35 °C) e acima de 95 °F (35 °C) os estilos-estigmas secam. A fonte americana fica 1-2 °C acima; mantido 33 para o motor tratar os dois países igual (divergência em pendências)."
+      "decisao": "trocado",
+      "motivo": "15/11/2026: o número americano com trecho vence (decisão do usuário). ISU: acima de 95 °F (35,0 °C) os estilos-estigmas expostos secam e o pólen perde a viabilidade 'in the mid 90's'. 33 -> 35."
     },
     {
       "coluna": "sensivel_geada",
@@ -561,6 +579,30 @@
       "antes": "(vazio)",
       "depois": "1.00",
       "motivo": "REVISÃO 15/11 (dano por frio): fim em R6 = fim do ciclo da linha"
+    },
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "24",
+      "depois": "",
+      "motivo": "REVISÃO 15/11/2026 (A4, 2ª revisão 'projeto-dados 15_11_26'; decisões do usuário: número americano com trecho vence; sem número americano = vazio): sem fonte americana para o mínimo da faixa ótima; vazio = não sei (origem vazio_nao_sei)."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "33",
+      "depois": "35",
+      "motivo": "REVISÃO 15/11/2026 (A4, 2ª revisão 'projeto-dados 15_11_26'; decisões do usuário: número americano com trecho vence; sem número americano = vazio): ISU 'Temperatures greater than 95° F [...] will desiccate exposed silks'; (95 - 32)/1,8 = 35,0. Origem: publicado."
+    },
+    {
+      "coluna": "temp_otima_max_c (valor sem mudança), origem, reuso_brasil",
+      "antes": "30 (sem origem registrada)",
+      "depois": "30, origem publicado",
+      "motivo": "REVISÃO 15/11/2026 (A4, 2ª revisão 'projeto-dados 15_11_26'; decisões do usuário: número americano com trecho vence; sem número americano = vazio): o 30 é o teto do cálculo de graus-dia da Purdue (86 °F = 30,0 °C), aceito como temp_otima_max_c por decisão do usuário (NOVO-3), com nota."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "Nielsen, Purdue, Heat Unit Concepts Related to Corn Development, 2020 (Tb 50 °F, teto 86/50) | ISU Encyclopedia, Corn pollination: effect of high temperature and stress (tmax crítica, conferência)",
+      "depois": "Nielsen, Purdue, Heat Unit Concepts Related to Corn Development, 2020 (Tb 50 °F; teto 86 °F do graus-dia 86/50, usado como temperatura ótima máxima: 30 °C) | ISU Encyclopedia, Corn pollination: effect of high temperature and stress (temperatura crítica de calor: acima de 95 °F = 35 °C os estilos-estigmas secam)",
+      "motivo": "REVISÃO 15/11/2026 (A4, pedido do coordenador): valores.fontes alinhado às mudanças de temperatura da A4 (o chat mostra este texto ao produtor como fonte dos números). A ISU passa de conferência a fonte do tmax_critica_c = 35; a Purdue (teto 86 °F do graus-dia) é a fonte do temp_otima_max_c = 30."
     }
   ],
   "pendencias": [
@@ -568,8 +610,8 @@
     "ciclo_dias: definido da SEMEADURA à maturação fisiológica (R6), igual aos graus-dia. No Brasil a faixa é da emergência a R6 (grupos do ZARC), cerca de 5-7 dias a menos. Os 123-140 dias vêm de simulação (Hybrid-Maize) publicada pela ISU para Nashua e Lewis; a conferência em campo (Nielsen et al. 2002, 129-138 dias) é de Indiana e Ohio. Faltou uma fonte com dias até R6 medidos em Illinois. O Handbook 628 só dá semeadura e colheita; a colheita vem 2-8 semanas depois de R6 (secagem no campo). Confirmar com o coordenador se o motor espera semeadura->R6 ou semeadura->colheita.",
     "graus_dia_max: o 1520 vem de um só ano (2013) em Champaign-IL. Resolveria: dias até R6 de híbridos 112-115 RM em Illinois (ensaios da Univ. of Illinois ou a ferramenta U2U Corn GDD da Purdue/MRCC) para montar cenários de 20 anos, como os de Iowa.",
     "graus_dia: assumi que os 2533 e 2657 GDD da Tab. 1 de Elmore 2011 (Hybrid-Maize) são °F 86/50, porque Elmore 2013 usa a mesma escala ('2500 = about 105 RM'). Com teto, o POWER fica ~4% abaixo desses GDD nas mesmas datas (conta feita só para conferir). As exigências na régua do POWER ficaram 1-6% abaixo da fonte convertida; o motor usa o mesmo POWER, então a régua é a mesma.",
-    "tmax_critica_c: mantida em 33 °C (Brasil). A fonte americana (ISU) fala em 'mid 90's' °F (~34-35 °C) para o pólen e 95 °F (35 °C) para secar os estilos-estigmas. Se o coordenador preferir a fonte dos EUA, seria 35.",
-    "temp_otima_min_c = 24 sem fonte americana (o máximo de 30 confere com o teto de 86 °F do GDD).",
+    "tmax_critica_c = 35 (15/11/2026): ISU, 'greater than 95° F' (35,0 °C) seca os estilos-estigmas; o Brasil usa 33. O dano depende também da umidade baixa ('with low relative humidity'), que o motor não olha; no Corn Belt úmido o limiar pode ser um pouco mais alto. Uma série de ensaios do Corn Belt com dano na polinização por temperatura máxima resolveria.",
+    "temp_otima_min_c VAZIO (15/11/2026, não sei): nenhuma fonte americana lida dá o limite inferior da faixa ótima do milho. temp_otima_max_c = 30 é o teto do cálculo de graus-dia da Purdue (86 °F), não um ótimo medido. Resolveria: uma publicação de extensão ou de pesquisa dos EUA com a faixa ótima de temperatura do milho (ex.: parâmetros de temperatura de um modelo calibrado no Corn Belt).",
     "agua_ciclo_mm_min: 500 = 20 in para 200 bu/acre (produtividade típica de IA/IL). Se o motor tratar o mínimo como 'água para colher alguma coisa', o valor seria 16 in = 406 -> 400 mm (150 bu/acre). Os números da ISU 2017 são de modelo (APSIM calibrado com ET medida). Não refiz com etc_nasa_power.py; um cenário Kc × ET0 em Ames daria a conferência.",
     "kc_medio 1,20 é do clima padrão; no Corn Belt úmido e com pouco vento a eq. 62 baixaria um pouco (o motor ajusta no local).",
     "regua: digestibilidade sem n (a UNL não informa); só duas fontes de C/N nos EUA; a palhada não desconta enfardamento nem pastejo. O k de Ames (inverno congelado) é bem menor que o do Brasil (0,0045), e a palhada que sobra em 60 dias fica em 10,6 t/ha.",

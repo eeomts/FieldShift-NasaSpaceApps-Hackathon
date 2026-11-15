@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Harvest Portal API (NASA Harvest): análise e documentação
 
 ## Foco: endpoints de leitura (`GET /api/3/action/...`)

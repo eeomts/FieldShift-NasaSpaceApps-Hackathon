@@ -14,7 +14,7 @@
     "graus_dia_ciclo_min": "1200",
     "graus_dia_ciclo_max": "1860",
     "temp_base_c": "10",
-    "temp_otima_min_c": "20",
+    "temp_otima_min_c": "",
     "temp_otima_max_c": "30",
     "tmax_critica_c": "40",
     "sensivel_geada": "true",
@@ -96,6 +96,18 @@
     "fase_frio_frac": {
       "tipo": "calculo",
       "nota": "Fase = R5 a R7 (NDSU A1172: perda por geada até R6, maior em R5; nenhuma depois de R7). Duração R5-R7 = 15 + 18 = 33 dias (Fehr & Caviness 1977, tabela da NDSU A1172). Ciclo médio da linha = (117 + 133)/2 = 125 dias, semeadura -> R7. Início = (125 - 33)/125 = 0,736 -> 0.74; fim = R7 = fim do ciclo = 1.00. Conferências: Carrington-ND, R5-R7 = 36 dias (NDSU A1172) -> 0,71; Arkansas, GM 4 semeado em 15/jun, R5 -> R7 = 34 dias (MP197 cap. 2). Semeaduras de março no Arkansas (fora da faixa da linha) têm R5-R7 de 61-67 dias."
+    },
+    "temp_otima_min_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano: o APSIM da ISU só dá base (50 °F), ótima (86 °F) e máxima (104 °F), sem limite inferior da faixa ótima. O 20 do Brasil saiu por decisão do usuário de 15/11/2026 (A4: sem número dos EUA, o campo fica vazio). O ECOCROP (TOPMN 20) não foi usado: base internacional, decisão pendente sobre aceitá-la como fonte nos EUA."
+    },
+    "temp_otima_max_c": {
+      "tipo": "publicado",
+      "nota": "ISU Extension, FACTS (APSIM soja calibrado para o Meio-Oeste): 'optimum 86°F (30°C)'. (86 - 32) x 5/9 = 30,0 °C. É a temperatura ótima da soma térmica do modelo (acima dela o desenvolvimento não acelera): vale como teto do cálculo de graus-dia da fonte, como no NOVO-3. Igual ao Brasil; origem passou de reusado/conferido a publicado em 15/11/2026 (A4)."
+    },
+    "tmax_critica_c": {
+      "tipo": "publicado",
+      "nota": "ISU Extension, FACTS (APSIM soja calibrado para o Meio-Oeste): 'maximum 104°F (40°C)'. (104 - 32) x 5/9 = 40,0 °C. É a temperatura máxima do modelo, em que o desenvolvimento para. Igual ao Brasil; origem passou de reusado/conferido a publicado em 15/11/2026 (A4)."
     }
   },
   "reuso_brasil": [
@@ -112,10 +124,16 @@
       "motivo": "APSIM da ISU e Kessler et al. 2020 usam base 50 °F = 10 °C."
     },
     {
-      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
-      "valor_brasil": "20, 30, 40",
+      "coluna": "temp_otima_max_c, tmax_critica_c",
+      "valor_brasil": "30, 40",
       "decisao": "conferido e mantido",
-      "motivo": "APSIM da ISU: ótima 86 °F (30 °C) e máxima 104 °F (40 °C), iguais ao Brasil. O mínimo de 20 °C não tem fonte americana (ECOCROP, Glycine max: TOPMN 20, TOPMX 33, só conferência)."
+      "motivo": "APSIM da ISU: ótima 86 °F (30 °C) e máxima 104 °F (40 °C), iguais ao Brasil. Desde 15/11/2026 (A4) a origem é o número americano (publicado), não o reuso."
+    },
+    {
+      "coluna": "temp_otima_min_c",
+      "valor_brasil": "20",
+      "decisao": "trocado",
+      "motivo": "Esvaziado em 15/11/2026 (decisão do usuário, A4: sem número americano, o campo fica vazio = não sei). O APSIM não dá o limite inferior da faixa ótima; o ECOCROP (TOPMN 20, TOPMX 33) fica só como conferência."
     },
     {
       "coluna": "sensivel_geada",
@@ -525,6 +543,24 @@
       "antes": "-2.2",
       "depois": "-2.2",
       "motivo": "REVISÃO 15/11 (revisão do frio): mantido; decisão do usuário, dano medido e o mesmo valor nos dois países (a linha do Brasil passou de 3 a -2.2). Acrescentada a FAO Tab. 4.5 (-2/-3 °C no abrigo) como conferência. tmin_efeito e tmin_dias_seguidos vazios (morte da planta; a fonte fala em horas, não em dias)."
+    },
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "20",
+      "depois": "",
+      "motivo": "15/11/2026, 2ª revisão (A4), decisão do usuário: sem número americano, o campo fica vazio (não sei). Origem: reusado do Brasil -> vazio_nao_sei."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "30",
+      "depois": "30",
+      "motivo": "15/11/2026, 2ª revisão (A4): valor mantido; origem conferido/reusado do Brasil -> publicado (ISU APSIM 'optimum 86°F (30°C)')."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "40",
+      "depois": "40",
+      "motivo": "15/11/2026, 2ª revisão (A4): valor mantido; origem conferido/reusado do Brasil -> publicado (ISU APSIM 'maximum 104°F (40°C)')."
     }
   ],
   "pendencias": [
@@ -533,7 +569,7 @@
     "graus_dia_max e ciclo_dias_max: vêm de um só ponto do SoyStage (GM 4.2, emergência 11/abr, Memphis-TN, do outro lado do rio do Arkansas) e da hipótese de 6 dias da semeadura à emergência (a fonte dá 4-14). Resolveria: tabela do SoyStage para Stuttgart-AR ou Keiser-AR (GM 4-5, semeaduras de abril e maio), ou os dados de campo de Salmerón et al. 2014/2016 (Rohwer e Keiser). Semeaduras de março (sistema precoce do Arkansas) dão 154-170 dias e 1773-2358 °C·dia; ficaram fora.",
     "ciclo_dias: da semeadura a R7, em dias corridos (data de R7 - data de semeadura; o script de graus-dia conta os dois extremos, 1 dia a mais). As datas de Iowa são médias de 3 anos e de 2-3 GM por sítio (Tab. Suplementar 2); o manuscrito do repositório da ISU foi o lido, não a versão final da Agron. J. (doi 10.1002/agj2.20053).",
     "agua_ciclo_mm_min: 500 mm (20 in) é do Arkansas para 40-50 bu/acre; em Iowa a ISU dá 21,5-22,3 in (546-566). A conferência Kc × ET0 deu menos no norte de Iowa (Nashua, ciclo de 118 dias: média 437 mm, P90 529) e mais no Delta (588). Se o coordenador preferir o cálculo, a faixa seria ~430-590 mm (origem: calculo).",
-    "temp_otima_min_c = 20 sem fonte americana (APSIM só dá base, ótima e máxima).",
+    "temp_otima_min_c vazio desde 15/11/2026 (A4, decisão do usuário: sem número americano = não sei; antes 20, do Brasil). O APSIM da ISU só dá base, ótima e máxima; o ECOCROP (TOPMN 20) não foi usado enquanto o usuário não decidir se vale como fonte nos EUA. Resolveria: faixa ótima publicada por extensão americana (ISU, UArk, UNL). temp_otima_max_c (30) e tmax_critica_c (40) passam a origem publicado (APSIM da ISU, 86 °F e 104 °F).",
     "regua: C/N vazio (sem medição americana lida). O k vem de um só ensaio (Missouri, 1993), lido só no resumo do AGRIS (sem o mês de instalação); o Chatterjee & Acharya 2020 (Vale do Red River, ND/MN: soja com 74% da massa depois de 1 ano) só foi visto em resultado de busca. A digestibilidade é da dieta selecionada (OMD), sem n. Resolveria: Kochsiek et al. 2013 (SSSAJ, Mead-NE, sacolas de soja e milho por 3 anos) ou o texto completo de Ghidey & Alberts.",
     "calendario_usda: 'Soybeans' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto. A tabela de 2010 do Arkansas (semeadura 5/mai-22/jun) inclui a soja depois do trigo e já está defasada: o Handbook do Arkansas (2014) diz que a semeadura antecipa ~1 dia por ano desde 1985.",
     "semeadura_inicio/fim (05-08 a 06-02) = 'most active' do Handbook 628 (2010) em Iowa (início 2/mai, fim 16/jun). Delta do Arkansas, a outra região de referência: 'most active' 5/mai-22/jun (início 19/abr, fim 5/jul), com a soja depois do trigo junto. DIVERGÊNCIA com cenarios/soja_gd.json (graus-dia e ciclo NÃO mudados): os cenários 'início de maio' de Iowa semeiam em 4-6/mai, poucos dias antes da janela (dentro do início de 2/mai); os do Arkansas semeiam em 15/mar e 5/abr (antes do início de 19/abr do Handbook, que está defasado, ver o Handbook do Arkansas de 2014) e em 15/jun (dentro).",

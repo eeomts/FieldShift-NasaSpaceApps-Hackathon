@@ -14,9 +14,9 @@
     "graus_dia_ciclo_min": "2000",
     "graus_dia_ciclo_max": "2650",
     "temp_base_c": "0",
-    "temp_otima_min_c": "15",
-    "temp_otima_max_c": "23",
-    "tmax_critica_c": "31",
+    "temp_otima_min_c": "",
+    "temp_otima_max_c": "26",
+    "tmax_critica_c": "",
     "sensivel_geada": "true",
     "agua_ciclo_mm_min": "400",
     "agua_ciclo_mm_max": "610",
@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "WHEAT, WINTER",
     "calendario_usda": "Wheat, winter",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do trigo de inverno no Kansas)|K-State, Kansas Crop Planting Guide L-818, 1996 (janelas de semeadura por zona; datas médias de geada)|Lollato, K-State Agronomy eUpdate 592, Optimum sowing dates and seeding rates for wheat in Kansas (janela ótima por região; semeadura real NASS 1994-2015)|Kansas Mesonet (K-State), Wheat Growth Stage (GDD do trigo: (Tmax+Tmin)/2 - 32 °F, sem teto; >3000 desde 1/jan = maturação fisiológica)|Kansas Mesonet (K-State), Winter Wheat Phenology (maturação ~2 semanas antes da colheita)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trigo_gd.json (graus-dia sem teto, Tb 0, na régua do NASA POWER, safras 2001/02 a 2020/21)|Paulsen et al., K-State Wheat Production Handbook C-529, 1997 (crescimento e desenvolvimento; geada na floração; raiz; água 16-24 pol.)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F, Tupper 79 °F)|FAO-56 Tab.12 Winter Wheat (Kc) e cap. 8 (Kc do trigo de inverno em período congelado)|FAO-56 Tab.22 Winter Wheat 1,5-1,8 m (raiz; limite superior)|Ferris et al. 1998 Ann. Bot. 82(5):631-639, mantido do Brasil (tmax na antese 31 °C)|FAO ECOCROP Triticum aestivum, mantido do Brasil (temperatura ótima)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do trigo de inverno no Kansas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Winter wheat) e 11.1a (resíduo acima do solo)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N da palha de trigo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição na superfície, Bushland-TX; resumo)|Stott et al., SSSAJ 54:92-98, 1990 (perda de palha de trigo no campo, WA, TX e IN; resumo)|Rogers et al., Agrosyst. Geosci. Environ. 2025, e70229 (decomposição e C/N de trigo duro vermelho, Idaho; resumo)|Ma et al., Agron. J. 91:401-409, 1999 (C/N da palha de trigo no leste do Colorado)|Waggoner, K-State Beef Tips, jul. 2022, dados de Cattlemen's Day 2014 (PB e IVDMD da palha de trigo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|K-State C-646 1995 Spring Freeze Injury to Kansas Wheat (limiar de dano por frio: -1 °C por 2 h no espigamento e na floração; floração ~1 semana depois do espigamento)|CÁLCULO: tmin_critica_c = -1,1 °C (C-646) + 2 °C (diferença abrigo-dossel, Leske & Biddulph 2022 Genes 13(4):578) = 1 °C|USDA NASS Crop Progress 12/05/2025 e 19/05/2025 (trigo de inverno espigado no Kansas, média 2020-2024; fase sensível ao frio)|Zheng et al. 2015 J. Exp. Bot. 66(12):3611 (conferência: limiar de 0 °C no abrigo depois do espigamento)|ZARC trigo MAPA Portaria 385/2022 RS (conferência: Tmin do ar no abrigo <= 1,0 °C ao redor do espigamento)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do trigo de inverno no Kansas)|K-State, Kansas Crop Planting Guide L-818, 1996 (janelas de semeadura por zona; datas médias de geada)|Lollato, K-State Agronomy eUpdate 592, Optimum sowing dates and seeding rates for wheat in Kansas (janela ótima por região; semeadura real NASS 1994-2015)|Kansas Mesonet (K-State), Wheat Growth Stage (GDD do trigo: (Tmax+Tmin)/2 - 32 °F, sem teto; >3000 desde 1/jan = maturação fisiológica)|Kansas Mesonet (K-State), Winter Wheat Phenology (maturação ~2 semanas antes da colheita)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trigo_gd.json (graus-dia sem teto, Tb 0, na régua do NASA POWER, safras 2001/02 a 2020/21)|Paulsen et al., K-State Wheat Production Handbook C-529, 1997 (crescimento e desenvolvimento; geada na floração; raiz; água 16-24 pol.)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F = Tb; Tupper 79 °F, teto do graus-dia, usado como temperatura ótima máxima: 26 °C)|FAO-56 Tab.12 Winter Wheat (Kc) e cap. 8 (Kc do trigo de inverno em período congelado)|FAO-56 Tab.22 Winter Wheat 1,5-1,8 m (raiz; limite superior)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do trigo de inverno no Kansas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Winter wheat) e 11.1a (resíduo acima do solo)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N da palha de trigo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição na superfície, Bushland-TX; resumo)|Stott et al., SSSAJ 54:92-98, 1990 (perda de palha de trigo no campo, WA, TX e IN; resumo)|Rogers et al., Agrosyst. Geosci. Environ. 2025, e70229 (decomposição e C/N de trigo duro vermelho, Idaho; resumo)|Ma et al., Agron. J. 91:401-409, 1999 (C/N da palha de trigo no leste do Colorado)|Waggoner, K-State Beef Tips, jul. 2022, dados de Cattlemen's Day 2014 (PB e IVDMD da palha de trigo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|K-State C-646 1995 Spring Freeze Injury to Kansas Wheat (limiar de dano por frio: -1 °C por 2 h no espigamento e na floração; floração ~1 semana depois do espigamento)|CÁLCULO: tmin_critica_c = -1,1 °C (C-646) + 2 °C (diferença abrigo-dossel, Leske & Biddulph 2022 Genes 13(4):578) = 1 °C|USDA NASS Crop Progress 12/05/2025 e 19/05/2025 (trigo de inverno espigado no Kansas, média 2020-2024; fase sensível ao frio)|Zheng et al. 2015 J. Exp. Bot. 66(12):3611 (conferência: limiar de 0 °C no abrigo depois do espigamento)|ZARC trigo MAPA Portaria 385/2022 RS (conferência: Tmin do ar no abrigo <= 1,0 °C ao redor do espigamento)",
     "confianca_parametros": "media",
     "semeadura_inicio": "09-15",
     "semeadura_fim": "10-20",
@@ -94,6 +94,18 @@
     "fase_frio_frac": {
       "tipo": "publicado",
       "nota": "Conta simples sobre números oficiais. Espigamento: 50% do trigo de inverno do Kansas espigado por volta de 12/mai (USDA NASS Crop Progress, média 2020-2024: 47% em 11/mai e 71% em 18/mai). Fim da floração: espigamento + 7 dias (floração 'about one week after the spikes appear') + 4 dias (a espiga floresce 'over a 2- to 4-day period'), K-State C-646 = 23/mai. Semeadura típica de 1/out (cenário de Hays, cenarios/trigo_gd.json; 1/out a 14/jun = 256 dias, perto do ciclo médio). Ciclo médio da linha: (230 + 280)/2 = 255. 1/out -> 12/mai = 223 dias; 1/out -> 23/mai = 234 dias. Frações: 223/255 = 0,875 -> 0,87; 234/255 = 0,918 -> 0,92. Pela regra 17, a fase cai em maio para a semeadura de set-out."
+    },
+    "temp_otima_min_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem número americano para o limite inferior da faixa ótima do trigo de inverno (a K-State MF3740 dá Tlower 32 °F, que é a Tb do graus-dia, não o ótimo). O 15 °C do Brasil (ECOCROP) saiu em 15/11/2026 (decisão do usuário: sem número americano, fica vazio = não sei)."
+    },
+    "temp_otima_max_c": {
+      "tipo": "publicado",
+      "nota": "Teto do cálculo de graus-dia da fonte, não ótimo fisiológico medido: K-State MF3740 (2026), Tab. 1, 'Winter wheat 32 79' (Tupper 79 °F). 79 °F = (79 - 32)/1,8 = 26,1 °C -> 26. A própria fonte avisa que os limites variam por fase, 'especially in wheat'. Vale como temp_otima_max_c por decisão do usuário (15/11/2026, NOVO-3)."
+    },
+    "tmax_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem limiar numérico americano de dano por calor na antese ou no enchimento do trigo de inverno (o C-529 da K-State só diz que o dano por calor aparece no enchimento de grão). O 31 °C do Brasil (Ferris et al. 1998) saiu em 15/11/2026 (decisão do usuário: sem número americano, fica vazio = não sei)."
     }
   },
   "reuso_brasil": [
@@ -116,16 +128,22 @@
       "motivo": "K-State MF3740 e Kansas Mesonet usam 32 °F (= 0 °C), sem teto no Mesonet."
     },
     {
-      "coluna": "temp_otima_min_c, temp_otima_max_c",
-      "valor_brasil": "15, 23",
-      "decisao": "conferido e mantido",
-      "motivo": "A K-State MF3740 dá o limite superior da faixa ótima do trigo de inverno em 79 °F (26 °C), 3 °C acima do ECOCROP. Mantido 23 para o motor tratar os dois países igual (divergência em pendências)."
+      "coluna": "temp_otima_min_c",
+      "valor_brasil": "15",
+      "decisao": "trocado",
+      "motivo": "15/11/2026: sem número americano para o mínimo da faixa ótima; pela decisão do usuário (sem número americano = vazio), o campo fica vazio (não sei) em vez de reusar o 15 do ECOCROP."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "valor_brasil": "23",
+      "decisao": "trocado",
+      "motivo": "15/11/2026: o número americano com trecho vence (decisão do usuário). K-State MF3740 Tab. 1, trigo de inverno Tupper 79 °F = 26,1 °C -> 26. É o teto do cálculo de graus-dia da fonte, aceito como temp_otima_max_c (NOVO-3)."
     },
     {
       "coluna": "tmax_critica_c",
       "valor_brasil": "31",
-      "decisao": "reusado",
-      "motivo": "Fisiologia da espécie (Ferris et al. 1998). Não achei limiar numérico da K-State para a antese; o C-529 só diz que o dano por calor aparece no enchimento de grão."
+      "decisao": "trocado",
+      "motivo": "15/11/2026: sem número americano (a K-State não dá limiar numérico para a antese); pela decisão do usuário, o campo fica vazio (não sei) em vez de reusar o 31 de Ferris et al. 1998."
     },
     {
       "coluna": "sensivel_geada",
@@ -571,6 +589,30 @@
       "antes": "(vazio)",
       "depois": "0.87 / 0.92",
       "motivo": "REVISÃO 15/11 (dano por frio): do espigamento (50% espigado no Kansas por volta de 12/mai, NASS Crop Progress, média 2020-2024) ao fim da floração (+11 dias, C-646), com semeadura em 1/out: 223/255 e 234/255. Origem: publicado."
+    },
+    {
+      "coluna": "temp_otima_min_c",
+      "antes": "15",
+      "depois": "",
+      "motivo": "REVISÃO 15/11/2026 (A4, 2ª revisão 'projeto-dados 15_11_26'; decisões do usuário: número americano com trecho vence; sem número americano = vazio): sem fonte americana para o mínimo da faixa ótima; vazio = não sei (origem vazio_nao_sei)."
+    },
+    {
+      "coluna": "temp_otima_max_c",
+      "antes": "23",
+      "depois": "26",
+      "motivo": "REVISÃO 15/11/2026 (A4, 2ª revisão 'projeto-dados 15_11_26'; decisões do usuário: número americano com trecho vence; sem número americano = vazio): K-State MF3740 Tab. 1 'Winter wheat 32 79'; (79 - 32)/1,8 = 26,1 -> 26. É o teto do cálculo de graus-dia da fonte (NOVO-3). Origem: publicado."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "31",
+      "depois": "",
+      "motivo": "REVISÃO 15/11/2026 (A4, 2ª revisão 'projeto-dados 15_11_26'; decisões do usuário: número americano com trecho vence; sem número americano = vazio): sem limiar numérico americano de dano por calor; vazio = não sei (origem vazio_nao_sei)."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F, Tupper 79 °F) | Ferris et al. 1998 Ann. Bot. 82(5):631-639, mantido do Brasil (tmax na antese 31 °C) | FAO ECOCROP Triticum aestivum, mantido do Brasil (temperatura ótima)",
+      "depois": "Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F = Tb; Tupper 79 °F, teto do graus-dia, usado como temperatura ótima máxima: 26 °C) (e saem os itens removidos)",
+      "motivo": "REVISÃO 15/11/2026 (A4, pedido do coordenador): valores.fontes alinhado às mudanças de temperatura da A4 (o chat mostra este texto ao produtor como fonte dos números). Saem Ferris et al. 1998 (o tmax_critica_c 31 do Brasil virou vazio) e o ECOCROP (temperatura ótima 15/23 do Brasil: mínimo vazio, máximo 26 da K-State); a K-State MF3740 passa a ser a fonte do temp_otima_max_c = 26."
     }
   ],
   "pendencias": [
@@ -578,8 +620,8 @@
     "graus-dia: a soma inclui a dormência de inverno (dias com Tmed > 0 °C somam, como no Kansas Mesonet). O motor deve somar os graus-dia de set-out até junho do ano seguinte, sem teto e com Tb 0. Não há conversão de teto: o Mesonet já usa o mesmo método do catálogo. Os 2000-2650 vêm de datas de semeadura e maturação do calendário oficial (não de cultivar); faltou um ensaio do Kansas com a data de maturação fisiológica medida por cultivar e data de semeadura. Resolveria: dados de fenologia dos ensaios da K-State (Kansas Wheat Performance Tests trazem só o espigamento, e só em algumas tabelas).",
     "ciclo_dias: a maturação fisiológica = colheita do Handbook 628 menos 14 dias (regra do Kansas Mesonet, que cita Robertson et al. 2004; o original não foi lido). No centro-sul (Hutchinson) o POWER soma 8,5% menos que o limiar de maturação do Mesonet até 6/jun, então a maturação real pode vir uns 5 dias depois e o ciclo mínimo seria ~235 dias.",
     "sensivel_geada = true pela fase sensível (geada no espigamento-floração, maio). O trigo de inverno tolera o frio no vegetativo; o motor não deve eliminar o trigo de inverno por geada no inverno, só por geada tardia na floração.",
-    "temp_otima_max_c: mantido 23 (ECOCROP, Brasil). A K-State MF3740 dá 79 °F (26 °C) como limite superior do ótimo do trigo de inverno. Se o coordenador preferir a fonte dos EUA, seria 26.",
-    "tmax_critica_c = 31 do Brasil (Ferris et al. 1998), sem limiar numérico da K-State para a antese.",
+    "temp_otima_max_c = 26 (15/11/2026): é o Tupper 79 °F da K-State MF3740 (teto do cálculo de graus-dia da fonte), não um ótimo fisiológico medido; o Brasil (ECOCROP) usa 23. temp_otima_min_c VAZIO (não sei): o Tlower da mesma tabela (32 °F) é a Tb, não o ótimo. Resolveria: uma fonte dos EUA com a faixa ótima de temperatura do trigo de inverno por fase.",
+    "tmax_critica_c VAZIO (15/11/2026, não sei): nenhuma fonte americana lida dá o limiar numérico de dano por calor na antese ou no enchimento do trigo de inverno (o 31 do Brasil vinha de Ferris et al. 1998, Reino Unido). Resolveria: publicação da K-State ou da Oklahoma State com a temperatura máxima que causa perda de grão no enchimento do HRW.",
     "agua_ciclo_mm: 16-24 pol. é número de extensão (C-529, 1997), sem a conta do clima de cada região do Kansas. Não refiz com etc_nasa_power.py: o ciclo com dormência pediria fases de Kc próprias do Kansas que não achei (FAO-56 Tab. 11 tem Idaho, 160/75/75/25 dias). Um cenário Kc × ET0 em Garden City conferiria o máximo.",
     "kc_inicial 0,4 (solo congelado) vale para o noroeste e o centro do Kansas; no sul (Oklahoma, norte do Texas) com inverno sem solo congelado o FAO-56 dá 0,7.",
     "regua: nenhum estudo de decomposição no Kansas; as quatro fontes de k são do Texas, Missouri, Idaho e de vários estados (três lidas só pelo resumo). Digestibilidade sem n. A palhada não desconta o enfardamento. O pastejo do trigo no outono-inverno (duplo propósito) não entrou no valor forrageiro.",

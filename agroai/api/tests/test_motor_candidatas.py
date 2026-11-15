@@ -1,4 +1,8 @@
 """Candidatas: atual, janela vazia, troca da principal por tolerante à seca e leguminosa."""
+import importlib.util
+
+from app.core.caminhos import RAIZ_REPO
+from app.services.motor import candidatas as modulo_candidatas
 from app.services.motor.calendario import maior_janela_vazia, meses_do_periodo, meses_necessarios, partes_por_terco
 from app.services.motor.candidatas import chave, gerar_candidatas
 from app.services.motor.catalogo import catalogo_do_pais
@@ -233,7 +237,96 @@ def test_troca_da_principal_por_cobertura_tolerante_a_seca_tambem_segue_a_janela
     assert "tolerante_seca:milho->milheto" not in cands([soja, milho, milheto("09-01", "10-31")], a, [], "tolerante_seca")
 
 
-def test_cultura_comercial_ignora_a_janela_de_semeadura_das_colunas():
-    sorgo = cultura("sorgo", tipos=("comercial", "tolerante_seca"), ciclo_dias_min=90, semeadura_inicio=(1, 1), semeadura_fim=(1, 31), condicao_semeadura=("apos_cereal_inverno",))
+# --- regra 12 revista (Yury, PR #56): cobertura no mês da colheita da anterior
+CENTEIO = dict(ciclo=178, condicao=("apos_colheita_graos",), tipos=("cobertura", "forrageira"))
+IOWA = atual(item("milho", 5, 10), item("soja", 5, 10))  # vazio: nov-abr
+VAZIOS_IOWA = [11, 12, 1, 2, 3, 4]
+
+
+def centeio(inicio="09-17", fim="10-29", **mudancas):
+    return cob("centeio", inicio, fim, **(CENTEIO | mudancas))
+
+
+def test_centeio_depois_de_milho_e_soja_em_iowa_entra_no_mes_da_colheita_com_o_aviso():
+    c = cands([cultura("milho"), cultura("soja"), centeio()], IOWA, VAZIOS_IOWA)["janela:centeio"]
+    assert periodo(c) == (10, 4)  # outubro (colheita) a abril: os 6 meses vazios cobrem 178 dias
+    assert c.nome == "Plantar Centeio logo depois da colheita (out–abr)"
+    assert [a.codigo for a in c.alertas] == ["depende_da_colheita"]
+    assert c.alertas[0].texto == "Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita."
+
+
+def test_o_mes_da_colheita_nao_conta_para_o_ciclo_minimo():
+    assert "janela:centeio" not in cands([cultura("milho"), cultura("soja"), centeio(ciclo=190)], IOWA, VAZIOS_IOWA)  # 190 d > 182,4 d
+    c = cands([cultura("milho"), cultura("soja"), centeio(ciclo=100)], IOWA, VAZIOS_IOWA)["janela:centeio"]
+    assert periodo(c) == (10, 2)  # 100 dias = 4 meses, contados a partir de novembro
+
+
+def test_mes_vazio_na_janela_de_semeadura_tem_preferencia_sobre_o_mes_da_colheita():
+    c = cands([cultura("milho"), cultura("soja"), centeio(fim="11-20", ciclo=100)], IOWA, VAZIOS_IOWA)["janela:centeio"]
+    assert periodo(c) == (11, 2) and c.nome.startswith("Plantar Centeio no período vazio") and c.alertas == ()
+
+
+def test_semeadura_no_primeiro_mes_vazio_nao_tem_o_aviso_da_colheita():
+    c = cands([cultura("milho"), centeio()], atual(item("milho", 5, 9)), [10, 11, 12, 1, 2, 3, 4])["janela:centeio"]
+    assert periodo(c) == (10, 3) and c.alertas == () and c.nome == "Plantar Centeio no período vazio (out–mar)"
+
+
+def test_comercial_nunca_usa_o_mes_da_colheita():
+    trigo2 = cultura("trigo2", ciclo_dias_min=100, semeadura_inicio=(9, 17), semeadura_fim=(10, 29))
+    assert "janela:trigo2" not in cands([cultura("milho"), cultura("soja"), trigo2], IOWA, VAZIOS_IOWA)  # nov-abr fora da janela
+
+
+def test_troca_por_cobertura_logo_depois_da_colheita_ganha_o_aviso():
+    soja, milho = cultura("soja", ciclo_dias_max=140), cultura("milho", ciclo_dias_max=145)
+    milheto = cob("milheto", "01-21", "04-15", tipos=("cobertura", "tolerante_seca"))
+    a = atual(item("soja", 10, 2), item("milho", 2, 6))  # a soja é colhida em fevereiro, quando o milheto entra no lugar do milho
+    troca = cands([soja, milho, milheto], a, [7, 8, 9], "tolerante_seca")["tolerante_seca:milho->milheto"]
+    assert [x.texto for x in troca.alertas] == ["Milheto: a semeadura é em fevereiro, logo depois da colheita de Soja; depende da data da sua colheita."]
+    sem_colheita_no_mes = atual(item("soja", 10, 1), item("milho", 2, 6))  # a soja sai em janeiro: fevereiro já era livre
+    assert cands([soja, milho, milheto], sem_colheita_no_mes, [7, 8, 9], "tolerante_seca")["tolerante_seca:milho->milheto"].alertas == ()
+
+
+def test_troca_por_comercial_nao_ganha_o_aviso_da_colheita():
+    soja, milho = cultura("soja", ciclo_dias_max=140), cultura("milho", ciclo_dias_max=145)
+    sorgo = cultura("sorgo", tipos=("comercial", "tolerante_seca"), ciclo_dias_min=90)
+    a = atual(item("soja", 10, 2), item("milho", 2, 6))
+    assert cands([soja, milho, sorgo], a, [7, 8, 9], "tolerante_seca")["tolerante_seca:milho->sorgo"].alertas == ()
+
+
+# --- a janela de semeadura do catálogo vale também para as culturas de venda que a têm (grãos dos EUA)
+def venda(id_="graos", inicio=(5, 8), fim=(6, 2), ciclo=60, **mais):
+    return cultura(id_, ciclo_dias_min=ciclo, semeadura_inicio=inicio, semeadura_fim=fim, **mais)
+
+
+def test_comercial_com_janela_comeca_no_primeiro_mes_da_janela_de_semeadura():
+    a = atual(item("soja", 10, 2))
+    c = cands([cultura("soja"), venda()], a, [3, 4, 5, 6, 7, 8, 9])["janela:graos"]
+    assert periodo(c) == (5, 6) and c.alertas == ()  # maio: primeiro mês da janela
+    assert "janela:graos" not in cands([cultura("soja"), venda()], a, [7, 8, 9])  # jul-set fora da janela
+
+
+def test_comercial_com_janela_nao_entra_fora_da_epoca_e_sem_janela_nao_tem_restricao():
+    assert "janela:graos" not in cands([cultura("milho"), cultura("soja"), venda()], IOWA, VAZIOS_IOWA)
+    assert "janela:graos" in cands([cultura("milho"), cultura("soja"), cultura("graos", ciclo_dias_min=60)], IOWA, VAZIOS_IOWA)
+
+
+def test_comercial_ignora_a_condicao_de_semeadura():
+    sorgo = cultura("sorgo", tipos=("comercial", "tolerante_seca"), ciclo_dias_min=90, semeadura_inicio=(7, 1), semeadura_fim=(7, 31), condicao_semeadura=("apos_cereal_inverno",))
     r = cands([cultura("milho"), sorgo], atual(item("milho", 1, 6)), [7, 8, 9])
-    assert periodo(r["janela:sorgo"]) == (7, 9) and r["janela:sorgo"].alertas == ()
+    assert periodo(r["janela:sorgo"]) == (7, 9) and r["janela:sorgo"].alertas == ()  # depois de milho: a condição só vale para cobertura
+
+
+def test_troca_por_comercial_com_janela_exige_o_mes_da_troca_na_janela():
+    soja, milho = cultura("soja", ciclo_dias_max=140), cultura("milho", ciclo_dias_max=145)
+    sorgo = venda("sorgo", (5, 15), (6, 20), 90, tipos=("comercial", "tolerante_seca"))
+    assert "tolerante_seca:milho->sorgo" in cands([soja, milho, sorgo], atual(item("soja", 10, 2), item("milho", 5, 8)), [], "tolerante_seca")
+    assert "tolerante_seca:milho->sorgo" not in cands([soja, milho, sorgo], atual(item("soja", 10, 2), item("milho", 3, 6)), [], "tolerante_seca")
+
+
+# --- o motor entende exatamente as condições de semeadura que o catálogo aceita
+def test_condicoes_de_semeadura_do_motor_sao_as_do_montar_csv():
+    spec = importlib.util.spec_from_file_location("montar_csv_candidatas", RAIZ_REPO / "data" / "catalogo" / "scripts" / "montar_csv.py")
+    montar = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(montar)
+    entendidas = {"apos_colheita_graos", "apos_cereal_inverno", "apos_silagem", modulo_candidatas.A_LANCO}
+    assert entendidas == montar.CONDICOES

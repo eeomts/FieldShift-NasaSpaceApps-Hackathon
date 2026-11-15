@@ -34,6 +34,9 @@ Em `valores`, cada uma com entrada própria em `evidencias` (fonte, URL e trecho
 - **Uma linha, uma região e um sistema.** A janela principal é a do sistema e da região que os números da linha já representam (ciclo, graus-dia, água). Outra região ou outro sistema com janela diferente vai para `regua.arranjos.<nome>` com `estados`, `semeadura_inicio/fim`, `manejo_inicio/fim`, `tipo_manejo`, `condicao_semeadura` e a fonte, e não para a linha.
 - Onde houver ZARC da cultura, confira a janela com `janelas.csv` e cite a portaria.
 
+## `perene` e `tipos`
+Devem ser iguais ao bloco `por_pais.BR` da cultura no `agroai/base/culturas.json` (decisão de 15/11/2026). O `montar_csv.py` recusa a evidência se forem diferentes. Para mudar um deles, avise o coordenador: o bloco do JSON muda junto, por PR.
+
 ## Textos para o produtor (confiança `baixa`)
 `lacuna_informacao` e `risco_revisao_local` em `valores`, até **300 caracteres** cada, em português simples para o produtor:
 - `lacuna_informacao`: o que não sabemos, a partir das colunas que contam como lacuna em `origem` (as que deram a confiança baixa). Diga de onde veio o número no lugar da medição que falta ("usamos um cálculo com o clima", "usamos dados de uma planta parecida").

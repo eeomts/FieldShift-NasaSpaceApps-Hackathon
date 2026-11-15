@@ -10,10 +10,16 @@ from functools import lru_cache
 
 from app.services import catalogo as base
 from app.services.motor import catalogo as catalogo_motor
+from app.services.motor.parametros import MESES_POR_EXTENSO
 
 _MESES_PT = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 _MESES_EN = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 _MES = "|".join(_MESES_PT)
+_MES_POR_EXTENSO_EN = dict(zip(
+    MESES_POR_EXTENSO,
+    ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
+    strict=True,
+))  # fmt: skip
 
 _CLASSES = {
     "baixo": "low", "baixa": "low", "medio": "medium", "media": "medium", "médio": "medium", "média": "medium",
@@ -48,9 +54,9 @@ _Regra = tuple[re.Pattern, str | Callable[[re.Match], str]]
 
 _MILHAR = "\x00"  # vírgula de milhar em inglês: só vira "," no fim, depois da troca da vírgula decimal
 _FASE_FRIO_CALOR = {
-    "na emergência": "at emergence", "no crescimento": "during growth", "na floração": "at flowering",
-    "no enchimento dos grãos": "during grain fill", "durante o ciclo": "over the whole cycle",
-    "na fase sensível": "in the sensitive stage", "ao longo do ano": "through the year",
+    "na emergência das plantas": "during emergence", "no crescimento das plantas": "during plant growth",
+    "na florada": "at flowering", "na floração": "at flowering", "no enchimento dos grãos": "during grain fill",
+    "em todo o ciclo": "over the whole cycle", "na fase sensível": "in the sensitive stage", "ao longo do ano": "through the year",
 }  # fmt: skip
 
 
@@ -78,16 +84,13 @@ def _frio_ou_calor(m: re.Match) -> str:
         return f"{nome}: in {pct} of the years ({periodo}) the low fell below {m.group('limiar')} °C{dias} {fase}; {dano} in this stage cuts yield."
     return f"{nome}: in {pct} of the years ({periodo}) the temperature went above {m.group('maxima')} °C for {m.group('dias_calor')} days in a row {fase}; heat in this stage can cut yield."
 
-# Regra 17 (frio por fase, filtro._frio): termo, onde (parametros.FASES_FRIO_TEXTO) e o limiar.
+# Regra 17 (frio por fase, filtro._frio): termo, onde (parametros.FASES_FRIO_TEXTO, FASE_FRIO_PADRAO e FASE_FRIO_PERENE) e o limiar.
 _TERMO_FRIO = {"geada": "frost", "frio": "cold"}
 _ONDE_FRIO = {
+    "na emergência das plantas": "during emergence", "no crescimento das plantas": "during plant growth",
     "na florada": "during flowering", "no enchimento dos grãos": "during grain fill",
-    "no começo do crescimento": "early in growth", "em todo o ciclo": "over the whole cycle",
-    "ao longo do ano": "through the year", "na fase sensível": "in the sensitive stage",
-}  # fmt: skip
-_FASE_FRIO = {
-    "florada": "flowering", "enchimento dos grãos": "grain fill", "começo do crescimento": "early growth",
-    "todo o ciclo": "the whole cycle", "ano todo": "the whole year", "fase sensível": "the sensitive stage",
+    "em todo o ciclo": "over the whole cycle", "ao longo do ano": "through the year",
+    "na fase sensível": "in the sensitive stage",
 }  # fmt: skip
 _QUANTO_FRIO = re.compile(r"^mínima abaixo de (\S+) °C(?: por (\d+) dias seguidos)?$")
 
@@ -111,6 +114,7 @@ _REGRAS: list[_Regra] = [
         # nomes das estratégias
         (r"^Sua rotação atual$", "Your current rotation"),
         (r"^Plantar (.+?) no período vazio \((.+?)\)$", r"Plant \1 in the empty period (\2)"),
+        (r"^Plantar (.+?) logo depois da colheita \((.+?)\)$", r"Plant \1 right after the harvest (\2)"),
         (r"^Trocar (.+?) por (.+)$", r"Swap \1 for \2"),
         # por que / onde piora
         (r"^(.+?): nota (\S+) contra (\S+) da sua rotação atual\.$", lambda m: f"{_FRASES.get(m.group(1), m.group(1))}: score {m.group(2)} vs. {m.group(3)} for your current rotation."),
@@ -131,18 +135,15 @@ _REGRAS: list[_Regra] = [
          lambda m: f"the period's heat gives {_milhar(m.group(1))} degree-days in half of the years ({m.group(2)}) and it needs at least {_milhar(m.group(3))}"),
         (r"; não fecha o ciclo\.$", "; it cannot finish its cycle."),
         (r"^(.+?): no limite térmico, validar localmente; ", r"\1: at its heat limit, check locally; "),
-        (r"^(.+?): pouco crescimento antes do frio ou do manejo; ", r"\1: little growth before frost or termination; "),
+        (r"^(.+?): pode não completar o ciclo antes do manejo; ", r"\1: may not finish its cycle before termination; "),
         (r"^(.+?): em ano frio pode não completar o ciclo; em 1 a cada 10 anos \((\S+)\) o calor do período fica em (\S+) graus-dia, e ela precisa de pelo menos (\S+)\.$",
          lambda m: f"{m.group(1)}: in a cold year it may not finish its cycle; in 1 of every 10 years ({m.group(2)}) the period's heat is only {_milhar(m.group(3))} degree-days, and it needs at least {_milhar(m.group(4))}."),
         (r"^(.+?): sem anos suficientes de clima para checar o calor do ciclo\.$", r"\1: not enough years of climate data to check the season's heat."),
-        (r"^(.+?): sem anos suficientes de clima para checar o frio\.$", r"\1: not enough years of climate data to check cold."),
         (r"^(.+?): sem anos suficientes de clima para checar o risco de calor\.$", r"\1: not enough years of climate data to check heat risk."),
         (r"^(.+?): sem dados diários de temperatura máxima do local, não checamos o risco de calor\.$", r"\1: no local daily maximum temperature data, so we did not check heat risk."),
-        (r"^(.+?): sem dados diários de temperatura mínima do local ou sem a fase do frio na base: usamos o teste de geada por mês\.$",
-         r"\1: no local daily minimum temperature data (or no cold stage in our database): we used the monthly frost check."),
         # filtro: frio por cultura (regra 17) e calor por dias seguidos (regra 11)
         (r"^(.+?): em (\S+) dos anos \((\S+)\) a mínima ficou abaixo de (?P<limiar>\S+) °C(?: por (?P<dias>\d+) dias seguidos)? "
-         r"(?P<fase>na emergência|no crescimento|na floração|no enchimento dos grãos|durante o ciclo|na fase sensível|ao longo do ano)(?: \((?P<meses>.+?)\))?; "
+         r"(?P<fase>na emergência das plantas|no crescimento das plantas|na florada|no enchimento dos grãos|em todo o ciclo|na fase sensível|ao longo do ano)(?: \((?P<meses>.+?)\))?; "
          r"(?P<dano>a geada|o frio) nessa fase tira produção\.$", _frio_ou_calor),
         (r"^(.+?): em (\S+) dos anos \((\S+)\) a temperatura passou de (?P<maxima>\S+) °C por (?P<dias_calor>\d+) dias seguidos "
          r"(?P<fase>na floração|ao longo do ano)(?: \((?P<meses>.+?)\))?; o calor nessa fase pode reduzir a produção\.$", _frio_ou_calor),
@@ -165,8 +166,12 @@ _REGRAS: list[_Regra] = [
         (r"^(.+?): (geada|frio) (.+?) em (\S+) dos anos \((mínima abaixo de .+?)\); o dano é parcial, validar localmente\.$",
          lambda m: f"{m.group(1)}: {_TERMO_FRIO[m.group(2)]} {_ONDE_FRIO.get(m.group(3), m.group(3))} in {m.group(4)} of the years "
                    f"({_quanto_frio(m.group(5))}); the damage is partial, check locally."),
-        (r"^(.+?): sem a mínima diária do local para a fase (.+?), não checamos o frio\.$",
-         lambda m: f"{m.group(1)}: no local daily minimum temperature for {_FASE_FRIO.get(m.group(2), m.group(2))}, so we did not check the cold."),
+        (r"^(.+?): não temos a temperatura mínima de cada dia do seu local, então não checamos o frio (.+?)\.$",
+         lambda m: f"{m.group(1)}: we don't have the daily minimum temperature for your location, so we did not check the cold {_ONDE_FRIO.get(m.group(2), m.group(2))}."),
+        (r"^(.+?): o frio (.+?) foi checado em só (\d+) dos (\d+) anos, por falta de temperatura mínima do local; poucos para decidir\.$",
+         lambda m: f"{m.group(1)}: the cold {_ONDE_FRIO.get(m.group(2), m.group(2))} was checked in only {m.group(3)} of {m.group(4)} years, "
+                   "for lack of the local minimum temperature; too few to decide."),
+        (r"^(.+?): sem o ciclo na base, não checamos o frio\.$", r"\1: no cycle in our database, so we did not check the cold."),
         (r"^Você disse que não planta (.+)\.$", r"You said you don't grow \1."),
         (r"^(.+?) só entra com irrigação ou várzea e você não marcou irrigação\.$", r"\1 only works with irrigation or flooded lowland, and you did not mark irrigation."),
         (r"^(.+?): sem os meses de plantio, não checamos clima, água e geada\.$", r"\1: without the planting months, we did not check climate, water and frost."),
@@ -239,6 +244,11 @@ _REGRAS: list[_Regra] = [
          r"\1: this cover crop only fits after a crop harvested for silage, and we don't know if yours is. Check before sowing."),
         (r"^(.+?): a época de semeadura ainda não foi confirmada para a sua região\.$", r"\1: the sowing time has not been confirmed for your region yet."),
         (r"^(.+?): confira se dá para semear depois de (.+)\.$", r"\1: check whether it can be sown after \2."),
+        (r"^(.+?): a semeadura é em (\w+), logo depois da colheita de (.+?); depende da data da sua colheita\.$",
+         lambda m: f"{m.group(1)}: sowing is in {_MES_POR_EXTENSO_EN.get(m.group(2), m.group(2))}, right after the harvest of "
+                   f"{m.group(3).replace(' e ', ' and ')}; it depends on your harvest date."),
+        (r"^Nenhuma planta de cobertura da nossa base serve para o seu período sem planta \((.+?)\) na sua região, pela época de semear ou pelo clima\. Confirme com seu agrônomo\.$",
+         r"No cover crop in our database fits your period without plants (\1) in your region, because of sowing time or climate. Check with your agronomist."),
         # critérios: animais
         (r"^(.+?): valor forrageiro desconhecido \((.+?)\)\.$", r"\1: unknown forage value (\2)."),
         (r"^Sem dado de comida para os animais nas culturas desta rotação\.$", "No animal-feed data for the crops in this rotation."),
@@ -275,9 +285,9 @@ def _nomes_en() -> list[tuple[re.Pattern, str]]:
         for c in catalogo_motor.catalogo_do_pais(pais).values():
             en = None
             if c.id in exibicao:
-                en = base.nome_exibicao(exibicao[c.id], "en")
+                en = base.nome_exibicao(exibicao[c.id], "en")  # `c.nome` já é o nome de exibição em português
             if not en or en == c.nome:
-                m = re.search(r"\(([^)]+)\)\s*$", c.nome)  # "Algodão (upland cotton)" -> "Upland cotton"
+                m = re.search(r"\(([^)]+)\)\s*$", c.nome_base or c.nome)  # cultura fora do JSON: "Algodão (upland cotton)" -> "Upland cotton"
                 en = (m.group(1)[:1].upper() + m.group(1)[1:]) if m else en
             if en and en != c.nome:
                 pares[c.nome] = en

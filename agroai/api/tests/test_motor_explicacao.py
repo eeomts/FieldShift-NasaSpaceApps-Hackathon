@@ -111,8 +111,8 @@ def test_aviso_da_pastagem_dos_eua_vira_alerta_so_com_a_cultura_na_rotacao():
     us = catalogo_do_pais("US")
     a = avisos_da_regua((item("pastagem", 3, 9), item("milho", 10, 2)), us)
     assert [x.codigo for x in a] == ["aviso_valor_forrageiro"]
-    assert a[0].texto == "Festuca alta (tall fescue): " + us["pastagem"].avisos["valor_forrageiro"].removeprefix("Atenção: ")  # o alerta já é um aviso
-    assert a[0].texto.startswith("Festuca alta (tall fescue): a maioria dos pastos antigos")
+    assert a[0].texto == "Pasto: " + us["pastagem"].avisos["valor_forrageiro"].removeprefix("Atenção: ")  # o alerta já é um aviso
+    assert a[0].texto.startswith("Pasto: a maioria dos pastos antigos")
     assert avisos_da_regua((item("milho", 10, 2),), us) == []  # sem aviso, sem alerta
 
 
