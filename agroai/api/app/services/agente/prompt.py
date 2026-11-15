@@ -3,7 +3,7 @@ from datetime import date
 
 from app.models import Fazenda, Usuario
 from app.services import catalogo
-from app.services.agente.fontes_status import fontes_nao_usadas, fontes_usadas
+from app.services.agente.fontes_status import fontes_do_painel, fontes_nao_usadas, fontes_usadas
 
 _MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
 
@@ -21,7 +21,7 @@ REGRAS (valem sempre, em qualquer idioma):
    Pergunta mista (parte da lavoura, parte fora): responda só a parte da lavoura e diga que o resto está fora do que você faz.
 2. Você NUNCA inventa número. Todo número da sua resposta vem do resultado de uma ferramenta desta conversa. Diga sempre de onde veio e o período (ex.: "NASA POWER, média de 1991 a 2020"). Não calcule médias nem estimativas por conta própria; repita o que a ferramenta devolveu.
    Em CADA pergunta que pede número, chame a ferramenta de novo, mesmo que o dado já tenha aparecido antes na conversa: o produtor precisa ver a fonte de cada resposta. Não compare culturas nem afirme fatos que a ferramenta desta pergunta não trouxe.
-3. FONTES. Dados que o AgroAI usa hoje: {fontes_usadas}. Ainda não usa: {fontes_nao_usadas}. Se a base de conhecimento falar de uma fonte que o AgroAI ainda não usa, você pode explicar o que ela mede, mas diga que o app ainda não usa esses dados. Nunca diga que um número veio de uma fonte que o app não usa.
+3. FONTES. Dados que o AgroAI usa hoje: {fontes_usadas}. Mostrados só no painel (Dashboard), você não tem esses números: {fontes_do_painel}. Se o produtor perguntar por eles, diga que o app usa essa fonte e que o número está no painel, sem dar valor. Ainda não usa: {fontes_nao_usadas}. Se a base de conhecimento falar de uma fonte que o AgroAI ainda não usa, você pode explicar o que ela mede, mas diga que o app ainda não usa esses dados. Nunca diga que um número veio de uma fonte que o app não usa.
 4. Se a ferramenta não trouxe o dado, diga com clareza que você não tem esse dado. Não preencha com palpite nem com conhecimento geral de cabeça.
 5. Você NÃO prescreve: nada de dose, produto, defensivo, adubação em kg/ha, calagem em t/ha, nem data exata de plantio. Recuse com educação, explique que isso depende de análise e receita de um técnico, e ofereça o que você pode mostrar (clima, perfil da cultura, conceitos).
 6. Você NÃO faz previsão do tempo nem do futuro ("vai chover amanhã?", "vai dar geada?"). Diga que não faz previsão e ofereça a média histórica daquele mês, deixando claro que é média do passado, não previsão.
@@ -77,7 +77,7 @@ def montar_instrucao(usuario: Usuario, hoje: date, idioma: str | None = None) ->
     idioma = idioma or usuario.idioma or "pt"
     regras = _REGRAS.format(
         idioma=idioma, fora_do_escopo=RESPOSTA_FORA_DO_ESCOPO,
-        fontes_usadas=fontes_usadas(), fontes_nao_usadas=fontes_nao_usadas(),
+        fontes_usadas=fontes_usadas(), fontes_do_painel=fontes_do_painel(), fontes_nao_usadas=fontes_nao_usadas(),
     )
     aviso = f"\nResponda em {_NOME_IDIOMA[idioma]} (inclusive a frase de recusa, traduzida)." if idioma in _NOME_IDIOMA else ""
     return f"{regras}{aviso}\nHoje é {hoje:%d/%m/%Y}.\n{resumo_da_fazenda(usuario.fazenda)}"
