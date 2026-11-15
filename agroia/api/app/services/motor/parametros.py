@@ -1,4 +1,4 @@
-"""Números do motor de rotação: cada constante diz a fonte ou 'proposta, validar com o Yury'."""
+"""Números do motor de rotação: cada constante diz a fonte ou 'escolha de produto'; 'proposta, validar com o Yury' = ainda em decisão."""
 
 DIAS_POR_MES = 30.4  # 365 / 12, arredondado
 
@@ -23,12 +23,12 @@ GD_MIN_SAFRAS = 10  # proposta, validar com o Yury: com menos safras completas o
 
 # Filtro de água (regra 1): chuva do período ÷ ETc do período. A água nunca elimina: só avisa "água no limite"
 AGUA_MUITO_ABAIXO = 0.50  # abaixo disto, com irrigação em parte da área, o aviso diz que só fecha na parte irrigada
-AGUA_ALERTA_ABAIXO = 0.80  # proposta, validar com o Yury
+AGUA_ALERTA_ABAIXO = 0.80  # ok pela ordem de grandeza (VALIDACAO-PARAMETROS-MOTOR.md 2.1): FAO-56 eq. 90 e Tab. 24 (Ky do FAO-33), ~15–25 % de perda com 80 % da água
 
 # Filtro de geada (ARQUITETURA-COMPLETA.md: risco na fase sensível > 30 % dos anos)
 GEADA_MAX_FRACAO_DE_ANOS = 0.30
 GEADA_MIN_DIAS_NO_ANO = 1  # o ano conta se algum mês da fase sensível teve pelo menos 1 dia de geada
-GEADA_FASE_SENSIVEL = "terco_medio"  # proposta, validar com o Yury (floração): o terço do meio do ciclo, onde o Kc é médio
+GEADA_FASE_SENSIVEL = "terco_medio"  # ok como reserva para cultura sem tmin_critica_c (FAO Frost protection, Tab. 4.5; FAO-56 cap. 6); a regra 17 substitui quando houver limiar
 
 # Calor na fase sensível (regra 11; validado com o Yury em 15/11): só avisa, nunca elimina
 CALOR_MAX_FRACAO_DE_ANOS = 0.30  # acima de 30 % dos anos com a máxima do mês acima de tmax_critica_c
@@ -38,13 +38,15 @@ CALOR_FASE_SENSIVEL = "terco_medio"  # a mesma fase da geada
 PESOS_PRIORIDADE = (0.5, 0.3, 0.2)  # 1ª, 2ª e 3ª escolha, reescalados para sobrar PESO_NAO_ESCOLHIDO aos demais
 PESO_NAO_ESCOLHIDO = 0.05
 
-# Critérios 0-1: todas as fórmulas abaixo são proposta do coordenador, validar com o Yury
+# Nota Terra: pesos são escolha de produto (VALIDACAO-PARAMETROS-MOTOR.md 2.3, sem fonte); a estrutura segue os 3 princípios da Agricultura de Conservação da FAO
 TERRA_PESO_COBERTURA = 0.4
 TERRA_PESO_BIOMASSA = 0.3
 TERRA_PESO_FIXADORA = 0.3
 # Classe do aporte de biomassa e do valor forrageiro (escala do CSV; masculino e feminino por segurança)
+# Palha: ok (VALIDACAO-PARAMETROS-MOTOR.md 2.4a), ≈ cobertura do solo pela curva de Lopes, Cogo & Levien (1987) na palha típica da classe; alto = 6 t/ha ou mais (Alvarenga et al. 2001)
 CLASSE_BIOMASSA = {"baixo": 0.33, "baixa": 0.33, "medio": 0.66, "media": 0.66, "alto": 1.0, "alta": 1.0}
-CLASSE_FORRAGEIRO = {"nenhum": 0.0, "baixo": 0.3, "medio": 0.6, "alto": 1.0}  # "nenhum" vem da régua do README
+# Forragem: escolha de produto, mantida pelo usuário em 15/11 (VALIDACAO-PARAMETROS-MOTOR.md 2.4b); "nenhum" vem da régua do README
+CLASSE_FORRAGEIRO = {"nenhum": 0.0, "baixo": 0.3, "medio": 0.6, "alto": 1.0}
 # Declive: fator = mín(1; LS da RUSLE), LS do USDA Agriculture Handbook 703 (tabelas de razão moderada, NRCS) e AH 537 (LS = 1 na
 # parcela-padrão de 72,6 pés e 9 %). Decisão do usuário e do Yury (VALIDACAO-PARAMETROS-MOTOR.md, 2.5): usar a declividade medida do SRTM.
 RAMPA_TIPICA_M = 46  # 150 pés: comprimento de rampa típico declarado (o guia do NRCS diz que a enxurrada se concentra em menos de 122 m)
@@ -59,6 +61,7 @@ K_LIMITE_MEDIA = 0.030
 K_REFERENCIA = 0.0225  # centro da classe "média" de Mannigel et al. 2002 (0,015 a 0,030): fator = K / K_REFERENCIA, como na USLE (A = R·K·LS·C·P, AH 537)
 FATOR_K_SEM_DADO = 1.0  # escolha de produto (VALIDACAO-PARAMETROS-MOTOR.md): neutro, a classe média
 # Pragas: sem constante; a nota é a fração de trocas de cultura que mudam de família (Embrapa Soja; VALIDACAO-PARAMETROS-MOTOR.md 2.7)
+# Renda: escolha de produto (VALIDACAO-PARAMETROS-MOTOR.md 2.8); é contagem de culturas comerciais, não lucro; calibrar depois com o valor da produção da PAM (IBGE)
 RENDA_POR_COMERCIAIS = {0: 0.0, 1: 0.5, 2: 0.8}  # 3 ou mais: RENDA_MAXIMA
 RENDA_MAXIMA = 1.0
 
