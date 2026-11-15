@@ -10,11 +10,11 @@ Vantagens da soja para o solo: como toda leguminosa, a soja tem bactérias na ra
 
 Cuidados com a soja: a palhada da soja se decompõe rápido, então dois meses depois da colheita sobra pouca coisa cobrindo o chão, se não vier outra cultura ou cobertura. É sensível a veranico na floração e no enchimento de grão, a encharcamento e à ferrugem asiática. Precisa de máquinas para plantar e colher e de mercado para vender. Soja em sequência, ano após ano, aumenta problemas com nematoides e doenças.
 
-Na base do Field Shift, a soja tem ciclo de 100 a 140 dias (de 1.600 a 2.050 graus-dia), é sensível a geada, usa de 450 a 800 mm de água no ciclo, cresce melhor entre 20 e 30 °C e fixa nitrogênio. Deixa uma quantidade média de palhada, mas a cobertura que sobra depois de dois meses é baixa. Confiança dos números: média.
+Na base do Field Shift, a soja tem ciclo de 100 a 140 dias (de 1.600 a 2.050 graus-dia), é sensível a geada, usa de 450 a 800 mm de água no ciclo, cresce melhor entre 20 e 30 °C e fixa nitrogênio. Deixa uma quantidade média de palhada, mas a cobertura que sobra depois de dois meses é baixa. No zoneamento agrícola do Brasil (ZARC), a soja tem janelas de plantio por município. Confiança dos números: média.
 
 Como o produtor costuma dizer: soja, soy, soya, lavoura de soja, safra de verão, soja na palha.
 
-Fonte: Embrapa Soja; base de culturas do Field Shift.
+Fonte: Embrapa Soja; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Milho
 
@@ -24,11 +24,11 @@ Vantagens do milho para o solo: produz muita palhada, que dura mais no chão do 
 
 Cuidados com o milho: pede bastante água e adubo, principalmente nitrogênio. É sensível à falta de chuva no pendoamento e no enchimento do grão; um veranico nessa hora derruba a colheita. Sofre com geada e com calor forte na floração. O milho safrinha corre mais risco de seca e de frio no fim do ciclo. Milho atrás de milho favorece pragas como a cigarrinha e doenças.
 
-Na base do Field Shift, o milho tem ciclo de 110 a 145 dias (de 1.500 a 1.900 graus-dia), é sensível a geada, usa de 500 a 800 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita palhada. Quando é plantado para grão, sobra pouco para os animais; a silagem de milho é outro uso, que tira a palhada do campo. Confiança dos números: média.
+Na base do Field Shift, o milho tem ciclo de 110 a 145 dias (de 1.500 a 1.900 graus-dia), é sensível a geada, usa de 500 a 800 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita palhada. Quando é plantado para grão, sobra pouco para os animais; a silagem de milho é outro uso, que tira a palhada do campo. No zoneamento agrícola do Brasil (ZARC), o milho tem janelas separadas para a 1ª safra, de verão, e a 2ª safra, a safrinha. Confiança dos números: média.
 
-Como o produtor costuma dizer: milho, milharal, roça de milho, milho safrinha, milho verde, corn, maíz.
+Como o produtor costuma dizer: milho, milharal, roça de milho, milho de verão, milho safrinha, milho 2ª safra, milho verde, corn, maíz.
 
-Fonte: Embrapa Milho e Sorgo; FAO-56; base de culturas do Field Shift.
+Fonte: Embrapa Milho e Sorgo; FAO-56; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Feijão
 
@@ -38,11 +38,11 @@ Vantagens do feijão para o solo: como leguminosa, faz parceria com bactérias q
 
 Cuidados com o feijão: é sensível a quase todos os extremos. Não aguenta encharcamento, sofre com falta de água na floração, perde flores com calor e morre com geada. A palhada some rápido, então protege pouco o solo depois da colheita. Tem muitas doenças e pragas, como mosca-branca e mofo-branco, e a semente de boa qualidade faz muita diferença. Plantar feijão em seguida no mesmo campo aumenta as doenças de solo.
 
-Na base do Field Shift, o feijão tem ciclo de 60 a 110 dias (de 980 a 1.270 graus-dia), é sensível a geada, usa de 250 a 400 mm de água no ciclo, cresce melhor entre 18 e 25 °C, sofre com calor acima de 30 °C na floração e fixa nitrogênio. Deixa palhada média, mas a cobertura que sobra depois de dois meses é baixa. Confiança dos números: alta.
+Na base do Field Shift, o feijão tem ciclo de 60 a 110 dias (de 980 a 1.270 graus-dia), é sensível a geada, usa de 250 a 400 mm de água no ciclo, cresce melhor entre 18 e 25 °C, sofre com calor acima de 30 °C na floração e fixa nitrogênio. Deixa palhada média, mas a cobertura que sobra depois de dois meses é baixa. No zoneamento agrícola do Brasil (ZARC), o feijão tem janelas separadas para a safra das águas e a 2ª safra, da seca. Confiança dos números: alta.
 
 Como o produtor costuma dizer: feijão, feijão-carioca, feijão-preto, feijão das águas, feijão da seca, feijão de inverno, frijol.
 
-Fonte: Embrapa Arroz e Feijão; base de culturas do Field Shift.
+Fonte: Embrapa Arroz e Feijão; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Trigo
 
@@ -52,11 +52,11 @@ Vantagens do trigo para o solo: ocupa o campo no inverno, quando muitas áreas d
 
 Cuidados com o trigo: geada no espigamento e na floração pode causar grandes perdas, e chuva na colheita estraga a qualidade do grão, que pode germinar na espiga. Tem doenças importantes em anos úmidos, como a brusone e a giberela. Depende de máquinas para plantar e colher e de mercado (moinhos ou cooperativa) para vender. Em regiões quentes, só vai bem com variedades adaptadas.
 
-Na base do Field Shift, o trigo tem ciclo de 105 a 175 dias (de 2.000 a 2.600 graus-dia), cresce mesmo com frio (temperatura base de 0 °C), vai melhor entre 15 e 23 °C, sofre com calor acima de 31 °C, é sensível a geada nas fases de flor e usa de 450 a 650 mm de água no ciclo. Deixa palhada média e tem valor médio como forragem. Confiança dos números: média.
+Na base do Field Shift, o trigo tem ciclo de 105 a 175 dias (de 2.000 a 2.600 graus-dia), cresce mesmo com frio (temperatura base de 0 °C), vai melhor entre 15 e 23 °C, sofre com calor acima de 31 °C, é sensível a geada nas fases de flor e usa de 450 a 650 mm de água no ciclo. Deixa palhada média e tem valor médio como forragem. No zoneamento agrícola do Brasil (ZARC), o trigo tem janelas por município; o trigo de duplo propósito é outra linha e não entra na base. Confiança dos números: média.
 
 Como o produtor costuma dizer: trigo, lavoura de inverno, cultura de inverno, wheat, trigo safrinha.
 
-Fonte: Embrapa Trigo; base de culturas do Field Shift.
+Fonte: Embrapa Trigo; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Arroz de terras altas
 
@@ -66,11 +66,11 @@ Vantagens do arroz de terras altas para o solo: é um capim que alterna bem com 
 
 Cuidados com o arroz de terras altas: é muito sensível a veranico, principalmente na floração; em região de chuva irregular, o risco é alto. Frio na floração faz o grão ficar chocho. A brusone é a doença mais séria. Precisa de chuva bem distribuída ao longo do ciclo.
 
-Na base do Field Shift, o arroz de terras altas tem ciclo de 95 a 115 dias (de 1.300 a 1.500 graus-dia), é sensível a geada, cresce melhor entre 20 e 35 °C, sofre com calor acima de 35 °C e usa de 400 a 600 mm de chuva bem distribuída no ciclo. Deixa palhada média. Confiança dos números: baixa, porque há poucas medições de quanta água ele usa no Brasil; vale confirmar com o agrônomo.
+Na base do Field Shift, o arroz de terras altas tem ciclo de 95 a 115 dias (de 1.300 a 1.500 graus-dia), é sensível a geada, cresce melhor entre 20 e 35 °C, sofre com calor acima de 35 °C e usa de 400 a 600 mm de chuva bem distribuída no ciclo. Deixa palhada média. No zoneamento agrícola do Brasil (ZARC), o Field Shift usa só as janelas de sequeiro do arroz. Confiança dos números: baixa, porque há poucas medições de quanta água ele usa no Brasil; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: arroz, arroz de sequeiro, arroz de terras altas, arroz de morro, rice.
 
-Fonte: Embrapa Arroz e Feijão; base de culturas do Field Shift.
+Fonte: Embrapa Arroz e Feijão; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Arroz irrigado
 
@@ -80,11 +80,11 @@ Vantagens do arroz irrigado: aproveita várzeas e terras baixas que encharcam e 
 
 Cuidados com o arroz irrigado: só é opção para quem tem várzea ou estrutura de irrigação e drenagem, além de água disponível; por isso, no Field Shift ele só aparece como alternativa nesses casos. Frio na floração faz o grão ficar chocho, um risco conhecido no Sul. A brusone é a doença mais séria. Como a várzea fica alagada, a escolha de culturas para rotação ali é limitada; soja e pastagem são as mais usadas.
 
-Na base do Field Shift, o arroz irrigado tem ciclo de 100 a 145 dias (de 1.180 a 1.760 graus-dia), é sensível a geada, cresce melhor entre 20 e 33 °C, sofre com calor acima de 35 °C e usa de 580 a 720 mm de água no ciclo, além da água que fica na lâmina. Deixa muita palhada. Confiança dos números: alta.
+Na base do Field Shift, o arroz irrigado tem ciclo de 100 a 145 dias (de 1.180 a 1.760 graus-dia), é sensível a geada, cresce melhor entre 20 e 33 °C, sofre com calor acima de 35 °C e usa de 580 a 720 mm de água no ciclo, além da água que fica na lâmina. Deixa muita palhada. No zoneamento agrícola do Brasil (ZARC), as janelas do arroz irrigado ficam separadas das do arroz de sequeiro. Confiança dos números: alta.
 
 Como o produtor costuma dizer: arroz irrigado, arroz de várzea, arroz inundado, arroz alagado, arroz de banhado, irrigated rice, paddy rice.
 
-Fonte: Embrapa Clima Temperado; SOSBAI; base de culturas do Field Shift.
+Fonte: Embrapa Clima Temperado; SOSBAI; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Algodão
 
@@ -94,25 +94,25 @@ Vantagens do algodão para o solo: é de outra família (Malvaceae), então ajud
 
 Cuidados com o algodão: é uma cultura cara e exigente em adubo, defensivos e máquinas, e o bicudo é uma praga muito séria, que exige controle em toda a região. Depois da colheita, a soqueira (resto da planta) precisa ser destruída por lei, então quase não sobra palhada e o solo fica exposto se não houver cobertura. Chuva na abertura dos capulhos estraga a fibra. Precisa de mercado e de beneficiadora por perto.
 
-Na base do Field Shift, o algodão tem o ciclo mais longo entre as anuais, de 140 a 190 dias (de 1.400 a 1.750 graus-dia), é sensível a geada, precisa de calor (temperatura base de 15 °C), cresce melhor entre 20 e 30 °C e usa muita água, de 700 a 1.300 mm no ciclo. Deixa pouca palhada e tem pouco valor como forragem. Confiança dos números: média.
+Na base do Field Shift, o algodão tem o ciclo mais longo entre as anuais, de 140 a 190 dias (de 1.400 a 1.750 graus-dia), é sensível a geada, precisa de calor (temperatura base de 15 °C), cresce melhor entre 20 e 30 °C e usa muita água, de 700 a 1.300 mm no ciclo. Deixa pouca palhada e tem pouco valor como forragem. No zoneamento agrícola do Brasil (ZARC), ele aparece como algodão herbáceo, com janelas por município. Confiança dos números: média.
 
-Como o produtor costuma dizer: algodão, algodoeiro, pluma, algodão safrinha, cotton.
+Como o produtor costuma dizer: algodão, algodoeiro, algodão herbáceo, pluma, algodão safrinha, cotton.
 
-Fonte: Embrapa Algodão; base de culturas do Field Shift.
+Fonte: Embrapa Algodão; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Mandioca
 
-A mandioca (Manihot esculenta) é uma planta de raiz plantada para farinha, goma, consumo de mesa e ração. É uma das culturas mais tradicionais do Brasil, presente em todas as regiões, principalmente na agricultura familiar. Tem nomes diferentes em cada lugar: macaxeira, aipim, mandioca-mansa.
+A mandioca (Manihot esculenta) é uma planta de raiz plantada para farinha, goma, consumo de mesa e ração. É uma das culturas mais tradicionais do Brasil, principalmente na agricultura familiar, com nomes diferentes em cada lugar: macaxeira, aipim.
 
 Vantagens da mandioca para o produtor: aguenta bem a seca e terras fracas e ácidas, onde outras culturas falham. Tem ciclo longo e flexível: a raiz pode ficar na terra e ser colhida conforme a necessidade. As folhas e a rama servem de alimento para os animais. Consorcia bem com feijão e milho no começo do ciclo.
 
-Cuidados com a mandioca: no começo, a planta cresce devagar e deixa o chão descoberto por muito tempo, o que facilita a erosão, principalmente em terreno inclinado; vale consorciar ou cobrir as entrelinhas. Quase não devolve palhada ao solo, e a colheita remove muita terra e nutrientes. Não aguenta encharcamento, que apodrece a raiz. Geada queima a parte de cima. Algumas variedades (mandioca-brava) são tóxicas cruas e só servem para farinha.
+Cuidados com a mandioca: no começo, a planta cresce devagar e deixa o chão descoberto por muito tempo, o que facilita a erosão, principalmente em terreno inclinado; vale consorciar ou cobrir as entrelinhas. Quase não devolve palhada, e a colheita remove muita terra e nutrientes. Encharcamento apodrece a raiz. Geada queima a parte de cima. Algumas variedades (mandioca-brava) são tóxicas cruas e só servem para farinha.
 
-Na base do Field Shift, a mandioca é tratada como perene, com ciclo de 180 a 720 dias (6 meses a 2 anos). É tolerante à seca, sensível a geada, precisa de calor (temperatura base de 15 °C), cresce melhor entre 20 e 27 °C e vai bem em regiões com 1.000 a 1.500 mm de chuva por ano. Os graus-dia (de 1.250 a 4.280, conforme o tempo até a colheita) servem só para ver se o lugar é frio demais para ela. Confiança dos números: baixa; vale confirmar com o agrônomo.
+Na base do Field Shift, a mandioca é tratada como perene, com ciclo de 180 a 720 dias (6 meses a 2 anos). É tolerante à seca, sensível a geada, precisa de calor (temperatura base de 15 °C), cresce melhor entre 20 e 27 °C e vai bem em regiões com 1.000 a 1.500 mm de chuva por ano. Os graus-dia (de 1.250 a 4.280, conforme o tempo até a colheita) servem só para ver se o lugar é frio demais para ela. A mandioca não tem zoneamento agrícola (ZARC) na safra 2025/2026: a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: mandioca, macaxeira, aipim, maniva, mandioca-mansa, roça de mandioca, cassava, yuca.
 
-Fonte: Embrapa Mandioca e Fruticultura; base de culturas do Field Shift.
+Fonte: Embrapa Mandioca e Fruticultura; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Sorgo
 
@@ -122,11 +122,11 @@ Vantagens do sorgo para o solo: aguenta bem mais a seca do que o milho, porque t
 
 Cuidados com o sorgo: o grão vale menos que o do milho e tem menos mercado em algumas regiões. Passarinhos atacam a panícula. Não gosta de frio, e a geada prejudica. O sorgo de pasto jovem pode ser tóxico para o gado, por isso o pastejo precisa de manejo. Sendo um capim, como o milho, não quebra o ciclo das pragas do milho: é melhor alternar com leguminosas.
 
-Na base do Field Shift, o sorgo tem ciclo de 90 a 130 dias (de 1.470 a 1.870 graus-dia), raiz de até 2 metros, é tolerante à seca, usa de 380 a 600 mm de água no ciclo (menos que o milho) e cresce melhor entre 22 e 34 °C. Plantado para grão, deixa palhada média e sobra pouco para os animais; o sorgo forrageiro e a silagem são outros usos. Confiança dos números: alta.
+Na base do Field Shift, o sorgo tem ciclo de 90 a 130 dias (de 1.470 a 1.870 graus-dia), raiz de até 2 metros, é tolerante à seca, usa de 380 a 600 mm de água no ciclo (menos que o milho) e cresce melhor entre 22 e 34 °C. Plantado para grão, deixa palhada média e sobra pouco para os animais. No zoneamento agrícola do Brasil (ZARC), a base usa o sorgo granífero, de 1ª e de 2ª safra; o sorgo forrageiro é outra cultura e não está na base. Confiança dos números: alta.
 
-Como o produtor costuma dizer: sorgo, sorgo safrinha, sorgo forrageiro, sorgo de silagem, sorghum, milo.
+Como o produtor costuma dizer: sorgo, sorgo safrinha, sorgo granífero, sorgo de grão, sorghum, milo.
 
-Fonte: Embrapa Milho e Sorgo; base de culturas do Field Shift.
+Fonte: Embrapa Milho e Sorgo; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Milheto
 
@@ -136,11 +136,11 @@ Vantagens do milheto para o solo: cresce rápido, mesmo com pouca chuva e em ter
 
 Cuidados com o milheto: a palhada se decompõe mais rápido que a de braquiária em clima quente e úmido. Não aguenta geada. Precisa ser roçado ou dessecado antes de soltar semente, senão vira planta daninha na lavoura seguinte.
 
-Na base do Field Shift, os números do milheto valem para o uso como cobertura, até ser dessecado antes de florescer: de 45 a 60 dias (de 520 a 740 graus-dia) e de 80 a 260 mm de água, conforme a época. Tem raiz de até 2 metros, é tolerante à seca, cresce melhor no calor, entre 25 e 35 °C, deixa muita palhada e é ótimo como forragem. Confiança dos números: baixa, porque a água é uma estimativa do time, não uma medição; vale confirmar com o agrônomo.
+Na base do Field Shift, os números do milheto valem para o uso como cobertura, até ser dessecado antes de florescer: de 45 a 60 dias (de 520 a 740 graus-dia) e de 80 a 260 mm de água, conforme a época. Tem raiz de até 2 metros, é tolerante à seca, cresce melhor no calor, entre 25 e 35 °C, deixa muita palhada e é ótimo como forragem. O milheto não tem zoneamento agrícola (ZARC): a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa, porque a água é uma estimativa do time, não uma medição; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: milheto, milheto-pérola, capim de cobertura, palhada de milheto, pearl millet.
 
-Fonte: Embrapa Milho e Sorgo; Embrapa Cerrados (plantas de cobertura); base de culturas do Field Shift.
+Fonte: Embrapa Milho e Sorgo; Embrapa Cerrados (plantas de cobertura); MAPA, ZARC; base de culturas do Field Shift.
 
 ## Feijão-caupi
 
@@ -150,11 +150,11 @@ Vantagens do feijão-caupi para o solo: aguenta muito mais calor e seca do que o
 
 Cuidados com o feijão-caupi: não aguenta encharcamento nem geada. Sofre com pulgão e outras pragas, e com viroses. Chuva na época da colheita estraga o grão. Deixa pouca palhada, então protege pouco o solo depois da colheita. O preço e o mercado variam bastante de região para região.
 
-Na base do Field Shift, o feijão-caupi tem ciclo de 60 a 90 dias (de 1.150 a 1.550 graus-dia), é tolerante à seca, fixa nitrogênio, usa de 300 a 450 mm de água no ciclo e cresce bem numa faixa larga de temperatura, de 18 a 34 °C. Deixa pouca palhada e tem valor médio como forragem. Confiança dos números: alta.
+Na base do Field Shift, o feijão-caupi tem ciclo de 60 a 90 dias (de 1.150 a 1.550 graus-dia), é tolerante à seca, fixa nitrogênio, usa de 300 a 450 mm de água no ciclo e cresce bem numa faixa larga de temperatura, de 18 a 34 °C. Deixa pouca palhada e tem valor médio como forragem. No zoneamento agrícola do Brasil (ZARC), o feijão-caupi tem janelas só para o plantio de sequeiro. Confiança dos números: alta.
 
 Como o produtor costuma dizer: feijão-de-corda, feijão-macassar, feijão-fradinho, feijão-verde, caupi, feijão-de-moita, cowpea.
 
-Fonte: Embrapa Meio-Norte; base de culturas do Field Shift.
+Fonte: Embrapa Meio-Norte; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Girassol
 
@@ -164,11 +164,11 @@ Vantagens do girassol para o solo: é de outra família (Asteraceae), o que dive
 
 Cuidados com o girassol: precisa de boro, e a falta desse nutriente derruba a produção. Passarinhos atacam os capítulos. Chuva e umidade alta na floração favorecem doenças como o mofo-branco, que também ataca soja e feijão, então não é boa ideia colocá-lo entre essas culturas em áreas com o problema. Precisa de quem compre o grão na região.
 
-Na base do Field Shift, o girassol tem ciclo de 90 a 130 dias (de 1.500 a 2.100 graus-dia), é tolerante à seca, sensível a geada, usa de 400 a 700 mm de água no ciclo e cresce melhor entre 20 e 25 °C. Deixa palhada média e tem pouco valor como forragem. Confiança dos números: alta.
+Na base do Field Shift, o girassol tem ciclo de 90 a 130 dias (de 1.500 a 2.100 graus-dia), é tolerante à seca, sensível a geada, usa de 400 a 700 mm de água no ciclo e cresce melhor entre 20 e 25 °C. Deixa palhada média e tem pouco valor como forragem. No zoneamento agrícola do Brasil (ZARC), o girassol tem janelas por município. Confiança dos números: alta.
 
 Como o produtor costuma dizer: girassol, sunflower, girasol, maravilla.
 
-Fonte: Embrapa Soja (girassol); base de culturas do Field Shift.
+Fonte: Embrapa Soja (girassol); MAPA, ZARC; base de culturas do Field Shift.
 
 ## Crotalária
 
@@ -178,11 +178,11 @@ Vantagens da crotalária para o solo: fixa muito nitrogênio do ar e, quando ro�
 
 Cuidados com a crotalária: precisa ser roçada ou cortada na floração, antes de formar semente, para não virar planta daninha e para aproveitar melhor o nitrogênio. Não aguenta geada e precisa de calor para crescer. Não serve como alimento para o gado: é tóxica e os animais recusam.
 
-Na base do Field Shift, os números da crotalária valem até o corte na floração: de 56 a 160 dias (de 420 a 910 graus-dia), conforme a época de plantio, e de 226 a 700 mm de água. É sensível a geada, precisa de calor (temperatura base de 16 °C), cresce melhor entre 20 e 30 °C, fixa nitrogênio, deixa muita palhada e cobre muito bem o solo. Confiança dos números: baixa; vale confirmar com o agrônomo.
+Na base do Field Shift, os números da crotalária valem até o corte na floração: de 56 a 160 dias (de 420 a 910 graus-dia), conforme a época de plantio, e de 226 a 700 mm de água. É sensível a geada, precisa de calor (temperatura base de 16 °C), cresce melhor entre 20 e 30 °C, fixa nitrogênio, deixa muita palhada e cobre muito bem o solo. A crotalária não tem zoneamento agrícola (ZARC): a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: crotalária, crotalária-juncea, adubo verde, planta pra adubar a terra, sunn hemp.
 
-Fonte: Embrapa Agrobiologia; Embrapa Cerrados (plantas de cobertura); base de culturas do Field Shift.
+Fonte: Embrapa Agrobiologia; Embrapa Cerrados (plantas de cobertura); MAPA, ZARC; base de culturas do Field Shift.
 
 ## Nabo forrageiro
 
@@ -192,11 +192,11 @@ Vantagens do nabo forrageiro para o solo: tem uma raiz pivotante grossa e forte,
 
 Cuidados com o nabo forrageiro: a palhada se decompõe rápido e protege o solo por pouco tempo; misturar com aveia-preta ajuda a fazer uma cobertura mais duradoura. Se deixar soltar semente, vira planta daninha nas lavouras seguintes. Precisa de alguma umidade para se estabelecer e não vai bem em terra encharcada nem em calor forte.
 
-Na base do Field Shift, os números do nabo forrageiro valem até o manejo na floração: de 60 a 120 dias (de 800 a 1.800 graus-dia) e de 110 a 350 mm de água. Aguenta geada, tem raiz de até 2 metros, é tolerante à seca, cresce melhor no frio, entre 12 e 25 °C, e deixa palhada média. Confiança dos números: baixa; vale confirmar com o agrônomo.
+Na base do Field Shift, os números do nabo forrageiro valem até o manejo na floração: de 60 a 120 dias (de 800 a 1.800 graus-dia) e de 110 a 350 mm de água. Aguenta geada, tem raiz de até 2 metros, é tolerante à seca, cresce melhor no frio, entre 12 e 25 °C, e deixa palhada média. O nabo forrageiro não tem zoneamento agrícola (ZARC): a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: nabo, nabo forrageiro, nabiça, nabo pra cobertura, oilseed radish, nabo forrajero.
 
-Fonte: Embrapa Trigo e Embrapa Clima Temperado (plantas de cobertura de inverno); base de culturas do Field Shift.
+Fonte: Embrapa Trigo e Embrapa Clima Temperado (plantas de cobertura de inverno); MAPA, ZARC; base de culturas do Field Shift.
 
 ## Aveia-preta
 
@@ -206,11 +206,11 @@ Vantagens da aveia-preta para o solo: aguenta frio e geada, cobrindo o chão jus
 
 Cuidados com a aveia-preta: precisa de frio e de alguma chuva no outono e inverno, então vai bem no Sul e em áreas altas, mas não no Cerrado quente e seco. A palhada de capim pode prender nitrogênio no começo da decomposição, o que pede atenção na adubação do milho seguinte. Se não for manejada na hora certa, pode soltar semente.
 
-Na base do Field Shift, os números da aveia-preta valem até o manejo: de 100 a 140 dias (de 1.080 a 1.570 graus-dia) e de 110 a 390 mm de água. Aguenta geada, cresce mesmo com frio (temperatura base de 4 °C), vai melhor entre 16 e 20 °C, sofre com calor acima de 32 °C, deixa palhada média e é ótima como forragem. Confiança dos números: baixa; vale confirmar com o agrônomo.
+Na base do Field Shift, os números da aveia-preta valem até o manejo: de 100 a 140 dias (de 1.080 a 1.570 graus-dia) e de 110 a 390 mm de água. Aguenta geada, cresce mesmo com frio (temperatura base de 4 °C), vai melhor entre 16 e 20 °C, sofre com calor acima de 32 °C, deixa palhada média e é ótima como forragem. No zoneamento agrícola do Brasil (ZARC), a aveia tem janelas de sequeiro, sem separar a espécie. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: aveia, aveia-preta, aveia de cobertura, pasto de inverno, black oat, avena negra.
 
-Fonte: Embrapa Trigo; Embrapa Pecuária Sul; base de culturas do Field Shift.
+Fonte: Embrapa Trigo; Embrapa Pecuária Sul; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Guandu
 
@@ -220,11 +220,11 @@ Vantagens do guandu para o solo: tem raiz pivotante muito funda e forte, uma das
 
 Cuidados com o guandu: cresce devagar no começo, então o chão fica exposto nas primeiras semanas. Não gosta de frio, de geada nem de terra encharcada. Se não for cortado, o arbusto pode rebrotar e ocupar o campo por mais tempo do que o planejado, e os galhos grossos podem atrapalhar o plantio seguinte se não forem bem manejados.
 
-Na base do Field Shift, o guandu é tratado como cultura anual, e os números valem até o corte na floração: de 90 a 150 dias (de 1.200 a 2.350 graus-dia, conforme a época de plantio) e de 280 a 520 mm de água. É sensível a geada, tem raiz de até 2 metros, é tolerante à seca, fixa nitrogênio, aguenta calor até perto de 40 °C, deixa palhada média e tem valor médio como forragem. Confiança dos números: baixa; vale confirmar com o agrônomo.
+Na base do Field Shift, o guandu é tratado como cultura anual, e os números valem até o corte na floração: de 90 a 150 dias (de 1.200 a 2.350 graus-dia, conforme a época de plantio) e de 280 a 520 mm de água. É sensível a geada, tem raiz de até 2 metros, é tolerante à seca, fixa nitrogênio, aguenta calor até perto de 40 °C, deixa palhada média e tem valor médio como forragem. O guandu não tem zoneamento agrícola (ZARC): a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: guandu, feijão-guandu, andu, guando, pigeon pea, gandul.
 
-Fonte: Embrapa Agrobiologia; Embrapa Pecuária Sudeste; base de culturas do Field Shift.
+Fonte: Embrapa Agrobiologia; Embrapa Pecuária Sudeste; MAPA, ZARC; base de culturas do Field Shift.
 
 ## Braquiária
 
@@ -232,10 +232,10 @@ A braquiária (Urochloa brizantha e espécies parecidas) é um capim perene, o p
 
 Vantagens da braquiária para o solo: tem raízes abundantes e fundas, que soltam a terra, aguentam a seca e guardam muita matéria orgânica. Produz palhada que dura bastante no chão, protegendo contra a erosão e o sol, e ajuda a abafar plantas daninhas. Plantada junto com o milho safrinha, ela cresce depois da colheita e forma pasto para o gado na seca e palhada para a próxima safra.
 
-Cuidados com a braquiária: é um capim muito forte e pode competir com a lavoura se não for manejado; no consórcio, o produtor precisa controlar a época de plantio e o crescimento. Para voltar a plantar lavoura, é preciso dessecar ou manejar bem. Sendo um capim, é melhor alternar com leguminosas. O pasto mal manejado, com muito gado, degrada e deixa a terra exposta.
+Cuidados com a braquiária: é um capim muito forte e pode competir com a lavoura; no consórcio, é preciso controlar a época de plantio e o crescimento. Para voltar a plantar lavoura, é preciso dessecar ou manejar bem. Sendo um capim, é melhor alternar com leguminosas. Pasto com gado demais degrada e deixa a terra exposta.
 
-Na base do Field Shift, a braquiária é perene, sem ciclo fixo e sem conta de graus-dia. Precisa de 750 a 1.500 mm de chuva por ano, tem raiz profunda, é tolerante à seca, sensível a geada, gosta de calor (cresce melhor entre 25 e 35 °C), deixa muita palhada e cobre muito bem o solo. Confiança dos números: baixa, porque há poucas medições de quanta água ela usa; vale confirmar com o agrônomo.
+Na base do Field Shift, a braquiária é perene, sem ciclo fixo e sem conta de graus-dia. Precisa de 750 a 1.500 mm de chuva por ano, tem raiz profunda, é tolerante à seca, sensível a geada, gosta de calor (cresce melhor entre 25 e 35 °C), deixa muita palhada e cobre muito bem o solo. A braquiária sozinha não tem zoneamento agrícola (ZARC); ela só aparece no ZARC do milho consorciado com braquiária. Confiança dos números: baixa, porque há poucas medições de quanta água ela usa; vale confirmar com o agrônomo.
 
 Como o produtor costuma dizer: braquiária, braquiarão, capim, capim-braquiária, marandu, pasto, capim pras vacas, brachiaria.
 
-Fonte: Embrapa Gado de Corte; Embrapa, integração lavoura-pecuária-floresta; base de culturas do Field Shift.
+Fonte: Embrapa Gado de Corte; Embrapa, integração lavoura-pecuária-floresta; MAPA, ZARC; base de culturas do Field Shift.

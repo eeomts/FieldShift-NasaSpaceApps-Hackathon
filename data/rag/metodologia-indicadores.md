@@ -4,7 +4,7 @@ Cada seção explica um indicador ou um cálculo do Field Shift: como ele é fei
 
 ## Risco de geada
 
-O risco de geada do Field Shift mostra com que frequência, nos anos passados, a noite ficou fria o bastante para prejudicar a lavoura no local do campo. O app olha mais de 40 anos de temperaturas diárias do NASA POWER, desde 1981, e conta os dias em que a temperatura mínima do ar ficou abaixo de 2 °C. Esse limite pode mudar conforme a cultura, porque cada planta aguenta um frio diferente, e a fase da lavoura também conta: a planta em flor costuma sofrer mais.
+O risco de geada do Field Shift mostra com que frequência, nos anos passados, a noite ficou fria o bastante para prejudicar a lavoura no local do campo. O app usa as temperaturas diárias do NASA POWER no período normal de 1991 a 2020 e conta os dias em que a temperatura mínima do ar ficou abaixo de 2 °C. Esse limite pode mudar conforme a cultura, porque cada planta aguenta um frio diferente, e a fase da lavoura também conta: a planta em flor costuma sofrer mais.
 
 O resultado aparece por mês, por exemplo: "em julho, houve noites com risco de geada em 6 de cada 10 anos". Isso é o que aconteceu no passado, não a previsão para amanhã, e não quer dizer que a planta vai morrer.
 
@@ -16,7 +16,7 @@ Fonte: NASA POWER (temperatura mínima diária); Field Shift, motor de análise;
 
 ## Dias de calor forte
 
-Os dias de calor forte do Field Shift mostram quantas vezes, em cada mês, a temperatura máxima do ar passou do limite de calor da cultura no local do campo, olhando a série do NASA POWER desde 1981. Quando a cultura não tem um limite próprio na base, o app usa 35 °C como ponto de partida. Calor demais na hora errada atrapalha a planta: na floração, por exemplo, ele pode fazer a flor cair ou o grão não encher direito.
+Os dias de calor forte do Field Shift mostram quantas vezes, em cada mês, a temperatura máxima do ar passou do limite de calor da cultura no local do campo, olhando as temperaturas do NASA POWER no período normal de 1991 a 2020. Quando a cultura não tem um limite próprio na base, o app usa 35 °C como ponto de partida. Calor demais na hora errada atrapalha a planta: na floração, por exemplo, ele pode fazer a flor cair ou o grão não encher direito.
 
 O indicador de dias de calor conta dias, não usa só a média do mês. Uma média de 28 °C pode esconder uma semana de 38 °C, e é essa semana que machuca. Por isso o app mostra a média, a máxima e o número de dias acima do limite, separados.
 
@@ -40,7 +40,7 @@ Fonte: NASA GPM IMERG; NASA POWER; Field Shift, motor de análise.
 
 ## Chuva forte
 
-O indicador de chuva forte do Field Shift conta os dias em que choveu muito mais do que o normal no local. O app olha a série de chuva diária e marca os dias acima do percentil 95, ou seja, os 5% de dias mais chuvosos da história daquele lugar. Assim o limite se ajusta à região: chuva forte no Semiárido é diferente de chuva forte na Amazônia.
+O indicador de chuva forte do Field Shift conta os dias em que choveu muito mais do que o normal no local. O app olha só os dias com chuva (1 mm ou mais) de 1991 a 2020 e marca como chuva forte o dia acima do percentil 95 deles, ou seja, entre os 5% mais chuvosos desses dias. Assim o limite se ajusta à região: chuva forte no Semiárido é diferente de chuva forte na Amazônia.
 
 A chuva forte importa por dois motivos. Primeiro, ela pode encharcar a terra e prejudicar a lavoura. Segundo, e muito importante para o solo, ela arranca a terra quando o chão está sem cobertura. Por isso o app cruza a chuva forte com os meses em que o campo fica descoberto e com a inclinação do terreno.
 
@@ -152,7 +152,7 @@ Graus-dia é uma forma de medir o calor acumulado que a planta recebe até fecha
 
 Por exemplo: se o campo fica vazio de abril a julho, o app verifica se uma planta de cobertura ou uma safrinha consegue crescer nesse tempo com o frio daquela época. Se a soma ficar abaixo de 90% do mínimo da cultura, a estratégia é descartada antes da comparação; entre 90% e 100%, ela fica marcada como "no limite", para conferir no local.
 
-A janela de plantio também considera o risco de geada e de falta de chuva nas fases sensíveis, e os dados do ZARC, o zoneamento de risco climático do Ministério da Agricultura, quando disponíveis. A conta de graus-dia é feita pelo clima da região; variedades precoces ou tardias podem mudar o resultado, por isso o produtor confirma as datas.
+A janela de plantio também considera o risco de geada e de falta de chuva nas fases sensíveis e, no Brasil, o ZARC, o zoneamento de risco climático do Ministério da Agricultura. O ZARC não cobre todas as culturas: mandioca, milheto, crotalária, nabo forrageiro, guandu e braquiária sozinha não têm zoneamento. Para elas, e para fazendas fora do Brasil, a janela sai só do clima, com confiança menor. A conta de graus-dia é feita pelo clima da região; variedades precoces ou tardias podem mudar o resultado, por isso o produtor confirma as datas.
 
 Como o produtor costuma dizer: dá tempo de plantar?, fecha o ciclo?, época de plantio, plantar no tarde, safrinha, janela.
 
