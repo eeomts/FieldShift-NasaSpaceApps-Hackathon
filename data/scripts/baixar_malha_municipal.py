@@ -25,6 +25,7 @@ SAIDA = RAIZ / "data" / "brasil" / "municipios"
 URL_LISTA = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios"
 URL_MALHA = ("https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR"
              "?intrarregiao=municipio&formato=application/vnd.geo+json&qualidade=minima")
+MINIMO_MUNICIPIOS = 5000  # menos que isso é resposta incompleta da API
 
 
 def baixar_json(url):
@@ -37,29 +38,50 @@ def uf_de(m):
     """Sigla da UF. Municípios novos podem vir sem microrregião; nesse caso usa a região imediata."""
     if m.get("microrregiao"):
         return m["microrregiao"]["mesorregiao"]["UF"]["sigla"]
-    return m["regiao-imediata"]["regiao-intermediaria"]["UF"]["sigla"]
+    if m.get("regiao-imediata"):
+        return m["regiao-imediata"]["regiao-intermediaria"]["UF"]["sigla"]
+    sys.exit(f"Sem UF para o município {m['id']} ({m['nome']}): o IBGE não informou a região.")
+
+
+def gravar(destino, escrever):
+    """Escreve num .tmp e troca de uma vez: o arquivo final nunca fica pela metade."""
+    tmp = destino.with_name(destino.name + ".tmp")
+    escrever(tmp)
+    tmp.replace(destino)
 
 
 def main():
     sys.stdout.reconfigure(line_buffering=True)
-    SAIDA.mkdir(parents=True, exist_ok=True)
 
+    # Baixa e confere as duas fontes antes de escrever qualquer arquivo.
     print("Baixando a lista de municípios...")
     lista = baixar_json(URL_LISTA)
-    linhas = sorted(({"municipio_id": str(m["id"]), "nome": m["nome"], "uf": uf_de(m)} for m in lista),
-                    key=lambda l: l["municipio_id"])
-    with open(SAIDA / "municipios.csv", "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["municipio_id", "nome", "uf"])
-        w.writeheader()
-        w.writerows(linhas)
-
     print("Baixando os polígonos (qualidade mínima)...")
     malha = baixar_json(URL_MALHA)
+    if len(lista) < MINIMO_MUNICIPIOS or len(malha.get("features", [])) < MINIMO_MUNICIPIOS:
+        sys.exit(f"Resposta incompleta do IBGE: {len(lista)} municípios na lista e "
+                 f"{len(malha.get('features', []))} polígonos. Nada foi gravado.")
+
+    linhas = sorted(({"municipio_id": str(m["id"]), "nome": m["nome"], "uf": uf_de(m)} for m in lista),
+                    key=lambda l: l["municipio_id"])
     for feature in malha["features"]:
         feature["properties"] = {"municipio_id": str(feature["properties"]["codarea"])}
     malha["features"].sort(key=lambda ft: ft["properties"]["municipio_id"])
-    with open(SAIDA / "municipios.geojson", "w", encoding="utf-8") as f:
-        json.dump(malha, f, ensure_ascii=False, separators=(",", ":"))
+
+    SAIDA.mkdir(parents=True, exist_ok=True)
+
+    def escrever_csv(caminho):
+        with open(caminho, "w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=["municipio_id", "nome", "uf"])
+            w.writeheader()
+            w.writerows(linhas)
+
+    def escrever_geojson(caminho):
+        with open(caminho, "w", encoding="utf-8") as f:
+            json.dump(malha, f, ensure_ascii=False, separators=(",", ":"))
+
+    gravar(SAIDA / "municipios.csv", escrever_csv)
+    gravar(SAIDA / "municipios.geojson", escrever_geojson)
 
     ids_lista = {l["municipio_id"] for l in linhas}
     ids_malha = {ft["properties"]["municipio_id"] for ft in malha["features"]}
