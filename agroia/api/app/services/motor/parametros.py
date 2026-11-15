@@ -2,6 +2,9 @@
 
 DIAS_POR_MES = 30.4  # 365 / 12, arredondado
 
+# Arranjos de regua.arranjos que são consórcio (regra 4 do README do catálogo), não região (regra 13)
+ARRANJOS_DE_CONSORCIO = frozenset({"consorcio_milho_safrinha", "braquiaria_solteira"})
+
 # Candidatas
 MAX_CANDIDATAS = 30  # proposta, validar com o Yury
 

@@ -1,12 +1,15 @@
-"""Catálogo de culturas do motor: lê data/catalogo/culturas.csv (BR) e eua/culturas.csv (US), com tipos."""
+"""Catálogo de culturas do motor: lê culturas.csv (BR e US) com tipos e o bloco regua das evidências."""
 import csv
+import json
 import logging
 from dataclasses import dataclass, field
+from datetime import date
 from functools import lru_cache
 from pathlib import Path
-from typing import Literal
+from typing import Any, Literal
 
 from app.core.caminhos import RAIZ_REPO
+from app.services.motor.parametros import ARRANJOS_DE_CONSORCIO
 
 log = logging.getLogger(__name__)
 
@@ -24,7 +27,44 @@ CAMPOS_BOOLEANOS = ("perene", "sensivel_geada", "fixa_nitrogenio", "raiz_profund
 CAMPOS_TEXTO = (
     "nome", "nome_cientifico", "familia_botanica", "cobertura_solo", "aporte_biomassa", "valor_forrageiro",
     "confianca_parametros", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
+    "tipo_manejo", "lacuna_informacao", "risco_revisao_local",
 )  # fmt: skip
+CAMPOS_MES_DIA = ("semeadura_inicio", "semeadura_fim", "manejo_inicio", "manejo_fim")  # "MM-DD" no CSV
+CAMPOS_LISTA = ("tipos", "fontes", "estados_validos", "condicao_semeadura")  # separados por |
+
+MesDia = tuple[int, int]  # (mês, dia)
+
+
+@dataclass(frozen=True)
+class FaixaPalhada:
+    """Massa seca de palhada em t/ha (regua.ms_palhada_t_ha); ausente = None."""
+
+    minimo: float | None = None
+    tipico: float | None = None
+    maximo: float | None = None
+
+
+@dataclass(frozen=True)
+class ArranjoRegional:
+    """Um arranjo de regua.arranjos. Os campos seguem os nomes das colunas do CSV; ausente = None."""
+
+    nome: str
+    estados: tuple[str, ...] = ()  # vazio = o arquivo não traz lista
+    regional: bool = True  # False: consórcio (regra 4); a regra 13 (região) não usa
+    ciclo_dias_min: float | None = None
+    ciclo_dias_max: float | None = None
+    graus_dia_ciclo_min: float | None = None
+    graus_dia_ciclo_max: float | None = None
+    agua_ciclo_mm_min: float | None = None
+    agua_ciclo_mm_max: float | None = None
+    semeadura_inicio: MesDia | None = None
+    semeadura_fim: MesDia | None = None
+    manejo_inicio: MesDia | None = None
+    manejo_fim: MesDia | None = None
+    tipo_manejo: str | None = None
+    condicao_semeadura: tuple[str, ...] = ()
+    palhada: FaixaPalhada | None = None
+    origem: dict[str, str] = field(default_factory=dict, compare=False)  # tipo de origem de cada número
 
 
 @dataclass(frozen=True)
@@ -65,10 +105,31 @@ class CulturaMotor:
     codigo_nass: str | None = None  # só US
     calendario_usda: str | None = None  # só US
     estados_validos: tuple[str, ...] = ()  # siglas (UF no BR, USPS nos EUA); vazio = sem restrição (regra 13)
+    semeadura_inicio: MesDia | None = None  # janela de semeadura na região de referência (regra 12)
+    semeadura_fim: MesDia | None = None
+    manejo_inicio: MesDia | None = None
+    manejo_fim: MesDia | None = None
+    tipo_manejo: str | None = None  # dessecacao | morte_pelo_frio | rolagem | corte
+    condicao_semeadura: tuple[str, ...] = ()  # depois de quê a cobertura pode ser semeada
+    lacuna_informacao: str | None = None  # texto para o produtor (regra 10)
+    risco_revisao_local: str | None = None
+    avisos: dict[str, str] = field(default_factory=dict, compare=False)  # regua.avisos: coluna -> texto (regra 16)
+    depende_da_epoca: dict[str, bool | None] = field(default_factory=dict, compare=False)  # coluna -> bool (regra 15)
+    faixa_palhada: FaixaPalhada | None = None  # regua.ms_palhada_t_ha
+    arranjos: tuple[ArranjoRegional, ...] = ()  # regua.arranjos
     extras: dict[str, str] = field(default_factory=dict, compare=False)  # colunas novas do CSV, sem tipo
 
     def tem_tipo(self, tipo: str) -> bool:
         return tipo in self.tipos
+
+    @property
+    def e_cobertura(self) -> bool:
+        """Planta de cobertura: tem o tipo cobertura e não é comercial."""
+        return "cobertura" in self.tipos and "comercial" not in self.tipos
+
+    @property
+    def arranjos_regionais(self) -> tuple[ArranjoRegional, ...]:
+        return tuple(a for a in self.arranjos if a.regional)
 
     def vale_em(self, estado: str | None) -> bool:
         """A base da cultura vale no estado? Sem lista ou sem estado conhecido, não restringe."""
@@ -94,25 +155,96 @@ def _lista(v: str | None) -> tuple[str, ...]:
     return tuple(p.strip() for p in (v or "").split("|") if p.strip())
 
 
-def _linha_para_cultura(linha: dict[str, str], pais: str) -> CulturaMotor:
-    conhecidas = {"id", "tipos", "fontes", "estados_validos", *CAMPOS_NUMERICOS, *CAMPOS_BOOLEANOS, *CAMPOS_TEXTO}
+def _mes_dia(v: str | None, contexto: str) -> MesDia | None:
+    """'MM-DD' vira (mês, dia); vazio = None; formato ou data inválida = erro claro."""
+    v = _texto(v)
+    if v is None:
+        return None
+    try:
+        if len(v) != 5 or v[2] != "-":
+            raise ValueError
+        mes, dia = int(v[:2]), int(v[3:])
+        date(2000, mes, dia)  # 2000 é bissexto: aceita 02-29
+    except ValueError:
+        raise ValueError(f"{contexto}: data {v!r} inválida, esperado MM-DD") from None
+    return mes, dia
+
+
+def _faixa(d: Any) -> FaixaPalhada | None:
+    if not isinstance(d, dict):
+        return None
+    f = FaixaPalhada(d.get("min"), d.get("tipico"), d.get("max"))
+    return None if f == FaixaPalhada() else f
+
+
+def _arranjo(nome: str, a: dict[str, Any], contexto: str) -> ArranjoRegional:
+    valores: dict[str, Any] = {}
+    for chave in ("ciclo_dias", "graus_dia_ciclo", "agua_ciclo_mm"):
+        faixa = a.get(chave) if isinstance(a.get(chave), dict) else {}
+        valores |= {f"{chave}_min": faixa.get("min"), f"{chave}_max": faixa.get("max")}
+    valores |= {c: _mes_dia(a.get(c), f"{contexto}, arranjo {nome}, {c}") for c in CAMPOS_MES_DIA}
+    return ArranjoRegional(
+        nome=nome,
+        estados=tuple(e.upper() for e in _lista(a.get("estados"))),
+        regional=nome not in ARRANJOS_DE_CONSORCIO,
+        tipo_manejo=_texto(a.get("tipo_manejo")),
+        condicao_semeadura=_lista(a.get("condicao_semeadura")),
+        palhada=_faixa(a.get("ms_palhada_t_ha")),
+        origem={k: v for k, v in (a.get("origem") or {}).items() if isinstance(v, str)},
+        **valores,
+    )
+
+
+def _regua(caminho_csv: Path, cultura_id: str) -> dict[str, Any]:
+    """Bloco regua do arquivo de evidência da cultura; arquivo ausente ou sem o bloco = {}."""
+    arquivo = caminho_csv.parent / "evidencias" / f"{cultura_id}.json"
+    if not arquivo.exists():
+        return {}
+    try:
+        dados = json.loads(arquivo.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Evidência {arquivo.name} com JSON inválido: {e}") from e
+    regua = dados.get("regua") if isinstance(dados, dict) else None
+    return regua if isinstance(regua, dict) else {}
+
+
+def _campos_da_regua(regua: dict[str, Any], contexto: str) -> dict[str, Any]:
+    avisos = {k: v.strip() for k, v in (regua.get("avisos") or {}).items() if isinstance(v, str) and v.strip()}
+    dep = (regua.get("detalhe") or {}).get("depende_da_epoca") or {}
+    return {
+        "avisos": avisos,
+        "depende_da_epoca": {k: v for k, v in dep.items() if v is None or isinstance(v, bool)},
+        "faixa_palhada": _faixa(regua.get("ms_palhada_t_ha")),
+        "arranjos": tuple(_arranjo(n, a, contexto) for n, a in (regua.get("arranjos") or {}).items() if isinstance(a, dict)),
+    }
+
+
+def _linha_para_cultura(linha: dict[str, str], pais: str, regua: dict[str, Any] | None = None) -> CulturaMotor:
+    conhecidas = {"id", *CAMPOS_LISTA, *CAMPOS_MES_DIA, *CAMPOS_NUMERICOS, *CAMPOS_BOOLEANOS, *CAMPOS_TEXTO}
+    id_ = linha["id"].strip()
+    contexto = f"Cultura {id_} ({pais})"
     valores = {c: _numero(linha.get(c)) for c in CAMPOS_NUMERICOS}
     valores |= {c: _booleano(linha.get(c)) for c in CAMPOS_BOOLEANOS}
     valores |= {c: _texto(linha.get(c)) for c in CAMPOS_TEXTO}
+    valores |= {c: _mes_dia(linha.get(c), f"{contexto}, {c}") for c in CAMPOS_MES_DIA}
     return CulturaMotor(
-        id=linha["id"].strip(),
+        id=id_,
         pais=pais,
         tipos=_lista(linha.get("tipos")),
         fontes=_lista(linha.get("fontes")),
         estados_validos=tuple(e.upper() for e in _lista(linha.get("estados_validos"))),
+        condicao_semeadura=_lista(linha.get("condicao_semeadura")),
         extras={k: v for k, v in linha.items() if k not in conhecidas and _texto(v)},
+        **_campos_da_regua(regua or {}, contexto),
         **valores,
     )
 
 
 def ler_catalogo(caminho: Path, pais: str) -> dict[str, CulturaMotor]:
+    """Lê o CSV; a régua vem de evidencias/<id>.json ao lado dele (ausente = campos vazios)."""
     with caminho.open(encoding="utf-8", newline="") as f:
-        return {c.id: c for c in (_linha_para_cultura(l, pais) for l in csv.DictReader(f))}
+        linhas = list(csv.DictReader(f))
+    return {c.id: c for c in (_linha_para_cultura(l, pais, _regua(caminho, l["id"].strip())) for l in linhas)}
 
 
 @lru_cache

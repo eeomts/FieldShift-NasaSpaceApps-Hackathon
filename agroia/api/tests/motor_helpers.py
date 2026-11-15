@@ -1,5 +1,5 @@
 """Fazendas e climas sintéticos para os testes do motor de rotação (sem banco e sem rede)."""
-from dataclasses import fields
+from dataclasses import MISSING, fields
 
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.entradas import ClimaDoLocal, EntradasMotor
@@ -23,7 +23,9 @@ def cultura(id: str = "c", **mudancas) -> CulturaMotor:
         "valor_forrageiro": "baixo", "confianca_parametros": "alta", "estados_validos": (),
     }  # fmt: skip
     base.update(mudancas)
-    assert set(base) == {f.name for f in fields(CulturaMotor)} - {"fontes", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda", "extras"}
+    todos = {f.name for f in fields(CulturaMotor)}
+    obrigatorios = {f.name for f in fields(CulturaMotor) if f.default is MISSING and f.default_factory is MISSING}
+    assert obrigatorios <= set(base) <= todos  # campos com valor padrão (janela, régua, extras...) são opcionais
     return CulturaMotor(**base)
 
 

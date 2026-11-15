@@ -1,4 +1,4 @@
-"""Catálogo do motor: BR (17 culturas, vazio = None), EUA sem CSV e equipamentos por cultura."""
+"""Catálogo do motor: BR (17) e EUA (18), vazio = None, janela, régua das evidências e equipamentos."""
 import csv
 import logging
 
@@ -102,3 +102,134 @@ def test_equipamentos_por_cultura():
     assert "colhedora" in eq["soja"]["colheita"] and "plantadeira_graos" in eq["soja"]["plantio"]
     assert all(c in base_do_app.culturas() for c in eq)
     assert all(e in base_do_app.equipamentos() for etapas in eq.values() for es in etapas.values() for e in es)
+
+
+def test_catalogo_eua_tem_as_18_culturas_e_todas_existem_na_base_do_app():
+    c = catalogo_do_pais("US")
+    assert len(c) == 18
+    assert set(c) <= set(base_do_app.culturas())
+    assert all(x.pais == "US" for x in c.values())
+
+
+def test_mes_dia_do_csv_vira_tupla_e_vazio_e_none(tmp_path):
+    csv = tmp_path / "culturas.csv"
+    csv.write_text(
+        "id,nome,tipos,semeadura_inicio,semeadura_fim,manejo_inicio,manejo_fim,tipo_manejo\n"
+        "aveia,Aveia,cobertura,08-15,09-15,,02-29,morte_pelo_frio\n",
+        encoding="utf-8",
+    )
+    a = ler_catalogo(csv, "US")["aveia"]
+    assert a.semeadura_inicio == (8, 15) and a.semeadura_fim == (9, 15)
+    assert a.manejo_inicio is None and a.manejo_fim == (2, 29)
+    assert a.tipo_manejo == "morte_pelo_frio"
+    assert "semeadura_inicio" not in a.extras and "tipo_manejo" not in a.extras
+
+
+@pytest.mark.parametrize("valor", ["8-15", "13-01", "02-30", "ago-15", "08/15", "08-155"])
+def test_mes_dia_invalido_e_erro_claro(tmp_path, valor):
+    csv = tmp_path / "culturas.csv"
+    csv.write_text(f"id,nome,tipos,semeadura_fim\naveia,Aveia,cobertura,{valor}\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="aveia.*semeadura_fim.*MM-DD"):
+        ler_catalogo(csv, "US")
+
+
+def test_condicao_semeadura_e_textos_viram_tupla_e_texto(tmp_path):
+    csv = tmp_path / "culturas.csv"
+    csv.write_text(
+        "id,nome,tipos,condicao_semeadura,lacuna_informacao,risco_revisao_local\n"
+        "aveia,Aveia,cobertura,apos_cereal_inverno| apos_silagem,Falta medição.,Confirme com o agrônomo.\n"
+        "milho,Milho,comercial,,,\n",
+        encoding="utf-8",
+    )
+    c = ler_catalogo(csv, "US")
+    assert c["aveia"].condicao_semeadura == ("apos_cereal_inverno", "apos_silagem")
+    assert c["aveia"].lacuna_informacao == "Falta medição." and c["aveia"].risco_revisao_local == "Confirme com o agrônomo."
+    assert c["milho"].condicao_semeadura == () and c["milho"].lacuna_informacao is None
+
+
+def test_e_cobertura():
+    c = catalogo_do_pais("BR")
+    assert c["aveia"].e_cobertura and c["crotalaria"].e_cobertura
+    assert not c["soja"].e_cobertura
+    assert catalogo_do_pais("US")["pastagem"].e_cobertura is False  # forrageira sem o tipo cobertura
+
+
+def test_csv_real_traz_janela_e_condicao_semeadura():
+    crot = catalogo_do_pais("BR")["crotalaria"]
+    assert crot.semeadura_inicio == (10, 1) and crot.semeadura_fim == (3, 31)  # janela que cruza o ano
+    assert crot.tipo_manejo == "corte" and crot.condicao_semeadura == ("apos_colheita_graos",)
+    assert crot.lacuna_informacao and crot.risco_revisao_local
+    aveia_us = catalogo_do_pais("US")["aveia"]
+    assert aveia_us.condicao_semeadura == ("apos_cereal_inverno", "apos_silagem", "a_lanco_lavoura_em_pe")
+    assert catalogo_do_pais("BR")["soja"].semeadura_inicio is None
+
+
+def test_avisos_da_pastagem_dos_eua_carregam():
+    p = catalogo_do_pais("US")["pastagem"]
+    assert "festuca" in p.avisos["valor_forrageiro"]
+    assert catalogo_do_pais("US")["milho"].avisos == {}
+
+
+def test_arranjos_do_trevo_dos_eua_trazem_estados_e_numeros():
+    arr = {a.nome: a for a in catalogo_do_pais("US")["trevo"].arranjos}
+    assert arr["alabama"].estados == ("AL",) and arr["tennessee"].estados == ("TN",)
+    al = arr["alabama"]
+    assert al.regional and (al.ciclo_dias_min, al.ciclo_dias_max) == (116, 256)
+    assert (al.graus_dia_ciclo_min, al.graus_dia_ciclo_max) == (800, 2650)
+    assert (al.agua_ciclo_mm_min, al.agua_ciclo_mm_max) == (90, 430)
+    assert al.semeadura_inicio == (8, 25) and al.manejo_fim == (5, 8) and al.tipo_manejo == "dessecacao"
+    assert al.origem["agua_ciclo_mm"] == "calculo"
+
+
+def test_arranjos_regionais_com_estados_e_palhada():
+    c = catalogo_do_pais("US")
+    mi = c["feijao"].arranjos[0]
+    assert (mi.nome, mi.estados) == ("michigan", ("MI",))
+    assert mi.palhada is not None and mi.palhada.tipico == 5.16
+    assert c["algodao"].arranjos[0].estados == ("GA",) and c["algodao"].arranjos[0].semeadura_inicio == (5, 2)
+    assert c["cevada"].arranjos[0].estados == ("MT",)
+    assert c["ervilhaca"].arranjos[0].estados == ("GA",)
+    br = catalogo_do_pais("BR")
+    assert br["crotalaria"].arranjos[0].estados == ("RS",)
+    assert br["milheto"].arranjos[0].estados == ("GO", "MG", "MS", "MT", "SP")
+    assert br["nabo_forrageiro"].arranjos[0].estados == ("GO", "DF", "MT", "MG")
+    assert br["soja"].arranjos == ()
+
+
+def test_arranjos_de_consorcio_da_pastagem_nao_sao_regionais():
+    past = catalogo_do_pais("BR")["pastagem"]
+    por_nome = {a.nome: a for a in past.arranjos}
+    assert set(por_nome) == {"braquiaria_solteira", "consorcio_milho_safrinha"}
+    assert not por_nome["consorcio_milho_safrinha"].regional and not por_nome["braquiaria_solteira"].regional
+    assert past.arranjos_regionais == ()
+    cons = por_nome["consorcio_milho_safrinha"]
+    assert cons.palhada.minimo == 2.85 and cons.palhada.maximo == 4.65 and cons.palhada.tipico is None
+    assert cons.estados == ("GO", "MT", "MS", "PR")
+
+
+def test_faixa_de_palhada_e_depende_da_epoca():
+    c = catalogo_do_pais("BR")
+    soja = c["soja"]
+    assert (soja.faixa_palhada.minimo, soja.faixa_palhada.tipico, soja.faixa_palhada.maximo) == (2.5, 4.0, 5.6)
+    assert soja.depende_da_epoca == {"aporte_biomassa": False, "cobertura_solo": True}
+    assert catalogo_do_pais("US")["alfafa"].faixa_palhada is None  # tudo null no arquivo: "não sei"
+    assert catalogo_do_pais("US")["alfafa"].depende_da_epoca == {"aporte_biomassa": None, "cobertura_solo": None}
+
+
+def test_evidencia_ausente_ou_sem_regua_nao_quebra(tmp_path):
+    (tmp_path / "evidencias").mkdir()
+    (tmp_path / "evidencias" / "milho.json").write_text('{"valores": {}}', encoding="utf-8")
+    csv = tmp_path / "culturas.csv"
+    csv.write_text("id,nome,tipos\nsoja,Soja,comercial\nmilho,Milho,comercial\n", encoding="utf-8")
+    for cultura in ler_catalogo(csv, "BR").values():
+        assert cultura.avisos == {} and cultura.depende_da_epoca == {} and cultura.arranjos == ()
+        assert cultura.faixa_palhada is None
+
+
+def test_evidencia_com_json_invalido_e_erro_claro(tmp_path):
+    (tmp_path / "evidencias").mkdir()
+    (tmp_path / "evidencias" / "soja.json").write_text("{quebrado", encoding="utf-8")
+    csv = tmp_path / "culturas.csv"
+    csv.write_text("id,nome,tipos\nsoja,Soja,comercial\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="soja.json"):
+        ler_catalogo(csv, "BR")
