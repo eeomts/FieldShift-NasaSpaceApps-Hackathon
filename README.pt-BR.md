@@ -120,7 +120,7 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 | Solo | SoilGrids |
 | Previsão do tempo | Open-Meteo |
 
-**Ficaram fora desta versão:** a umidade do solo (SMAP L4), o NDVI (MODIS, VIIRS e HLS), a chuva de satélite (GPM IMERG) e o AppEEARS, que foi descartado em 15/11/2026 (ver D-009 em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md)). Os dados do IBGE PAM, do ZARC e do USDA NASS estão preparados em `data/`, mas o motor ainda não os lê. As demais fontes da D-009 (ERA5, GLDAS, FAO GAEZ, NASA Harvest, MapBiomas, INMET/CEMADEN) são plano: o app não as usa.
+**Ficaram fora desta versão:** a umidade do solo (SMAP L4), o NDVI (MODIS, VIIRS e HLS) e a chuva de satélite (GPM IMERG) (ver D-009 em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md)). Os dados do IBGE PAM, do ZARC e do USDA NASS estão preparados em `data/`, mas o motor ainda não os lê. As demais fontes da D-009 (ERA5, GLDAS, FAO GAEZ, NASA Harvest, MapBiomas, INMET/CEMADEN) são plano: o app não as usa.
 
 A previsão do tempo dos próximos dias vem da **Open-Meteo**, porque a NASA não publica previsão. Ela já está no app, mas ainda não foi registrada no `DECISOES.md` (ver "Pontos em aberto").
 
