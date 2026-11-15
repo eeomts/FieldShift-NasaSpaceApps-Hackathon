@@ -2,7 +2,7 @@
   "ndvi": {
     "task_id": "cbf8d5f6-f646-4707-b2d6-ba14bfe563ab",
     "assinatura": "aa3fdc497b688e25",
-    "status": "processing",
+    "status": "done",
     "inicio": "2001-01-01",
     "fim": "2026-11-14",
     "produtos": [
@@ -22,13 +22,15 @@
       "sul_1",
       "semiarido_1"
     ],
-    "enviado_em": "2026-11-14T23:04:00"
+    "enviado_em": "2026-11-14T23:04:00",
+    "arquivos": 7,
+    "baixado": "2026-11-15T00:47:43"
   },
   "smap": {
-    "task_id": "52e55849-0b9f-4948-b23a-6cf6e57dff2a",
+    "task_id": "149ed39c-5850-452c-8a50-975587b73d23",
     "assinatura": "565ca239844f933c",
-    "status": "pending",
-    "inicio": "2001-01-01",
+    "status": "processing",
+    "inicio": "2015-03-31",
     "fim": "2026-11-14",
     "produtos": [
       "SPL4SMGP.008"
@@ -42,6 +44,6 @@
       "sul_1",
       "semiarido_1"
     ],
-    "enviado_em": "2026-11-14T23:04:00"
+    "enviado_em": "2026-11-14T23:47:00"
   }
 }

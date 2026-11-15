@@ -321,11 +321,17 @@ def main():
     global PONTOS, SAIDA, ESTADO
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--novo", action="store_true", help="envia pedidos novos mesmo que já existam")
-    parser.add_argument("--pontos", type=Path, default=PONTOS, help="CSV de pontos (padrão: os do Brasil)")
-    parser.add_argument("--saida", type=Path, default=SAIDA, help="pasta dos bundles e do tarefas.json")
+    parser.add_argument("--pontos", type=Path, help="CSV de pontos (padrão: os do Brasil); exige --saida")
+    parser.add_argument("--saida", type=Path, help="pasta dos bundles e do tarefas.json; exige --pontos")
     args = parser.parse_args()
-    PONTOS, SAIDA = args.pontos.resolve(), args.saida.resolve()
-    ESTADO = SAIDA / "tarefas.json"
+    # Os dois andam juntos: --pontos sozinho leria o tarefas.json do Brasil e cancelaria os pedidos
+    # dele em andamento (a assinatura muda). Confere antes de qualquer credencial ou estado.
+    if (args.pontos is None) != (args.saida is None):
+        sys.exit("Use --pontos e --saida juntos (ex.: --pontos data/demo/pontos_demo_eua.csv "
+                 "--saida data/demo/appeears_eua).")
+    if args.pontos is not None:
+        PONTOS, SAIDA = args.pontos.resolve(), args.saida.resolve()
+        ESTADO = SAIDA / "tarefas.json"
     sys.stdout.reconfigure(line_buffering=True)  # mostra o andamento na hora, mesmo rodando no cron
 
     pontos = ler_pontos()
