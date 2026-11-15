@@ -312,6 +312,12 @@ perguntas:
     texto:
       pt: "Nesses meses a terra fica sem nada plantado?"
       en: "Is the land left bare in these months?"
+    # Em clima com inverno de neve (zona_climatica começa com D), o campo pode parecer vazio no
+    # calendário e no satélite, mas estar coberto de neve e palhada. A ajuda evita a resposta errada.
+    ajuda_se: { zona_climatica_comeca_com: D }
+    ajuda:
+      pt: "Se nesses meses o campo fica coberto de neve ou de palhada, conte como coberto (responda \"não\")."
+      en: "If the field is under snow or crop residue in these months, count it as covered (answer \"no\")."
     nota: "Mostrada sobre o calendário completo do ano, com os meses vazios destacados."
     tipo: sim_nao_nao_sei
     obrigatoria: false
@@ -556,10 +562,12 @@ perguntas:
         en: "Something else"
       - { valor: nao,     pt: "Não",     en: "No" }
       - { valor: nao_sei, pt: "Não sei", en: "Not sure" }
-    # Contexto local: em zona árida ou semiárida (zona_climatica começa com B) ou com irrigação,
-    # o gesso aparece primeiro; nos outros lugares, o calcário aparece primeiro.
+    # Contexto local: em clima seco (zona B, ou mediterrâneo Csa/Csb, com verão sem chuva), onde o
+    # sal no solo é comum, o gesso aparece primeiro; nos outros lugares, o calcário aparece primeiro.
+    # A irrigação sozinha não conta: um pivô em clima úmido (ex.: Nebraska, Dfa) tem solo ácido ou
+    # neutro e usa calcário (teste 8 do TESTES_CHAT_SR_SMITH.md).
     ordem_por_local:
-      gesso_primeiro_se: { zona_climatica_comeca_com: B, ou_q6_irrigacao: [sim, parte] }
+      gesso_primeiro_se: { zona_climatica_comeca_com: B, ou_zona_climatica: [Csa, Csb] }
     obrigatoria: false
     alimenta:
       fonte: produtor
@@ -595,8 +603,14 @@ perguntas:
 
   - id: q24_perdas.geada.resposta
     bloco: 5
-    # Não aparece em clima quente sem inverno frio (tropical e árido quente).
-    mostrar_se: { zona_climatica_nao_e: [Af, Am, Aw, As, BWh, BSh] }
+    # Some só se o histórico do ponto não tem frio de geada: nenhum dia com temperatura mínima abaixo
+    # de 2 °C no NASA POWER (o mesmo limite do indicador de risco de geada). A regra por zona climática
+    # errava: deserto quente (BWh) e semiárido quente (BSh) também têm geada, como o Vale Central da
+    # Califórnia (teste 6 do TESTES_CHAT_SR_SMITH.md).
+    # Se o POWER ainda não tiver chegado, usar a zona: some só em clima tropical (zona começa com A).
+    mostrar_se:
+      regra: power_tmin_minima_abaixo_de_2c
+      se_sem_power: { zona_climatica_nao_comeca_com: A }
     texto:
       pt: "Já perdeu a colheita por geada?"
       en: "Have you ever lost a crop to frost?"
@@ -669,8 +683,12 @@ perguntas:
 
   - id: q24_perdas.salinidade.resposta   # NOVA
     bloco: 5
-    # Só aparece onde sal no solo é comum: clima árido ou semiárido, ou campo irrigado.
-    mostrar_se: { zona_climatica_comeca_com: B, ou_q6_irrigacao: [sim, parte] }
+    # Só aparece onde sal no solo é comum: clima seco (zona B), ou irrigação em clima mediterrâneo
+    # (Csa/Csb, verão sem chuva). Pivô em clima úmido não conta (teste 8 do TESTES_CHAT_SR_SMITH.md).
+    mostrar_se:
+      ou:
+        - { zona_climatica_comeca_com: B }
+        - { zona_climatica: [Csa, Csb], q6_irrigacao: [sim, parte] }
     texto:
       pt: "Já perdeu a colheita porque a terra ficou salgada (manchas brancas, planta queimando)?"
       en: "Have you ever lost a crop because the soil turned salty (white crust, scorched plants)?"
