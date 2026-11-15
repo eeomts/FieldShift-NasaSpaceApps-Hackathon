@@ -19,11 +19,13 @@ CAMPOS_NUMERICOS = (
     "ciclo_dias_min", "ciclo_dias_max", "graus_dia_ciclo_min", "graus_dia_ciclo_max",
     "temp_base_c", "temp_otima_min_c", "temp_otima_max_c", "tmax_critica_c",
     "agua_ciclo_mm_min", "agua_ciclo_mm_max", "kc_inicial", "kc_medio", "kc_final", "profundidade_raiz_m",
+    "tmin_critica_c", "fase_frio_inicio_frac", "fase_frio_fim_frac", "tmin_dias_seguidos",
 )  # fmt: skip
 CAMPOS_BOOLEANOS = ("perene", "sensivel_geada", "fixa_nitrogenio", "raiz_profunda")
 CAMPOS_TEXTO = (
     "nome", "nome_cientifico", "familia_botanica", "cobertura_solo", "aporte_biomassa", "valor_forrageiro",
     "confianca_parametros", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
+    "fase_sensivel_frio", "tmin_efeito", "semeadura_inicio", "semeadura_fim", "condicao_semeadura",
 )  # fmt: skip
 
 
@@ -64,6 +66,17 @@ class CulturaMotor:
     nome_zarc: str | None = None  # só BR
     codigo_nass: str | None = None  # só US
     calendario_usda: str | None = None  # só US
+    # Frio por fase (regra 17): vazio = None. tmin_efeito: elimina | aviso (None = elimina)
+    tmin_critica_c: float | None = None
+    fase_sensivel_frio: str | None = None  # floracao | enchimento_grao | ciclo_todo
+    fase_frio_inicio_frac: float | None = None  # fração do ciclo médio, contada da semeadura
+    fase_frio_fim_frac: float | None = None
+    tmin_dias_seguidos: float | None = None  # None = 1 dia
+    tmin_efeito: str | None = None
+    # Janela de semeadura (regra 12): "MM-DD"; condicao_semeadura = códigos separados por "|"
+    semeadura_inicio: str | None = None
+    semeadura_fim: str | None = None
+    condicao_semeadura: str | None = None
     estados_validos: tuple[str, ...] = ()  # siglas (UF no BR, USPS nos EUA); vazio = sem restrição (regra 13)
     extras: dict[str, str] = field(default_factory=dict, compare=False)  # colunas novas do CSV, sem tipo
 

@@ -1,6 +1,8 @@
 """Filtro: cada regra elimina com o motivo certo; a atual nunca é eliminada."""
-from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada
-from motor_helpers import clima, cultura, entradas, item
+from datetime import date, timedelta
+
+from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada, janela_do_frio
+from motor_helpers import ANOS, clima, cultura, entradas, item, serie_tmin
 
 RESP = (10, 12)  # outubro a dezembro: 3 meses
 
@@ -302,3 +304,136 @@ def test_geada_em_cultura_perene_olha_o_ano_todo():
     p = cultura("pastagem", perene=True, sensivel_geada=True, graus_dia_ciclo_min=None, kc_medio=0.1)
     it = item("pastagem", 1, 12, perene=True)
     assert avaliar([it], entradas([it], [p], clima=clima(geada={7: 15})), True).eliminada
+
+
+# --- frio por fase (regra 17): limiar da cultura, só nos dias da fase, dias seguidos
+def com_frio(c, it, dias, valor=-5.0, base=20.0, comeco=0, anos=ANOS, ausente=()):
+    """Tmin diária: `base` em todo dia; `dias` dias seguidos a `valor`, `comeco` dias depois do início da fase, nos `anos`.
+
+    `ausente` = dias (offset desde o início da fase) sem dado em todos os anos.
+    """
+    frias, falta = set(), set()
+    for a in ANOS:
+        ini, fim = janela_do_frio(c, it, a)
+        if a in anos:
+            frias |= {ini + timedelta(days=comeco + i) for i in range(dias)}
+        falta |= {ini + timedelta(days=o) for o in ausente}
+    return serie_tmin(lambda d: None if d in falta else (valor if d in frias else base))
+
+
+def frio(c, it, serie, eliminar=True):
+    return avaliar([it], entradas([it], [c], clima=clima(tmin_por_dia=serie)), eliminar)
+
+
+SOJA = dict(sensivel_geada=True, tmin_critica_c=-2.2, fase_sensivel_frio="enchimento_grao", fase_frio_inicio_frac=0.73, fase_frio_fim_frac=1.0)
+ARROZ = dict(sensivel_geada=True, tmin_critica_c=15, fase_sensivel_frio="floracao", fase_frio_inicio_frac=0.59, fase_frio_fim_frac=0.72, tmin_dias_seguidos=3, tmin_efeito="aviso")
+
+
+def test_frio_soja_com_minima_de_0_grau_nao_sai_porque_o_limiar_e_menos_2_2():
+    c = cultura("soja", **SOJA)
+    it = item("soja", *RESP)
+    r = frio(c, it, com_frio(c, it, dias=60, valor=0.0))  # 0 °C seria geada de 2 °C, mas não passa de -2,2
+    assert not r.eliminada and not r.alertas and not r.lacunas
+
+
+def test_frio_soja_abaixo_do_limiar_na_fase_elimina_com_o_texto_de_geada():
+    c = cultura("soja", **SOJA)
+    it = item("soja", *RESP)
+    r = frio(c, it, com_frio(c, it, dias=1, valor=-3.0, comeco=5))  # a janela é o fim do ciclo
+    assert r.eliminada and "geada" in r.motivos[0] and "enchimento dos grãos" in r.motivos[0] and "100%" in r.motivos[0]
+    assert "-2,2" in r.motivos[0]
+    na_atual = frio(c, it, com_frio(c, it, dias=1, valor=-3.0), eliminar=False)
+    assert not na_atual.eliminada and [a.codigo for a in na_atual.alertas] == ["geada"]
+
+
+def test_frio_a_30_por_cento_dos_anos_passa_e_acima_elimina():
+    c = cultura("soja", **SOJA)
+    it = item("soja", *RESP)
+    assert not frio(c, it, com_frio(c, it, 1, valor=-3.0, anos=list(ANOS)[:9])).eliminada  # 9 de 30
+    assert frio(c, it, com_frio(c, it, 1, valor=-3.0, anos=list(ANOS)[:10])).eliminada  # 10 de 30
+
+
+def test_frio_arroz_15_graus_3_dias_com_2_dias_frios_nao_conta():
+    c = cultura("arroz", **ARROZ)
+    it = item("arroz", *RESP)
+    r = frio(c, it, com_frio(c, it, dias=2, valor=10.0))
+    assert not r.eliminada and not r.alertas and not r.lacunas
+
+
+def test_frio_arroz_com_3_dias_seguidos_vira_aviso_de_frio_e_nao_elimina():
+    c = cultura("arroz", **ARROZ)
+    it = item("arroz", *RESP)
+    r = frio(c, it, com_frio(c, it, dias=3, valor=10.0))
+    assert not r.eliminada
+    [a] = r.alertas
+    assert a.codigo == "frio" and "frio na florada em 100% dos anos" in a.texto and "3 dias seguidos" in a.texto
+    assert "geada" not in a.texto and "15 °C" in a.texto
+
+
+def test_frio_dia_sem_dado_quebra_a_sequencia_e_tira_o_ano_da_conta():
+    c = cultura("arroz", **ARROZ)
+    it = item("arroz", *RESP)
+    # 3 dias frios com o do meio sem dado, em todos os anos: nenhum ano tem a janela completa
+    r = frio(c, it, com_frio(c, it, dias=3, valor=10.0, ausente=[1]))
+    assert not r.eliminada and not r.alertas and any("sem a mínima diária" in l for l in r.lacunas)
+    # sem dado só em 20 anos: os 10 restantes (todos frios) decidem
+    serie = com_frio(c, it, dias=3, valor=10.0)
+    for a in list(ANOS)[:20]:
+        serie[janela_do_frio(c, it, a)[0]] = None
+    assert [x.codigo for x in frio(c, it, serie).alertas] == ["frio"]
+
+
+def test_frio_trigo_com_geada_so_fora_da_janela_da_fase_passa():
+    c = cultura("trigo", sensivel_geada=True, tmin_critica_c=1, fase_sensivel_frio="floracao", fase_frio_inicio_frac=0.59, fase_frio_fim_frac=0.73)
+    it = item("trigo", 6, 10)
+    ini, fim = janela_do_frio(c, it, 2000)
+    assert (fim - ini).days > 10
+    # geada todo ano nos 10 dias antes da fase e nos 10 depois dela
+    serie_fora = serie_tmin(lambda d: -2.0 if any(
+        (a := janela_do_frio(c, it, ano)) and ((a[0] - timedelta(days=10)) <= d < a[0] or a[1] < d <= (a[1] + timedelta(days=10))) for ano in (d.year, d.year - 1)
+    ) else 10.0)
+    r = frio(c, it, serie_fora)
+    assert not r.eliminada and not r.alertas and not r.lacunas
+    assert frio(c, it, com_frio(c, it, 1, valor=-2.0, comeco=3)).eliminada  # um dia dentro da fase, todo ano
+
+
+def test_frio_janela_que_vira_o_ano():
+    c = cultura("c", sensivel_geada=True, tmin_critica_c=0, fase_sensivel_frio="floracao", fase_frio_inicio_frac=0.3, fase_frio_fim_frac=0.5, tmin_dias_seguidos=3)
+    it = item("c", 11, 3)  # semeadura em 15/nov, ciclo médio 120: a fase vai de ~21/dez a ~14/jan
+    ini, fim = janela_do_frio(c, it, 2000)
+    assert (ini.year, ini.month, fim.year, fim.month) == (2000, 12, 2001, 1)
+    # 3 dias seguidos: 30/dez, 31/dez e 1/jan (a virada do ano está dentro da sequência)
+    serie = serie_tmin(lambda d: -1.0 if (d.month, d.day) in {(12, 30), (12, 31), (1, 1)} else 10.0)
+    r = frio(c, it, serie)
+    assert r.eliminada and "geada" in r.motivos[0] and "3 dias seguidos" in r.motivos[0]
+    # a 2020 usa dias de 2021, que a série tem; com só 2 dias por ano, não conta
+    serie2 = serie_tmin(lambda d: -1.0 if (d.month, d.day) in {(12, 31), (1, 1)} else 10.0)
+    assert not frio(c, it, serie2).eliminada
+
+
+def test_frio_sem_dado_diario_vira_lacuna_nao_elimina_e_nao_cai_nos_2_graus():
+    c = cultura("soja", **SOJA)
+    it = item("soja", *RESP)
+    r = avaliar([it], entradas([it], [c], clima=clima(geada={11: 30, 12: 30, 1: 30})), True)  # geada < 2 °C todo ano, mas sem Tmin diária
+    assert not r.eliminada and not r.alertas
+    assert r.lacunas == ["Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio."]
+
+
+def test_frio_sem_tmin_critica_mantem_a_reserva_de_2_graus_no_terco_do_meio():
+    c = cultura("c", sensivel_geada=True)  # sem tmin_critica_c
+    it = item("c", *RESP)
+    serie = serie_tmin(lambda d: -10.0)  # a série diária é ignorada
+    assert not avaliar([it], entradas([it], [c], clima=clima(tmin_por_dia=serie)), True).eliminada
+    assert avaliar([it], entradas([it], [c], clima=clima(geada={11: 30}, tmin_por_dia=serie)), True).eliminada
+
+
+def test_frio_fase_vazia_usa_o_ciclo_todo_e_perene_o_ano_todo():
+    c = cultura("c", sensivel_geada=True, tmin_critica_c=0)
+    it = item("c", *RESP)
+    ini, fim = janela_do_frio(c, it, 2000)
+    assert ini == date(2000, 10, 15) and (fim - ini).days == 120
+    p = cultura("pastagem", perene=True, sensivel_geada=True, tmin_critica_c=-3.3, fase_sensivel_frio="ciclo_todo")
+    ip = item("pastagem", 1, 12, perene=True)
+    assert janela_do_frio(p, ip, 2000) == (date(2000, 1, 1), date(2000, 12, 31))
+    r = frio(p, ip, serie_tmin(lambda d: -4.0 if (d.month, d.day) == (7, 1) else 10.0))
+    assert r.eliminada and "geada" in r.motivos[0] and "ao longo do ano" in r.motivos[0]

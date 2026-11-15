@@ -102,3 +102,33 @@ def test_equipamentos_por_cultura():
     assert "colhedora" in eq["soja"]["colheita"] and "plantadeira_graos" in eq["soja"]["plantio"]
     assert all(c in base_do_app.culturas() for c in eq)
     assert all(e in base_do_app.equipamentos() for etapas in eq.values() for es in etapas.values() for e in es)
+
+
+def test_tmin_critica_c_e_os_campos_de_frio_sao_lidos_como_numero_do_csv_real():
+    c = catalogo_do_pais("BR")
+    soja = c["soja"]
+    assert soja.tmin_critica_c == -2.2 and soja.fase_frio_inicio_frac == 0.73 and soja.fase_frio_fim_frac == 1.0
+    assert soja.fase_sensivel_frio == "enchimento_grao" and soja.tmin_dias_seguidos is None and soja.tmin_efeito is None
+    arroz = c["arroz_irrigado"]
+    assert arroz.tmin_critica_c == 15.0 and arroz.tmin_dias_seguidos == 3.0 and arroz.tmin_efeito == "aviso"
+    assert c["mandioca"].tmin_critica_c is None  # sem limiar com fonte: vazio, nunca 0
+    assert catalogo_do_pais("US")["trigo"].fase_frio_inicio_frac == 0.87
+    for pais in ("BR", "US"):
+        for cultura in catalogo_do_pais(pais).values():
+            assert cultura.tmin_critica_c is None or isinstance(cultura.tmin_critica_c, float)
+            assert not {"tmin_critica_c", "fase_sensivel_frio", "tmin_efeito", "semeadura_inicio", "condicao_semeadura"} & set(cultura.extras)
+    assert c["milheto"].semeadura_inicio == "01-21" and c["milheto"].condicao_semeadura == "apos_colheita_graos|a_lanco_lavoura_em_pe"
+
+
+def test_campos_de_frio_com_virgula_decimal_e_celula_vazia(tmp_path):
+    csv = tmp_path / "culturas.csv"
+    csv.write_text(
+        "id,nome,tipos,tmin_critica_c,fase_frio_inicio_frac,tmin_dias_seguidos,tmin_efeito\n"
+        'soja,Soja,comercial,"-2,2",0.73,,\n'
+        "arroz,Arroz,comercial,15,0.59,3,aviso\n",
+        encoding="utf-8",
+    )
+    c = ler_catalogo(csv, "BR")
+    assert c["soja"].tmin_critica_c == -2.2 and c["soja"].tmin_dias_seguidos is None and c["soja"].tmin_efeito is None
+    assert c["soja"].fase_frio_fim_frac is None  # coluna que nem existe no arquivo
+    assert c["arroz"].tmin_dias_seguidos == 3.0 and c["arroz"].tmin_efeito == "aviso" and not c["arroz"].extras

@@ -127,3 +127,18 @@ def test_sequencia_seca_nao_atravessa_o_mes_nem_dia_sem_dado():
 def test_meses_saem_em_ordem_cronologica():
     dias = mes(2001, 1, 2) + mes(2000, 12, 2) + mes(2000, 2, 2)
     assert [(l.ano, l.mes) for l in agregar_por_mes(dias, limite_forte=None)] == [(2000, 2), (2000, 12), (2001, 1)]
+
+
+def test_tmin_diaria_tem_um_valor_por_dia_do_mes_e_none_no_dia_sem_dado():
+    dias = mes(2024, 2, 29, tmin=3.0)
+    dias[4] = dia(date(2024, 2, 5), tmin=None)
+    del dias[9]  # dia 10 nem veio na série
+    dias[0] = dia(date(2024, 2, 1), tmin=-1.5)
+    [l] = agregar_por_mes(dias, limite_forte=None)
+    assert len(l.tmin_diaria) == 29  # 2024 é bissexto
+    assert l.tmin_diaria[0] == -1.5 and l.tmin_diaria[1] == 3.0
+    assert l.tmin_diaria[4] is None and l.tmin_diaria[9] is None  # índice = dia - 1; ausente nunca vira 0
+    [fev23] = agregar_por_mes(mes(2023, 2, 28), limite_forte=None)
+    assert len(fev23.tmin_diaria) == 28
+    [jan] = agregar_por_mes(mes(2023, 1, 31, tmin=None), limite_forte=None)
+    assert jan.tmin_diaria == [None] * 31 and jan.dias_geada is None

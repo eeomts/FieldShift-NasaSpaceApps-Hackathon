@@ -132,6 +132,33 @@ def test_celula_sem_gd_por_tb_e_baixada_de_novo(db):
     assert len(cliente.chamadas) == 2
 
 
+def test_agregacao_grava_tmin_diaria(db):
+    s, _ = servico(db)
+    c = s.obter(-11.3, -41.8, hoje=HOJE)
+    meses = {(m.ano, m.mes): m for m in s.repositorio.meses(c.id)}
+    jan, fev = meses[(2024, 1)].tmin_diaria, meses[(2024, 2)].tmin_diaria
+    assert len(jan) == 31 and jan[0] is None and jan[1:] == [15.0] * 30  # 1 de janeiro sem dado: null
+    assert len(fev) == 29 and fev == [15.0] * 29
+    assert len(meses[(2023, 2)].tmin_diaria) == 28
+    linhas = s.linhas(c)
+    assert linhas[0].tmin_diaria == meses[(1991, 1)].tmin_diaria
+
+
+def test_celula_sem_tmin_diaria_e_baixada_de_novo(db):
+    s, cliente = servico(db)
+    celula = s.obter(-11.3, -41.8, hoje=HOJE)
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 1
+    db.execute(text("UPDATE clima_mensal SET tmin_diaria = NULL WHERE celula_id = :c AND ano = 2000 AND mes = 3"), {"c": celula.id})
+    db.commit()
+    assert s.repositorio.faltam_graus_dia(celula.id)
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 2
+    assert all(m.tmin_diaria is not None for m in s.repositorio.meses(celula.id))
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 2
+
+
 def test_ano_leva_fonte_e_periodo(db):
     s, _ = servico(db)
     a = s.ano(s.obter(-11.3, -41.8, hoje=HOJE), 2024)

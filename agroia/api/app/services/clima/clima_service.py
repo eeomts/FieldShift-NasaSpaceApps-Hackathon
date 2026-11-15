@@ -103,7 +103,7 @@ class ClimaService:
         self.cliente = cliente
 
     def obter(self, lat: float, lon: float, hoje: date | None = None) -> ClimaCelula:
-        """Célula do ponto com o clima já no banco. Baixa do NASA POWER se não houver, faltar o último ano ou o GD."""
+        """Célula do ponto com o clima já no banco. Baixa do NASA POWER se não houver, faltar o último ano, o GD ou a Tmin diária."""
         if not (-90 <= lat <= 90) or not (-180 <= lon <= 180):
             raise ErroDeNegocio(422, "Latitude deve estar entre -90 e 90 e longitude entre -180 e 180.")
         fim = date((hoje or date.today()).year - 1, 12, 31)  # último ano completo
