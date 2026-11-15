@@ -26,8 +26,9 @@ from app.services.onboarding import perfil
 
 log = logging.getLogger(__name__)
 
-# Campos do catálogo que NÃO vão ao modelo: identificação e códigos de outras bases, texto interno, e o que já vai no topo vindo de
-# agroai/base/culturas.json (perene, tipos, fixa_nitrogenio, raiz_profunda: um valor só, sem contradição). O resto vai (filtro por exclusão).
+# Campos do catálogo que NÃO vão ao modelo: identificação e códigos de outras bases, texto interno, e o que já vai no topo. `perene` e
+# `tipos` vêm do bloco `por_pais` de agroai/base/culturas.json (o do país da fazenda), que é igual ao CSV do país; `fixa_nitrogenio` e
+# `raiz_profunda` repetem o que já está em `tipos`. O resto vai (filtro por exclusão).
 CAMPOS_FORA_DOS_PARAMETROS = frozenset({
     "id", "pais", "nome", "nome_base", "nome_cientifico", "familia_botanica", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
     "extras", "fontes", "estados_validos", "lacuna_informacao", "risco_revisao_local",
@@ -244,17 +245,16 @@ class Ferramentas:
                 }
             )
         nome = catalogo.nome_exibicao(item)
+        pais = _pais_da_fazenda(self.usuario.fazenda)
         dados = {
             "encontrada": True,
             "id": cultura_id,
             "nome": nome,
             "nomes": item["nomes"],
             "grupo": item["grupo"],
-            "perene": item["perene"],
-            "tipos": item["tipos"],
+            **catalogo.atributos_no_pais(cultura_id, pais),  # perene e tipos do país da fazenda
         }
         titulo = f"Base de culturas: {nome}"
-        pais = _pais_da_fazenda(self.usuario.fazenda)
         dados["pais_da_base"] = pais
         linha = catalogo_do_pais(pais).get(cultura_id)
         if linha is None:

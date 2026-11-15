@@ -443,7 +443,7 @@ IOWA = {"q1_quem": "produtor", "q4_animais": "nao", "q6_irrigacao": "nao", "q5_l
 SEM_LOCAL = {"q1_quem": "produtor", "q4_animais": "nao", "q6_irrigacao": "nao"}
 FORA_DOS_PARAMETROS = {
     "id", "pais", "nome", "nome_cientifico", "familia_botanica", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
-    "extras", "fontes", "estados_validos", "perene", "tipos", "fixa_nitrogenio", "raiz_profunda",
+    "extras", "fontes", "estados_validos", "perene", "tipos", "fixa_nitrogenio", "raiz_profunda", "nome_base",
 }  # fmt: skip
 
 
@@ -474,6 +474,27 @@ def test_info_cultura_parametros_sem_campos_internos_nem_duplicados(client, auth
     assert not FORA_DOS_PARAMETROS & set(soja["parametros"])
     assert soja["perene"] is False and soja["tipos"]  # vêm do topo (culturas.json), uma vez só
     assert all(v is not None for v in soja["parametros"].values())
+
+
+def test_info_cultura_devolve_perene_e_tipos_do_pais_da_fazenda(client, auth, conversa, modelo):
+    # mandioca: padrão global não perene, mas o CSV do Brasil diz perene (bloco por_pais.BR)
+    assert catalogo.culturas()["mandioca"]["perene"] is False
+    _salva(client, auth, IRECE)
+    mandioca, _ = _info(client, auth, conversa, modelo, "mandioca")
+    assert mandioca["pais_da_base"] == "BR" and mandioca["perene"] is True
+    assert mandioca["tipos"] == catalogo.culturas()["mandioca"]["por_pais"]["BR"]["tipos"]
+    # pastagem: global tem cobertura, mas o CSV dos EUA não (festuca para pasto e feno)
+    assert "cobertura" in catalogo.culturas()["pastagem"]["tipos"]
+    _salva(client, auth, IOWA)
+    outra = client.post("/chat/conversas", headers=auth).json()["id"]  # conversa nova: _info lê a 1ª resposta de ferramenta
+    pastagem, _ = _info(client, auth, outra, modelo, "pastagem")
+    assert pastagem["pais_da_base"] == "US" and pastagem["perene"] is True
+    assert "cobertura" not in pastagem["tipos"] and "forrageira" in pastagem["tipos"]
+
+
+def test_atributos_no_pais_sem_bloco_usa_o_global():
+    assert catalogo.atributos_no_pais("mandioca", "BR")["perene"] is True
+    assert catalogo.atributos_no_pais("mandioca", "US") == {"perene": False, "tipos": catalogo.culturas()["mandioca"]["tipos"]}
 
 
 def test_info_cultura_alfafa_so_dos_eua_tem_parametros(client, auth, conversa, modelo):

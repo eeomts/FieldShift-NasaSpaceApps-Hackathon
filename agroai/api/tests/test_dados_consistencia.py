@@ -18,25 +18,6 @@ SCRIPT_MONTAR = DIR_CATALOGO / "scripts" / "montar_csv.py"
 EXTRAS_EUA = ["codigo_nass", "calendario_usda"]
 TOTAL_CULTURAS_EUA = 18
 
-# Divergências entre o culturas.json (um valor por id) e o CSV de cada país, vistas em 15/11/2026.
-# Chave: (país, id, campo); valor: (valor no JSON, valor no CSV). campo = "perene" ou "tipos:<tipo>".
-# Aguarda decisão do usuário (revisão projeto-dados 15/11/2026): qual arquivo é a fonte de cada valor.
-# Não corrija aqui nem no dado sem essa decisão. Divergência nova falha o teste; divergência resolvida
-# também (apague a linha), para a lista não envelhecer.
-DIVERGENCIAS_CONHECIDAS = {
-    ("BR", "mandioca", "perene"): (False, True),
-    ("BR", "algodao", "tipos:raiz_profunda"): (True, False),
-    ("BR", "girassol", "tipos:raiz_profunda"): (True, False),
-    ("BR", "nabo_forrageiro", "tipos:tolerante_seca"): (False, True),
-    ("BR", "pastagem", "tipos:tolerante_seca"): (False, True),
-    ("BR", "guandu", "tipos:cobertura"): (False, True),
-    ("US", "algodao", "tipos:raiz_profunda"): (True, False),
-    ("US", "girassol", "tipos:raiz_profunda"): (True, False),
-    ("US", "canola", "tipos:raiz_profunda"): (True, False),
-    ("US", "pastagem", "tipos:tolerante_seca"): (False, True),
-    ("US", "pastagem", "tipos:cobertura"): (True, False),
-}
-
 
 def _carrega_montar():
     spec = importlib.util.spec_from_file_location("montar_csv_dados", SCRIPT_MONTAR)
@@ -97,20 +78,40 @@ def test_tmin_critica_c_e_lida_como_numero_nos_dois_paises():
     catalogo_do_pais.cache_clear()
 
 
-def test_divergencias_json_x_csv_sao_so_as_conhecidas():
-    montar = _carrega_montar()
-    culturas_json = json.loads(CULTURAS_JSON.read_text(encoding="utf-8"))["culturas"]
-    achadas = {}
+def _blocos_por_pais() -> dict[str, dict[str, dict]]:
+    """{id: por_pais} do culturas.json, só dos ids que têm bloco."""
+    culturas = json.loads(CULTURAS_JSON.read_text(encoding="utf-8"))["culturas"]
+    return {c["id"]: c["por_pais"] for c in culturas if c.get("por_pais")}
+
+
+def test_todo_id_do_csv_tem_por_pais_igual_ao_csv():
+    blocos = _blocos_por_pais()
     for pais in ("BR", "US"):
-        for cid, campo, no_json, no_csv in montar.divergencias_json_csv(_linhas(CSV_POR_PAIS[pais]), culturas_json):
-            achadas[(pais, cid, campo)] = (no_json, no_csv)
-    novas = {k: v for k, v in achadas.items() if k not in DIVERGENCIAS_CONHECIDAS}
-    resolvidas = sorted(k for k in DIVERGENCIAS_CONHECIDAS if k not in achadas)
-    mudadas = {k: (DIVERGENCIAS_CONHECIDAS[k], v) for k, v in achadas.items()
-               if k in DIVERGENCIAS_CONHECIDAS and DIVERGENCIAS_CONHECIDAS[k] != v}
-    assert not novas, f"divergência nova entre culturas.json e CSV: {novas}"
-    assert not resolvidas, f"divergência resolvida, tire de DIVERGENCIAS_CONHECIDAS: {resolvidas}"
-    assert not mudadas, f"divergência conhecida com valores diferentes (esperado, achado): {mudadas}"
+        for linha in _linhas(CSV_POR_PAIS[pais]):
+            bloco = blocos.get(linha["id"], {}).get(pais)
+            assert bloco is not None, f"{pais} {linha['id']}: falta por_pais.{pais} no culturas.json"
+            assert bloco["perene"] is (linha["perene"] == "true"), f"{pais} {linha['id']}: perene"
+            assert set(bloco["tipos"]) == set(filter(None, linha["tipos"].split("|"))), f"{pais} {linha['id']}: tipos"
+            assert len(bloco["tipos"]) == len(set(bloco["tipos"]))
+
+
+def test_todo_bloco_por_pais_tem_id_no_csv_daquele_pais():
+    ids_csv = {pais: {l["id"] for l in _linhas(CSV_POR_PAIS[pais])} for pais in ("BR", "US")}
+    for cid, por_pais in _blocos_por_pais().items():
+        assert set(por_pais) <= set(ids_csv), f"{cid}: país desconhecido em por_pais: {sorted(set(por_pais) - set(ids_csv))}"
+        for pais in por_pais:
+            assert cid in ids_csv[pais], f"{cid}: por_pais.{pais} sem linha no CSV do país"
+
+
+def test_montar_csv_recusa_csv_diferente_do_por_pais():
+    montar = _carrega_montar()
+    culturas = json.loads(CULTURAS_JSON.read_text(encoding="utf-8"))["culturas"]
+    linhas = _linhas(CSV_POR_PAIS["BR"])
+    assert montar.conferir_por_pais(linhas, culturas, "BR") == []
+    mandioca = next(l for l in linhas if l["id"] == "mandioca")
+    assert any("perene" in p for p in montar.conferir_por_pais([{**mandioca, "perene": "false"}], culturas, "BR"))
+    assert any("tipos" in p for p in montar.conferir_por_pais([{**mandioca, "tipos": "comercial|cobertura"}], culturas, "BR"))
+    assert any("falta por_pais" in p for p in montar.conferir_por_pais([mandioca], culturas, "US"))
 
 
 def test_csvs_gerados_das_evidencias_sao_identicos_aos_versionados(tmp_path):
