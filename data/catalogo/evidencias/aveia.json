@@ -21,10 +21,21 @@
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "alto",
-    "fontes": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, XXXIV Reunião da Comissão Brasileira de Pesquisa de Aveia, Editora UPF, 2014, cap. 8 (dessecação no florescimento pleno; emergência ao florescimento 101-134 dias nas aveias-pretas; MS 4,9-7,4 t/ha no corte único no florescimento; qualidade da forragem; tolerância a frio e geada; supressão de plantas daninhas pela palhada)|IDR-Paraná, folder Aveia Preta IAPAR 61 Ibiporã, 2021 (ciclo 134 dias emergência à plena emissão de panículas, aveia comum 96 dias; 7,8 t/ha MS cobertura; baixa decomposição da palhada reduz plantas daninhas)|Fontaneli, Santos & Fontaneli (eds.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012, cap. 4 Aveia preta (rústica; temperatura basal mais alta que outras espécies de inverno; ~6 t/ha MS; uso em pastejo, feno e silagem)|Primavesi, Rodrigues & Godoy, Recomendações técnicas para o cultivo de aveia, Embrapa Pecuária Sudeste Boletim de Pesquisa 6, 2000 (>32 °C no florescimento causa esterilidade; aveia muito exigente em água; nível do mar a 1.000 m)|Ferreira, Bernardo, Sediyama, Nascimento Jr. & Soares, Evapotranspiração (ETc) e coeficiente de cultura (kc) da aveia-preta irrigada, Revista Ceres 38(215):25-35, 1991 (Kc em lisímetro de drenagem, Viçosa-MG: 0,29 nos 10 primeiros dias pelo método de Penman; só até o 1º corte aos 56 dias)|Souza, Palhares & Mendonça, Coeficientes de culturas forrageiras no Brasil, Embrapa Pecuária Sudeste Comunicado Técnico 118, 2025 (revisão: só Ferreira et al. 1991 e Luz et al. 2008 têm Kc de aveia-preta; nenhum até o florescimento)|MAPA, Portaria SPA/MAPA 407/2023, ZARC aveia de sequeiro PR 2023/2024, nota técnica (inclui A. strigosa; Kc FAO-56 ini 0,40, máx 1,00, final 0,40; raiz efetiva 60 cm; grupos de ciclo de grão <120 a >140 dias emergência-maturação; geada <=1 °C no espigamento)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Black oat (Avena strigosa) forage, 2015 (não sobrevive abaixo de -8 °C; tolerante à seca; 3-8 t/ha MS)|Mantai et al., Simulation of oat development cycle by photoperiod and temperature, Rev. Bras. Eng. Agríc. Ambient. 21(1):3-8, 2017 (temperatura mínima cardinal 4 °C da emergência à antese; ótimo 22 °C) (PROXY: aveia branca, Avena sativa)|FAO-56 Allen et al. 1998 Tab.12 (Kc mid 1.15 da linha Oats; Kc ini 0.3 do grupo Cereals) e cap.6 (fim do estádio médio = início da maturação; Kc end alto em cultura colhida verde, por isso kc_final = Kc mid no manejo no florescimento) (PROXY: oats, Avena sativa)|FAO-56 Tab.22 (raiz Oats 1.0-1.5 m; limite superior = sequeiro) (PROXY: oats, Avena sativa)|FAO ECOCROP, ficha Avena sativa (EcoPortCode 481), lida na cópia integral do banco no GitHub OpenCLIM/ecocrop, EcoCrop_DB.csv (TOPMN 16 °C e TOPMX 20 °C; A. strigosa não consta do banco) (PROXY: Avena sativa)|Broca, Peruzzo, Garbin, Martins & Ludwig, Influência da qualidade das sementes no filocrono de aveia preta, 8ª MoEPEx IFRS Ibirubá, 2019 (Tb 4 °C adotada para A. strigosa Embrapa 139; filocrono 90-93 °C dia/folha)|Pivetta, Filocrono de genótipos de aveia branca e preta submetidos a vernalização, TCC Agronomia UNIPAMPA, 2019 (Tb 0 °C adotada para aveia preta e branca)|CÁLCULO deste catálogo: ETc = soma diária de Kc × ET0 (FAO-56 Penman-Monteith eq. 6; curva Kc 0.3 → 1.15, kc_final = Kc mid) com NASA POWER diário 2001-2020 em Passo Fundo, Santa Maria, Ponta Grossa e Londrina, semeadura 01/04 a 15/05, 100-140 dias até o florescimento (agua_ciclo 110-390 mm; média dos anos)|Ramos, Irrigação de aveia preta com efluente da suinocultura em casa de vegetação, TCC UNIPAMPA Alegrete, 2023 (consumo de 283 mm, 2,67 mm/dia, semeadura 06/05, último corte 115 dias; só conferência de ordem de grandeza)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: aveia_min_santamaria_1504_100d, aveia_max_londrina_1505_140d)",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "fontes": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, XXXIV Reunião da Comissão Brasileira de Pesquisa de Aveia, Editora UPF, 2014, cap. 8 (dessecação no florescimento pleno; emergência ao florescimento 101-134 dias nas aveias-pretas; MS 4,9-7,4 t/ha no corte único no florescimento; qualidade da forragem; tolerância a frio e geada; supressão de plantas daninhas pela palhada)|IDR-Paraná, folder Aveia Preta IAPAR 61 Ibiporã, 2021 (ciclo 134 dias emergência à plena emissão de panículas, aveia comum 96 dias; 7,8 t/ha MS cobertura; baixa decomposição da palhada reduz plantas daninhas)|Fontaneli, Santos & Fontaneli (eds.), Forrageiras para integração lavoura-pecuária-floresta na região sul-brasileira, 2ª ed., Embrapa Trigo, 2012, cap. 4 Aveia preta (rústica; temperatura basal mais alta que outras espécies de inverno; ~6 t/ha MS; uso em pastejo, feno e silagem)|Primavesi, Rodrigues & Godoy, Recomendações técnicas para o cultivo de aveia, Embrapa Pecuária Sudeste Boletim de Pesquisa 6, 2000 (>32 °C no florescimento causa esterilidade; aveia muito exigente em água; nível do mar a 1.000 m)|Ferreira, Bernardo, Sediyama, Nascimento Jr. & Soares, Evapotranspiração (ETc) e coeficiente de cultura (kc) da aveia-preta irrigada, Revista Ceres 38(215):25-35, 1991 (Kc em lisímetro de drenagem, Viçosa-MG: 0,29 nos 10 primeiros dias pelo método de Penman; só até o 1º corte aos 56 dias)|Souza, Palhares & Mendonça, Coeficientes de culturas forrageiras no Brasil, Embrapa Pecuária Sudeste Comunicado Técnico 118, 2025 (revisão: só Ferreira et al. 1991 e Luz et al. 2008 têm Kc de aveia-preta; nenhum até o florescimento)|MAPA, Portaria SPA/MAPA 407/2023, ZARC aveia de sequeiro PR 2023/2024, nota técnica (inclui A. strigosa; Kc FAO-56 ini 0,40, máx 1,00, final 0,40; raiz efetiva 60 cm; grupos de ciclo de grão <120 a >140 dias emergência-maturação; geada <=1 °C no espigamento)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Black oat (Avena strigosa) forage, 2015 (não sobrevive abaixo de -8 °C; tolerante à seca; 3-8 t/ha MS)|Mantai et al., Simulation of oat development cycle by photoperiod and temperature, Rev. Bras. Eng. Agríc. Ambient. 21(1):3-8, 2017 (temperatura mínima cardinal 4 °C da emergência à antese; ótimo 22 °C) (PROXY: aveia branca, Avena sativa)|FAO-56 Allen et al. 1998 Tab.12 (Kc mid 1.15 da linha Oats; Kc ini 0.3 do grupo Cereals) e cap.6 (fim do estádio médio = início da maturação; Kc end alto em cultura colhida verde, por isso kc_final = Kc mid no manejo no florescimento) (PROXY: oats, Avena sativa)|FAO-56 Tab.22 (raiz Oats 1.0-1.5 m; limite superior = sequeiro) (PROXY: oats, Avena sativa)|FAO ECOCROP, ficha Avena sativa (EcoPortCode 481), lida na cópia integral do banco no GitHub OpenCLIM/ecocrop, EcoCrop_DB.csv (TOPMN 16 °C e TOPMX 20 °C; A. strigosa não consta do banco) (PROXY: Avena sativa)|Broca, Peruzzo, Garbin, Martins & Ludwig, Influência da qualidade das sementes no filocrono de aveia preta, 8ª MoEPEx IFRS Ibirubá, 2019 (Tb 4 °C adotada para A. strigosa Embrapa 139; filocrono 90-93 °C dia/folha)|Pivetta, Filocrono de genótipos de aveia branca e preta submetidos a vernalização, TCC Agronomia UNIPAMPA, 2019 (Tb 0 °C adotada para aveia preta e branca)|CÁLCULO deste catálogo: ETc = soma diária de Kc × ET0 (FAO-56 Penman-Monteith eq. 6; curva Kc 0.3 → 1.15, kc_final = Kc mid) com NASA POWER diário 2001-2020 em Passo Fundo, Santa Maria, Ponta Grossa e Londrina, semeadura 01/04 a 15/05, 100-140 dias até o florescimento (agua_ciclo 110-390 mm; média dos anos)|Ramos, Irrigação de aveia preta com efluente da suinocultura em casa de vegetação, TCC UNIPAMPA Alegrete, 2023 (consumo de 283 mm, 2,67 mm/dia, semeadura 06/05, último corte 115 dias; só conferência de ordem de grandeza)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: aveia_min_santamaria_1504_100d, aveia_max_londrina_1505_140d)|Pires, Strieder, Marsaro Júnior, Pereira, Costamilan et al., Estratégias de sucessão trigo/aveia preta-soja para sistemas de produção de grãos no Planalto Médio do Rio Grande do Sul, Embrapa Trigo Circular Técnica Online 30, 2016 (aveia-preta dessecada ~30 dias antes da soja semeada no 2º decêndio de outubro)|Almeida, Spader, De Mori et al., Estratégias de sucessão trigo/cevada/aveia preta/soja para sistemas de produção de grãos no Centro-Sul do Paraná, Embrapa Trigo Circular Técnica Online 31, 2016 (aveia-preta Embrapa 139 semeada do fim de maio ao início de junho e dessecada ~30 dias antes da soja de outubro)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "1080",
-    "graus_dia_ciclo_max": "1570"
+    "graus_dia_ciclo_max": "1570",
+    "semeadura_inicio": "04-01",
+    "semeadura_fim": "05-31",
+    "manejo_inicio": "07-10",
+    "manejo_fim": "10-18",
+    "tipo_manejo": "dessecacao",
+    "condicao_semeadura": "apos_colheita_graos",
+    "estados_validos": "PR|SC|RS",
+    "lacuna_informacao": "Não há medição no Brasil de quanta água a aveia-preta usa até florescer, nem da temperatura em que ela começa a crescer. Usamos um cálculo com o clima e dados da aveia branca, uma planta parecida. O calor que ela precisa até florescer também é estimado.",
+    "risco_revisao_local": "Semeie de abril a maio, depois da colheita da soja ou do milho, e faça a dessecação no florescimento pleno, antes de formar semente. No norte e no oeste do Paraná a semeadura começa em março. Confirme a cultivar e a época com a Emater ou a cooperativa."
   },
   "mudancas": [
     {
@@ -140,6 +151,48 @@
       "antes": "(coluna nova)",
       "depois": "1080-1570",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: calculo"
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "(vazio)",
+      "depois": "04-01 / 05-31",
+      "motivo": "REVISÃO 15/11 (pacote 9): janela 'Abril/maio para as demais Regiões do Sul do país' (folder IAPAR 61, forragem e cobertura); CBPA 2014: 'de março a maio'. A aveia saiu do ZARC (janela de grão), por isso não há conferência com janelas.csv."
+    },
+    {
+      "coluna": "manejo_inicio/manejo_fim",
+      "antes": "(vazio)",
+      "depois": "07-10 / 10-18",
+      "motivo": "REVISÃO 15/11 (pacote 9): semeadura + ciclo_dias da linha (01/04 + 100; 31/05 + 140), dessecação no florescimento pleno (CBPA 2014); conferido com a dessecação de meados de setembro ao início de outubro nos ensaios da Embrapa Trigo (CT Online 30 e 31, 2016)."
+    },
+    {
+      "coluna": "tipo_manejo",
+      "antes": "(vazio)",
+      "depois": "dessecacao",
+      "motivo": "REVISÃO 15/11 (pacote 9): 'O manejo químico (dessecação) de aveia para cobertura deve ser realizado no estádio de florescimento pleno' (CBPA 2014, cap. 8.2)."
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "(vazio)",
+      "depois": "apos_colheita_graos",
+      "motivo": "REVISÃO 15/11 (pacote 9): 'utilizada mais como cobertura de solo após o cultivo da soja' (CBPA 2014, cap. 2); rotação com soja, feijão, algodão, milho e girassol (IAPAR 61)."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "(vazio)",
+      "depois": "PR|SC|RS",
+      "motivo": "REVISÃO 15/11 (pacote 9): região da janela do folder IAPAR 61 ('Regiões do Sul do país') e dos números da linha (água calculada em Passo Fundo, Santa Maria, Ponta Grossa e Londrina). MS fica como decisão em pendencias."
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "(vazio)",
+      "depois": "Não há medição no Brasil de quanta água a aveia-preta usa até florescer, nem da temperatura em que ela começa a crescer. Usamos um cálculo com o clima e dados da aveia branca, uma planta parecida. O calor que ela precisa até florescer também é estimado.",
+      "motivo": "REVISÃO 15/11 (pacote 9): texto para o produtor (confiança baixa), a partir das lacunas de origem: Tb e Kc de aveia branca, água e graus-dia por cálculo."
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "(vazio)",
+      "depois": "Semeie de abril a maio, depois da colheita da soja ou do milho, e faça a dessecação no florescimento pleno, antes de formar semente. No norte e no oeste do Paraná a semeadura começa em março. Confirme a cultivar e a época com a Emater ou a cooperativa.",
+      "motivo": "REVISÃO 15/11 (pacote 9): texto para o produtor (confiança baixa): época, cultivar e dessecação antes da semente (CBPA 2014; IAPAR 61)."
     }
   ],
   "evidencias": [
@@ -555,6 +608,82 @@
       "fonte": "CÁLCULO próprio: NASA POWER diário Dois Vizinhos-PR (-25,70; -53,10) 2010-2011 e Santa Maria-RS 2014; climatologia T2M mensal (Passo Fundo, Santa Maria, Ponta Grossa, Londrina)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-53.10&latitude=-25.70&start=20100701&end=20111001&format=JSON",
       "trecho": "Dois Vizinhos 05/07/2010->06/10/2010 Tb4: GD 1251, Tmed 17,45; 12/05/2011->01/09/2011: GD 1355, Tmed 16,1. Climatologia T2M mai/jun/jul/ago/set: Passo Fundo 14,7/13,0/12,3/13,9/15,8; Ponta Grossa 15,5/14,1/13,7/15,0/17,2"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "estados_validos"
+      ],
+      "fonte": "IDR-Paraná, folder Aveia Preta IAPAR 61 Ibiporã, 2021, quadro 'Indicações de semeadura para produção de massa destinada à forragem e cobertura de solo'",
+      "url": "https://www.idrparana.pr.gov.br/system/files/publico/pesquisa/publicacoes/folder/fld-iapar-61/Folder%20Aveia%20IAPAR%2061%20Ibipora.pdf",
+      "trecho": "INDICAÇÕES DE SEMEADURA PARA PRODUÇÃO DE MASSA DESTINADA À FORRAGEM E COBERTURA DE SOLO [...] Época . Março/abril para as Regiões Norte e Oeste do Paraná . Abril/maio para as demais Regiões do Sul do país"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim"
+      ],
+      "fonte": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, CBPA/Editora UPF, 2014, cap. 8.1.4 (implantação das aveias forrageiras; o item 8.2 diz que as cultivares para cobertura são as mesmas da forragem)",
+      "url": "https://www.unifateb.edu.br/wp-content/uploads/2023/03/11-Indicacoes-Tecnicas-para-a-Cultura-da-Aveia.pdf",
+      "trecho": "8.1.4 Implantação da cultura [...] - Época de semeadura: de março a maio. [...] As cultivares de aveia indicadas pela CBPA para cobertura do solo são as mesmas relacionadas para forragem (Tabela 2)."
+    },
+    {
+      "colunas": [
+        "condicao_semeadura"
+      ],
+      "fonte": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, CBPA/Editora UPF, 2014, cap. 2",
+      "url": "https://www.unifateb.edu.br/wp-content/uploads/2023/03/11-Indicacoes-Tecnicas-para-a-Cultura-da-Aveia.pdf",
+      "trecho": "A aveia preta (Avena strigosa Schreb) é uma espécie diploide e é utilizada mais como cobertura de solo após o cultivo da soja, antecedendo a próxima cultura de estação quente"
+    },
+    {
+      "colunas": [
+        "condicao_semeadura"
+      ],
+      "fonte": "IDR-Paraná, folder Aveia Preta IAPAR 61 Ibiporã, 2021",
+      "url": "https://www.idrparana.pr.gov.br/system/files/publico/pesquisa/publicacoes/folder/fld-iapar-61/Folder%20Aveia%20IAPAR%2061%20Ibipora.pdf",
+      "trecho": "É excelente alternativa para rotação com culturas de verão (soja, feijão, algodão, milho e girassol) e no sistema de plantio direto."
+    },
+    {
+      "colunas": [
+        "tipo_manejo",
+        "manejo_inicio",
+        "manejo_fim"
+      ],
+      "fonte": "Lângaro & Carvalho (orgs.), Indicações técnicas para a cultura da aveia, CBPA/Editora UPF, 2014, cap. 8.2",
+      "url": "https://www.unifateb.edu.br/wp-content/uploads/2023/03/11-Indicacoes-Tecnicas-para-a-Cultura-da-Aveia.pdf",
+      "trecho": "O manejo químico (dessecação) de aveia para cobertura deve ser realizado no estádio de florescimento pleno, quando há grande produção de massa, sem ter viabilizado as sementes."
+    },
+    {
+      "colunas": [
+        "manejo_inicio",
+        "manejo_fim",
+        "tipo_manejo",
+        "estados_validos"
+      ],
+      "fonte": "Pires, Strieder, Marsaro Júnior, Pereira, Costamilan et al., Estratégias de sucessão trigo/aveia preta-soja para sistemas de produção de grãos no Planalto Médio do Rio Grande do Sul, Embrapa Trigo Circular Técnica Online 30, 2016 (Passo Fundo-RS, 2012/13 a 2014/15)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1047280/1/ID436672016CTO30.pdf",
+      "trecho": "A dessecação da aveia preta ocorreu cerca de 30 dias antes da semeadura da soja em sucessão, que foi semeada durante o segundo decêndio de outubro."
+    },
+    {
+      "colunas": [
+        "manejo_inicio",
+        "manejo_fim",
+        "tipo_manejo",
+        "estados_validos"
+      ],
+      "fonte": "Almeida, Spader, De Mori et al., Estratégias de sucessão trigo/cevada/aveia preta/soja para sistemas de produção de grãos no Centro-Sul do Paraná, Embrapa Trigo Circular Técnica Online 31, 2016 (Fapa/Agrária, Guarapuava-PR, 2012/13 e 2013/14)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1047283/1/ID436692016CTO31.pdf",
+      "trecho": "1) Aveia preta (cultivar Embrapa 139 Neblina) semeada entre fim de maio e início de junho como espécie de cobertura do solo para permitir a semeadura antecipada da soja. [...] A dessecação da aveia preta ocorreu cerca de 30 dias antes da semeadura da soja em sucessão, que foi semeada durante o segundo ou terceiro decêndio de outubro."
+    },
+    {
+      "colunas": [
+        "manejo_inicio",
+        "manejo_fim"
+      ],
+      "fonte": "Ziech et al., Pesq. agropec. bras. 50(5):374-382, 2015 (UTFPR Dois Vizinhos-PR; já citado), conferência das datas de florescimento",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/20934/12927",
+      "trecho": "No primeiro ciclo, a semeadura ocorreu em 5/7/2010 [...] semeadura ocorreu em 12/5/2011 [...] Aos 93 DAS (6/10/2010) e aos 112 DAS (1/9/2011) [...] a aveia‑preta, o centeio, o azevém [...] encontravam-se no estádio de pleno florescimento"
     }
   ],
   "pendencias": [
@@ -569,7 +698,11 @@
     "graus-dia: Não há soma térmica medida até o florescimento para a aveia-preta no Brasil nas fontes lidas; a faixa é CÁLCULO (dias publicados × Tmed do POWER). O APSIM-Oats parametrizado para aveia-preta em Piracicaba (Souza et al. 2025, Acta Sci. Agron. 47) usa Tb 0 e põe os parâmetros térmicos numa tabela suplementar (S4) que não li.",
     "graus-dia: Tb 4 continua PROXY. Se o time adotar Tb 0 (Pivetta 2019; APSIM-Oats), a soma sobe ~4 × dias (~+430 a +560): não misture.",
     "graus-dia: Aveia responde a fotoperíodo e vernalização (CBPA 2014, item 4.2.4); semeaduras tardias (julho) floresceram com menos soma (branca: 1008-1115 contra 1162-1516 em abril).",
-    "graus-dia: Viés do POWER em Santa Maria: para a aveia branca de 2014, o POWER deu ~18% menos que a conta com a estação da UFSM. Os números de Dois Vizinhos já são POWER, coerentes com o motor."
+    "graus-dia: Viés do POWER em Santa Maria: para a aveia branca de 2014, o POWER deu ~18% menos que a conta com a estação da UFSM. Os números de Dois Vizinhos já são POWER, coerentes com o motor.",
+    "Janela (15/11): semeadura 01/04 a 31/05 = 'Abril/maio para as demais Regiões do Sul do país' do folder IAPAR 61 (aveia-preta, forragem e cobertura). A CBPA 2014 dá 'de março a maio' para as aveias forrageiras, e o mesmo folder dá 'Março/abril' para o norte e o oeste do PR: lá a janela real começa em março e termina antes (fica no texto para o produtor, sem arranjo, porque o motor separa por UF e o PR teria duas janelas). A água da linha foi calculada com semeadura até 15/05; semear até 31/05 dá menos água (inverno), então o máximo continua valendo.",
+    "Manejo (15/11): 10/07 a 18/10 não é data publicada; é semeadura + ciclo da linha (01/04 + 100 d; 31/05 + 140 d), com a dessecação no florescimento pleno (CBPA 2014). Conferência: nos ensaios da Embrapa Trigo (Passo Fundo e Guarapuava, 2012-2015) a aveia-preta foi dessecada ~30 dias antes da soja semeada no 2º-3º decêndio de outubro, ou seja, de meados de setembro ao início de outubro; Ziech et al. 2015 achou pleno florescimento em 01/09 (semeadura 12/05). As duas caem dentro da janela. O motor deve preferir a data do florescimento pela soma de calor local quando tiver.",
+    "estados_validos = PR|SC|RS (15/11): a janela tem fonte para o Sul (folder IAPAR 61) e os números da linha são do Sul/PR. Fora: MS, onde a Embrapa Agropecuária Oeste (folder Aveia, 1999) também recomenda 'a semeadura em abril-maio' e dá ciclo de 110 a 140 dias; a água não foi calculada lá (Dourados é mais quente). Decisão para o coordenador: incluir MS ou criar arranjo. GO e BA (demo) ficam fora: a CBPA cita aveia em GO só para forragem (chuvas de janeiro a maio ou irrigada de maio a setembro) e não achei recomendação de aveia-preta de cobertura em GO nem na BA.",
+    "condicao_semeadura (15/11): só apos_colheita_graos (depois da soja; IAPAR 61 cita soja, feijão, algodão, milho e girassol). Sobressemeadura a lanço na soja em pé não entrou: não li fonte primária para a aveia-preta."
   ],
   "pendencias_resolvidas": [
     "temp_otima_min_c/temp_otima_max_c: não achei fonte primária com a faixa ótima de crescimento da aveia-preta. O 15-20 do rascunho não tinha fonte e ficou vazio. Achei: germinação ideal de 20-25 °C para a aveia (CBPA 2014) e um ótimo de 22 °C da emergência à antese da aveia branca (Mantai 2017). Fonte ainda não lida: Derpsch & Calegari 1992 (IAPAR, Plantas para adubação verde de inverno). O FAO ECOCROP estava fora do ar (erro de banco de dados) e não deu para ver a ficha de Avena sativa.",

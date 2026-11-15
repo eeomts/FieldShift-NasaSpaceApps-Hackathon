@@ -21,6 +21,8 @@
     "cobertura_solo": "baixa",
     "aporte_biomassa": "baixo",
     "valor_forrageiro": "medio",
+    "codigo_pam": "",
+    "nome_zarc": "Feijão Caupi",
     "fontes": "Allen et al. FAO-56 1998 Tab.12 (Kc; linha Green Gram and Cowpeas; Kc ini do grupo Legumes; Kc end 0.35 = colhido seco)|Allen et al. FAO-56 1998 Tab.22 (raiz 0.6-1.0 m; limite superior = sequeiro)|MAPA Portaria SPA/MAPA 128/2026 ZARC feijão caupi MT 2026/2027 (temperatura ótima 18-34 °C; água mínima 300 mm; Tmin decendial >18 °C; raiz efetiva superficial 45 cm; grupos de ciclo)|Ribeiro (ed.) Embrapa Meio-Norte Sistemas de Produção 2 Cultivo do Feijão-caupi 2002 (ciclo por cultivar 60-90 d; temperatura base 8-11 °C; água 300-450 mm/ciclo; fixação de N; usos forrageiro e adubação verde)|Andrade Júnior, Bastos & Cardoso Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Clima (florescimento prejudicado acima de 35 °C; 300 mm de chuva)|Embrapa Meio-Norte Sistema de Produção Cultivo de Feijão-Caupi 2ª ed. 2017 cap. Irrigação (consumo 250-400 mm/ciclo; Kc medidos no Brasil)|FAO ECOCROP Vigna unguiculata ssp. unguiculata (temperatura ótima 20-35 °C e absoluta 10-40 °C; apoio a temp_base e sensibilidade ao frio)",
     "confianca_parametros": "alta",
     "graus_dia_ciclo_min": "1150",

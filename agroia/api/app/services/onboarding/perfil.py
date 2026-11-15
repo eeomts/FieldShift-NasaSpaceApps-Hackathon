@@ -1,7 +1,7 @@
 """Regras que transformam as respostas nas saídas do questionário (ONBOARDING.md, "O que sai")."""
 from app.schemas.onboarding import ItemCalendario, Respostas
 
-# Perguntas de OBSERVAÇÃO do solo. As de manejo (q12 análise, q21 calcário, q22 adubo) não contam:
+# Perguntas de OBSERVAÇÃO do solo. As de manejo (q12 análise, q21 correção, q22 adubo) não contam:
 # responder "não usei calcário" não diz nada sobre como o solo é.
 _OBSERVACAO = ["q13_textura", "q14_encharca", "q15_casca", "q16_erosao", "q17_dura",
                "q18_minhocas", "q20_partes_piores"]
@@ -107,7 +107,6 @@ _SNS_SOLO = {
     "q17_dura": ("compactacao", "presente", "ausente", "Terra muito dura para cavar ou arar", "Terra não é dura demais"),
     "q18_minhocas": ("vida_no_solo", "boa", "baixa", "Encontra minhocas", "Não encontra minhocas"),
     "q20_partes_piores": ("variacao_no_campo", "sim", "nao", "Tem partes onde a lavoura vai pior", "Lavoura uniforme"),
-    "q21_calcario": ("calcario", "sim", "nao", "Já usou calcário", "Nunca usou calcário"),
     "q22_adubo": ("adubacao", "sim", "nao", "Usa adubo ou esterco", "Não usa adubo nem esterco"),
     "q11_palha": ("palhada", "sim", "nao", "Deixa a palha no campo", "Não deixa a palha no campo"),
 }
@@ -160,6 +159,22 @@ def _indicadores_do_laudo(r: Respostas) -> list[dict]:
     return itens
 
 
+def _indicadores_correcao(r: Respostas) -> list[dict]:
+    """Pergunta 21 (múltipla): calcário e gesso viram atributos; "outra" guarda o texto; "nao" vira nao; "nao_sei" não entra."""
+    itens = []
+    if "calcario" in r.q21_correcao:
+        itens.append(_indicador("correcao_acidez", "feita", "q21_correcao", "media", "Já usou calcário"))
+    if "gesso" in r.q21_correcao:
+        itens.append(_indicador("correcao_salinidade", "feita", "q21_correcao", "media", "Já usou gesso agrícola"))
+    if "outra" in r.q21_correcao:
+        qual = (r.q21_correcao_outra or "").strip()
+        itens.append(_indicador("correcao_outra", "feita", "q21_correcao_outra", "media",
+                                f"Outra correção: {qual}" if qual else "Fez outra correção no solo"))
+    if "nao" in r.q21_correcao:
+        itens.append(_indicador("correcao_solo", "nao", "q21_correcao", "media", "Nunca fez correção no solo"))
+    return itens
+
+
 def retrato_solo(r: Respostas) -> dict:
     """Retrato provisório do solo, com valores padronizados para o motor de análise.
 
@@ -175,6 +190,8 @@ def retrato_solo(r: Respostas) -> dict:
         if v in ("sim", "nao"):
             sim = v == "sim"
             indicadores.append(_indicador(atributo, v_sim if sim else v_nao, chave, "media", t_sim if sim else t_nao))
+
+    indicadores += _indicadores_correcao(r)
 
     figuras = None
     cor = r.q19_cor if _respondida(r.q19_cor) else None

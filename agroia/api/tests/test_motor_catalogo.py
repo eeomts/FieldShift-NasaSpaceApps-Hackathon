@@ -1,8 +1,10 @@
 """Catálogo do motor: BR (17 culturas, vazio = None), EUA sem CSV e equipamentos por cultura."""
+import csv
 import logging
 
 import pytest
 
+from app.core.caminhos import RAIZ_REPO
 from app.services import catalogo as base_do_app
 from app.services.motor import catalogo
 from app.services.motor.catalogo import catalogo_do_pais, equipamentos_por_cultura, ler_catalogo
@@ -32,7 +34,24 @@ def test_soja_tipada():
     assert soja.graus_dia_ciclo_min == 1600.0 and soja.temp_base_c == 10.0 and soja.kc_medio == 1.15
     assert soja.codigo_pam == "40124"
     assert len(soja.fontes) >= 2
-    assert soja.nome_zarc is None  # vazio no CSV: None, nunca "" nem 0
+    assert soja.nome_zarc == "Soja"
+    assert catalogo_do_pais("BR")["crotalaria"].nome_zarc is None  # vazio no CSV: None, nunca "" nem 0
+
+
+def test_nome_zarc_multivalor_e_aveia_sem_zarc():
+    c = catalogo_do_pais("BR")
+    assert c["milho"].nome_zarc == "Milho 1ª Safra|Milho 2ª Safra"  # posição 1 = 1ª safra, 2 = 2ª safra
+    assert c["aveia"].nome_zarc is None  # aveia-preta de cobertura: fora do ZARC de propósito
+
+
+def test_nome_zarc_do_catalogo_bate_com_o_mapa_do_zarc():
+    c = catalogo_do_pais("BR")
+    with open(RAIZ_REPO / "data" / "brasil" / "zarc" / "mapa_culturas_zarc.csv", encoding="utf-8", newline="") as f:
+        mapa = {linha["cultura_id"]: (linha["nome_zarc"].strip() or None) for linha in csv.DictReader(f)}
+    assert mapa, "mapa do ZARC vazio"
+    for cultura_id, nome_zarc in mapa.items():
+        assert cultura_id in c, f"{cultura_id} do mapa não está no catálogo"
+        assert c[cultura_id].nome_zarc == nome_zarc, cultura_id
 
 
 def test_celula_vazia_vira_none_e_nao_zero(tmp_path):
@@ -49,6 +68,20 @@ def test_celula_vazia_vira_none_e_nao_zero(tmp_path):
     assert milho.codigo_nass == "SWEET" and milho.pais == "US"
     assert milho.extras == {"coluna_nova": "x"}
     assert milho.kc_medio is None  # coluna que nem existe no arquivo
+
+
+def test_estados_validos_vira_tupla_em_maiuscula_e_vazio_e_sem_restricao(tmp_path):
+    csv = tmp_path / "culturas.csv"
+    csv.write_text(
+        "id,nome,tipos,estados_validos\n"
+        "trevo,Trevo,cobertura,ga| al\n"
+        "milho,Milho,comercial,\n",
+        encoding="utf-8",
+    )
+    c = ler_catalogo(csv, "US")
+    assert c["trevo"].estados_validos == ("GA", "AL") and "estados_validos" not in c["trevo"].extras
+    assert c["trevo"].vale_em("GA") and not c["trevo"].vale_em("IA") and c["trevo"].vale_em(None)
+    assert c["milho"].estados_validos == () and c["milho"].vale_em("IA") and c["milho"].vale_em(None)
 
 
 def test_eua_sem_csv_devolve_vazio_e_avisa(monkeypatch, tmp_path, caplog):

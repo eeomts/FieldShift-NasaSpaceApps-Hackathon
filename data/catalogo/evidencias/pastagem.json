@@ -21,10 +21,21 @@
     "cobertura_solo": "alta",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "medio",
-    "fontes": "FAO-56 Tab.12 (Kc, linha Grazing Pasture - Rotated Grazing 0.40/0.85-1.05/0.85; categoria genérica de pastagem, usada para kc_inicial e kc_final; kc_medio no limite inferior da faixa, confirmado pela medição de Souza et al. 2021)|FAO-56 Tab.22 (raiz, Grazing Pasture 0.5-1.5 m; limite superior = sequeiro)|Sanches et al., Rev. Bras. Agric. Irrigada 11(2):1291-1301, 2017 (Kc medido em lisímetro de pesagem, Marandu em formação, média 1.07)|Souza et al., IV INOVAGRI 2017, Embrapa Alice doc 1078225 (Kc em lisímetro de pesagem, Marandu irrigado, ciclos de corte outono-inverno, Kc médio 0.60-0.80)|Mendonça & Rassini, Embrapa Pecuária Sudeste Circular Técnica 45, 2006 (temperatura base 15.0 °C, Marandu)|Cruz et al., Pesq. Agropec. Bras. 46(7):675-681, 2011 (temperatura base 17.2 °C, Marandu sequeiro)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Bread grass Brachiaria brizantha, node 490 (temperatura ótima 30-35 °C, geada, raízes até 2 m)|Tropical Forages (CIAT/ILRI), Urochloa brizantha fact sheet (geada, seca de 3-6 meses, melhor adaptada a 1500-3500 mm/ano de chuva e cresce com pouco menos de 1000 mm/ano, MS 8-20 t/ha/ano, valor nutritivo, cobertura)|Kluthcouski et al., Embrapa Arroz e Feijão Circular Técnica 38, 2000 - Sistema Santa Fé (palhada estável, vedação 30-60 dias pós-colheita, dessecação)|Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2ª ed. 2018 (consórcio com milho safrinha, pastejo pós-colheita, dessecação antes da soja)|Oliveira, Kluthcouski, Vilela et al. (Embrapa Cerrados), Os muitos benefícios da ILP para os solos, A Granja, 2015 (raiz profunda rompe camada compactada, bioporos)|Salton & Tomazi, Embrapa Agropecuária Oeste Comunicado Técnico 198, 2014 (raiz da braquiária estrutura o solo; soja após braquiária com raiz a 70 cm vs 40 cm)|Primavesi et al., Embrapa Pecuária Sudeste, 2002 (raízes vivas de Marandu presentes a 80-100 cm)|Souza, Sanches, Mendonça, Pezzopane, Amorim & Jesus, Crop coefficient estimated by degree-days for 'Marandu' palisadegrass and mixed forage, Rev. FCA UNCuyo 53(2):71-81, 2021, doi:10.48162/rev.39.041 (ESALQ, lisímetro de pesagem, Marandu irrigado com corte a 0,15 m a cada 28/40 dias; ETo e ETc por ciclo de corte -> Kc médio dos ciclos 0,82 e consumo anual ~1.030 mm; Kc por graus-dia 0,50-0,90 na primavera/verão e 0,67-0,82 no outono/inverno)|Souza, Sanches, Mendonça, Pilau & Jesus, Crop coefficient of Marandu palisade grass: an approach involving leaf area index and canopy height, Irriga 26(4):924-937, 2021, doi:10.15809/irriga.2021v26n4p924-937 (mesmo ensaio: Kc mínimo e máximo por estação 0,45-1,10; altura do dossel até 0,44 m)|FAO ECOCROP, Brachiaria brizantha, código 536 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial está fora do ar (chuva ótima 750-2500 mm/ano, absoluta 500-4000; temperatura ótima 25-35 °C, absoluta 15-38 °C)|EMBRAPA-CNPGC (Nunes, Boock, Penteado & Gomes), Brachiaria brizantha cv. Marandu, Documentos 21, Campo Grande, 1984 (origem com ~700 mm/ano de chuva e ~8 meses de seca; adaptação ao Cerrado, tolerância à seca e ao frio)|NASA POWER (LaRC), dados diários de Piracicaba-SP, fev/2016-jan/2017 (WS2M, T2M_MAX, T2MDEW) -> u2 e UR mínima para a equação 62 do FAO-56 (cálculo próprio, porque os artigos não publicam esses valores)|PROXY: kc_inicial, kc_final e raiz da categoria Grazing pasture do FAO-56; água = chuva anual ótima (ECOCROP/Tropical Forages), não consumo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "fontes": "FAO-56 Tab.12 (Kc, linha Grazing Pasture - Rotated Grazing 0.40/0.85-1.05/0.85; categoria genérica de pastagem, usada para kc_inicial e kc_final; kc_medio no limite inferior da faixa, confirmado pela medição de Souza et al. 2021)|FAO-56 Tab.22 (raiz, Grazing Pasture 0.5-1.5 m; limite superior = sequeiro)|Sanches et al., Rev. Bras. Agric. Irrigada 11(2):1291-1301, 2017 (Kc medido em lisímetro de pesagem, Marandu em formação, média 1.07)|Souza et al., IV INOVAGRI 2017, Embrapa Alice doc 1078225 (Kc em lisímetro de pesagem, Marandu irrigado, ciclos de corte outono-inverno, Kc médio 0.60-0.80)|Mendonça & Rassini, Embrapa Pecuária Sudeste Circular Técnica 45, 2006 (temperatura base 15.0 °C, Marandu)|Cruz et al., Pesq. Agropec. Bras. 46(7):675-681, 2011 (temperatura base 17.2 °C, Marandu sequeiro)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Bread grass Brachiaria brizantha, node 490 (temperatura ótima 30-35 °C, geada, raízes até 2 m)|Tropical Forages (CIAT/ILRI), Urochloa brizantha fact sheet (geada, seca de 3-6 meses, melhor adaptada a 1500-3500 mm/ano de chuva e cresce com pouco menos de 1000 mm/ano, MS 8-20 t/ha/ano, valor nutritivo, cobertura)|Kluthcouski et al., Embrapa Arroz e Feijão Circular Técnica 38, 2000 - Sistema Santa Fé (palhada estável, vedação 30-60 dias pós-colheita, dessecação)|Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2ª ed. 2018 (consórcio com milho safrinha, pastejo pós-colheita, dessecação antes da soja)|Oliveira, Kluthcouski, Vilela et al. (Embrapa Cerrados), Os muitos benefícios da ILP para os solos, A Granja, 2015 (raiz profunda rompe camada compactada, bioporos)|Salton & Tomazi, Embrapa Agropecuária Oeste Comunicado Técnico 198, 2014 (raiz da braquiária estrutura o solo; soja após braquiária com raiz a 70 cm vs 40 cm)|Primavesi et al., Embrapa Pecuária Sudeste, 2002 (raízes vivas de Marandu presentes a 80-100 cm)|Souza, Sanches, Mendonça, Pezzopane, Amorim & Jesus, Crop coefficient estimated by degree-days for 'Marandu' palisadegrass and mixed forage, Rev. FCA UNCuyo 53(2):71-81, 2021, doi:10.48162/rev.39.041 (ESALQ, lisímetro de pesagem, Marandu irrigado com corte a 0,15 m a cada 28/40 dias; ETo e ETc por ciclo de corte -> Kc médio dos ciclos 0,82 e consumo anual ~1.030 mm; Kc por graus-dia 0,50-0,90 na primavera/verão e 0,67-0,82 no outono/inverno)|Souza, Sanches, Mendonça, Pilau & Jesus, Crop coefficient of Marandu palisade grass: an approach involving leaf area index and canopy height, Irriga 26(4):924-937, 2021, doi:10.15809/irriga.2021v26n4p924-937 (mesmo ensaio: Kc mínimo e máximo por estação 0,45-1,10; altura do dossel até 0,44 m)|FAO ECOCROP, Brachiaria brizantha, código 536 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop), porque o site oficial está fora do ar (chuva ótima 750-2500 mm/ano, absoluta 500-4000; temperatura ótima 25-35 °C, absoluta 15-38 °C)|EMBRAPA-CNPGC (Nunes, Boock, Penteado & Gomes), Brachiaria brizantha cv. Marandu, Documentos 21, Campo Grande, 1984 (origem com ~700 mm/ano de chuva e ~8 meses de seca; adaptação ao Cerrado, tolerância à seca e ao frio)|NASA POWER (LaRC), dados diários de Piracicaba-SP, fev/2016-jan/2017 (WS2M, T2M_MAX, T2MDEW) -> u2 e UR mínima para a equação 62 do FAO-56 (cálculo próprio, porque os artigos não publicam esses valores)|PROXY: kc_inicial, kc_final e raiz da categoria Grazing pasture do FAO-56; água = chuva anual ótima (ECOCROP/Tropical Forages), não consumo|Pacheco, Leandro, Machado, Assis, Cobucci, Madari & Petter, Pesq. agropec. bras. 46(1):17-25, 2011 (braquiária solteira semeada na safrinha logo após a colheita da soja, em 25/mar em Santo Antônio de Goiás-GO e 10/abr em Rio Verde-GO, e dessecada em outubro, aos 180-200 DAS, para a soja seguinte) (janela)|Pivetta et al., Embrapa Agropecuária Oeste/Embrapa Soja/UFPR, resumo expandido, 40ª Reunião de Pesquisa de Soja, Embrapa Soja Eventos Técnicos & Científicos 7, 2026 (Palotina-PR: braquiária ruziziensis solteira e milho + ruziziensis semeados na segunda safra em 28/02/2022, dessecados antes da soja; 11,2 t/ha de palha na solteira) (janela, só resumo expandido)|Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2018, Tabela 3 (intervalo de 20 a 30 dias entre a dessecação de B. brizantha Marandu, Xaraés e Piatã e a semeadura da soja) e semeadura simultânea da forrageira com o milho safrinha (janela)|Broch & Ceccon, Produção de milho safrinha com integração lavoura e pecuária (milho safrinha após a soja, entre final de fevereiro e início de março; após 15 de março não indicado; braquiária pastejada e dessecada para a soja) (janela do consórcio)|ZARC/MAPA, Tábua de Risco safra 2026/2027 (soja em Rio Verde-GO, Port. 198 de 03/07/2026: risco de 20% de 01/out a 10/jan; milho 2ª safra em Rio Verde: até 10/fev a 28/fev conforme solo e grupo), via data/brasil/zarc/janelas.csv (conferência da dessecação e do consórcio)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "",
-    "graus_dia_ciclo_max": ""
+    "graus_dia_ciclo_max": "",
+    "semeadura_inicio": "02-01",
+    "semeadura_fim": "04-10",
+    "manejo_inicio": "09-01",
+    "manejo_fim": "10-31",
+    "tipo_manejo": "dessecacao",
+    "condicao_semeadura": "apos_colheita_graos",
+    "estados_validos": "GO|MT|MS|PR",
+    "lacuna_informacao": "Não há medição no Brasil de quanta água a braquiária de sequeiro usa no ano. Usamos a chuva que ela prefere e um único ensaio irrigado em São Paulo, mais valores gerais de pastagem. A profundidade da raiz também é um valor geral, não medido.",
+    "risco_revisao_local": "Como cobertura, semeie logo depois de colher a soja, de fevereiro ao começo de abril, e seque antes de plantar a soja, com tempo para a palha secar. Junto com o milho safrinha, a época é a do milho. Geada forte queima o capim. Confirme cultivar e herbicida com o agrônomo."
   },
   "mudancas": [
     {
@@ -158,6 +169,48 @@
       "antes": "(coluna nova)",
       "depois": "-",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: vazio_nao_se_aplica"
+    },
+    {
+      "coluna": "semeadura_inicio / semeadura_fim",
+      "antes": "(vazio)",
+      "depois": "02-01 / 04-10",
+      "motivo": "REVISÃO 15/11 (pacote 9): Braquiária SOLTEIRA como cobertura de safrinha, o sistema da linha (decisão do usuário de 14/11: a linha é a solteira; os valores de palha 6,24-12,4 t/ha são dela, de Pacheco 2011 e Braz). Pacheco 2011: 'logo após a colheita das culturas de verão, de fevereiro a abril'; ensaios semeados em 25/mar (Santo Antônio de Goiás) e 10/abr (Rio Verde). Fim = 10/abr, a semeadura mais tardia com dado (6,2 t/ha aos 180 DAS); o 'abril' inteiro não tem ensaio. Apoio: ruziziensis solteira semeada em 28/fev em Palotina-PR (Pivetta et al. 2026). A janela não cruza a virada do ano."
+    },
+    {
+      "coluna": "manejo_inicio / manejo_fim / tipo_manejo",
+      "antes": "(vazio)",
+      "depois": "09-01 / 10-31 / dessecacao",
+      "motivo": "REVISÃO 15/11 (pacote 9): Dessecação antes da soja. Pacheco 2011: 'dessecação de manejo [...] em outubro de 2008 [...] aos 200 dias após sua semeadura'. Doc 131 (Tab. 3): 20 a 30 dias entre a dessecação de Marandu, Xaraés e Piatã e a semeadura da soja. ZARC da soja em Rio Verde-GO (Port. 198/2026): risco de 40% em 21-30/set e de 20% a partir de 1/out; menos 20-30 dias dá o começo de setembro. Fim em 31/out: semeaduras de soja de novembro (dentro do ZARC) levariam a dessecação até o fim de outubro. Datas exatas DERIVADAS dessa conta."
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "(vazio)",
+      "depois": "apos_colheita_graos",
+      "motivo": "REVISÃO 15/11 (pacote 9): Pacheco 2011: semeadura 'logo após a colheita das culturas de verão' (soja colhida em 22/mar e 9/abr, braquiária semeada em 25/mar e 10/abr). A semeadura junto com o milho safrinha não tem valor na lista e ficou no arranjo consorcio_milho_safrinha."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "(vazio)",
+      "depois": "GO|MT|MS|PR",
+      "motivo": "REVISÃO 15/11 (pacote 9): Onde há ensaio ou recomendação da braquiária semeada depois da soja e dessecada antes da próxima soja: GO (Pacheco 2011; Braz), PR (Palotina, Pivetta et al. 2026), MT e GO (Broch & Ceccon: o sistema predomina 'em Mato Grosso e Goiás'), MS (Ceccon, CT 140: Dourados, Batayporã e São Gabriel do Oeste). RS e BA ficam fora (ver pendências)."
+    },
+    {
+      "coluna": "regua.arranjos.consorcio_milho_safrinha",
+      "antes": "(só ms_palhada_t_ha e nota)",
+      "depois": "janela, estados e fontes do consórcio",
+      "motivo": "REVISÃO 15/11 (pacote 9): Janela do consórcio milho safrinha + braquiária (ILP) guardada no arranjo, e não na linha: semeadura com o milho (Broch & Ceccon; Doc 131) e dessecação antes da soja (Doc 131, Tab. 3). condicao_semeadura vazia de propósito (ver nota do arranjo e pendências)."
+    },
+    {
+      "coluna": "lacuna_informacao / risco_revisao_local",
+      "antes": "(vazio)",
+      "depois": "(textos para o produtor)",
+      "motivo": "REVISÃO 15/11 (pacote 9): Confiança baixa. Lacunas da origem: agua_ciclo_mm_min/max (proxy: chuva anual ótima), kc_inicial e kc_final (proxy: pastagem genérica do FAO-56), kc_medio (estudo único irrigado, ESALQ), profundidade_raiz_m (proxy). Risco: época depois da soja e dessecação antes da soja (Pacheco 2011; Doc 131), consórcio na época do milho (Broch & Ceccon), geada (Feedipedia: folhas sensíveis, sobrevive a geada leve)."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "(lista anterior)",
+      "depois": "(ver valores.fontes)",
+      "motivo": "REVISÃO 15/11 (pacote 9): Entraram Pacheco 2011, Pivetta et al. 2026, a Tabela 3 do Doc 131, Broch & Ceccon e a conferência com o ZARC da soja."
     }
   ],
   "evidencias": [
@@ -560,6 +613,58 @@
       "fonte": "Souza, Sanches, Mendonça, Pezzopane, Amorim & Jesus, Crop coefficient estimated by degree-days for 'Marandu' palisadegrass and mixed forage, Rev. FCA UNCuyo 53(2):71-81, 2021, doi:10.48162/rev.39.041 (já na evidência da cultura)",
       "url": "https://doi.org/10.48162/rev.39.041",
       "trecho": "[Marandu irrigado cortado a 0,15 m a cada 28 dias na primavera/verão e 40 dias no outono/inverno; os graus-dia descrevem a REBROTA entre cortes, não um ciclo da semeadura à colheita]"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "condicao_semeadura",
+        "manejo_inicio",
+        "manejo_fim",
+        "tipo_manejo",
+        "estados_validos"
+      ],
+      "fonte": "Pacheco, Leandro, Machado, Assis, Cobucci, Madari & Petter, Produção de fitomassa e acúmulo e liberação de nutrientes por plantas de cobertura na safrinha, Pesq. agropec. bras. 46(1):17-25, 2011 (introdução e Material e Métodos)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/882280/1/pab46.pdf",
+      "trecho": "Em algumas regiões do Cerrado, no período da safrinha, logo após a colheita das culturas de verão, de fevereiro a abril, há possibilidade de semeadura de espécies com crescimento rápido e resistência ao estresse hídrico. [...] A colheita da soja safra 2007/2008 ocorreu no dia 22 de março, e, no dia 25 de março, realizou-se a semeadura das plantas de cobertura [...] A dessecação de manejo dessas espécies ocorreu apenas em outubro de 2008, imediatamente depois da última avaliação, aos 200 dias após sua semeadura. [...] A colheita da soja da safra 2007/2008 ocorreu no dia 9 de abril, e em 10 de abril de 2008, foram semeadas as mesmas espécies"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "condicao_semeadura",
+        "tipo_manejo",
+        "estados_validos"
+      ],
+      "fonte": "Pivetta, Furlaneto, Silva, Fischer, Luchese, Santos & Debiasi, opções de diversificação na segunda safra e produtividade da soja na região Oeste do Paraná, Resumos expandidos da 40ª Reunião de Pesquisa de Soja, Embrapa Soja, Eventos Técnicos & Científicos 7, p. 72-76, 2026 (Palotina-PR, 2022/23)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1188274/1/p-72-ETC-7-RPSoja-2026-2.pdf",
+      "trecho": "Uma opção a este problema é a substituição do milho safrinha pela braquiária solteira em uma parte da propriedade, o que potencializa a produção de matéria seca da braquiária [...] (T8) braquiária ruziziensis solteira [...] A semeadura da maioria das culturas de segunda safra ocorreu no dia 28/02/2022. [...] previamente à dessecação para a semeadura da soja. [Tabela 1: Braquiária ruziziensis 11203 kg ha-1 de MMS antes da soja]"
+    },
+    {
+      "colunas": [
+        "manejo_inicio",
+        "manejo_fim",
+        "tipo_manejo"
+      ],
+      "fonte": "Ceccon et al., Implantação e manejo de forrageiras em consórcio com milho safrinha, Embrapa Agropecuária Oeste, Documentos 131, 2ª ed., 2018, Tabela 3",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1099973/1/doc1312018online.pdf",
+      "trecho": "Tabela 3. Doses de herbicida glifosato para dessecação de forrageiras e intervalo entre a dessecação e a semeadura da soja em sucessão. [...] B. decumbens, B. brizantha cv. Marandu, Xaraés e Piatã 3-4 [L ha-1] 20 a 30 [dias]"
+    },
+    {
+      "colunas": [
+        "manejo_inicio",
+        "manejo_fim"
+      ],
+      "fonte": "ZARC/MAPA, Tábua de Risco safra 2026/2027, soja em Rio Verde-GO (5218805), AD4, Grupo II, Port. 198 de 03/07/2026, lida em data/brasil/zarc/janelas.csv",
+      "url": "https://dados.agricultura.gov.br/dataset/tabua-de-risco-zoneamento-agricola-de-risco-climatico",
+      "trecho": "soja,1,5218805,GO,AD4,Grupo II,,2026/2027,40,27,27,09-21,09-30 | soja,1,5218805,GO,AD4,Grupo II,,2026/2027,20,28,1,10-01,01-10 [CONFERÊNCIA: soja de 21/set ou 1/out em diante menos 20-30 dias de intervalo = dessecação a partir do começo de setembro]"
+    },
+    {
+      "colunas": [
+        "regua.arranjos.consorcio_milho_safrinha"
+      ],
+      "fonte": "Broch & Ceccon, Produção de milho safrinha com integração lavoura e pecuária (Infobibos, hospedado na Infoteca Embrapa), item 2.1; e Ceccon et al., Embrapa Agropecuária Oeste, Documentos 131, 2ª ed., 2018, p. 9",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/242418/1/Producao-de-milho-safrinha-com-integracao-lavoura-e-pecuaria.pdf",
+      "trecho": "O milho safrinha é cultivado normalmente após colheita da soja, entre final de fevereiro e início de março. As semeaduras após 15 de março, embora sejam realizadas, não são indicadas, devido à maior probabilidade de estiagem e ocorrência de geadas. [...] em Mato Grosso e Goiás, predomina o sistema 1, com mistura da semente de braquiária ao adubo e ao milho [...] após a colheita do milho é utilizada para pastejo e posterior dessecação para semeadura da soja. | Doc 131: Recomenda-se a semeadura simultânea do milho safrinha e da forrageira, preferencialmente na mesma operação de semeadura"
     }
   ],
   "pendencias": [
@@ -572,7 +677,11 @@
     "cobertura_solo \"alta\" está a 0,04 t/ha do corte (9,19 x e^(-0,007x60) = 6,04 t/ha); o k vem de B. ruziziensis com resíduo de soja (Rossi 2013). Com k = 0,0094 (Braz) a classe seria \"media\". O aviso \"depende da época\" deve aparecer na tela.",
     "graus-dia: Perene: min/max nulos de propósito (vazio_nao_se_aplica). O motor deve pular o filtro de 'completar o ciclo' para a pastagem.",
     "graus-dia: Se um dia o motor quiser um teste de frio para a pastagem, o caminho é outro: graus-dia por período de rebrota (Tb 15 °C, Mendonça & Rassini 2006; 17,2 °C, Cruz et al. 2011) ou a estacionalidade da produção no inverno, não uma exigência de ciclo.",
-    "graus-dia: Na formação (estabelecimento) há uma fase com começo e fim (semeadura até o primeiro pastejo, ~90-120 dias em ILP), mas não achei soma térmica publicada para ela."
+    "graus-dia: Na formação (estabelecimento) há uma fase com começo e fim (semeadura até o primeiro pastejo, ~90-120 dias em ILP), mas não achei soma térmica publicada para ela.",
+    "JANELA (pacote 9): a linha usa a braquiária SOLTEIRA semeada depois da colheita da soja (02-01 a 04-10) e dessecada antes da soja seguinte (09-01 a 10-31). As datas de dessecação são DERIVADAS (soja do ZARC menos 20-30 dias do Doc 131; Pacheco desseca em outubro). Fonte com recomendação explícita de época para a braquiária solteira de safrinha (Embrapa Cerrados, Arroz e Feijão ou Agropecuária Oeste) tiraria a fragilidade: Pacheco 2011 fala em 'possibilidade' de semeadura de fevereiro a abril, não em recomendação.",
+    "DECISÃO DO USUÁRIO (pacote 9): condicao_semeadura não tem valor para 'semeada junto com o milho safrinha' (consórcio ILP). Deixei condicao_semeadura vazia no arranjo consorcio_milho_safrinha e expliquei na nota. Opções: (a) criar um valor novo (ex.: 'junto_milho_safrinha') no README e no validador; (b) manter vazio e o motor usar o arranjo só quando a rotação do produtor já tiver milho safrinha + braquiária (regra 4). Sem decisão, o motor não sugere o consórcio pela regra 12.",
+    "JANELA DO CONSÓRCIO (pacote 9): Broch & Ceccon (final de fevereiro a 15/mar) é a época do milho safrinha no MS. Em GO o ZARC do milho 2ª safra termina antes (Rio Verde: 10/fev a 28/fev conforme solo e grupo). Quando o motor ler o ZARC, a janela do consórcio deve ser a do milho 2ª safra do município (ou a linha 'Milho 2ª Safra consorciado com Braquiária' do ZARC, hoje fora de janelas.csv).",
+    "estados_validos (pacote 9): GO entra; RS e BA (pontos da demo) ficam fora. RS: a braquiária semeada em março-abril passaria o inverno com geada, e não achei fonte gaúcha do sistema. BA: em Irecê (semiárido) não há safrinha de chuva depois de abril (Pacheco: abril a setembro é época de poucas chuvas no próprio Cerrado); o oeste baiano (Cerrado) provavelmente cabe, mas não achei ensaio. DF, MG e SP também ficaram fora por falta de ensaio do sistema solteiro de safrinha."
   ],
   "pendencias_resolvidas": [
     "agua_ciclo_mm vazio: sem ciclo definido não há água por ciclo. Referência anual (Tropical Forages): ótimo de 1500 a 3500 mm/ano de chuva, cresce com chuva 'somewhat below 1,000 mm' e aguenta 3 a 6 meses de seca. Se o app aceitar valor anual para perenes, um mínimo de 1000 mm/ano tem respaldo; o máximo não é um limite agronômico.",
@@ -630,7 +739,20 @@
           "min": 2.85,
           "max": 4.65
         },
-        "nota": "Braquiária consorciada com milho safrinha e dessecada antes da soja (ILP). O motor deve usar este arranjo quando a rotação for milho safrinha + braquiária."
+        "nota": "Braquiária consorciada com milho safrinha e dessecada antes da soja (ILP). O motor deve usar este arranjo quando a rotação for milho safrinha + braquiária.",
+        "estados": "GO|MT|MS|PR",
+        "semeadura_inicio": "02-20",
+        "semeadura_fim": "03-15",
+        "manejo_inicio": "09-01",
+        "manejo_fim": "10-31",
+        "tipo_manejo": "dessecacao",
+        "condicao_semeadura": "",
+        "origem": {
+          "semeadura": "publicado",
+          "manejo": "convencao_com_fonte"
+        },
+        "nota_janela": "A braquiária é semeada JUNTO com o milho safrinha, na mesma operação ('Recomenda-se a semeadura simultânea do milho safrinha e da forrageira', Doc 131), e não depois de uma colheita; por isso condicao_semeadura fica vazia: nenhum valor da lista descreve isso. O milho safrinha vem depois da colheita da soja. Semeadura: 'entre final de fevereiro e início de março. As semeaduras após 15 de março [...] não são indicadas' (Broch & Ceccon); 02-20 = último decêndio de fevereiro. Na prática vale a janela do milho 2ª safra do ZARC no município: em Rio Verde-GO (safra 2026/2027) ela começa em 01/jan e termina entre 10/fev e 28/fev conforme solo e grupo, mais cedo que a de Broch & Ceccon (Dourados-MS). Dessecação: a mesma da linha (20 a 30 dias antes da soja, Doc 131 Tab. 3; Marandu, Xaraés e Piatã; ruziziensis, 5 a 20 dias). Estados: MT e GO (Broch & Ceccon: 'em Mato Grosso e Goiás, predomina o sistema 1'), MS (Ceccon CT 140) e PR (Palotina, Pivetta et al. 2026).",
+        "fontes": "Broch & Ceccon, Produção de milho safrinha com integração lavoura e pecuária, Infobibos (Infoteca Embrapa doc 242418) | Ceccon et al., Embrapa Agropecuária Oeste Documentos 131, 2018 | ZARC/MAPA safra 2026/2027 via data/brasil/zarc/janelas.csv"
       }
     },
     "decisao_arranjo": "DECISÃO DO USUÁRIO (revisão 14/11): a linha pastagem representa a braquiária solteira (perene, água anual). O consórcio com milho é uma rotação, guardada em arranjos.",

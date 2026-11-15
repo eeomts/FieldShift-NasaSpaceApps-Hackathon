@@ -97,6 +97,23 @@ def test_entradas_lidas_da_fazenda():
     assert [(i.cultura_id, i.inicio_mes, i.fim_mes) for i in e.atual] == [("soja", 10, 2), ("milho", 2, 6)]
 
 
+def test_estado_da_fazenda_vem_do_codigo_do_local():
+    assert montar(fazenda(codigo_local="5218805")).estado == "GO"
+    assert montar(fazenda(pais="US", codigo_local="19169")).estado == "IA"
+    assert montar(fazenda(codigo_local=None)).estado is None  # sem código: não sabemos
+
+
+def test_analise_nao_sugere_cultura_de_outro_estado_e_a_atual_ganha_aviso():
+    cs = {c.id: c for c in CULTURAS}
+    cs["crotalaria"] = replace(cs["crotalaria"], estados_validos=("GA",))
+    cs["soja"] = replace(cs["soja"], estados_validos=("GA",))
+    a = analisar_entradas(montar(fazenda(pais="US", codigo_local="19169"), cs))  # condado de Iowa
+    assert not any("crotalaria" in (i.cultura_id or "") for r in a.melhores for i in r.estrategia.itens)
+    assert "sem_dado_regiao" in [x.codigo for x in a.atual.alertas]  # a soja está na atual
+    sem_estado = analisar_entradas(montar(fazenda(pais="US", codigo_local=None), cs))
+    assert any("não sabemos o estado" in l for l in sem_estado.atual.lacunas)
+
+
 def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():
     e = montar(fazenda(equipamentos=[{"equipamento_id": None, "texto_original": "?"}]))
     assert e.equipamentos is None
@@ -172,7 +189,7 @@ def test_atual_nunca_e_eliminada_mesmo_com_tudo_errado():
     f = fazenda(culturas_excluidas=[{"cultura_id": "soja", "texto_original": "soja"}])
     a = analisar_entradas(montar(f, {c.id: c for c in ruins}, cl))
     assert a.atual.estrategia.id == "atual" and a.eliminadas == [] and a.melhores == []
-    assert {x.codigo for x in a.atual.alertas} >= {"graus_dia", "agua", "geada"}
+    assert {x.codigo for x in a.atual.alertas} >= {"graus_dia", "agua_no_limite", "geada"}
 
 
 def test_candidata_so_e_avaliada_pelo_que_tem_de_novo():
@@ -223,12 +240,13 @@ def test_criterio_sem_dado_na_atual_sai_dos_pesos_efetivos():
     assert sum(a.atual.pesos.values()) == pytest.approx(1) and a.pesos["animais"] == pytest.approx(0.75)
 
 
-def test_irrigacao_sim_nao_elimina_por_falta_de_agua():
+def test_falta_de_agua_nao_elimina_candidata_e_vira_aviso_sem_irrigacao():
     seco = clima(chuva=1.0)
     sem = analisar_entradas(montar(fazenda(irrigacao="nao"), c=seco))
     com = analisar_entradas(montar(fazenda(irrigacao="sim"), c=seco))
-    assert any("falta água" in m for x in sem.eliminadas for m in x.motivos)
-    assert not any("falta água" in m for x in com.eliminadas for m in x.motivos)
+    assert not any("água" in m for x in sem.eliminadas for m in x.motivos)
+    assert any(a.codigo == "agua_no_limite" for r in [sem.atual, *sem.melhores] for a in r.alertas)
+    assert not any(a.codigo == "agua_no_limite" for r in [com.atual, *com.melhores] for a in r.alertas)
 
 
 def test_analise_com_a_entrada_direta_dos_helpers():

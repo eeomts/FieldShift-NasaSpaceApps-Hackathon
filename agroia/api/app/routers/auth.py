@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, Response, status
 
 from app.core.security import usuario_atual
 from app.models import Usuario
-from app.schemas.auth import Cadastro, Login, Token, UsuarioOut
+from app.schemas.auth import AtualizarUsuario, Cadastro, Login, Token, UsuarioOut
 from app.services.auth_service import AuthService, usuario_para_saida
 
 router = APIRouter(tags=["auth"])
@@ -22,6 +22,12 @@ def login(dados: Login, servico: AuthService = Depends()) -> Token:
 @router.get("/me", response_model=UsuarioOut)
 def me(u: Usuario = Depends(usuario_atual)) -> UsuarioOut:
     return usuario_para_saida(u)
+
+
+@router.patch("/me", response_model=UsuarioOut)
+def atualizar_conta(dados: AtualizarUsuario, u: Usuario = Depends(usuario_atual), servico: AuthService = Depends()) -> UsuarioOut:
+    """Troca o idioma da conta (pt ou en)."""
+    return servico.atualizar_idioma(u, dados.idioma)
 
 
 @router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)

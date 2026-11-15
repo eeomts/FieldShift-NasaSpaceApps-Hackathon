@@ -1,0 +1,138 @@
+{
+  "_leia": "Cenários de água da aveia (Avena sativa, cobertura semeada no fim do verão e morta pelo inverno, Iowa) para scripts/etc_nasa_power.py. ETc da semeadura à morte pelo frio (o 'manejo' desta cobertura). 'fases_dias' = inicial, desenvolvimento, média, final. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "sutherland": {
+      "nome": "Sutherland-IA (ISU Northwest Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -95.54,
+      "elevacao_m": 422.49
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU Ag Engineering/Agronomy Farm; sítio de Sawyer et al. e de Jha & Yadav)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "aveia_nashua_0915_61d",
+      "cultura": "aveia",
+      "local": "nashua",
+      "semeadura": "09-15",
+      "fases_dias": [
+        20,
+        25,
+        16,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura tardia (15/set), fim cedo (14/nov), NE de Iowa. Curva FAO-56 da aveia (Tab. 12, linha Oats: Kc mid 1,15; Kc ini 0,3 do grupo i. Cereals) e fases da Tab. 11 para cereais de 35-45° de latitude (inicial 20 d, desenvolvimento 25 d); a fase média vai até a morte pelo frio (fase final 0, cobertura que morre verde). Datas: semeadura de meados de agosto a meados de setembro (NRCS/ISU, CROP 3243); fim de 14/nov a 5/dez (última amostragem antes do congelamento: SARE LNC13-352 em Iowa; Lenz et al. 2019 no Nebraska).",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 73,
+        "nota": "agua_ciclo_mm_min = 70: média 73 mm (P10 52, P90 90), arredondada para baixo. Sutherland no mesmo cenário: 87."
+      }
+    },
+    {
+      "nome": "aveia_sutherland_0915_61d",
+      "cultura": "aveia",
+      "local": "sutherland",
+      "semeadura": "09-15",
+      "fases_dias": [
+        20,
+        25,
+        16,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura tardia (15/set), fim cedo (14/nov), NW de Iowa. Curva FAO-56 da aveia (Tab. 12, linha Oats: Kc mid 1,15; Kc ini 0,3 do grupo i. Cereals) e fases da Tab. 11 para cereais de 35-45° de latitude (inicial 20 d, desenvolvimento 25 d); a fase média vai até a morte pelo frio (fase final 0, cobertura que morre verde). Datas: semeadura de meados de agosto a meados de setembro (NRCS/ISU, CROP 3243); fim de 14/nov a 5/dez (última amostragem antes do congelamento: SARE LNC13-352 em Iowa; Lenz et al. 2019 no Nebraska)."
+    },
+    {
+      "nome": "aveia_ames_0901_81d",
+      "cultura": "aveia",
+      "local": "ames",
+      "semeadura": "09-01",
+      "fases_dias": [
+        20,
+        25,
+        36,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura em 1/set, fim em 20/nov, centro de Iowa. Curva FAO-56 da aveia (Tab. 12, linha Oats: Kc mid 1,15; Kc ini 0,3 do grupo i. Cereals) e fases da Tab. 11 para cereais de 35-45° de latitude (inicial 20 d, desenvolvimento 25 d); a fase média vai até a morte pelo frio (fase final 0, cobertura que morre verde). Datas: semeadura de meados de agosto a meados de setembro (NRCS/ISU, CROP 3243); fim de 14/nov a 5/dez (última amostragem antes do congelamento: SARE LNC13-352 em Iowa; Lenz et al. 2019 no Nebraska).",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 141,
+        "nota": "Cenário típico (conferência; não define a faixa)."
+      }
+    },
+    {
+      "nome": "aveia_crawfordsville_0815_113d",
+      "cultura": "aveia",
+      "local": "crawfordsville",
+      "semeadura": "08-15",
+      "fases_dias": [
+        20,
+        25,
+        68,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura cedo (15/ago), fim tardio (5/dez), SE de Iowa. Curva FAO-56 da aveia (Tab. 12, linha Oats: Kc mid 1,15; Kc ini 0,3 do grupo i. Cereals) e fases da Tab. 11 para cereais de 35-45° de latitude (inicial 20 d, desenvolvimento 25 d); a fase média vai até a morte pelo frio (fase final 0, cobertura que morre verde). Datas: semeadura de meados de agosto a meados de setembro (NRCS/ISU, CROP 3243); fim de 14/nov a 5/dez (última amostragem antes do congelamento: SARE LNC13-352 em Iowa; Lenz et al. 2019 no Nebraska).",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 230,
+        "nota": "agua_ciclo_mm_max = 230: média 230 mm (P10 176, P90 267)."
+      }
+    }
+  ]
+}

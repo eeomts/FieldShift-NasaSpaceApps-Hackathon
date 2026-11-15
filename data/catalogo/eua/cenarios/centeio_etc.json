@@ -1,0 +1,109 @@
+{
+  "_leia": "Cenários de água do centeio (cereal rye, cobertura de inverno em Iowa) para scripts/etc_nasa_power.py. ETc da semeadura ao manejo na primavera. 'fases_dias' = inicial, desenvolvimento, média, final; o manejo cai no desenvolvimento, por isso 'mid' = Kc atingido no dia do manejo (ver 'nota'). 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU Ag Engineering/Agronomy Farm; sítio de Sawyer et al. e de Jha & Yadav)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "centeio_nashua_1029_0425",
+      "cultura": "centeio",
+      "local": "nashua",
+      "semeadura": "10-29",
+      "fases_dias": [
+        132,
+        47,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.87,
+        "end": 0.87
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura tardia, manejo cedo, NE de Iowa. PROXY: curva do trigo de inverno do FAO-56 (Tab. 12, 'with frozen soils': Kc ini 0,4, Kc mid 1,15; Tab. 11, Idaho, semeadura em outubro: fase inicial até ~9/mar, desenvolvimento de 75 dias). O centeio é manejado durante o desenvolvimento: 47 dos 75 dias, então o Kc sobe linearmente de 0,4 até 0.87 = 0,4 + 47/75 × 0,75 no dia do manejo (fase média 0).",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 108,
+        "nota": "agua_ciclo_mm_min = 100: média 108 mm (P10 89, P90 128), arredondada para baixo."
+      }
+    },
+    {
+      "nome": "centeio_ames_1001_0505",
+      "cultura": "centeio",
+      "local": "ames",
+      "semeadura": "10-01",
+      "fases_dias": [
+        160,
+        57,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.97,
+        "end": 0.97
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico, centro de Iowa. PROXY: curva do trigo de inverno do FAO-56 (Tab. 12, 'with frozen soils': Kc ini 0,4, Kc mid 1,15; Tab. 11, Idaho, semeadura em outubro: fase inicial até ~9/mar, desenvolvimento de 75 dias). O centeio é manejado durante o desenvolvimento: 57 dos 75 dias, então o Kc sobe linearmente de 0,4 até 0.97 = 0,4 + 57/75 × 0,75 no dia do manejo (fase média 0).",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 187,
+        "nota": "Cenário típico (conferência; não define a faixa)."
+      }
+    },
+    {
+      "nome": "centeio_crawfordsville_0917_0520",
+      "cultura": "centeio",
+      "local": "crawfordsville",
+      "semeadura": "09-17",
+      "fases_dias": [
+        174,
+        72,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.12,
+        "end": 1.12
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura cedo, manejo tardio, SE de Iowa. PROXY: curva do trigo de inverno do FAO-56 (Tab. 12, 'with frozen soils': Kc ini 0,4, Kc mid 1,15; Tab. 11, Idaho, semeadura em outubro: fase inicial até ~9/mar, desenvolvimento de 75 dias). O centeio é manejado durante o desenvolvimento: 72 dos 75 dias, então o Kc sobe linearmente de 0,4 até 1.12 = 0,4 + 72/75 × 0,75 no dia do manejo (fase média 0).",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 263,
+        "nota": "agua_ciclo_mm_max = 265: média 263 mm (P10 223, P90 300)."
+      }
+    }
+  ]
+}

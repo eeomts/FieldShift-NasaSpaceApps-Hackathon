@@ -10,7 +10,9 @@ from sqlalchemy import text
 from app.core.db import get_engine
 from app.main import app
 from app.repositories.conhecimento_repository import ConhecimentoRepository
+from app.services import catalogo
 from app.services.agente import agente_service
+from app.services.agente import ferramentas as ferramentas_mod
 from app.services.agente.agente_service import de_json, para_json, provedor_de_busca
 from app.services.agente.busca_conhecimento_service import BuscaConhecimentoService
 from app.services.agente.modelo import get_modelo
@@ -403,6 +405,25 @@ def test_instrucao_tem_data_idioma_e_resumo(client, auth, conversa, fazenda, mod
     assert "-11" not in instrucao  # sem coordenada
 
 
+def test_idioma_da_mensagem_vai_para_o_prompt(client, auth, conversa, fazenda, modelo):
+    m = modelo([fala("ok"), fala("ok"), fala("ok")])
+    perguntar(client, auth, conversa, "oi")  # sem idioma: vale o da conta (pt)
+    r = client.post(f"/chat/conversas/{conversa}/mensagens", headers=auth, json={"mensagem": "hi", "idioma": "en"})
+    assert r.status_code == 200
+    assert "Responda em português do Brasil" in m.chamadas[0]["instrucao"]
+    assert "(en)" in m.chamadas[1]["instrucao"] and "Responda em inglês" in m.chamadas[1]["instrucao"]
+    # a escolha da mensagem não muda a conta: sem idioma, volta ao da conta
+    client.patch("/me", headers=auth, json={"idioma": "en"})
+    perguntar(client, auth, conversa, "again")
+    assert "Responda em inglês" in m.chamadas[2]["instrucao"]
+
+
+def test_idioma_da_mensagem_invalido(client, auth, conversa, modelo):
+    modelo([fala("ok")])
+    r = client.post(f"/chat/conversas/{conversa}/mensagens", headers=auth, json={"mensagem": "oi", "idioma": "fr"})
+    assert r.status_code == 422
+
+
 def test_info_cultura(client, auth, conversa, modelo):
     m = modelo([chamada("info_cultura", cultura="sorgo"), chamada("info_cultura", cultura="Sorgo"), fala("ok")])
     r = perguntar(client, auth, conversa, "vale a pena plantar sorgo?")
@@ -410,11 +431,41 @@ def test_info_cultura(client, auth, conversa, modelo):
     sorgo = ferramentas[0]["response"]
     assert sorgo["encontrada"] and sorgo["id"] == "sorgo"
     assert sorgo["parametros"]["ciclo_dias_min"] == 90 and sorgo["parametros"]["sensivel_geada"] is True
-    assert sorgo["parametros"]["confianca_parametros"] == "alta"
+    assert sorgo["parametros"]["confianca_parametros"] == ferramentas_mod._parametros_csv()["sorgo"]["confianca_parametros"]
     # fonte repetida entra uma vez só; a ferramenta também
     assert len(r.json()["fontes"]) == 1 and r.json()["fontes"][0]["tipo"] == "cultura"
     assert r.json()["fontes"][0]["titulo"] == "Base de culturas: Sorgo"
     assert r.json()["ferramentas_usadas"] == ["info_cultura"]
+
+
+def test_info_cultura_so_arroz_pede_o_tipo(client, auth, conversa, modelo):
+    m = modelo([chamada("info_cultura", cultura="rice"), chamada("info_cultura", cultura="Arroz"),
+                chamada("info_cultura", cultura="arroz irrigado"), fala("Qual é o tipo?")])
+    r = perguntar(client, auth, conversa, "quanta água o arroz precisa?")
+    rice, arroz, irrigado = (x["response"] for x in respostas_de_ferramenta(m.chamadas))
+    for amb in (rice, arroz):
+        assert amb["encontrada"] is True and amb["ambigua"] is True and "parametros" not in amb
+        assert [o["id"] for o in amb["opcoes"]] == ["arroz", "arroz_irrigado"]
+        assert [o["nome"] for o in amb["opcoes"]] == ["Arroz de terras altas", "Arroz irrigado"]
+        assert amb["mensagem"] == catalogo.culturas()["arroz"]["ambiguo"]["pergunta"]
+    assert "irrigado" in rice["mensagem"] and "pelo país" in rice["mensagem"]
+    # dito o tipo, não há ambiguidade
+    assert irrigado["id"] == "arroz_irrigado" and "ambigua" not in irrigado
+    assert [f["titulo"] for f in r.json()["fontes"]] == ["Base de culturas: Arroz irrigado"]
+
+
+def test_info_cultura_so_batata_pede_o_tipo(client, auth, conversa, modelo):
+    m = modelo([chamada("info_cultura", cultura="batata"), chamada("info_cultura", cultura="camote"),
+                chamada("info_cultura", cultura="batata inglesa"), fala("Qual batata?")])
+    perguntar(client, auth, conversa, "e a batata?")
+    batata, camote, inglesa = (x["response"] for x in respostas_de_ferramenta(m.chamadas))
+    assert batata["ambigua"] is True and "parametros" not in batata
+    assert [o["id"] for o in batata["opcoes"]] == ["batata", "batata_doce"]
+    assert batata["mensagem"] == catalogo.culturas()["batata"]["ambiguo"]["pergunta"]
+    assert "batata inglesa ou batata-doce" in batata["mensagem"] and "pelo idioma" in batata["mensagem"]
+    assert camote["id"] == "batata_doce" and "ambigua" not in camote
+    assert inglesa["id"] == "batata" and "ambigua" not in inglesa
+    assert "arroz" not in batata["mensagem"]
 
 
 def test_cultura_fora_da_base(client, auth, conversa, modelo):

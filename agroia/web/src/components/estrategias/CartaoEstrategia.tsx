@@ -152,8 +152,8 @@ export function CartaoEstrategia({ r, pesos, atual }: { r: Resultado; pesos: Ana
 
       {r.alertas.length > 0 && (
         <ul className="m-0 flex list-none flex-col gap-2 p-0">
-          {r.alertas.map((a) => (
-            <li key={a.codigo} className="rounded-2xl bg-sol-claro px-4 py-3 text-base leading-[1.4] text-sol-texto">{a.texto}</li>
+          {r.alertas.map((a, i) => (
+            <li key={`${a.codigo}-${i}`} className="rounded-2xl bg-sol-claro px-4 py-3 text-base leading-[1.4] text-sol-texto">{a.texto}</li>
           ))}
         </ul>
       )}

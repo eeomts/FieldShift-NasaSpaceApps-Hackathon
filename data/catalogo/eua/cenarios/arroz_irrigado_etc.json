@@ -1,0 +1,127 @@
+{
+  "_leia": "Cenários de etc_nasa_power.py para o arroz irrigado (rice, inundado, Delta do Arkansas). Só conferência: a água da linha vem da ET medida por eddy covariance em lavouras comerciais (Reavis et al. 2021). Kc do FAO-56 Tab. 12 para Rice (mid 1,20, end 0,90) e Kc ini 0,94 medido por Reavis et al. 2021 (semeadura a seco com inundação tardia, sem lâmina no início); mid ajustado ao clima pela eq. 62 com altura de 1,0 m (Tab. 12). Fases: proporção do FAO-56 Tab. 11 para Rice (30/30/60/30 = 150 d), escalada para a duração de cada cenário. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "stuttgart": {
+      "nome": "Stuttgart-AR (UA Rice Research and Extension Center)",
+      "lat": 34.47,
+      "lon": -91.42,
+      "elevacao_m": 57.03
+    },
+    "humnoke": {
+      "nome": "Leste do Arkansas, lavouras comerciais de Reavis et al. 2021 (34°35' N, 91°45' W)",
+      "lat": 34.59,
+      "lon": -91.75,
+      "elevacao_m": 71.48
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "arroz_irrigado_conf_humnoke_0408_133d",
+      "cultura": "arroz_irrigado",
+      "local": "humnoke",
+      "semeadura": "04-08",
+      "fases_dias": [
+        27,
+        27,
+        53,
+        26
+      ],
+      "kc": {
+        "ini": 0.94,
+        "mid": 1.2,
+        "end": 0.9
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2015,
+        2015
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 551,
+        "nota": "Reavis et al. 2021, Tab. 2: campo NF, 2015, inundação tardia (DF), ET da semeadura à colheita por eddy covariance = 551 ± 7,1 mm em 133 dias."
+      }
+    },
+    {
+      "nome": "arroz_irrigado_conf_humnoke_0410_138d",
+      "cultura": "arroz_irrigado",
+      "local": "humnoke",
+      "semeadura": "04-10",
+      "fases_dias": [
+        28,
+        28,
+        55,
+        27
+      ],
+      "kc": {
+        "ini": 0.94,
+        "mid": 1.2,
+        "end": 0.9
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2017,
+        2017
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 628,
+        "nota": "Reavis et al. 2021, Tab. 2: campo NF, 2017, DF, 628 ± 6,9 mm em 138 dias."
+      }
+    },
+    {
+      "nome": "arroz_irrigado_min_stuttgart_0519_113d",
+      "cultura": "arroz_irrigado",
+      "local": "stuttgart",
+      "semeadura": "05-19",
+      "fases_dias": [
+        23,
+        23,
+        45,
+        22
+      ],
+      "kc": {
+        "ini": 0.94,
+        "mid": 1.2,
+        "end": 0.9
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 551,
+        "nota": "Ciclo mais curto da linha (113 d, ver arroz_irrigado_gd.json) em 20 anos, contra o menor valor medido por Reavis et al. 2021 (551 mm)."
+      }
+    },
+    {
+      "nome": "arroz_irrigado_max_stuttgart_0418_134d",
+      "cultura": "arroz_irrigado",
+      "local": "stuttgart",
+      "semeadura": "04-18",
+      "fases_dias": [
+        27,
+        27,
+        54,
+        26
+      ],
+      "kc": {
+        "ini": 0.94,
+        "mid": 1.2,
+        "end": 0.9
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 628,
+        "nota": "Ciclo mais longo da linha (134 d) em 20 anos, contra o maior valor medido em inundação tardia por Reavis et al. 2021 (628 mm)."
+      }
+    }
+  ]
+}

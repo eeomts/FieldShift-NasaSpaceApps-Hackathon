@@ -24,10 +24,10 @@ O caminho crítico do projeto: o motor inteiro depende dela.
 
 | Tarefa | Arquivo | Esforço |
 |---|---|---|
-| 1. Parâmetros agronômicos das 16 culturas do motor | `catalogo/culturas.csv` | Alto |
+| 1. Parâmetros agronômicos das 17 culturas do motor | `catalogo/culturas.csv` | Alto |
 | 7. Código da PAM de cada cultura (coluna `codigo_pam`) | `catalogo/culturas.csv` | Baixo |
 
-As 16 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 9 delas (as outras não aparecem na PAM ou falta conferir). A coluna `nome_zarc` não é preenchida à mão: ela vem do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6, Pessoa 2) na carga.
+As 17 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 10 delas (as outras não têm produto próprio na PAM, e a aveia da base é a aveia-preta de cobertura, que a PAM não conta; `arroz` e `arroz_irrigado` dividem o mesmo código). A produção por município sai em `brasil/pam/producao_municipal.csv` (`scripts/baixar_pam.py`). A coluna `nome_zarc` é copiada do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6) e um teste da API confere que os dois batem.
 
 ### Pessoa 2 — Dados da NASA e do Brasil (perfil: dados) · Augusto
 
@@ -35,7 +35,7 @@ As 16 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os par
 |---|---|---|
 | 4. Pontos da demo (decidir com o time e testar no SoilGrids) | `demo/pontos_demo.csv` | Baixo |
 | 5. Pedido no AppEEARS (NDVI + SMAP dos pontos) | `demo/appeears/<id_da_tarefa>/` | Médio (espera) |
-| 6. ZARC: baixar a tábua de risco e mapear os nomes das culturas | bruto em `brutos/zarc/`; mapa em `brasil/zarc/mapa_culturas_zarc.csv`; recorte das 16 culturas em `brasil/zarc/` | Médio |
+| 6. ZARC: baixar a tábua de risco e mapear os nomes das culturas | bruto em `brutos/zarc/`; mapa em `brasil/zarc/mapa_culturas_zarc.csv`; janelas em `brasil/zarc/janelas.csv` (GO, RS e BA; `scripts/preparar_zarc.py`) | Médio |
 | 3. O que cada cultura exige de equipamento (ids do `agroia/base/equipamentos.json`) | `catalogo/cultura_equipamentos.csv` | Baixo |
 | Registro de tudo que baixar | `FONTES.md` | — |
 
@@ -69,9 +69,13 @@ data/
 │   └── appeears_eua/<id_da_tarefa>/  # Pessoa 2 (AppEEARS dos pontos dos EUA)
 ├── brasil/
 │   ├── municipios/                 # Pessoa 2 (malha do IBGE)
+│   ├── pam/
+│   │   ├── producao_municipal.csv  # Pessoa 1: produção por município × cultura × ano (PAM, 2016-2025), gerado por scripts/baixar_pam.py
+│   │   └── README.md               # origem, colunas, símbolos do SIDRA e conferência
 │   └── zarc/
 │       ├── mapa_culturas_zarc.csv  # Pessoa 2 (cultura_id → nome no ZARC)
-│       └── <recortes>.csv          # Pessoa 2 (só as 16 culturas)
+│       ├── janelas.csv             # janelas do ZARC (GO, RS e BA), gerado por scripts/preparar_zarc.py
+│       └── README.md               # origem, safra por município, colunas e regras para o motor
 ├── eua/                            # Pessoa 2 (o mesmo papel do brasil/, ver abaixo)
 │   ├── condados/                   # condados.csv + condados.geojson (Censo, TIGERweb)
 │   └── nass/
@@ -101,9 +105,9 @@ Para gerar: `python data/scripts/baixar_condados_eua.py`, `python data/scripts/p
 ## Dependências entre as pessoas
 
 ```
-Pessoa 1: ids das 16 culturas (já prontos) ───► todos usam os mesmos ids
+Pessoa 1: ids das 17 culturas (já prontos) ───► todos usam os mesmos ids
 Pessoa 2: pontos_demo.csv ──► pedido no AppEEARS ──► CSVs em demo/appeears/
-Pessoa 2: mapa_culturas_zarc.csv ──► preenche nome_zarc na carga
+Pessoa 2: mapa_culturas_zarc.csv ──► nome_zarc em culturas.csv; janelas.csv
 Pessoa 1: culturas.csv completo ──► Pessoa 3 escreve fichas-culturas.md
 ```
 

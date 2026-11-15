@@ -1,0 +1,197 @@
+{
+  "_leia": "Cenários de graus-dia da aveia (Avena sativa, cobertura semeada no fim do verão e morta pelo inverno, Corn Belt/Iowa) para scripts/gd_nasa_power.py. A exigência vai da semeadura à morte pelo frio (o 'manejo' desta cobertura). Tb 4 °C (Mantai et al. 2017, A. sativa; a mesma do catálogo do Brasil). As fontes dão datas, não GDD: modo 'fim'. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "sutherland": {
+      "nome": "Sutherland-IA (ISU Northwest Research Farm; sítio de Sawyer et al.)",
+      "lat": 42.93,
+      "lon": -95.54,
+      "elevacao_m": 422.49
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU Ag Engineering/Agronomy Farm; sítio de Sawyer et al. e de Jha & Yadav)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; sítio de Sawyer et al.)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "aveia_nashua_0915_1114",
+      "cultura": "aveia",
+      "local": "nashua",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto.",
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 386,
+        "nota": "graus_dia_ciclo_min = 380: mediana 386 (P10 312, P90 502), arredondada para baixo; a menor dos cenários de mínimo (Sutherland 436, Ames 474, Crawfordsville 514)."
+      }
+    },
+    {
+      "nome": "aveia_nashua_0901_1120",
+      "cultura": "aveia",
+      "local": "nashua",
+      "semeadura": "09-01",
+      "fim": "11-20",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura no meio da janela (1/set) e fim em 20/nov; 81 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_nashua_0815_1205",
+      "cultura": "aveia",
+      "local": "nashua",
+      "semeadura": "08-15",
+      "fim": "12-05",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (15/ago) e fim mais tardio (5/dez); 113 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_sutherland_0915_1114",
+      "cultura": "aveia",
+      "local": "sutherland",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_sutherland_0901_1120",
+      "cultura": "aveia",
+      "local": "sutherland",
+      "semeadura": "09-01",
+      "fim": "11-20",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura no meio da janela (1/set) e fim em 20/nov; 81 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_sutherland_0815_1205",
+      "cultura": "aveia",
+      "local": "sutherland",
+      "semeadura": "08-15",
+      "fim": "12-05",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (15/ago) e fim mais tardio (5/dez); 113 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_ames_0915_1114",
+      "cultura": "aveia",
+      "local": "ames",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_ames_0901_1120",
+      "cultura": "aveia",
+      "local": "ames",
+      "semeadura": "09-01",
+      "fim": "11-20",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura no meio da janela (1/set) e fim em 20/nov; 81 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_ames_0815_1205",
+      "cultura": "aveia",
+      "local": "ames",
+      "semeadura": "08-15",
+      "fim": "12-05",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (15/ago) e fim mais tardio (5/dez); 113 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_crawfordsville_0915_1114",
+      "cultura": "aveia",
+      "local": "crawfordsville",
+      "semeadura": "09-15",
+      "fim": "11-14",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo: semeadura mais tardia (15/set) e fim mais cedo (14/nov); 61 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_crawfordsville_0901_1120",
+      "cultura": "aveia",
+      "local": "crawfordsville",
+      "semeadura": "09-01",
+      "fim": "11-20",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico: semeadura no meio da janela (1/set) e fim em 20/nov; 81 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto."
+    },
+    {
+      "nome": "aveia_crawfordsville_0815_1205",
+      "cultura": "aveia",
+      "local": "crawfordsville",
+      "semeadura": "08-15",
+      "fim": "12-05",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo: semeadura mais cedo (15/ago) e fim mais tardio (5/dez); 113 dias. Datas: semeadura de outono 'Mid August to Mid September' (USDA NRCS Iowa & ISU, Oats Cover Crop Fact Sheet for Iowa, CROP 3243, 2025, dados do Midwest Cover Crops Council); fim = morte pelo frio, aproximada pela última amostragem antes do congelamento: 2ª semana de novembro em Iowa (SARE LNC13-352, ISU, 'Fall cover crop biomass sampling occurred the second week of November'; a aveia morreu no inverno) a início de dezembro (Lenz et al. 2019, Nebraska, amostras em início de novembro e início de dezembro). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto.",
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 1120,
+        "nota": "graus_dia_ciclo_max = 1120: mediana 1120 (P10 1033, P90 1296); a maior dos cenários de máximo (Ames 1052, Sutherland 981, Nashua 897)."
+      }
+    }
+  ]
+}

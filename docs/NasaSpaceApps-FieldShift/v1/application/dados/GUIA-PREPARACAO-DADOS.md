@@ -161,8 +161,8 @@ O arquivo já tem nomes em PT, EN e ES para as 40 culturas. A tarefa é **revisa
 2. Baixar a safra vigente **só das culturas da base** (tarefa 1).
 3. Baixar também o **dicionário de dados**: ele diz o nome de cada coluna e o que são os tipos de solo e grupos de cultivar.
 4. Guardar o arquivo completo em `data/brutos/zarc/` (fica fora do Git).
-5. Preencher `data/brasil/zarc/mapa_culturas_zarc.csv` com o nome exato que o ZARC usa para cada `cultura_id` (a coluna `nome_zarc` de `culturas.csv` é preenchida a partir daqui na carga).
-6. Salvar em `data/brasil/zarc/` um recorte com **só as 16 culturas** (pequeno o bastante para o Git).
+5. Preencher `data/brasil/zarc/mapa_culturas_zarc.csv` com o nome exato que o ZARC usa para cada `cultura_id` (a coluna `nome_zarc` de `culturas.csv` é copiada daqui; um teste confere).
+6. Gerar `data/brasil/zarc/janelas.csv` com `python3 -I data/scripts/preparar_zarc.py` (culturas da base, UFs da demo; ver `data/brasil/zarc/README.md`).
 7. Anotar no `data/FONTES.md` a URL, a safra e a data do download.
 
 Converter decêndios em datas e cruzar com os municípios fica para o script de carga.
@@ -253,7 +253,7 @@ Isso alimenta a seção "dados usados" da submissão do Space Apps e a coluna "d
 
 ## Checklist final antes da carga
 
-- [ ] `culturas.csv` com as 16 culturas do motor, sem `0` no lugar de "não sei", cada linha com `fontes`
+- [ ] `culturas.csv` com as 17 culturas do motor, sem `0` no lugar de "não sei", cada linha com `fontes`
 - [ ] Sinônimos regionais revisados no `agroia/base/culturas.json`
 - [ ] `cultura_equipamentos.csv` cobrindo plantio e colheita de todas as culturas do motor, com ids do `equipamentos.json`
 - [ ] `pontos_demo.csv` com todos os pontos marcados `soilgrids_ok = true`

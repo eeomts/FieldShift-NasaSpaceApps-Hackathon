@@ -1,0 +1,97 @@
+{
+  "_leia": "Cenários de graus-dia do arroz irrigado (rice, inundado, Delta do Arkansas) para scripts/gd_nasa_power.py. GD do catálogo = soma de max(0, Tmed - 11), sem teto (Tb 11 °C da linha do Brasil). A fonte (Univ. of Arkansas, Rice Production Handbook MP192) não dá soma térmica do ciclo: dá dias. Cada cenário usa (1) os dias da semeadura à emergência medidos no estudo de épocas de 2015 em Stuttgart (Tab. 4-8) e (2) os dias da emergência a 20% de umidade do grão (= R9, 'ready for harvest', 20-22% de umidade, cap. 2) previstos pelo DD50 com as normais de 30 anos de Stuttgart (Tab. 4-15). O DD50 da fonte usa Tb 50 °F, Tmax limitada a 94 °F e Tmin limitada a 70 °F; o script não reproduz o limite de 70 °F na Tmin, por isso a conversão é pelos dias (modo 'dias'), refeita em 20 anos do POWER. Sem 'referencia': a fonte não dá GD. 'anos' = anos da semeadura. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "stuttgart": {
+      "nome": "Stuttgart-AR (UA Rice Research and Extension Center)",
+      "lat": 34.47,
+      "lon": -91.42,
+      "elevacao_m": 57.03
+    },
+    "humnoke": {
+      "nome": "Leste do Arkansas, lavouras comerciais de Reavis et al. 2021 (34°35' N, 91°45' W)",
+      "lat": 34.59,
+      "lon": -91.75,
+      "elevacao_m": 71.48
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "arroz_irrigado_min_stuttgart_0519_113d",
+      "cultura": "arroz_irrigado",
+      "local": "stuttgart",
+      "semeadura": "05-19",
+      "dias": 113,
+      "tb": 11,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Ciclo mais curto: semeadura 19/mai (fim da janela 'most active' do Arkansas, Handbook 628) -> emergência 31/mai, 12 dias (MP192 Tab. 4-8, estudo de 2015) + RT XP753 (híbrido precoce) emergido em 1/jun -> 20% de umidade em 10/set = 101 dias (MP192 Tab. 4-15). 12 + 101 = 113 dias."
+    },
+    {
+      "nome": "arroz_irrigado_med_stuttgart_0502_123d",
+      "cultura": "arroz_irrigado",
+      "local": "stuttgart",
+      "semeadura": "05-02",
+      "dias": 123,
+      "tb": 11,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Conferência (ciclo médio): semeadura 2/mai -> emergência 15/mai, 13 dias (Tab. 4-8) + Diamond (longo, ciclo médio) emergido em 15/mai -> 20% de umidade em 2/set = 110 dias (Tab. 4-15). 13 + 110 = 123 dias."
+    },
+    {
+      "nome": "arroz_irrigado_max_stuttgart_0418_134d",
+      "cultura": "arroz_irrigado",
+      "local": "stuttgart",
+      "semeadura": "04-18",
+      "dias": 134,
+      "tb": 11,
+      "anos": [
+        2001,
+        2020
+      ],
+      "fonte": "Ciclo mais longo: semeadura 18/abr -> emergência 3/mai, 15 dias (Tab. 4-8) + Jupiter (grão médio, o mais tardio da Tab. 4-15) emergido em 1/mai -> 20% de umidade em 28/ago = 119 dias. 15 + 119 = 134 dias."
+    },
+    {
+      "nome": "arroz_irrigado_conf_humnoke_0408_133d",
+      "cultura": "arroz_irrigado",
+      "local": "humnoke",
+      "semeadura": "04-08",
+      "dias": 133,
+      "tb": 11,
+      "anos": [
+        2015,
+        2015
+      ],
+      "fonte": "Conferência em lavoura comercial: Reavis et al. 2021 (J. Hydrol. 596:126080), campo NF, semeadura 8/abr/2015, colheita 19/ago/2015 (133 dias da semeadura à colheita)."
+    },
+    {
+      "nome": "arroz_irrigado_conf_humnoke_0423_143d",
+      "cultura": "arroz_irrigado",
+      "local": "humnoke",
+      "semeadura": "04-23",
+      "dias": 143,
+      "tb": 11,
+      "anos": [
+        2016,
+        2016
+      ],
+      "fonte": "Conferência: Reavis et al. 2021, semeadura 23/abr/2016, colheita 13/set/2016 (143 dias)."
+    },
+    {
+      "nome": "arroz_irrigado_conf_humnoke_0410_138d",
+      "cultura": "arroz_irrigado",
+      "local": "humnoke",
+      "semeadura": "04-10",
+      "dias": 138,
+      "tb": 11,
+      "anos": [
+        2017,
+        2017
+      ],
+      "fonte": "Conferência: Reavis et al. 2021, campo NF, semeadura 10/abr/2017, colheita 26/ago/2017 (138 dias)."
+    }
+  ]
+}

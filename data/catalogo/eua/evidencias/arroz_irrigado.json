@@ -1,0 +1,493 @@
+{
+  "id": "arroz_irrigado",
+  "pais": "EUA",
+  "nome": "Arroz irrigado (rice, inundado)",
+  "nome_cientifico": "Oryza sativa",
+  "familia_botanica": "Poaceae",
+  "sistema": "rice, semeadura a seco em linha com inundação tardia (delayed flood: lâmina permanente a partir de 4-5 folhas até cerca de duas semanas antes da colheita), Delta do Arkansas; a semeadura em água (~6% da área) e o AWD ficam como variantes",
+  "regiao_referencia": "Delta do Arkansas (Stuttgart, leste do Arkansas)",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "113",
+    "ciclo_dias_max": "134",
+    "graus_dia_ciclo_min": "1800",
+    "graus_dia_ciclo_max": "1940",
+    "temp_base_c": "11",
+    "temp_otima_min_c": "20",
+    "temp_otima_max_c": "33",
+    "tmax_critica_c": "35",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "550",
+    "agua_ciclo_mm_max": "630",
+    "kc_inicial": "0.94",
+    "kc_medio": "1.2",
+    "kc_final": "0.9",
+    "profundidade_raiz_m": "0.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "alta",
+    "aporte_biomassa": "alto",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "RICE",
+    "calendario_usda": "Rice, all",
+    "fontes": "SISTEMA: arroz semeado a seco com inundação tardia do Delta do Arkansas; só é candidato com várzea e água de irrigação (regra 8 do motor)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita do Arkansas)|Hardke (ed.), Univ. of Arkansas Rice Production Handbook MP192, cap. 2 (Moldenhauer, Counce & Hardke: estádios, R9 a 20-22% de umidade, 35 d de enchimento, temperaturas), cap. 4 (Tab. 4-8 dias da semeadura à emergência; Tab. 4-15 datas de 20% de umidade por cultivar e época), cap. 6 (Hardke & Norman: método DD50, Tab. 6-3), cap. 9 (biomassa total) e cap. 10 (lâmina e água aplicada)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/arroz_irrigado_gd.json (graus-dia sem teto, Tb 11, na régua do NASA POWER, Stuttgart-AR 2001-2020)|Reavis, Suvočarev, Reba & Runkle, Journal of Hydrology 596:126080, 2021 (ET medida por eddy covariance em lavouras comerciais do leste do Arkansas, 2015-2017; Kc medido)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/arroz_irrigado_etc.json|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C de Infeld et al. 1998, reusada do Brasil)|SOSBAI 2025, Tab. 3.2 (temperaturas ótimas e críticas, reusadas do Brasil)|FAO-56 Tab. 11, 12, 14 e 22 (Kc, fases e raiz)|USDA NASS, Crop Production 2022 Summary (jan. 2023) e 2025 Summary (jan. 2026) (produtividade do arroz no Arkansas 2021-2025)|IPCC 2019 Refinement, Vol. 4, Cap. 11, Tab. 11.2 e 11.1a (resíduo acima do solo)|Linquist, Brouder & Hill, Agronomy Journal 98:1050-1059, 2006 (palha e decomposição no inverno, Califórnia)|PROXY: Feedipedia, Rice straw (PB e digestibilidade; média mundial)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "confianca_parametros": "media",
+    "semeadura_inicio": "04-14",
+    "semeadura_fim": "05-19"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "medido",
+      "nota": "Reusada do Brasil: Tb 11 °C medida em arroz irrigado no RS (Infeld et al. 1998), adotada pela Embrapa Clima Temperado (Steinmetz et al. 2007) e pelo SimulArroz. Mantida para o motor usar a mesma régua nos dois países. O DD50 da Univ. of Arkansas usa Tb 50 °F (10 °C), com Tmax limitada a 94 °F e Tmin limitada a 70 °F (MP192, cap. 6); as somas térmicas desta linha foram refeitas com Tb 11, sem teto, no POWER."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Semeadura -> R9 (grão maduro, 20-22% de umidade, 'ready for harvest', MP192 cap. 2; é o estádio usado no Brasil). MP192: semeadura em 19/mai (fim da janela 'most active' do Handbook 628) -> emergência em 31/mai, 12 dias (Tab. 4-8, estudo de épocas de 2015 em Stuttgart) + RT XP753 (híbrido precoce) emergido em 1/jun -> 20% de umidade em 10/set = 101 dias (Tab. 4-15, DD50 com as normais de 30 anos de Stuttgart). 12 + 101 = 113 dias. Contas simples sobre tabelas oficiais da Univ. of Arkansas."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "MP192: semeadura em 18/abr -> emergência em 3/mai, 15 dias (Tab. 4-8) + Jupiter (grão médio, o mais tardio da Tab. 4-15) emergido em 1/mai -> 20% de umidade em 28/ago = 119 dias. 15 + 119 = 134 dias. Na Tab. 6-3 (emergência em 1/mai) o maior valor é 121 dias (Roy J e Jupiter). Conferência em lavoura comercial: 133-143 dias da semeadura à colheita (Reavis et al. 2021, semeaduras de 8 a 23/abr). Semeaduras do início de abril passam de 140 dias (Tab. 4-15: emergência em 1/abr -> 20/ago para o Jupiter = 141 dias da emergência). Colheita usual (Handbook 628, AR): 29/ago-24/out, 'most active' 9/set-10/out."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 11), scripts/gd_nasa_power.py com eua/cenarios/arroz_irrigado_gd.json, Stuttgart-AR 2001-2020, nas datas e dias do ciclo mais curto (semeadura 19/mai + 113 dias): mediana 1840 (P10 1650, P90 2024). Mínimo = 1840 arredondado para baixo = 1800. Conversão pelos dias porque o DD50 da fonte limita a Tmin a 70 °F, o que o script não reproduz, e porque a fonte não publica a soma térmica do ciclo. Conferência: ciclo médio (Diamond, semeadura 2/mai + 123 d) = 1870; lavouras de Reavis et al. 2021 (semeadura à colheita) = 1868 (2015), 2143 (2016) e 1856 (2017). Sem teto, o calor do Arkansas (Tmax > 34 °C e noites > 21 °C) soma bem mais que a faixa do Brasil (1180-1760, calculada com limites na fonte)."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO, mesmo script e arquivo: ciclo mais longo (semeadura 18/abr + 134 dias, Jupiter), Stuttgart 2001-2020: mediana 1939 (P10 1759, P90 2129). Máximo = 1940. A faixa é estreita porque a cultivar tardia vai com a semeadura cedo (abril frio) e a precoce com a semeadura tarde."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "medido",
+      "nota": "ET medida por eddy covariance (com preenchimento de falhas por rede neural) da semeadura à colheita em lavouras comerciais com inundação tardia no leste do Arkansas (Reavis et al. 2021, Tab. 2): 551 ± 7,1 mm (2015, 133 d), 579 ± 13,4 (2017, 140 d) e 628 ± 6,9 (2017, 138 d). Os autores não acharam diferença de produtividade nem de ET entre inundação tardia e AWD (598-604 mm). Mínimo = 551 arredondado para baixo = 550. É consumo (ET), não a água bombeada."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "medido",
+      "nota": "Maior ET medida na inundação tardia (Reavis et al. 2021): 628 mm -> 630. Média de 595 mm (DF) e 609 (AWD). Conferência: Kc × ET0 do POWER (etc_nasa_power.py, arroz_irrigado_etc.json) dá 694-699 mm nas mesmas lavouras e anos e 649-732 mm (medianas de 20 anos) nos ciclos curto e longo, 10-27% acima da ET medida; os autores também acharam o PM-FAO56 acima do medido (607, 709 e 660 mm). O volume bombeado é outra coisa e não entra: 19-32 acre-in/acre (483-813 mm) por sistema de irrigação (MP192, Tab. 10-8)."
+    },
+    "kc_inicial": {
+      "tipo": "medido",
+      "nota": "Reavis et al. 2021: Kc ini = 0,94 ± 0,03, medido por eddy covariance (sem dados preenchidos) nas lavouras de inundação tardia do Arkansas. TROCADO em relação ao Brasil (1,05 do FAO-56 Tab. 12/14, que é para arroz com lâmina desde a semeadura): no Arkansas ~94% da área é semeada a seco e a lâmina só entra com 4-5 folhas, 30-50 dias depois da semeadura (MP192 cap. 4 e 10; Reavis: primeira inundação aos 37-54 dias). O Kc ini não leva o ajuste climático da eq. 62."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Rice: 1,20 (clima padrão). Conferência: Reavis et al. 2021 mediram 1,16 ± 0,02 no clima úmido e de pouco vento do Arkansas, onde a eq. 62 baixa o Kc (o etc_nasa_power.py ajustou 1,20 para 1,16-1,19 nesses locais). Abaixo do teto de 1,25."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Rice 0,90-0,60: usado o 0,90 (ponta alta). TROCADO em relação ao Brasil (0,60): no Arkansas a lâmina rasa (2-4 in) fica até cerca de duas semanas antes da colheita (MP192 cap. 10), e o Kc end medido por Reavis et al. 2021 foi 0,95 ± 0,11."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Rice 0,5-1,0 m; limite inferior, que o FAO-56 indica para manejo de irrigação, porque o solo fica inundado. Mesma escolha do Brasil (exceção à regra do limite superior)."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica, tipos, perene",
+      "valor_brasil": "Oryza sativa, Poaceae, comercial, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie e papel (grão comercial anual). No sul dos EUA o arroz é japonica tropical (MP192 cap. 2)."
+    },
+    {
+      "coluna": "fixa_nitrogenio, raiz_profunda",
+      "valor_brasil": "false, false",
+      "decisao": "reusado",
+      "motivo": "Botânica; raiz rasa sob inundação."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "11",
+      "decisao": "conferido e mantido",
+      "motivo": "O DD50 do Arkansas usa Tb 50 °F = 10 °C (com Tmax limitada a 94 °F e Tmin a 70 °F). Mantida a Tb 11 do Brasil; somas térmicas refeitas com Tb 11 no POWER."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c",
+      "valor_brasil": "20, 33",
+      "decisao": "reusado",
+      "motivo": "Fisiologia da espécie (SOSBAI Tab. 3.2, Yoshida 1981). O MP192 diz que é difícil fixar a ótima e dá só a da germinação (~87 °F, 30,6 °C)."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "valor_brasil": "35",
+      "decisao": "conferido e mantido",
+      "motivo": "MP192 cap. 2: 'During flowering, air temperatures > 95°F may increase blanking' (95 °F = 35 °C)."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "MP192 cap. 2: frio causa esterilidade na iniciação da panícula, no emborrachamento e na antese, e as geadas de 2007 atingiram plântulas; cap. 4 dá as datas de geada de primavera e outono no leste do Arkansas."
+    },
+    {
+      "coluna": "kc_inicial",
+      "valor_brasil": "1.05",
+      "decisao": "trocado",
+      "motivo": "0,94 medido no Arkansas (semeadura a seco, inundação tardia); o 1,05 do FAO-56 é para lâmina desde a semeadura."
+    },
+    {
+      "coluna": "kc_medio",
+      "valor_brasil": "1.2",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56; medido 1,16 no clima do Arkansas (coerente com a eq. 62)."
+    },
+    {
+      "coluna": "kc_final",
+      "valor_brasil": "0.6",
+      "decisao": "trocado",
+      "motivo": "0,90 do FAO-56: a lâmina fica até ~2 semanas antes da colheita; medido 0,95."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "valor_brasil": "0.5",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 22, limite inferior para solo inundado."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "100, 145",
+      "decisao": "trocado",
+      "motivo": "Arkansas: 113-134 dias da semeadura a 20% de umidade (R9), pelas tabelas do DD50 (o Brasil conta da emergência à maturação)."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "1180, 1760",
+      "decisao": "trocado",
+      "motivo": "Refeito no POWER (Tb 11, sem teto) em Stuttgart: 1800-1940. O verão do Arkansas é bem mais quente que o do RS e, sem teto, soma mais por dia."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "580, 720",
+      "decisao": "trocado",
+      "motivo": "ET medida por eddy covariance em lavouras do Arkansas: 551-628 mm."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 7,3 t/ha, C/N 53, k 0,0040, PB 5,6, DMS 46,1",
+      "decisao": "trocado",
+      "motivo": "Produtividade NASS do Arkansas + IPCC; N da palha e decomposição medidos na Califórnia; forragem pela Feedipedia (média mundial)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabela 'All Rice Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "All Rice Usual Planting and Harvesting Dates - States [...] Arkansas .......:   1,470    Apr 6  Apr 14 - May 19 Jun 2   Aug 29 Sep 9 - Oct 10  Oct 24"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Hardke, J. et al., Rice Stand Establishment, cap. 4 do Arkansas Rice Production Handbook (MP192), Univ. of Arkansas System Division of Agriculture, Tab. 4-8 (fonte: Castaneda et al. 2017) e Tab. 4-15",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-4.pdf",
+      "trecho": "Table 4-8. General seeding, seedling emergence, and flooding date information for the DD50 seeding date study in 2015 at the Rice Research and Extension Center near Stuttgart, AR. [...] April 18 May 2 May 19 [...] Emergence date May 3 May 15 May 31 [...] Days from seeding to emergence 15 13 12 [...] Table 4-15. Influence of emergence date on predicted dates for 20% grain moisture for five cultivars using 30-year weather norms for Stuttgart, Arkansas. [...] Diamond [...] May 15: September 2 [...] RT XP753 August 9 August 10 August 17 August 28 September 10 [...] Jupiter August 20 August 21 August 28 September 8 September 21"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "temp_base_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Hardke, J.; Norman, R., DD50 Rice Management Program, cap. 6 do Arkansas Rice Production Handbook (MP192), Eq. 1 e Tab. 6-3",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-6.pdf",
+      "trecho": "DD50 = (Daily Maximum Temp + Daily Minimum Temp)/2 – 50 [...] Maximum temperature = 94°F if maximum temperature is >94°F. Minimum temperature = 70°F if minimum temperature is >70°F. [...] Long-, medium- and short-grain cultivars are allowed 35, 40, and 50 days, respectively, from 50% heading to 20% grain moisture [...] Table 6-3. Days required for ten rice cultivars, emerged on May 1 [...] RT XP753 19 48 (29) 76 (28) 111 (35) [...] Roy J 19 56 (37) 86 (30) 121 (35) [...] Jupiter 19 58 (39) 81 (23) 121 (40)"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "tmax_critica_c",
+        "sensivel_geada"
+      ],
+      "fonte": "Moldenhauer, K.; Counce, P.; Hardke, J., Rice Growth and Development, cap. 2 do Arkansas Rice Production Handbook (MP192)",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-2.pdf",
+      "trecho": "In Arkansas, most long-grains ripen in 35 days [...] Maturity (R9 growth stage) – The whole grain is hard and ready for harvest. This stage is reached at approximately 20 to 22 percent moisture. [...] Seedling germination and emergence typically vary from 5 to 28 days depending on the environment. [...] During flowering, air temperatures > 95°F may increase blanking. [...] Panicle initiation (R0), boot stage (R2) during microsporogenesis and anthesis (flowering – R4) are the stages that are most sensitive to low temperature stress."
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/arroz_irrigado_gd.json (NASA POWER diário, comunidade AG; Tb 11, sem teto)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "arroz_irrigado_min_stuttgart_0519_113d: n 20, mediana 1840 (mín 1594, máx 2045, P10 1650, P90 2024); arroz_irrigado_med_stuttgart_0502_123d: mediana 1870; arroz_irrigado_max_stuttgart_0418_134d: mediana 1939 (mín 1740, máx 2173, P10 1759, P90 2129); conferência nas lavouras de Reavis et al. 2021: 2015 1868; 2016 2143; 2017 1856"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "kc_inicial",
+        "kc_medio",
+        "kc_final",
+        "ciclo_dias_max"
+      ],
+      "fonte": "Reavis, C.W.; Suvočarev, K.; Reba, M.L.; Runkle, B.R.K., Impacts of alternate wetting and drying and delayed flood rice irrigation on growing season evapotranspiration, Journal of Hydrology 596:126080, 2021 (lavouras comerciais em zero grade, leste do Arkansas, 34°35' N, 91°45' W; manuscrito aceito no NSF-PAR)",
+      "url": "https://par.nsf.gov/servlets/purl/10217351",
+      "trecho": "These methods determined growing season ET values between 560 mm and 636 mm. This study found that there were no significant differences in cumulative ET or yield [...] Table 2 [...] NF 2015 DF 551 ± 7.1 133 [...] 2017 DF 628 ± 6.9 138 [...] SF [...] 2017 DF 579 ± 13.4 140 [...] Fields under AWD management averaged 609 mm while fields under DF management averaged 595 mm [...] we estimate the Kc, ini, Kc,mid, and Kc,end to be 0.94 ± 0.03, 1.16 ± 0.02, and 0.95 ± 0.11, respectively."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO (conferência): scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/arroz_irrigado_etc.json (NASA POWER)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "arroz_irrigado_conf_humnoke_0408_133d: ETc 699 contra 551 medido (+26,9%); arroz_irrigado_conf_humnoke_0410_138d: 694 contra 628 (+10,5%); arroz_irrigado_min_stuttgart_0519_113d: mediana 649 (P10 573, P90 748); arroz_irrigado_max_stuttgart_0418_134d: mediana 732 (P10 632, P90 834)"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max",
+        "kc_final"
+      ],
+      "fonte": "Henry, C.; Daniels, M.; Hamilton, M.; Hardke, J., Water Management, cap. 10 do Arkansas Rice Production Handbook (MP192), Tab. 10-8 (fonte: Rice Research Verification Program; Vories et al. 2011)",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-10.pdf",
+      "trecho": "Table 10-8. Typical water use amounts applied to rice by irrigation system. [...] Zero grade 19 [...] Precision grade 32 [...] Non-precision grade 32 [...] Multiple inlet 24 [ac-in/ac] [...] A shallow flood depth of 2 to 4 inches should be maintained until about two weeks prior to harvest"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Steinmetz et al., Estádios de desenvolvimento de 10 cultivares de arroz irrigado expressos em graus-dia, XV CBAgro, Embrapa Clima Temperado, 2007 (fonte da Tb do Brasil, reusada; ver data/catalogo/evidencias/arroz_irrigado.json)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/743981/1/CBAgro152007Estadios2081.pdf",
+      "trecho": "temperatura base (Tb) de 11ºC (INFELD et al., 1998), da emergência (i=1) até a data de cada estádio"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, 2025, cap. 3 (fonte reusada do Brasil)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "A temperatura ótima para o desenvolvimento do arroz situa-se na faixa de 20 a 35°C, para a germinação, de 30 a 33°C, para a floração, e de 20 a 25°C, para a maturação (Tabela 3.2)."
+    },
+    {
+      "colunas": [
+        "kc_medio",
+        "kc_final",
+        "kc_inicial",
+        "agua_ciclo_mm_min"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 11, Tabela 12 e Tabela 14",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Rice 30 30 60 30 150 Dec; May Tropics; Mediterranean [...] Rice 1.05 1.20 0.90-0.60 1 [...] For rice growing in paddy fields with a water depth of 0.10-0.20 m, the ET c during the initial stage mainly consists of evaporation from the standing water. The K c ini in Table 12 is 1.05 for a sub-humid climate with calm to moderate wind speeds."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Rice 0.5-1.0 0.20 4 [...] The smaller values for Zr may be used for irrigation scheduling and the larger values for modelling soil water stress or for rainfed conditions."
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary (jan. 2026) e Crop Production 2022 Summary (jan. 2023), Rice Area Planted and Harvested, Yield, and Production by Class",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "All [...] Arkansas ...........:   7,550       7,640       7,480 [lb/acre, 2023-2025]; cropan23: All [...] Arkansas ...........:   7,500       7,630       7,410 [2020-2022]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "IPCC 2019 Refinement to the 2006 Guidelines, Vol. 4, Cap. 11, Tabela 11.2 (Updated) e Tabela 11.1a",
+      "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf",
+      "trecho": "AGDM(T) = Crop(T) • Slope(T) + Intercept(T) [...] Rice 0.95 ±19% 2.46 ± 41% 0.47 [Tab. 11.1a, Rice: Dry matter fraction of harvested product (DRY) 0.89]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "Roberts, T. et al., Soil Fertility, cap. 9 do Arkansas Rice Production Handbook (MP192) (conferência da biomassa)",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-9.pdf",
+      "trecho": "Based on an average yield of 200 bushels per acre and total aboveground biomass (grain and straw) of 20,000 pounds per acre [...] A mature rice crop, including grain and straw (all above-ground biomass), may weigh 20,000 pounds per acre (dry weight)"
+    },
+    {
+      "colunas": [
+        "cn_palhada",
+        "k_dia",
+        "meia_vida_dias",
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "Linquist, B.A.; Brouder, S.M.; Hill, J.E., Winter Straw and Water Management Effects on Soil Nitrogen Dynamics in California Rice Systems, Agronomy Journal 98:1050-1059, 2006 (Maxwell e Biggs-CA, inverno 1995-1996)",
+      "url": "https://linquist.ucdavis.edu/sites/g/files/dgvnsk6581/files/inline-files/2006-Linquist-et-al-CA-straw-and-N-mgmt_0.pdf",
+      "trecho": "In the incorporate and roll treatments, where all the straw remained in the field following harvest, average straw biomass was 6933 and 7102 kg ha-1 at the Maxwell and Biggs sites [...] Straw N concentration was similar across straw treatments at each site, averaging 0.89%N at Maxwell and 0.74%N at Biggs. [...] Table 3. Residue straw before planting in 1996. Estimates are based on litter bag data. [...] Flood [...] roll 45 b [...] 52 ab [...] Nonflood [...] roll 59 a [...] 65 b [% remaining in litter bag, Maxwell e Biggs] [...] The bags were removed before the start of spring land preparation"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE/CIRAD/AFZ/FAO), Rice straw",
+      "url": "https://www.feedipedia.org/node/557",
+      "trecho": "considered as a low quality and variable roughage [...] Crude protein % DM 4.2 (SD 1.1, 2.4-6.8, Nb 237) [...] OM digestibility, Ruminant % 49.8 (SD 2.8, 46.0-56.0, Nb 15)"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026 (nome da commodity na tabela oficial; o QuickStats não foi consultado por falta de NASS_API_KEY)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Rice Area Planted and Harvested, Yield, and Production by Class - States and United States: 2023-2025 [...] Long grain [...] Medium grain [...] Short grain [...] All rice"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats (API), séries por condado baixadas pelo time em 15/11/2026 com data/scripts/baixar_nass_eua.py (saída data/eua/nass/producao_condado.csv: 532 linhas de 'arroz', 2016-2025); conferência do nome da série, não dos números",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "O short_desc é o nome exato da série no Quick Stats (conferido por condado com get_counts). [...] \"RICE - ACRES PLANTED\", \"RICE - ACRES HARVESTED\", \"RICE - PRODUCTION, MEASURED IN CWT\""
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Quick Stats API, página de uso (exemplo de resposta do api_GET), lida em 15/11/2026 (formato do short_desc e nomes dos campos)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "\"util_practice_desc\":\"ALL UTILIZATION PRACTICES\" [...] \"short_desc\":\"CORN - ACRES PLANTED\" [...] \"Class_desc\":\"ALL CLASSES\" [...] \"commodity_desc\":\"CORN\""
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Arkansas'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Arkansas [...] Rice, all ..............:   1,470    Apr 6  Apr 14 - May 19 Jun 2   Aug 29 Sep 9 - Oct 10  Oct 24 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"RICE - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'RICE', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 799, COUNTY 6397"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 9.5,
+      "max": 9.7,
+      "tipico": 9.6
+    },
+    "cn_palhada": {
+      "min": 45,
+      "max": 54,
+      "tipico": 49
+    },
+    "k_dia": {
+      "valor": 0.004,
+      "min": 0.0029,
+      "max": 0.0053
+    },
+    "meia_vida_dias": {
+      "valor": 173
+    },
+    "condicao_decomposicao": "Palha de arroz rolada sobre o solo (sem incorporação) em sacolas de náilon de 1,6 mm, da colheita (outono) até antes do preparo de primavera, com e sem inundação de inverno, Maxwell e Biggs, Califórnia, 1995-1996 (Linquist et al. 2006, Tab. 3). Não é o Arkansas: não achei decomposição de palha de arroz medida no Delta.",
+    "pb_pct": 4.2,
+    "digestibilidade_pct": {
+      "valor": 49.8,
+      "tipo": "OMD",
+      "n": 15,
+      "medicao": "medida",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes da palha de arroz (Rice straw), Feedipedia, valor medido (sem *), n = 15, desvio 2,8. Média mundial (PROXY), não é dos EUA."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Palha e soca de arroz depois da colheita do grão. Volumoso de baixo valor ('low quality and variable roughage', Feedipedia). Não achei recomendação de pastejo da resteva na Univ. of Arkansas.",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo depois da colheita do grão, pela Tab. 11.2 do IPCC 2019: AGDM = 0,95 × Crop + 2,46 (t MS/ha), com Crop = produtividade × 1,121/1000 (lb/acre -> t/ha) × 0,89 (DRY, Tab. 11.1a). Produtividade NASS do Arkansas (todas as classes), 2021-2025: 7630, 7410, 7550, 7640, 7480 lb/acre. Típico = mediana 7550 lb/acre = 8,46 t/ha -> 9,6 t/ha; mínimo 2022 (7410) -> 9,5; máximo 2024 (7640) -> 9,7. Conferências: a Univ. of Arkansas (MP192 cap. 9) dá 20.000 lb/acre de biomassa seca total para 200 bu/acre (9.000 lb de grão), ou ~11.000 lb/acre (12,3 t/ha) de palha; Linquist et al. 2006 mediram 6,9-7,4 t/ha de palha na Califórnia. Não desconta queima, enfardamento nem a parte enterrada no preparo. C/N: N da palha medido por Linquist et al. 2006 (0,74% e 0,89%) com C de 40% (premissa, a mesma usada no Brasil): 40/0,89 = 45 (mínimo), 40/0,74 = 54 (máximo), 40/0,815 = 49 (típico). Sem C/N medido no Arkansas.",
+      "decomposicao": "Linquist et al. 2006, Tab. 3: palha rolada que restava nas sacolas antes do preparo de primavera: sem inundação 59% (Maxwell) e 65% (Biggs); com inundação de inverno 45% e 52%. O artigo não dá a data exata de retirada: as sacolas entraram depois do manejo de outono (a inundação começou em 1 e 12/nov) e saíram antes do preparo de primavera (as operações começaram em abril). Premissa: 150 dias. k = -ln(fração)/150: 0,0035, 0,0029, 0,0053, 0,0044; valor = mediana = 0,0040 (T½ = 0,693/0,0040 = 173 d); mínimo 0,0029, máximo 0,0053. Com 130 ou 170 dias o valor iria de 0,0046 a 0,0035. Palhada que sobra em 60 dias: 9,6 × e^(-0,0040×60) = 7,6 t/ha.",
+      "colheita": "Handbook 628 (AR): colheita usual de 29/ago a 24/out, 'most active' de 9/set a 10/out. O MP192 manda drenar ~2 semanas antes da colheita e colher antes do R9 de toda a lavoura, para não perder rendimento de grãos inteiros.",
+      "codigos": "codigo_nass 'RICE' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'RICE - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'RICE', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 799, COUNTY 6397. Série de produção: 'RICE - PRODUCTION, MEASURED IN CWT'. No arquivo do time (data/eua/nass/producao_condado.csv) a cultura se chama 'arroz' (cultura_id), não 'arroz_irrigado'."
+    },
+    "resultado": {
+      "aporte_biomassa": "alto",
+      "cobertura_solo": "alta",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 9.6,
+      "ms_remanescente_t_ha": 7.55,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "alto",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "alta",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "calendario_usda",
+      "antes": "All Rice",
+      "depois": "Rice, all",
+      "motivo": "Conferência de 15/11 (pedido do coordenador): o nome passa a ser o da linha nas tabelas por estado do Handbook 628, o mesmo de data/eua/nass/datas_plantio.csv (coluna nome_nass). 'All Rice' é o título da tabela nacional."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "",
+      "depois": "04-14 / 05-19",
+      "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Arkansas, lida em data/eua/nass/datas_plantio.csv (linha arroz,Rice, all,AR)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'RICE' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato... | observacoes.codigos: codigo_nass 'RICE'. short_desc 'RICE - ...' = commodity_desc 'RICE', todas as classes (sem classe no nome). No arquivo d...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'RICE - ACRES PLANTED', registros SURVEY: STATE 799, COUNTY 6397; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    }
+  ],
+  "pendencias": [
+    "BLOQUEIO DE CARGA: o id arroz_irrigado não existe em agroia/base/culturas.json (lá só existe arroz). O montar_csv.py acusa o id até ele entrar no catálogo do app, com sinônimos (rice, arroz irrigado, arroz inundado, paddy rice). Não editei agroia/base/.",
+    "Motor (regra 8): só sugerir arroz_irrigado em várzea com água de irrigação; a chuva do ciclo (mediana 323-426 mm em Stuttgart, POWER) fica bem abaixo da ET (550-630 mm) e o filtro de chuva eliminaria a cultura em todo lugar.",
+    "graus_dia: CÁLCULO pelos dias do DD50 (normais de 30 anos), não por uma soma térmica publicada. O DD50 limita a Tmax a 94 °F e a Tmin a 70 °F; sem teto, a soma do Arkansas fica 300-600 °C·dia acima da faixa do Brasil, e um ponto no RS ficaria abaixo do mínimo desta linha mesmo sendo apto. Resolveria: os limiares DD50 por cultivar (B.R. Wells Rice Research Studies, 'DD50 Thermal Unit Thresholds for New Rice Cultivars') e um modo do script com o limite de 70 °F na Tmin, ou uma decisão do coordenador de usar no motor a mesma régua com teto do DD50 para o arroz.",
+    "ciclo_dias: 113-134 dias da semeadura a 20% de umidade (R9), com cultivares da Tab. 4-15 do MP192 (RT XP753, Diamond, Jupiter; Roy J aparece só na Tab. 6-3). As tabelas são previsões do DD50 com normais de 30 anos, não medidas de campo; as lavouras de Reavis et al. 2021 deram 133-143 dias da semeadura à colheita. Semeaduras do início de abril (antes da janela 'most active') passam de 140 dias. As cultivares atuais (2024-2026) não foram conferidas.",
+    "agua: a ET medida é de 2 lavouras comerciais em 3 anos (um único local). Os autores dizem que a produtividade não diferiu entre os manejos, mas não conferi o valor da produtividade (não está no texto lido). Kc × ET0 do POWER dá 10-27% mais que o medido; se o motor calcular a demanda no local, vai dar ~650-730 mm.",
+    "kc_inicial = 0,94 (medido, Arkansas) troca o 1,05 do FAO-56 usado no Brasil. Se o coordenador quiser manter a convenção do FAO-56 nos dois países, voltar para 1,05 (o FAO-56 considera lâmina desde a semeadura, que não é o sistema do Arkansas).",
+    "kc_final = 0,90 (FAO-56, ponta alta) troca o 0,60 do Brasil por causa do manejo do Arkansas (lâmina até ~2 semanas antes da colheita); o medido foi 0,95 ± 0,11.",
+    "profundidade_raiz_m = 0,5 segue o Brasil (limite inferior do FAO-56 para solo inundado). Se o coordenador preferir a regra uniforme do limite superior, usar 1,0.",
+    "Frio na pré-floração (esterilidade) continua sem coluna, como no Brasil; no Arkansas o risco de calor noturno no enchimento (qualidade e rendimento de grãos inteiros, MP192 cap. 2) também não tem coluna.",
+    "regua: decomposição e N da palha são da Califórnia (Linquist et al. 2006), com a duração das sacolas estimada em 150 dias; C/N calculada com C de 40% (premissa). PB e digestibilidade são a média mundial da Feedipedia (PROXY). A palhada pelo IPCC (9,6 t/ha) fica entre a medida da Califórnia (7,0) e a conta da Univ. of Arkansas (12,3). No Arkansas muita palha é queimada, rolada ou fica sob a inundação de inverno (aves aquáticas); isso não foi descontado. Resolveria: medidas de palha e decomposição no Delta (USDA-ARS Jonesboro ou Univ. of Arkansas).",
+    "calendario_usda: 'Rice, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Todas as classes ('Rice, all').",
+    "semeadura_inicio/fim (04-14 a 05-19) = 'most active' do Handbook 628 (2010) no Arkansas (início 6/abr, fim 2/jun); em data/eua/nass/datas_plantio.csv a linha está como cultura_id 'arroz'. Bate com cenarios/arroz_irrigado_gd.json (18/abr, 2/mai e 19/mai em Stuttgart); as conferências de Humnoke (8 e 10/abr) ficam poucos dias antes do 'most active', dentro do início de 6/abr."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
+}

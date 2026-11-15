@@ -1,0 +1,598 @@
+{
+  "id": "feijao",
+  "pais": "EUA",
+  "nome": "Feijão seco (dry edible bean)",
+  "nome_cientifico": "Phaseolus vulgaris",
+  "familia_botanica": "Fabaceae",
+  "sistema": "dry edible bean (classes pinto e navy), sequeiro, colheita do grão seco (arranquio/enleiramento ou colheita direta), Dakota do Norte; mesma espécie do Brasil (feijão comum), mas em uma safra de verão no norte dos EUA, semeada de meados de maio a início de junho. A linha vale para a ND e o Vale do Red River (estados_validos ND|MN); Michigan fica em regua.arranjos.michigan",
+  "regiao_referencia": "Dakota do Norte (Carrington e Langdon, ensaios de sequeiro da NDSU); estados_validos ND|MN (Vale do Red River). Michigan (Saginaw Valley e Thumb: Bay, Tuscola, Huron, Sanilac) só em regua.arranjos.michigan",
+  "valores": {
+    "tipos": "comercial|fixadora_n",
+    "perene": "false",
+    "ciclo_dias_min": "86",
+    "ciclo_dias_max": "113",
+    "graus_dia_ciclo_min": "800",
+    "graus_dia_ciclo_max": "1130",
+    "temp_base_c": "10",
+    "temp_otima_min_c": "18",
+    "temp_otima_max_c": "25",
+    "tmax_critica_c": "30",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "380",
+    "agua_ciclo_mm_max": "432",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "0.35",
+    "profundidade_raiz_m": "0.9",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "baixo",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "BEANS, DRY EDIBLE, INCL CHICKPEAS",
+    "calendario_usda": "Beans, dry edible",
+    "fontes": "NDSU Carrington Research Extension Center, Dry Edible Bean - Dryland, Variety Trial Data 2018, 2019, 2020, 2022, 2023 e 2025 (dias da semeadura à maturação fisiológica, DAP, e data de semeadura)|NDSU Langdon Research Extension Center, Dry Bean Variety Trial Data 2019, 2020 e 2022 (dias até R9, 80% das vagens amarelas)|Michigan Bean Commission 2023 Research Report (MSU): ensaio estadual de 2022 (Tab. 1 datas de semeadura e GDD base 50 °F; Tab. 5 navy, maturação em DAP) e ensaio de qualidade pinto/preto 2020-2021 (dias até a maturação fisiológica) - só no arranjo regua.arranjos.michigan|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, 'Beans, dry edible' (semeadura e colheita ND e MI)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/feijao_gd.json (graus-dia sem teto, Tb 10, NASA POWER): máximo no ano e no local de cada ensaio da ND; mínimo pela convenção (mediana 2001-2020 de feijao_langdon_clima_0525_86d); arranjo de Michigan com feijao_pigeon_clima_0617_96d e os ensaios de MI|NDSU Extension, Water Spouts No. 306, ago. 2019 (uso de água do feijão pinto na estação, 15-17 pol.) e No. 311, jul. 2020 (julho+agosto = 12,8 pol., ~70% do total)|CONFERÊNCIA e CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/feijao_etc.json (Kc FAO-56 x ET0 do NASA POWER, 2001-2020): conferência da água na ND; água do arranjo de Michigan (feijao_min_kawkawlin_0605_96d e feijao_kawkawlin_0605_103d)|Yonts, UNL Panhandle REC, Dry Bean Water Management, Central Plains Irrigation Association Proceedings 2006 (16 pol. de água; raízes nos primeiros 18 pol.; conferência, oeste do Nebraska)|High Plains Regional Climate Center (UNL), AWDN crop_drybean (GDD 86/50 por fase; conferência, sem autor nem data)|FAO-56 Tab.11 (fases do feijão seco, clima continental), Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.22 (raiz; limite superior = sequeiro)|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, temperatura ótima, tmax 30 °C na floração, geada; ver data/catalogo/evidencias/feijao.json)|Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders (queda de flores com +90 °F de dia e 75 °F à noite; conferência americana da tmax)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024) (produtividade do feijão seco ND 2021-2025; MI no arranjo)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.1a (R_AG de Beans and Pulses, regra 6 do motor) e Tab. 11.2 (Dry bean, conferência)|Chatterjee & Acharya, Archives of Agronomy and Soil Science 66(5):614-624, 2020 (decomposição no Vale do Red River, ND/MN; lido só o resumo)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Common bean straw, node 12006 (PB e DMO; valores pontuais)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "confianca_parametros": "media",
+    "estados_validos": "ND|MN",
+    "semeadura_inicio": "05-19",
+    "semeadura_fim": "06-06"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "convencao_com_fonte",
+      "nota": "Tb 10 °C reusada do Brasil (base convencional dos estudos brasileiros de graus-dia do feijoeiro; mesma origem no Brasil). Conferida nos EUA: a MSU calcula o GDD do feijão seco com '([MAX + MIN] ÷ 2) – 50 = GDD' (50 °F = 10 °C; Michigan Bean Commission 2023, Tab. 1), e o arquivo de fases do HPRCC usa limite inferior de 50 °F. Mesma régua nos dois países."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "Semeadura -> maturação fisiológica, ensaios de cultivares da NDSU em sequeiro, 2 locais (Carrington 2018-2025, 6 anos; Langdon 2019, 2020 e 2022). Critério: em cada local-ano, a pinto ou navy liberada mais precoce (quase sempre Windbreaker). Carrington: 82 (2018), 86 (2019), 83 (2020), 84 (2022), 85 (2023), 97 (2025, ano frio); Langdon: 107 (2019), 99 (2020), 105 (2022). Mediana dos 9 local-anos = 86 dias. Extremos: 81,5 (Carrington 2018) a 107 (Langdon 2019)."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "Semeadura -> maturação fisiológica, ensaios de sequeiro da NDSU (2 locais, vários anos). Critério (o mesmo da canola e do girassol): a MAIOR duração da cultivar pinto ou navy liberada mais tardia na ND, Langdon 2022 (semeadura 27/mai): HMS Medalist e ND-Polar (navy) 113 dias até R9. Outras tardias da ND: Carrington 88 (2018), 93 (2019), 93 (2020), 96 (2022), 96 (2023), 110 (2025, ano frio); Langdon 111 (2019), 110 (2020), 113 (2022). Até 15/11 a linha usava 103 (Michigan); Michigan passou para regua.arranjos.michigan (revisão do lote 3, A-01). A colheita vem depois (Handbook 628)."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO pela convenção do README (mínimo = mediana 2001-2020 do cenário mais frio da região de referência; decisão do usuário na revisão do lote 3, A-02): scripts/gd_nasa_power.py, cenário feijao_langdon_clima_0525_86d de eua/cenarios/feijao_gd.json (Langdon-ND, semeadura 25/mai + 86 dias, Tb 10, sem teto, NASA POWER): mediana 806 (P10 593, mín 551, máx 976) -> 800 (arredondado para baixo). Langdon é o local mais frio dos ensaios (mais ao norte); 86 dias = mediana da precoce nos ensaios da ND; 25/mai = data típica dos ensaios. No feijão, semear mais tarde soma MAIS graus-dia na mesma duração (feijao_langdon_clima_0605_86d, 5/jun: mediana 845), então o cenário mais frio é Langdon na data dos ensaios, não a semeadura mais tardia. Conferência, precoce no ano e no local de cada ensaio (modo 'dias'): Carrington 984 (2018), 868 (2019), 887 (2020), 920 (2022), 956 (2023), 1016 (2025); Langdon 953 (2019), 974 (2020), 966 (2022); mediana 956 (era o valor da linha até 15/11, 950: com o corte de 90% o motor eliminaria o feijão em Langdon, onde a NDSU tem ensaio). Clima Carrington 25/mai + 85 d: mediana 866."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO no POWER (mesmo script e arquivo, modo 'dias', no ano e no local de cada ensaio, Tb 10, sem teto). Maior soma das tardias da ND: Carrington 2025 (2/jun + 110 dias, ND Rodeo e ND Polar) = 1139 -> 1130 (arredondado para baixo). Demais tardias da ND: Carrington 1051 (2018), 930 (2019), 1030 (2020), 1058 (2022), 1085 (2023); Langdon 973 (2019), 1005 (2020), 1008 (2022, 113 dias). Até 15/11 a linha usava 1095 (mediana das tardias de Michigan), que passou para regua.arranjos.michigan (revisão do lote 3, A-01). Brasil: 980-1270."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "NDSU Water Spouts No. 306 (ago. 2019), tabela de pesquisas 'mainly from North Dakota, Minnesota and South Dakota': feijão pinto, 'Water Use for the Growing Season (inches)' 15 to 17. 15 x 25,4 = 381 -> 380 mm (arredondado para baixo). Consumo com produtividade plena (tabela de resposta à irrigação). Conferência no POWER (feijao_etc.json, 2001-2020): Carrington 86 dias = 399 mm. Michigan (clima úmido, 329-342 mm no POWER) fica no arranjo regua.arranjos.michigan."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "Mesma fonte: 17 x 25,4 = 432 mm. Conferências: Water Spouts No. 311 (jul. 2020) dá 12,8 pol. em julho+agosto, 'about 70% of the growing season total from emergence to harvest' (~18,3 pol. = 465 mm até a colheita); POWER: Carrington 96 dias = 439 mm, Langdon 110 dias = 463 mm; Yonts (UNL, oeste do Nebraska) 16 pol. = 406 mm."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12: Kc ini 0,4 do grupo 'e. Legumes', que a linha 'Beans, dry and Pulses' herda. Igual ao Brasil."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Beans, dry and Pulses: 1,15 (clima padrão; abaixo do teto de 1,25). No POWER a eq. 62 dá 1,18 na ND e 1,14 em Michigan. A Tab. 11 tem fases do feijão seco para 'Continental Climates' e Idaho (EUA)."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Beans, dry and Pulses: 0,35 (colheita seca)."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Beans, dry and Pulses 0,6-0,9 m; limite superior (sequeiro). Conferência: Yonts (UNL 2006), 'the majority of roots found in the top 18 in. of the soil profile' (0,46 m), com raízes mais fundas no fim do ciclo."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica, tipos, fixa_nitrogenio, raiz_profunda",
+      "valor_brasil": "Phaseolus vulgaris, Fabaceae, comercial|fixadora_n, true, false",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie (feijão comum; nos EUA as classes pinto e navy). Fixação de N própria das leguminosas; raiz rasa (Yonts 2006: maioria das raízes nos primeiros 18 pol.)."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "10",
+      "decisao": "conferido e mantido",
+      "motivo": "A MSU usa base 50 °F (10 °C) no GDD do feijão seco (Michigan Bean Commission 2023, Tab. 1); o HPRCC também usa limite inferior de 50 °F. Mesma régua nos dois países."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c",
+      "valor_brasil": "18, 25",
+      "decisao": "reusado",
+      "motivo": "Fisiologia da espécie; sem fonte americana lida (ver pendências)."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "valor_brasil": "30",
+      "decisao": "conferido e mantido",
+      "motivo": "Dano na floração (abscisão de flores, ZARC). Fonte americana (Utah State) fala em +90 °F de dia/75 °F à noite (32/24 °C) com ar seco: divergência de 2 °C registrada em pendências."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "true",
+      "decisao": "conferido e mantido",
+      "motivo": "No ensaio de Carrington de 2025, 34-35 °F em setembro (enchimento) reduziram a produtividade."
+    },
+    {
+      "coluna": "kc_inicial, kc_medio, kc_final, profundidade_raiz_m",
+      "valor_brasil": "0.4, 1.15, 0.35, 0.9",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 Tab. 12 e Tab. 22 (mesma espécie); a Tab. 11 traz fases do feijão seco em clima continental e em Idaho (EUA)."
+    },
+    {
+      "coluna": "ciclo_dias_min, ciclo_dias_max",
+      "valor_brasil": "60, 110",
+      "decisao": "trocado",
+      "motivo": "Ensaios da NDSU em sequeiro: 86-113 dias da semeadura à maturação fisiológica (pinto e navy na Dakota do Norte). Michigan (96-103) no arranjo."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
+      "valor_brasil": "980, 1270",
+      "decisao": "trocado",
+      "motivo": "Recalculados no POWER (Tb 10, sem teto): mínimo 800 pela convenção (mediana 2001-2020 em Langdon, 25/mai + 86 d), máximo 1130 (maior tardia da ND, Carrington 2025). Michigan (910-1160) no arranjo. Dentro da ordem de grandeza do Brasil."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "valor_brasil": "250, 400",
+      "decisao": "trocado",
+      "motivo": "NDSU: 15-17 pol. (380-432 mm) para o pinto na Dakota do Norte."
+    },
+    {
+      "coluna": "regua",
+      "valor_brasil": "palhada 2,3 t/ha medida (Chagas 2007); k 0,007; DMO 54,7 (Feedipedia)",
+      "decisao": "trocado",
+      "motivo": "Palhada pela regra 6 do motor com a produtividade NASS da ND; k do Vale do Red River (inverno frio, decomposição lenta). A forragem continua a da Feedipedia (mesma base do Brasil)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Carrington Research Extension Center, 2018 Variety Trial Data, Dry Edible Bean - Dryland, Carrington",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/carrington-rec/2018-trial-results/2018-trial-results-dry-bean-dryland-carrington",
+      "trecho": "Days to PM [...] Windbreaker Pinto 81.5 [...] Palomino Pinto 87.8 [...] T9905 Navy 88.0 [...] Planting Date: May 25; Harvest Date: Aug 29"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Carrington REC, 2019 Variety Trial Data, Dry Edible Bean - Dryland",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/carrington-rec/2019-trial-results/2019-trial-results-dry-bean-dryland-carrington",
+      "trecho": "Days to PM [...] Windbreaker Pinto 86.0 [...] ND Falcon Pinto 93.0 [...] StayBright Pinto 93.3 [...] T9905 Navy 91.3 [...] Planting Date = May 29"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Carrington REC, 2020 Variety Trial Data, Dry Edible Bean - Dryland",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/carrington-rec/2020-trial-results/2020-trial-results-dry-bean-dryland-carrington",
+      "trecho": "Days to PM [...] Windbreaker Pinto 40.8 84.5 [...] DR Wood Pinto 52.5 93.3 [...] Cowboy Pinto 41.0 82.8 [...] Planting Date = May 27"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Carrington REC, 2022 Variety Trial Data, Dry Edible Bean - Dryland",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/carrington-rec/2022%20trial%20results/2022-trial-results-dry-bean-dryland-carrington",
+      "trecho": "Days to Maturity [...] Windbreaker Pinto 84.3 [...] ND-Polar Navy 96.3 [...] Planting Date = June 2; Harvest Date = September 8"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Carrington REC, 2023 Variety Trial Data, Dry Edible Bean - Dryland",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/carrington-rec/copy_of_2022%20trial%20results/2023-trial-results-dry-bean-dryland-carrington",
+      "trecho": "Days to Maturity DAP [...] Windbreaker Pinto 85 [...] T9905 Navy 96 [...] Plant Date = May 25; Harvest Date = September 20"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_max",
+        "sensivel_geada"
+      ],
+      "fonte": "NDSU Carrington REC, 2025 Variety Trial Data, Dry Edible Bean - Dryland",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/carrington-rec/2025%20trial%20results/2025-trial-results-dry-bean-dryland-carrington",
+      "trecho": "Windbreaker Pinto 97 [...] ND Polar Navy 110 [...] ND Rodeo SD-Pinto 110 [...] Planting Date = June 2; Harvest Date = September 30 [...] White mold and low temperatures on September 3, 4, 6 and 7 (35℉, 34℉, 35℉, and 34℉) impacted yield."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Langdon Research Extension Center, 2019, 2020 e 2022 Variety Trial Data, Dry Bean",
+      "url": "https://www.ag.ndsu.edu/varietytrialS/langdon-rec/2020-trial-results/2020-trial-results-dry-bean-langdon",
+      "trecho": "2020: Windbreaker Pinto 99 [...] Argosy Navy 110 [...] Planting Date: May 29 [...] Days to mature (R9) at least 80% of pods showing yellow and mostly ripe. | 2019 (semeadura 20/mai): Windbreaker 107, T9905 111 | 2022 (27/mai): Windbreaker 105, HMS Medalist e ND-Polar 113"
+    },
+    {
+      "colunas": [
+        "regua"
+      ],
+      "fonte": "Michigan Bean Commission 2023 Research Report (MSU), Evaluating canning quality of black and pinto bean varieties, Tab. 2 (2020-2021) - arranjo regua.arranjos.michigan",
+      "url": "https://michiganbeastg.wpengine.com/wp-content/uploads/2023/02/Michigan-Bean-Commission-2023-Research-Report-Final.pdf",
+      "trecho": "Planting dates were June 7,2020 in Bay County and June 6, 2020 in Tuscola County. In 2021 dry beans were planted on May 31st in Bay County and June 11th in Huron County. [...] Charro 103 [...] LaPaz 98 [...] Windbreaker 96 [...] Dry bean maturity averaged across location is days after planting to physiological maturity"
+    },
+    {
+      "colunas": [
+        "regua",
+        "temp_base_c"
+      ],
+      "fonte": "Michigan Bean Commission 2023 Research Report (MSU), 2022 performance trials, Tab. 1 e Tab. 5 (navy) - arranjo regua.arranjos.michigan e conferência da Tb",
+      "url": "https://michiganbeastg.wpengine.com/wp-content/uploads/2023/02/Michigan-Bean-Commission-2023-Research-Report-Final.pdf",
+      "trecho": "Bay Schindler Farms June 15 [...] 1,847 [...] Huron [...] June 8 [...] 1,868 [...] Sanilac [...] June 3 [...] 1,998 [...] Tuscola Rayl Farms June 2 [...] 2,108 [...] Growing degree days (GDD) were calculated using the following equation: ([MAX + MIN] ÷ 2) – 50 = GDD [...] Plant maturity was rated visually in days after planting (DAP) for all locations. [...] Merlin 103 [...] Vigilant 95"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "regua"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/feijao_gd.json (NASA POWER, Tb 10 °C, sem teto, no ano de cada ensaio)",
+      "url": "data/catalogo/eua/cenarios/feijao_gd.json",
+      "trecho": "feijao_langdon_clima_0525_86d: n = 20 anos | mediana 806 | mín 551 | máx 976 | P10 593 -> mínimo 800. feijao_langdon_clima_0605_86d: mediana 845. ND tardia: Carrington 1051, 930, 1030, 1058, 1085, 1139 (2025, 110 d); Langdon 973, 1005, 1008 -> máximo 1130. ND precoce (conferência): Carrington 984, 868, 887, 920, 956, 1016; Langdon 953, 974, 966. Michigan (arranjo): feijao_pigeon_clima_0617_96d mediana 919 (P10 782) -> 910; feijao_kawkawlin_clima_0617_96d 987; tardia 103 d: Kawkawlin 2020 1099 | Colling 2020 1101 | Kawkawlin 2021 1167 | Pigeon 2021 1091 | Kawkawlin 2022 1106 | Pigeon 2022 1042 | Sandusky 2022 1084 | Colling 2022 1083 -> 1160."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Scherer (NDSU Extension), Water Spouts No. 306, agosto de 2019, 'An Inch of Irrigation Water Can Increase Yields'",
+      "url": "https://miv.ext.nodak.edu/agriculture/sites/default/files/2021-05/spouts_306_aug19.pdf",
+      "trecho": "yield estimates obtained from many research reports (mainly from North Dakota, Minnesota and South Dakota) [...] Water Use for the Growing Season (inches) [...] Pinto beans 250 to 300 pounds 15 to 17"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Scherer (NDSU Extension), Water Spouts No. 311, julho de 2020, 'Water Use of Commonly Irrigated Crops'",
+      "url": "https://miv.ext.nodak.edu/sites/default/files/2021-05/spouts_311_july20.pdf",
+      "trecho": "Note that for all these crops, the water use is about 70% of the growing season total from emergence to harvest. [...] Pinto beans 7.0 5.8 12.8"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "regua"
+      ],
+      "fonte": "CONFERÊNCIA (ND) e CÁLCULO (arranjo de Michigan): scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/feijao_etc.json (NASA POWER, 2001-2020)",
+      "url": "data/catalogo/eua/cenarios/feijao_etc.json",
+      "trecho": "feijao_carrington_0525_86d: ET0 440, chuva 215, Kc mid 1.181, ETc mediana 399 | feijao_carrington_0525_96d: 439 | feijao_max_langdon_0525_110d: ET0 521, chuva 281, ETc 463 | feijao_min_kawkawlin_0605_96d: ET0 394, chuva 262, Kc mid 1.136, ETc 329 | feijao_kawkawlin_0605_103d: 342"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Yonts, C.D., Dry Bean Water Management, Univ. of Nebraska Panhandle REC, Proceedings of the Central Plains Irrigation Conference 2006, p. 185-188",
+      "url": "https://mail.irrigationtoolbox.com/ReferenceDocuments/TechnicalPapers/CPIA/2006/Yonts06.pdf",
+      "trecho": "Dry beans use approximately 16 inches of water during the growing season [...] Dry beans are a shallow rooted crop with the majority of roots found in the top 18 in. of the soil profile."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "High Plains Regional Climate Center (Univ. of Nebraska), AWDN, Crop Coefficients for: Dry beans (arquivo sem autor nem data; conferência)",
+      "url": "https://hprcc.unl.edu/archive/data/AWDN/crop_drybean.txt",
+      "trecho": "Temperature Limits for Growing Degree Day Estimation Upper Limit = 86.0 F Lower Limit = 50.0 F [...] Mature 0.09 1800.0 2000.0 2200.0"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "Allen et al., FAO Irrigation and Drainage Paper 56, 1998, Tab. 12 (grupo e. Legumes e Beans, dry and Pulses) e Tab. 11",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "e. Legumes (Leguminosae) 0.40 1.15 0.55 [...] Beans, dry and Pulses 0.40 1.15 0.35 0.4 [Tab. 11: Beans (dry) 20 30 40 20 110 May/June Continental Climates; 25 25 30 20 100 June Idaho, USA]"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Tab. 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Beans, dry and Pulses 0.6-0.9 0.45"
+    },
+    {
+      "colunas": [
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, tabelas por estado",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "North Dakota [...] Beans, dry edible ......: 580.0 May 14 May 19 - Jun 6 Jun 13 Aug 30 Sep 7 - Oct 11 Oct 26 | Michigan [...] Beans, dry edible ......: 195.0 May 29 Jun 3 - Jun 17 Jun 28 Sep 3 Sep 12 - Oct 12 Oct 24"
+    },
+    {
+      "colunas": [
+        "codigo_nass",
+        "regua"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, 'Dry Edible Bean Area Planted and Harvested, Yield, and Production - States and United States: 2023-2025'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "[Excludes chickpeas] [...] Yield per acre 2/ [...] pounds [...] Michigan ........: 2,440 2,430 2,350 [...] North Dakota ....: 1,700 1,830 1,650 [...] 2/ Clean basis."
+    },
+    {
+      "colunas": [
+        "regua"
+      ],
+      "fonte": "USDA NASS, Crop Production 2023 Summary, janeiro de 2024, mesma tabela (2021-2023)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/k3569432s/ns065v292/wd377h97d/cropan24.txt",
+      "trecho": "Michigan ........: 2,410 2,400 2,440 [...] North Dakota ....: 1,030 1,840 1,700"
+    },
+    {
+      "colunas": [
+        "regua"
+      ],
+      "fonte": "IPCC 2019 Refinement to the 2006 Guidelines, Vol. 4, Cap. 11, eq. 11.6, Tab. 11.1a e Tab. 11.2 (Updated)",
+      "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf",
+      "trecho": "AGDM (T ) = Crop(T ) • RAG (T ) [...] Beans and Pulses 0.008 (± 75%) 0.008 (± 75%) 2.1 0.19 (± 45%) 0.91 [Tab. 11.2: Dry bean 0.36 ± 100% 0.68 ± 47% 0.15]"
+    },
+    {
+      "colunas": [
+        "regua"
+      ],
+      "fonte": "Chatterjee, A. & Acharya, U., Controls of carbon and nitrogen releases during crops' residue decomposition in the Red River Valley, USA, Archives of Agronomy and Soil Science 66(5):614-624, 2020 (lido só o resumo no AGRIS)",
+      "url": "https://agris.fao.org/search/en/records/65df58944c5aef494fe1ea2a",
+      "trecho": "After 1 year, remaining mass% followed the sequence of corn (82%) > soybean (74%) > wheat (72%) > dry bean (55%) > potato (40%) > sugarbeet (17%). [litterbags na superfície em 31/out/2016, Casselton-ND, Ada e Downer-MN]"
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE, CIRAD, AFZ, FAO), Common bean straw, tabela de composição (node 12006); valores pontuais citados",
+      "url": "https://www.feedipedia.org/node/12006",
+      "trecho": "Crude protein % DM 7.1 1.8 4.8 10.7 13 [...] OM digestibility, ruminants % 54.7 5.5 47.7 60.2 4 * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Utah State University Extension, Vegetable Guide, Legumes - Physiological Disorders (Split set), sem autor nem data (conferência americana do valor brasileiro)",
+      "url": "https://extension.usu.edu/vegetableguide/legumes/abiotic-disorders",
+      "trecho": "Split set occurs when some of the flowers abort (drop off) resulting in variable pod maturity. The combination of high temperatures (+90 °F day/75 °F nights) and low relative humidity or soil moisture stress favors flower drop."
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Jenkins, K.H., Feed Value of Alternative Crops for Beef Cattle, UNL Extension G2036, agosto de 2010 (cenário fora da linha: planta inteira e refugo de grão)",
+      "url": "https://extensionpubs.unl.edu/publication/g2036/na/html/view",
+      "trecho": "[planta inteira de feijão preto depois da geada: PB 9,0%, IVDMD 66,3%] [...] the high percentage of raw beans still would warrant feeding with caution [...] can be fed without adversely affecting performance up to 2 percent of diet DM"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min"
+      ],
+      "fonte": "Scherer (NDSU), Water Spouts No. 318, agosto de 2021 (definição de maturação fisiológica usada pela NDSU)",
+      "url": "https://miv.ext.nodak.edu/agriculture/sites/default/files/2022-11/spouts318_aug21.pdf",
+      "trecho": "For navy beans, physiological maturity is reached when at least 80% of the pods show yellowing and are mostly ripe, with 40% of the leaves still green. Pinto beans are physiologically mature when 80% of the pods show yellowing and are mostly ripe and only 30% of the leaves are still green."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats (API), séries por condado baixadas pelo time em 15/11/2026 com data/scripts/baixar_nass_eua.py (saída data/eua/nass/producao_condado.csv: 203 linhas de 'feijao', 2016-2018); conferência do nome da série, não dos números",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "O short_desc é o nome exato da série no Quick Stats (conferido por condado com get_counts). [...] \"BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES PLANTED\", \"BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES HARVESTED\", \"BEANS, DRY EDIBLE, INCL CHICKPEAS - PRODUCTION, MEASURED IN CWT\""
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Quick Stats API, página de uso (exemplo de resposta do api_GET), lida em 15/11/2026 (formato do short_desc e nomes dos campos)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "\"util_practice_desc\":\"ALL UTILIZATION PRACTICES\" [...] \"short_desc\":\"CORN - ACRES PLANTED\" [...] \"Class_desc\":\"ALL CLASSES\" [...] \"commodity_desc\":\"CORN\""
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - North Dakota'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "North Dakota [...] Beans, dry edible ......:    580.0   May 14 May 19 - Jun 6  Jun 13  Aug 30 Sep 7 - Oct 11  Oct 26 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES PLANTED\": 13.499 registros SURVEY (1.365 por condado na Dakota do Norte); séries de produção: \"BEANS, DRY EDIBLE, INCL CHICKPEAS - PRODUCTION, MEASURED IN CWT\". \"BEANS, DRY EDIBLE\" sozinho: só CENSUS (98 registros), nenhum SURVEY (api_GET de \"BEANS, DRY EDIBLE - PRODUCTION, MEASURED IN CWT\" com SURVEY: HTTP 400). \"BEANS, DRY EDIBLE, (EXCL CHICKPEAS) - ACRES PLANTED\" (commodity_desc 'BEANS', class_desc 'DRY EDIBLE, (EXCL CHICKPEAS)'): 437 registros SURVEY (116 por condado na Dakota do Norte)"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 2.21,
+      "max": 3.94,
+      "tipico": 3.64
+    },
+    "cn_palhada": {
+      "min": null,
+      "max": null,
+      "tipico": null
+    },
+    "k_dia": {
+      "valor": 0.0016,
+      "min": null,
+      "max": null
+    },
+    "meia_vida_dias": {
+      "valor": 423
+    },
+    "condicao_decomposicao": "Resíduo de feijão seco em sacolas na superfície do solo, Vale do Red River (Casselton-ND; Ada e Downer-MN), de 31/out/2016 a 30/out/2017 (1 ano, inclui o inverno). Chatterjee & Acharya 2020, lido só no resumo.",
+    "pb_pct": 7.1,
+    "digestibilidade_pct": {
+      "valor": 54.7,
+      "tipo": "OMD",
+      "n": 4,
+      "medicao": "estimada",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes da palha de feijão comum (Feedipedia, Common bean straw): média 54,7%, DP 5,5, faixa 47,7-60,2, n=4, marcada com '*' (calculada por equação). Base internacional; a mesma usada no Brasil."
+    },
+    "uso_forrageiro": "residual",
+    "cenario_forragem": "Palha e restos do feijão seco depois do arranquio, enleiramento e trilha (caules, vagens vazias e folhas), que pode ser pastejada ou enfardada de vez em quando. PB 7,1% da MS (Feedipedia, n=13). O grão (refugo de feijão) não entra: a UNL (G2036) diz que ele pode entrar até 2% da MS da dieta sem prejuízo.",
+    "excecoes": {},
+    "arranjos": {
+      "michigan": {
+        "estados": "MI",
+        "ms_palhada_t_ha": {
+          "min": 5.03,
+          "max": 5.23,
+          "tipico": 5.16
+        },
+        "ciclo_dias": {
+          "min": 96,
+          "max": 103
+        },
+        "graus_dia_ciclo": {
+          "min": 910,
+          "max": 1160
+        },
+        "agua_ciclo_mm": {
+          "min": 320,
+          "max": 340
+        },
+        "origem": {
+          "ciclo_dias": "medido",
+          "graus_dia_ciclo": "calculo",
+          "agua_ciclo_mm": "calculo"
+        },
+        "nota": "Feijão seco de sequeiro do Saginaw Valley e do Thumb (Bay, Tuscola, Huron, Sanilac), números que estavam no máximo da linha até 15/11 (revisão do lote 3, A-01). Ciclo (MSU/Michigan Bean Commission 2023, medido): Windbreaker (pinto) 96 dias e Charro (pinto) 103 dias até a maturação fisiológica, média de Bay e Tuscola 2020 e Bay e Huron 2021; Merlin (navy) 103 DAP no ensaio estadual de 2022 (4 condados). Graus-dia (Tb 10, sem teto, POWER, scripts/gd_nasa_power.py com eua/cenarios/feijao_gd.json): mínimo pela convenção (mediana 2001-2020 do cenário mais frio): Pigeon 17/jun (fim da semeadura mais ativa em MI, Handbook 628: 3-17/jun) + 96 d, feijao_pigeon_clima_0617_96d, mediana 919 (P10 782) -> 910 (Kawkawlin, mesmo cenário: 987); máximo = maior soma da tardia (103 d) nos 8 local-anos de MI, Kawkawlin 2021 1167 -> 1160 (demais 1042-1106). Água (CÁLCULO, scripts/etc_nasa_power.py com eua/cenarios/feijao_etc.json, Kc FAO-56 x ET0 POWER, 2001-2020): Kawkawlin 5/jun + 96 d mediana 329 mm -> 320; + 103 d 342 mm -> 340. Sem fonte de extensão de Michigan com o uso de água do feijão; o NDSU (380-432 mm) é de clima mais seco. Palhada: mesma conta da linha (regra 6, R_AG 2,1) com a produtividade NASS de Michigan 2021-2025: 2410, 2400, 2440, 2430, 2350 lb/acre; mediana 2410 -> 2,70 t/ha -> 2,46 t MS de grão -> 5,16 t/ha. Mínimo 2025 (2350) -> 5,03; máximo 2023 (2440) -> 5,23. Classe 'medio', como a da linha. Decomposição: usar o k da linha (sem medição em MI)."
+      }
+    },
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo depois da colheita, pela regra 6 do motor: AGDM = Crop x R_AG, com R_AG = 2,1 (IPCC 2019 Tab. 11.1a, Beans and Pulses) e Crop = produtividade (lb/acre) x 1,121/1000 (t/ha) x 0,91 (DRY). Produtividade NASS da Dakota do Norte 2021-2025: 1030, 1840, 1700, 1830, 1650 lb/acre; mediana 1700 -> 1,906 t/ha -> 1,73 t MS -> 3,64 t/ha (típico). Mínimo 2021 (seca, 1030) -> 2,21; máximo 2022 (1840) -> 3,94. Michigan em regua.arranjos.michigan (5,2 t/ha). A linha 'Dry bean' da Tab. 11.2 daria 1,3 t/ha (ver pendências). Não desconta o pastejo nem o enfardamento.",
+      "decomposicao": "k = -ln(0,55)/365 = 0,0016/dia (55% de massa restante após 1 ano na superfície, Chatterjee & Acharya 2020), meia-vida = 0,693/0,0016 = 423 dias. Palhada que sobra em 60 dias: 3,64 x e^(-0,0016 x 60) = 3,30 t/ha. No mesmo ensaio a soja ficou com 74% e o milho com 82%: o feijão decompõe mais rápido que eles.",
+      "colheita": "Handbook 628 (2010): ND, semeadura 14/mai-13/jun (mais ativa 19/mai-6/jun), colheita 30/ago-26/out; MI, semeadura 29/mai-28/jun (mais ativa 3-17/jun), colheita 3/set-24/out. Nos ensaios de Carrington a colheita foi de 29/ago a 30/set. Fica fora do ciclo.",
+      "forragem": "uso_forrageiro = residual: só restos culturais. A palha tem pouca proteína e digestibilidade abaixo de 60%.",
+      "codigos": "codigo_nass 'BEANS, DRY EDIBLE, INCL CHICKPEAS' CONFERIDO na API (15/11/2026): é o começo exato das séries SURVEY das pesquisas anuais (ex.: 'BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES PLANTED', 13.499 registros SURVEY, 1.365 por condado na Dakota do Norte; produção: 'BEANS, DRY EDIBLE, INCL CHICKPEAS - PRODUCTION, MEASURED IN CWT'). commodity_desc 'BEANS'; o resto do nome é a classe ('DRY EDIBLE, INCL CHICKPEAS', pela mesma forma da série EXCL CHICKPEAS, cuja class_desc foi lida na API). A série INCLUI o grão-de-bico (Cicer arietinum, outra espécie): área e produção do NASS para o feijão ficam acima das do Phaseolus. Não se usou 'BEANS, DRY EDIBLE, (EXCL CHICKPEAS)' (sem grão-de-bico) porque a série é curta: 437 registros SURVEY, só 116 por condado na Dakota do Norte. O código antigo 'BEANS, DRY EDIBLE' sozinho só existe no CENSUS (98 registros), não no SURVEY. A produtividade usada na palhada vem do Crop Production ('Excludes chickpeas'), não desta série. Decisão do usuário (15/11/2026). calendario_usda 'Beans, dry edible' = linha das tabelas por estado do Handbook 628 (2010)."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "baixo"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 3.64,
+      "ms_remanescente_t_ha": 3.31,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "baixo",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "103",
+      "depois": "113",
+      "motivo": "Revisão do lote 3 (15/11), A-01: a linha fica só com a Dakota do Norte; maior tardia da ND (Langdon 2022, HMS Medalist e ND-Polar, 113 dias), mesmo critério da canola e do girassol. O 103 de Michigan foi para regua.arranjos.michigan."
+    },
+    {
+      "coluna": "graus_dia_ciclo_max",
+      "antes": "1095",
+      "depois": "1130",
+      "motivo": "Revisão do lote 3 (15/11), A-01: maior soma das tardias da ND (Carrington 2025, 1139, cenário feijao_carrington_2025_0602_tardia_110d) arredondada para baixo. O 1095 (mediana de MI) foi para o arranjo."
+    },
+    {
+      "coluna": "graus_dia_ciclo_min",
+      "antes": "950",
+      "depois": "800",
+      "motivo": "Revisão do lote 3 (15/11), A-02, decisão do usuário: convenção do README (mediana 2001-2020 do cenário mais frio). Cenário novo feijao_langdon_clima_0525_86d: mediana 806 (P10 593) -> 800. Com 950 o motor eliminaria o feijão em Langdon (806 < 855)."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "",
+      "depois": "ND|MN",
+      "motivo": "Revisão do lote 3 (15/11), A-01, decisão do arquiteto: Vale do Red River (fonte de água e estudo de decomposição); SD fora por falta de dado."
+    },
+    {
+      "coluna": "regua.arranjos.michigan",
+      "antes": "estados ['MI'] (lista) e só ms_palhada_t_ha",
+      "depois": "estados 'MI' (texto); ciclo_dias 96-103; graus_dia_ciclo 910-1160; agua_ciclo_mm 320-340; palhada mantida",
+      "motivo": "Revisão do lote 3 (15/11), A-01 e B-03: arranjo regional completo (modelo ervilhaca.sudeste); estados como texto com '|', igual a estados_validos. Mínimo de graus-dia pela convenção em Pigeon 17/jun + 96 d (919 -> 910); máximo Kawkawlin 2021 1167 -> 1160; água POWER 329-342 (cálculo)."
+    },
+    {
+      "coluna": "sistema / regiao_referencia / fontes / origem / pendencias",
+      "antes": "Dakota do Norte e Michigan como extremos da mesma faixa",
+      "depois": "só Dakota do Norte (ND|MN); Michigan no arranjo",
+      "motivo": "Revisão do lote 3 (15/11), A-01 e A-02: textos atualizados para a nova região da linha e a nova convenção do mínimo de graus-dia."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "",
+      "depois": "05-19 / 06-06",
+      "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para North Dakota, lida em data/eua/nass/datas_plantio.csv (linha feijao,Beans, dry edible,ND)."
+    },
+    {
+      "coluna": "regua.observacoes.codigos, pendencias (codigo_nass; valor sem mudança)",
+      "antes": "'Decisão pendente' / 'DECISÃO para o coordenador' (trocar para a série com grão-de-bico ou conferir com NASS_API_KEY)",
+      "depois": "Decidido (15/11, usuário): mantém 'BEANS, DRY EDIBLE', NÃO conferido (a série baixada pelo time é 'BEANS, DRY EDIBLE, INCL CHICKPEAS', que inclui grão-de-bico) até a consulta com a NASS_API_KEY.",
+      "motivo": "Revisão eua-nass-janelas (15/11), 02-arquiteto, pacote 1 (M-01 b/c, A-01): decisão do usuário registrada; a pendência de conferir com a NASS_API_KEY continua."
+    },
+    {
+      "coluna": "codigo_nass, evidencias, regua.observacoes.codigos, pendencias",
+      "antes": "codigo_nass 'BEANS, DRY EDIBLE' (NÃO conferido; mantido até a consulta com a NASS_API_KEY) | pendência: codigo_nass: Decidido (15/11, usuário): mantém 'BEANS, DRY EDIBLE', NÃO conferido (a série baixada pelo time é 'BEANS, DRY EDIBLE, INCL CHIC...",
+      "depois": "codigo_nass 'BEANS, DRY EDIBLE, INCL CHICKPEAS', CONFERIDO na API do QuickStats (15/11/2026); nova pendência curta: a série inclui grão-de-bico",
+      "motivo": "Decisão do usuário (15/11/2026), com a conferência do coordenador na API: 'BEANS, DRY EDIBLE' sozinho só existe no CENSUS (98 registros); 'BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES PLANTED' tem 13.499 registros SURVEY (1.365 por condado na ND) e é a série das pesquisas anuais baixada pelo time; a alternativa '(EXCL CHICKPEAS)' tem só 437 (116 por condado na ND)."
+    }
+  ],
+  "pendencias": [
+    "Região (revisão do lote 3, A-01, 15/11): a linha vale só para a Dakota do Norte (ensaios da NDSU em Carrington e Langdon), com estados_validos ND|MN por decisão do arquiteto: Vale do Red River, de onde vêm a fonte de água (NDSU, pesquisas de ND, MN e SD) e o estudo de decomposição (Casselton-ND, Ada e Downer-MN). Não há ensaio de ciclo em Minnesota lido aqui: em MN a linha vale para o noroeste (Vale do Red River) e o motor trabalha por estado. SD ficou de fora por falta de dado. Michigan (~1/4 da área) está em regua.arranjos.michigan, com ciclo, graus-dia, água e palhada próprios. NE, ID, CO e WA ficam sem dado (o motor mostra 'sem dado para sua região'). Resolveria: ensaios de cultivares da UMN (noroeste de MN) e da SDSU.",
+    "ciclo_dias_max = 113 (Langdon 2022, navy) e graus_dia_ciclo_max = 1130 (Carrington 2025, ano frio, 110 dias) são os extremos das tardias da ND; a mediana das tardias é 96 dias e 1030 °C·dia. Em Langdon, mais ao norte, os ciclos são longos (110-113 dias), mas a soma térmica fica em 973-1008, o que mostra que o filtro por graus-dia é mais estável que o de dias. Resolveria: NDAWN ou guia A1133 da NDSU com GDD até a maturação por classe (o guia A1133 e as páginas da NDSU deram 'Access denied').",
+    "Definições de maturação: Carrington usa 'Days to PM' (maturação fisiológica); Langdon usa R9 com 80% das vagens amarelas, que a própria NDSU chama de maturação fisiológica (Water Spouts 318); a MSU avalia a olho em DAP ('for all locations', provavelmente média dos locais). Langdon é ~1,3° mais ao norte e mais fria: os dias são maiores, mas os graus-dia são parecidos com os de Carrington.",
+    "graus_dia (cálculo): as fontes dão dias, não GDD. O mínimo (800) segue a convenção do README: mediana 2001-2020 em Langdon, 25/mai + 86 d (806; P10 593, ou seja, em 2 de cada 20 anos Langdon soma menos de 600 e o motor só avisa 'em ano frio pode não completar'). Semear mais tarde soma mais (5/jun: 845), por isso o cenário frio é o da data dos ensaios. Os 9 valores dos ensaios (868-1016) ficam como conferência. Os pontos de Michigan (arranjo) usam a cidade do condado (Kawkawlin, Colling, Pigeon, Sandusky), não a fazenda; em Huron 2021 o relatório cita Ruth e Pigeon sem dizer qual ano (usei Pigeon). Conferência independente: a MSU mediu 1847-2108 GDD °F base 50 até a COLHEITA em 2022 (1026-1171 °C·dia), coerente com 1042-1106 até a maturação no POWER.",
+    "agua: 15-17 pol. (380-432 mm) é da NDSU para o pinto (pesquisas de ND, MN e SD). Em Langdon (110 dias) o POWER deu 463 mm, acima da faixa. Michigan, mais úmido, tem a água do arranjo calculada no POWER (329-342 mm -> 320-340), sem fonte de extensão de MI. O motor deve preferir a conta local (regra 1). A água é consumo sem déficit: a chuva da estação no POWER (ND 215-281 mm) fica abaixo, e o motor marca 'água no limite' sem eliminar.",
+    "tmax_critica_c = 30 °C mantido do Brasil (ZARC: abscisão de flores acima de 30 °C de dia e 25 °C à noite, na floração). A fonte americana lida (Utah State, sem autor nem data, guia de hortaliças) fala em +90 °F de dia (32 °C) e 75 °F à noite (24 °C), junto com ar seco ou falta de água. Divergência de 2 °C; não achei texto da NDSU ou da MSU com o limiar (o guia A1133 não abriu).",
+    "temp_otima_min/max (18-25 °C) mantidos do Brasil; sem fonte americana lida. O ECOCROP dá 16-25 °C para Phaseolus vulgaris (cópia EcoCrop_DB.csv).",
+    "sensivel_geada = true: conferido nos EUA pelo ensaio de Carrington de 2025 (34-35 °F no enchimento 'impacted yield') e pelo Handbook 628 (colheita até o fim de outubro, antes do frio). Não achei o limiar de geada em fonte americana.",
+    "regua: palhada pela regra 6 do motor (R_AG = 2,1 da Tab. 11.1a do IPCC, 'Beans and Pulses', que mistura soja, feijão, lentilha, ervilha). A linha 'Dry bean' da Tab. 11.2 (uma fonte só, Ortega 1988, razão 1,6, R² 0,15) daria só 1,3 t/ha na ND (0,36 x 1,73 + 0,68): classe 'baixo'. No arranquio e enleiramento a palha volta picada, frágil e com pouca cobertura. Resolveria: medição americana de resíduo do feijão seco (RUSLE2 ou ensaios da NDSU/MSU).",
+    "regua: C/N sem dado americano (o NRCS 2011 não tem feijão; o Brasil mediu 37). k vem de um só ensaio de 1 ano no Vale do Red River (ND/MN), lido só no resumo: 55% de massa restante em 365 dias a partir de 31/out (inclui o inverno, quando quase não decompõe); no verão a perda deve ser mais rápida.",
+    "regua: forragem pela Feedipedia (palha de feijão comum; PB n=13; DMO estimada por equação, n=4), base internacional. Não achei análise americana da palha do feijão seco; a UNL (G2036, 2010) analisou a planta inteira de feijão preto depois da geada (PB 9,0%, IVDMD 66,3%), que inclui os grãos e por isso não é o cenário da linha.",
+    "codigo_nass: a área e a produção do NASS para o feijão incluem grão-de-bico ('BEANS, DRY EDIBLE, INCL CHICKPEAS'; a série sem grão-de-bico é curta). Ver regua.observacoes.codigos.",
+    "calendario_usda: 'Beans, dry edible' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Não há seção nacional do feijão. Colheita: ND 30/ago-26/out (mais ativa 7/set-11/out); MI 3/set-24/out (mais ativa 12/set-12/out). Fica fora do ciclo.",
+    "semeadura_inicio/fim (05-19 a 06-06) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 14/mai, fim 13/jun). Minnesota (estados_validos): 'most active' 14/mai-7/jun. Michigan (regua.arranjos.michigan): 3/jun-17/jun. Bate com cenarios/feijao_gd.json (Carrington e Langdon, 20/mai a 5/jun); em Michigan os cenários de 31/mai e 2/jun ficam poucos dias antes do 'most active' (dentro do início de 29/mai)."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 2,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max"
+    ]
+  }
+}

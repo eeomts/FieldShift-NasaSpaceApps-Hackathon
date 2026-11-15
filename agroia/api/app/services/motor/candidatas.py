@@ -40,8 +40,12 @@ def _nome_do_item(i: ItemRotacao, catalogo: dict[str, CulturaMotor]) -> str:
     return catalogo[i.cultura_id].nome if i.cultura_id in catalogo else i.texto
 
 
-def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses_vazios: list[int]) -> list[Estrategia]:
-    """Candidatas sem repetir itens e sem a atual, no máximo MAX_CANDIDATAS (ordem: janela, tolerante à seca, leguminosa)."""
+def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses_vazios: list[int], estado: str | None = None) -> list[Estrategia]:
+    """Candidatas sem repetir itens e sem a atual, no máximo MAX_CANDIDATAS (ordem: janela, tolerante à seca, leguminosa).
+
+    Só entram culturas válidas no `estado` da fazenda (regra 13); as da atual continuam no catálogo para as contas.
+    """
+    novas = [c for c in catalogo.values() if c.vale_em(estado)]
     vistos = {chave(atual)}
     saida: list[Estrategia] = []
 
@@ -58,7 +62,7 @@ def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses
         return None if janela is None else _item_na_janela(c, *janela)
 
     # 1. Janela vazia: cada cultura cujo ciclo mínimo cabe na maior janela contínua
-    for c in catalogo.values():
+    for c in novas:
         if (item := na_janela(c)) is not None:
             adicionar(f"janela:{c.id}", f"Plantar {c.nome} no período vazio ({periodo_texto(item.inicio_mes, item.fim_mes, False)})", "janela", atual.itens + (item,))
 
@@ -66,12 +70,12 @@ def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses
     pos = _principal(atual.itens, catalogo)
     if pos is not None and not atual.itens[pos].perene:
         velha = catalogo[atual.itens[pos].cultura_id]
-        for c in catalogo.values():
+        for c in novas:
             if c.tem_tipo("tolerante_seca") and not c.perene and c.id not in ja_na_atual:
                 adicionar(f"tolerante_seca:{velha.id}->{c.id}", f"Trocar {velha.nome} por {c.nome}", "tolerante_seca", _trocar(atual, pos, c))
 
     # 3. Uma leguminosa (fixadora de N): na janela vazia ou no lugar de uma cultura que não é a principal
-    for c in catalogo.values():
+    for c in novas:
         if not c.tem_tipo("fixadora_n") or c.perene:
             continue
         if (item := na_janela(c)) is not None:

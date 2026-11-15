@@ -63,6 +63,17 @@ def casa_texto(texto: str, itens: dict[str, dict]) -> list[dict]:
     return saida
 
 
+def alternativas(item_id: str, texto_original: str) -> list[str]:
+    """Ids que o produtor precisa escolher quando o texto dele é ambíguo (ex.: só "arroz"); [] se não há dúvida.
+
+    Vem do campo 'ambiguo' da base, sem IA: vale se o texto normalizado é exatamente um de 'se_texto'.
+    """
+    ambiguo = (culturas().get(item_id) or {}).get("ambiguo")
+    if not ambiguo or normaliza(texto_original) not in {normaliza(t) for t in ambiguo["se_texto"]}:
+        return []
+    return list(ambiguo["alternativas"])
+
+
 def listar_culturas(idioma: str = "pt") -> list[dict]:
     """Culturas para a lista reserva do onboarding (quando a IA não está disponível)."""
     return [
@@ -71,5 +82,7 @@ def listar_culturas(idioma: str = "pt") -> list[dict]:
     ]
 
 
-def listar_equipamentos() -> list[dict]:
-    return [{"id": e["id"], "nome": e["nome"]} for e in equipamentos().values()]
+def listar_equipamentos(idioma: str = "pt") -> list[dict]:
+    """Equipamentos com o nome no idioma (en usa `nome_en`; sem tradução, cai no português)."""
+    campo = "nome_en" if idioma == "en" else "nome"
+    return [{"id": e["id"], "nome": e.get(campo) or e["nome"]} for e in equipamentos().values()]

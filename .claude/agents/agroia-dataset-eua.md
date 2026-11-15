@@ -77,9 +77,20 @@ Formato de `evidencias/<id>.json`:
 - **Licença:** cite valores pontuais com referência. Não copie tabelas inteiras de bases com uso restrito (Feedipedia, Tropical Forages).
 - **Unidades:** confira toda conversão (°F, polegadas, lb/acre, bu/acre); veja as fórmulas no README dos EUA.
 
+## Regras da revisão dos lotes 1 e 2 (15/11), valem para toda cultura
+Detalhes em `data/catalogo/evidencias/README.md` (Convenções, Confiança, "Colunas de janela, região e texto para o produtor" e regras do motor).
+- **Tipo de origem:** `estudo_unico` = uma fonte com 1 local, ou 1 ano, ou 1 cultivar, ou câmara, ou lida só pelo resumo sem a tabela do número; 2+ locais e 2+ anos na região = `medido`. Ciclo com fim em data de recomendação publicada = `publicado`; fim pela morte no frio sem data publicada = `convencao_com_fonte`. Kc do FAO-56 da própria espécie ou do grupo que a Tab. 12 dá = `publicado`; de outra espécie = `proxy`.
+- **Uma linha, uma região:** não misture regiões distantes numa mediana. A outra região vai para `regua.arranjos.<regiao>` (com `estados`) ou para `pendencias`. Preencha `estados_validos` (siglas USPS, com `|`) quando a linha não vale em toda parte.
+- **Coberturas:** `codigo_nass` e `calendario_usda` vazios (os códigos descrevem o grão; explique em `regua.observacoes.codigos`). Preencha `semeadura_inicio/fim`, `manejo_inicio/fim` (`MM-DD`), `tipo_manejo` (`dessecacao`, `morte_pelo_frio`, `rolagem`, `corte`) e `condicao_semeadura` (`apos_colheita_graos`, `apos_cereal_inverno`, `apos_silagem`, `a_lanco_lavoura_em_pe`, com `|`), cada um com fonte em `evidencias`.
+- **`tmax_critica_c`:** só temperatura de dano numa fase sensível que a cultura atravessa no sistema. Cobertura manejada ou morta antes de florescer = vazio justificado; não use o TMAX do ECOCROP nem o teto de uma fórmula de graus-dia.
+- **Perenes forrageiras** (pastagem, alfafa): `ciclo_dias_*` e `graus_dia_ciclo_*` vazios com `vazio_nao_se_aplica`; água e Kc anuais.
+- **`forrageira` em `tipos`:** quando `uso_forrageiro` = `principal`, ou `com_restricao` em cultura sem `comercial`.
+- **Confiança `baixa`:** preencha `lacuna_informacao` e `risco_revisao_local` em `valores`, até 300 caracteres cada, em português simples para o produtor (sem sigla, sem "proxy", sem "P10", sem nome de modelo). O que não sabemos e o que confirmar com o agrônomo ou a extensão.
+- **Água:** `agua_ciclo_mm_*` é consumo sem déficit; o motor não elimina sequeiro pela água. Não rebaixe o número para "caber" na chuva.
+
 ## Verificação antes de terminar
 1. `python3 -I -c "import json; json.load(open('data/catalogo/eua/evidencias/<id>.json'))"`
-2. `python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua` e corrija tudo o que acusar na sua cultura. O id ausente do catálogo do app é o único problema aceitável, e precisa estar em `pendencias`.
+2. `python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua` (SEM `--apply`) e corrija tudo o que acusar na sua cultura. O id ausente do catálogo do app é o único problema aceitável, e precisa estar em `pendencias`. Problemas de outras culturas não são seus.
 3. `python3 -I data/catalogo/scripts/confianca.py --catalogo data/catalogo/eua`: a sua cultura deve aparecer sem "ERRO".
 4. `python3 -I data/catalogo/scripts/regua.py --catalogo data/catalogo/eua`: a sua cultura deve ter classe calculada (ou "sem dado" explicado).
 

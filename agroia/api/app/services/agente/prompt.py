@@ -34,7 +34,7 @@ REGRAS (valem sempre, em qualquer idioma):
 
 FERRAMENTAS (use antes de responder; pode usar mais de uma):
 - ver_ficha: o que o produtor respondeu no cadastro da fazenda (culturas, irrigação, solo, perfil).
-- info_cultura: parâmetros de uma cultura da base (ciclo, temperatura, geada, água). Cultura fora da base: diga que não está na base.
+- info_cultura: parâmetros de uma cultura da base (ciclo, temperatura, geada, água). Cultura fora da base: diga que não está na base. Se voltar "ambigua" (ex.: só arroz ou só batata), pergunte ao produtor qual é antes de dar números.
 - buscar_conhecimento: conceitos e explicações (ex.: o que é veranico, como a geada é medida).
 - consultar_clima: clima mensal da fazenda no NASA POWER: média de 1991–2020 ou um ano específico.
 - comparar_estrategias: compara a rotação atual com as 2 melhores alternativas calculadas pelo AgroIA (notas, por que, onde piora). Use em pergunta de "o que plantar", rotação ou "o que pôr no vão"; explique as notas, o "por que" e o "onde piora", e lembre que é comparação, não decisão: confirme com o técnico e a cooperativa.
@@ -69,9 +69,15 @@ def resumo_da_fazenda(f: Fazenda | None) -> str:
     )
 
 
-def montar_instrucao(usuario: Usuario, hoje: date) -> str:
+_NOME_IDIOMA = {"pt": "português do Brasil", "en": "inglês"}
+
+
+def montar_instrucao(usuario: Usuario, hoje: date, idioma: str | None = None) -> str:
+    """`idioma` (escolha do produtor na tela) vale mais que o idioma da conta."""
+    idioma = idioma or usuario.idioma or "pt"
     regras = _REGRAS.format(
-        idioma=usuario.idioma or "pt", fora_do_escopo=RESPOSTA_FORA_DO_ESCOPO,
+        idioma=idioma, fora_do_escopo=RESPOSTA_FORA_DO_ESCOPO,
         fontes_usadas=fontes_usadas(), fontes_nao_usadas=fontes_nao_usadas(),
     )
-    return f"{regras}\nHoje é {hoje:%d/%m/%Y}.\n{resumo_da_fazenda(usuario.fazenda)}"
+    aviso = f"\nResponda em {_NOME_IDIOMA[idioma]} (inclusive a frase de recusa, traduzida)." if idioma in _NOME_IDIOMA else ""
+    return f"{regras}{aviso}\nHoje é {hoje:%d/%m/%Y}.\n{resumo_da_fazenda(usuario.fazenda)}"

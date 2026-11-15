@@ -1,0 +1,428 @@
+{
+  "id": "canola",
+  "pais": "EUA",
+  "nome": "Canola de primavera (spring canola)",
+  "nome_cientifico": "Brassica napus",
+  "familia_botanica": "Brassicaceae",
+  "sistema": "canola de primavera (Brassica napus, tipo argentino, híbridos com tolerância a herbicida), sequeiro, Dakota do Norte (semeadura do fim de abril ao fim de maio, enleiramento ou colheita direta em agosto-setembro). Não há linha de canola no catálogo do Brasil.",
+  "regiao_referencia": "Dakota do Norte (Langdon, Minot, Carrington)",
+  "valores": {
+    "tipos": "comercial",
+    "perene": "false",
+    "ciclo_dias_min": "83",
+    "ciclo_dias_max": "108",
+    "graus_dia_ciclo_min": "1190",
+    "graus_dia_ciclo_max": "1580",
+    "temp_base_c": "5",
+    "temp_otima_min_c": "15",
+    "temp_otima_max_c": "25",
+    "tmax_critica_c": "29.5",
+    "sensivel_geada": "true",
+    "agua_ciclo_mm_min": "320",
+    "agua_ciclo_mm_max": "460",
+    "kc_inicial": "0.35",
+    "kc_medio": "1.15",
+    "kc_final": "0.35",
+    "profundidade_raiz_m": "1.5",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "false",
+    "cobertura_solo": "media",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "nenhum",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "CANOLA",
+    "calendario_usda": "",
+    "fontes": "SISTEMA: canola de primavera (Brassica napus, tipo argentino), sequeiro, Dakota do Norte; a canola de inverno (Kansas, Oklahoma, Pacífico Noroeste) fica de fora|Kandel & Knodel, NDSU Extension A686 Canola Production, rev. nov. 2021 (tipo de primavera adaptado a ND; ~95 dias até a maturação; semeadura no fim de abril-início de maio; calor e seca na floração; tolerância da plântula a 24 °F)|Kandel (ed.), NDSU Extension A1280 Canola Production Field Guide, 2011 (85-110 dias da semeadura à maturação; estádios; geada na floração e no enchimento; datas de semeadura por região)|NDSU Extension A1124-23, A1124-24 e A1124-25, North Dakota Canola Hybrid/Variety Trial Results (dias da semeadura à maturação dos híbridos em Langdon, Minot e Carrington)|NDAWN, Canola Growing Degree Days Help (Tb 41 °F = 5 °C, sem teto; estádio 'Ripe' > 1874 GDD °F; lido em cópia do Internet Archive de 8/5/2026)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/canola_gd.json (graus-dia sem teto, Tb 5, na régua do NASA POWER; mínimo = mediana 2001-2020 do cenário mais frio, canola_clima_langdon_0525_83d; máximo nas datas dos ensaios)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/canola_etc.json (Kc FAO-56 × ET0 do POWER, Langdon, Carrington e Minot, 2001-2020)|FAO-56 Tab. 12 e 22 (Kc do grupo Oil crops e de Rapeseed, Canola; altura; raiz)|FAO ECOCROP Brassica napus id 549 (temperatura ótima)|Morrison & Stewart, Crop Science 42(3):797-803, 2002 (limiar de calor na floração 29,5 °C; lido pelo resumo)|Ransom, NDSU, Crop Water Use & Rooting Depth (apresentação; profundidade de raiz e esgotamento de água medidos em Mandan)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade da canola em ND 2021-2025)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (só traz canola de Oklahoma, semeada no outono)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão da canola, 1999/2000)|PROXY: Hangs & Schoenau, Univ. of Saskatchewan, pôster 2018 (C/N do resíduo de canola, Saskatchewan)|PROXY: Lupwayi et al., Canadian Journal of Soil Science 84(4):403-410, 2004 (decomposição do resíduo de canola polonesa, B. rapa, em plantio direto, Alberta; lido pelo resumo)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (palha de canola sem valor alimentar)|McVay et al., MSU Extension EB0186 Montana Barley Production Guide, 2017 (canola deixa menos resíduo que os cereais; conferência)",
+    "confianca_parametros": "baixa",
+    "estados_validos": "ND|MN",
+    "lacuna_informacao": "Não há medição na Dakota do Norte de quanta água a canola usa; usamos um cálculo com dados de clima de satélite. O calor mínimo para amadurecer foi calculado com 20 anos de clima no lugar mais frio dos ensaios do estado.",
+    "risco_revisao_local": "Quase todo ano, julho (a floração) tem dias acima de 30 graus, e calor forte com seca na floração derruba a produção. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido e a data de semeadura (de preferência até meados de maio) e se amadurece antes da geada."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "NDAWN (rede meteorológica da NDSU), Canola Growing Degree Days Help: 'the lower base temperature for canola is 41 °F (5 °C)', 'no upper limit is currently used for canola'. É a Tb oficial do estado, sem teto, igual ao método do catálogo (a diferença é que o NDAWN eleva Tmax e Tmin abaixo de 41 °F a 41 °F). Não há linha de canola no Brasil, então não há Tb brasileira para manter."
+    },
+    "ciclo_dias_min": {
+      "tipo": "medido",
+      "nota": "Semeadura -> maturação ('Days to maturity', dias após a semeadura) nos ensaios oficiais de híbridos da NDSU (A1124) em 2023, 2024 e 2025, em Langdon, Minot e Carrington (3 locais, 3 anos). Mínimo = 83 dias (CS2600 CR-T, CS3000 TF, CP9221TF e DG 760 TC, Langdon, semeadura 25/mai/2023). Critério: menor valor entre os híbridos comerciais de cada ensaio; ficam fora as linhas experimentais e os dois ensaios de Carrington 2024, que tiveram granizo em 22/jul com dano nas síliquas (o ensaio semeado em 16/mai amadureceu com 81-84 dias, nas mesmas datas do semeado 10 dias antes). Conferência: NDSU A1280, 'Spring B. napus usually matures 85 to 110 days after planting'; NDSU A686, 'about 95 days to reach maturity'."
+    },
+    "ciclo_dias_max": {
+      "tipo": "medido",
+      "nota": "Maior valor do mesmo conjunto: 108 dias (L333PC, L350PC, CP7130LL, CP7250LL, DK400TL, DK800LL e P612L, Minot, semeadura 9/mai/2025; sem as linhas DL Seeds, que são experimentais no ensaio de Carrington). Outros tardios: Minot 2024 103, Langdon 2025 99, Minot 2023 98. Conferência: A1280, até 110 dias. A colheita vem depois (enleiramento com 30-40% das sementes da haste principal com cor mudada e secagem na leira, ou colheita direta): nos ensaios, colheita em 14/ago-25/set."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 5), scripts/gd_nasa_power.py com eua/cenarios/canola_gd.json, cenário canola_clima_langdon_0525_83d. Convenção do mínimo (evidencias/README.md; decisão do usuário na revisão do lote 3): mediana 2001-2020 do cenário mais frio da região de referência. Langdon é o local mais frio dos ensaios da NDSU; 25/mai é a semeadura do ensaio de Langdon 2023 e 83 dias é o híbrido comercial mais precoce desse ensaio (o menor 'Days to maturity' dos ensaios usados). Saída: n = 20, mediana 1192, P10 977, mín 944, máx 1352. Mínimo = 1192 arredondado para baixo = 1190. Conferência pelos ensaios (híbrido mais precoce de cada ensaio, no ano do ensaio, um ano cada): Langdon 2024 85 d = 1223; Carrington 2025 91 d = 1270; Minot 2024 95 d = 1304; Langdon 2023 83 d = 1308; Langdon 2025 92 d = 1371; Minot 2025 103 d = 1435; Minot 2023 89 d = 1437 (mediana 1308). Conferência pelo modelo do NDAWN ('Ripe' > 1874 GDD °F, Tb 41 °F, alvo_com_teto): 1035-1045 °C·dia em 74-82 dias (mediana 2001-2020), antes da maturação observada nos ensaios; o próprio NDAWN diz que os estádios da canola 'have not been linked to an exact number of accumulated GDD'. Antes era 1220 (menor valor de ensaio, Langdon 2024, um só ano)."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO, mesmo script e arquivo, híbrido comercial mais tardio de cada ensaio: Langdon 2024 93 d = 1339; Carrington 2025 95 d = 1341; Minot 2024 103 d = 1443; Langdon 2025 99 d = 1452; Langdon 2023 94 d = 1470; Minot 2025 108 d = 1510; Minot 2023 98 d = 1588 (mediana 1452). Máximo = 1588 arredondado para baixo = 1580. Cada valor é de um só ano. Em 2001-2020, 108 dias desde 9/mai em Minot somam mediana 1489 (P90 1674)."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/canola_etc.json, cenário canola_min_langdon_0525_83d (norte de ND, semeadura 25/mai, híbrido de 83 dias, o mais curto dos ensaios; fases 17/19/22/25 dias = 21/23/26/30% do ciclo, montadas com as durações da NDSU A1280 porque o FAO-56 Tab. 11 não tem canola; Kc 0,35/1,15/0,35 com o médio ajustado pela eq. 62, h = 0,6 m), 2001-2020: mediana 327 mm (P10 288, P90 384). Mínimo = 327 arredondado para baixo = 320. Consumo com produtividade plena (sem déficit); regra 1 do motor: não elimina a canola de sequeiro. Chuva mediana da estação no mesmo cenário: 225 mm (abaixo do consumo: 'água no limite'). Não achei medida de consumo de água da canola em ND para conferir (ver pendências)."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO, mesmo script e arquivo, cenário canola_max_minot_0509_108d (Minot, semeadura 9/mai, híbrido de 108 dias, o mais longo dos ensaios; fases 23/25/28/32): mediana 458 mm (P90 523), arredondado = 460. Carrington com o mesmo híbrido (7/mai): 446 mm. Cenários típicos de 95 dias (A686): Langdon 366 mm, Carrington 387 mm. Chuva mediana da estação: 257 mm em Minot e 277 mm em Carrington, abaixo do consumo (regra 1: só aviso). O número não foi rebaixado para caber na chuva."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12: Kc ini do grupo 'h. Oil Crops' = 0,35, herdado pela linha Rapeseed, Canola (que não tem Kc ini próprio)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Rapeseed, Canola: 1,0-1,15 (nota 9: o valor baixo é para sequeiro com estande menos denso). Usado 1,15: a NDSU recomenda estande denso (600 mil sementes viáveis por acre, linhas de 6-7 pol.; A1280 e A686). Abaixo do teto de 1,25."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Rapeseed, Canola: 0,35."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Rapeseed, Canola 1,0-1,5 m; limite superior (sequeiro). A NDSU (medição com minirrizotron em Mandan, 1995-1997, na apresentação de Ransom) classifica a raiz da canola como 'medium', como a do trigo de primavera, e menos profunda que a do girassol."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "todas",
+      "valor_brasil": "",
+      "decisao": "trocado",
+      "motivo": "Não há linha de canola em data/catalogo/culturas.csv nem evidência em data/catalogo/evidencias/. Todos os valores vêm de fontes dos EUA (NDSU, NDAWN, USDA) e das tabelas internacionais (FAO-56, ECOCROP)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "sensivel_geada",
+        "tmax_critica_c"
+      ],
+      "fonte": "Kandel, H. (ed.), Canola Production Field Guide, NDSU Extension A1280, 2011 (Growth Stages; Planting Dates; Frost Tolerance and Frost Damage)",
+      "url": "https://www.library.nd.gov/statedocs/NDSUExtensionService/a128020110825.pdf",
+      "trecho": "Seed fill is completed approximately 35 to 45 days after flower initiation. The crop is considered ripe and ready to swath when 30 to 40 percent of the seeds on the main stem have turned color. Spring B. napus usually matures 85 to 110 days after planting [...] Frost after flowering, however, can result in significant yield reductions and grade loss. Frost during flowering usually causes flower abortion. [...] A 27 F frost is enough to kill immature seeds containing 50 to 60 percent moisture"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "tipos",
+        "sensivel_geada",
+        "estados_validos"
+      ],
+      "fonte": "Kandel, H.; Knodel, J., Canola Production, NDSU Extension A686, revisado em novembro de 2021",
+      "url": "https://www.ag.ndsu.edu:8000/agriculture/sites/default/files/2021-11/a686%20Canola%20Production.pdf",
+      "trecho": "The spring type is best adapted to North Dakota conditions. The winter types have not survived consistently in trials in North Dakota, northwestern Minnesota or in the Prairie Provinces of Canada. [...] Argentine varieties require about 95 days to reach maturity [...] Canola is less tolerant to drought than small-grain crops. [...] Canola should be planted in late April to early May to achieve the highest yields. [...] Canola is very susceptible to heat and drought stress during flowering. [...] Canola seedlings are frost tolerant and can tolerate temperatures as low as 24 F."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Extension A1124-23, North Dakota Canola Hybrid Trial Results for 2023 and Selection Guide, Tab. 7-11 (Langdon e Minot)",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2023-11/a1124-23.pdf",
+      "trecho": "Table 7. 2023 Canola - Roundup Ready - Langdon [...] Canterra CS2600 CR-T 39 21 83 [...] Canterra CS3100 TF 43 25 92 [...] Trial was planted on May 25 and harvested on Sept. 18. [...] Photosyntech PST SC 1159 CL 53 17 94 [...] Table 10. 2023 Canola - LibertyLink - Minot [...] Dyna-Gro DG280CLC 39 24 98 [...] Canterra CS3000TF 34 24 89 [...] Trial was planted on June 1 and harvested on Sept. 15. [...] DAP = Days after planting."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Extension A1124-24, North Dakota Canola Variety Trial Results for 2024, Tab. 2, 4, 7-10 (Langdon, Carrington e Minot)",
+      "url": "https://ndsu.edu/agriculture/sites/default/files/2024-12/a1124-24.pdf",
+      "trecho": "Table 2. Canola Roundup Ready variety trial description from Langdon REC [...] Canterra Seeds CS3100 TF TF Yes R 44 22 93 [...] Croplan CP9221TF TF Yes R 38 20 85 [...] * Days after planting. Planting Date: May 31, Harvest Date: September 25 [...] Table 7 [...] Carrington [...] Plant Date = May 6; Harvest Date = September 9 [...] Significant hail storm occurred on July 22 with plant/seed pod bruising. [...] Table 9. Canola Roundup Ready variety trial results from Minot [...] Canterra Seeds CS3100 TF 47 103 [...] Planting date: May 12, 2024, Harvest date: August 28, 2024"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDSU Extension A1124-25, North Dakota Canola Hybrid Trial Results for 2025 and Selection Guide, Tab. 1-2, 7-8, 13-14 (Carrington, Minot e Langdon)",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2025-12/a1125-25.pdf",
+      "trecho": "Table 1. Canola - Liberty Link Cultivars Carrington [...] InVigor (BASF) L343PC R Yes LL CA 47 20 91 [...] Planting Date = May 7; Harvest Date = August 14 [...] Table 8. Canola Liberty Link Minot [...] BASF InVigor L333PC 47 19 106 [...] Pioneer P612L 51 17 108 [...] Planting date: May 9, 2025 [...] Table 13. Canola - Liberty Link [...] Pioneer P612L LL Trad. R Yes 41 24 99 [...] Planting Date: May 30 Harvest Date: September 25"
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "NDAWN (North Dakota Agricultural Weather Network, NDSU), Canola Growing Degree Days Help (o site não respondeu; lido na cópia do Internet Archive de 8/5/2026)",
+      "url": "https://ndawn.ndsu.nodak.edu/help-canola-growing-degree-days.html",
+      "trecho": "Scientists have determined the lower base temperature for canola is 41 °F (5 °C). [...] no upper limit is currently used for canola. [...] If the daily Max and/or Min Temp < 41 °F (5 °C), it's set equal to 41 °F (5 °C). [...] Currently canola growth stages have not been linked to an exact number of accumulated GDD. [...] Late Ripening 909 - 1041 1635 - 1874 Ripe > 1041 > 1874"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/canola_gd.json (NASA POWER diário, comunidade AG; Tb 5, sem teto)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "Ensaios (1 ano cada, precoce-tardio): Langdon 2023 (25/mai) 83-94 d = 1308-1470; Minot 2023 (1/jun) 89-98 d = 1437-1588; Langdon 2024 (31/mai) 85-93 d = 1223-1339; Minot 2024 (12/mai) 95-103 d = 1304-1443; Carrington 2025 (7/mai) 91-95 d = 1270-1341; Minot 2025 (9/mai) 103-108 d = 1435-1510; Langdon 2025 (30/mai) 92-99 d = 1371-1452. Fora da faixa (granizo): Carrington 2024 (6/mai) 91-96 d = 1210-1270; Carrington 2024 (16/mai) 81-84 d = 1123-1162. NDAWN 'Ripe' (1874 °F) em 2001-2020: Langdon 10/mai 82 d, 1035; Minot 10/mai 80 d, 1044; Carrington 10/mai 78 d, 1042; Langdon 25/mai 74 d, 1045. Clima 2001-2020: Langdon 25/mai 83 d mediana 1192 (P10 977); Minot 9/mai 108 d 1489; Carrington 7/mai 108 d 1498; Langdon 10/mai 95 d 1255."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/canola_etc.json (NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "canola_min_langdon_0525_83d: ET0 402, chuva 225, Kc mid 1,174, ETc mediana 327 (P10 288, P90 384); canola_med_langdon_0510_95d: 366; canola_med_carrington_0507_95d: 387; canola_max_minot_0509_108d: ET0 564, chuva 257, Kc mid 1,189, mediana 458 (P90 523); canola_max_carrington_0507_108d: 446"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "h. Oil Crops 0.35 1.15 0.35 [...] Rapeseed, Canola 1.0-1.15 9 0.35 0.6 [...] 9 The lower values are for rainfed crops having less dense plant populations."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Rapeseed, Canola 1.0-1.5 0.60"
+    },
+    {
+      "colunas": [
+        "raiz_profunda",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Ransom, J., Crop Water Use & Rooting Depth - Crop Rotation for a Dry Cycle, NDSU Extension (apresentação, com dados do Crop Sequence Calculator do USDA-ARS Mandan)",
+      "url": "https://www.ag.ndsu.edu/smallgrainS/documents/crop-water-use",
+      "trecho": "Crop characteristics with regards to soil water use [...] WATER DEPLETION SEASON LENGTH ROOTING DEPTH [...] SUNFLOWER heavy long deep [...] SP. WHEAT medium to mod. Light mod. short medium [...] CANOLA mod. heavy to mod.light medium but variable medium"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, ficha Brassica napus (id 549)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=549",
+      "trecho": "Temperat. requir. 15 25 5 41 [...] Killing temp. early growth -6 [...] Crop cycle 85 340"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Morrison, M.J.; Stewart, D.W., Heat Stress during Flowering in Summer Brassica, Crop Science 42(3):797-803, 2002 (campo, Ottawa, 3 anos, B. napus, B. rapa e B. juncea; lido pelo resumo no AGRIS/FAO)",
+      "url": "https://agris.fao.org/search/es/records/65df01d80f3e94b9e5d3fc8e",
+      "trecho": "The threshold temperature during flowering, which resulted in seed yield losses, was 29.5°C for all Brassica species."
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "USDA-ARS Northern Great Plains Research Laboratory (Mandan-ND), Crop Sequence Calculator, Introduction to Crop Production Parameters: Residue to Grain Ratio (1999/2000 Average)",
+      "url": "https://ars.usda.gov/ARSUserFiles/30640500/CSC/Web/PhaseII/Production/Crop_Production_Parameters.pdf",
+      "trecho": "Residue production can be calculated by multiplying the residue to grain ratio by seed yield (lb/a). [...] Crop [colunas]: Canola Crambe Dry Bean Dry Pea Flax Safflower Soybean Sunflower Wheat Barley [...] Wheat 2.25 1.76 0.77 1.20 3.25 3.66 1.45 3.84 1.90 0.94 [linha = resíduo anterior; coluna Canola = 2.25; demais linhas da coluna Canola: 2.59, 2.19, 2.49, 2.60, 2.24, 2.52, 2.67, 2.43, 2.40]"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "codigo_nass",
+        "estados_validos"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary (jan. 2026) e Crop Production 2023 Summary (jan. 2024), Canola Area Planted and Harvested, Yield, and Production - States and United States (nome da commodity conferido no relatório oficial; o QuickStats não foi consultado por falta de NASS_API_KEY)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "Canola Area Planted and Harvested, Yield, and Production - States and United States: 2023-2025 [...] Idaho 1/ [...] Kansas [...] Minnesota [...] Montana [...] North Dakota ...:    1,810       1,860       2,120 [lb/acre] [...] Oklahoma [...] Washington; cropan24 (2021-2023): North Dakota ...:    1,340       1,820       1,810"
+    },
+    {
+      "colunas": [
+        "calendario_usda",
+        "estados_validos"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, 'Usual Planting and Harvesting Dates by Crop - Oklahoma' (a única tabela com canola; ND não tem canola no relatório)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Usual Planting and Harvesting Dates by Crop - Oklahoma [...] Canola .................:     37.0   Sep 10 Sep 15 - Sep 30 Oct 10  May 20 Jun 1 - Jun 10  Jun 20"
+    },
+    {
+      "colunas": [
+        "cn_palhada"
+      ],
+      "fonte": "Hangs, R.; Schoenau, J., Second-Year Decomposition and Nutrient Release Characteristics of Ten Annual Crop Residues in South-Central Saskatchewan, Canada, pôster, Univ. of Saskatchewan, 2018 (resíduos pós-colheita de lavouras de Saskatchewan, colhidos no outono de 2015)",
+      "url": "https://harvest.usask.ca/bitstream/10388/8721/1/R.%20Hangs%20and%20J.%20Schoenau%2c%202018c.pdf",
+      "trecho": "Barley Spring Wheat Oats Field Pea Lentil Soybean Faba Bean Canola Flax Hemp [...] C:N 102 127 113 50 37 39 59 86 102 91 [...] Figure 1. Mean (n = 4) initial ratios of total carbon (C) to nitrogen (N) [...] of post-harvest crop residues"
+    },
+    {
+      "colunas": [
+        "k_dia"
+      ],
+      "fonte": "Lupwayi, N.Z.; Clayton, G.W.; O'Donovan, J.T.; Harker, K.N.; Turkington, T.K.; Rice, W.A., Decomposition of crop residues under conventional and zero tillage, Canadian Journal of Soil Science 84(4):403-410, 2004, doi:10.4141/S03-082 (Fort Vermilion, noroeste de Alberta; canola polonesa, Brassica rapa; lido só pelo resumo, no registro do Crossref)",
+      "url": "https://api.crossref.org/works/10.4141/S03-082",
+      "trecho": "Field experiments were conducted to determine decomposition patterns of red clover (Trifolium pratense), field pea (Pisum sativum), canola (Brassica rapa) and wheat (Triticum aestivum) residues under zero and conventional tillage. [...] 31 to 41% of canola DM decomposed under zero tillage while 41 to 50% decomposed under conventional tillage in 12 mo. [...] 27 and 40% for wheat."
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "uso_forrageiro"
+      ],
+      "fonte": "Lardy, G., Alternative Feeds for Ruminants, NDSU Extension AS1182, revisado em fevereiro de 2022, 'Canola Straw'",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2022-03/as1182_0.pdf",
+      "trecho": "CANOLA STRAW Canola straw is of little or no feeding value. It contains 3.5% crude protein and only 20% total digestible nutrients (TDN)."
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "McVay, Burrows, Jones, Wanner & Menalled, Montana Barley Production Guide, MSU Extension EB0186, revisado em novembro de 2017 (conferência: canola deixa menos resíduo que os cereais)",
+      "url": "https://fdn.montana.edu/extension/Full_HTML_Pubs/EB0186-MontanaBarleyProductionGuide/EB0186_MontanaBarleyProductionGuide.html",
+      "trecho": "Crops like canola and mustard produce less residue at harvest so alternating these crops with small grains, a high-residue-producing crop, is a good management practice."
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim"
+      ],
+      "fonte": "Kandel, H. (ed.), Canola Production Field Guide, NDSU Extension A1280, 2011 (Planting Dates) (não usado: só indica a janela, sem data de início)",
+      "url": "https://www.library.nd.gov/statedocs/NDSUExtensionService/a128020110825.pdf",
+      "trecho": "To maximize yield, canola should be planted in April to early May. Planting date research indicates that delayed planting beyond May 5 in the southwestern region, May 15 across most of the state and May 31 in the northeastern region may result in yield reductions."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"CANOLA - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'CANOLA', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 438, COUNTY 1244"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 3.4,
+      "max": 5.3,
+      "tipico": 4.6
+    },
+    "cn_palhada": {
+      "min": 86,
+      "max": 86,
+      "tipico": 86
+    },
+    "k_dia": {
+      "valor": 0.00122,
+      "min": 0.00102,
+      "max": 0.00145
+    },
+    "meia_vida_dias": {
+      "valor": 568
+    },
+    "condicao_decomposicao": "PROXY regional e de outra espécie: resíduo de canola polonesa (Brassica rapa, não B. napus) na superfície em plantio direto, 12 meses no campo, Fort Vermilion, noroeste de Alberta, Canadá (Lupwayi et al. 2004, lido pelo resumo). Não achei k da palha de canola medido nos EUA. O inverno frio e congelado é parecido com o do norte da Dakota do Norte.",
+    "pb_pct": 3.5,
+    "digestibilidade_pct": {
+      "valor": null,
+      "tipo": "",
+      "n": null,
+      "medicao": "",
+      "nota": "A NDSU (AS1182) dá só proteína bruta (3,5%) e NDT (20%) para a palha de canola; NDT não é digestibilidade e não entra. Não achei digestibilidade medida da palha de canola em fonte dos EUA. Com uso 'nao_serve' a classe não depende da digestibilidade."
+    },
+    "uso_forrageiro": "nao_serve",
+    "cenario_forragem": "Palha da canola para grão depois da colheita (hastes e síliquas vazias), cenário de grão. A NDSU diz que ela tem 'little or no feeding value'. Pastejo, feno ou silagem de canola verde (AS1182) são outros cenários, porque custam o grão, e não entram.",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Palhada = resíduo acima do solo na colheita = razão resíduo/grão × produtividade. Razão do USDA-ARS em Mandan-ND (1999/2000) para canola depois de trigo = 2,25 (2,19-2,67 conforme o cultivo anterior; a canola em ND costuma vir depois de trigo ou cevada). Produtividade NASS da canola em ND, 2021-2025: 1340, 1820, 1810, 1860 e 2120 lb/acre; mediana 1820. Típico = 2,25 × 1820 = 4095 lb/acre × 1,121 = 4,59 -> 4,6 t/ha; mínimo 2021 (1340) = 3,38 -> 3,4; máximo 2025 (2120) = 5,35 -> 5,3. Mesma ressalva do girassol: a razão foi medida em Mandan com produtividade do fim dos anos 1990, e o resíduo não cresce na mesma proporção do grão. A MSU (EB0186) diz que a canola produz menos resíduo que os cereais de inverno e primavera na colheita; pela mesma conta a cevada de ND dá 4,0 t/ha (IPCC), parecido. C/N: só um valor lido (86, Saskatchewan, Hangs & Schoenau 2018).",
+      "decomposicao": "k em dia⁻¹ por k = -ln(fração remanescente)/dias, Lupwayi et al. 2004 (B. rapa), plantio direto, 12 meses: 31% decomposto -> -ln(0,69)/365 = 0,00102; 41% -> -ln(0,59)/365 = 0,00145; meio (36%) -> 0,00122 (valor). T½ = 0,693/0,00122 = 568 d. Palhada que sobra em 60 dias: 4,6 × e^(-0,00122×60) = 4,3 t/ha. Na mesma fonte o trigo perdeu 27% em 12 meses (k 0,00086): a palha de canola decompõe um pouco mais rápido que a de trigo.",
+      "colheita": "O Handbook 628 não tem canola na Dakota do Norte (só Oklahoma, canola de inverno semeada em setembro e colhida em junho). Nos ensaios da NDSU de 2023-2025 a colheita foi de 14/ago a 25/set. A NDSU (A1280) manda enleirar quando 30-40% das sementes da haste principal mudaram de cor, ou colher direto.",
+      "codigos": "codigo_nass 'CANOLA' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'CANOLA - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'CANOLA', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 438, COUNTY 1244. Série de produção: 'CANOLA - PRODUCTION, MEASURED IN LB'. calendario_usda vazio: a única tabela de canola do Handbook 628 é de Oklahoma (canola de inverno), outro sistema."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "media",
+      "valor_forrageiro": "nenhum"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 4.6,
+      "ms_remanescente_t_ha": 4.28,
+      "depende_da_epoca": {
+        "aporte_biomassa": false,
+        "cobertura_solo": false
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "media",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "nenhum",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min",
+      "antes": "1220",
+      "depois": "1190",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-01: convenção do README (mediana 2001-2020 do cenário mais frio, canola_clima_langdon_0525_83d: mediana 1192, P10 977), decisão do usuário; os ensaios ficam como conferência."
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "Não há medição na Dakota do Norte de quanta água a canola usa; usamos um cálculo com dados de clima de satélite. O calor que ela precisa para amadurecer vem de ensaios de três anos em três lugares do estado, cada valor de um só ano.",
+      "depois": "Não há medição na Dakota do Norte de quanta água a canola usa; usamos um cálculo com dados de clima de satélite. O calor mínimo para amadurecer foi calculado com 20 anos de clima no lugar mais frio dos ensaios do estado.",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-01: o mínimo de graus-dia deixou de ser um valor de um só ano."
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "A canola sofre com calor forte e seca na floração, em julho. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido e a data de semeadura (de preferência até meados de maio) e se a lavoura amadurece antes da geada de outono.",
+      "depois": "Quase todo ano, julho (a floração) tem dias acima de 30 graus, e calor forte com seca na floração derruba a produção. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido e a data de semeadura (de preferência até meados de maio) e se amadurece antes da geada.",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-05: julho passa de 29,5 °C quase todo ano no POWER 2001-2020 (pendência de tmax_critica_c)."
+    },
+    {
+      "coluna": "fontes",
+      "antes": "CÁLCULO gd: '(... nas datas dos ensaios)'",
+      "depois": "CÁLCULO gd: mínimo pela mediana do cenário mais frio",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md, M-01."
+    },
+    {
+      "coluna": "pendencias",
+      "antes": "SISTEMA, graus-dia, tmax_critica_c, raiz_profunda",
+      "depois": "reescritas",
+      "motivo": "Revisão do lote 3 (15/11/2026), reviews/lote-3-eua 15_11_26/02-arquiteto.md: M-03 (MN só no noroeste, motor por estado), M-01, M-05 (frequência de julho acima de 29,5 °C) e decisão do usuário sobre raiz_profunda (manter os dois)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'CANOLA' continua NÃO conferido no QuickStats (15/11): a série baixada pelo time (data/scripts/baixar_nass_eua.py, data/eua/nass/producao_condado.c... | observacoes.codigos: codigo_nass 'CANOLA' = nome da tabela do Crop Production (sem classe). calendario_usda vazio: a única tabela de canola d...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'CANOLA - ACRES PLANTED', registros SURVEY: STATE 438, COUNTY 1244; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    }
+  ],
+  "pendencias": [
+    "SISTEMA: só canola de PRIMAVERA da Dakota do Norte. estados_validos = ND|MN (a NDSU A686 diz que o tipo de primavera é o adaptado a ND e ao noroeste de Minnesota, onde a canola de inverno não sobrevive). Ficam fora: Montana (canola de primavera de sequeiro, produtividade 1030-1420 lb/acre em 2023-2025, sem dado lido de ciclo), Idaho e Washington (Pacífico Noroeste, primavera e inverno) e Kansas e Oklahoma (canola de INVERNO, semeada em setembro). Resolveria: linha ou arranjo próprio para a canola de inverno das Grandes Planícies do Sul e ensaios de Montana (MSU). DECISÃO (revisão do lote 3): estados_validos fica ND|MN, mas em Minnesota a linha só vale no noroeste (Vale do Red River, NDSU A686); o motor trabalha por estado e não separa o noroeste do resto de MN.",
+    "graus-dia: CÁLCULO na régua do POWER. Mínimo (1190) pela convenção do README: mediana 2001-2020 do cenário mais frio (Langdon, 25/mai, 83 dias; P10 977), não mais o menor ensaio (1220, um só ano). Máximo (1580) = maior soma dos ensaios (Minot 2023, 98 d), de um só ano; em 2001-2020, 108 dias desde 9/mai em Minot somam mediana 1489 (P90 1674). O modelo do NDAWN ('Ripe' > 1874 GDD °F) dá ~1040 °C·dia, atingidos em 74-82 dias, antes da maturação observada nos ensaios (83-108 dias): ou o 'Days to maturity' dos ensaios é mais tarde que o 'Ripe' do NDAWN (o relatório não define o estádio), ou a tabela do NDAWN, que o próprio NDAWN diz não estar ligada a um número exato, é curta para os híbridos atuais. Resolveria: definição do estádio usado nos ensaios da NDSU (maturação fisiológica ou ponto de enleiramento).",
+    "agua: CÁLCULO (Kc × ET0 do POWER), consumo sem déficit. Não achei medida de consumo da canola em ND. Gesch et al. (Crop Science, 2024) mediram o uso de água da canola em Mandan-ND, Morris-MN e Sidney-MT em 2013-2016, mas só li o resumo, sem os números; resolveria a conferência. As fases do Kc (21/23/26/30% do ciclo) são convenção montada com as durações da NDSU A1280, porque o FAO-56 Tab. 11 não tem canola. A chuva mediana da estação (225-277 mm) fica abaixo do consumo em todos os cenários: regra 1, só aviso.",
+    "tmax_critica_c = 29,5 °C na floração (Morrison & Stewart 2002, Ottawa, lido pelo resumo); o número fica, é o da fonte. A NDSU (A686) não dá número, só diz que a canola é 'very susceptible to heat and drought stress during flowering'. Frequência no clima de ND (T2M_MAX do NASA POWER, cache data/brutos/nasa_power, 2001-2020, dias de julho com máxima acima de 29,5 °C; contagem do arquiteto conferida no mesmo cache): mediana Langdon 7,5, Carrington 11,5, Minot 11 dias; pelo menos 1 dia em 19 (Langdon) e 20 (Carrington, Minot) de 20 anos; 5 dias ou mais em 14 (Langdon), 18 (Carrington) e 17 (Minot) de 20 anos. O limiar é passado quase todo ano: se o motor eliminar ou rebaixar por 'Tmax acima do crítico', a canola cai em toda a ND. DECISÃO do usuário (fora deste pacote): como o motor lê o calor (contar dias acima do limiar na fase sensível e mostrar a frequência, ou usar a média).",
+    "raiz_profunda: DECISÃO do usuário (revisão do lote 3): manter os dois. O catálogo dos EUA fica false (NDSU: raiz 'medium', como a do trigo) e agroia/base/culturas.json continua com 'raiz_profunda' nos tipos da canola. A divergência fica registrada aqui, sem mudar nenhum dos dois.",
+    "regua: C/N (Saskatchewan) e k (Alberta, canola polonesa B. rapa) são PROXY canadenses, um estudo cada, k lido pelo resumo. A palhada usa a razão de Mandan medida em 1999/2000. Sem digestibilidade da palha.",
+    "semeadura_inicio/fim VAZIOS: o Handbook 628 (2010) não tem canola na Dakota do Norte (só a de inverno de Oklahoma) e data/eua/nass/datas_plantio.csv não traz canola. A NDSU (A1280, 2011) recomenda semear 'in April to early May' e diz que semear depois de 5/mai no sudoeste, 15/mai na maior parte do estado e 31/mai no nordeste pode reduzir a produtividade; não virou janela porque o início ('April') não tem data. Os cenários de graus-dia (cenarios/canola_gd.json) usam as semeaduras dos ensaios da NDSU, de 6/mai a 1/jun. Resolveria: data final de plantio do seguro (USDA RMA) para a canola em ND ou o progresso de semeadura do NASS (Crop Progress, ND)."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 4,
+    "colunas": [
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max"
+    ]
+  }
+}

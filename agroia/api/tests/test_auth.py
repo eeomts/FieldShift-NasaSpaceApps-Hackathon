@@ -37,3 +37,17 @@ def test_apagar_conta(client, auth):
     client.put("/fazenda", headers=auth, json={"respostas": {"q5_local": {"lat": -12, "lon": -45}}})
     assert client.delete("/me", headers=auth).status_code == 204
     assert client.get("/me", headers=auth).status_code == 401
+
+
+def test_trocar_idioma(client, auth):
+    assert client.get("/me", headers=auth).json()["idioma"] == "pt"
+    r = client.patch("/me", headers=auth, json={"idioma": "en"})
+    assert r.status_code == 200
+    assert r.json()["idioma"] == "en" and r.json()["email"] == "marta@exemplo.com"
+    assert client.get("/me", headers=auth).json()["idioma"] == "en"  # ficou gravado
+
+
+def test_trocar_idioma_valida_e_exige_login(client, auth):
+    assert client.patch("/me", headers=auth, json={"idioma": "fr"}).status_code == 422
+    assert client.patch("/me", headers=auth, json={}).status_code == 422
+    assert client.patch("/me", json={"idioma": "en"}).status_code == 401

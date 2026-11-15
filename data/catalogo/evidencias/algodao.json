@@ -21,6 +21,8 @@
     "cobertura_solo": "baixa",
     "aporte_biomassa": "baixo",
     "valor_forrageiro": "baixo",
+    "codigo_pam": "40099",
+    "nome_zarc": "Algodão Herbáceo",
     "fontes": "FAO-56 Allen et al. 1998 Tab.12 (Kc ini grupo Fibre Crops 0.35; Kc mid 1.15-1.20; Kc end 0.70-0.50) e cap.6 (criterio Kc end para cultura que seca no campo)|FAO-56 Tab.22 (raiz 1.0-1.7 m; limite superior)|FAO Irrigation Water Management Training Manual 3, Brouwer & Heibloem 1986, Tab. crop water needs (agua 700-1300 mm; sensibilidade a seca baixa)|MAPA Portaria SPA/MAPA n.285/2025 ZARC algodao herbaceo BA 2025/2026, nota tecnica (agua 700-1300 mm; >38 C prejudicial; grupos de ciclo; semeadura-emergencia 5-10 dias)|Embrapa Algodao Boletim de Pesquisa 39, Amorim Neto et al. 1999, Zoneamento algodao herbaceo no Nordeste (otima 20-30 C; >38 C reduz rendimento)|Beltrao N.E.M. (Embrapa Algodao), Clima regula producao e qualidade da fibra do algodoeiro, Visao Agricola n.6 ESALQ 2006 (inativo <15 C; nao suporta geada; shedding >38 C; resistencia a seca; sensivel a compactacao; anual)|Antonini et al., Eng. Agric. (Embrapa Cerrados) Modelagem espacotemporal da duracao do ciclo do algodoeiro em GO (graus-dia com Tb 15 C)|Embrapa Algodao Circular Tecnica 93, Morello et al. 2006, Cultivares do algodoeiro para o Cerrado (classes de ciclo 100-180 dias emergencia-colheita)|Embrapa Agropecuaria Oeste Documentos 148, Lamas et al. 2022, Panorama do algodoeiro em MT (1a safra nov-dez, 2a safra jan-fev; solo com pouca cobertura; destruicao de restos culturais)|Embrapa Algodao Comunicado Tecnico 377, Ferreira et al. 2016 (restos culturais com baixa MS residual)",
     "confianca_parametros": "media",
     "graus_dia_ciclo_min": "1400",

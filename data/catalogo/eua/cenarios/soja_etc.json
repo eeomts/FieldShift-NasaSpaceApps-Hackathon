@@ -1,0 +1,106 @@
+{
+  "_leia": "Cenários de água da soja (soybean, sequeiro) para scripts/etc_nasa_power.py. CONFERÊNCIA das colunas agua_ciclo_mm_min/max, que vêm da extensão (ISU e Univ. of Arkansas). Curva de Kc do FAO-56 (Tab. 12: Kc ini 0,4 do grupo Legumes, Kc mid 1,15, Kc end 0,50; altura 1,0 m, limite superior da Tab. 12, para o ajuste da eq. 62). Fases na proporção da Tab. 11 (Soybeans, Central USA, maio: 20/30-35/60/25 dias), encurtadas até R7 (a ETc é da semeadura à maturação fisiológica, a mesma janela do ciclo). 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "ames": {
+      "nome": "Ames/Boone-IA (ISU Ag Engineering/Agronomy Farm; sítio Central de Kessler et al.)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; sítio Northeast de Kessler et al.)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "memphis": {
+      "nome": "Memphis-TN (exemplo do SoyStage, Delta do Mississippi, em frente ao leste do Arkansas)",
+      "lat": 35.15,
+      "lon": -90.05,
+      "elevacao_m": 87.35
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "soja_ames_0506_126d",
+      "cultura": "soja",
+      "local": "ames",
+      "semeadura": "05-06",
+      "fases_dias": [
+        20,
+        30,
+        56,
+        20
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.5
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 559,
+        "nota": "ISU Encyclopedia: soja e milho usam a mesma água no ciclo, 21,5-22,3 in (546-566 mm) nas regiões de Iowa; ponto médio 22 in = 559 mm. Semeadura e R7 de Kessler et al. 2020 (sítio Central, início de maio: 6/mai -> 8/set = 126 dias)."
+      }
+    },
+    {
+      "nome": "soja_nashua_0519_118d",
+      "cultura": "soja",
+      "local": "nashua",
+      "semeadura": "05-19",
+      "fases_dias": [
+        20,
+        30,
+        50,
+        18
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.5
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 508,
+        "nota": "Ciclo mais curto de Iowa (Kessler et al. 2020, Northeast, meados de maio: 19/mai -> 13/set = 118 dias). Referência: 20 in = 508 mm (Arkansas Soybean Handbook, cap. 8: 20-25 in para 40-50 bu/acre)."
+      }
+    },
+    {
+      "nome": "soja_memphis_0405_134d",
+      "cultura": "soja",
+      "local": "memphis",
+      "semeadura": "04-05",
+      "fases_dias": [
+        20,
+        30,
+        60,
+        24
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.5
+      },
+      "altura_m": 1.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 635,
+        "nota": "Delta (SoyStage, GM 4.2 emergindo em 11/abr, R7 16/ago). Referência: 25 in = 635 mm (Arkansas Soybean Handbook, cap. 8)."
+      }
+    }
+  ]
+}

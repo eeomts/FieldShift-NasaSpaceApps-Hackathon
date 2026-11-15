@@ -1,0 +1,590 @@
+{
+  "id": "trevo",
+  "pais": "EUA",
+  "nome": "Trevo-encarnado (crimson clover)",
+  "nome_cientifico": "Trifolium incarnatum",
+  "familia_botanica": "Fabaceae",
+  "sistema": "crimson clover como cobertura de inverno leguminosa ANTES DO MILHO na Geórgia: semeado em set-out e dessecado na primavera, 10-14 dias antes da semeadura do milho (mar-abr), no vegetativo ao início da floração. O id 'trevo' do app é genérico ('clover'); esta linha é só o trevo-encarnado do Sudeste. Ao norte da zona 7 ele costuma morrer no inverno (SARE MCCP; NRCS/ISU Iowa), por isso o Corn Belt fica fora: estados_validos = GA (o motor mostra 'sem dado para sua região' nos outros estados). Não existe no catálogo do Brasil.",
+  "regiao_referencia": "Geórgia (Coastal Plain e Piedmont)",
+  "valores": {
+    "tipos": "cobertura|fixadora_n|forrageira",
+    "perene": "false",
+    "ciclo_dias_min": "149",
+    "ciclo_dias_max": "226",
+    "graus_dia_ciclo_min": "820",
+    "graus_dia_ciclo_max": "2510",
+    "temp_base_c": "4",
+    "temp_otima_min_c": "13",
+    "temp_otima_max_c": "22",
+    "tmax_critica_c": "",
+    "sensivel_geada": "false",
+    "agua_ciclo_mm_min": "120",
+    "agua_ciclo_mm_max": "470",
+    "kc_inicial": "0.4",
+    "kc_medio": "1.15",
+    "kc_final": "1.15",
+    "profundidade_raiz_m": "0.9",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "false",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "medio",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "",
+    "calendario_usda": "",
+    "fontes": "Pessotto, Roberts, Bertucci, dos Santos, Ross & Savin, Determining cardinal temperatures for eight cover crop species, Agrosyst. Geosci. Environ. 6(3):e20393, 2023 (Tb 3,9 °C e ótima 26,6 °C do trevo-encarnado, câmara de crescimento; lido no resumo)|Butler, Evers, Hussey & Ringer, Flowering in Crimson Clover as Affected by Planting Date, Crop Sci. 42:242-247, 2002 (a floração não é prevista por graus-dia; lido no resumo)|Balkcom, Schomberg & Lee, Conservation Tillage Systems in the Southeast, SARE, 2020, cap. 5 Cover Crop Management, Tab. 5.3 e 5.4 (épocas de semeadura na Geórgia, massa, N)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura do milho na Geórgia, para a janela de manejo; colheita do milho, para a condição de semeadura)|USDA NRCS Booneville Plant Materials Center, Plant Guide Hairy Vetch, 2023 (dessecação com herbicida 10-14 dias antes da cultura de verão, regra usada também no trevo)|Baxter & Singleton, Planting and Growing Annual Forages in Georgia, UGA Extension Bulletin 1584, 2025 (Tab. 2: janelas de semeadura das forrageiras de inverno por região da Geórgia; semeadura sobre a lavoura em pé)|Gaskin, Hancock, Saha & Chatam, Cover Crop Biomass Sampling, UGA Extension Circular 1077, rev. jun. 2019 (Tab. 1: massa média e máxima na Geórgia)|Ranells & Wagger, Nitrogen Release from Crimson Clover in Relation to Plant Growth Stage and Composition, Agron. J. 84:424-430, 1992 (massa e N por estádio, Carolina do Norte; lido no resumo)|Ranells & Wagger, Nitrogen Release from Grass and Legume Cover Crop Monocultures and Bicultures, Agron. J. 88:777, 1996 (N liberado; ordem de decomposição; lido no resumo)|Clark (ed.), Managing Cover Crops Profitably, 3ª ed., SARE, 2007 (cap. Crimson Clover e Chart 2/3A: N, massa, rusticidade, pastejo)|USDA NRCS Iowa & ISU Extension, Crimson Clover Cover Crop Fact Sheet for Iowa (CROP 3272), maio 2025 (tolerância ao frio, C/N, pastejo, morte no inverno)|USDA NRCS Jimmy Carter Plant Materials Center, Plant Fact Sheet Crimson Clover (Trifolium incarnatum) (área principal no Sudeste; usos)|Heuzé, Tran & Maxin, Crimson clover (Trifolium incarnatum), Feedipedia, 2016 (PB e DMO da planta fresca; palatabilidade)|FAO ECOCROP, Trifolium incarnatum (EcoPortCode 10534), cópia do banco no GitHub OpenCLIM/ecocrop (TOPMN 13, TOPMX 22; o TMAX 28 °C é limite de crescimento e não entra em tmax_critica_c)|FAO-56 Tab. 12 e Tab. 22 (PROXY: Clover hay, Berseem, Trifolium alexandrinum, outra espécie do gênero) e Tab. 11 (PROXY: fases do trigo de inverno no clima mediterrâneo)|FAO-56 cap. 6 (Kc end = Kc mid em cultura colhida verde; convenção para cobertura manejada verde)|PROXY: decomposição (k) da ervilhaca (UNL CropWatch 2022; Sievers & Cook, SSSAJ 2018), ver evidencias da ervilhaca|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trevo_gd.json (graus-dia sem teto, Tb 4, da semeadura ao manejo, NASA POWER 2001-2020, Geórgia; Alabama e Tennessee só em regua.arranjos)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/trevo_etc.json (Kc PROXY do berseem × ET0 do NASA POWER, 2001-2020; Alabama e Tennessee só em regua.arranjos)",
+    "confianca_parametros": "baixa",
+    "semeadura_inicio": "09-10",
+    "semeadura_fim": "10-10",
+    "manejo_inicio": "03-08",
+    "manejo_fim": "04-24",
+    "tipo_manejo": "dessecacao",
+    "condicao_semeadura": "apos_colheita_graos|a_lanco_lavoura_em_pe",
+    "estados_validos": "GA",
+    "lacuna_informacao": "Não achamos medição de quanta água o trevo-encarnado usa na Geórgia nem da profundidade das raízes; usamos os números de um trevo parecido. A temperatura em que ele começa a crescer vem de um só estudo. A quantidade de palha muda muito com a data em que o trevo é morto.",
+    "risco_revisao_local": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. No Alabama e no Tennessee a época de semear e de matar é outra; no Meio-Oeste e em lugares mais frios ele pode morrer no inverno, e estes números não valem."
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "estudo_unico",
+      "nota": "Tb 3,9 °C -> 4 (arredondada; a mesma da ervilhaca, para as duas leguminosas de inverno usarem a mesma régua): Pessotto et al. 2023 (Arkansas), câmara de crescimento, taxa de aparecimento de folhas de 4 a 34 °C: 'base and optimum temperatures were [...] 3.9 and 26.6°C for crimson clover'. Um estudo, em câmara, lido no resumo. Butler et al. 2002 (Texas) acharam que a data de floração 'could not be [predicted by] temperature' (fotoperíodo), mas que a emissão de folhas segue os graus-dia (Butler et al. 2002b, Crop Sci. 42:237). ECOCROP: TMIN 4 °C (mínima do período de cultivo)."
+    },
+    "ciclo_dias_min": {
+      "tipo": "publicado",
+      "nota": "Semeadura -> manejo, por datas oficiais. Mínimo: semeadura mais tardia 10/out (SARE Southeast, Tab. 5.4, Geórgia Coastal Plain 'Sept 10-Oct 10') até o manejo mais cedo 8/mar = início da fase mais ativa de semeadura do milho na Geórgia (22/mar, Handbook 628) menos 14 dias (regra do NRCS: 'Ten to fourteen days [...] before planting the summer cash crop') = 149 dias corridos. A Tab. 5.4 dá ao Piedmont 'Sept 15-Sept 20', a mesma célula do trevo-arrowleaf na linha de cima: provável erro de diagramação, não usado. Para o Piedmont vale a UGA (Bulletin 1584, 2025, Tab. 2: forrageiras de inverno 'September to middle October'), que contém a janela da linha (10/set a 10/out); semeando em 10/out no Piedmont o mínimo também é 149 dias. A janela da linha está nas colunas semeadura_inicio/fim e manejo_inicio/fim."
+    },
+    "ciclo_dias_max": {
+      "tipo": "publicado",
+      "nota": "Máximo: semeadura mais cedo 10/set (Coastal Plain) até o manejo mais tardio 24/abr = fim da semeadura do milho na Geórgia (4/mai, Handbook 628) menos 10 dias = 226 dias corridos. Conferência: o SARE MCCP diz que o trevo semeado no outono 'had produced mature seed by April 21' no Mississippi e que o N máximo vem 'at late bloom or early seed set'; o manejo de 24/abr fica perto disso."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 4), scripts/gd_nasa_power.py com eua/cenarios/trevo_gd.json, 2001-2020. As fontes não dão GDD da semeadura ao manejo. Mínimo = mediana do cenário mais frio da região de referência (convenção do README): Watkinsville (Piedmont), semeadura mais tardia da janela 10/out -> manejo mais cedo 8/mar = mediana 820 (P10 654, P90 986). Mínimo = 820. Revisão de 15/11: antes o cenário do Piedmont usava 20/set (célula 'Sept 15-Sept 20' da Tab. 5.4 do SARE, provável erro de diagramação) e dava 1166 -> 1160; com a UGA B1584 (Piedmont 'September to middle October') a janela da linha (até 10/out) vale no Piedmont. Conferência: Tifton 10/out -> 8/mar = 1347; Watkinsville 20/set -> 8/mar = 1166. Nas coberturas os graus-dia só geram aviso (regra 2 do motor)."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo: Tifton (Coastal Plain), 10/set -> 24/abr = mediana 2509 (P10 2297, P90 2881); Watkinsville 15/set -> 24/abr = 1717. Máximo = 2510. Típico (Tifton, 25/set -> 1/abr) = 1899."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/trevo_etc.json (Kc × ET0 FAO-56 do POWER, 2001-2020). Curva PROXY: Kc ini 0,40 e Kc mid 1,15 do berseem (FAO-56 Tab. 12, 'Clover hay, Berseem, individual cutting periods'); fases do trigo de inverno no clima de inverno ameno (Tab. 11, 'Mediterranean': inicial 30, desenvolvimento 140 dias). Mínimo no cenário mais frio: Watkinsville, 10/out -> 8/mar (Kc no manejo 1,04) = média 120 mm (P10 107, P90 134; mediana 119) -> 120, a mesma estatística (média) do máximo da linha. Revisão de 15/11: antes, Watkinsville 20/set -> 8/mar = 158 mm -> 155 (data do Piedmont trocada; ver graus_dia_ciclo_min). Conferência: Tifton 10/out -> 8/mar = 194 mm. Não achei medição americana do consumo de água do trevo até o manejo."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo: Tifton, 10/set -> 24/abr = média 467 mm (P10 409, P90 529) -> 470; Watkinsville 15/set -> 24/abr = 313 mm. Típico (Tifton, 25/set -> 1/abr) = 318 mm. A chuva mediana do POWER no período (477-789 mm) supera a ETc em todos os cenários."
+    },
+    "kc_inicial": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab. 12, 'Clover hay, Berseem, individual cutting periods' Kc ini 0,40 (Trifolium alexandrinum, outra espécie do mesmo gênero; o trevo-encarnado não tem linha). Igual ao Kc ini do grupo das leguminosas. PROXY."
+    },
+    "kc_medio": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab. 12, berseem 'individual cutting periods' Kc mid 1,15 ('at full cover', nota 14). PROXY: outra espécie do gênero. No manejo mais cedo (8/mar) o Kc do cálculo chegou a 1,04."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "kc_final = kc_medio para cobertura dessecada verde (FAO-56 cap. 6), a mesma convenção do Brasil e do centeio. (O berseem dá Kc end 1,10 'immediately before cutting'.)"
+    },
+    "profundidade_raiz_m": {
+      "tipo": "proxy",
+      "nota": "FAO-56 Tab. 22, 'Clover hay, Berseem 0.6-0.9': limite superior 0,9 m. PROXY: outra espécie do gênero. Não achei profundidade medida do trevo-encarnado; a Feedipedia só descreve 'a central taproot and many fibrous lateral roots', e o ECOCROP dá profundidade de solo ótima 'medium (50-150 cm)'."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "todas",
+      "valor_brasil": "(não existe)",
+      "decisao": "trocado",
+      "motivo": "O trevo não está no catálogo do Brasil (está em agroia/base/culturas.json como cobertura fixadora de N, id genérico 'clover'). Tudo vem de fontes dos EUA, do ECOCROP e do FAO-56. A Tb 4 °C é a do trevo-encarnado (Pessotto et al. 2023, 3,9 °C), igual à da ervilhaca."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "temp_base_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "Pessotto, M.V.; Roberts, T.; Bertucci, M.B.; dos Santos, C.; Ross, J.; Savin, M.C., Determining cardinal temperatures for eight cover crop species, Agrosystems, Geosciences & Environment 6(3):e20393, 2023 (resumo lido via Crossref; CC BY 4.0)",
+      "url": "https://doi.org/10.1002/agg2.20393",
+      "trecho": "Seven different temperature regimes from 4 to 34°C were implemented, and the number of leaves was counted from day 0 to 21. [...] base and optimum temperatures were −4.5 and 24.8°C for cereal rye, 3.9 and 26.6°C for crimson clover"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "Butler, T.J.; Evers, G.W.; Hussey, M.A.; Ringer, L.J., Flowering in Crimson Clover as Affected by Planting Date, Crop Science 42:242-247, 2002 (College Station e Overton-TX; resumo lido via Crossref)",
+      "url": "https://doi.org/10.2135/cropsci2002.2420",
+      "trecho": "Date to reach flowering was not as highly correlated with PTI (r = 0.66 and 0.82) or GDD (r = 0.71 and 0.85) for Columbus and Tibbee, thus temperature could not be used to predict flowering."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Butler, T.J.; Evers, G.W.; Hussey, M.A.; Ringer, L.J., Rate of Leaf Appearance in Crimson Clover, Crop Science 42:237-241, 2002 (College Station-TX; resumo lido via Crossref)",
+      "url": "https://doi.org/10.2135/cropsci2002.2370",
+      "trecho": "Leaf appearance rate was primarily controlled by temperature or GDD, which accounted for 90 to 99% of the variability within each planting date."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "semeadura_inicio",
+        "semeadura_fim",
+        "estados_validos",
+        "ms_palhada_t_ha",
+        "fixa_nitrogenio",
+        "regua.arranjos.alabama",
+        "regua.arranjos.tennessee"
+      ],
+      "fonte": "Balkcom, K.; Schomberg, H.; Lee, R.D., Chapter 5: Cover Crop Management, em Conservation Tillage Systems in the Southeast, SARE, 2020, Tab. 5.3 e 5.4 (colunas da Geórgia: Limestone Valley, Piedmont, Coastal Plain)",
+      "url": "https://www.sare.org/wp-content/uploads/Chapter-5-tables_Conservation-Tillage.pdf",
+      "trecho": "TABLE 5.4. Recommended planting dates for several summer and winter cover crops across select states [ALABAMA North, Central, South | GEORGIA Limestone Valley, Piedmont, Coastal Plain | TENNESSEE Spring, Fall] [...] Clover, crimson Aug 25–Oct 1 | Sept 1– Oct 15 | Sept 15– Nov 15 | Aug 25– Sept 10 | Sept 15– Sept 20 | Sept 10– Oct 10 | | Aug 15– Oct 1 [...] Clover, arrowleaf [...] Aug 25– Sept 10 | Sep 15– Sept 20 | Sep 10– Oct 10 [Tab. 5.3:] Crimson clover AU Robin AU Sunrise Dixie [...] 3,500–5,500 Has reseeding potential due to early maturity. Can fix up to 150 pounds N per acre."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "manejo_inicio",
+        "manejo_fim",
+        "condicao_semeadura"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, Corn for Grain - States",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Corn for Grain Usual Planting and Harvesting Dates - States [...] Georgia ........:     370    Mar 14 Mar 22 - Apr 21 May 4   Aug 6  Aug 16 - Sep 22 Oct 7"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "manejo_inicio",
+        "manejo_fim",
+        "tipo_manejo"
+      ],
+      "fonte": "USDA NRCS, Booneville Plant Materials Center, Plant Guide Hairy Vetch (Vicia villosa Roth), 2023 (regra de manejo de leguminosa de cobertura antes da cultura de verão; escrita para a ervilhaca e usada no trevo)",
+      "url": "https://plants.usda.gov/DocumentLibrary/plantguide/pdf/pg_vivi.pdf",
+      "trecho": "Burndown herbicides such as glyphosate, 2,4-D or dicamba, chlopyralid, paraquat, atrazine or mixes are used to terminate hairy vetch. The timing of termination depends on the planting time of the subsequent cash crop. Ten to fourteen days are recommended before planting the summer cash crop. Chemically terminating cover crops is a popular practice in no-till cropping systems"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "condicao_semeadura"
+      ],
+      "fonte": "Baxter, L.; Singleton, T.R., Planting and Growing Annual Forages in Georgia, University of Georgia Cooperative Extension Bulletin 1584, 2025, Tab. 2 e 'Planting Method Considerations' (o trevo-encarnado está na Tab. 1 da mesma publicação; a Tab. 2 é geral para as forrageiras anuais)",
+      "url": "https://fieldreport.caes.uga.edu/publications/B1584/annual-forages-in-georgia/",
+      "trecho": "Table 2. General Planting Windows for Annual Forages in the Three Growing Regions of Georgia. [...] Piedmont [...] September to middle October [...] Coastal Plains [...] Late September to late October [...] overseeding into a standing cash crop just prior to harvest can be a practical alternative when timelines are short."
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "Gaskin, J.W.; Hancock, D.; Saha, U.; Chatam, K., Cover Crop Biomass Sampling, University of Georgia Cooperative Extension Circular 1077, revisada em junho de 2019, Tabela 1",
+      "url": "https://aesl.ces.uga.edu/Mineralization/Biomass/CoverCropBiomassSampling.pdf",
+      "trecho": "Table 1. The average and maximum dry biomass reported for some commonly used winter cover crops in the southeastern U.S. [...] Coastal Plain [...] Crimson clover (Trifolium incarnatum) 2,900 6,300 [...] Piedmont [...] Crimson clover (Trifolium incarnatum) 3,900 8,200"
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "cn_palhada",
+        "fixa_nitrogenio"
+      ],
+      "fonte": "Ranells, N.N.; Wagger, M.G., Nitrogen Release from Crimson Clover in Relation to Plant Growth Stage and Composition, Agronomy Journal 84:424-430, 1992 (Cecil fine sandy loam, Carolina do Norte; resumo lido via Crossref)",
+      "url": "https://doi.org/10.2134/agronj1992.00021962008400030015x",
+      "trecho": "Crimson clover was harvested in the spring at four growth stages (late vegetative, early bloom, late bloom, and early seed set). [...] dry matter production increased from 2.3 to 5.6 Mg ha−1, and N concentration declined from 30.2 to 21.2 g kg−1 [...] Estimated clover N release at the 8-wk retrieval was 28, 40, 40, and 54 kg ha−1 in 1989 and 51, 67, 73, and 55 kg ha−1 in 1990"
+    },
+    {
+      "colunas": [
+        "fixa_nitrogenio",
+        "k_dia"
+      ],
+      "fonte": "Ranells, N.N.; Wagger, M.G., Nitrogen Release from Grass and Legume Cover Crop Monocultures and Bicultures, Agronomy Journal 88(5):777, 1996 (Carolina do Norte; resumo lido via Crossref)",
+      "url": "https://doi.org/10.2134/agronj1996.00021962008800050015x",
+      "trecho": "In general, the order of N release rates (rapid to slow) was hairy vetch > crimson clover = rye-hairy vetch > rye-crimson clover = rye. Estimates of N (kg ha−1) released from cover crop residue after 8 wk [...] 60 for crimson clover, 132 for hairy vetch"
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "fixa_nitrogenio",
+        "uso_forrageiro",
+        "ms_palhada_t_ha"
+      ],
+      "fonte": "Clark, A. (ed.), Managing Cover Crops Profitably, 3ª edição, SARE Handbook 9, 2007, capítulo Crimson Clover (p. 130-134), Chart 2 e Chart 3A",
+      "url": "https://www.sare.org/wp-content/uploads/Managing-Cover-Crops-Profitably.pdf",
+      "trecho": "In Hardiness Zone 8—the warmer half of the Southeast—crimson clover will overwinter dependably with only infrequent winterkill. Its N contribution is 70 to 150 lb./A. [...] crimson clover had produced mature seed by April 21, as well as 5,500 lb. DM and 135 lb. N/A [...] Maximum N is available at late bloom or early seed set [...] Crimson clover is excellent for grazing and haying. [Chart 2:] Crimson clover p. 130 70–130 3,500–5,500 [Chart 3A: hardy through Zone 7]"
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "cn_palhada",
+        "uso_forrageiro"
+      ],
+      "fonte": "USDA NRCS Iowa & Iowa State University Extension and Outreach, Crimson Clover Cover Crop Fact Sheet for Iowa (CROP 3272), maio de 2025",
+      "url": "https://nrcs-prod.azureedge.us/sites/default/files/2025-05/Crimson%20Clover%20Crop%20Fact%20Sheet.pdf",
+      "trecho": "Cold temperature tolerance: 10° F » Seeding date: Early August to Late August* (F) [...] Crimson Clover 14:1 [...] Dry matter = 3,500 - 5,500 lbs./acre per year [...] Grazing quality Good [...] Might winter-kill, depending on weather conditions."
+    },
+    {
+      "colunas": [
+        "uso_forrageiro"
+      ],
+      "fonte": "USDA NRCS Jimmy Carter Plant Materials Center (Americus-GA), Plant Fact Sheet Crimson Clover (Trifolium incarnatum L.)",
+      "url": "https://plants.usda.gov/DocumentLibrary/factsheet/pdf/fs_trin3.pdf",
+      "trecho": "The primary growing areas are the Southeast and southern Atlantic coastal states. [...] It can be utilized in pasture, hay, organic farming, pollinator enhancement, silage mixes, or used as a winter cover [...] Graze or cut crimson clover for hay when in the early bloom stage"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro",
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Heuzé, V.; Tran, G.; Maxin, G., Crimson clover (Trifolium incarnatum), Feedipedia (INRAE, CIRAD, AFZ, FAO), 2016 (texto e tabela 'aerial part, fresh'; valores pontuais)",
+      "url": "https://www.feedipedia.org/node/247",
+      "trecho": "It is very palatable to ruminants as both leaves and stems are readily consumed [...] It rarely causes bloat [...] Crimson clover has a central taproot and many fibrous lateral roots. [...] Crude protein % DM 15.9 (SD 2.7, 11.1-19.0, Nb 36) [...] OM digestibility, Ruminant % 75.4 (SD 4.0, 68.0-79.2, Nb 9) * [obtido por equação]"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, Trifolium incarnatum (EcoPortCode 10534), cópia integral do banco em GitHub OpenCLIM/ecocrop, EcoCrop_DB.csv (o TMAX 28 °C fica só aqui: é limite de crescimento, não de dano; tmax_critica_c vazio)",
+      "url": "https://github.com/OpenCLIM/ecocrop/blob/main/EcoCrop_DB.csv",
+      "trecho": "10534, Trifolium incarnatum, French clover, crimson clover [...] TOPMN 13, TOPMX 22, TMIN 4, TMAX 28 [...] DEP medium (50-150 cm)"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12 (PROXY: Clover hay, Berseem) e Tabela 11 (fases do trigo de inverno no Mediterrâneo)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Clover hay, Berseem - averaged cutting effects 0.40 0.90 0.85 0.6 [...] - individual cutting periods 0.40 1.15 1.10 0.6 [nota 14: 'immediately following cutting; at full cover; and immediately before cutting'] [...] Winter Wheat [Tab. 11:] 30 140 40 30 240 November Mediterranean"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22 (PROXY: berseem)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Clover hay, Berseem 0.6-0.9 0.50"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max",
+        "regua.arranjos.alabama",
+        "regua.arranjos.tennessee"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/trevo_gd.json (NASA POWER diário, comunidade AG, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "trevo_watkinsville_1010_0308: mediana 820 (P10 654, P90 986); watkinsville_0920_0308 (antigo mínimo): 1166 (P10 968, P90 1366); tifton_1010_0308: 1347; tifton_0925_0401: 1899; tifton_0910_0424: 2509 (P10 2297, P90 2881); watkinsville_0915_0424: 1717 | Alabama e Tennessee (15/11): belle_mina_1001_0311: 940 (P10 749); belle_mina_0825_0508: 2287; ev_smith_1015_0311: 1060; ev_smith_0901_0508: 2646 (P10 2478, P90 2998); headland_1115_0311: 803 (P10 594, P90 1042); headland_0915_0508: 2539; milan_1001_0322: 872; milan_0815_0515: 2430 (P10 2241, P90 2743); springfield_1001_0322: 797 (P10 626, P90 1032); springfield_0815_0515: 2282"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max",
+        "regua.arranjos.alabama",
+        "regua.arranjos.tennessee"
+      ],
+      "fonte": "CÁLCULO: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/trevo_etc.json (NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "trevo_watkinsville_1010_0308: média 120 mm (P10 107, P90 134), ET0 185, chuva 496; watkinsville_0920_0308 (antigo mínimo): 158; tifton_1010_0308: 194; tifton_0925_0401: 318; tifton_0910_0424: 467 (P10 409, P90 529), ET0 594, chuva 789; watkinsville_0915_0424: 313 | Alabama e Tennessee (15/11, média): belle_mina_1001_0311: 145; belle_mina_0825_0508: 426; ev_smith_1015_0311: 127; ev_smith_0901_0508: 428 (P10 403, P90 458), chuva 786; headland_1115_0311: 91 (P10 83, P90 98), ET0 149, chuva 404; headland_0915_0508: 414; milan_1001_0322: 182; milan_0815_0515: 511 (P10 468, P90 567), chuva 1022; springfield_1001_0322: 160 (P10 133, P90 186); springfield_0815_0515: 462"
+    },
+    {
+      "colunas": [
+        "condicao_semeadura",
+        "estados_validos",
+        "tipo_manejo"
+      ],
+      "fonte": "Clark, A. (ed.), Managing Cover Crops Profitably, 3ª edição, SARE Handbook 9, 2007, capítulo Crimson Clover, p. 130-133 (Benefits, Rotations, Killing)",
+      "url": "https://www.sare.org/wp-content/uploads/Managing-Cover-Crops-Profitably.pdf",
+      "trecho": "Growers in the “crimson clover zone”—east of the Mississippi, from southern Pennsylvania and southern Illinois south [...] Rotations. In the South, crops harvested in early fall or sown in late spring are ideal in sequence with crimson clover. [...] While corn’s early planting date and cotton’s late harvest limit a traditional winter-annual role for crimson clover [...] Mowing after early bud stage will kill crimson clover."
+    },
+    {
+      "colunas": [
+        "regua.arranjos.alabama",
+        "regua.arranjos.tennessee"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, Corn for Grain - States (linhas do Alabama e do Tennessee; manejo do trevo = semeadura do milho menos 10-14 dias)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Alabama ........:     250    Mar 15 Mar 25 - Apr 25 May 18  Aug 2  Aug 11 - Sep 20 Oct 15 [...] Tennessee ......:     590    Apr 1  Apr 5 - May 10  May 25  Aug 25 Sep 1 - Oct 10  Oct 30"
+    },
+    {
+      "colunas": [
+        "regua.arranjos.alabama",
+        "regua.arranjos.tennessee"
+      ],
+      "fonte": "Balkcom, K.; Schomberg, H.; Lee, R.D., Chapter 5: Cover Crop Management, em Conservation Tillage Systems in the Southeast, SARE, 2020, Tab. 5.4 (relida em 15/11 para as colunas do Alabama e do Tennessee)",
+      "url": "https://www.sare.org/wp-content/uploads/Chapter-5-tables_Conservation-Tillage.pdf",
+      "trecho": "ALABAMA [3] [...] North Central South [...] TENNESSEE [4] SPRING FALL [...] Clover, crimson Aug 25–Oct 1 | Sept 1– Oct 15 | Sept 15– Nov 15 [...] | Aug 15– Oct 1"
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 2.3,
+      "max": 9.19,
+      "tipico": 3.25
+    },
+    "cn_palhada": {
+      "min": 13,
+      "max": 19,
+      "tipico": 14
+    },
+    "k_dia": {
+      "valor": 0.012,
+      "min": 0.0087,
+      "max": 0.0338
+    },
+    "meia_vida_dias": {
+      "valor": 58
+    },
+    "condicao_decomposicao": "PROXY: k da ervilhaca (UNL 2022, Mead-NE; Sievers & Cook 2018, Carbondale-IL), palhada em sacolas na superfície sob milho. Não achei k em massa para o trevo-encarnado; Ranells & Wagger (1996, Carolina do Norte) só dão a ordem da liberação de N: ervilhaca > trevo-encarnado > centeio.",
+    "pb_pct": 15.9,
+    "digestibilidade_pct": {
+      "valor": 75.4,
+      "tipo": "OMD",
+      "n": 9,
+      "medicao": "estimada",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes do trevo-encarnado fresco (aerial part, fresh), Feedipedia, calculada por equação (*), Nb 9. A Feedipedia diz que a DIVMO fica em 77-83% até o botão floral e cai para 50-66% depois da floração; o trevo é dessecado antes ou no início da floração."
+    },
+    "uso_forrageiro": "com_restricao",
+    "cenario_forragem": "Trevo-encarnado de cobertura pastejado (ou cortado) no inverno e no início da primavera, antes da dessecação. PB 15,9% (Feedipedia, Nb 36; 16-24% no estádio folhoso). 'com_restricao', não 'principal', porque nesta linha ele é cobertura antes do milho: o SARE MCCP admite pastejo leve no outono e mais intenso na primavera 'provided livestock are removed before flowering', e os rótulos dos herbicidas da cultura anterior podem proibir o pastejo (como no centeio). Como forragem é bom: 'Grazing quality Good' (NRCS/ISU), 'excellent for grazing and haying' (SARE), 'very palatable' (Feedipedia).",
+    "excecoes": {},
+    "observacoes": {
+      "coleta": "Massa no manejo, trevo-encarnado solteiro no Sudeste (um valor por estudo ou por região da revisão da UGA): Ranells & Wagger 1992 (Carolina do Norte), 2,3 t/ha no fim do vegetativo (o estádio do manejo antes do milho; 5,6 t/ha na formação de sementes); UGA C1077, média do Coastal Plain 2900 lb/acre × 1,121 = 3,25 t/ha e do Piedmont 3900 lb/acre = 4,37 t/ha. Típico = mediana dos três = 3,25 t/ha. Mínimo = 2,3 (Ranells & Wagger, fim do vegetativo); máximo = máxima do Piedmont na UGA, 8200 lb/acre = 9,19 t/ha. Ficaram de fora (faixas sem n ou manejo tardio): SARE MCCP e NRCS/ISU 3500-5500 lb/acre (3,9-6,2 t/ha), Mississippi 5500 lb/acre com sementes maduras em 21/abr e Beltsville-MD 7800 lb/acre em 1996 (citados no SARE MCCP). C/N típico 14 (NRCS/ISU 2025). Faixa 13-19: CÁLCULO com o N de Ranells & Wagger 1992 (30,2 g/kg no fim do vegetativo e 21,2 g/kg na formação de sementes) e C ≈ 400 g/kg (C medido na ervilhaca por Sievers & Cook 2018, 399 g/kg): 400/30,2 = 13 e 400/21,2 = 19.",
+      "decomposicao": "PROXY da ervilhaca: valor 0,0120/dia (mediana de 0,0087, 0,0120 e 0,0338; ver evidencias da ervilhaca); T½ = 58 d. Pela ordem de liberação de N de Ranells & Wagger (1996), o trevo decompõe mais devagar que a ervilhaca e mais rápido que o centeio (k do centeio em Iowa/Nebraska: 0,0105-0,0144/dia), dentro da faixa usada. Palhada que sobra em 60 dias: 3,25 × e^(-0,012×60) = 1,58 t/ha (baixa; 1,92 com o k mais lento). B-01 (revisão 15/11): o k da régua é PROXY da ervilhaca, e o trevo-encarnado decompõe mais devagar que ela (Ranells & Wagger 1996). Por isso a palhada que sobra em 60 dias (1,58 t/ha) está subestimada; mesmo com o k mais lento da faixa (0,0087/dia) ela fica em 1,92 t/ha, abaixo de 2,3: a classe 'baixa' de cobertura_solo não muda.",
+      "fixacao_n": "N: SARE MCCP Chart 2, N total 70-130 lb/acre = 78-146 kg/ha; no texto, 70-150 lb/acre (zona 8) e 135 lb N/acre no Mississippi; SARE Southeast: 'Can fix up to 150 pounds N per acre' (168 kg/ha). Medidos na Carolina do Norte: N liberado em 8 semanas de 28 a 73 kg/ha conforme o estádio (Ranells & Wagger 1992) e 60 kg/ha (Ranells & Wagger 1996). O N máximo vem no fim da floração/início da formação de sementes (SARE MCCP); o manejo 10-14 dias antes do milho na Geórgia (mar-abr) fica antes disso, com menos N ('up to 50 lb. N/A less at its late vegetative stage').",
+      "geada": "sensivel_geada = false no Sudeste: o trevo tolera geadas no vegetativo e passa o inverno na zona 8 'with only infrequent winterkill' (SARE MCCP); tolerância 10 °F = -12 °C (NRCS/ISU); rústico até a zona 7 (SARE Chart 3A). Ao norte (zonas 5-6, Corn Belt) ele costuma morrer no inverno: no Corn Belt o trevo é cobertura de verão-outono que morre na geada (outro sistema).",
+      "codigos": "codigo_nass e calendario_usda vazios: o trevo-encarnado não tem commodity no NASS QuickStats (conferido só nos relatórios lidos, sem NASS_API_KEY) nem linha no Handbook 628 (2010); o feno de trevo entra em 'Other Hay', que mistura várias forrageiras. A linha não usa produtividade do NASS.",
+      "colheita": "Não se aplica (cobertura manejada verde). O Handbook 628 serviu só para a data de semeadura do milho na Geórgia.",
+      "janela": "Semeadura 10/set a 10/out: SARE Southeast Tab. 5.4, Geórgia Coastal Plain; no Piedmont a célula 'Sept 15-Sept 20' parece erro de diagramação (igual à do trevo-arrowleaf) e foi trocada pela UGA B1584 (Piedmont 'September to middle October', que contém a janela). A UGA dá para o Coastal Plain 'Late September to late October', mais tarde que o SARE; a linha fica com o SARE, que é do trevo-encarnado e não de todas as forrageiras. Manejo 8/mar a 24/abr: semeadura do milho na Geórgia (Handbook 628: fase mais ativa de 22/mar, fim 4/mai) menos 14 ou 10 dias (NRCS). tipo_manejo = dessecacao: o NRCS descreve a dessecação com herbicida ('Burndown herbicides [...] Chemically terminating cover crops is a popular practice in no-till'); no manejo cedo (mar) o trevo ainda está no vegetativo, antes da flor que o rolo-faca pede. Corte (roçada) também mata depois do botão floral (SARE MCCP). condicao_semeadura: apos_colheita_graos (milho da Geórgia colhido de 16/ago a 22/set na fase mais ativa, Handbook 628, antes do fim da janela; SARE MCCP: 'crops harvested in early fall [...] are ideal in sequence with crimson clover') e a_lanco_lavoura_em_pe (UGA B1584: semeadura sobre a lavoura em pé, só informação no motor).",
+      "calor": "tmax_critica_c vazio (regra 11 do motor e README de evidências): o trevo é dessecado de março a abril, no vegetativo ou no início da floração, antes de completar o ciclo; o 28 °C do ECOCROP (TMAX) é limite de crescimento, não temperatura de dano numa fase sensível. Sem aviso de calor.",
+      "regiao": "estados_validos = GA. Alabama e Tennessee (janelas do SARE Southeast, Tab. 5.4) foram calculados em 15/11 e ficaram em regua.arranjos.alabama e regua.arranjos.tennessee, e não em estados_validos: os graus-dia ficam perto da linha (AL 803-2646, TN 797-2430, contra 820-2510), mas as janelas de semeadura e manejo, o ciclo (AL 116-256 d, TN 172-273 d, linha 149-226) e a água (AL 91-428 mm, TN 160-511 mm, linha 120-470) não. No Corn Belt (zonas 5-6) o trevo-encarnado pode morrer no inverno (SARE MCCP; NRCS/ISU Iowa)."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 3.25,
+      "ms_remanescente_t_ha": 1.58,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": true
+      }
+    },
+    "arranjos": {
+      "alabama": {
+        "estados": "AL",
+        "ciclo_dias": {
+          "min": 116,
+          "max": 256
+        },
+        "graus_dia_ciclo": {
+          "min": 800,
+          "max": 2650
+        },
+        "agua_ciclo_mm": {
+          "min": 90,
+          "max": 430
+        },
+        "semeadura_inicio": "08-25",
+        "semeadura_fim": "11-15",
+        "manejo_inicio": "03-11",
+        "manejo_fim": "05-08",
+        "tipo_manejo": "dessecacao",
+        "origem": {
+          "ciclo_dias": "publicado",
+          "graus_dia_ciclo": "calculo",
+          "agua_ciclo_mm": "calculo"
+        },
+        "nota": "Trevo-encarnado antes do milho no Alabama (revisão de 15/11, pendência do AL). Semeadura pela Tab. 5.4 do SARE Southeast (colunas ALABAMA): norte 'Aug 25-Oct 1', centro 'Sept 1-Oct 15', sul 'Sept 15-Nov 15'; a janela do arranjo (25/ago a 15/nov) é a união das três, e o motor deve usar a da região do ponto quando puder. Manejo = semeadura do milho no Alabama (Handbook 628: fase mais ativa de 25/mar, fim 18/mai) menos 14 dias (11/mar) ou 10 dias (8/mai), a mesma regra NRCS da linha. Ciclo: 116 d (sul, 15/nov -> 11/mar) a 256 d (norte, 25/ago -> 8/mai). Graus-dia (Tb 4, sem teto, POWER 2001-2020, scripts/gd_nasa_power.py com eua/cenarios/trevo_gd.json): mínimo pela convenção (mediana do cenário de menor soma) Headland 15/nov -> 11/mar mediana 803 (P10 594) -> 800; Belle Mina 1/out -> 11/mar 940; E.V. Smith 15/out -> 11/mar 1060. Máximo E.V. Smith 1/set -> 8/mai mediana 2646 (P90 2998) -> 2650; Headland 15/set -> 8/mai 2539; Belle Mina 25/ago -> 8/mai 2287. Água (mesma curva PROXY da linha, scripts/etc_nasa_power.py com eua/cenarios/trevo_etc.json, média 2001-2020): Headland 15/nov -> 11/mar 91 mm (Kc no manejo 0,87) -> 90; E.V. Smith 1/set -> 8/mai 428 mm -> 430 (Belle Mina 426, Headland 414). Por região: norte GD 940-2287, água 145-426 mm; centro 1060-2646 e 127-428 mm; sul 803-2539 e 91-414 mm. Por que não entrou em estados_validos: os graus-dia ficam perto da linha (803-2646 contra 820-2510), mas a janela de semeadura é outra (o norte termina em 1/out, antes do fim da janela da Geórgia; o sul vai até 15/nov), o ciclo vai de 116 a 256 dias (linha 149-226) e a água mínima (91 mm) fica 24% abaixo da linha (120). Palhada, C/N, k e Kc: os da linha (sem ensaio no Alabama nas fontes lidas). Locais com coordenadas aproximadas das estações da AAES (célula do POWER de ~0,5°). Cenários trevo_belle_mina_*, trevo_ev_smith_* e trevo_headland_*."
+      },
+      "tennessee": {
+        "estados": "TN",
+        "ciclo_dias": {
+          "min": 172,
+          "max": 273
+        },
+        "graus_dia_ciclo": {
+          "min": 790,
+          "max": 2430
+        },
+        "agua_ciclo_mm": {
+          "min": 160,
+          "max": 515
+        },
+        "semeadura_inicio": "08-15",
+        "semeadura_fim": "10-01",
+        "manejo_inicio": "03-22",
+        "manejo_fim": "05-15",
+        "tipo_manejo": "dessecacao",
+        "origem": {
+          "ciclo_dias": "publicado",
+          "graus_dia_ciclo": "calculo",
+          "agua_ciclo_mm": "calculo"
+        },
+        "nota": "Trevo-encarnado antes do milho no Tennessee (revisão de 15/11). Semeadura pela Tab. 5.4 do SARE Southeast (coluna TENNESSEE, FALL 'Aug 15-Oct 1', sem divisão por região). Manejo = semeadura do milho no Tennessee (Handbook 628: fase mais ativa de 5/abr, fim 25/mai) menos 14 dias (22/mar) ou 10 dias (15/mai). Ciclo 172 d (1/out -> 22/mar) a 273 d (15/ago -> 15/mai). Graus-dia (Tb 4, sem teto, POWER 2001-2020): mínimo Springfield (norte do Middle Tennessee) 1/out -> 22/mar mediana 797 (P10 626) -> 790; Milan 872. Máximo Milan (oeste) 15/ago -> 15/mai mediana 2430 (P90 2743); Springfield 2282. Água (curva PROXY da linha, média 2001-2020): Springfield 1/out -> 22/mar 160 mm; Milan 15/ago -> 15/mai 511 mm -> 515 (Springfield 462). Não entrou em estados_validos: janela de semeadura (15/ago-1/out) e de manejo (22/mar-15/mai) diferentes da Geórgia, ciclo 172-273 dias e água máxima 9% acima da linha. A colheita do milho no Tennessee (fase mais ativa 1/set-10/out, Handbook 628) cai depois de boa parte da janela: semeadura a lanço sobre a lavoura em pé ou depois de soja/sorgo precoces. O norte do estado fica na zona 6b-7a, no limite de rusticidade do trevo (SARE MCCP: até a zona 7); pode morrer no inverno frio. Palhada, C/N, k e Kc: os da linha. Locais com coordenadas aproximadas (célula do POWER de ~0,5°). Cenários trevo_milan_* e trevo_springfield_*."
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "baixa",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "28",
+      "depois": "",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-04: cobertura dessecada antes de completar o ciclo; o 28 °C do ECOCROP é limite de crescimento, não dano"
+    },
+    {
+      "coluna": "semeadura_inicio",
+      "antes": "",
+      "depois": "09-10",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-02: janela e condição de semeadura com fonte (SARE Tab. 5.4, UGA B1584, Handbook 628, NRCS, SARE MCCP)"
+    },
+    {
+      "coluna": "semeadura_fim",
+      "antes": "",
+      "depois": "10-10",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-02: janela e condição de semeadura com fonte (SARE Tab. 5.4, UGA B1584, Handbook 628, NRCS, SARE MCCP)"
+    },
+    {
+      "coluna": "manejo_inicio",
+      "antes": "",
+      "depois": "03-08",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-02: janela e condição de semeadura com fonte (SARE Tab. 5.4, UGA B1584, Handbook 628, NRCS, SARE MCCP)"
+    },
+    {
+      "coluna": "manejo_fim",
+      "antes": "",
+      "depois": "04-24",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-02: janela e condição de semeadura com fonte (SARE Tab. 5.4, UGA B1584, Handbook 628, NRCS, SARE MCCP)"
+    },
+    {
+      "coluna": "tipo_manejo",
+      "antes": "",
+      "depois": "dessecacao",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-02: janela e condição de semeadura com fonte (SARE Tab. 5.4, UGA B1584, Handbook 628, NRCS, SARE MCCP)"
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "",
+      "depois": "apos_colheita_graos|a_lanco_lavoura_em_pe",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-02: janela e condição de semeadura com fonte (SARE Tab. 5.4, UGA B1584, Handbook 628, NRCS, SARE MCCP)"
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "",
+      "depois": "GA",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-09: linha só da Geórgia; no Corn Belt o trevo-encarnado pode morrer no inverno"
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "",
+      "depois": "Não achamos medição de quanta água o trevo-encarnado usa na Geórgia nem da profundidade das raízes; usamos os números de um trevo parecido. A temperatura em que ele começa a crescer vem de um só estudo. A quantidade de palha muda muito com a data em que o trevo é morto.",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-11: texto para o produtor (confiança baixa)"
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "",
+      "depois": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. Fora da Geórgia, como no Meio-Oeste, ele pode morrer no inverno e estes números não valem.",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. M-11: texto para o produtor (confiança baixa)"
+    },
+    {
+      "coluna": "regua.observacoes.decomposicao",
+      "antes": "",
+      "depois": "nota B-01",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. B-01: k é proxy da ervilhaca; o trevo decompõe mais devagar e a massa remanescente de 1,58 t/ha subestima; a classe não muda"
+    },
+    {
+      "coluna": "origem.ciclo_dias_min, origem.graus_dia_ciclo_min, pendencias",
+      "antes": "Piedmont 'Sept 15-Sept 20' (SARE Tab. 5.4)",
+      "depois": "Piedmont pela UGA B1584 ('September to middle October')",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6. A célula do Piedmont na Tab. 5.4 repete a do trevo-arrowleaf (provável erro de diagramação); mínimos refeitos em seguida (ver as duas mudanças abaixo)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min",
+      "antes": "1160",
+      "depois": "820",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, decisão 1 do coordenador: mínimo = mediana 2001-2020 do cenário mais frio, agora Watkinsville 10/out -> 8/mar (trevo_gd.json, trevo_watkinsville_1010_0308), porque a data de 20/set do Piedmont saiu da Tab. 5.4 suspeita"
+    },
+    {
+      "coluna": "agua_ciclo_mm_min",
+      "antes": "155",
+      "depois": "120",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, decisão 1 do coordenador: mesmo cenário em trevo_etc.json (trevo_watkinsville_1010_0308), média 120 mm arredondada para baixo"
+    },
+    {
+      "coluna": "regua.arranjos.alabama",
+      "antes": "",
+      "depois": "AL: ciclo 116-256 d, GD 800-2650, água 90-430 mm, semeadura 08-25 a 11-15, manejo 03-11 a 05-08",
+      "motivo": "Pendência do Alabama (pedido do coordenador, 15/11): cenários em Belle Mina, E.V. Smith e Headland (trevo_gd.json, trevo_etc.json) com as janelas do SARE Tab. 5.4 e o milho do Handbook 628. Graus-dia perto da linha, mas janela, ciclo e água mínima (91 mm, 24% abaixo de 120) diferentes: arranjo, e não estados_validos"
+    },
+    {
+      "coluna": "regua.arranjos.tennessee",
+      "antes": "",
+      "depois": "TN: ciclo 172-273 d, GD 790-2430, água 160-515 mm, semeadura 08-15 a 10-01, manejo 03-22 a 05-15",
+      "motivo": "Pendência do Tennessee (15/11): há fonte da janela (SARE Tab. 5.4, TN fall); cenários em Milan e Springfield. Janela, ciclo e água máxima (511 mm, 9% acima de 470) diferentes da linha: arranjo"
+    },
+    {
+      "coluna": "regua.observacoes.regiao, pendencias (estados_validos), evidencias (SARE Tab. 5.4, Handbook 628 AL/TN, cálculos)",
+      "antes": "AL e TN só como candidatos, sem cálculo",
+      "depois": "AL e TN calculados, em arranjos; estados_validos continua GA",
+      "motivo": "Registro da pendência do Alabama e do Tennessee (15/11)"
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. Fora da Geórgia, como no Meio-Oeste, ele pode morrer no inverno e estes números não valem.",
+      "depois": "Confirme com o agrônomo ou a extensão a data de semear e quando matar o trevo antes do milho. Matar cedo dá menos palha e menos nitrogênio. No Alabama e no Tennessee a época de semear e de matar é outra; no Meio-Oeste e em lugares mais frios ele pode morrer no inverno, e estes números não valem.",
+      "motivo": "Revisão 'eua-nass-janelas 15_11_26', B-01: o texto antigo dava a entender que o trevo não serve fora da Geórgia, mas o Alabama e o Tennessee têm arranjos calculados (regua.arranjos); o que muda lá é a época de semear e de matar."
+    }
+  ],
+  "pendencias": [
+    "Sistema: o id 'trevo' do app é genérico ('clover'); esta linha é o trevo-encarnado (Trifolium incarnatum) como cobertura de inverno na Geórgia. estados_validos = GA: fora da Geórgia o motor mostra 'sem dado para sua região'. No Corn Belt ele morre no inverno na maioria dos anos (NRCS/ISU Iowa: 'Might winter-kill'; SARE: rústico até a zona 7). Trevo-vermelho e trevo-branco (perenes) seriam outras linhas.",
+    "temp_base_c = 4 (3,9 °C) vem de um só estudo em câmara de crescimento (aparecimento de folhas), lido no resumo. A floração do trevo-encarnado depende do fotoperíodo e não é prevista por graus-dia (Butler et al. 2002).",
+    "ciclo e graus_dia: dependem só das datas de semeadura (SARE Southeast, Tab. 5.4; UGA B1584 no Piedmont) e de manejo (semeadura do milho no Handbook 628 menos 10-14 dias, regra do NRCS escrita para a ervilhaca). A célula do Piedmont na Tab. 5.4 ('Sept 15-Sept 20', igual à do trevo-arrowleaf) parece erro de diagramação e foi trocada pela UGA B1584 ('September to middle October'); os mínimos foram refeitos com Watkinsville 10/out -> 8/mar (graus-dia 1160 -> 820; água 155 -> 120). O ciclo mínimo não mudou (149 d). A UGA permite semear no Piedmont até meados de outubro; com semeadura em 15/out o mínimo ficaria ainda menor, mas a linha segue o fim da janela do SARE (10/out).",
+    "agua: CÁLCULO com Kc PROXY do berseem (FAO-56) e fases emprestadas do trigo de inverno 'Mediterranean'; sem medição americana. Resolveria: medição de umidade do solo sob trevo-encarnado na Geórgia (USDA-ARS Watkinsville ou UGA Tifton).",
+    "kc_inicial, kc_medio e profundidade_raiz_m: PROXY do berseem (Trifolium alexandrinum) no FAO-56. Profundidade de raiz do trevo-encarnado não encontrada em fonte americana.",
+    "regua: k da decomposição é PROXY da ervilhaca (não achei k em massa do trevo-encarnado; a tese de Sapkota, Tennessee State, que mediria isso, foi retirada). A faixa de C/N (13-19) é cálculo com C assumido de 400 g/kg. A massa depende muito da data de manejo (2,3 t/ha no fim do vegetativo e 5,6 t/ha na formação de sementes; depende_da_epoca).",
+    "uso_forrageiro: 'com_restricao' por ser cobertura antes do milho; como forrageira de inverno no Sudeste o trevo-encarnado é de uso principal (NRCS, SARE, Feedipedia). Se o motor tratar o pastejo como objetivo, 'principal' também se defende.",
+    "codigo_nass e calendario_usda vazios (sem commodity no NASS e sem linha no Handbook 628); QuickStats não conferido por falta de NASS_API_KEY.",
+    "Janela de manejo: o SARE Southeast (cap. 5) recomendaria, pelo que se viu só no resultado de busca (página não abriu), dessecar as coberturas de inverno 2 a 4 semanas antes da cultura de verão, e o SARE MCCP diz para esperar 2 a 3 semanas depois de matar o trevo; a linha usa 10-14 dias (NRCS). Com 2-4 semanas o manejo iria de ~22/fev a ~20/abr. Resolveria: guia de milho da UGA com o intervalo da dessecação do trevo antes do milho.",
+    "Sistema: o SARE MCCP avisa que a semeadura cedo do milho e a colheita tardia do algodão 'limit a traditional winter-annual role for crimson clover' e que ele funciona melhor antes do sorgo. A linha mantém o trevo antes do milho (sistema da UGA C1077 e do SARE Southeast); o manejo cedo (8/mar) dá pouca massa.",
+    "estados_validos: só GA. Alabama e Tennessee foram calculados (15/11) e ficaram em regua.arranjos.alabama (GD 800-2650, água 90-430 mm, ciclo 116-256 d, semeadura 25/ago-15/nov, manejo 11/mar-8/mai) e regua.arranjos.tennessee (GD 790-2430, água 160-515 mm, ciclo 172-273 d, semeadura 15/ago-1/out, manejo 22/mar-15/mai). Os graus-dia ficam perto da linha, mas janela, ciclo e água não. DECISÃO do coordenador: (a) manter os arranjos (o motor ainda não lê regua.arranjos, então AL e TN mostram 'sem dado para sua região' até isso entrar); ou (b) pôr AL em estados_validos com a janela da Geórgia: no norte e no centro do AL os números cabem quase todos na linha (norte GD 940-2287 e água 145-426 mm; centro 1060-2646 e 127-428 mm), e só a semeadura tardia do sul (até 15/nov) sai da faixa. Fraco: janelas só do SARE (Alabama Extension ANR-2845 e ANR-2139 não dão datas do trevo-encarnado por região), manejo pela regra do NRCS sobre a data do milho, coordenadas aproximadas das estações. Resolveria: guia de coberturas da Alabama Extension ou da UT Extension com datas de semeadura e dessecação antes do milho.",
+    "tmax_critica_c vazio: dessecado antes de completar o ciclo; o TMAX 28 °C do ECOCROP é limite de crescimento, não de dano (fica na evidência)."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 8,
+    "colunas": [
+      "temp_base_c",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max",
+      "kc_inicial",
+      "kc_medio",
+      "profundidade_raiz_m"
+    ]
+  }
+}

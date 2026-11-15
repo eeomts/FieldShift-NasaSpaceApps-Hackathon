@@ -30,7 +30,7 @@ def enviar(
     conversa_id: int, dados: EnviarMensagem, u: Usuario = Depends(usuario_atual), agente: AgenteService = Depends()
 ) -> MensagemOut:
     """A resposta do assistente (o agente roda aqui, de uma vez)."""
-    return agente.responder(u, conversa_id, dados.mensagem)
+    return agente.responder(u, conversa_id, dados.mensagem, dados.idioma)
 
 
 @router.delete("/conversas/{conversa_id}", status_code=status.HTTP_204_NO_CONTENT)

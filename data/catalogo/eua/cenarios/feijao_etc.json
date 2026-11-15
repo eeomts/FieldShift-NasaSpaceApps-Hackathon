@@ -1,0 +1,160 @@
+{
+  "_leia": "Cenários de etc_nasa_power.py para o feijão (dry edible bean, pinto e navy, sequeiro; Dakota do Norte e Michigan). Água = consumo sem déficit, Kc do FAO-56 Tab. 12 (Kc ini 0,4 do grupo Legumes, que a linha 'Beans, dry and Pulses' herda; mid 1,15; end 0,35), mid e end ajustados ao clima local pela eq. 62/65 com altura 0,4 m (Tab. 12). Fases na proporção do FAO-56 Tab. 11 para o feijão seco em clima continental (20/30/40/20 = 110 d), escaladas para a duração da semeadura à maturação fisiológica dos ensaios (NDSU Carrington e Langdon; MSU/Michigan Bean Commission; ver feijao_gd.json). Semeadura: Handbook 628 (ND mais ativa 19/mai-6/jun; MI 3-17/jun) e datas dos ensaios. 'anos' = anos da semeadura. 'elevacao_m' de Carrington e Langdon = célula do POWER (girassol_etc.json); a de Kawkawlin é aproximada.",
+  "locais": {
+    "carrington": {
+      "nome": "Carrington-ND (NDSU Carrington Research Extension Center)",
+      "lat": 47.51,
+      "lon": -99.13,
+      "elevacao_m": 505.94
+    },
+    "langdon": {
+      "nome": "Langdon-ND (NDSU Langdon Research Extension Center)",
+      "lat": 48.76,
+      "lon": -98.37,
+      "elevacao_m": 377.95
+    },
+    "kawkawlin": {
+      "nome": "Kawkawlin-MI (Bay County; ensaios da MSU/Michigan Bean Commission)",
+      "lat": 43.65,
+      "lon": -83.95,
+      "elevacao_m": 196
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "feijao_carrington_0525_86d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "fases_dias": [
+        16,
+        23,
+        31,
+        16
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 406,
+        "nota": "Conferência: Yonts (UNL, Scottsbluff-NE, 2006), 'Dry beans use approximately 16 inches of water during the growing season' (16 x 25,4 = 406 mm; oeste do Nebraska, irrigado, outra região). Centro de ND, pinto precoce (86 dias = mediana das mais precoces nos ensaios da NDSU em Carrington e Langdon)."
+      }
+    },
+    {
+      "nome": "feijao_carrington_0525_96d",
+      "cultura": "feijao",
+      "local": "carrington",
+      "semeadura": "05-25",
+      "fases_dias": [
+        17,
+        26,
+        35,
+        18
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 406,
+        "nota": "Conferência: Yonts (UNL, Scottsbluff-NE, 2006), 'Dry beans use approximately 16 inches of water during the growing season' (16 x 25,4 = 406 mm; oeste do Nebraska, irrigado, outra região). Centro de ND, navy/pinto tardia (96 dias, mediana das mais tardias da NDSU)."
+      }
+    },
+    {
+      "nome": "feijao_max_langdon_0525_110d",
+      "cultura": "feijao",
+      "local": "langdon",
+      "semeadura": "05-25",
+      "fases_dias": [
+        20,
+        30,
+        40,
+        20
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 406,
+        "nota": "Conferência: Yonts (UNL, Scottsbluff-NE, 2006), 'Dry beans use approximately 16 inches of water during the growing season' (16 x 25,4 = 406 mm; oeste do Nebraska, irrigado, outra região). Maior demanda: norte de ND (Langdon), tardia (110 dias nos ensaios de Langdon; ar mais seco e ET0 maior que em Michigan)."
+      }
+    },
+    {
+      "nome": "feijao_min_kawkawlin_0605_96d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-05",
+      "fases_dias": [
+        17,
+        26,
+        35,
+        18
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 406,
+        "nota": "Conferência: Yonts (UNL, Scottsbluff-NE, 2006), 'Dry beans use approximately 16 inches of water during the growing season' (16 x 25,4 = 406 mm; oeste do Nebraska, irrigado, outra região). Menor demanda: Michigan (Bay County, clima úmido), pinto precoce (Windbreaker, 96 dias)."
+      }
+    },
+    {
+      "nome": "feijao_kawkawlin_0605_103d",
+      "cultura": "feijao",
+      "local": "kawkawlin",
+      "semeadura": "06-05",
+      "fases_dias": [
+        19,
+        28,
+        37,
+        19
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 0.35
+      },
+      "altura_m": 0.4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 406,
+        "nota": "Conferência: Yonts (UNL, Scottsbluff-NE, 2006), 'Dry beans use approximately 16 inches of water during the growing season' (16 x 25,4 = 406 mm; oeste do Nebraska, irrigado, outra região). Michigan (Bay County), pinto/navy tardia (Charro e Merlin, 103 dias)."
+      }
+    }
+  ]
+}

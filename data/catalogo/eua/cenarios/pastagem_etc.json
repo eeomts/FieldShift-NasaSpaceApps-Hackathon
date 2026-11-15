@@ -1,0 +1,111 @@
+{
+  "_leia": "Cenários de etc_nasa_power.py para a pastagem dos EUA: festuca alta (tall fescue, Lolium arundinaceum), pasto perene de clima temperado em pastejo rotacionado, Missouri (Columbia) e Kentucky (Lexington). PERENE FORRAGEIRA: água ANUAL (consumo sem déficit no ano civil, de 1/jan a 31/dez), como a regra das perenes do catálogo. Kc do FAO-56 Tab. 12, 'Grazing Pasture - Rotated Grazing' (ini 0,40; mid 0,85-1,05, usado o ponto médio 0,95; end 0,85; altura 0,15-0,30 m, usado 0,2 m na eq. 62/65). Fases (convenção do time, apoiada no calendário de crescimento da festuca no UK AGR-59 e na regra do FAO-56 Tab. 11 para pasto de gramínea, 'from 7 days before last -4 °C in spring until 7 days after first -4 °C in fall'): inicial 1/jan-14/mar (73 d, repouso de inverno, Kc ini), desenvolvimento 15/mar-14/abr (31 d, rebrota de primavera), média 15/abr-15/nov (215 d, pastejo; o 'verão lento' da festuca não entra porque a água é sem déficit), final 16/nov-31/dez (46 d, até o Kc end). Os cenários '_estacao' contam só de 15/mar a 30/nov (sem o inverno), para conferência. 'elevacao_m' = elevação da célula do POWER (informada na saída do script). Sem 'referencia': não há valor publicado de consumo anual da festuca no Missouri ou no Kentucky para comparar (a saída mostra a chuva anual mediana do POWER ao lado).",
+  "locais": {
+    "columbia": {
+      "nome": "Columbia-MO (University of Missouri)",
+      "lat": 38.95,
+      "lon": -92.33,
+      "elevacao_m": 225
+    },
+    "lexington": {
+      "nome": "Lexington-KY (University of Kentucky)",
+      "lat": 38.03,
+      "lon": -84.5,
+      "elevacao_m": 281
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "pastagem_columbia_0101_365d_anual",
+      "cultura": "pastagem",
+      "local": "columbia",
+      "semeadura": "01-01",
+      "fases_dias": [
+        73,
+        31,
+        215,
+        46
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.95,
+        "end": 0.85
+      },
+      "altura_m": 0.2,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Água anual da festuca sem déficit em Columbia-MO."
+    },
+    {
+      "nome": "pastagem_lexington_0101_365d_anual",
+      "cultura": "pastagem",
+      "local": "lexington",
+      "semeadura": "01-01",
+      "fases_dias": [
+        73,
+        31,
+        215,
+        46
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.95,
+        "end": 0.85
+      },
+      "altura_m": 0.2,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Água anual da festuca sem déficit em Lexington-KY."
+    },
+    {
+      "nome": "pastagem_columbia_0315_261d_estacao",
+      "cultura": "pastagem",
+      "local": "columbia",
+      "semeadura": "03-15",
+      "fases_dias": [
+        0,
+        31,
+        215,
+        15
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.95,
+        "end": 0.85
+      },
+      "altura_m": 0.2,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Conferência: só a estação de crescimento (15/mar-30/nov)."
+    },
+    {
+      "nome": "pastagem_lexington_0315_261d_estacao",
+      "cultura": "pastagem",
+      "local": "lexington",
+      "semeadura": "03-15",
+      "fases_dias": [
+        0,
+        31,
+        215,
+        15
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.95,
+        "end": 0.85
+      },
+      "altura_m": 0.2,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "Conferência: só a estação de crescimento (15/mar-30/nov)."
+    }
+  ]
+}

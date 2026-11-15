@@ -1,4 +1,4 @@
-"""Filtro de viabilidade: excluída, equipamento, graus-dia, água, geada e arroz irrigado, cada um com o motivo."""
+"""Filtro de viabilidade: excluída, equipamento, graus-dia, geada e arroz irrigado eliminam; a água só avisa. Cada um com o motivo."""
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 
@@ -12,7 +12,7 @@ from app.services.motor.hidrico import chuva_do_periodo, etc_mensal
 from app.services.motor.modelo import Alerta, ItemRotacao
 from app.services.motor.parametros import (
     AGUA_ALERTA_ABAIXO,
-    AGUA_ELIMINA_ABAIXO,
+    AGUA_MUITO_ABAIXO,
     GD_ALERTA_ABAIXO,
     GD_ELIMINA_ABAIXO,
     GEADA_FASE_SENSIVEL,
@@ -71,6 +71,16 @@ def _equipamento(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: 
             achados.append(Achado("equipamento", f"{c.nome}: falta máquina para o {etapa}; serve {' ou '.join(nomes)}.", True))
 
 
+def _regiao(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
+    """Regra 13: base da cultura válida só em certos estados. Fora da lista, só avisa (a candidata nem é gerada)."""
+    if not c.estados_validos:
+        return  # vazio = sem restrição
+    if e.estado is None:
+        lac.append(f"{c.nome}: não sabemos o estado da fazenda, então não checamos se a base dela vale para sua região.")
+    elif not c.vale_em(e.estado):
+        achados.append(Achado("sem_dado_regiao", f"{c.nome}: sem dado para sua região ({e.estado}); a base dela vale para {', '.join(c.estados_validos)}.", False))
+
+
 def _graus_dia(c: CulturaMotor, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
     minimo, tb = c.graus_dia_ciclo_min, c.temp_base_c
     if minimo is None or tb is None:
@@ -101,22 +111,23 @@ def _agua(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor
         if etc <= 0:
             return
         razao = chuva / etc
-        elimina, limite = razao < AGUA_ELIMINA_ABAIXO, razao < AGUA_ALERTA_ABAIXO
+        muito_abaixo, limite = razao < AGUA_MUITO_ABAIXO, razao < AGUA_ALERTA_ABAIXO
+        falta = etc - chuva
         resumo = f"a chuva do período ({num(chuva, 0)} mm) cobre {pct(razao)} do que ela usa ({num(etc, 0)} mm)"
     elif c.agua_ciclo_mm_min is not None:  # reserva: faixa de água da base
-        elimina = chuva < c.agua_ciclo_mm_min
-        limite = elimina or (c.agua_ciclo_mm_max is not None and chuva < c.agua_ciclo_mm_max)
+        muito_abaixo = chuva < c.agua_ciclo_mm_min
+        falta = c.agua_ciclo_mm_min - chuva
+        limite = muito_abaixo or (c.agua_ciclo_mm_max is not None and chuva < c.agua_ciclo_mm_max)
         resumo = f"a chuva do período ({num(chuva, 0)} mm) fica abaixo do que ela precisa ({num(c.agua_ciclo_mm_min, 0)} a {num(c.agua_ciclo_mm_max or c.agua_ciclo_mm_min, 0)} mm)"
     else:
         lac.append(f"{c.nome}: sem Kc nem faixa de água na base, não checamos a água.")
         return
     if not limite:
         return
-    if elimina and e.irrigacao != "parte":
-        achados.append(Achado("agua", f"{c.nome}: {resumo}; falta água.", True))
-    else:
-        complemento = "; só fecha na parte irrigada" if e.irrigacao == "parte" and elimina else ""
-        achados.append(Achado("agua_no_limite", f"{c.nome}: água no limite, {resumo}{complemento}.", False))
+    # a água nunca elimina (regra 1): a chuva da estação fica abaixo da demanda onde o sequeiro é típico
+    deficit = f"; faltam cerca de {num(falta, 0)} mm" if falta > 0 else ""
+    complemento = "; só fecha na parte irrigada" if e.irrigacao == "parte" and muito_abaixo else ""
+    achados.append(Achado("agua_no_limite", f"{c.nome}: água no limite, {resumo}{deficit}{complemento}.", False))
 
 
 def _geada(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
@@ -137,6 +148,7 @@ def achados_do_item(item: ItemRotacao, c: CulturaMotor, e: EntradasMotor, da_atu
     lac: list[str] = []
     if not da_atual and c.id in e.excluidas:  # a atual é escolha do produtor; só as candidatas respeitam a exclusão
         achados.append(Achado("excluida", f"Você disse que não planta {c.nome}.", True))
+    _regiao(c, e, achados, lac)
     _equipamento(c, e, achados, lac)
     if c.id == ARROZ_IRRIGADO and e.irrigacao != "sim":
         achados.append(Achado("arroz_sem_irrigacao", f"{c.nome} só entra com irrigação ou várzea e você não marcou irrigação.", True))
