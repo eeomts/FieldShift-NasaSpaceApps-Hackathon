@@ -13,6 +13,9 @@ não estiver lá. São usadas as tabelas por estado (19 a 62), as únicas que tr
 Entrada:  data/eua/nass/mapa_culturas_nass.csv   cultura_id -> nome no NASS (vários separados por "|")
 Saída:    data/eua/nass/datas_plantio.csv        uma linha por cultura, nome no NASS e estado
 
+As datas são "mês-dia" sem ano. Quando o fim é menor que o início (ex.: plantio de 11-10 a 02-01),
+a janela atravessa o ano: compare considerando a virada, não como texto.
+
 Diferenças em relação ao ZARC: a escala é o estado (não o município), não há risco em % nem tipo de solo
 ou ciclo, e as datas são "usuais" (o que os produtores fazem), não a recomendação de menor risco.
 """
@@ -48,7 +51,8 @@ NOTA_MAINE = "1/"
 
 MESES = {"Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6, "Jul": 7, "Aug": 8,
          "Sep": 9, "Sept": 9, "Oct": 10, "Nov": 11, "Dec": 12}
-COLUNAS = ["cultura_id", "nome_nass", "uf", "area_colhida_2009_mil_acres",
+HA_POR_ACRE = 0.40468564224
+COLUNAS = ["cultura_id", "nome_nass", "uf", "area_colhida_2009_ha",
            "plantio_inicio", "plantio_pico_inicio", "plantio_pico_fim", "plantio_fim",
            "colheita_inicio", "colheita_pico_inicio", "colheita_pico_fim", "colheita_fim"]
 
@@ -123,7 +127,11 @@ def main():
             sys.exit(f"Estado que não conheço na tabela do NASS: {estado!r}")
         pp_ini, pp_fim = intervalo(p_pico)
         cp_ini, cp_fim = intervalo(c_pico)
-        saida.append([nomes[nome_limpo], nome_limpo, uf, area.strip(), data(p_ini), pp_ini, pp_fim,
+        try:  # mil acres -> ha; nota de rodapé como "( 1/ )" no lugar do número fica vazia
+            area_ha = round(float(area.replace(",", "")) * 1000 * HA_POR_ACRE)
+        except ValueError:
+            area_ha = ""
+        saida.append([nomes[nome_limpo], nome_limpo, uf, area_ha, data(p_ini), pp_ini, pp_fim,
                       data(p_fim), data(c_ini), cp_ini, cp_fim, data(c_fim)])
         achados.add(nome_limpo)
 
