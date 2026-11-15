@@ -16,10 +16,11 @@ dependencies = [
     "pyjwt>=2.10",
     "google-genai>=1.0",
     "pgvector>=0.3",
+    "httpx>=0.28",
 ]
 
 [dependency-groups]
-dev = ["pytest>=8.3", "httpx>=0.28"]
+dev = ["pytest>=8.3"]
 
 [tool.uv]
 package = false

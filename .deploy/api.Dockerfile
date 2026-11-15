@@ -19,6 +19,7 @@ COPY agroia/api/ ./
 COPY agroia/base/ /app/agroia/base/
 COPY data/catalogo/ /app/data/catalogo/
 COPY data/rag/ /app/data/rag/
+COPY data/demo/pontos_demo.csv /app/data/demo/pontos_demo.csv
 
 RUN useradd --system --no-create-home agroia && chown -R agroia /app
 USER agroia
