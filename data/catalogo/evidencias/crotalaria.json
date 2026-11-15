@@ -21,10 +21,21 @@
     "cobertura_solo": "alta",
     "aporte_biomassa": "alto",
     "valor_forrageiro": "baixo",
-    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (dias a 50% do florescimento por época de semeadura: 118/88/67; fotoperíodo de dias curtos)|Carvalho et al., Embrapa Cerrados, Circular Técnica 4 Manejo de adubos verdes no Cerrado, 1999 (florescimento ~90 dias no período chuvoso e 60 dias no fim das chuvas; 17,6 t/ha MS; 443,5 kg/ha N na parte aérea; corte pode anteceder a floração)|Pereira, A.J., tese UFRRJ/Embrapa Agrobiologia, Caracterização agronômica de espécies de Crotalaria L., 2007 (50% de flores aos 57-163 DAS conforme época/local; 50% de cobertura aos 15 DAS; 17,6 Mg/ha MS; 418,7 kg/ha N da FBN; curva de Gompertz da altura da C. juncea, usada para h na eq. 62: ~1,7 m aos 56 DAS e ~3,3 m aos 118 DAS)|Araújo et al., Embrapa Agrobiologia, Boletim de P&D 66, 2010 (espécie herbácea anual; FBN 67%; 105,9 kg/ha N via FBN; pleno florescimento 114 dias após semeadura de 08/12)|FAO ECOCROP Crotalaria juncea id 801 (temperatura ótima 20-30, absoluta 4-40; temp. letal -1 °C no início do crescimento e -2 °C em repouso; ciclo 60-160 d; anual; sementes tóxicas a mamíferos)|Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016, Épocas de semeadura e temperatura base em crotalária juncea (cv. IAC KR1, Santa Maria-RS, 10 épocas de semeadura; Tb do subperíodo emergência-florescimento = 16,0 °C pelo método da menor variabilidade; 106-135 dias da emergência ao florescimento; altura no florescimento 2,86-3,51 m)|Sampaio et al., Irriga 21(2):211-225, 2016, DOI 10.15809/irriga.2016v21n2p211-225 (Kc medido em lisímetro de pesagem: 0,34 inicial e 1,41 floração, este padronizado para 1,36 pela eq. 62 do FAO-56 com u2 = 1,82 m/s e URmín = 27,94% do próprio artigo; ETc 225,89 mm até o pleno florescimento aos 56 DAS; Mossoró-RN)|Allen et al., FAO Irrigation and Drainage Paper 56, cap. 6, 1998 (eq. 62 de ajuste do Kc mid ao clima; Kc end alto para cultura colhida/cortada verde, usado em kc_final = kc_medio)|Daniel, Dallacort, Barbieri, Tieppo, Carvalho & Fenner, Research, Society and Development 9(8):e890986196, 2020, DOI 10.33448/rsd-v9i8.6196 (C. juncea solteira em lisímetro de pesagem, Tangará da Serra-MT: ETc 436,16 mm em 123 dias, da semeadura até perto da maturação, para ETo de 331,28 mm, ou seja, ETc/ETo de 1,32 no ciclo; usado como checagem)|ESTIMATIVA: cálculo FAO-56 (ETc = Kc x ET0 Penman-Monteith diária com NASA POWER 2000-2020) para agua_ciclo_mm_max; mediana de 21 anos do cenário de 163 dias até o florescimento (semeadura em 22/11, Seropédica-RJ, Pereira 2007)|Silva et al., Embrapa Semi-Árido, Caracterização de sistemas radiculares de leguminosas sob irrigação no Vale do São Francisco, 2002 (raízes até ~0,6 m aos 60 dias; 80% das raízes até 0,4 m)|Medina et al., Semina Ciênc. Agrár. 34(2):675-682, 2013 (profundidade efetiva 0,40 m, a maior entre as coberturas, amostragem até 1,0 m)|Foloni, Lima & Büll, RBCS 30:49-57, 2006 (raízes de C. juncea formam bioporos na camada compactada)|Cook et al., Tropical Forages (tropicalforages.info), Crotalaria juncea (raiz pivotante longa; alcaloides pirrolizidínicos tóxicos; animais não comem verde; tolera geadas leves)|DECISÃO DO TIME: Kc padronizado limitado a 1.25 (FAO-56 eq. 72: Kc max = max(1.2; Kcb + 0.05) no clima padrão) (medido 1.36 mantido como evidência)|CÁLCULO: água máxima recalculada com Kc 1.25 (NASA POWER 2000-2020, Seropédica, semeadura 22/11, 163 dias)|PROXY: kc_medio 1.25 = limite do FAO-56 eq. 72 (medido padronizado 1.36)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: crotalaria_max_seropedica_2211_163d, crotalaria_hist_seropedica_2211_163d_kc136)",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "fontes": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (dias a 50% do florescimento por época de semeadura: 118/88/67; fotoperíodo de dias curtos)|Carvalho et al., Embrapa Cerrados, Circular Técnica 4 Manejo de adubos verdes no Cerrado, 1999 (florescimento ~90 dias no período chuvoso e 60 dias no fim das chuvas; 17,6 t/ha MS; 443,5 kg/ha N na parte aérea; corte pode anteceder a floração)|Pereira, A.J., tese UFRRJ/Embrapa Agrobiologia, Caracterização agronômica de espécies de Crotalaria L., 2007 (50% de flores aos 57-163 DAS conforme época/local; 50% de cobertura aos 15 DAS; 17,6 Mg/ha MS; 418,7 kg/ha N da FBN; curva de Gompertz da altura da C. juncea, usada para h na eq. 62: ~1,7 m aos 56 DAS e ~3,3 m aos 118 DAS)|Araújo et al., Embrapa Agrobiologia, Boletim de P&D 66, 2010 (espécie herbácea anual; FBN 67%; 105,9 kg/ha N via FBN; pleno florescimento 114 dias após semeadura de 08/12)|FAO ECOCROP Crotalaria juncea id 801 (temperatura ótima 20-30, absoluta 4-40; temp. letal -1 °C no início do crescimento e -2 °C em repouso; ciclo 60-160 d; anual; sementes tóxicas a mamíferos)|Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016, Épocas de semeadura e temperatura base em crotalária juncea (cv. IAC KR1, Santa Maria-RS, 10 épocas de semeadura; Tb do subperíodo emergência-florescimento = 16,0 °C pelo método da menor variabilidade; 106-135 dias da emergência ao florescimento; altura no florescimento 2,86-3,51 m)|Sampaio et al., Irriga 21(2):211-225, 2016, DOI 10.15809/irriga.2016v21n2p211-225 (Kc medido em lisímetro de pesagem: 0,34 inicial e 1,41 floração, este padronizado para 1,36 pela eq. 62 do FAO-56 com u2 = 1,82 m/s e URmín = 27,94% do próprio artigo; ETc 225,89 mm até o pleno florescimento aos 56 DAS; Mossoró-RN)|Allen et al., FAO Irrigation and Drainage Paper 56, cap. 6, 1998 (eq. 62 de ajuste do Kc mid ao clima; Kc end alto para cultura colhida/cortada verde, usado em kc_final = kc_medio)|Daniel, Dallacort, Barbieri, Tieppo, Carvalho & Fenner, Research, Society and Development 9(8):e890986196, 2020, DOI 10.33448/rsd-v9i8.6196 (C. juncea solteira em lisímetro de pesagem, Tangará da Serra-MT: ETc 436,16 mm em 123 dias, da semeadura até perto da maturação, para ETo de 331,28 mm, ou seja, ETc/ETo de 1,32 no ciclo; usado como checagem)|ESTIMATIVA: cálculo FAO-56 (ETc = Kc x ET0 Penman-Monteith diária com NASA POWER 2000-2020) para agua_ciclo_mm_max; mediana de 21 anos do cenário de 163 dias até o florescimento (semeadura em 22/11, Seropédica-RJ, Pereira 2007)|Silva et al., Embrapa Semi-Árido, Caracterização de sistemas radiculares de leguminosas sob irrigação no Vale do São Francisco, 2002 (raízes até ~0,6 m aos 60 dias; 80% das raízes até 0,4 m)|Medina et al., Semina Ciênc. Agrár. 34(2):675-682, 2013 (profundidade efetiva 0,40 m, a maior entre as coberturas, amostragem até 1,0 m)|Foloni, Lima & Büll, RBCS 30:49-57, 2006 (raízes de C. juncea formam bioporos na camada compactada)|Cook et al., Tropical Forages (tropicalforages.info), Crotalaria juncea (raiz pivotante longa; alcaloides pirrolizidínicos tóxicos; animais não comem verde; tolera geadas leves)|DECISÃO DO TIME: Kc padronizado limitado a 1.25 (FAO-56 eq. 72: Kc max = max(1.2; Kcb + 0.05) no clima padrão) (medido 1.36 mantido como evidência)|CÁLCULO: água máxima recalculada com Kc 1.25 (NASA POWER 2000-2020, Seropédica, semeadura 22/11, 163 dias)|PROXY: kc_medio 1.25 = limite do FAO-56 eq. 72 (medido padronizado 1.36)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: crotalaria_max_seropedica_2211_163d, crotalaria_hist_seropedica_2211_163d_kc136)|Embrapa Agrobiologia, Crotalária júncea (catálogo de inoculantes, lâmina A5), 2017 (semeadura a partir de outubro no Sul, Sudeste e Centro-Oeste, estendida até março ou abril em áreas sem risco de geada; entressafra ou antes da cultura comercial)|Garcia & Staut, Como inserir crotalária em sistemas de produção de grãos, Embrapa Agropecuária Oeste, Circular Técnica 44, 2018 (entressafra depois da soja em Dourados-MS, semeaduras de fevereiro e abril)|Concenço & Silva, Dessecação de espécies de crotalária visando à implantação de canaviais em sucessão, Embrapa Agropecuária Oeste, Comunicado Técnico 210, 2015 (C. juncea a mais tolerante aos herbicidas no florescimento)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "420",
-    "graus_dia_ciclo_max": "910"
+    "graus_dia_ciclo_max": "910",
+    "semeadura_inicio": "10-01",
+    "semeadura_fim": "03-31",
+    "manejo_inicio": "12-30",
+    "manejo_fim": "06-06",
+    "tipo_manejo": "corte",
+    "condicao_semeadura": "apos_colheita_graos",
+    "estados_validos": "DF|ES|GO|MG|MS|MT|RJ|SP",
+    "lacuna_informacao": "Quase tudo da crotalária vem de um só ensaio: a temperatura em que ela começa a crescer, a água no início e a raiz. A água do ciclo longo e o calor até florescer vêm de um cálculo com o clima. O ciclo muda muito com a data de semeadura, porque ela floresce com dias curtos.",
+    "risco_revisao_local": "Quanto mais tarde semear, mais cedo floresce e menos palha dá; depois da soja rende bem menos. Corte no florescimento: o herbicida controla mal esta espécie. É tóxica, não sirva ao gado. Confirme a data e o manejo com o agrônomo ou a Emater."
   },
   "mudancas": [
     {
@@ -170,6 +181,48 @@
       "antes": "480-1220",
       "depois": "420-910",
       "motivo": "DECISÃO (14/11): culturas de Tb alta ficam na régua do motor (NASA POWER, sem correção). Régua NASA POWER nas datas e locais dos ensaios: Cargnelutti 2016 (Santa Maria, 10 épocas, 795-909) e Amabile 2000 (Senador Canedo: 810 nov, 546 jan, 424 mar). Literatura (estação) dava 480-1220."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "(vazio)",
+      "depois": "10-01 / 03-31",
+      "motivo": "REVISÃO 15/11 (pacote 9): Embrapa Agrobiologia (2017): a partir de outubro, 'podendo ser estendida até março ou abril em áreas sem risco de geadas'; janela atravessa o ano. Sem ZARC para crotalária"
+    },
+    {
+      "coluna": "manejo_inicio/manejo_fim",
+      "antes": "(vazio)",
+      "depois": "12-30 / 06-06",
+      "motivo": "REVISÃO 15/11 (pacote 9): CT 4: floresce aos ~90 dias na semeadura do início das chuvas e o corte pode anteceder a floração (01/10 + 90 d); fim = 31/03 + 67 d (Amabile 2000, semeadura de março)"
+    },
+    {
+      "coluna": "tipo_manejo",
+      "antes": "(vazio)",
+      "depois": "corte",
+      "motivo": "REVISÃO 15/11 (pacote 9): CT 4 (corte, manejo na floração) e COT 210 (herbicida controla mal a C. juncea)"
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "(vazio)",
+      "depois": "apos_colheita_graos",
+      "motivo": "REVISÃO 15/11 (pacote 9): CT 4: entressafra 'após a colheita da cultura comercial' com crotalária juncea entre as mais adaptadas; CT 44: 'após a colheita da soja'"
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "(vazio)",
+      "depois": "DF|ES|GO|MG|MS|MT|RJ|SP",
+      "motivo": "REVISÃO 15/11 (pacote 9): Sudeste e Centro-Oeste da Embrapa Agrobiologia; RS para arranjo (janela até março só sem geada); BA sem fonte"
+    },
+    {
+      "coluna": "regua.arranjos.sul",
+      "antes": "(vazio)",
+      "depois": "RS: semeadura 10-01 a 12-03, corte 02-19 a 03-25, ciclo 112-141 d, graus-dia 795-909",
+      "motivo": "REVISÃO 15/11 (pacote 9): números de Santa Maria-RS (Cargnelutti 2016) separados da linha"
+    },
+    {
+      "coluna": "lacuna_informacao/risco_revisao_local",
+      "antes": "(vazio)",
+      "depois": "textos para o produtor",
+      "motivo": "REVISÃO 15/11 (pacote 9): confiança baixa (8 lacunas); textos de 273 e 241 caracteres"
     }
   ],
   "evidencias": [
@@ -580,6 +633,69 @@
       "fonte": "LITERATURA (sem data no texto lido): Sampaio et al., Irriga 21(2):211-225, 2016, Mossoró-RN, florescimento pleno aos 56 DAS",
       "url": "https://doi.org/10.15809/irriga.2016v21n2p211-225",
       "trecho": "A ETc da crotalária até atingir o florescimento pleno, aos 56 DAS [...]; soma 582 = 56 × (26,39 − 16), conta já registrada na evidência da cultura; não recalculada no POWER"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "estados_validos",
+        "condicao_semeadura"
+      ],
+      "fonte": "Embrapa Agrobiologia, Crotalária júncea, catálogo de inoculantes (lâmina A5), 2017",
+      "url": "https://www.embrapa.br/documents/1355054/19774764/INT_2017_CATALOGO+INOCULACAO_CROTALARIA+JUNCEA_LAMINA+A5.pdf/8ed1bf65-2810-b979-82c6-051a0a1666ee",
+      "trecho": "Regiões de adaptação: Sudeste, Centro-Oeste (especialmente no Cerrado) e Sul do Brasil. Época de semeadura: A crotalária pode ser cultivada na entressafra ou antes da cultura comercial. É espécie de primavera e verão, indicada para regiões com semeadura prevista para o início do período chuvoso, que inicia a partir de outubro nas regiões Sul, Sudeste e Centro-Oeste (especialmente no Cerrado), podendo ser estendida até março ou abril em áreas sem risco de geadas. [janela = 01/10 a 31/03; atravessa o ano (inicio > fim); abril fica de fora por depender de área sem geada]"
+    },
+    {
+      "colunas": [
+        "condicao_semeadura",
+        "manejo_fim"
+      ],
+      "fonte": "Carvalho, Burle, Pereira & Silva, Manejo de adubos verdes no Cerrado, Embrapa Cerrados, Circular Técnica 4, 1999, 'Adubos verdes cultivados na entressafra' e Tabela 4",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/546470/1/cirtec04.pdf",
+      "trecho": "Uma opção de cultivo de adubos verdes, na entressafra, é a semeadura após a colheita da cultura comercial, no final do período chuvoso, mesmo com o comprometimento na produção de fitomassa aérea. As leguminosas mais adaptadas a esse sistema são: espécies de mucuna, feijão-bravo-do-ceará, feijão-de-porco, guandu e crotalária juncea. [...] TABELA 4. [...] semeados no final do período chuvoso [...] Goiânia, GO [...] Crotalária juncea 60 [dias até a floração] 2,3 [t/ha 1993/94] 4,9 [1994/95]"
+    },
+    {
+      "colunas": [
+        "manejo_inicio",
+        "tipo_manejo"
+      ],
+      "fonte": "Carvalho et al., Embrapa Cerrados, Circular Técnica 4, 1999, 'Adubos verdes cultivados durante o período chuvoso' e 'Manejo da biomassa'",
+      "url": "https://www.infoteca.cnptia.embrapa.br/bitstream/doc/546470/1/cirtec04.pdf",
+      "trecho": "A crotalária juncea, que apresenta ciclo mais curto, (floresce aproximadamente aos 90 dias), pode ser usada nesse sistema, antecedendo à cultura do arroz, por exemplo. Nesse caso, a semeadura das espécies deve ser realizada logo após as primeiras chuvas, e o corte pode anteceder à floração [...] A floração é o estádio de desenvolvimento das plantas mais indicado para efetuar o manejo dessa biomassa [manejo_inicio = 01/10 + 90 d = 30/12]"
+    },
+    {
+      "colunas": [
+        "manejo_fim"
+      ],
+      "fonte": "Amabile, Fancelli & Carvalho, Pesq. agropec. bras. 35(1):47-54, 2000 (Senador Canedo-GO, 1991/92), Tabela 3",
+      "url": "https://apct.sede.embrapa.br/pab/article/download/5695/2799/20586",
+      "trecho": "TABELA 3. Número de dias para atingir 50% do florescimento [...] 12 de novembro 7 de janeiro 4 de março [...] C. juncea 118Ba 88Cb 67Dc [manejo_fim = fim da janela 31/03 + 67 d = 06/06, coerente com o ciclo_dias_min/max da linha]"
+    },
+    {
+      "colunas": [
+        "tipo_manejo"
+      ],
+      "fonte": "Concenço & Silva, Dessecação de espécies de crotalária visando à implantação de canaviais em sucessão, Embrapa Agropecuária Oeste, Comunicado Técnico 210, 2015 (Dourados-MS, 2012)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1048753/1/COT201521013jul.pdf",
+      "trecho": "a percentagem final de controle foi de 31,8%, 93,9% e 86,8%, respectivamente para C. juncea, C. spectabilis e C. ochroleuca (Tabela 1), evidenciando a maior tolerância geral de C. juncea aos diferentes herbicidas testados [...] No período de florescimento, quando os produtos foram aplicados, esta espécie se apresentou como a mais tolerante ao grupo de herbicidas, devendo-se ter cuidado ao implantá-la como planta de cobertura sob risco de dificuldades em sua eliminação química da área."
+    },
+    {
+      "colunas": [
+        "condicao_semeadura",
+        "estados_validos",
+        "semeadura_fim"
+      ],
+      "fonte": "Garcia & Staut, Como inserir crotalária em sistemas de produção de grãos, Embrapa Agropecuária Oeste, Circular Técnica 44, 2018 (Dourados-MS, 2017 e 2018)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1101109/1/CT44.pdf",
+      "trecho": "O maior potencial de produção de fitomassa dessas crotalárias é no verão, pois são espécies sensíveis ao fotoperiodismo e caracterizadas como plantas de dia curto (Amabile et al., 2000). Por sua vez, a oportunidade de inclusão da crotalária no sistema de produção concentra-se na entressafra, após a colheita da soja [...] No ano de 2017, as semeaduras foram realizadas nos dias 22 de fevereiro e 5 de abril [...] a crotalária-juncea apresentou grande redução na produção, em função desse atraso da semeadura, chegando a valores acima de 50% em 2017"
+    },
+    {
+      "colunas": [
+        "regua.arranjos.sul"
+      ],
+      "fonte": "Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016 (Santa Maria-RS, cv. IAC KR1, 10 épocas em 2014/15)",
+      "url": "https://ojs.ufgd.edu.br/agrarian/article/download/4574/3671/19848",
+      "trecho": "A massa de matéria verde reduz com o atraso da época de semeadura. A primeira quinzena de outubro é a melhor época de semeadura. [...] Tabela 2 [...] 1 01/10/2014 07/10/2014 19/02/2015 135 23,66 [...] 10 03/12/2014 09/12/2014 25/03/2015 106 25,09"
     }
   ],
   "pendencias": [
@@ -593,7 +709,11 @@
     "graus-dia: O estudo da Tb não publica a soma; a soma é minha (NDEF × (Tm − 16)), com a mesma Tm do artigo. As somas do Cerrado usam a Tb 16 de Santa Maria aplicada a outro local, por isso origem = cálculo.",
     "graus-dia: A C. juncea é de dias curtos: a soma até o florescimento cai pela metade da semeadura de novembro para a de março no mesmo local (962 -> 482). O filtro de graus-dia é fraco para ela; a época/latitude manda. Sugestão: usar só o mínimo (480) para eliminar e tratar valores entre 480 e 1220 como 'no limite'.",
     "graus-dia: Viés do POWER com Tb 16: nos dois ensaios a Tmed do POWER ficou 1-2 °C abaixo da estação, o que dá 424-909 °C dia em vez de 482-1220. Se o motor usa só o POWER, o equivalente seria ~420-930. Decisão do time: manter a faixa da fonte (480-1220) ou a faixa 'em POWER'. Com 480, a semeadura de março em Senador Canedo (424 no POWER) seria eliminada embora tenha florescido.",
-    "graus-dia: Amabile 2000 não diz se os dias contam da semeadura ou da emergência; tratei como da semeadura (diferença ~5 d × 7 = ~35 °C dia)."
+    "graus-dia: Amabile 2000 não diz se os dias contam da semeadura ou da emergência; tratei como da semeadura (diferença ~5 d × 7 = ~35 °C dia).",
+    "Janela (15/11): a linha usa a janela da Embrapa Agrobiologia (outubro a março, Sul, Sudeste e Centro-Oeste, até março ou abril só sem risco de geada), que cobre os ensaios dos números da linha: Senador Canedo-GO (novembro a março), Seropédica-RJ (novembro) e Dourados-MS (fevereiro). Ela junta dois usos: semeadura no início das chuvas antes da cultura comercial (área em pousio ou reforma) e semeadura de entressafra depois da soja (fevereiro-março), que dá bem menos palha (Amabile 2000: 17,3 t/ha em novembro, 6,0 em março; CT 44: queda de mais de 50% da semeadura de fevereiro para a de abril, em 2017). Como o ciclo depende da data (dias curtos), o motor deveria estimar o florescimento pela data da semeadura e não usar a faixa 56-160 inteira.",
+    "estados_validos = DF|ES|GO|MG|MS|MT|RJ|SP (Sudeste e Centro-Oeste da Embrapa Agrobiologia). RS fica fora da linha: a extensão até março vale só sem risco de geada, e o único dado do RS (Cargnelutti 2016, Santa Maria) testou só outubro a dezembro; ele foi para regua.arranjos.sul. PR e SC (Sul, com geada) ficaram sem linha e sem arranjo por falta de fonte de época. BA: nenhuma fonte de época para crotalária de sequeiro no Nordeste (Silva 2002, Embrapa Semiárido, é irrigado); falta uma fonte da Embrapa Semiárido ou da Bahia.",
+    "tipo_manejo = corte: CT 4 (Embrapa Cerrados) fala em 'corte' e em manejo no florescimento, e o COT 210 (Embrapa Agropecuária Oeste) mostra que o glifosato controla mal a C. juncea no florescimento (até 67,5%). Não achei fonte primária da Embrapa que diga rolo-faca para a C. juncea (só reportagem), por isso não usei 'rolagem'.",
+    "manejo_fim = 06-06 é conta (fim da janela 31/03 + 67 dias, o ciclo da semeadura de 4/março em Senador Canedo); a fonte não testou o fim de março. No Cerrado, o florescimento de maio-junho cai na seca."
   ],
   "pendencias_resolvidas": [
     "temp_base_c: sem valor medido para a C. juncea. O resumo de Qi et al. (Exp. Agric. 35:327-344, 1999) dá Tb comum de 10 °C (aparecimento de folhas) e 9 °C (emergência) para as leguminosas de cobertura de dias curtos. Não consegui confirmar no texto completo (acesso restrito) que a C. juncea estava entre as espécies. Um artigo da Agronomy (MDPI) de 2024 sobre sunn hemp usa GDD com base de 10 °C, mas não consegui abri-lo (403). Candidato: 10 °C, com baixa confiança.",
@@ -657,7 +777,32 @@
         "valor_forrageiro"
       ]
     },
-    "cenario_forragem": "Planta fresca de Crotalaria juncea (parte aérea). A PB 16,2 anterior era do FENO da Feedipedia. Atenção: no florescimento, quando a cobertura é manejada, folhas (25-30% PB) são só 35-40% da biomassa e os caules têm 8-10% de PB (Feedipedia), então a planta inteira nesse ponto tende a ter PB menor que 25,5."
+    "cenario_forragem": "Planta fresca de Crotalaria juncea (parte aérea). A PB 16,2 anterior era do FENO da Feedipedia. Atenção: no florescimento, quando a cobertura é manejada, folhas (25-30% PB) são só 35-40% da biomassa e os caules têm 8-10% de PB (Feedipedia), então a planta inteira nesse ponto tende a ter PB menor que 25,5.",
+    "arranjos": {
+      "sul": {
+        "estados": "RS",
+        "ciclo_dias": {
+          "min": 112,
+          "max": 141
+        },
+        "graus_dia_ciclo": {
+          "min": 795,
+          "max": 909
+        },
+        "semeadura_inicio": "10-01",
+        "semeadura_fim": "12-03",
+        "manejo_inicio": "02-19",
+        "manejo_fim": "03-25",
+        "tipo_manejo": "corte",
+        "condicao_semeadura": "",
+        "origem": {
+          "ciclo_dias": "estudo_unico",
+          "graus_dia_ciclo": "calculo"
+        },
+        "fonte": "Cargnelutti Filho et al., Revista Agrarian 9(34):312-318, 2016 (Santa Maria-RS): 'A primeira quinzena de outubro é a melhor época de semeadura'",
+        "nota": "Crotalária na Depressão Central do RS. Janela = épocas testadas (01/10 a 03/12/2014), a melhor na 1ª quinzena de outubro; é ensaio de 1 local e 1 ano, não recomendação oficial. Manejo (corte, como na linha) = florescimento medido, 19/02 a 25/03. Ciclo da semeadura ao florescimento: 141 d (01/10 -> 19/02) a 112 d (03/12 -> 25/03). Graus-dia (Tb 16, POWER nas datas do ensaio): 795-909, os mesmos que já estão nas evidências da linha. Água não calculada para o RS. condicao_semeadura vazia: a fonte não diz o que vem antes; outubro a dezembro é a época da soja no RS, então a crotalária só cabe em área de pousio ou depois do trigo, sem fonte para isso. A semeadura de março da linha não vale no RS: a Embrapa Agrobiologia só estende a janela até março ou abril em áreas sem risco de geada."
+      }
+    }
   },
   "origem": {
     "temp_base_c": {

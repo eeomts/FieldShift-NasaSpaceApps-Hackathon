@@ -21,10 +21,14 @@
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "baixo",
+    "codigo_pam": "40102",
+    "nome_zarc": "Arroz",
     "fontes": "SISTEMA: arroz de terras altas (sequeiro); não representa o arroz irrigado por inundação (RS/SC)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Clima (faixa ótima 20-35 °C; esterilidade >35 °C na floração; sensibilidade ao frio)|Embrapa Arroz e Feijão, Catálogo de cultivares de arroz, 2013 (ciclo das cultivares de terras altas 102-115 d)|Embrapa Roraima, Circular Técnica 08, 2011 (ciclo das cultivares de terras altas 95-115 d)|Embrapa Agrossilvipastoril, Jornada Científica 2024, citando Crusciol et al. 2013 Agronomy Journal 105:237 (água 400-600 mm, terras altas só com chuva)|Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, cap. Irrigação (necessidade total ~600 mm do terras altas por aspersão)|Embrapa Arroz e Feijão, Comunicado Técnico 214, 2013 (Kc decendial de lisímetro do terras altas, ciclo 110 d; conferência de Kc médio)|FAO-56 Tab.12 (Kc médio 1.20 e final 0.60 de Rice; Kc ini 0.3 herdado do grupo Cereals, pois o 1.05 de Rice é para arroz inundado)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite superior = sequeiro)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C; medida em arroz irrigado, mesma espécie)|Embrapa Arroz e Feijão CT 214 2013 (kc_inicial 0.60 e kc_final 0.90, curva decendial do terras altas)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "1300",
-    "graus_dia_ciclo_max": "1500"
+    "graus_dia_ciclo_max": "1500",
+    "lacuna_informacao": "Não achamos medição, no arroz de terras altas, da temperatura em que ele para de crescer nem do calor que precisa no ciclo: usamos o dado do arroz irrigado e um cálculo com o clima. A água mínima vem de um único estudo.",
+    "risco_revisao_local": "Confirme com o agrônomo a cultivar e a época de semeadura da sua região. O arroz é planta de dia curto: fora da época recomendada, o ciclo muda. Falta de chuva ou calor acima de 35 °C na floração deixam grãos vazios. Prefira a época com menos risco de seca na floração."
   },
   "mudancas": [
     {
@@ -116,6 +120,18 @@
       "antes": "0.6",
       "depois": "0.9",
       "motivo": "DECISÃO (revisão 14/11): curva da Embrapa (CT 214) no ciclo todo: Kc do último decêndio = 0,90. Supõe colheita com a palha ainda verde (usual no arroz de terras altas, colhido com 18-22% de umidade); se a colheita for com a planta senescente, o FAO-56 daria 0,60. O Kc final pesa pouco na água total."
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "(vazio)",
+      "depois": "Não achamos medição, no arroz de terras altas, da temperatura em que ele para de crescer nem do calor que precisa no ciclo: usamos o dado do arroz irrigado e um cálculo com o clima. A água mínima vem de um único estudo.",
+      "motivo": "REVISÃO 15/11 (pacote 9): texto para o produtor (confiança baixa) a partir das lacunas de origem: temp_base_c (estudo único, arroz irrigado do RS), graus_dia_ciclo_min/max (cálculo) e agua_ciclo_mm_min (estudo único, Crusciol 2013 lido só por citação)."
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "(vazio)",
+      "depois": "Confirme com o agrônomo a cultivar e a época de semeadura da sua região. O arroz é planta de dia curto: fora da época recomendada, o ciclo muda. Falta de chuva ou calor acima de 35 °C na floração deixam grãos vazios. Prefira a época com menos risco de seca na floração.",
+      "motivo": "REVISÃO 15/11 (pacote 9): riscos com fonte na Embrapa Arroz e Feijão, 500 Perguntas: Arroz (2013), cap. Clima: dia curto e época (q.2 e q.5), seca na floração e esterilidade de espiguetas (q.15, q.16 e q.19), calor acima de 35 °C na floração (tmax_critica_c). Cultivar: ciclo varia entre cultivares (pendências)."
     }
   ],
   "evidencias": [
@@ -354,6 +370,22 @@
       "fonte": "Heinemann, A.B. et al. (Embrapa Arroz e Feijão). Climate drivers affecting upland rice yield in the central region of Brazil. Pesq. Agropec. Trop. 54:e77222, 2024 (contexto: a Embrapa usa outra função térmica, sem total publicado em texto)",
       "url": "https://www.redalyc.org/journal/2530/253076425004/253076425004.pdf",
       "trecho": "The calculation of effective daily heat units (degree-days) considered the daily mean temperature and three cardinal temperatures: base (8 ºC), optimum (30 ºC) and maximum (42 ºC)"
+    },
+    {
+      "colunas": [
+        "risco_revisao_local"
+      ],
+      "fonte": "Silva, S. C. Clima. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, perguntas 2 e 5 (fotoperíodo)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964838/1/CNPAF2013500PR6.pdf",
+      "trecho": "Como o arroz é uma planta de dias curtos, o fotoperíodo pode reduzir seu ciclo, antecipando a floração. [...] o fotoperíodo pode ser limitante quando se pretende produzir arroz fora das épocas tradicionais de cultivo."
+    },
+    {
+      "colunas": [
+        "risco_revisao_local"
+      ],
+      "fonte": "Silva, S. C. Clima. In: Embrapa Arroz e Feijão, 500 Perguntas 500 Respostas: Arroz, 2013, perguntas 15, 16 e 19 (estresse hídrico e época de semeadura)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/964838/1/CNPAF2013500PR6.pdf",
+      "trecho": "o arroz é muito sensível ao estresse hídrico na fase reprodutiva, especialmente durante o florescimento. [...] esses sintomas resultam em alta esterilidade de espiguetas. [...] observando as épocas de semeadura que proporcionam menor risco de ocorrência de estresse hídrico durante o ciclo da cultura, principalmente durante a fase reprodutiva"
     }
   ],
   "pendencias": [

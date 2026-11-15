@@ -21,6 +21,8 @@
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "baixo",
+    "codigo_pam": "40114",
+    "nome_zarc": "Girassol",
     "fontes": "Embrapa Soja, Circular Técnica 13 A cultura do girassol (Castro et al.), 1997 (ciclo 90-130 dias, temperaturas, água 500-700 mm, tolerância à seca, raiz sensível à compactação)|Castro & Farias, Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005 (temp. base 4-8,5 °C, ótimo 20-25 °C, <35 °C na floração, água 400-500 mm, raiz até 2 m e sensível à compactação, matéria seca 9,5 t/ha)|Ungaro, Castro, Farias et al., Girassol, cap. 12 de Agrometeorologia dos cultivos, INMET, 2009 (temp. base 4 °C de Barni et al. 1993, geada, dano por calor na antese, água)|Gonçalves et al., Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005 (valor forrageiro)|Amabile & Duarte, Girassol como alternativa para o sistema de produção do Cerrado, Embrapa Cerrados (silagem similar à de milho, tolerância à seca)|FAO ECOCROP Helianthus annuus id 1191 (ótimo 17-34 °C, absoluto 5-45 °C, morte a 0 °C no início do ciclo)|FAO Irrigation Water Management Training Manual 3, Tab.5 (água 600-1000 mm, referência internacional)|FAO-56 Tab.12 (Kc; ini do grupo Oil crops 0.35; mid 1.0 = limite inferior, para sequeiro, nota 9)|FAO-56 Tab.22 (raiz 0.8-1.5 m, limite superior = sequeiro)",
     "confianca_parametros": "alta",
     "graus_dia_ciclo_min": "1500",

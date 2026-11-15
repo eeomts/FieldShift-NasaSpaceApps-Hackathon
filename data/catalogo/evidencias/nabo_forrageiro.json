@@ -21,10 +21,21 @@
     "cobertura_solo": "media",
     "aporte_biomassa": "medio",
     "valor_forrageiro": "medio",
-    "fontes": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995 (cap. 7.2: florescimento pleno 100-120 dias = manejo da cobertura, tolerância à seca e à geada, raiz pivotante profunda, descompactação, reciclagem de nutrientes, ~4,5 t/ha MS no florescimento, cobertura total 50-80 dias, forragem e palatabilidade menor que aveia/azevém)|Fietz, Silva, Comunello & Souza, Water requirement of oilseed radish in Mato Grosso do Sul, CIGR/CONBEA 2008, Embrapa Agropecuária Oeste (Kc medido em lisímetro de pesagem por subperíodo; ETm da emergência ao florescimento pleno = 156 mm, base do agua_ciclo_mm; ET0 da estação usada para checar o viés do NASA POWER)|FAO ECOCROP Raphanus sativus var. oleiferus id 83541 (temperatura ótima 12-25, absoluta 5-30; ciclo 70-150 dias; o máximo absoluto de 30 °C coincide com o limiar de calor na floração das Brassica)|Kochhann, Santos, Voss & Denardin, Embrapa Trigo Comunicado Técnico Online 116, 2003 (nabo como cultura intercalar no RS, dessecado na floração plena; reciclagem de N e K; raiz pivotante descompactadora)|Mascarenhas et al., EPAMIG/Embrapa Milho e Sorgo, XXVII CBCPD 2010 (início do florescimento ~60 DAE; Lima et al. 2007: 50% de florescimento aos 66 dias)|Thorup-Kristensen, Plant and Soil 288:233-248, 2006 (profundidade de raiz do fodder radish ~2,0 m; Dinamarca)|Jacobs, USDA-NRCS Plant Fact Sheet Oilseed radish, 2012 (raiz pivotante até ~1,8 m que rompe camadas compactadas; morre abaixo de -6,7 °C / 20 °F)|FAO-56 Tab.12 (Kc ini 0.7 do grupo a. Small Vegetables, linha Radish) (PROXY: rabanete hortaliça, só para kc_inicial)|Luz, Medeiros, Tomm, Bialozor, Amaral & Pivoto, Temperatura base inferior e ciclo de híbridos de canola, Ciência Rural 42(9):1549-1555, 2012 (UFSM/Embrapa Trigo; Tb medida da emergência ao início da floração -0,8 e 0,3 °C; literatura de canola entre 0 e 5 °C) (PROXY: canola, Brassica napus, para temp_base_c)|Dalmago, Fochesatto, Kovaleski et al., Filocrono e número de folhas da canola em diferentes condições ambientais, Pesq. agropec. bras. 48(6):573-581, 2013 (Embrapa Trigo; temperatura-base de 5 °C adotada para a canola) (PROXY: canola, Brassica napus, para temp_base_c)|van Dam & Lantinga, Leaf CO2 assimilation and leaf dynamics in catch crops during autumn and winter, Netherlands Journal of Agricultural Science 46:249-265, 1998 (fodder radish em Wageningen; soma térmica com base de 0 °C; folhas continuam surgindo com média de ~4 °C)|Morrison & Stewart, Heat stress during flowering in summer Brassica, Crop Science 42(3):797-803, 2002 (limiar de temperatura máxima na floração = 29,5 °C para B. napus, B. rapa e B. juncea, campo em Ottawa) (PROXY: Brassica, para tmax_critica_c)|NASA POWER (LaRC), dados diários 2005-2024 de Dourados-MS, Passo Fundo-RS e Ponta Grossa-PR (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN) -> ET0 FAO-56 Penman-Monteith calculada e ETc até o florescimento pleno (cálculo próprio, DERIVADO, para agua_ciclo_mm_min)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: nabo_min_pontagrossa_0104_60d, nabo_max_dourados_0104_120d, nabo_max_dourados_0105_120d)",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "fontes": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995 (cap. 7.2: florescimento pleno 100-120 dias = manejo da cobertura, tolerância à seca e à geada, raiz pivotante profunda, descompactação, reciclagem de nutrientes, ~4,5 t/ha MS no florescimento, cobertura total 50-80 dias, forragem e palatabilidade menor que aveia/azevém)|Fietz, Silva, Comunello & Souza, Water requirement of oilseed radish in Mato Grosso do Sul, CIGR/CONBEA 2008, Embrapa Agropecuária Oeste (Kc medido em lisímetro de pesagem por subperíodo; ETm da emergência ao florescimento pleno = 156 mm, base do agua_ciclo_mm; ET0 da estação usada para checar o viés do NASA POWER)|FAO ECOCROP Raphanus sativus var. oleiferus id 83541 (temperatura ótima 12-25, absoluta 5-30; ciclo 70-150 dias; o máximo absoluto de 30 °C coincide com o limiar de calor na floração das Brassica)|Kochhann, Santos, Voss & Denardin, Embrapa Trigo Comunicado Técnico Online 116, 2003 (nabo como cultura intercalar no RS, dessecado na floração plena; reciclagem de N e K; raiz pivotante descompactadora)|Mascarenhas et al., EPAMIG/Embrapa Milho e Sorgo, XXVII CBCPD 2010 (início do florescimento ~60 DAE; Lima et al. 2007: 50% de florescimento aos 66 dias)|Thorup-Kristensen, Plant and Soil 288:233-248, 2006 (profundidade de raiz do fodder radish ~2,0 m; Dinamarca)|Jacobs, USDA-NRCS Plant Fact Sheet Oilseed radish, 2012 (raiz pivotante até ~1,8 m que rompe camadas compactadas; morre abaixo de -6,7 °C / 20 °F)|FAO-56 Tab.12 (Kc ini 0.7 do grupo a. Small Vegetables, linha Radish) (PROXY: rabanete hortaliça, só para kc_inicial)|Luz, Medeiros, Tomm, Bialozor, Amaral & Pivoto, Temperatura base inferior e ciclo de híbridos de canola, Ciência Rural 42(9):1549-1555, 2012 (UFSM/Embrapa Trigo; Tb medida da emergência ao início da floração -0,8 e 0,3 °C; literatura de canola entre 0 e 5 °C) (PROXY: canola, Brassica napus, para temp_base_c)|Dalmago, Fochesatto, Kovaleski et al., Filocrono e número de folhas da canola em diferentes condições ambientais, Pesq. agropec. bras. 48(6):573-581, 2013 (Embrapa Trigo; temperatura-base de 5 °C adotada para a canola) (PROXY: canola, Brassica napus, para temp_base_c)|van Dam & Lantinga, Leaf CO2 assimilation and leaf dynamics in catch crops during autumn and winter, Netherlands Journal of Agricultural Science 46:249-265, 1998 (fodder radish em Wageningen; soma térmica com base de 0 °C; folhas continuam surgindo com média de ~4 °C)|Morrison & Stewart, Heat stress during flowering in summer Brassica, Crop Science 42(3):797-803, 2002 (limiar de temperatura máxima na floração = 29,5 °C para B. napus, B. rapa e B. juncea, campo em Ottawa) (PROXY: Brassica, para tmax_critica_c)|NASA POWER (LaRC), dados diários 2005-2024 de Dourados-MS, Passo Fundo-RS e Ponta Grossa-PR (T2M_MAX, T2M_MIN, T2MDEW, WS2M, ALLSKY_SFC_SW_DWN) -> ET0 FAO-56 Penman-Monteith calculada e ETc até o florescimento pleno (cálculo próprio, DERIVADO, para agua_ciclo_mm_min)|CÁLCULO reproduzível: data/catalogo/scripts/etc_nasa_power.py (cenários: nabo_min_pontagrossa_0104_60d, nabo_max_dourados_0104_120d, nabo_max_dourados_0105_120d)|IDR-Paraná, folder Nabo forrageiro IPR 210, reimpressão 2024 (semeadura entre abril e junho no Paraná; início da floração 50-60 dias; ciclo para adubo verde 100-120 dias; mofo-branco prejudica a soja seguinte)|Pedreira, Behling Neto, Wruck, Oliveira Júnior & Domiciano, Culturas de cobertura para a entressafra: importância e recomendações, Anuário de Pesquisas Agricultura 2020, ITC COMIGO (nabo semeado em março na entressafra do Cerrado, segundo Alvarenga et al. 2001; hospedeiro de mofo-branco)|Carvalho et al., Plantas de cobertura do solo recomendadas para a entressafra de milho em Sistema Plantio Direto no cerrado, Embrapa Cerrados Comunicado Técnico 181, 2018 (semeadura das coberturas da entressafra até a segunda quinzena de março; nabo 1,9 t/ha no DF)",
     "confianca_parametros": "baixa",
     "graus_dia_ciclo_min": "800",
-    "graus_dia_ciclo_max": "1800"
+    "graus_dia_ciclo_max": "1800",
+    "semeadura_inicio": "04-01",
+    "semeadura_fim": "05-31",
+    "manejo_inicio": "05-31",
+    "manejo_fim": "09-28",
+    "tipo_manejo": "dessecacao",
+    "condicao_semeadura": "apos_colheita_graos",
+    "estados_validos": "MS|PR|RS",
+    "lacuna_informacao": "Não há medição no Brasil da temperatura em que o nabo começa a crescer nem da profundidade das raízes. O uso de água foi medido em um só ensaio; o resto é um cálculo com o clima. Usamos dados da canola e do rabanete, plantas parecidas.",
+    "risco_revisao_local": "Semeie de abril a maio, depois da colheita da soja ou do milho, e maneje no florescimento, antes de formar semente. No Cerrado a semeadura é em março. O nabo hospeda o mofo-branco: evite antes da soja em área com a doença. Confirme a época com a Emater ou a cooperativa."
   },
   "mudancas": [
     {
@@ -182,6 +193,54 @@
       "antes": "330",
       "depois": "350",
       "motivo": "DECISÃO (revisão 14/11): recalculado com Kc 1,25 (data/catalogo/scripts/etc_nasa_power.py): medianas de 367 e 423 mm em Dourados (semeadura 1/4 e 1/5), menos ~12% do viés da ET0 do POWER em Dourados = 323-372 mm; meio da faixa = 350."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "(vazio)",
+      "depois": "04-01 / 05-31",
+      "motivo": "REVISÃO 15/11 (pacote 9): semeadura de outono da região dos números da linha: Dourados 'abril' e 'maio' (Hernani 1995) e Paraná 'entre abril e junho' (IDR-Paraná IPR 210). Nabo sem ZARC."
+    },
+    {
+      "coluna": "manejo_inicio/manejo_fim",
+      "antes": "(vazio)",
+      "depois": "05-31 / 09-28",
+      "motivo": "REVISÃO 15/11 (pacote 9): semeadura + ciclo_dias da linha (01/04 + 60; 31/05 + 120), manejo no florescimento pleno (Hernani 1995; Kochhann 2003)."
+    },
+    {
+      "coluna": "tipo_manejo",
+      "antes": "(vazio)",
+      "depois": "dessecacao",
+      "motivo": "REVISÃO 15/11 (pacote 9): 'dessecada com glifosato e triturada [...] no estádio de floração plena' (Kochhann 2003); Hernani 1995: 'rolo-faca ou com herbicidas'."
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "(vazio)",
+      "depois": "apos_colheita_graos",
+      "motivo": "REVISÃO 15/11 (pacote 9): entre a colheita da soja e do milho e a cultura seguinte (Kochhann 2003); 'em sucessão à soja' (Hernani 1995)."
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "(vazio)",
+      "depois": "MS|PR|RS",
+      "motivo": "REVISÃO 15/11 (pacote 9): UFs com fonte para a janela de outono e onde estão os números da linha: MS (Hernani 1995, Fietz 2008), PR (IPR 210, Ziech 2015, água em Ponta Grossa), RS (Kochhann 2003, água em Passo Fundo)."
+    },
+    {
+      "coluna": "regua.arranjos.cerrado",
+      "antes": "(vazio)",
+      "depois": "GO|DF|MT|MG, semeadura 03-01 a 03-31, manejo 04-30 a 07-29, dessecacao, apos_colheita_graos",
+      "motivo": "REVISÃO 15/11 (pacote 9): nabo semeado em março depois da soja no Cerrado (COMIGO 2020; Embrapa Cerrados CT 181), separado da linha (uma linha, uma região)."
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "(vazio)",
+      "depois": "Não há medição no Brasil da temperatura em que o nabo começa a crescer nem da profundidade das raízes. O uso de água foi medido em um só ensaio; o resto é um cálculo com o clima. Usamos dados da canola e do rabanete, plantas parecidas.",
+      "motivo": "REVISÃO 15/11 (pacote 9): texto para o produtor (confiança baixa), a partir das lacunas de origem: Tb da canola, raiz de um estudo só, Kc de um ensaio e do rabanete, água e graus-dia por cálculo."
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "(vazio)",
+      "depois": "Semeie de abril a maio, depois da colheita da soja ou do milho, e maneje no florescimento, antes de formar semente. No Cerrado a semeadura é em março. O nabo hospeda o mofo-branco: evite antes da soja em área com a doença. Confirme a época com a Emater ou a cooperativa.",
+      "motivo": "REVISÃO 15/11 (pacote 9): texto para o produtor (confiança baixa): época, manejo no florescimento, Cerrado em março e mofo-branco (IPR 210; COMIGO 2020)."
     }
   ],
   "evidencias": [
@@ -521,6 +580,71 @@
       "fonte": "CÁLCULO próprio: NASA POWER diário Dourados-MS (-22,22; -54,81) 2007 e Dois Vizinhos-PR 2010-2011; climatologia T2M Dourados",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M_MAX,T2M_MIN&community=AG&longitude=-54.81&latitude=-22.22&start=20070501&end=20070831&format=JSON",
       "trecho": "Dourados 31/05/2007->24/07/2007 Tb5: GD 809, 54 d, Tmed 19,98; Dois Vizinhos 05/07/2010->06/10/2010: 1158; 12/05/2011->01/09/2011: 1243"
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "estados_validos",
+        "tipo_manejo"
+      ],
+      "fonte": "Hernani, Endres, Pitol & Salton, Adubos verdes de outono/inverno no Mato Grosso do Sul, EMBRAPA-CPAO Documentos 4, 1995, cap. 7.2 (Dourados-MS)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "Na região de Dourados, a semeadura deve ser realizada nos mês de abril, mas pode-se obter bons rendimentos de grãos com a semeadura em maio. [...] O florescimento pleno, que na região deve ocorrer entre 100 e 120 dias, é a época ideal para o manejo da cobertura verde, que deve ser realizado, preferencialmente, com rolo-faca ou com herbicidas."
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "estados_validos",
+        "manejo_fim"
+      ],
+      "fonte": "IDR-Paraná, folder Nabo forrageiro IPR 210, reimpressão de janeiro de 2024 (indicação de cultivo: Paraná)",
+      "url": "https://www.idrparana.pr.gov.br/system/files/publico/pesquisa/publicacoes/folder/fld-ipr-210/folder-IPR-210.pdf",
+      "trecho": "Semeadura y Época: entre abril e junho [...] Opção de cultivo para o outono/inverno, em sistemas de rotação de culturas [...] Início da floração: 50-60 dias, estendendo-se até 100-110 dias y Ciclo para adubo verde: 100-120 dias [...] INDICAÇÃO DE CULTIVO [...] Paraná"
+    },
+    {
+      "colunas": [
+        "condicao_semeadura",
+        "estados_validos",
+        "tipo_manejo"
+      ],
+      "fonte": "Kochhann, Santos, Voss & Denardin, Embrapa Trigo Comunicado Técnico Online 116, 2003 (Passo Fundo e Independência-RS; já citado)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/852298/1/pco116.pdf",
+      "trecho": "nabo forrageiro, como cultura intercalar, no período compreendido entre a colheita das culturas de verão, soja e milho, e a semeadura de trigo. [...] dessecada com glifosato e triturada com o implemento agrícola 'Triton', no estádio de floração plena [...] entre a colheita de soja, a partir de início de abril, e a semeadura de trigo, a partir de meados de maio"
+    },
+    {
+      "colunas": [
+        "condicao_semeadura"
+      ],
+      "fonte": "Hernani, Endres, Pitol & Salton, EMBRAPA-CPAO Documentos 4, 1995, cap. 2",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/238767/1/DOC41995.pdf",
+      "trecho": "Em avaliação realizada pela EMBRAPA-CPAO com uma série de culturas utilizadas em rotação e em sucessão à soja, entre as quais citam-se: centeio, aveias preta e branca, chícharo, colza/canola, nabo forrageiro [...]"
+    },
+    {
+      "colunas": [
+        "risco_revisao_local"
+      ],
+      "fonte": "IDR-Paraná, folder Nabo forrageiro IPR 210, 2024",
+      "url": "https://www.idrparana.pr.gov.br/system/files/publico/pesquisa/publicacoes/folder/fld-ipr-210/folder-IPR-210.pdf",
+      "trecho": "Doenças O mofo-branco (Sclerotinia sclerotiorum) pode prejudicar o cultivo subsequente, principalmente a soja."
+    },
+    {
+      "colunas": [
+        "regua.arranjos.cerrado",
+        "risco_revisao_local"
+      ],
+      "fonte": "Pedreira, Behling Neto, Wruck, Oliveira Júnior & Domiciano (Embrapa Agrossilvipastoril/UFMT), Culturas de cobertura para a entressafra: importância e recomendações, Anuário de Pesquisas Agricultura - Resultados 2020, ITC COMIGO, Rio Verde-GO",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1129791/1/2020-cpamt-bcp-culturas-cobertura-entressafra-importancia-recomendacao.pdf",
+      "trecho": "Em grande parte do Centro-Oeste, a semeadura do milho é permitida até o final do mês de fevereiro, o que requer o cultivo de outras plantas de cobertura quando a colheita da soja ocorre em março ou abril. [...] A produtividade do nabo forrageiro em Minas Gerais foi em média de 4,0 t/ha quando semeado em março para produção de forragem em segunda safra (Alvarenga et al., 2001). Importante ressaltar que o nabo forrageiro é hospedeiro de mofo-branco (Sclerotinia sclerotiorum) [...] não se recomenda o uso desta planta em área com este fungo."
+    },
+    {
+      "colunas": [
+        "regua.arranjos.cerrado"
+      ],
+      "fonte": "Carvalho, Oliveira, Coser, Gonçalves, Marchão, Pulrolnik & Sá, Plantas de cobertura do solo recomendadas para a entressafra de milho em Sistema Plantio Direto no cerrado, Embrapa Cerrados Comunicado Técnico 181, 2018 (Planaltina-DF; nabo nas Tabelas 1 e 2, fora da Tabela 3 das recomendadas)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1097400/1/CT181.pdf",
+      "trecho": "Para o cultivo dessas plantas de cobertura na entressafra do milho, é importante que a semeadura seja feita até a segunda quinzena de março [...] O manejo dessas plantas de cobertura pode ser mecânico, por meio de rolo-faca, roçadeira ou triton; e químico, com aplicação de dessecantes/herbicidas. [Tabela 2: Nabo-forrageiro 1,9 t/ha de MS, tempo de reciclagem 96 dias]"
     }
   ],
   "pendencias": [
@@ -535,7 +659,11 @@
     "graus-dia: Sem soma térmica nem Tb medidas para o nabo forrageiro; faixa toda CÁLCULO sobre Tb PROXY (canola).",
     "graus-dia: A faixa é larga porque mistura cultivar precoce de grão (CATI AL 1000, 48 DAE até o florescimento pleno) com as de cobertura de 1995 (100-120 dias). O nabo é de dias longos: semeado no outono (dias encurtando) floresce mais tarde. O máximo (1800) vem de cultivares antigas e de climatologia, não de datas do ensaio.",
     "graus-dia: Se a Tb do nabo for perto de 0 °C (canola medida em Santa Maria: −0,8 e 0,3 °C da emergência ao início da floração), a soma subiria ~5 × dias (+270 a +600). Recalcular junto se a Tb mudar.",
-    "graus-dia: Sugestão para o motor: eliminar só abaixo do mínimo (800); entre 800 e 1800 é 'no limite'."
+    "graus-dia: Sugestão para o motor: eliminar só abaixo do mínimo (800); entre 800 e 1800 é 'no limite'.",
+    "Janela da linha (15/11): semeadura 01/04 a 31/05 = região dos números da linha (Dourados-MS e Sul: água e graus-dia com semeadura em 01/04, 01/05 e 31/05). Fontes: Hernani 1995 (Dourados: 'abril', bons rendimentos 'em maio') e IDR-Paraná IPR 210 ('entre abril e junho'). Junho no PR ficou fora da linha porque os números não cobrem essa época. Busca do resultado (não lido): documento da Embrapa sobre oleaginosas de inverno dá 'segunda quinzena de março e a primeira quinzena de maio' no MS (core.ac.uk/download/33885803.pdf, download falhou).",
+    "Manejo (15/11): 31/05 a 28/09 é semeadura + ciclo da linha (01/04 + 60 d; 31/05 + 120 d), não data publicada. O início (60 d) vem do ciclo mínimo de cultivar precoce (Mascarenhas 2010; IPR 210: 'Início da floração: 50-60 dias'); as cultivares de cobertura do MS e do PR florescem aos 100-120 dias, então o manejo típico é de julho a setembro. tipo_manejo = dessecacao (Kochhann 2003: glifosato + Triton na floração plena); Hernani 1995 prefere rolo-faca ou herbicida, e a rolagem também serve.",
+    "estados_validos = MS|PR|RS (15/11). SC ficou fora só por falta de fonte lida com a janela (busca da Epagri sem a época); a janela do PR e do RS deve valer lá: decisão para o coordenador. GO fica no arranjo regua.arranjos.cerrado (não na linha). BA (demo) fica fora: não achei fonte de nabo na BA.",
+    "Arranjo cerrado (15/11): janela de março (01/03 a 31/03) com fonte fraca: o CT 181 da Embrapa Cerrados manda semear as coberturas da entressafra 'até a segunda quinzena de março', mas não recomenda o nabo (só o avalia: 1,9 t/ha); a semeadura em março em MG vem de Alvarenga et al. 2001, lido só pela citação do anuário da COMIGO 2020. Início em 01/03 é convenção (colheita da soja 'em março ou abril' e milho safrinha até o fim de fevereiro, COMIGO 2020). Ciclo, graus-dia e água do Cerrado não foram calculados: usar os da linha até haver dado. O que resolveria: um sistema de produção da Embrapa Cerrados ou da Fundação MT/GO com a época do nabo."
   ],
   "pendencias_resolvidas": [
     "temp_base_c ficou VAZIA: não achei Tb de crescimento/graus-dia medida para R. sativus var. oleiferus (só Tb de germinação do rabanete, ~15 °C em hidrotermal time, que não serve para crescimento). Thorup-Kristensen 2001 fala em ~750 °C·d até 1 m de raiz, mas não li a base usada.",
@@ -591,7 +719,24 @@
         "cobertura_solo": true
       }
     },
-    "cenario_forragem": "Parte aérea verde (vegetativa) do nabo forrageiro. Sem dado brasileiro nem nas duas bases."
+    "cenario_forragem": "Parte aérea verde (vegetativa) do nabo forrageiro. Sem dado brasileiro nem nas duas bases.",
+    "arranjos": {
+      "cerrado": {
+        "estados": "GO|DF|MT|MG",
+        "semeadura_inicio": "03-01",
+        "semeadura_fim": "03-31",
+        "manejo_inicio": "04-30",
+        "manejo_fim": "07-29",
+        "tipo_manejo": "dessecacao",
+        "condicao_semeadura": "apos_colheita_graos",
+        "origem": {
+          "semeadura": "convencao_com_fonte",
+          "manejo": "convencao_com_fonte"
+        },
+        "fonte": "Pedreira et al., Anuário COMIGO 2020 (Embrapa Agrossilvipastoril), https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1129791/1/2020-cpamt-bcp-culturas-cobertura-entressafra-importancia-recomendacao.pdf; Carvalho et al., Embrapa Cerrados CT 181, 2018, https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1097400/1/CT181.pdf",
+        "nota": "Nabo semeado na entressafra do Cerrado, depois da soja colhida em março (a safrinha de milho só vai até o fim de fevereiro; COMIGO 2020). Semeadura em março: 'semeado em março [...] em segunda safra' em MG (Alvarenga et al. 2001, lido pela citação da COMIGO) e coberturas da entressafra 'até a segunda quinzena de março' no DF (CT 181, que avalia o nabo mas não o recomenda: 1,9 t/ha). Início em 01/03 é convenção. Manejo = semeadura + ciclo da linha (01/03 + 60 d; 31/03 + 120 d), na floração (CT 181: rolo-faca, roçadeira, triton ou dessecante); Mascarenhas et al. 2010 (EPAMIG, MG): início do florescimento ~60 DAE. Ciclo, graus-dia, água e palhada do Cerrado não foram calculados: usar os da linha até haver dado. Estados: GO e MT pelo texto da COMIGO (Centro-Oeste), DF pelo CT 181, MG por Alvarenga 2001 e Mascarenhas 2010; BA sem fonte. Atenção: o nabo hospeda o mofo-branco, comum na soja do Cerrado."
+      }
+    }
   },
   "origem": {
     "temp_base_c": {
