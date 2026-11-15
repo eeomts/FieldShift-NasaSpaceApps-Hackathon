@@ -23,7 +23,7 @@ class Settings(BaseSettings):
 
     # IA (opcional: sem chave, o onboarding usa a lista reserva)
     gemini_api_key: str | None = None
-    gemini_model: str = "gemini-3.8-flash"
+    gemini_model: str = "gemini-3.5-flash"
     gemini_embedding_model: str = "gemini-embedding-001"
 
     # Earthdata Login da NASA (SMAP, MODIS e IMERG pelo OPeNDAP). Sem token, o Dashboard diz que o dado não veio.
