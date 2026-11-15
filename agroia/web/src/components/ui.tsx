@@ -42,7 +42,7 @@ export function Campo({ rotulo, erro, ...p }: InputHTMLAttributes<HTMLInputEleme
         {...p}
         className="h-12 rounded-2xl border-2 border-borda bg-white px-4 text-[15px] font-normal text-tinta placeholder:text-suave/60 focus:border-folha focus:outline-none"
       />
-      {erro && <span className="font-normal text-[#B3261E]">{erro}</span>}
+      {erro && <span className="font-normal text-perigo">{erro}</span>}
     </label>
   );
 }
@@ -72,7 +72,7 @@ export function Selo({ tom = "sol", children }: { tom?: "sol" | "folha" | "ceu";
 
 export function Aviso({ children }: { children: ReactNode }) {
   return (
-    <div role="alert" className="rounded-2xl bg-[#FDE7E4] px-4 py-3 text-sm font-medium text-[#8C1D18]">
+    <div role="alert" className="rounded-2xl bg-perigo-claro px-4 py-3 text-sm font-medium text-perigo">
       {children}
     </div>
   );
@@ -121,11 +121,23 @@ export function Opcoes<T extends string>({
   );
 }
 
-export const SIM_NAO_NAOSEI = [
-  { valor: "sim" as const, rotulo: "Sim" },
-  { valor: "nao" as const, rotulo: "Não" },
-  { valor: "nao_sei" as const, rotulo: "Não sei" },
-];
+/** Três bolinhas animadas: "carregando" / "pensando". */
+export function Bolinhas({ className }: { className?: string }) {
+  return (
+    <span className={cx("inline-flex items-center gap-1", className)} aria-hidden="true">
+      {[0, 1, 2].map((i) => (
+        <span key={i} className="h-2 w-2 animate-bolinha rounded-full bg-folha" style={{ animationDelay: `${i * 0.15}s` }} />
+      ))}
+    </span>
+  );
+}
 
-export const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
-export const MESES_LONGOS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+/** Tela inteira de carregando (com texto para leitor de tela). */
+export function Carregando({ texto }: { texto: string }) {
+  return (
+    <div role="status" className="flex min-h-[40dvh] flex-1 flex-col items-center justify-center gap-3 text-suave">
+      <Bolinhas />
+      <span className="text-sm font-bold">{texto}</span>
+    </div>
+  );
+}

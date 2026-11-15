@@ -5,7 +5,7 @@ export interface Usuario {
   id: string;
   nome: string;
   email: string;
-  idioma: string;
+  idioma: string; // "pt" | "en" (contas antigas podem ter outro valor)
   onboarding_concluido: boolean;
 }
 
@@ -17,6 +17,36 @@ export interface ItemCalendario {
   perene: boolean;
   consorcio_com: string[];
   ocupa: "todo" | "parte" | null;
+}
+
+export type Correcao = "calcario" | "gesso" | "outra" | "nao" | "nao_sei";
+export type EventoPerda = "geada" | "chuva_forte" | "calor" | "seca" | "alagamento" | "granizo" | "salinidade";
+
+export interface Local {
+  lat: number;
+  lon: number;
+  nome?: string | null; // até 200
+  pais?: string | null; // ISO alfa-2 maiúsculo (ex.: "BR")
+  zona_climatica?: string | null; // Köppen, até 4 letras (ex.: "Aw")
+}
+
+/** GET /local/buscar */
+export interface LugarBusca {
+  nome: string;
+  pais: string | null;
+  pais_codigo: string | null;
+  lat: number;
+  lon: number;
+}
+
+/** GET /local/info */
+export interface InfoLocal {
+  hemisferio: "N" | "S";
+  zona_climatica: string | null;
+  lugar: string | null;
+  pais: string | null;
+  pais_codigo: string | null;
+  geada_no_historico: boolean | null;
 }
 
 export interface Perda {
@@ -42,7 +72,7 @@ export interface Respostas {
   q2_area?: "ate_2" | "2_20" | "20_200" | "200_1000" | "mais_1000" | null;
   q3_tecnico?: "sim" | "as_vezes" | "nao" | null;
   q4_animais?: "sim" | "nao" | null;
-  q5_local?: { lat: number; lon: number; nome?: string | null } | null;
+  q5_local?: Local | null;
   q6_irrigacao?: "sim" | "parte" | "nao" | null;
   q7_terreno?: "plano" | "leve" | "inclinado" | null;
   q8_texto?: string | null;
@@ -63,10 +93,11 @@ export interface Respostas {
   q19_cor?: "escura" | "marrom" | "vermelha" | "amarela" | "cinza" | "clara" | "nao_sei" | null;
   q19_jeito?: "solta" | "fofa" | "gruda" | "torroes" | "racha" | "pedras" | "nao_sei" | null;
   q20_partes_piores?: SNS | null;
-  q21_calcario?: SNS | null;
+  q21_correcao?: Correcao[];
+  q21_correcao_outra?: string | null;
   q22_adubo?: SNS | null;
   q23_chuva_mudou?: SNS | null;
-  q24_perdas?: { geada?: Perda; chuva_forte?: Perda; calor?: Perda; seca?: Perda };
+  q24_perdas?: Partial<Record<EventoPerda, Perda>>;
   q25_prioridades?: Prioridade[];
   q26a_texto?: string | null;
   q26a_excluidas?: CulturaExcluida[];
@@ -125,6 +156,13 @@ export interface ItemInterpretado {
   motivo?: CulturaExcluida["motivo"];
 }
 
+export interface PedidoInterpretar {
+  campo: "culturas" | "excluidas" | "equipamentos";
+  texto: string;
+  hemisferio: "N" | "S";
+  idioma: "pt" | "en";
+}
+
 export interface Interpretacao {
   fonte: "ia" | "lista";
   itens: ItemInterpretado[];
@@ -166,6 +204,11 @@ export interface ConversaResumo {
   titulo: string | null;
   criada_em: string;
   atualizada_em: string;
+}
+
+export interface EnviarMensagem {
+  mensagem: string;
+  idioma: "pt" | "en" | null;
 }
 
 export interface Conversa extends ConversaResumo {

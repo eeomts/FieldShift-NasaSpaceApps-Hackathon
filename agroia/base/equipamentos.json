@@ -1,15 +1,15 @@
 {
   "_sobre": "Categorias de equipamento usadas na pergunta 26b do onboarding. Elas restringem as culturas viáveis no motor de estratégias.",
   "equipamentos": [
-    {"id": "trator", "nome": "Trator", "nomes": {"pt": ["trator", "tratorzinho", "trator pequeno", "trator grande"], "en": ["tractor"], "es": ["tractor"]}},
-    {"id": "plantadeira_graos", "nome": "Plantadeira de grãos", "nomes": {"pt": ["plantadeira", "plantadora", "semeadora", "plantadeira de grãos"], "en": ["planter", "seeder", "seed drill"], "es": ["sembradora", "plantadora"]}},
-    {"id": "colhedora", "nome": "Colheitadeira", "nomes": {"pt": ["colheitadeira", "colhedeira", "colhedora", "ceifadeira"], "en": ["combine", "harvester", "combine harvester"], "es": ["cosechadora"]}},
-    {"id": "pulverizador", "nome": "Pulverizador", "nomes": {"pt": ["pulverizador", "bomba costal", "costal"], "en": ["sprayer", "backpack sprayer"], "es": ["pulverizador", "fumigadora", "mochila fumigadora"]}},
-    {"id": "preparo_solo", "nome": "Arado ou grade", "nomes": {"pt": ["arado", "grade", "grade aradora", "subsolador", "enxada rotativa"], "en": ["plow", "plough", "disc harrow", "harrow", "subsoiler", "rotary tiller"], "es": ["arado", "rastra", "grada", "subsolador"]}},
-    {"id": "rocadeira", "nome": "Roçadeira", "nomes": {"pt": ["roçadeira", "rocadeira", "triton", "rolo faca"], "en": ["mower", "roller crimper", "brush cutter"], "es": ["desbrozadora", "rolo cuchilla", "chapeadora"]}},
-    {"id": "ensiladeira", "nome": "Ensiladeira", "nomes": {"pt": ["ensiladeira", "picadeira", "forrageira"], "en": ["forage harvester", "chopper", "silage cutter"], "es": ["picadora de forraje", "ensiladora"]}},
-    {"id": "irrigacao", "nome": "Equipamento de irrigação", "nomes": {"pt": ["pivô", "pivo", "aspersor", "gotejamento", "irrigação"], "en": ["pivot", "sprinkler", "drip"], "es": ["pivote", "aspersor", "goteo", "riego"]}},
-    {"id": "tracao_animal", "nome": "Tração animal", "nomes": {"pt": ["tração animal", "boi", "cavalo", "burro", "carroça", "arado de boi"], "en": ["animal traction", "ox", "oxen", "draft animal"], "es": ["tracción animal", "bueyes", "yunta"]}},
-    {"id": "manual", "nome": "Trabalho manual", "nomes": {"pt": ["na mão", "manual", "enxada", "matraca", "colheita é na mão", "foice"], "en": ["by hand", "manual", "hoe", "hand planter"], "es": ["a mano", "manual", "azadón", "machete"]}}
+    {"id": "trator", "nome": "Trator", "nome_en": "Tractor", "nomes": {"pt": ["trator", "tratorzinho", "trator pequeno", "trator grande"], "en": ["tractor"], "es": ["tractor"]}},
+    {"id": "plantadeira_graos", "nome": "Plantadeira de grãos", "nome_en": "Grain planter", "nomes": {"pt": ["plantadeira", "plantadora", "semeadora", "plantadeira de grãos"], "en": ["planter", "seeder", "seed drill"], "es": ["sembradora", "plantadora"]}},
+    {"id": "colhedora", "nome": "Colheitadeira", "nome_en": "Combine harvester", "nomes": {"pt": ["colheitadeira", "colhedeira", "colhedora", "ceifadeira"], "en": ["combine", "harvester", "combine harvester"], "es": ["cosechadora"]}},
+    {"id": "pulverizador", "nome": "Pulverizador", "nome_en": "Sprayer", "nomes": {"pt": ["pulverizador", "bomba costal", "costal"], "en": ["sprayer", "backpack sprayer"], "es": ["pulverizador", "fumigadora", "mochila fumigadora"]}},
+    {"id": "preparo_solo", "nome": "Arado ou grade", "nome_en": "Plow or harrow", "nomes": {"pt": ["arado", "grade", "grade aradora", "subsolador", "enxada rotativa"], "en": ["plow", "plough", "disc harrow", "harrow", "subsoiler", "rotary tiller"], "es": ["arado", "rastra", "grada", "subsolador"]}},
+    {"id": "rocadeira", "nome": "Roçadeira", "nome_en": "Mower", "nomes": {"pt": ["roçadeira", "rocadeira", "triton", "rolo faca"], "en": ["mower", "roller crimper", "brush cutter"], "es": ["desbrozadora", "rolo cuchilla", "chapeadora"]}},
+    {"id": "ensiladeira", "nome": "Ensiladeira", "nome_en": "Forage harvester", "nomes": {"pt": ["ensiladeira", "picadeira", "forrageira"], "en": ["forage harvester", "chopper", "silage cutter"], "es": ["picadora de forraje", "ensiladora"]}},
+    {"id": "irrigacao", "nome": "Equipamento de irrigação", "nome_en": "Irrigation equipment", "nomes": {"pt": ["pivô", "pivo", "aspersor", "gotejamento", "irrigação"], "en": ["pivot", "sprinkler", "drip"], "es": ["pivote", "aspersor", "goteo", "riego"]}},
+    {"id": "tracao_animal", "nome": "Tração animal", "nome_en": "Animal traction", "nomes": {"pt": ["tração animal", "boi", "cavalo", "burro", "carroça", "arado de boi"], "en": ["animal traction", "ox", "oxen", "draft animal"], "es": ["tracción animal", "bueyes", "yunta"]}},
+    {"id": "manual", "nome": "Trabalho manual", "nome_en": "Manual labor", "nomes": {"pt": ["na mão", "manual", "enxada", "matraca", "colheita é na mão", "foice"], "en": ["by hand", "manual", "hoe", "hand planter"], "es": ["a mano", "manual", "azadón", "machete"]}}
   ]
 }

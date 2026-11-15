@@ -66,6 +66,12 @@ def resumo_da_fazenda(f: Fazenda | None) -> str:
     )
 
 
-def montar_instrucao(usuario: Usuario, hoje: date) -> str:
-    regras = _REGRAS.format(idioma=usuario.idioma or "pt", fora_do_escopo=RESPOSTA_FORA_DO_ESCOPO)
-    return f"{regras}\nHoje é {hoje:%d/%m/%Y}.\n{resumo_da_fazenda(usuario.fazenda)}"
+_NOME_IDIOMA = {"pt": "português do Brasil", "en": "inglês"}
+
+
+def montar_instrucao(usuario: Usuario, hoje: date, idioma: str | None = None) -> str:
+    """`idioma` (escolha do produtor na tela) vale mais que o idioma da conta."""
+    idioma = idioma or usuario.idioma or "pt"
+    regras = _REGRAS.format(idioma=idioma, fora_do_escopo=RESPOSTA_FORA_DO_ESCOPO)
+    aviso = f"\nResponda em {_NOME_IDIOMA[idioma]} (inclusive a frase de recusa, traduzida)." if idioma in _NOME_IDIOMA else ""
+    return f"{regras}{aviso}\nHoje é {hoje:%d/%m/%Y}.\n{resumo_da_fazenda(usuario.fazenda)}"

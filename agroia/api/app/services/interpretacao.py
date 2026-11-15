@@ -4,8 +4,8 @@ Regras (ONBOARDING.md, "Uso de IA"):
 - só devolve itens que existem na base, ou marca "não encontrado" (id None);
 - cada item tem confiança e os de confiança baixa vêm primeiro;
 - o texto original é guardado;
-- se a IA falhar, usa o casamento por sinônimos e o produtor completa pela lista.
-Ao Gemini vai só o texto da resposta: nunca nome, e-mail ou localização.
+- se a IA falhar, usa a lista reserva (interpretacao_reserva.py) e o produtor completa pela lista.
+Ao Gemini vai só o texto da resposta, o hemisfério (N/S) e o idioma: nunca nome, e-mail ou localização.
 """
 import logging
 from typing import Literal
@@ -14,6 +14,7 @@ from pydantic import BaseModel
 
 from app.core.config import get_settings
 from app.services import catalogo
+from app.services.interpretacao_reserva import itens_da_reserva
 
 log = logging.getLogger(__name__)
 
@@ -65,7 +66,11 @@ def _catalogo(campo: Campo) -> str:
     return "\n".join(linhas)
 
 
-def _via_gemini(campo: Campo, texto: str) -> list[_ItemIA]:
+_HEMISFERIO = {"S": "hemisfério sul (verão em dez–mar)", "N": "hemisfério norte (verão em jun–set)"}
+_IDIOMA = {"pt": "português", "en": "inglês"}
+
+
+def _via_gemini(campo: Campo, texto: str, hemisferio: str = "S", idioma: str = "pt") -> list[_ItemIA]:
     from google import genai
     from google.genai import types
 
@@ -73,6 +78,9 @@ def _via_gemini(campo: Campo, texto: str) -> list[_ItemIA]:
     client = genai.Client(api_key=s.gemini_api_key, http_options=types.HttpOptions(timeout=20_000))
     prompt = (
         f"{_INSTRUCOES[campo]}\n\n"
+        f"A propriedade fica no {_HEMISFERIO[hemisferio]}; use isso para traduzir estações (verão, inverno, "
+        "estação chuvosa, seca) em meses. O produtor escreve em português ou inglês (idioma da tela: "
+        f"{_IDIOMA[idioma]}); entenda os dois.\n\n"
         "Use SOMENTE os ids da lista abaixo. Se um item não corresponder a nenhum id, devolva id=null "
         "e mantenha o texto_original. Não invente itens que o produtor não citou. "
         "confianca: 'alta' quando o nome bate claramente, 'media' quando é um nome local ou impreciso, "
@@ -120,17 +128,15 @@ def _valida(campo: Campo, itens: list[_ItemIA]) -> list[dict]:
     return sorted(saida, key=lambda x: _ORDEM[x["confianca"]])
 
 
-def interpretar(campo: Campo, texto: str) -> dict:
+def interpretar(campo: Campo, texto: str, hemisferio: str = "S", idioma: str = "pt") -> dict:
     """Devolve {"fonte": "ia"|"lista", "itens": [...]}."""
     texto = texto.strip()
     if not texto:
         return {"fonte": "lista", "itens": []}
     if get_settings().gemini_api_key:
         try:
-            return {"fonte": "ia", "itens": _valida(campo, _via_gemini(campo, texto))}
+            return {"fonte": "ia", "itens": _valida(campo, _via_gemini(campo, texto, hemisferio, idioma))}
         except Exception:  # IA fora do ar, cota, timeout, JSON inválido: o app continua funcionando
             log.exception("Falha ao interpretar com Gemini; usando a lista reserva")
-    itens_catalogo = catalogo.equipamentos() if campo == "equipamentos" else catalogo.culturas()
-    achados = [_ItemIA(texto_original=a["texto_original"], id=a["id"], confianca="media")
-               for a in catalogo.casa_texto(texto, itens_catalogo)]
+    achados = [_ItemIA(**d, confianca="media") for d in itens_da_reserva(campo, texto, hemisferio, idioma)]
     return {"fonte": "lista", "itens": _valida(campo, achados)}

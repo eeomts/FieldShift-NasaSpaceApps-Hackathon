@@ -16,6 +16,7 @@ class EnviarMensagem(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True)
 
     mensagem: str = Field(min_length=1, max_length=2000)
+    idioma: Literal["pt", "en"] | None = None  # se vier, o agente responde nesse idioma; senão, o da conta
 
 
 class Fonte(BaseModel):

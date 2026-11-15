@@ -82,12 +82,12 @@ class AgenteService:
         self.clima = clima
         self.busca = busca
 
-    def responder(self, usuario: Usuario, conversa_id: int, texto: str) -> MensagemOut:
+    def responder(self, usuario: Usuario, conversa_id: int, texto: str, idioma: str | None = None) -> MensagemOut:
         """Roda o agente e grava a rodada inteira de uma vez; se o assistente falhar, não grava nada (503)."""
         conversa = self.conversas.obter_do_usuario(usuario, conversa_id)
         agora = datetime.now(UTC)
         hoje = _hoje()
-        instrucao = montar_instrucao(usuario, hoje)
+        instrucao = montar_instrucao(usuario, hoje, idioma)
         ferramentas = Ferramentas(usuario, self.clima, self.busca, conversa.id, hoje, ao_falhar=self.repositorio.db.rollback)
 
         historico = _comeca_na_pergunta(self.repositorio.para_historico(conversa.id, HISTORICO_VISIVEIS))

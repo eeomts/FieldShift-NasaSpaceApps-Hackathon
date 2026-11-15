@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { paraIdioma, useIdioma } from "../i18n";
 import { api, token } from "./client";
 import type { Usuario } from "./tipos";
 
@@ -14,6 +15,7 @@ interface Sessao {
 const Ctx = createContext<Sessao | null>(null);
 
 export function SessaoProvider({ children }: { children: ReactNode }) {
+  const { idioma, aplicarDaConta } = useIdioma();
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [carregando, setCarregando] = useState(true);
 
@@ -34,6 +36,13 @@ export function SessaoProvider({ children }: { children: ReactNode }) {
     recarregar().finally(() => setCarregando(false));
   }, [recarregar]);
 
+  // Ao logar (ou abrir o app já logado), vale o idioma da conta.
+  const idDaConta = usuario?.id;
+  const idiomaDaConta = usuario?.idioma;
+  useEffect(() => {
+    if (idDaConta) aplicarDaConta(paraIdioma(idiomaDaConta));
+  }, [idDaConta, idiomaDaConta, aplicarDaConta]);
+
   const comToken = async (caminho: string, body: unknown) => {
     const r = await api<{ token: string; usuario: Usuario }>(caminho, { method: "POST", body });
     token.set(r.token);
@@ -45,7 +54,7 @@ export function SessaoProvider({ children }: { children: ReactNode }) {
     usuario,
     carregando,
     entrar: (email, senha) => comToken("/auth/login", { email, senha }),
-    cadastrar: (nome, email, senha) => comToken("/auth/register", { nome, email, senha, idioma: "pt" }),
+    cadastrar: (nome, email, senha) => comToken("/auth/register", { nome, email, senha, idioma }),
     sair: () => {
       token.clear();
       setUsuario(null);

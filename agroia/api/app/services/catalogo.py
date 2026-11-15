@@ -71,5 +71,7 @@ def listar_culturas(idioma: str = "pt") -> list[dict]:
     ]
 
 
-def listar_equipamentos() -> list[dict]:
-    return [{"id": e["id"], "nome": e["nome"]} for e in equipamentos().values()]
+def listar_equipamentos(idioma: str = "pt") -> list[dict]:
+    """Equipamentos com o nome no idioma (en usa `nome_en`; sem tradução, cai no português)."""
+    campo = "nome_en" if idioma == "en" else "nome"
+    return [{"id": e["id"], "nome": e.get(campo) or e["nome"]} for e in equipamentos().values()]

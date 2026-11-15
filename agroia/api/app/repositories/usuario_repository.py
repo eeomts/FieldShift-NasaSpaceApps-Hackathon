@@ -30,6 +30,11 @@ class UsuarioRepository:
             raise
         return usuario
 
+    def atualizar_idioma(self, usuario: Usuario, idioma: str) -> Usuario:
+        usuario.idioma = idioma
+        self.db.commit()
+        return usuario
+
     def apagar(self, usuario: Usuario) -> None:
         """Apaga o usuário e, em cascata, a fazenda e tudo ligado a ela."""
         self.db.delete(usuario)

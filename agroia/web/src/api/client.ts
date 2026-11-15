@@ -1,6 +1,7 @@
 const BASE = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 const CHAVE_TOKEN = "agroia.token";
 
+/** `message` é o detalhe cru da API (pode estar em português); a tela mostra `mensagemErro(e, idioma)`. */
 export class ErroApi extends Error {
   constructor(public status: number, message: string) {
     super(message);
@@ -13,12 +14,9 @@ export const token = {
   clear: () => localStorage.removeItem(CHAVE_TOKEN),
 };
 
-function mensagemDeErro(status: number, corpo: unknown): string {
-  const detail = (corpo as { detail?: unknown })?.detail;
-  if (typeof detail === "string") return detail;
-  if (status === 422) return "Confira os campos e tente de novo.";
-  if (status >= 500) return "O servidor teve um problema. Tente de novo em instantes.";
-  return "Algo deu errado. Tente de novo.";
+function detalhe(corpo: unknown): string {
+  const d = (corpo as { detail?: unknown })?.detail;
+  return typeof d === "string" ? d : "";
 }
 
 export async function api<T>(caminho: string, opcoes: { method?: string; body?: unknown } = {}): Promise<T> {
@@ -33,10 +31,10 @@ export async function api<T>(caminho: string, opcoes: { method?: string; body?: 
       body: opcoes.body === undefined ? undefined : JSON.stringify(opcoes.body),
     });
   } catch {
-    throw new ErroApi(0, "Sem conexão com o servidor. Verifique sua internet.");
+    throw new ErroApi(0, "network");
   }
   if (resp.status === 204) return undefined as T;
   const corpo = await resp.json().catch(() => null);
-  if (!resp.ok) throw new ErroApi(resp.status, mensagemDeErro(resp.status, corpo));
+  if (!resp.ok) throw new ErroApi(resp.status, detalhe(corpo));
   return corpo as T;
 }

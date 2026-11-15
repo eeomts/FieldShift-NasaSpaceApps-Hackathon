@@ -33,5 +33,8 @@ class AuthService:
             raise ErroDeNegocio(401, "E-mail ou senha incorretos.")
         return Token(token=cria_token(u.id), usuario=usuario_para_saida(u))
 
+    def atualizar_idioma(self, u: Usuario, idioma: str) -> UsuarioOut:
+        return usuario_para_saida(self.usuarios.atualizar_idioma(u, idioma))
+
     def apagar_conta(self, u: Usuario) -> None:
         self.usuarios.apagar(u)
