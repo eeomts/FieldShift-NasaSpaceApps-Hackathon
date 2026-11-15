@@ -53,7 +53,7 @@ O questionário em si está em [`../ONBOARDING.md`](../ONBOARDING.md).
 | Backend, motor e integração de dados | Python + FastAPI | Proposto |
 | Fila da coleta lenta | Tabela de jobs no próprio Postgres + um worker | Proposto |
 | Frontend | PWA mobile-first | A definir o framework |
-| IA (texto livre e chat) | API do Claude com uso de ferramentas (tool use), modelo `claude-opus-5-5` | Proposto |
+| IA (texto livre e chat) | Gemini com chamada de ferramentas (`GEMINI_MODEL`); embeddings `gemini-embedding-001` | Decidido (D-013) |
 
 **Por que Python no backend:** o cálculo é científico (pandas, numpy, rasterio para mapas como o GAEZ) e as bibliotecas da NASA (`earthaccess`) são em Python.
 
@@ -78,7 +78,7 @@ O chat vem depois de propósito: sem o motor, ele não tem o que consultar.
 | Glossário em linguagem simples | Dashboard e chat |
 | Textos-modelo das explicações (por quê, evidência, benefícios, lacunas, riscos) | Dashboard e chat |
 | Conta NASA Earthdata (gratuita) | AppEEARS, SMAP, IMERG |
-| Chave da API do Claude | Texto livre e chat |
+| Chave da API do Gemini (`GEMINI_API_KEY`) | Texto livre, chat e embeddings |
 | Hospedagem | Backend, banco e frontend |
 
 ## Decisões pendentes

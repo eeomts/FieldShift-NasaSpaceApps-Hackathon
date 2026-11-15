@@ -22,9 +22,9 @@ Um site, pensado primeiro para o celular, em que o produtor:
 |---|---|---|
 | 1 | Login e cadastro | ✅ Pronta |
 | 2 | Questionário do produtor (onboarding) | ✅ Pronta |
-| 3 | Coleta dos dados da NASA e Dashboard | ⏳ A fazer (hoje a tela é provisória) |
-| 4 | Comparação de 3 estratégias de rotação | ⏳ A fazer |
-| 5 | Chat AgroIA (RAG) | ⏳ A fazer |
+| 3 | Coleta dos dados da NASA e Dashboard | 🟡 Clima (POWER), relevo (SRTM) e rotações prontos; satélite (SMAP, MODIS, IMERG) no PR `feat/dashboard-nasa`; falta a previsão (Open-Meteo) |
+| 4 | Comparação de 3 estratégias de rotação | ✅ Pronta (falta ligar ZARC e PAM) |
+| 5 | Chat AgroIA (RAG) | 🟡 Funciona com Gemini; falta ler o satélite e completar os textos do RAG |
 
 O banco de produção é um PostgreSQL 17 numa VPS da equipe, com as tabelas das partes 1 e 2 já criadas.
 
@@ -104,7 +104,7 @@ npm run dev                       # abre em http://localhost:5173
 | Brasil (uso do solo, validação) | MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM |
 | Acesso | Earthdata, earthaccess, AppEEARS |
 
-A previsão do tempo dos próximos dias deve vir da **Open-Meteo**, porque a NASA não publica previsão. Isso ainda precisa ser aprovado (ver "Pontos em aberto").
+A previsão do tempo dos próximos dias vem da **Open-Meteo** (D-014), porque a NASA não publica previsão.
 
 ## Stack
 
@@ -122,11 +122,9 @@ O visual segue o protótipo **Premium Playful** que está na pasta `layout/`: fu
 
 Decisões que a equipe ainda precisa tomar:
 
-- **Escopo:** Brasil inteiro (D-008) ou mundo todo (`site-contexto.md`)? O código já aceita qualquer ponto do mapa.
-- **IA:** o código usa Gemini, mas o `architecture/README.md` fala em Claude. Falta registrar a escolha no `DECISOES.md`.
-- **Previsão do tempo:** aprovar a Open-Meteo (única fonte fora da D-009).
+- **Regras da submissão (Q-05):** a equipe está lendo as regras (formato, idioma, vídeo, prazo).
 - **Tabelas antigas no banco:** a VPS tem `propriedades` e `questionario_respostas`, que não são usadas pelo código. É preciso decidir se elas saem.
-- **Demo:** quais regiões e fazendas de exemplo (Q-01 a Q-03)?
+- **Demo:** quais regiões e qual o caso de exemplo, no Brasil e nos EUA (Q-01 e Q-03)?
 - **Pendências do questionário:** fotos reais de solo (pergunta 19), validar as faixas de área (pergunta 2) e a tabela cor × jeito da terra.
 
 A lista completa está em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md), seção 3.

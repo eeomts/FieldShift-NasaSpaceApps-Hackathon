@@ -43,4 +43,4 @@ O produtor conversa em linguagem natural. O modelo de linguagem usa **ferramenta
 
 ### IA
 
-API do Claude com uso de ferramentas (tool use), modelo `claude-opus-5-5`. O mesmo componente atende o texto livre do onboarding (perguntas 8, 26a e 26b), com saída em JSON validado. Usar um modelo mais barato em alguma parte é uma decisão de custo a medir depois.
+Gemini com chamada de ferramentas (D-013), modelo definido em `GEMINI_MODEL`. O mesmo componente atende o texto livre do onboarding (perguntas 8, 26a e 26b), com saída em JSON validado. Usar um modelo mais barato em alguma parte é uma decisão de custo a medir depois.

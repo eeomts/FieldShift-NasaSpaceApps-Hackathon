@@ -131,6 +131,43 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
     - critério de `estudo_unico` escrito (1 local, 1 ano ou 1 cultivar); o sorgo dos EUA fica `media`;
     - ervilhaca dos EUA só no Corn Belt (Sudeste em arranjo regional); centeio com palhada típica 0,97 t/ha; girassol e amendoim com a palhada medida na região.
 
+> As duas decisões acima ficaram com o mesmo número (D-010). Não foram renumeradas para não quebrar as citações; as próximas seguem da D-011.
+
+### D-011 — Escopo confirmado: Brasil e EUA
+- **Status:** Decidido (equipe, 15/11/2026)
+- **Confirma:** as duas D-010 (fazendas e catálogo dos EUA), que tinham sido decididas por uma pessoa só. **Responde em parte:** Q-01 (os países estão definidos; as regiões e as fazendas da demo, não).
+- **Motivo:** os dados da NASA cobrem os dois países do mesmo jeito, o app e o questionário já aceitam qualquer ponto do mapa, e o júri do Space Apps é global.
+- **Consequências:**
+  - Toda tela e todo texto do chat funcionam em português e inglês, com as unidades do país (hectare e mm no Brasil; acre e polegada nos EUA).
+  - Onde uma fonte só existe num país (ZARC e PAM no Brasil; NASS e CDL nos EUA), a ferramenta diz que o dado não existe para aquele país, em vez de mostrar zero.
+  - Em aberto com a equipe: se a D-003 cai também para solo (SSURGO) e clima (PRISM) nos EUA.
+
+### D-012 — Usuário-alvo: pequeno e médio produtor e técnico agrícola
+- **Status:** Decidido (equipe, 15/11/2026)
+- **Responde:** Q-02.
+- **Quem:** agricultores de pequeno e médio porte e os técnicos agrícolas e agrônomos que os atendem (Emater, ATER, cooperativas, extensão rural nos EUA). O grande produtor não é o foco: em geral ele já tem consultoria e agricultura de precisão.
+- **Consequências:**
+  - Linguagem simples, sem jargão, e celular primeiro (o produtor usa o app no campo).
+  - O técnico precisa ver a origem de cada número e poder ajudar um produtor: o questionário já pergunta quem está respondendo (pergunta 1).
+  - O caso de exemplo da demo (Q-03) deve ser de um pequeno ou médio produtor.
+
+### D-013 — IA do produto: Gemini
+- **Status:** Decidido (equipe, 15/11/2026)
+- **Responde:** Q-10 e a dúvida do README ("o código usa Gemini, mas a arquitetura fala em Claude").
+- **Onde:** leitura do texto livre do questionário, chat AgroIA (com ferramentas) e embeddings da base de conhecimento. Modelos em `agroia/api/app/core/config.py` (`GEMINI_MODEL`, `GEMINI_EMBEDDING_MODEL`).
+- **Garantia contra número inventado:** o chat só repete números que vieram de uma ferramenta na mesma conversa e diz a fonte e o período (regras do `services/agente/prompt.py`). Sem chave, o questionário usa a lista reserva e o chat responde que está indisponível.
+- **Alternativa descartada:** API do Claude, que estava proposta em `application/architecture/`. Os documentos de arquitetura foram atualizados.
+- **Cuidado:** cada mensagem gasta a cota do Gemini. No desenvolvimento, a chave fica vazia no `.env.dev`.
+
+### D-014 — Previsão do tempo: Open-Meteo
+- **Status:** Decidido (equipe, 15/11/2026)
+- **Altera:** D-009 (é a única fonte fora do núcleo) · **Resolve:** S-7 do `application/site-contexto.md`.
+- **Motivo:** a NASA não publica previsão do tempo. Os dados dela são observações com atraso (POWER de 2 a 7 dias, IMERG Late de cerca de 1 dia). A Open-Meteo cobre o Brasil e os EUA por ponto, sem chave.
+- **Consequências:**
+  - O Dashboard volta a ter a previsão dos próximos 7 dias, com a fonte escrita na tela: *"Previsão: Open-Meteo · Histórico, solo e vegetação: NASA"*.
+  - A licença dos dados é CC BY 4.0: a tela precisa dar o crédito à Open-Meteo. O plano gratuito é para uso não comercial. **[verificar]** os limites de uso na página oficial antes do deploy.
+  - O chat continua sem fazer previsão (regra 6 do prompt) até a equipe decidir o contrário.
+
 ---
 
 ## 2. Inconsistências encontradas nos documentos
@@ -155,7 +192,7 @@ Ordenadas pelo quanto travam o resto. As primeiras definem o problema; as últim
 
 ### Entender o problema
 
-**Q-01 — Quais regiões e sistemas de produção vamos usar na demo?**
+**Q-01 — Quais regiões e sistemas de produção vamos usar na demo?** *Em parte respondida pela D-011 (15/11): Brasil e EUA. Faltam as regiões e as fazendas.*
 Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três regiões contrastantes**, em que os mesmos dados levam a recomendações diferentes. Candidatas:
 - **Cerrado (MT, GO, Alto Paranaíba/MG, MATOPIBA):** soja → milho safrinha, plantio direto. Rotação anual clássica, com muitos dados; solo descoberto longo na seca e risco de fogo no entorno.
 - **Semiárido (sertão da BA, PE, CE, Norte de Minas):** agricultura familiar, feijão, milho, sorgo e mandioca. Tema forte de veranico, seca e pequeno produtor.
@@ -163,13 +200,13 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 - **Borda da Amazônia (norte do MT, sul do PA, RO):** fronteira agrícola, muitas nuvens na safra (exige Sentinel-1) e contexto de desmatamento.
 - **Sudeste serrano (Sul de Minas, Zona da Mata, ES):** café em relevo acidentado. ⚠️ Café é **perene**, então não há rotação no sentido clássico. A ferramenta precisaria tratar de culturas intercalares ou de áreas anuais da propriedade.
 
-**Q-02 — Quem é o usuário da demo?** Agricultor familiar, médio ou grande produtor, ou técnico da extensão rural (Emater ou ATER estadual)? Isso muda a linguagem, o dispositivo (celular ou computador) e o tipo de prioridade.
+**Q-02 — Quem é o usuário da demo?** *Respondida pela D-012 (15/11): pequeno e médio produtor e técnico agrícola.* Agricultor familiar, médio ou grande produtor, ou técnico da extensão rural (Emater ou ATER estadual)? Isso muda a linguagem, o dispositivo (celular ou computador) e o tipo de prioridade.
 
-**Q-03 — Qual é a rotação atual do caso de exemplo?** Precisamos de um "seu Antônio" concreto para cada região da demo: local, culturas, meses e problemas.
+**Q-03 — Qual é a rotação atual do caso de exemplo?** *Em aberto (15/11): a equipe ainda não escolheu o caso.* Precisamos de um "seu Antônio" concreto para cada região da demo: local, culturas, meses e problemas.
 
 **Q-04 — O que significa "SI" no texto oficial?** A suposição é inteligência artificial e técnicas estatísticas. **[verificar]** no Space Apps Connect.
 
-**Q-05 — Quais são as regras e os critérios de avaliação de 2026?** Formato da submissão, idioma (o júri global provavelmente avalia em inglês), vídeo ou slides, prazo. **[verificar]** no site oficial.
+**Q-05 — Quais são as regras e os critérios de avaliação de 2026?** *Em andamento (15/11): a equipe está lendo as regras de submissão.* Formato da submissão, idioma (o júri global provavelmente avalia em inglês), vídeo ou slides, prazo. **[verificar]** no site oficial.
 
 ### Delimitar a solução
 
@@ -181,7 +218,7 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 
 **Q-09 — Qual será o formato e a stack?** App web, mapa interativo ou relatório? Ficou adiado de propósito até as perguntas acima estarem respondidas.
 
-**Q-10 — Vamos usar LLM no produto?** Por exemplo, para reescrever as explicações em linguagem simples ou responder perguntas. Se sim, com que garantia de que não inventa números?
+**Q-10 — Vamos usar LLM no produto?** *Respondida pela D-013 (15/11): sim, Gemini.* Por exemplo, para reescrever as explicações em linguagem simples ou responder perguntas. Se sim, com que garantia de que não inventa números?
 
 **Q-11 — Como vamos validar?** ZARC (janelas de plantio por município), estações do INMET e a conversa com algum agrônomo ou extensionista real.
 
@@ -197,3 +234,4 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 14/11/2026 | Proposta de revisão da D-009: NASA Harvest volta como contexto de mercado (Harvest Portal), no chat (MCP) e na detecção de ciclos (`crop-cycle-detection`). A confirmar com a equipe. |
 | 15/11/2026 | **D-010:** o app também aceita fazendas nos EUA. Amplia a D-008 e altera a D-003 (Census, CDL e NASS QuickStats entram para as fazendas dos EUA). |
 | 15/11/2026 | **D-010:** catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |
+| 15/11/2026 | **D-011 a D-014:** escopo Brasil e EUA confirmado pela equipe; usuário-alvo é o pequeno e médio produtor e o técnico agrícola; a IA é o Gemini; a Open-Meteo entra para a previsão do tempo. Q-02 e Q-10 respondidas; Q-01 em parte; Q-05 em andamento. Documentos de arquitetura passam de Claude para Gemini. |

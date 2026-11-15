@@ -29,7 +29,7 @@
 | S-4 | **Login simples** (e-mail + senha, sem provedor externo) | Decidido |
 | S-5 | **1 fazenda = 1 talhão**, indicado por **um ponto** no mapa (polígono fica para depois; resolve Q-06) | Decidido |
 | S-6 | A ferramenta **apoia, não decide** (D-006) e é **explicável antes de precisa** (D-007) | Herdado de `DECISOES.md` |
-| S-7 | **Fontes de dados seguem a D-009** (núcleo de 17 fontes). Única fonte nova: **Open-Meteo** para a previsão do tempo, que nenhuma fonte da D-009 cobre | Proposto |
+| S-7 | **Fontes de dados seguem a D-009** (núcleo de 17 fontes). Única fonte nova: **Open-Meteo** para a previsão do tempo, que nenhuma fonte da D-009 cobre | Decidido (D-014) |
 
 ---
 
@@ -389,7 +389,7 @@ App nativo · vários talhões por fazenda · polígono do talhão · sensores e
 ---
 
 ## 12. Pendências e conflitos
-0. **Aprovar a Open-Meteo** como fonte de previsão (S-7). É a única fonte fora da D-009.
+0. ~~**Aprovar a Open-Meteo** como fonte de previsão (S-7).~~ Aprovada em 15/11/2026 (D-014).
 1. **Registrar D-010 "Escopo: mundo todo"** em `DECISOES.md`, substituindo a D-008. Consequências: D-003 deixa de ser "fora" e vira "enriquecimento só para os EUA"; as fontes brasileiras da D-009 (MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM) viram enriquecimento só para o Brasil; a demo usa pontos em países diferentes; base de culturas e textos em PT/EN/ES.
 2. **Confirmar se "Rest" = React** (S-1).
 3. **Modelo Gemini e de embeddings:** escolher e verificar nomes atuais e limites da cota gratuita.
