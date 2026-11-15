@@ -13,3 +13,5 @@ __pycache__/
 
 # Chaves locais (NASS_API_KEY etc.); nunca no Git
 .env
+
+docs/NasaSpaceApps-FieldShift/v1/examples/

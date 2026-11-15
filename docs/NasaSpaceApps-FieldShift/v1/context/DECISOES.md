@@ -79,18 +79,17 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - **Uso do solo e histórico:** MapBiomas
   - **Validação:** ZARC; INMET/CEMADEN
   - **Contexto regional e renda:** IBGE PAM
-  - **Acesso:** Earthdata Search (login), earthaccess (código), AppEEARS (séries por ponto; **descartado em 15/11/2026, ver a nota abaixo**)
+  - **Acesso:** Earthdata Search (login), earthaccess (código)
 - **Opcionais (3), em `tools/extras/`:** FIRMS (risco de fogo; volta ao núcleo se a demo tiver Cerrado ou borda da Amazônia), Sentinel-1 (só se a demo tiver região muito nublada na safra), Embrapa Solos (depende da Q-07).
-- **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess e o AppEEARS cobrem), NASA Harvest e ARSET (referência e estudo, não fonte). **O NASA Harvest está em revisão: ver a proposta abaixo.**
+- **Fora do projeto (19):** Landsat e Sentinel-2 (já estão no HLS), SMAP L3 (substituído pelo L4), MERRA-2 (o POWER deriva dele), ECOSTRESS (passagens irregulares), GEDI e GRACE/GRACE-FO (só contexto, sem efeito no talhão), Copernicus DEM e TOPODATA (o SRTM basta; o TOPODATA deriva dele), ESA WorldCover e MODIS Land Cover (o MapBiomas cobre), CHIRPS (o IMERG cobre e as estações são as mesmas), ANA HidroWeb (irrigação fora do foco), CONAB/CEPEA (o IBGE PAM cobre a renda), Giovanni, Worldview e Harmony/OPeNDAP (o earthaccess cobre), NASA Harvest e ARSET (referência e estudo, não fonte). **O NASA Harvest está em revisão: ver a proposta abaixo.**
 - **Consequência:** as notas das fontes que saíram foram apagadas e as citações a elas foram tiradas dos documentos do projeto. Os documentos que descrevem a lista oficial do desafio continuam citando todos os datasets dela.
 - **Nota de 15/11/2026 (revisão "projeto-dados 15_11_26"), renda: o que o motor faz hoje.** A linha "Contexto regional e renda: IBGE PAM" e a revisão da D-009 abaixo descrevem o plano, não o código. Hoje o motor **não lê** a PAM (`data/brasil/pam/`), o NASS (`data/eua/nass/`) nem as janelas do ZARC (`data/brasil/zarc/janelas.csv`). A nota de renda (`criterios.nota_renda`) é a **contagem de culturas de venda** (tipo `comercial`) da rotação, e o texto na tela diz: "Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota." A PAM e o NASS são dados preparados para quando o motor passar a lê-los; o ZARC também não entra no filtro de janela. Nenhuma decisão mudou: só o registro do estado real.
-- **Nota de 15/11/2026, AppEEARS descartado (decisão do usuário).** O projeto **não vai mais usar o AppEEARS**. Vale para a linha "Acesso" do núcleo acima, para o NDVI e o SMAP "por ponto" e para o texto da D-010 que o cita. Os arquivos `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico (nada foi apagado). Não existe `data/demo/appeears_eua/`. As fontes do clima, do solo e do relevo do app (NASA POWER, SoilGrids, SRTM) não mudam. Esta nota não cria decisão nova nem renumera nada.
 
 
 ### D-010 — O app também aceita fazendas nos EUA
 - **Status:** Decidido (Augusto, 15/11/2026; avisar a equipe)
 - **Amplia:** D-008 (escopo) · **Altera:** D-003 (datasets só dos EUA)
-- **Motivo:** o desafio Field Shift é da NASA, e os dados da NASA (POWER, SMAP, MODIS/VIIRS pelo AppEEARS, que foi descartado em 15/11/2026: ver a nota na D-009) e o SoilGrids cobrem os EUA do mesmo jeito que o Brasil. Muda só a parte das fontes nacionais.
+- **Motivo:** o desafio Field Shift é da NASA, e os dados da NASA (POWER, SMAP, MODIS/VIIRS) e o SoilGrids cobrem os EUA do mesmo jeito que o Brasil. Muda só a parte das fontes nacionais.
 - **Fontes dos EUA, no lugar das brasileiras** (detalhes em `data/README.md`, seção "EUA"):
   - **Município (IBGE)** → **condado** (Census TIGERweb), `data/eua/condados/`, chave `condado_id` (FIPS de 5 dígitos).
   - **ZARC** → datas usuais de plantio e colheita do **USDA NASS** por estado, `data/eua/nass/datas_plantio.csv`. É mais grosso: por estado, sem risco em %, sem tipo de solo nem ciclo, edição de 2010.
@@ -114,8 +113,31 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
   - O NASA Harvest sai da lista "Fora do projeto" e entra no núcleo, na linha **Contexto regional e renda** (portal, como contexto), na linha **Vegetação** (`crop-cycle-detection`) e numa nova linha **Chat** (MCP).
   - **Feito em 14/11/2026 (independe da aprovação):** os arquivos foram renomeados para o padrão `<NOME>.md`: `NASA_HARVEST.md` (GitHub), `NASA_HARVEST_PORTAL_API.md`, `NASA_HARVEST_PORTAL_API_GUIA.md`, `NASA_HARVEST_PORTAL_MCP.md`, `NASA_HARVEST_PORTAL_MCP_IMPLEMENTACAO.md` e `NASA_POWER_X_HARVEST_PORTAL.md`. O `arquitetura-completa-field-shift.md` foi para `application/architecture/ARQUITETURA-COMPLETA.md`. As citações a nomes antigos foram corrigidas.
   - Ainda em aberto: o `fluxo-aplicativo-power-harvest-mcp.md` e o `comunicacao-entre-apis.md` são citados, mas não existem no repositório.
-### D-010 — Escopo do catálogo de culturas: Brasil e EUA
-- **Status:** Decidido (Yury, Pessoa 1, 15/11/2026) para o catálogo de culturas. Falta a equipe rever a D-003 para as outras fontes.
+### D-011 — IA do chat e do RAG: Gemini, sem framework de agentes
+- **Status:** Decidido (15/11/2026)
+- **Decisão:**
+  - **Modelo:** Gemini, pelo SDK `google-genai`, o mesmo que o onboarding já usa no texto livre. Uma chave e um SDK para o projeto todo.
+  - **Embeddings:** `gemini-embedding-001`, 768 dimensões, `task_type` `RETRIEVAL_DOCUMENT` (trechos) e `RETRIEVAL_QUERY` (pergunta); vetor normalizado no código (a documentação exige abaixo de 3072).
+  - **Sem framework** (LangChain, Agno, Google ADK, LlamaIndex): o SDK direto, com as ferramentas executadas pelo nosso código (chamada automática desligada), cada chamada registrada no banco.
+  - **RAG no próprio Postgres:** pgvector + busca textual em português, combinadas por RRF, com descarte de trechos fracos.
+- **Motivo:** é 1 agente com poucas ferramentas e uma base pequena (~4 documentos). A parte difícil é controlar o que o modelo vê e responde (nada de número inventado, fonte em tudo), e um framework esconderia justamente isso. O Gemini tem embeddings no mesmo SDK; o Claude exigiria um segundo provedor para os embeddings.
+- **Alternativas descartadas:** LangChain/LangGraph e Google ADK (pesados para o tamanho do problema); Agno (cria tabelas e busca próprias, sem a busca híbrida e o registro de buscas); Claude no chat (precisaria de outro provedor para os embeddings).
+- **Consequências:**
+  - O banco precisa da extensão `vector`: o do compose (`.deploy/`) já tem; o Postgres atual da VPS precisaria instalar.
+  - O banco de **teste** usa a imagem `pgvector/pgvector:pg17`.
+  - No chat v1 as ferramentas são internas (ficha, culturas, base de conhecimento, clima, comparação de rotações). O MCP do Harvest Portal (revisão da D-009) fica fora da v1.
+  - Plano gratuito do Gemini: 20 chamadas por dia por modelo; para a demo é preciso ativar o faturamento.
+
+### D-012 — AppEEARS fora do projeto
+- **Status:** Decidido (15/11/2026)
+- **Decisão:** o AppEEARS não será usado. O pedido das séries por ponto (NDVI e SMAP dos pontos da demo) foi cancelado.
+- **Consequências:**
+  - O AppEEARS sai da D-009 e da D-010; o acesso aos dados da NASA fica com o Earthdata Search e o earthaccess. As fontes de clima, solo e relevo do app (NASA POWER, SoilGrids, SRTM) não mudam.
+  - A tarefa 5 da Pessoa 2 (pedido no AppEEARS) está cancelada. `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico.
+  - Outros documentos que ainda o citam (notas `tools/APPEEARS*.md`, arquitetura, guia de dados) são atualizados à parte, cada um pelo dono.
+
+### D-013 — Escopo do catálogo de culturas: Brasil e EUA
+- **Status:** Decidido (Yury, Pessoa 1, 15/11/2026) para o catálogo de culturas. Registrada antes como uma segunda D-010; renumerada em 15/11/2026. Falta a equipe rever a D-003 para as outras fontes.
 - **Motivo:** o questionário já foi revisado para escopo global e testado em fazendas dos EUA (`data/onboarding/relatorio-revisao-questionario.md`), e os testes de chat do produtor americano (`TESTES_CHAT_SR_SMITH.md`) pedem culturas que o catálogo do Brasil não tem ou trata com outro sistema (centeio de cobertura, trigo de inverno, arroz inundado, amendoim).
 - **Consequências:**
   - Novo catálogo `data/catalogo/eua/`, no mesmo formato do Brasil, com `codigo_nass` e `calendario_usda` no lugar de `codigo_pam` e `nome_zarc`. Guia em `data/catalogo/eua/README.md`; construído pelo agente `agroai-dataset-eua`.
@@ -132,21 +154,6 @@ Lugar único para o que a equipe **já decidiu**, o que **está proposto** e o q
     - aveia e nabo dos EUA continuam com semeadura em agosto e setembro: a janela e a condição impedem que sejam sugeridos depois do milho ou da soja colhidos em outubro;
     - critério de `estudo_unico` escrito (1 local, 1 ano ou 1 cultivar); o sorgo dos EUA fica `media`;
     - ervilhaca dos EUA só no Corn Belt (Sudeste em arranjo regional); centeio com palhada típica 0,97 t/ha; girassol e amendoim com a palhada medida na região.
-
-### D-011 — IA do chat e do RAG: Gemini, sem framework de agentes
-- **Status:** Decidido (15/11/2026)
-- **Decisão:**
-  - **Modelo:** Gemini, pelo SDK `google-genai`, o mesmo que o onboarding já usa no texto livre. Uma chave e um SDK para o projeto todo.
-  - **Embeddings:** `gemini-embedding-001`, 768 dimensões, `task_type` `RETRIEVAL_DOCUMENT` (trechos) e `RETRIEVAL_QUERY` (pergunta); vetor normalizado no código (a documentação exige abaixo de 3072).
-  - **Sem framework** (LangChain, Agno, Google ADK, LlamaIndex): o SDK direto, com as ferramentas executadas pelo nosso código (chamada automática desligada), cada chamada registrada no banco.
-  - **RAG no próprio Postgres:** pgvector + busca textual em português, combinadas por RRF, com descarte de trechos fracos.
-- **Motivo:** é 1 agente com poucas ferramentas e uma base pequena (~4 documentos). A parte difícil é controlar o que o modelo vê e responde (nada de número inventado, fonte em tudo), e um framework esconderia justamente isso. O Gemini tem embeddings no mesmo SDK; o Claude exigiria um segundo provedor para os embeddings.
-- **Alternativas descartadas:** LangChain/LangGraph e Google ADK (pesados para o tamanho do problema); Agno (cria tabelas e busca próprias, sem a busca híbrida e o registro de buscas); Claude no chat (precisaria de outro provedor para os embeddings).
-- **Consequências:**
-  - O banco precisa da extensão `vector`: o do compose (`.deploy/`) já tem; o Postgres atual da VPS precisaria instalar.
-  - O banco de **teste** usa a imagem `pgvector/pgvector:pg17`.
-  - No chat v1 as ferramentas são internas (ficha, culturas, base de conhecimento, clima, comparação de rotações). O MCP do Harvest Portal (revisão da D-009) fica fora da v1.
-  - Plano gratuito do Gemini: 20 chamadas por dia por modelo; para a demo é preciso ativar o faturamento.
 
 ---
 
@@ -213,7 +220,9 @@ Com o escopo nacional (D-008), a demo fica mais forte mostrando **duas ou três 
 | 14/11/2026 | **D-009:** fontes do MVP definidas (17 no núcleo, 3 opcionais, 19 fora). Substitui D-002 e D-005; D-003, D-008 e I-2 ajustados. |
 | 14/11/2026 | Proposta de revisão da D-009: NASA Harvest volta como contexto de mercado (Harvest Portal), no chat (MCP) e na detecção de ciclos (`crop-cycle-detection`). A confirmar com a equipe. |
 | 15/11/2026 | **D-010:** o app também aceita fazendas nos EUA. Amplia a D-008 e altera a D-003 (Census, CDL e NASS QuickStats entram para as fazendas dos EUA). |
-| 15/11/2026 | **D-010:** catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |
+| 15/11/2026 | **D-013** (antes, uma segunda D-010): catálogo de culturas abre para os EUA (`data/catalogo/eua/`), com fontes americanas só para esse catálogo. D-003 a rever pela equipe para as outras fontes. |
 | 15/11/2026 | **D-011:** chat e RAG com Gemini (`google-genai` + `gemini-embedding-001` 768d), sem framework de agentes, RAG com pgvector + busca textual no próprio Postgres. |
 | 15/11/2026 | Nota na D-009 (revisão "projeto-dados 15_11_26"): o motor ainda não lê a PAM, o NASS nem as janelas do ZARC; a renda é a contagem de culturas de venda. Sem decisão nova. |
 | 15/11/2026 | Nota na D-009: o projeto não vai mais usar o AppEEARS (decisão do usuário). `data/demo/appeears/` e `data/scripts/baixar_appeears.py` ficam só como histórico. |
+| 15/11/2026 | **D-012:** AppEEARS fora do projeto (pedido cancelado); sai da D-009 e da D-010, no lugar da nota de 15/11. |
+| 15/11/2026 | Segunda D-010 (escopo do catálogo de culturas) renumerada para **D-013**. |
