@@ -9,6 +9,7 @@ const ROTULO_FONTE: Record<TipoFonte, { pt: string; en: string }> = {
   conhecimento: { pt: "Base de conhecimento", en: "Knowledge base" },
   cultura: { pt: "Dados da cultura", en: "Crop data" },
   fazenda: { pt: "Suas respostas no questionário", en: "Your questionnaire answers" },
+  analise: { pt: "Comparação do AgroIA", en: "AgroIA comparison" },
 };
 
 function Fontes({ fontes }: { fontes: Fonte[] }) {

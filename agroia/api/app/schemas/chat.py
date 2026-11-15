@@ -20,7 +20,7 @@ class EnviarMensagem(BaseModel):
 
 
 class Fonte(BaseModel):
-    tipo: Literal["clima", "conhecimento", "cultura", "fazenda"]
+    tipo: Literal["clima", "conhecimento", "cultura", "fazenda", "analise"]
     titulo: str
     detalhe: str | None = None
 

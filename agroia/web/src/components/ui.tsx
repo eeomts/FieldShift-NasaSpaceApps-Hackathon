@@ -141,3 +141,6 @@ export function Carregando({ texto }: { texto: string }) {
     </div>
   );
 }
+
+/** Meses curtos em português (usado pelos cartões de estratégia). Para PT/EN, use MESES_CURTOS de i18n. */
+export const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];

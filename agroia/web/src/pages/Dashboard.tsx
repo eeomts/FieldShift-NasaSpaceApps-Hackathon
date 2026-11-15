@@ -5,6 +5,7 @@ import { api } from "../api/client";
 import { useSessao } from "../api/sessao";
 import type { CulturaBase, Fazenda } from "../api/tipos";
 import { Casca, SeletorIdioma } from "../components/Casca";
+import { Estrategias } from "../components/estrategias/Estrategias";
 import { Brilho, Pino, Sair } from "../components/icones";
 import { Aviso, BotaoContorno, Carregando, cx } from "../components/ui";
 import { INICIAIS_MESES, MESES_LONGOS, useIdioma, type Idioma } from "../i18n";
@@ -120,7 +121,6 @@ export function Dashboard() {
     const area = OPCOES_AREA.find((o) => o.valor === r.q2_area)?.[un][idioma];
     const lugar = r.q5_local?.nome ?? null;
     const nomeCultura = (it: (typeof itens)[number]) => (it.cultura_id && nomes[it.cultura_id]) || it.texto_original;
-    const primeira = itens[0] ? nomeCultura(itens[0]) : null;
     const comDescida = r.q7_terreno === "leve" || r.q7_terreno === "inclinado";
     const alerta =
       comDescida && vazios.length
@@ -225,36 +225,13 @@ export function Dashboard() {
           <span className="text-[11px] text-suave">{t("Em breve: NASA MODIS NDVI (MOD13Q1) · 250 m · a cada 16 dias", "Coming soon: NASA MODIS NDVI (MOD13Q1) · 250 m · every 16 days")}</span>
         </div>
 
-        {/* Estratégias (exemplo) */}
-        <div className="flex flex-col gap-3.5 rounded-[28px] bg-folha p-5 text-white shadow-degrau lg:col-span-8">
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-xs font-bold tracking-wider text-[#CFEBD9] uppercase">{t("Estratégias de rotação", "Rotation strategies")}</span>
-            <span className="rounded-full bg-white/20 px-2 py-0.5 text-[11px] font-bold">{t("Exemplo", "Example")}</span>
-          </div>
-          <span className="font-titulo text-2xl leading-tight font-extrabold tracking-[-0.02em]">
-            {primeira ? t(`3 caminhos para depois da colheita de ${primeira}`, `3 options for after the ${primeira} harvest`) : t("3 caminhos para depois da colheita", "3 options for after harvest")}
-          </span>
-          <div className="flex flex-col gap-2">
-            {[
-              { n: t("Campo vazio", "Bare field"), tag: t("Hoje", "Today"), bg: "#F5EEDF" },
-              { n: t("Planta de cobertura", "Cover crop"), tag: t("Combina com você", "Good fit for you"), bg: "#FFC23D" },
-              { n: t("Segunda cultura curta", "Short second crop"), tag: t("Mais renda", "More income"), bg: "#CFEBD9" },
-            ].map((s) => (
-              <div key={s.n} className="flex items-center justify-between gap-2 rounded-[14px] bg-white/15 px-3 py-2.5">
-                <span className="text-sm font-bold">{primeira ? `${primeira} → ${s.n}` : s.n}</span>
-                <span className="rounded-full px-2.5 py-1 text-xs font-bold text-tinta" style={{ background: s.bg }}>{s.tag}</span>
-              </div>
-            ))}
-          </div>
-          <span className="text-xs opacity-90">{t("A comparação de verdade, com dados da NASA, entra na próxima etapa.", "The real comparison, with NASA data, comes in the next step.")}</span>
-          <Link to={perguntar(primeira ? t(`O que plantar depois da colheita de ${primeira}?`, `What should I plant after the ${primeira} harvest?`) : t("O que plantar depois da colheita?", "What should I plant after harvest?"))}
-            className="inline-flex items-center gap-1.5 self-start text-[15px] font-bold text-white no-underline">
-            {t("Perguntar à AgroIA", "Ask AgroIA")} <Brilho size={16} />
-          </Link>
+        {/* Estratégias: comparação real de rotações (GET /fazenda/estrategias) */}
+        <div className="lg:col-span-8">
+          <Estrategias />
         </div>
 
         {/* Sua fazenda (real, do questionário) */}
-        <div className={cx(cartao, "flex flex-col gap-3 lg:col-span-4")}>
+        <div className={cx(cartao, "flex flex-col gap-3 lg:col-span-4 lg:self-start")}>
           <h2 className="m-0 text-[13px] font-bold text-folha">{t("Sua fazenda", "Your farm")}</h2>
           <span className="text-[11px] text-suave">{t("Fonte: suas respostas no questionário", "Source: your answers in the questionnaire")}</span>
           {itens.length > 0 && (

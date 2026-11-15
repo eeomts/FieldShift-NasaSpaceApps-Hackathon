@@ -16,6 +16,7 @@ from app.services.agente.busca_conhecimento_service import BuscaConhecimentoServ
 from app.services.agente.modelo import get_modelo
 from app.services.agente.prompt import RESPOSTA_FORA_DO_ESCOPO
 from app.services.conversa_service import titulo_da_pergunta
+from app.services.integracao import srtm
 from app.services.integracao.nasa_power import DiaPower, ErroNasaPower, SeriePower, get_cliente
 
 SEM_TOKEN = {}
@@ -247,7 +248,7 @@ def test_resposta_direta_sem_ferramenta(client, auth, conversa, modelo):
     linhas = mensagens_no_banco(conversa)
     assert [(l["papel"], l["visivel"]) for l in linhas] == [("user", True), ("model", True)]
     assert (linhas[1]["tokens_entrada"], linhas[1]["tokens_saida"]) == (100, 7)
-    assert [t.name for t in m.chamadas[0]["ferramentas"][0].function_declarations] == ["ver_ficha", "info_cultura", "buscar_conhecimento", "consultar_clima"]
+    assert [t.name for t in m.chamadas[0]["ferramentas"][0].function_declarations] == ["ver_ficha", "info_cultura", "buscar_conhecimento", "consultar_clima", "comparar_estrategias"]
 
 
 def test_clima_ferramenta_depois_resposta(client, auth, conversa, fazenda, clima, modelo):
@@ -531,3 +532,58 @@ def test_fora_do_escopo_responde_a_frase_fixa_sem_ferramenta(client, auth, conve
     assert corpo["texto"] == RESPOSTA_FORA_DO_ESCOPO
     assert corpo["fontes"] == [] and corpo["ferramentas_usadas"] == []
     assert len(m.chamadas) == 1
+
+
+# --- comparar_estrategias ---
+
+
+class SrtmFalso:
+    """SRTM fora do ar: o relevo cai na resposta do produtor, sem rede."""
+
+    def declividade(self, lat, lon):
+        raise srtm.ErroSrtm("fora do ar")
+
+
+@pytest.fixture
+def relevo():
+    app.dependency_overrides[srtm.get_cliente] = lambda: SrtmFalso()
+
+
+def test_comparar_estrategias_traz_a_fonte_analise(client, auth, conversa, fazenda, clima, relevo, modelo):
+    m = modelo([chamada("comparar_estrategias"), fala("Comparei as rotações (comparação do AgroIA).")])
+    r = perguntar(client, auth, conversa, "o que eu planto no vão?")
+    assert r.status_code == 200
+    corpo = r.json()
+    assert corpo["ferramentas_usadas"] == ["comparar_estrategias"]
+    (fonte,) = corpo["fontes"]
+    assert (fonte["tipo"], fonte["titulo"]) == ("analise", "Comparação de rotações do AgroIA")
+    assert "NASA POWER" in fonte["detalhe"]
+
+    (resposta,) = respostas_de_ferramenta(m.chamadas)
+    dados = resposta["response"]
+    assert resposta["name"] == "comparar_estrategias"
+    assert {"atual", "melhores", "atual_e_a_melhor", "eliminadas"} <= set(dados)
+    assert 0 <= dados["atual"]["nota_final_0_a_100"] <= 100
+    assert list(dados["atual"]["notas_0_a_100"]) == ["agua", "terra", "erosao", "pragas", "renda", "animais"]
+    assert len(dados["melhores"]) <= 2 and dados["eliminadas"]["quantas"] >= 0
+    assert len(dados["eliminadas"].get("motivos_mais_comuns", [])) <= 3
+    assert "centrada" not in json.dumps(dados) and "centrada" not in fonte["detalhe"]  # sem coordenada da célula
+    assert "-11." not in json.dumps(dados)
+
+
+def test_comparar_estrategias_sem_local_vira_mensagem_para_o_modelo(client, auth, conversa, clima, relevo, modelo):
+    client.put("/fazenda", headers=auth, json={"respostas": {"q1_quem": "produtor"}})  # sem q5_local
+    m = modelo([chamada("comparar_estrategias"), fala("Falta marcar o local.")])
+    r = perguntar(client, auth, conversa, "o que eu planto?")
+    assert r.status_code == 200
+    assert "Marque o local da fazenda" in respostas_de_ferramenta(m.chamadas)[0]["response"]["mensagem"]
+    assert r.json()["fontes"] == [] and r.json()["ferramentas_usadas"] == ["comparar_estrategias"]
+    assert clima.chamadas == 0
+
+
+def test_comparar_estrategias_power_fora_do_ar(client, auth, conversa, fazenda, relevo, modelo):
+    app.dependency_overrides[get_cliente] = lambda: ClienteFalso(erro=True)
+    m = modelo([chamada("comparar_estrategias"), fala("Sem clima agora.")])
+    r = perguntar(client, auth, conversa, "o que eu planto?")
+    assert r.status_code == 200 and r.json()["fontes"] == []
+    assert "Não consegui o clima" in respostas_de_ferramenta(m.chamadas)[0]["response"]["erro"]

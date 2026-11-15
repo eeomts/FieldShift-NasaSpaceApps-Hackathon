@@ -26,7 +26,7 @@ agroia/
 │   ├── app/                  # em camadas: routers -> services -> repositories -> models
 │   │   ├── main.py           # cria a API, liga as rotas e trata os erros de negócio
 │   │   ├── core/             # config.py (.env), db.py (PostgreSQL), security.py (senha e JWT), erros.py
-│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (conversa, mensagem, busca_log), clima.py (clima_celula, clima_mensal)
+│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (conversa, mensagem, busca_log), clima.py (clima_celula, clima_mensal), relevo.py (relevo_ponto)
 │   │   ├── schemas/          # entrada e saída das rotas: auth.py, fazenda.py, onboarding.py (respostas), chat.py
 │   │   ├── repositories/     # acesso ao banco: usuario, fazenda, conhecimento (busca híbrida), clima, conversa
 │   │   ├── services/         # regras de negócio
@@ -37,10 +37,11 @@ agroia/
 │   │   │   ├── rag/                 # base de conhecimento: chunker, embeddings (Gemini), fontes, ingestao
 │   │   │   ├── conversa_service.py  # conversas do usuário (criar, listar, abrir, apagar)
 │   │   │   ├── agente/              # o chat: agente_service.py (laço do Gemini), ferramentas.py, prompt.py, modelo.py, busca_conhecimento_service.py
-│   │   │   ├── clima/               # célula da grade, ET0 (FAO-56), limites, agregação mensal, clima_service.py
-│   │   │   └── integracao/          # nasa_power.py (cliente HTTP do NASA POWER)
+│   │   │   ├── clima/               # célula da grade, ET0 (FAO-56), limites, agregação mensal, graus_dia.py, clima_service.py
+│   │   │   ├── motor/               # base do motor de rotação: catalogo.py (CSV do BR e dos EUA), local.py (país e município/condado), relevo_service.py, motor_service.py (a análise), estrategias_service.py (rota: erros e conversão no schema)
+│   │   │   └── integracao/          # nasa_power.py (NASA POWER), srtm.py (declividade, OpenTopoData)
 │   │   ├── cli/              # comandos: rag.py (ingerir, buscar), clima.py (baixar, mostrar, demo)
-│   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding, chat
+│   │   └── routers/          # rotas (só HTTP): auth, fazenda, estrategias, onboarding, chat
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
 │   ├── tests/                # pytest (só rodam num Postgres local)
 │   ├── .env.example          # modelo de configuração
@@ -128,6 +129,7 @@ Os testes cobrem:
 | DELETE | `/me` | Apaga a conta e todos os dados |
 | GET | `/fazenda` | Questionário salvo, perfil e resumo |
 | PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`) |
+| GET | `/fazenda/estrategias` | Compara a rotação atual com as 2 melhores alternativas, na hora (a 1ª vez numa região baixa o NASA POWER, 10–30 s). Erros: 404 sem fazenda, 422 sem local / sem culturas da região / sem calendário, 503 se o NASA POWER falhar |
 | POST | `/onboarding/interpretar` | Texto livre → itens da base (perguntas 8, 26a e 26b) |
 | GET | `/culturas`, `/equipamentos` | Listas reserva |
 | GET | `/chat/conversas` | Lista as conversas do usuário (mais recente primeiro) |
@@ -144,7 +146,7 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | Tabela | Guarda |
 |---|---|
 | `usuario` | Nome, e-mail, hash da senha, idioma |
-| `fazenda` | Uma por usuário. Todas as respostas em JSONB (`respostas`), mais as colunas que o resto do sistema consulta: local, perfil, irrigação, animais, terreno, prioridades, culturas excluídas, equipamentos, retrato do solo |
+| `fazenda` | Uma por usuário. Todas as respostas em JSONB (`respostas`), mais as colunas que o resto do sistema consulta: local, `pais` (`BR`/`US`) e `codigo_local` (município IBGE de 7 dígitos ou condado FIPS de 5, calculados ao salvar o local; `NULL` fora das malhas), perfil, irrigação, animais, terreno, prioridades, culturas excluídas, equipamentos, retrato do solo |
 | `calendario_item` | Cada cultura que o produtor confirmou, com os meses de plantio e colheita |
 | `documento` | Cada texto da base de conhecimento (glossário, metodologia, culturas, satélites), com fonte, caminho de origem e hash do conteúdo |
 | `trecho` | Pedaços de um documento com embedding (`vector(768)`) e busca textual em português |
@@ -152,7 +154,8 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | `mensagem` | Cada turno do Gemini (`papel` `user`/`model`), com o `Content` completo em JSONB (inclui as chamadas de ferramenta, que voltam no histórico), `visivel` (só a pergunta e a resposta final), texto, fontes, ferramentas usadas e tokens |
 | `busca_log` | Cada busca na base de conhecimento: conversa, palavras do produtor, consulta, trechos devolvidos e descartados |
 | `clima_celula` | Uma célula da grade do NASA POWER (0,5° × 0,625°, ~50 km): centro, elevação, período baixado, limite de chuva forte (P95 de 1991–2020) e fonte. Fazendas vizinhas dividem a mesma linha |
-| `clima_mensal` | Por célula, ano e mês: chuva, ET0, temperaturas (média, média das máximas e mínimas, extremos), dias de geada (Tmin < 2 °C), de calor (Tmax > 35 °C) e de chuva forte, maior sequência seca (< 1 mm) e dias válidos. Sem dado fica `NULL`, nunca 0 |
+| `clima_mensal` | Por célula, ano e mês: chuva, ET0, temperaturas (média, média das máximas e mínimas, extremos), dias de geada (Tmin < 2 °C), de calor (Tmax > 35 °C) e de chuva forte, maior sequência seca (< 1 mm) e dias válidos. Sem dado fica `NULL`, nunca 0. `gd_por_tb`: graus-dia do mês para cada temperatura-base inteira de 0 a 20 °C (JSONB, sem teto); `{}` = mês sem temperatura completa, `NULL` = célula baixada antes da coluna (é baixada de novo) |
+| `relevo_ponto` | Cache da declividade do SRTM por ponto (lat/lon com 4 casas): `declividade_pct`, classe da Embrapa e fonte |
 
 ## Base de conhecimento (RAG)
 
@@ -169,7 +172,7 @@ Documento que sai da lista de fontes é removido do banco na próxima ingestão.
 
 ## Chat (agente)
 
-Um agente com 4 ferramentas, executadas pelo nosso código (o Gemini só pede a chamada): `ver_ficha`, `info_cultura`, `buscar_conhecimento` e `consultar_clima`. Os números vêm das ferramentas, e cada resposta devolve as `fontes` e as `ferramentas_usadas` delas, nunca do texto do modelo. Regras (não prescreve, não faz previsão, não inventa número) em `app/services/agente/prompt.py`.
+Um agente com 5 ferramentas, executadas pelo nosso código (o Gemini só pede a chamada): `ver_ficha`, `info_cultura`, `buscar_conhecimento`, `consultar_clima` e `comparar_estrategias` (roda o motor de rotação na fazenda do usuário e devolve as notas de 0 a 100, o por que e o onde piora; a fonte sai com `tipo: "analise"`). Os números vêm das ferramentas, e cada resposta devolve as `fontes` e as `ferramentas_usadas` delas, nunca do texto do modelo. Regras (não prescreve, não faz previsão, não inventa número) em `app/services/agente/prompt.py`.
 
 - Precisa de `GEMINI_API_KEY` (e `GEMINI_MODEL`) no `.env` e das tabelas da base de conhecimento e do clima. Sem a chave, `POST .../mensagens` responde 503.
 - Até 5 rodadas de ferramenta por pergunta. Se o assistente falhar ou estourar o limite, a resposta é 503 e **nada** daquela pergunta fica gravado.
@@ -189,6 +192,14 @@ uv run python -m app.cli.clima demo                          # baixa e mostra os
 ```
 
 Os testes do clima usam respostas simuladas: não acessam a rede.
+
+## Base do motor de rotação
+
+- **Catálogo:** `app/services/motor/catalogo.py` lê `data/catalogo/culturas.csv` (Brasil) e, se existir, `data/catalogo/eua/culturas.csv`; sem o arquivo dos EUA o catálogo do país vem vazio, com aviso. `cultura_equipamentos.csv` dá os equipamentos de plantio e colheita de cada cultura.
+- **País e local:** `app/services/motor/local.py` acha o município (`data/brasil/municipios/municipios.geojson`) ou o condado (`data/eua/condados/condados.geojson`) do ponto com `shapely` (dependência nova, índice STRtree). Fora das duas malhas: sem país.
+- **Graus-dia:** `app/services/clima/graus_dia.py`, GD = soma de max(0, Tmed − Tb), sem teto, com Tmed = (Tmax + Tmin) / 2, a mesma conta de `data/catalogo/scripts/gd_nasa_power.py`. Gravado por mês para Tb de 0 a 20 °C; Tb fracionária é interpolada entre as inteiras vizinhas.
+- **Declividade:** SRTM 30 m pelo OpenTopoData (sem chave, 1 chamada por segundo), grade 3×3 de ~30 m e método de Horn; classes da Embrapa. Se falhar, vale a resposta da pergunta 7, com a fonte marcada.
+- Fazendas que já existiam ganham `pais` e `codigo_local` na migration `0006` (ou no próximo salvar, se as malhas não estiverem no disco).
 
 Para mudar uma tabela, altere o model em `app/models/` e gere uma migração:
 

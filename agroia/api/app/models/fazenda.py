@@ -19,6 +19,7 @@ class Fazenda(Base):
         CheckConstraint("lat IS NULL OR (lat BETWEEN -90 AND 90)", name="ck_fazenda_lat"),
         CheckConstraint("lon IS NULL OR (lon BETWEEN -180 AND 180)", name="ck_fazenda_lon"),
         CheckConstraint("perfil IS NULL OR perfil IN ('A','B','C')", name="ck_fazenda_perfil"),
+        CheckConstraint("pais IS NULL OR pais IN ('BR','US')", name="ck_fazenda_pais"),
         CheckConstraint("papel IS NULL OR papel IN ('produtor','tecnico')", name="ck_fazenda_papel"),
     )
 
@@ -28,6 +29,8 @@ class Fazenda(Base):
     lat: Mapped[float | None] = mapped_column(Float)
     lon: Mapped[float | None] = mapped_column(Float)
     nome_local: Mapped[str | None] = mapped_column(String(200))
+    pais: Mapped[str | None] = mapped_column(String(2))  # BR ou US, pelo ponto (malhas IBGE e Census); null fora delas
+    codigo_local: Mapped[str | None] = mapped_column(String(7))  # município (IBGE, 7 dígitos) ou condado (FIPS, 5)
     perfil: Mapped[str | None] = mapped_column(String(1))  # nível de dado do solo: A, B ou C
     papel: Mapped[str | None] = mapped_column(String(10))  # quem respondeu: produtor ou tecnico
     irrigacao: Mapped[str | None] = mapped_column(String(10))

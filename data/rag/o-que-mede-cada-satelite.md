@@ -4,7 +4,7 @@ Cada seção explica uma fonte de dados usada pelo Field Shift: o que ela vê, e
 
 ## NASA POWER: clima do lugar
 
-O NASA POWER é um serviço da NASA que entrega dados de clima para qualquer ponto do planeta: temperatura máxima e mínima, chuva, umidade do ar, vento e sol. A série começa em 1981, então dá para olhar mais de 40 anos e saber o que é normal em cada mês, com que frequência faltou chuva ou fez frio demais, e se o clima está mudando.
+O NASA POWER é um serviço da NASA que entrega dados de clima para qualquer ponto do planeta: temperatura máxima e mínima, chuva, umidade do ar, vento e sol. A série começa em 1981. O Field Shift usa o período de 1991 a 2020 como o normal de cada mês, para saber com que frequência faltou chuva ou fez frio demais, e os anos mais recentes para ver se o clima está mudando.
 
 O Field Shift usa o NASA POWER para quase todos os indicadores de clima: risco de geada, dias de calor, veranico, balanço de água, graus-dia e cenários.
 
