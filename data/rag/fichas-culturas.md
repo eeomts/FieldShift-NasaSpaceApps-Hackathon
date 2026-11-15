@@ -24,9 +24,9 @@ Vantagens do milho para o solo: produz muita palhada, que dura mais no chão do 
 
 Cuidados com o milho: pede bastante água e adubo, principalmente nitrogênio. É sensível à falta de chuva no pendoamento e no enchimento do grão; um veranico nessa hora derruba a colheita. Sofre com geada e com calor forte na floração. O milho safrinha corre mais risco de seca e de frio no fim do ciclo. Milho atrás de milho favorece pragas como a cigarrinha e doenças.
 
-Na base do Field Shift, o milho tem ciclo de 110 a 145 dias (de 1.500 a 1.900 graus-dia), é sensível a geada, usa de 500 a 800 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita palhada. Quando é plantado para grão, sobra pouco para os animais; a silagem de milho é outro uso, que tira a palhada do campo. No zoneamento agrícola do Brasil (ZARC), o milho tem janelas separadas para a 1ª safra, de verão, e a 2ª safra, a safrinha. Confiança dos números: média.
+Na base do Field Shift, o milho tem ciclo de 110 a 145 dias (de 1.500 a 1.900 graus-dia), é sensível a geada, usa de 500 a 800 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita palhada. Quando é plantado para grão, sobra pouco para os animais; a silagem de milho é outro uso, que tira a palhada do campo. No zoneamento agrícola do Brasil (ZARC), o milho tem janelas separadas para a 1ª safra, de verão, e a 2ª safra, a safrinha, e uma linha própria para o milho consorciado com braquiária. Confiança dos números: média.
 
-Como o produtor costuma dizer: milho, milharal, roça de milho, milho de verão, milho safrinha, milho 2ª safra, milho verde, corn, maíz.
+Como o produtor costuma dizer: milho, milharal, roça de milho, milho de verão, milho safrinha, milho 2ª safra, milho verde, corn, maize.
 
 Fonte: Embrapa Milho e Sorgo; FAO-56; MAPA, ZARC; base de culturas do Field Shift.
 
@@ -40,7 +40,7 @@ Cuidados com o feijão: é sensível a quase todos os extremos. Não aguenta enc
 
 Na base do Field Shift, o feijão tem ciclo de 60 a 110 dias (de 980 a 1.270 graus-dia), é sensível a geada, usa de 250 a 400 mm de água no ciclo, cresce melhor entre 18 e 25 °C, sofre com calor acima de 30 °C na floração e fixa nitrogênio. Deixa palhada média, mas a cobertura que sobra depois de dois meses é baixa. No zoneamento agrícola do Brasil (ZARC), o feijão tem janelas separadas para a safra das águas e a 2ª safra, da seca. Confiança dos números: alta.
 
-Como o produtor costuma dizer: feijão, feijão-carioca, feijão-preto, feijão das águas, feijão da seca, feijão de inverno, frijol.
+Como o produtor costuma dizer: feijão, feijão-carioca, feijão-preto, feijão das águas, feijão da seca, feijão de inverno, beans.
 
 Fonte: Embrapa Arroz e Feijão; MAPA, ZARC; base de culturas do Field Shift.
 
@@ -80,7 +80,7 @@ Vantagens do arroz irrigado: aproveita várzeas e terras baixas que encharcam e 
 
 Cuidados com o arroz irrigado: só é opção para quem tem várzea ou estrutura de irrigação e drenagem, além de água disponível; por isso, no Field Shift ele só aparece como alternativa nesses casos. Frio na floração faz o grão ficar chocho, um risco conhecido no Sul. A brusone é a doença mais séria. Como a várzea fica alagada, a escolha de culturas para rotação ali é limitada; soja e pastagem são as mais usadas.
 
-Na base do Field Shift, o arroz irrigado tem ciclo de 100 a 145 dias (de 1.180 a 1.760 graus-dia), é sensível a geada, cresce melhor entre 20 e 33 °C, sofre com calor acima de 35 °C e usa de 580 a 720 mm de água no ciclo, além da água que fica na lâmina. Deixa muita palhada. No zoneamento agrícola do Brasil (ZARC), as janelas do arroz irrigado ficam separadas das do arroz de sequeiro. Confiança dos números: alta.
+Na base do Field Shift, o arroz irrigado tem ciclo de 100 a 145 dias (de 1.180 a 1.760 graus-dia), é sensível a geada, cresce melhor entre 20 e 33 °C, sofre com calor acima de 35 °C e usa de 580 a 720 mm de água no ciclo, além da água que fica na lâmina. Deixa muita palhada. No zoneamento agrícola do Brasil (ZARC), as janelas do arroz irrigado ficam separadas das do arroz de sequeiro, na tábua das culturas sem safra, junto com as perenes. Confiança dos números: alta.
 
 Como o produtor costuma dizer: arroz irrigado, arroz de várzea, arroz inundado, arroz alagado, arroz de banhado, irrigated rice, paddy rice.
 
@@ -110,7 +110,7 @@ Cuidados com a mandioca: no começo, a planta cresce devagar e deixa o chão des
 
 Na base do Field Shift, a mandioca é tratada como perene, com ciclo de 180 a 720 dias (6 meses a 2 anos). É tolerante à seca, sensível a geada, precisa de calor (temperatura base de 15 °C), cresce melhor entre 20 e 27 °C e vai bem em regiões com 1.000 a 1.500 mm de chuva por ano. Os graus-dia (de 1.250 a 4.280, conforme o tempo até a colheita) servem só para ver se o lugar é frio demais para ela. A mandioca não tem zoneamento agrícola (ZARC) na safra 2025/2026: a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
-Como o produtor costuma dizer: mandioca, macaxeira, aipim, maniva, mandioca-mansa, roça de mandioca, cassava, yuca.
+Como o produtor costuma dizer: mandioca, macaxeira, aipim, maniva, mandioca-mansa, roça de mandioca, cassava.
 
 Fonte: Embrapa Mandioca e Fruticultura; MAPA, ZARC; base de culturas do Field Shift.
 
@@ -166,7 +166,7 @@ Cuidados com o girassol: precisa de boro, e a falta desse nutriente derruba a pr
 
 Na base do Field Shift, o girassol tem ciclo de 90 a 130 dias (de 1.500 a 2.100 graus-dia), é tolerante à seca, sensível a geada, usa de 400 a 700 mm de água no ciclo e cresce melhor entre 20 e 25 °C. Deixa palhada média e tem pouco valor como forragem. No zoneamento agrícola do Brasil (ZARC), o girassol tem janelas por município. Confiança dos números: alta.
 
-Como o produtor costuma dizer: girassol, sunflower, girasol, maravilla.
+Como o produtor costuma dizer: girassol, sunflower.
 
 Fonte: Embrapa Soja (girassol); MAPA, ZARC; base de culturas do Field Shift.
 
@@ -194,7 +194,7 @@ Cuidados com o nabo forrageiro: a palhada se decompõe rápido e protege o solo 
 
 Na base do Field Shift, os números do nabo forrageiro valem até o manejo na floração: de 60 a 120 dias (de 800 a 1.800 graus-dia) e de 110 a 350 mm de água. Aguenta geada, tem raiz de até 2 metros, é tolerante à seca, cresce melhor no frio, entre 12 e 25 °C, e deixa palhada média. O nabo forrageiro não tem zoneamento agrícola (ZARC): a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
-Como o produtor costuma dizer: nabo, nabo forrageiro, nabiça, nabo pra cobertura, oilseed radish, nabo forrajero.
+Como o produtor costuma dizer: nabo, nabo forrageiro, nabiça, nabo pra cobertura, oilseed radish.
 
 Fonte: Embrapa Trigo e Embrapa Clima Temperado (plantas de cobertura de inverno); MAPA, ZARC; base de culturas do Field Shift.
 
@@ -208,7 +208,7 @@ Cuidados com a aveia-preta: precisa de frio e de alguma chuva no outono e invern
 
 Na base do Field Shift, os números da aveia-preta valem até o manejo: de 100 a 140 dias (de 1.080 a 1.570 graus-dia) e de 110 a 390 mm de água. Aguenta geada, cresce mesmo com frio (temperatura base de 4 °C), vai melhor entre 16 e 20 °C, sofre com calor acima de 32 °C, deixa palhada média e é ótima como forragem. No zoneamento agrícola do Brasil (ZARC), a aveia tem janelas de sequeiro, sem separar a espécie. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
-Como o produtor costuma dizer: aveia, aveia-preta, aveia de cobertura, pasto de inverno, black oat, avena negra.
+Como o produtor costuma dizer: aveia, aveia-preta, aveia de cobertura, pasto de inverno, black oat.
 
 Fonte: Embrapa Trigo; Embrapa Pecuária Sul; MAPA, ZARC; base de culturas do Field Shift.
 
@@ -222,7 +222,7 @@ Cuidados com o guandu: cresce devagar no começo, então o chão fica exposto na
 
 Na base do Field Shift, o guandu é tratado como cultura anual, e os números valem até o corte na floração: de 90 a 150 dias (de 1.200 a 2.350 graus-dia, conforme a época de plantio) e de 280 a 520 mm de água. É sensível a geada, tem raiz de até 2 metros, é tolerante à seca, fixa nitrogênio, aguenta calor até perto de 40 °C, deixa palhada média e tem valor médio como forragem. O guandu não tem zoneamento agrícola (ZARC): a janela de plantio sai do clima do lugar, com confiança menor. Confiança dos números: baixa; vale confirmar com o agrônomo.
 
-Como o produtor costuma dizer: guandu, feijão-guandu, andu, guando, pigeon pea, gandul.
+Como o produtor costuma dizer: guandu, feijão-guandu, andu, guando, pigeon pea.
 
 Fonte: Embrapa Agrobiologia; Embrapa Pecuária Sudeste; MAPA, ZARC; base de culturas do Field Shift.
 
