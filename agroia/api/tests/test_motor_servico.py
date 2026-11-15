@@ -120,15 +120,17 @@ def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():
     assert montar(fazenda(equipamentos=[])).equipamentos is None
 
 
-def test_clima_de_linhas_media_gd_geada_por_ano_e_ignora_fora_da_base():
+def test_clima_de_linhas_gd_por_ano_geada_por_ano_e_ignora_fora_da_base():
     def linha(ano, mes, gd, geada, chuva=100.0):
         return LinhaMensal(ano, mes, chuva, 50.0, 20.0, 28.0, 14.0, 35.0, 5.0, geada, 0, 2, 3, 30, gd)
 
     todos = [{str(tb): float(max(0, 20 - tb)) for tb in range(21)}, {str(tb): float(max(0, 24 - tb)) for tb in range(21)}]
     linhas = [linha(1991, 1, todos[0], 0), linha(1992, 1, todos[1], 2), linha(1993, 1, {}, None), linha(2021, 1, todos[1], 9, chuva=999.0)]
+    linhas += [linha(2001, 1, todos[0], 0), linha(2002, 1, {}, None), linha(2020, 12, todos[1], 0), linha(2021, 3, todos[0], 0), linha(2022, 1, todos[0], 0)]
     c = clima_de_linhas(linhas, "fonte", "1991–2020")
-    assert c.gd_por_tb_medio[1]["10"] == 12.0 and 2 not in c.gd_por_tb_medio  # média de 10 e 14; {} fica fora; mês sem dado fica ausente
-    assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}}  # 2021 está fora de 1991–2020
+    # GD só de 2001 em diante (o ano seguinte a 2020 fecha a safra que atravessa o ano); {} e 2022 ficam fora
+    assert c.gd_por_tb_ano == {2001: {1: todos[0]}, 2020: {12: todos[1]}, 2021: {1: todos[1], 3: todos[0]}}
+    assert c.geada_por_ano == {1991: {1: 0}, 1992: {1: 2}, 1993: {1: None}, 2001: {1: 0}, 2002: {1: None}, 2020: {12: 0}}  # 2021 está fora de 1991–2020
     assert c.chuva_mm[1] == 100.0 and c.chuva_mm[2] is None and c.et0_mm[1] == 50.0 and c.dias_chuva_forte[1] == 2.0
 
 
@@ -147,7 +149,7 @@ def test_clima_do_servico_monta_do_servico_de_clima():
             return []
 
     c = ClimaDoServico(ServicoFalso()).do_local(LAT, LON)
-    assert c.fonte == "NASA POWER, média" and c.gd_por_tb_medio == {} and c.chuva_mm[1] is None
+    assert c.fonte == "NASA POWER, média" and c.gd_por_tb_ano == {} and c.chuva_mm[1] is None
 
 
 # --- análise

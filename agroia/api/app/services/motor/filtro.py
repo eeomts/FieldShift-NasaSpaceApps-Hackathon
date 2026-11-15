@@ -3,18 +3,23 @@ from collections.abc import Iterable
 from dataclasses import dataclass, field
 
 from app.services import catalogo as base
+from app.services.clima.agregacao import percentil
 from app.services.clima.graus_dia import gd_para_tb
 from app.services.motor.calendario import meses_do_terco_medio
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.entradas import ClimaDoLocal, EntradasMotor
-from app.services.motor.formatos import MESES, num, pct
+from app.services.motor.formatos import MESES, inteiro, num, pct
 from app.services.motor.hidrico import chuva_do_periodo, etc_mensal
 from app.services.motor.modelo import Alerta, ItemRotacao
 from app.services.motor.parametros import (
     AGUA_ALERTA_ABAIXO,
     AGUA_MUITO_ABAIXO,
     GD_ALERTA_ABAIXO,
+    GD_ANO_FIM,
+    GD_ANO_INICIO,
     GD_ELIMINA_ABAIXO,
+    GD_MIN_SAFRAS,
+    GD_PERCENTIL_ANO_FRIO,
     GEADA_FASE_SENSIVEL,
     GEADA_MAX_FRACAO_DE_ANOS,
     GEADA_MIN_DIAS_NO_ANO,
@@ -41,9 +46,22 @@ class ResultadoFiltro:
         return bool(self.motivos)
 
 
-def _gd_do_periodo(meses: list[int], tb: float, clima: ClimaDoLocal) -> float | None:
-    parciais = [gd_para_tb(clima.gd_por_tb_medio.get(m), tb) for m in meses]
-    return None if not parciais or any(p is None for p in parciais) else sum(parciais)
+def gd_das_safras(meses: list[int], tb: float, clima: ClimaDoLocal) -> list[float]:
+    """Graus-dia de cada safra com ano de plantio em 2001–2020. Os meses do período vêm em ordem: quando o mês
+    volta (dez -> jan) o ciclo entrou no ano seguinte. Safra com algum mês sem GD completo fica de fora."""
+    safras = []
+    for plantio in range(GD_ANO_INICIO, GD_ANO_FIM + 1):
+        ano, anterior, total = plantio, 0, 0.0
+        for m in meses:
+            ano += m < anterior
+            anterior = m
+            parcial = gd_para_tb(clima.gd_por_tb_ano.get(ano, {}).get(m), tb)
+            if parcial is None:
+                break
+            total += parcial
+        else:
+            safras.append(total)
+    return safras
 
 
 def fracao_de_anos_com_geada(meses: list[int], clima: ClimaDoLocal) -> float | None:
@@ -83,19 +101,34 @@ def _regiao(c: CulturaMotor, e: EntradasMotor, achados: list[Achado], lac: list[
 
 def _graus_dia(c: CulturaMotor, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:
     minimo, tb = c.graus_dia_ciclo_min, c.temp_base_c
+    if c.perene and (minimo is None or c.tem_tipo("forrageira")):
+        return  # regra 14: perene forrageira (pastagem, alfafa) não tem filtro de ciclo nem de graus-dia; vazio = não se aplica
     if minimo is None or tb is None:
-        if not (c.perene and minimo is None):  # pastagem: graus-dia não se aplica
-            lac.append(f"{c.nome}: sem exigência de graus-dia na base, não checamos o calor do ciclo.")
+        lac.append(f"{c.nome}: sem exigência de graus-dia na base, não checamos o calor do ciclo.")
         return
-    gd = _gd_do_periodo(meses, tb, e.clima)
-    if gd is None:
+    safras = gd_das_safras(meses, tb, e.clima)
+    if not safras:
         lac.append(f"{c.nome}: sem graus-dia do clima do local para o período, não checamos o calor do ciclo.")
         return
-    razao = gd / minimo  # só o mínimo conta (regra 9: a mandioca nunca é cortada pelo máximo)
+    if len(safras) < GD_MIN_SAFRAS:
+        lac.append(f"{c.nome}: sem anos suficientes de clima para checar o calor do ciclo.")
+        return
+    mediana = percentil(safras, 50)  # regra 2: a mediana dos anos, não o ano a ano
+    razao = mediana / minimo  # só o mínimo conta (regra 9: a mandioca nunca é cortada pelo máximo)
+    periodo = f"{GD_ANO_INICIO}–{GD_ANO_FIM}"
+    calor = f"o calor do período dá {inteiro(mediana)} graus-dia na metade dos anos ({periodo}) e ela precisa de pelo menos {inteiro(minimo)}"
+    if c.e_cobertura:  # coberturas: o calor nunca elimina, quem decide se cabe é a janela (regra 12)
+        if razao < GD_ALERTA_ABAIXO:
+            achados.append(Achado("pouco_crescimento", f"{c.nome}: pouco crescimento antes do frio ou do manejo; {calor}.", False))
+        return
     if razao < GD_ELIMINA_ABAIXO:
-        achados.append(Achado("graus_dia", f"{c.nome}: o calor do período dá {num(gd, 0)} graus-dia e ela precisa de pelo menos {num(minimo, 0)}; não fecha o ciclo.", True))
-    elif razao < GD_ALERTA_ABAIXO:
-        achados.append(Achado("limite_termico", f"{c.nome}: no limite térmico ({num(gd, 0)} de {num(minimo, 0)} graus-dia), validar localmente.", False))
+        achados.append(Achado("graus_dia", f"{c.nome}: {calor}; não fecha o ciclo.", True))
+        return
+    if razao < GD_ALERTA_ABAIXO:
+        achados.append(Achado("limite_termico", f"{c.nome}: no limite térmico, validar localmente; {calor}.", False))
+    p10 = percentil(safras, GD_PERCENTIL_ANO_FRIO)
+    if p10 < GD_ELIMINA_ABAIXO * minimo:
+        achados.append(Achado("ano_frio", f"{c.nome}: em ano frio pode não completar o ciclo; em 1 a cada 10 anos ({periodo}) o calor do período fica em {inteiro(p10)} graus-dia, e ela precisa de pelo menos {inteiro(minimo)}.", False))
 
 
 def _agua(c: CulturaMotor, item: ItemRotacao, meses: list[int], e: EntradasMotor, achados: list[Achado], lac: list[str]) -> None:

@@ -1,5 +1,5 @@
 """Filtro: cada regra elimina com o motivo certo; a atual nunca é eliminada."""
-from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada
+from app.services.motor.filtro import avaliar, fracao_de_anos_com_geada, gd_das_safras
 from motor_helpers import clima, cultura, entradas, item
 
 RESP = (10, 12)  # outubro a dezembro: 3 meses
@@ -70,7 +70,8 @@ def test_cultura_com_etapa_sem_linha_gera_lacuna_e_nao_elimina():
 def test_graus_dia_abaixo_de_90_por_cento_elimina():
     c = cultura("c", graus_dia_ciclo_min=1501)  # 1350 / 1501 = 89,9 %
     r = rodar(c, e_com(c))
-    assert r.eliminada and "graus-dia" in r.motivos[0] and "1501" in r.motivos[0]
+    assert r.eliminada and "graus-dia" in r.motivos[0] and "1.501" in r.motivos[0]
+    assert "1.350 graus-dia na metade dos anos (2001–2020)" in r.motivos[0]
 
 
 def test_graus_dia_entre_90_e_100_so_alerta():
@@ -122,6 +123,86 @@ def test_gd_usa_so_os_meses_do_periodo_e_a_virada_do_ano():
     assert not avaliar([it], entradas([it], [c], clima=cl), True).eliminada
     it2 = item("c", 1, 4)  # só frio: 0 GD
     assert avaliar([it2], entradas([it2], [c], clima=cl), True).eliminada
+
+
+# --- graus-dia pela mediana das safras 2001–2020 (regra 2) e perenes forrageiras sem filtro (regra 14)
+FRIO = 10  # tmed igual à Tb de 10: 0 GD no mês
+CICLO = [20, 20, 10, 10, 10, 10, 10, 10, 10, 10, 30, 30]  # nov e dez somam 600 cada; jan e fev, 300 cada
+
+
+def test_safra_que_atravessa_o_ano_soma_nov_dez_do_ano_de_plantio_e_jan_fev_do_seguinte():
+    cl = clima(tmed=CICLO, tmed_por_ano={2005: [FRIO] * 10 + [30, 30]})  # em 2005, jan e fev ficam sem calor
+    safras = gd_das_safras([11, 12, 1, 2], 10, cl)
+    assert len(safras) == 20  # plantios de 2001 a 2020; a de 2020 usa jan e fev de 2021
+    assert sorted(safras)[0] == 1200  # safra de 2004: nov-dez de 2004 (1200) + jan-fev de 2005 (0)
+    assert sorted(safras)[1:] == [1800] * 19  # a safra pertence ao ano de plantio: 2005 pega jan-fev de 2006
+
+
+def test_safra_sem_o_ano_seguinte_fica_de_fora():
+    cl = clima(tmed=CICLO, tmed_por_ano={2021: None})
+    assert len(gd_das_safras([11, 12, 1, 2], 10, cl)) == 19  # a de 2020 precisaria de jan-fev de 2021
+    assert len(gd_das_safras([10, 11, 12], 10, cl)) == 20  # no mesmo ano não precisa do seguinte
+
+
+def test_mediana_e_o_texto_com_numeros_periodo_e_minimo():
+    c = cultura("c", graus_dia_ciclo_min=1500)
+    it = item("c", 11, 2)  # 1800 GD em todas as safras
+    assert not avaliar([it], entradas([it], [c], clima=clima(tmed=CICLO)), True).eliminada
+    c2 = cultura("c", graus_dia_ciclo_min=2000)  # 1800 / 2000 = 90 %: não elimina, mas fica no limite
+    r = avaliar([it], entradas([it], [c2], clima=clima(tmed=CICLO)), True)
+    assert not r.eliminada and r.alertas[0].codigo == "limite_termico"
+    assert "1.800 graus-dia na metade dos anos (2001–2020) e ela precisa de pelo menos 2.000" in r.alertas[0].texto
+    c3 = cultura("c", graus_dia_ciclo_min=2100)  # 85,7 %: elimina
+    assert avaliar([it], entradas([it], [c3], clima=clima(tmed=CICLO)), True).eliminada
+
+
+def test_poucas_safras_viram_lacuna_e_nao_filtram():
+    c = cultura("c", graus_dia_ciclo_min=9000)
+    cl = clima(tmed_por_ano={a: None for a in range(2001, 2013)})  # só 8 safras (2013 a 2020)
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.eliminada and not r.alertas
+    assert any("sem anos suficientes de clima para checar o calor do ciclo" in l for l in r.lacunas)
+    cl10 = clima(tmed_por_ano={a: None for a in range(2001, 2011)})  # 10 safras: já decide
+    assert rodar(c, e_com(c, clima=cl10)).eliminada
+
+
+def test_p10_frio_com_mediana_boa_so_avisa_ano_frio():
+    c = cultura("c", graus_dia_ciclo_min=1300)  # mediana 1350 (104 %)
+    cl = clima(tmed_por_ano={a: FRIO for a in range(2001, 2005)})  # 4 anos de 20 sem calor: P10 = 0
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["ano_frio"]
+    assert "em ano frio pode não completar o ciclo" in r.alertas[0].texto and "1.300" in r.alertas[0].texto
+    um_so = clima(tmed_por_ano={2001: FRIO})  # 1 ano frio em 20: o P10 fica em 1215, acima de 90 % do mínimo (1170)
+    assert not rodar(c, e_com(c, clima=um_so)).alertas
+
+
+def test_a_mediana_manda_e_nao_a_media():
+    c = cultura("c", graus_dia_ciclo_min=1350)
+    cl = clima(tmed_por_ano={a: FRIO for a in range(2001, 2008)})  # 7 de 20 anos sem calor: a média cairia a 65 %
+    r = rodar(c, e_com(c, clima=cl))
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["ano_frio"]
+    muitos = clima(tmed_por_ano={a: FRIO for a in range(2001, 2013)})  # 12 de 20: a mediana cai
+    assert rodar(c, e_com(c, clima=muitos)).eliminada
+
+
+def test_cobertura_com_calor_abaixo_do_minimo_nunca_elimina_so_avisa():
+    c = cultura("c", tipos=("cobertura",), graus_dia_ciclo_min=5000)
+    r = rodar(c, e_com(c))
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["pouco_crescimento"]
+    assert "pouco crescimento antes do frio ou do manejo" in r.alertas[0].texto and "5.000" in r.alertas[0].texto
+    perto = cultura("c", tipos=("cobertura",), graus_dia_ciclo_min=1400)  # 96 %: avisa (cobertura não tem margem de 90 %)
+    assert [a.codigo for a in rodar(perto, e_com(perto)).alertas] == ["pouco_crescimento"]
+    folga = cultura("c", tipos=("cobertura",), graus_dia_ciclo_min=1350)
+    assert not rodar(folga, e_com(folga)).alertas  # e sem aviso de ano frio, que é só de grão
+
+
+def test_perene_forrageira_nao_tem_filtro_de_graus_dia_nem_lacuna():
+    it = item("alfafa", 1, 12, perene=True)
+    vazia = cultura("alfafa", perene=True, tipos=("comercial", "forrageira"), graus_dia_ciclo_min=None, graus_dia_ciclo_max=None, temp_base_c=5)
+    r = avaliar([it], entradas([it], [vazia], clima=clima(tmed=FRIO)), True)
+    assert not r.eliminada and not any("graus-dia" in l or "calor" in l for l in r.lacunas) and not r.alertas
+    com_minimo = cultura("alfafa", perene=True, tipos=("comercial", "forrageira"), graus_dia_ciclo_min=9000)
+    assert not avaliar([it], entradas([it], [com_minimo], clima=clima(tmed=FRIO)), True).eliminada
 
 
 # --- água: ET0 de 100 mm/mês e Kc 1,0 dão ETc de 300 mm nos 3 meses do período

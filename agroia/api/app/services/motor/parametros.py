@@ -8,9 +8,13 @@ ARRANJOS_DE_CONSORCIO = frozenset({"consorcio_milho_safrinha", "braquiaria_solte
 # Candidatas
 MAX_CANDIDATAS = 30  # proposta, validar com o Yury
 
-# Filtro de graus-dia (regra 2, Yury 14/11)
-GD_ELIMINA_ABAIXO = 0.90  # abaixo de 90 % do mínimo da cultura elimina
-GD_ALERTA_ABAIXO = 1.00  # entre 90 % e 100 %: "no limite térmico"
+# Filtro de graus-dia (regra 2 do README do catálogo, Yury 14/11, revista em 15/11)
+GD_ELIMINA_ABAIXO = 0.90  # abaixo de 90 % do mínimo da cultura elimina (só grãos)
+GD_ALERTA_ABAIXO = 1.00  # entre 90 % e 100 %: "no limite térmico"; coberturas: abaixo de 100 % só avisa
+GD_ANO_INICIO = 2001  # regra 2: mediana de 2001–2020, a mesma régua do mínimo do catálogo
+GD_ANO_FIM = 2020
+GD_PERCENTIL_ANO_FRIO = 10  # regra 2: P10 das safras; abaixo de 90 % do mínimo avisa "em ano frio"
+GD_MIN_SAFRAS = 10  # proposta, validar com o Yury: com menos safras completas o filtro não decide
 
 # Filtro de água (regra 1): chuva do período ÷ ETc do período. A água nunca elimina: só avisa "água no limite"
 AGUA_MUITO_ABAIXO = 0.50  # abaixo disto, com irrigação em parte da área, o aviso diz que só fecha na parte irrigada

@@ -7,6 +7,11 @@ def num(v: float, casas: int = 2) -> str:
     return f"{v:.{casas}f}".replace(".", ",")
 
 
+def inteiro(v: float) -> str:
+    """Inteiro com ponto de milhar: 1150 vira '1.150'."""
+    return f"{v:,.0f}".replace(",", ".")
+
+
 def pct(v: float) -> str:
     return f"{v * 100:.0f}%"
 
