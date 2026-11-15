@@ -27,7 +27,7 @@ O caminho crítico do projeto: o motor inteiro depende dela.
 | 1. Parâmetros agronômicos das 17 culturas do motor | `catalogo/culturas.csv` | Alto |
 | 7. Código da PAM de cada cultura (coluna `codigo_pam`) | `catalogo/culturas.csv` | Baixo |
 
-As 17 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 9 delas (as outras não aparecem na PAM ou falta conferir). A coluna `nome_zarc` é copiada do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6) e um teste da API confere que os dois batem.
+As 17 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os parâmetros preenchidos**; o `codigo_pam` está em 10 delas (as outras não têm produto próprio na PAM, e a aveia da base é a aveia-preta de cobertura, que a PAM não conta; `arroz` e `arroz_irrigado` dividem o mesmo código). A produção por município sai em `brasil/pam/producao_municipal.csv` (`scripts/baixar_pam.py`). A coluna `nome_zarc` é copiada do `brasil/zarc/mapa_culturas_zarc.csv` (tarefa 6) e um teste da API confere que os dois batem.
 
 ### Pessoa 2 — Dados da NASA e do Brasil (perfil: dados) · Augusto
 
@@ -69,6 +69,9 @@ data/
 │   └── appeears_eua/<id_da_tarefa>/  # Pessoa 2 (AppEEARS dos pontos dos EUA)
 ├── brasil/
 │   ├── municipios/                 # Pessoa 2 (malha do IBGE)
+│   ├── pam/
+│   │   ├── producao_municipal.csv  # Pessoa 1: produção por município × cultura × ano (PAM, 2016-2025), gerado por scripts/baixar_pam.py
+│   │   └── README.md               # origem, colunas, símbolos do SIDRA e conferência
 │   └── zarc/
 │       ├── mapa_culturas_zarc.csv  # Pessoa 2 (cultura_id → nome no ZARC)
 │       ├── janelas.csv             # janelas do ZARC (GO, RS e BA), gerado por scripts/preparar_zarc.py
