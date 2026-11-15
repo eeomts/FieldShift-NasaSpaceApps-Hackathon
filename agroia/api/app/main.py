@@ -1,10 +1,23 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+"""Monta a API (≈ bootstrap + routes/api.php do Laravel).
 
-from app.config import get_settings
+Camadas: routers (HTTP) -> services (regras) -> repositories (banco) -> models (tabelas);
+schemas são a entrada e a saída das rotas. Ver docs/.../application/architecture/.
+"""
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+
+from app.core.config import get_settings
+from app.core.erros import ErroDeNegocio
 from app.routers import auth, fazenda, onboarding
 
 app = FastAPI(title="AgroIA API", version="0.1.0")
+
+
+@app.exception_handler(ErroDeNegocio)
+def erro_de_negocio(_: Request, erro: ErroDeNegocio) -> JSONResponse:
+    """Mesmo formato do HTTPException: {"detail": "<mensagem>"}."""
+    return JSONResponse(status_code=erro.status_code, content={"detail": erro.mensagem})
 
 app.add_middleware(
     CORSMiddleware,

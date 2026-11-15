@@ -224,7 +224,7 @@ Fonte: Embrapa, guia de plantas de cobertura.
 
 ## 9. ~~`perguntas.yaml`~~ (saiu)
 
-O questionário já está implementado nas telas do app (`agroia/web/src/onboarding/`), e o formato das respostas está em `agroia/api/app/onboarding/schemas.py`. Não é mais preciso converter as perguntas para um arquivo.
+O questionário já está implementado nas telas do app (`agroia/web/src/onboarding/`), e o formato das respostas está em `agroia/api/app/schemas/onboarding.py`. Não é mais preciso converter as perguntas para um arquivo.
 
 ---
 
