@@ -1,0 +1,475 @@
+{
+  "_leia": "Cenários de etc_nasa_power.py. Cada um reproduz um número de agua_ciclo_mm_min/max de culturas.csv; 'referencia' é o valor que está nas notas de evidencias/<cultura>.json. 'anos' são os anos da semeadura. 'elevacao_m' é a elevação da célula do NASA POWER (geometry da resposta da API), a mesma usada no cálculo original. 'fases_dias' = inicial, desenvolvimento, média e final; coberturas manejadas no florescimento têm fase final 0.",
+  "locais": {
+    "rioverde": {
+      "nome": "Rio Verde-GO",
+      "lat": -17.8,
+      "lon": -50.92,
+      "elevacao_m": 625.31
+    },
+    "sorriso": {
+      "nome": "Sorriso-MT",
+      "lat": -12.55,
+      "lon": -55.71,
+      "elevacao_m": 370.59
+    },
+    "planaltina": {
+      "nome": "Planaltina-DF",
+      "lat": -15.6,
+      "lon": -47.71,
+      "elevacao_m": 947.71
+    },
+    "senadorcanedo": {
+      "nome": "Senador Canedo-GO",
+      "lat": -16.71,
+      "lon": -49.09,
+      "elevacao_m": 807.47
+    },
+    "dourados": {
+      "nome": "Dourados-MS",
+      "lat": -22.22,
+      "lon": -54.8,
+      "elevacao_m": 386.04
+    },
+    "pontagrossa": {
+      "nome": "Ponta Grossa-PR",
+      "lat": -25.09,
+      "lon": -50.16,
+      "elevacao_m": 925.98
+    },
+    "santamaria": {
+      "nome": "Santa Maria-RS",
+      "lat": -29.69,
+      "lon": -53.81,
+      "elevacao_m": 286.56
+    },
+    "londrina": {
+      "nome": "Londrina-PR",
+      "lat": -23.31,
+      "lon": -51.16,
+      "elevacao_m": 631.22
+    },
+    "seropedica": {
+      "nome": "Seropédica-RJ",
+      "lat": -22.76,
+      "lon": -43.68,
+      "elevacao_m": 100.37
+    },
+    "akola": {
+      "nome": "Akola (Índia)",
+      "lat": 20.7,
+      "lon": 77.03,
+      "elevacao_m": 399.97
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "milheto_min_sorriso_0104_45d",
+      "cultura": "milheto",
+      "local": "sorriso",
+      "semeadura": "04-01",
+      "fases_dias": [
+        15,
+        25,
+        5,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.0,
+        "end": 1.0
+      },
+      "altura_m": 1.5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 83,
+        "nota": "agua_ciclo_mm_min = 80: menor valor da safrinha com manejo aos 45 dias (83 mm), arredondado para baixo"
+      }
+    },
+    {
+      "nome": "milheto_max_senadorcanedo_1508_60d",
+      "cultura": "milheto",
+      "local": "senadorcanedo",
+      "semeadura": "08-15",
+      "fases_dias": [
+        15,
+        25,
+        20,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.0,
+        "end": 1.0
+      },
+      "altura_m": 1.5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 264,
+        "nota": "agua_ciclo_mm_max = 260: pior caso, semeadura de primavera em 15/ago em GO, manejo aos 60 dias"
+      }
+    },
+    {
+      "nome": "milheto_max_rioverde_1508_60d",
+      "cultura": "milheto",
+      "local": "rioverde",
+      "semeadura": "08-15",
+      "fases_dias": [
+        15,
+        25,
+        20,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.0,
+        "end": 1.0
+      },
+      "altura_m": 1.5,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 255,
+        "nota": "agua_ciclo_mm_max = 260: o outro local de GO do mesmo cenário"
+      }
+    },
+    {
+      "nome": "nabo_min_pontagrossa_0104_60d",
+      "cultura": "nabo_forrageiro",
+      "local": "pontagrossa",
+      "semeadura": "04-01",
+      "inicio_apos_semeadura_dias": 5,
+      "fases_dias": [
+        12,
+        21,
+        27,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 1.25,
+        "end": 1.25
+      },
+      "altura_m": null,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 118,
+        "nota": "agua_ciclo_mm_min = 110: mediana 111 mm (P10 102, P90 122), arredondada para baixo; janela da emergência (semeadura + 5 d) ao florescimento pleno; fases = 20% e 35% do ciclo | REVISÃO 14/11: Kc mid/end passou a 1,25 (Kc até o florescimento, limitado pelo FAO-56 eq. 72); valor recalculado."
+      }
+    },
+    {
+      "nome": "nabo_max_dourados_0104_120d",
+      "cultura": "nabo_forrageiro",
+      "local": "dourados",
+      "semeadura": "04-01",
+      "inicio_apos_semeadura_dias": 5,
+      "fases_dias": [
+        24,
+        42,
+        54,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 1.25,
+        "end": 1.25
+      },
+      "altura_m": null,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 367,
+        "nota": "agua_ciclo_mm_max = 330: mediana 345-395 mm em Dourados, ~305-350 depois de descontar os ~12% de viés do POWER na ET0 de Dourados (Fietz 2007); 330 mantido | REVISÃO 14/11: Kc mid/end passou a 1,25 (Kc até o florescimento, limitado pelo FAO-56 eq. 72); valor recalculado."
+      }
+    },
+    {
+      "nome": "nabo_max_dourados_0105_120d",
+      "cultura": "nabo_forrageiro",
+      "local": "dourados",
+      "semeadura": "05-01",
+      "inicio_apos_semeadura_dias": 5,
+      "fases_dias": [
+        24,
+        42,
+        54,
+        0
+      ],
+      "kc": {
+        "ini": 0.7,
+        "mid": 1.25,
+        "end": 1.25
+      },
+      "altura_m": null,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 423,
+        "nota": "agua_ciclo_mm_max = 330: limite de cima da faixa 345-395 mm (antes da correção de ~12%) | REVISÃO 14/11: Kc mid/end passou a 1,25 (Kc até o florescimento, limitado pelo FAO-56 eq. 72); valor recalculado."
+      }
+    },
+    {
+      "nome": "aveia_min_santamaria_1504_100d",
+      "cultura": "aveia",
+      "local": "santamaria",
+      "semeadura": "04-15",
+      "fases_dias": [
+        20,
+        30,
+        50,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 110,
+        "nota": "agua_ciclo_mm_min = 110: menor média entre as semeaduras de 01/04 a 15/05 e ciclos de 100 e 140 dias; fases = 20% e 30% do ciclo"
+      }
+    },
+    {
+      "nome": "aveia_max_londrina_1505_140d",
+      "cultura": "aveia",
+      "local": "londrina",
+      "semeadura": "05-15",
+      "fases_dias": [
+        28,
+        42,
+        70,
+        0
+      ],
+      "kc": {
+        "ini": 0.3,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 386,
+        "nota": "agua_ciclo_mm_max = 390: maior média (386 mm), arredondada"
+      }
+    },
+    {
+      "nome": "guandu_min_senadorcanedo_0403_94d",
+      "cultura": "guandu",
+      "local": "senadorcanedo",
+      "semeadura": "03-04",
+      "fases_dias": [
+        22,
+        47,
+        25,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.17,
+        "end": 1.17
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 264,
+        "nota": "agua_ciclo_mm_min = 280: ciclo curto de Amabile 2000 (semeadura 4/mar, 94 d), 260-272 mm em GO/DF com Kc ini 0,4; fases = 23% e 50% do ciclo"
+      }
+    },
+    {
+      "nome": "guandu_min_senadorcanedo_0403_94d_kcini053",
+      "cultura": "guandu",
+      "local": "senadorcanedo",
+      "semeadura": "03-04",
+      "fases_dias": [
+        22,
+        47,
+        25,
+        0
+      ],
+      "kc": {
+        "ini": 0.53,
+        "mid": 1.17,
+        "end": 1.17
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 287,
+        "nota": "agua_ciclo_mm_min = 280: o mesmo com o Kc ini medido em Akola (0,53), 283-295 mm em GO/DF; 280 fica entre os dois"
+      }
+    },
+    {
+      "nome": "guandu_max_rioverde_1510_150d",
+      "cultura": "guandu",
+      "local": "rioverde",
+      "semeadura": "10-15",
+      "fases_dias": [
+        34,
+        75,
+        41,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.17,
+        "end": 1.17
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2019
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 511,
+        "nota": "agua_ciclo_mm_max = 520: semeadura 15/out, 150 d até o florescimento, 495-511 mm em GO/DF"
+      }
+    },
+    {
+      "nome": "guandu_max_planaltina_0111_150d_kcini053",
+      "cultura": "guandu",
+      "local": "planaltina",
+      "semeadura": "11-01",
+      "fases_dias": [
+        34,
+        75,
+        41,
+        0
+      ],
+      "kc": {
+        "ini": 0.53,
+        "mid": 1.17,
+        "end": 1.17
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2019
+      ],
+      "referencia": {
+        "estatistica": "media",
+        "valor": 521,
+        "nota": "agua_ciclo_mm_max = 520: Guatã semeado em 1/nov, 150 d, com Kc ini 0,53 (470-556 mm entre os cenários longos)"
+      }
+    },
+    {
+      "nome": "crotalaria_max_seropedica_2211_163d",
+      "cultura": "crotalaria",
+      "local": "seropedica",
+      "semeadura": "11-22",
+      "fases_dias": [
+        18,
+        18,
+        127,
+        0
+      ],
+      "kc": {
+        "ini": 0.34,
+        "mid": 1.25,
+        "end": 1.25
+      },
+      "altura_m": 3.0,
+      "anos": [
+        2000,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 703,
+        "nota": "agua_ciclo_mm_max = 700: Pereira 2007, semeadura 22/11, 163 d até o florescimento, Kc padronizado 1,25 (mín. 618, máx. 868)"
+      }
+    },
+    {
+      "nome": "crotalaria_hist_seropedica_2211_163d_kc136",
+      "cultura": "crotalaria",
+      "local": "seropedica",
+      "semeadura": "11-22",
+      "fases_dias": [
+        18,
+        18,
+        127,
+        0
+      ],
+      "kc": {
+        "ini": 0.34,
+        "mid": 1.36,
+        "end": 1.36
+      },
+      "altura_m": 3.0,
+      "anos": [
+        2000,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 766,
+        "nota": "HISTÓRICO: o mesmo cenário com o Kc 1,36 de Sampaio 2016 deu 766 mm (mín. 673, máx. 944), o antigo agua_ciclo_mm_max = 770, trocado por 700 quando o Kc foi limitado a 1,25"
+      }
+    },
+    {
+      "nome": "guandu_conferencia_eq62_akola",
+      "cultura": "guandu",
+      "local": "akola",
+      "semeadura": "06-27",
+      "fases_dias": [
+        32,
+        44,
+        61,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.17,
+        "end": 1.17
+      },
+      "altura_m": 2.0,
+      "anos": [
+        2001,
+        2020
+      ],
+      "referencia": {
+        "estatistica": "kc_mid",
+        "valor": 1.128,
+        "nota": "CONFERÊNCIA do kc_medio, não da água: termo da eq. 62 na fase média do guandu em Akola (11/set-10/nov, dias 77-137 da semeadura em ~27/jun), u2 1,66 m/s e URmín 53,4%, h = 2 m: -0,042, ou seja, Kc mid local = 1,17 - 0,042 = 1,128 (o relatório de Akola implica -0,07). A ETc impressa não é usada."
+      }
+    }
+  ]
+}
