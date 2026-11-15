@@ -268,3 +268,50 @@ export interface Analise {
   fontes: string[];
   gerado_em: string; // ISO 8601 UTC
 }
+
+// Satélite da fazenda (rota GET /fazenda/satelite). Datas em "AAAA-MM-DD".
+export interface Umidade {
+  fonte: string;
+  resolucao: string;
+  data: string;
+  superficie: number; // m³/m³, 0-5 cm
+  raiz: number; // m³/m³, zona das raízes
+  situacao: "seco" | "normal" | "umido" | null;
+  posicao: number | null; // 0 a 1 entre os mesmos dias dos anos anteriores
+  media_historica: number | null;
+  anos_comparados: number;
+}
+
+export interface Ndvi {
+  fonte: string;
+  resolucao: string;
+  data: string;
+  valor: number;
+  situacao: "descoberto" | "pouco" | "verde" | "muito";
+  serie: { data: string; valor: number }[];
+}
+
+export interface DiaChuva {
+  data: string;
+  mm: number;
+}
+
+export interface Chuva {
+  fonte: string;
+  resolucao: string;
+  dias: DiaChuva[];
+  total_7d: number;
+  total_30d: number;
+  maior: DiaChuva | null;
+}
+
+export interface Satelite {
+  lat: number;
+  lon: number;
+  umidade: Umidade | null;
+  ndvi: Ndvi | null;
+  chuva: Chuva | null;
+  faltas: Partial<Record<"umidade" | "ndvi" | "chuva", string>>;
+  avisos: string[];
+  gerado_em: string;
+}

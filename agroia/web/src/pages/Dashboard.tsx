@@ -1,21 +1,20 @@
-// Dashboard no visual v3. O que vem do questionário é real; previsão, umidade e NDVI são EXEMPLO e a tela diz isso.
+// Dashboard no visual v3. Questionário, chuva, umidade (SMAP) e NDVI (MODIS) são reais; cada cartão diz a fonte e a data.
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { api } from "../api/client";
 import { useSessao } from "../api/sessao";
-import type { CulturaBase, Fazenda } from "../api/tipos";
+import { obterSatelite } from "../api/satelite";
+import type { CulturaBase, Fazenda, Ndvi, Satelite } from "../api/tipos";
 import { Casca, SeletorIdioma } from "../components/Casca";
 import { Estrategias } from "../components/estrategias/Estrategias";
+import { Buscando, CartaoNdvi, CartaoUmidade, ChuvaRecente, dataCurta, numero, posicaoNoAno, SemDado } from "../components/satelite/Satelite";
 import { Brilho, Pino, Sair } from "../components/icones";
 import { Aviso, BotaoContorno, Carregando, cx } from "../components/ui";
-import { INICIAIS_MESES, MESES_LONGOS, useIdioma, type Idioma } from "../i18n";
+import { INICIAIS_MESES, MESES_LONGOS, useIdioma } from "../i18n";
 import { OPCOES_AREA, OPCOES_PRIORIDADES, unidadePadrao } from "../onboarding/dados";
 
 const cartao = "rounded-[28px] bg-white p-5 shadow-cartao";
 const icone = { fill: "none", stroke: "currentColor", strokeWidth: 2.2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
-
-/** Exemplo de 7 dias: máxima, mínima e chuva em mm (valores do protótipo). */
-const PREVISAO_EXEMPLO: [number, number, number][] = [[33, 21, 2], [34, 22, 0], [31, 21, 8], [27, 20, 62], [28, 20, 15], [30, 21, 4], [32, 21, 0]];
 
 const maiuscula = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
@@ -36,7 +35,10 @@ function faixas(vazios: number[]): [number, number][] {
   return out;
 }
 
-function CurvaVerde({ vazios }: { vazios: number[] }) {
+/** y do gráfico (0 a 78) para um NDVI: 0 embaixo, 0,9 ou mais no alto. */
+const yNdvi = (v: number) => 66 - (Math.min(Math.max(v, 0), 0.9) / 0.9) * 54;
+
+function CurvaVerde({ vazios, calendario, ndvi }: { vazios: number[]; calendario: boolean; ndvi: Ndvi | null }) {
   const { t, idioma } = useIdioma();
   const w = 350;
   const pts = Array.from({ length: 12 }, (_, i) => ({ x: ((i + 0.5) * w) / 12, y: vazios.includes(i + 1) ? 62 : 16 }));
@@ -47,30 +49,49 @@ function CurvaVerde({ vazios }: { vazios: number[] }) {
     d += ` C ${meio} ${ant.y}, ${meio} ${p.y}, ${p.x} ${p.y}`;
     ant = p;
   }
+  const real = (ndvi?.serie ?? []).map((p) => ({ ...p, x: posicaoNoAno(p.data) * w, y: yNdvi(p.valor) })).sort((p, q) => p.x - q.x);
+  const linhaReal = real.map((p, i) => `${i ? "L" : "M"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(" ");
   const lista = vazios.map((m) => MESES_LONGOS[idioma][m - 1]).join(", ");
+  const rotulo = [
+    calendario ? (vazios.length ? t(`Pelo seu calendário, o campo fica verde menos em: ${lista}.`, `From your calendar, the field is green except in: ${lista}.`) : t("Pelo seu calendário, o campo fica verde o ano todo.", "From your calendar, the field is green all year.")) : "",
+    real.length ? t(`Satélite: NDVI de ${numero(Math.min(...real.map((p) => p.valor)), idioma, 2)} a ${numero(Math.max(...real.map((p) => p.valor)), idioma, 2)} no último ano.`, `Satellite: NDVI from ${numero(Math.min(...real.map((p) => p.valor)), idioma, 2)} to ${numero(Math.max(...real.map((p) => p.valor)), idioma, 2)} over the last year.`) : "",
+  ].filter(Boolean).join(" ");
   return (
-    <div className="relative h-24">
-      {faixas(vazios).map(([a, b]) => (
-        <div key={a} className="absolute top-0 bottom-[18px] rounded-xl bg-[repeating-linear-gradient(135deg,var(--color-areia)_0_8px,var(--color-creme)_8px_16px)]"
-          style={{ left: `${((a - 1) / 12) * 100}%`, width: `${((b - a + 1) / 12) * 100}%` }}>
-          <span className="block px-1 pt-2 text-center text-xs font-bold text-terra-texto">{b - a >= 2 ? t("Terra descoberta", "Bare soil") : ""}</span>
+    <div className="flex flex-col gap-2">
+      {calendario && real.length > 0 && (
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-[12px] font-bold text-suave">
+          <span className="inline-flex items-center gap-1.5"><svg width="22" height="8" aria-hidden="true"><line x1="1" x2="21" y1="4" y2="4" stroke="#1F7A4D" strokeWidth="2.5" strokeLinecap="round" /><circle cx="11" cy="4" r="3.5" fill="#1F7A4D" stroke="#fff" strokeWidth="1.5" /></svg>{t("Satélite (NDVI real)", "Satellite (real NDVI)")}</span>
+          <span className="inline-flex items-center gap-1.5"><svg width="22" height="8" aria-hidden="true"><line x1="1" x2="21" y1="4" y2="4" stroke="#8FB9A0" strokeWidth="2.5" strokeDasharray="4 4" strokeLinecap="round" /></svg>{t("Pelo seu calendário", "From your calendar")}</span>
         </div>
-      ))}
-      <svg viewBox={`0 0 ${w} 78`} preserveAspectRatio="none" role="img" aria-label={vazios.length ? t(`Campo verde, menos em: ${lista}`, `Field green, except in: ${lista}`) : t("Campo verde o ano todo", "Field green all year")}
-        className="absolute top-0 left-0 h-[78px] w-full">
-        <path d={d} fill="none" stroke="#1F7A4D" strokeWidth="4" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
-      </svg>
-      <div className="absolute right-0 bottom-0 left-0 grid grid-cols-12 text-center text-[11px] font-bold text-suave" aria-hidden="true">
-        {INICIAIS_MESES.map((l, i) => <span key={i}>{l}</span>)}
+      )}
+      <div className="relative h-24">
+        {calendario && faixas(vazios).map(([a, b]) => (
+          <div key={a} className="absolute top-0 bottom-[18px] rounded-xl bg-[repeating-linear-gradient(135deg,var(--color-areia)_0_8px,var(--color-creme)_8px_16px)]"
+            style={{ left: `${((a - 1) / 12) * 100}%`, width: `${((b - a + 1) / 12) * 100}%` }}>
+            <span className="block px-1 pt-2 text-center text-xs font-bold text-terra-texto">{b - a >= 2 ? t("Terra descoberta", "Bare soil") : ""}</span>
+          </div>
+        ))}
+        <svg viewBox={`0 0 ${w} 78`} preserveAspectRatio="none" role="img" aria-label={rotulo} className="absolute top-0 left-0 h-[78px] w-full">
+          {calendario && (
+            <path d={d} fill="none" stroke={real.length ? "#8FB9A0" : "#1F7A4D"} strokeWidth={real.length ? 2.5 : 4} strokeDasharray={real.length ? "6 6" : undefined}
+              strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+          )}
+          {real.length > 0 && <path d={linhaReal} fill="none" stroke="#1F7A4D" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" />}
+        </svg>
+        {/* Pontos em HTML para ficarem redondos mesmo com o SVG esticado; o title mostra a data e o valor. */}
+        {real.map((p) => (
+          <span key={p.data} title={`${dataCurta(p.data, idioma)}: NDVI ${numero(p.valor, idioma, 2)}`}
+            className="group absolute flex h-5 w-5 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+            style={{ left: `${(p.x / w) * 100}%`, top: `${p.y}px` }}>
+            <span className="h-2.5 w-2.5 rounded-full border-2 border-white bg-folha transition-transform group-hover:scale-150" />
+          </span>
+        ))}
+        <div className="absolute right-0 bottom-0 left-0 grid grid-cols-12 text-center text-[11px] font-bold text-suave" aria-hidden="true">
+          {INICIAIS_MESES.map((l, i) => <span key={i}>{l}</span>)}
+        </div>
       </div>
     </div>
   );
-}
-
-function diaSemana(offset: number, idioma: Idioma) {
-  const d = new Date();
-  d.setDate(d.getDate() + offset);
-  return maiuscula(d.toLocaleDateString(idioma === "en" ? "en-US" : "pt-BR", { weekday: "short" }).replace(".", ""));
 }
 
 export function Dashboard() {
@@ -80,6 +101,8 @@ export function Dashboard() {
   const [nomes, setNomes] = useState<Record<string, string>>({});
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState<string | null>(null);
+  const [sat, setSat] = useState<Satelite | null>(null);
+  const [satErro, setSatErro] = useState<string | null>(null);
 
   const carregar = useCallback(async () => {
     setCarregando(true);
@@ -96,6 +119,15 @@ export function Dashboard() {
   useEffect(() => {
     void carregar();
   }, [carregar]);
+
+  // Satélite só depois que a fazenda tem ponto no mapa (a 1ª consulta na região leva alguns segundos).
+  const temPonto = Boolean(fazenda?.respostas.q5_local);
+  useEffect(() => {
+    if (!temPonto) return;
+    setSat(null);
+    setSatErro(null);
+    obterSatelite().then(setSat).catch((e) => setSatErro(textoErro(e)));
+  }, [temPonto]);
 
   useEffect(() => {
     api<CulturaBase[]>(`/culturas?idioma=${idioma}`).then((cs) => setNomes(Object.fromEntries(cs.map((c) => [c.id, c.nome])))).catch(() => {});
@@ -141,20 +173,29 @@ export function Dashboard() {
             </span>
           )}
           {fazenda.perfil && <span className="rounded-full bg-white px-3 py-1.5 text-[13px] font-bold shadow-cartao">{t("Perfil", "Profile")} {fazenda.perfil}</span>}
-          <span className="rounded-full bg-areia px-3 py-1.5 text-[13px] font-bold text-terra-texto">{t("Clima e satélite: dados de exemplo", "Weather and satellite: sample data")}</span>
+          {sat && (
+            <span className="rounded-full bg-ceu px-3 py-1.5 text-[13px] font-bold text-ceu-texto">{t("Dados de satélite da NASA", "NASA satellite data")}</span>
+          )}
         </div>
 
-        {/* Alerta (exemplo) */}
+        {sat && sat.avisos.length > 0 && (
+          <p className="m-0 rounded-2xl bg-sol-claro px-4 py-2.5 text-[13px] leading-snug text-sol-texto lg:col-span-12">{sat.avisos.join(" ")}</p>
+        )}
+
+        {/* Alerta: do questionário + a maior chuva medida no último mês */}
         <div className="flex flex-col gap-3 rounded-[28px] bg-sol p-5 shadow-degrau-sol lg:col-span-5" style={{ boxShadow: "0 6px 0 var(--color-sol-escuro)" }}>
           <div className="flex items-center gap-2.5">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-tinta text-sol">
               <svg width="22" height="22" viewBox="0 0 24 24" {...icone}><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3" /><path d="M8 19v2M8 13v2M16 19v2M16 13v2M12 21v2M12 15v2" /></svg>
             </div>
             <div className="flex min-w-0 flex-1 flex-col">
-              <span className="text-xs font-bold tracking-wider uppercase">{t("Fique de olho", "Heads up")} · {diaSemana(3, idioma)}</span>
-              <span className="font-titulo text-xl font-extrabold tracking-[-0.02em]">{t("Chuva forte: 62 mm", "Heavy rain: 62 mm")}</span>
+              <span className="text-xs font-bold tracking-wider uppercase">{t("Fique de olho", "Heads up")}</span>
+              <span className="font-titulo text-xl font-extrabold tracking-[-0.02em]">
+                {sat?.chuva?.maior && sat.chuva.maior.mm > 0
+                  ? t(`Maior chuva do mês: ${numero(sat.chuva.maior.mm, idioma)} mm em ${dataCurta(sat.chuva.maior.data, idioma)}`, `Biggest rain this month: ${numero(sat.chuva.maior.mm, idioma)} mm on ${dataCurta(sat.chuva.maior.data, idioma)}`)
+                  : t("Chuva forte e erosão", "Heavy rain and erosion")}
+              </span>
             </div>
-            <span className="self-start rounded-full bg-white/60 px-2 py-0.5 text-[11px] font-bold">{t("Exemplo", "Example")}</span>
           </div>
           <p className="m-0 text-sm leading-snug">{alerta}</p>
           <Link to={perguntar(t("O que fazer com a chuva forte no meu campo?", "What should I do about heavy rain on my field?"))}
@@ -163,66 +204,50 @@ export function Dashboard() {
           </Link>
         </div>
 
-        {/* Próximos 7 dias (exemplo) */}
+        {/* Chuva dos últimos 30 dias (IMERG ou NASA POWER) */}
         <div className={cx(cartao, "flex flex-col gap-3.5 lg:col-span-7")}>
-          <div className="flex items-baseline justify-between gap-2">
-            <h2 className="m-0 font-titulo text-lg font-extrabold">{t("Próximos 7 dias", "Next 7 days")}</h2>
-            <span className="text-[13px] font-bold text-chuva">{t("91 mm de chuva", "91 mm of rain")}</span>
-          </div>
-          <div className="grid grid-cols-7 gap-1">
-            {PREVISAO_EXEMPLO.map(([max, min, mm], i) => (
-              <div key={i} className={cx("flex flex-col items-center gap-1.5 rounded-2xl py-2.5", mm >= 50 ? "bg-sol-claro" : "bg-creme")}>
-                <span className="text-xs font-bold">{diaSemana(i, idioma)}</span>
-                {mm >= 5 ? (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563A8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3" /><path d="M8 17v3M12 19v3M16 17v3" /></svg>
-                ) : (
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
-                )}
-                <span className="text-[13px] font-bold">{max}°</span>
-                <span className="text-xs text-suave">{min}°</span>
-                <span className="text-[11px] font-bold text-chuva">{mm} mm</span>
-              </div>
-            ))}
-          </div>
-          <span className="text-xs text-suave">{t("Exemplo. A previsão real para o seu ponto entra na próxima etapa.", "Example. The real forecast for your spot comes in the next step.")}</span>
+          <h2 className="m-0 font-titulo text-lg font-extrabold">{t("Chuva no seu campo", "Rain on your field")}</h2>
+          {!temPonto ? (
+            <SemDado texto={t("Marque no mapa onde fica o campo para ver a chuva.", "Mark your field on the map to see the rain.")} />
+          ) : sat?.chuva ? (
+            <ChuvaRecente chuva={sat.chuva} />
+          ) : sat || satErro ? (
+            <SemDado texto={sat?.faltas.chuva ?? satErro ?? ""} />
+          ) : (
+            <Buscando />
+          )}
         </div>
 
-        {/* Umidade e NDVI (exemplo) */}
+        {/* Umidade (SMAP) e NDVI (MODIS) */}
         <div className="grid grid-cols-2 gap-3 lg:col-span-5">
-          <div className="flex flex-col gap-2.5 rounded-[24px] bg-white p-4 shadow-cartao">
-            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[13px] bg-ceu text-chuva">
-              <svg width="20" height="20" viewBox="0 0 24 24" {...icone}><path d="M12 22a7 7 0 0 0 7-7c0-4-7-13-7-13S5 11 5 15a7 7 0 0 0 7 7z" /></svg>
-            </div>
-            <span className="text-xs font-bold text-suave">{t("Umidade do solo", "Soil moisture")}</span>
-            <span className="font-titulo text-lg leading-tight font-extrabold">{t("Mais seco que o normal", "Drier than normal")}</span>
-            <div className="relative h-2.5 rounded-full bg-[linear-gradient(90deg,#F2B48A,var(--color-areia)_50%,#9CC5EE)]" aria-hidden="true">
-              <div className="absolute -top-1 left-[28%] h-[18px] w-[18px] -translate-x-1/2 rounded-full border-[3px] border-white bg-tinta" />
-            </div>
-            <span className="text-[11px] text-suave">{t("NASA SMAP L4 · ~9 km · exemplo", "NASA SMAP L4 · ~9 km · example")}</span>
-          </div>
-          <div className="flex flex-col gap-2.5 rounded-[24px] bg-white p-4 shadow-cartao">
-            <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[13px] bg-campo-claro text-folha">
-              <svg width="20" height="20" viewBox="0 0 24 24" {...icone}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z" /><path d="M2 21c0-3 1.9-5.4 5.2-6.1" /></svg>
-            </div>
-            <span className="text-xs font-bold text-suave">{t("Saúde da lavoura", "Crop health")}</span>
-            <span className="font-titulo text-lg leading-tight font-extrabold">{t("Campo sem cobertura", "Bare field")}</span>
-            <span className="self-start rounded-full bg-areia px-2.5 py-1 text-xs font-bold text-terra-texto">NDVI {idioma === "en" ? "0.18" : "0,18"}</span>
-            <span className="text-[11px] text-suave">{t("NASA MODIS · 250 m · exemplo", "NASA MODIS · 250 m · example")}</span>
-          </div>
+          {temPonto && !sat && !satErro ? (
+            <div className="col-span-2 flex flex-col"><Buscando /></div>
+          ) : (
+            <>
+              <CartaoUmidade umidade={sat?.umidade ?? null} falta={sat?.faltas.umidade ?? satErro} />
+              <CartaoNdvi ndvi={sat?.ndvi ?? null} falta={sat?.faltas.ndvi ?? satErro} />
+            </>
+          )}
         </div>
 
-        {/* O verde do campo no ano (do calendário) */}
+        {/* O verde do campo no ano: calendário do produtor x NDVI real do MODIS */}
         <div className={cx(cartao, "flex flex-col gap-3 lg:col-span-7")}>
           <div className="flex flex-col gap-0.5">
             <h2 className="m-0 font-titulo text-lg font-extrabold">{t("O verde do seu campo no ano", "How green your field is over the year")}</h2>
-            <span className="text-[13px] text-suave">{t("Desenhado a partir do seu calendário", "Drawn from your own calendar")}</span>
+            <span className="text-[13px] text-suave">
+              {sat?.ndvi ? t("O que o satélite viu no último ano, comparado com o seu calendário", "What the satellite saw over the last year, next to your calendar") : t("Desenhado a partir do seu calendário", "Drawn from your own calendar")}
+            </span>
           </div>
-          {itens.length ? (
-            <CurvaVerde vazios={vazios} />
+          {itens.length || sat?.ndvi ? (
+            <CurvaVerde vazios={vazios} calendario={itens.length > 0} ndvi={sat?.ndvi ?? null} />
           ) : (
             <span className="rounded-2xl bg-areia p-3 text-sm text-suave">{t("Conte o que você planta e quando para desenhar esta curva.", "Tell us what you grow and when to draw this curve.")}</span>
           )}
-          <span className="text-[11px] text-suave">{t("Em breve: NASA MODIS NDVI (MOD13Q1) · 250 m · a cada 16 dias", "Coming soon: NASA MODIS NDVI (MOD13Q1) · 250 m · every 16 days")}</span>
+          <span className="text-[11px] text-suave">
+            {sat?.ndvi
+              ? `${sat.ndvi.fonte} · ${sat.ndvi.resolucao} · ${t(`${sat.ndvi.serie.length} imagens sem nuvem`, `${sat.ndvi.serie.length} cloud-free images`)}`
+              : t("NASA MODIS NDVI (MOD13Q1) · 250 m · a cada 16 dias", "NASA MODIS NDVI (MOD13Q1) · 250 m · every 16 days")}
+          </span>
         </div>
 
         {/* Estratégias: comparação real de rotações (GET /fazenda/estrategias) */}

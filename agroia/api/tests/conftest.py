@@ -6,6 +6,7 @@ for linha in (Path(__file__).parents[1] / ".env.test").read_text().splitlines():
     if "=" in linha and not linha.startswith("#"):
         k, v = linha.split("=", 1)
         os.environ[k] = v
+os.environ["EARTHDATA_TOKEN"] = ""  # testes nunca usam o token real nem a rede
 os.environ["GEMINI_API_KEY"] = ""  # vazio vence o .env (o pop deixava a chave real vazar para os testes)
 
 import pytest  # noqa: E402
