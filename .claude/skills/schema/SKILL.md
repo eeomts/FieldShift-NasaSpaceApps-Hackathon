@@ -1,6 +1,6 @@
 ---
 name: schema
-description: Busca a estrutura REAL das tabelas do AgroIA (colunas, tipos, constraints, indices) no banco de teste local e confere com os models SQLAlchemy antes de escrever query, model, migration ou schema Pydantic que cite colunas. Use sempre que for usar uma tabela cujas colunas nao foram conferidas nesta sessao. Argumentos: tabelas (ex.: fazenda calendario_item).
+description: Busca a estrutura REAL das tabelas do AgroAI (colunas, tipos, constraints, indices) no banco de teste local e confere com os models SQLAlchemy antes de escrever query, model, migration ou schema Pydantic que cite colunas. Use sempre que for usar uma tabela cujas colunas nao foram conferidas nesta sessao. Argumentos: tabelas (ex.: fazenda calendario_item).
 ---
 
 # schema: estrutura real das tabelas

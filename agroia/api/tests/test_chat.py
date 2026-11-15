@@ -582,13 +582,13 @@ def relevo():
 
 
 def test_comparar_estrategias_traz_a_fonte_analise(client, auth, conversa, fazenda, clima, relevo, modelo):
-    m = modelo([chamada("comparar_estrategias"), fala("Comparei as rotações (comparação do AgroIA).")])
+    m = modelo([chamada("comparar_estrategias"), fala("Comparei as rotações (comparação do AgroAI).")])
     r = perguntar(client, auth, conversa, "o que eu planto no vão?")
     assert r.status_code == 200
     corpo = r.json()
     assert corpo["ferramentas_usadas"] == ["comparar_estrategias"]
     (fonte,) = corpo["fontes"]
-    assert (fonte["tipo"], fonte["titulo"]) == ("analise", "Comparação de rotações do AgroIA")
+    assert (fonte["tipo"], fonte["titulo"]) == ("analise", "Comparação de rotações do AgroAI")
     assert "NASA POWER" in fonte["detalhe"]
 
     (resposta,) = respostas_de_ferramenta(m.chamadas)

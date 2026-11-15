@@ -217,8 +217,8 @@ export function TelaCulturas({ r, set, ctx }: TelaProps) {
         campo="culturas"
         rotulo={t("Conte do seu jeito", "In your own words")}
         exemplo={exemplo}
-        textoBotao={t("Separar com a AgroIA", "Sort it with AgroIA")}
-        carregandoTexto={t("A AgroIA está separando as culturas…", "AgroIA is sorting your crops…")}
+        textoBotao={t("Separar com a AgroAI", "Sort it with AgroAI")}
+        carregandoTexto={t("A AgroAI está separando as culturas…", "AgroAI is sorting your crops…")}
         hemisferio={ctx.hemisferio}
         texto={r.q8_texto ?? ""}
         onTexto={(x) => set({ q8_texto: x })}
@@ -585,7 +585,7 @@ export function TelaExcluidas({ r, set, ctx }: TelaProps) {
   return (
     <Pergunta id="q26a_excluidas">
       <TextoLivre campo="excluidas" rotulo={t("Conte do seu jeito", "In your own words")} exemplo={exemplo}
-        textoBotao={t("Separar com a AgroIA", "Sort it with AgroIA")} carregandoTexto={t("A AgroIA está lendo…", "AgroIA is reading…")}
+        textoBotao={t("Separar com a AgroAI", "Sort it with AgroAI")} carregandoTexto={t("A AgroAI está lendo…", "AgroAI is reading…")}
         hemisferio={ctx.hemisferio} texto={r.q26a_texto ?? ""} onTexto={(x) => set({ q26a_texto: x })}
         onResultado={(res) => set({ q26a_excluidas: res.itens.map((i) => ({ cultura_id: i.id, texto_original: i.texto_original, motivo: i.motivo ?? null })) })} />
       <div className="grid gap-3 lg:grid-cols-2 lg:items-start">
@@ -624,12 +624,12 @@ export function TelaEquipamentos({ r, set, ctx }: TelaProps) {
   return (
     <Pergunta id="q26b_equipamentos">
       <TextoLivre campo="equipamentos" rotulo={t("Conte do seu jeito", "In your own words")} exemplo={exemplo}
-        textoBotao={t("Separar com a AgroIA", "Sort it with AgroIA")} carregandoTexto={t("A AgroIA está separando os equipamentos…", "AgroIA is sorting your equipment…")}
+        textoBotao={t("Separar com a AgroAI", "Sort it with AgroAI")} carregandoTexto={t("A AgroAI está separando os equipamentos…", "AgroAI is sorting your equipment…")}
         hemisferio={ctx.hemisferio} texto={r.q26b_texto ?? ""} onTexto={(x) => set({ q26b_texto: x })}
         onResultado={(res) => set({ q26b_equipamentos: res.itens.map((i) => ({ equipamento_id: i.id, texto_original: i.texto_original })) })} />
       {equips.length > 0 && (
         <Cartao className="bg-white">
-          <span className="text-[13px] font-bold text-folha-escura">{t("Equipamentos que a AgroIA encontrou. Toque para remover:", "Equipment AgroIA found. Tap to remove:")}</span>
+          <span className="text-[13px] font-bold text-folha-escura">{t("Equipamentos que a AgroAI encontrou. Toque para remover:", "Equipment AgroAI found. Tap to remove:")}</span>
           <div className="flex flex-wrap gap-2">
             {equips.map((e, idx) => (
               <button key={idx} type="button" onClick={() => set((a) => ({ q26b_equipamentos: (a.q26b_equipamentos ?? []).filter((_, i) => i !== idx) }))}

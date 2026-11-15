@@ -1,6 +1,6 @@
 ---
 name: debug-agroia
-description: Checklist de depuracao do AgroIA com as armadilhas que ja aconteceram no projeto (porta 5432 ocupada por Postgres local, migration nao aplicada, .env vazio, CORS, IP fora do firewall da VPS, Gemini fora do ar, SoilGrids vazio em area urbana, -999 do NASA POWER, tipos do front fora de sincronia com a API). Use quando a API nao sobe, uma tela quebra, nao salva, da 500 ou "a alteracao nao funcionou".
+description: Checklist de depuracao do AgroAI com as armadilhas que ja aconteceram no projeto (porta 5432 ocupada por Postgres local, migration nao aplicada, .env vazio, CORS, IP fora do firewall da VPS, Gemini fora do ar, SoilGrids vazio em area urbana, -999 do NASA POWER, tipos do front fora de sincronia com a API). Use quando a API nao sobe, uma tela quebra, nao salva, da 500 ou "a alteracao nao funcionou".
 ---
 
 # debug-agroia

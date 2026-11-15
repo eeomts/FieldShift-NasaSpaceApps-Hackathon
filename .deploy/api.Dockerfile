@@ -1,4 +1,4 @@
-# API do AgroIA (FastAPI). Contexto do build: a raiz do repositório; o container tem o mesmo layout do repo sob /app.
+# API do AgroAI (FastAPI). Contexto do build: a raiz do repositório; o container tem o mesmo layout do repo sob /app.
 FROM python:3.13-slim
 
 COPY --from=ghcr.io/astral-sh/uv:0.7.2 /uv /usr/local/bin/uv

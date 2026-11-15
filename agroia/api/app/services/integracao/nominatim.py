@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 URL_BUSCA = "https://nominatim.openstreetmap.org/search"
 URL_REVERSO = "https://nominatim.openstreetmap.org/reverse"
-USER_AGENT = "AgroIA/0.1 (NASA Space Apps 2026 hackathon prototype)"
+USER_AGENT = "AgroAI/0.1 (NASA Space Apps 2026 hackathon prototype)"
 TIMEOUT_S = 8.0
 _CIDADE = ("city", "town", "village", "municipality", "county")
 
