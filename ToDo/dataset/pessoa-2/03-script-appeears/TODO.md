@@ -1,6 +1,6 @@
 # 03 — Script do AppEEARS (NDVI e umidade dos pontos da demo)
 
-**Dono:** Pessoa 2 · **Status:** pendente · **Depende de:** 01
+**Dono:** Pessoa 2 · **Status:** em andamento (pedidos na fila do AppEEARS) · **Depende de:** 01
 
 ## Por quê
 O cartão "meses em que o campo fica descoberto" usa o NDVI, e o cartão "quantos dias o solo aguenta sem chuva" usa o SMAP. O AppEEARS é assíncrono (minutos a horas), então os pontos da demo são pedidos antes.
