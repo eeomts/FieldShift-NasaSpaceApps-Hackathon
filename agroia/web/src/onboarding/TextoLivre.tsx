@@ -84,7 +84,7 @@ export function TextoLivre({
           <Bolinhas /> {carregandoTexto}
         </div>
       )}
-      {fonte === "ia" && estado === "parado" && <Selo tom="folha"><Brilho size={14} /> {t("A AgroIA entendeu. Confere abaixo?", "AgroIA got it. Does this look right?")}</Selo>}
+      {fonte === "ia" && estado === "parado" && <Selo tom="folha"><Brilho size={14} /> {t("A AgroAI entendeu. Confere abaixo?", "AgroAI got it. Does this look right?")}</Selo>}
       {fonte === "lista" && estado === "parado" && (
         <Selo>{t("A IA não está disponível agora. Achamos pelo nome; confira e complete pela lista.", "The AI is not available right now. We matched by name; check it and fill in from the list.")}</Selo>
       )}

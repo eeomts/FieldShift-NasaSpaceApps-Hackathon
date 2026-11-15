@@ -23,10 +23,14 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40114",
     "nome_zarc": "Girassol",
-    "fontes": "Embrapa Soja, Circular Técnica 13 A cultura do girassol (Castro et al.), 1997 (ciclo 90-130 dias, temperaturas, água 500-700 mm, tolerância à seca, raiz sensível à compactação)|Castro & Farias, Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005 (temp. base 4-8,5 °C, ótimo 20-25 °C, <35 °C na floração, água 400-500 mm, raiz até 2 m e sensível à compactação, matéria seca 9,5 t/ha)|Ungaro, Castro, Farias et al., Girassol, cap. 12 de Agrometeorologia dos cultivos, INMET, 2009 (temp. base 4 °C de Barni et al. 1993, geada, dano por calor na antese, água)|Gonçalves et al., Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005 (valor forrageiro)|Amabile & Duarte, Girassol como alternativa para o sistema de produção do Cerrado, Embrapa Cerrados (silagem similar à de milho, tolerância à seca)|FAO ECOCROP Helianthus annuus id 1191 (ótimo 17-34 °C, absoluto 5-45 °C, morte a 0 °C no início do ciclo)|FAO Irrigation Water Management Training Manual 3, Tab.5 (água 600-1000 mm, referência internacional)|FAO-56 Tab.12 (Kc; ini do grupo Oil crops 0.35; mid 1.0 = limite inferior, para sequeiro, nota 9)|FAO-56 Tab.22 (raiz 0.8-1.5 m, limite superior = sequeiro)",
+    "fontes": "Embrapa Soja, Circular Técnica 13 A cultura do girassol (Castro et al.), 1997 (ciclo 90-130 dias, temperaturas, água 500-700 mm, tolerância à seca, raiz sensível à compactação)|Castro & Farias, Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005 (temp. base 4-8,5 °C, ótimo 20-25 °C, <35 °C na floração, água 400-500 mm, raiz até 2 m e sensível à compactação, matéria seca 9,5 t/ha)|Ungaro, Castro, Farias et al., Girassol, cap. 12 de Agrometeorologia dos cultivos, INMET, 2009 (temp. base 4 °C de Barni et al. 1993, geada, dano por calor na antese, água)|Gonçalves et al., Silagem de girassol como opção forrageira, cap. 7 de Girassol no Brasil, Embrapa Soja, 2005 (valor forrageiro)|Amabile & Duarte, Girassol como alternativa para o sistema de produção do Cerrado, Embrapa Cerrados (silagem similar à de milho, tolerância à seca)|FAO ECOCROP Helianthus annuus id 1191 (ótimo 17-34 °C, absoluto 5-45 °C, morte a 0 °C no início do ciclo)|FAO Irrigation Water Management Training Manual 3, Tab.5 (água 600-1000 mm, referência internacional)|FAO-56 Tab.12 (Kc; ini do grupo Oil crops 0.35; mid 1.0 = limite inferior, para sequeiro, nota 9)|FAO-56 Tab.22 (raiz 0.8-1.5 m, limite superior = sequeiro)|Kandel, Endres & Buetow (eds.), NDSU Extension A1995 Sunflower Production Guide, 2020, 'Frost Damage' (30 °F no botão e na polinização; limiar da espécie, fonte dos EUA)",
     "confianca_parametros": "alta",
     "graus_dia_ciclo_min": "1500",
-    "graus_dia_ciclo_max": "2100"
+    "graus_dia_ciclo_max": "2100",
+    "tmin_critica_c": "-1.1",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.61",
+    "fase_frio_fim_frac": "0.72"
   },
   "mudancas": [
     {
@@ -124,6 +128,18 @@
       "antes": "(coluna nova)",
       "depois": "1500-2100",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-1.1",
+      "motivo": "REVISÃO 15/11 (dano por frio): 30 °F ou menos no botão e na polinização danificam as flores do disco (NDSU A1995); limiar da espécie, fonte dos EUA. Origem: publicado"
+    },
+    {
+      "coluna": "fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "floracao, 0.61, 0.72",
+      "motivo": "REVISÃO 15/11 (dano por frio): floração aos 67 a 79,5 dias pela Fig. 13 da Embrapa Soja (2005), sobre o ciclo médio de 110 dias. Origem: publicado"
     }
   ],
   "evidencias": [
@@ -475,6 +491,24 @@
       "fonte": "Castro & Farias, Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005",
       "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
       "trecho": "Contudo, os teores de óleo do girassol cultivado nos Cerrados de Roraima, em que o ciclo é reduzido para cerca de 76 dias [...] Essa redução do ciclo da cultura está de acordo com o conceito de graus-dia"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Kandel, H.; Endres, G.; Buetow, R. (eds.), Sunflower Production Guide, NDSU Extension A1995, dezembro de 2020, 'Frost Damage', p. 136-137 (fonte dos EUA; fisiologia da espécie)",
+      "url": "https://ndsu.edu/agriculture/sites/default/files/2023-12/a1995.pdf",
+      "trecho": "Sunflower seedlings in the cotyledonary stage (VE) can withstand temperatures down to 26 F when just emerging from the soil. [...] Sunflowers are most susceptible at the bud (R4) and pollination stages (R5.0 to R5.9) of development. Temperatures of 30 F or less can cause damage to the anthers and stigmas of the pollinating disk flowers. [...] The result of the frost damage in the flowering period is circular bands of undeveloped seed [...] Once pollination is completed and 10 to 14 days after petal drying occurs, the sunflower plants can withstand frost temperatures as low as 25 F and have only minor damage."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Castro, C.; Farias, J.R.B., Ecofisiologia do girassol, cap. 9 de Girassol no Brasil, Embrapa Soja, 2005, Fig. 13 e Fig. 8",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/468448/1/Capitulo-9.pdf",
+      "trecho": "Germinação/ Emergência [...] Duração: 4 a 10 dias [...] Crescimento [...] Duração: 50 a 70 dias [...] Floração [...] Duração: 10 a 15 dias [...] Enchimento de aquênios [...] Duração: 20 a 30 dias [...] Fig. 8 [...] Início florescimento Final da floração [...] R4 R5 R6"
     }
   ],
   "pendencias": [
@@ -485,7 +519,8 @@
     "ciclo 90-130 dias da CT 13 conta da emergência à colheita e vem de 1997. O cap. 9 (2005) dá 65 a 155 dias como faixa genotípica geral e cita cerca de 76 dias em Roraima. Não conferi a lista atual de cultivares do ZARC do girassol, que tem grupos de ciclo.",
     "temp_otima_max_c = 25 segue a afirmação de campo da Embrapa ('desenvolve-se bem entre 20 e 25 °C'). A CT 13 e estudos em ambiente controlado dão 27-28 °C como ótimo, e o ECOCROP dá 17-34 °C. Se a equipe preferir o ótimo fisiológico, usar 28.",
     "graus-dia: Barni 1993b e Sentelhas 1994 foram lidos via Ungaro et al. 2009 (capítulo com Barni e Sentelhas como coautores), não no original.",
-    "graus-dia: Semeadura->emergência é CÁLCULO; no RS em julho a emergência pode levar até 15 dias (Castro & Farias 2005), e aí a fase passaria de 100 GD."
+    "graus-dia: Semeadura->emergência é CÁLCULO; no RS em julho a emergência pode levar até 15 dias (Castro & Farias 2005), e aí a fase passaria de 100 GD.",
+    "dano por frio: o limiar (-1,1 °C) vem da NDSU (EUA); não achei fonte brasileira com número (INMET 2009 e Embrapa 2005 só dão a fase). A geada na diferenciação floral (INMET 2009: queima a gema e forma plantas com vários capítulos, com 'enormes reflexos negativos na produção') acontece antes da floração e fica fora da fase gravada, porque não há limiar com fonte para ela. A emergência também é sensível (a NDSU diz que o cotilédone aguenta 26 °F), mas a planta jovem rebrota e não entra."
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -581,6 +616,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "medido",
       "nota": "semeadura -> maturação fisiológica; Tb 4; Barni et al. 1993b (9 cultivares, 80 ambientes no RS), Tb 4 (a mesma do CSV), da EMERGÊNCIA à maturação: 1380 (mais precoces) a 2010 (mais tardios), média 1620. Lido via Ungaro et al. 2009 (INMET/Embrapa). Sentelhas et al. 1994 (IAC, Tb 4,2, emergência->colheita): 1713-1848, dentro da faixa. Semeadura->emergência (CÁLCULO): as fontes não dão GD dessa fase; 5-7 d × (20 − 4) = 80-112 GD → 100. Min 1380 + 100 = 1480 ≈ 1500; max 2010 + 100 = 2110 ≈ 2100. Sem teto na fonte (média simples). | plausibilidade: RS (semeadura ago-set, Tmed do ciclo ~19,5 °C → 15,5 GD/dia): 1500/15,5 = 97 dias e 2100/15,5 = 135 dias, contra ciclo_dias 90-130 do CSV. Conferência tropical: Roraima, ciclo de ~76 dias (Castro & Farias 2005) a Tmed ~27 °C dá 76 × 23 = 1748 GD, dentro da faixa, o que confirma que o encurtamento do ciclo no calor segue o GD."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Limiar da espécie, de fonte dos EUA (NDSU Extension A1995, 2020): no botão (R4) e na polinização (R5.0-R5.9), 'Temperatures of 30 F or less' danificam anteras e estigmas e deixam anéis de grão sem formar no capítulo. 30 °F = (30 - 32) x 5/9 = -1,1 °C. A fonte fala de temperatura (do ar), não de relva ou tecido. A fonte brasileira (Ungaro et al., INMET 2009) confirma a fase ('infertilidade total das flores dos círculos que abriram no dia da baixa temperatura'), sem número."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Floração (R4 a R6) pela Fig. 13 de Castro & Farias (Embrapa Soja, 2005), com o meio de cada faixa: germinação/emergência 4 a 10 dias (7) + crescimento 50 a 70 dias (60) = início da floração aos 67 dias; floração 10 a 15 dias (12,5) = fim aos 79,5 dias. Ciclo médio da linha (90 + 130) / 2 = 110: 67 / 110 = 0,61 e 79,5 / 110 = 0,72. Com os extremos das faixas a fração fica parecida (54/90 = 0,60 a 64/90 = 0,71; 80/130 = 0,62 a 95/130 = 0,73)."
     }
   },
   "confianca_calculo": {

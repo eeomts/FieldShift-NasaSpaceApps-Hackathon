@@ -1,4 +1,4 @@
-// Moldura comum do Dashboard e da aba AgroIA: abas no topo (computador) e embaixo (celular), PT/EN e sair.
+// Moldura comum do Dashboard e da aba AgroAI: abas no topo (computador) e embaixo (celular), PT/EN e sair.
 import type { ReactNode } from "react";
 import { NavLink } from "react-router";
 import { useSessao } from "../api/sessao";
@@ -53,7 +53,7 @@ function Abas({ className }: { className?: string }) {
         <Painel /> Dashboard
       </NavLink>
       <NavLink to="/agroia" className={item}>
-        <Brilho /> AgroIA
+        <Brilho /> AgroAI
       </NavLink>
     </nav>
   );

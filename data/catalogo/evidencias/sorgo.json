@@ -23,10 +23,14 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40125",
     "nome_zarc": "Sorgo Granífero|Sorgo Granífero 2ª Safra",
-    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Ecofisiologia (Magalhães et al.) (temp. ótima; frio; tolerância à seca; fenologia ~95 DAE)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Plantio (Mantovani & Ribas) (florescimento 60-70 DAE; maturação ~90 DAE; ponto de colheita)|Landau & Sans, Embrapa Milho e Sorgo, Cultivo do Sorgo 4ª ed. 2008, Clima (água 380-600 mm; limites 16 e 38 °C)|Landau & Guimarães, Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (grupos ZARC de ciclo; médias >21 °C)|Albuquerque & Andrade, Irrigação, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (água 380-600 mm; Kc 1,10 na fase III)|Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (geada; classes de ciclo pelo florescimento)|Sans & Guiscem, Estimativa do florescimento e maturidade do sorgo por graus-dia, XXIV CNMS, Embrapa 2002 (Tb testadas 7-10 °C; graus-dia semeadura-florescimento 999 e semeadura-maturação fisiológica 1473 °C dia com Tb 10, 1192 e 1751 com Tb 7; 73 e 100 dias)|FAO ECOCROP, Sorghum bicolor, data sheet id 48747 (temp. ótima 22-35 °C)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al. 2006a e 2008 (tmax crítica na antese)|Alvarenga, Cruz & Novotny, Manejo do solo para o cultivo do sorgo, Embrapa Milho e Sorgo Comunicado Técnico 89, 2003 (raiz profunda; recuperação de solo compactado; palhada persistente)|Coelho, Extração, exportação e ciclagem de nutrientes por híbridos de sorgo granífero, Embrapa Milho e Sorgo Comunicado Técnico 258, 2023 (biomassa: palhada 5,1-7,3 t/ha)|Rodrigues, Híbridos de sorgo forrageiro: onde estamos? para onde vamos?, Embrapa Milho e Sorgo, anais do VII Simpósio sobre Manejo Estratégico da Pastagem (valor forrageiro)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F = 10 °C, teto 100 °F; graus-dia do plantio ao florescimento 1848-1995 °F dia e à camada preta 2673-3360 °F dia = 1027-1108 e 1485-1867 °C dia)|Marin et al., Bragantia 65(1):157-162, 2006 (Tb 10 °C; 1574 °C dia da germinação à maturidade fisiológica, modelo de sorgo em SP)|Bandeira et al., Revista Brasileira de Milho e Sorgo 15(2):240-250, 2016 (Tb de sorgo sacarino 8,9-11,8 °C, RS)|White et al., Agronomy Journal 107:1987-2002, 2015 (CERES-Sorghum/DSSAT: TBASE 8 °C)|Tirfessa et al., Annals of Botany 131:601-611, 2023 (APSIM: Tbase 11 °C usada para a fenologia do sorgo na Austrália, Hammer et al. 1993)|Silva et al., Comportamento de híbridos de sorgo granífero na segunda safra em Sinop-MT, Resumos IV Jornada Científica Embrapa Agrossilvipastoril, 2015 (safrinha tardia colhida aos 112 dias após o plantio)|Almeida et al., Scientia Plena 11(12), 2015 (safrinha em Jataí-GO, colheita aos 115 dias após o plantio; florescimento ~68 dias)|May et al., Cultivares de sorgo granífero em safrinha no Sudoeste Goiano, Embrapa Milho e Sorgo Boletim de Pesquisa e Desenvolvimento 129, 2015 (colheita aos 120 dias após a semeadura)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)",
+    "fontes": "Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Ecofisiologia (Magalhães et al.) (temp. ótima; frio; tolerância à seca; fenologia ~95 DAE)|Embrapa Milho e Sorgo, Sistemas de Produção 2, Cultivo do Sorgo 9ª ed. 2015, Plantio (Mantovani & Ribas) (florescimento 60-70 DAE; maturação ~90 DAE; ponto de colheita)|Landau & Sans, Embrapa Milho e Sorgo, Cultivo do Sorgo 4ª ed. 2008, Clima (água 380-600 mm; limites 16 e 38 °C)|Landau & Guimarães, Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (grupos ZARC de ciclo; médias >21 °C)|Albuquerque & Andrade, Irrigação, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (água 380-600 mm; Kc 1,10 na fase III)|Menezes, Silva & Tardin, Sorgo safrinha, em Sorgo: o produtor pergunta, a Embrapa responde, Embrapa 2015 (geada; classes de ciclo pelo florescimento)|Sans & Guiscem, Estimativa do florescimento e maturidade do sorgo por graus-dia, XXIV CNMS, Embrapa 2002 (Tb testadas 7-10 °C; graus-dia semeadura-florescimento 999 e semeadura-maturação fisiológica 1473 °C dia com Tb 10, 1192 e 1751 com Tb 7; 73 e 100 dias)|FAO ECOCROP, Sorghum bicolor, data sheet id 48747 (temp. ótima 22-35 °C)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al. 2006a e 2008 (tmax crítica na antese)|Alvarenga, Cruz & Novotny, Manejo do solo para o cultivo do sorgo, Embrapa Milho e Sorgo Comunicado Técnico 89, 2003 (raiz profunda; recuperação de solo compactado; palhada persistente)|Coelho, Extração, exportação e ciclagem de nutrientes por híbridos de sorgo granífero, Embrapa Milho e Sorgo Comunicado Técnico 258, 2023 (biomassa: palhada 5,1-7,3 t/ha)|Rodrigues, Híbridos de sorgo forrageiro: onde estamos? para onde vamos?, Embrapa Milho e Sorgo, anais do VII Simpósio sobre Manejo Estratégico da Pastagem (valor forrageiro)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F = 10 °C, teto 100 °F; graus-dia do plantio ao florescimento 1848-1995 °F dia e à camada preta 2673-3360 °F dia = 1027-1108 e 1485-1867 °C dia)|Marin et al., Bragantia 65(1):157-162, 2006 (Tb 10 °C; 1574 °C dia da germinação à maturidade fisiológica, modelo de sorgo em SP)|Bandeira et al., Revista Brasileira de Milho e Sorgo 15(2):240-250, 2016 (Tb de sorgo sacarino 8,9-11,8 °C, RS)|White et al., Agronomy Journal 107:1987-2002, 2015 (CERES-Sorghum/DSSAT: TBASE 8 °C)|Tirfessa et al., Annals of Botany 131:601-611, 2023 (APSIM: Tbase 11 °C usada para a fenologia do sorgo na Austrália, Hammer et al. 1993)|Silva et al., Comportamento de híbridos de sorgo granífero na segunda safra em Sinop-MT, Resumos IV Jornada Científica Embrapa Agrossilvipastoril, 2015 (safrinha tardia colhida aos 112 dias após o plantio)|Almeida et al., Scientia Plena 11(12), 2015 (safrinha em Jataí-GO, colheita aos 115 dias após o plantio; florescimento ~68 dias)|May et al., Cultivares de sorgo granífero em safrinha no Sudoeste Goiano, Embrapa Milho e Sorgo Boletim de Pesquisa e Desenvolvimento 129, 2015 (colheita aos 120 dias após a semeadura)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|Staggenborg et al., K-State MF-2234, 1996 (geada no enchimento do sorgo: perda abaixo de 32 °F, máxima a 28 °F; estudo em câmara de Staggenborg & Vanderlip 1996; tmin_critica_c, fisiologia da espécie)|MAPA, Portaria SPA/MAPA nº 282/2026, ZARC sorgo granífero PR (conferência: Tmin < 2 °C no abrigo para geada)",
     "confianca_parametros": "alta",
     "graus_dia_ciclo_min": "1470",
-    "graus_dia_ciclo_max": "1870"
+    "graus_dia_ciclo_max": "1870",
+    "tmin_critica_c": "-2",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.59",
+    "fase_frio_fim_frac": "1.00"
   },
   "mudancas": [
     {
@@ -142,6 +146,30 @@
       "antes": "(coluna nova)",
       "depois": "1470-1870",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-2",
+      "motivo": "REVISÃO 15/11 (dano por frio): perda de grão abaixo de 0 °C, máxima a 28 °F = -2,2 °C no enchimento (K-State MF-2234, Staggenborg & Vanderlip 1996)"
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao",
+      "motivo": "REVISÃO 15/11 (dano por frio): dano no enchimento de grãos; tolera geada na fase vegetativa (Gerik et al. B-6137)"
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.59",
+      "motivo": "REVISÃO 15/11 (dano por frio): florescimento 60-70 DAE, meio 65 (Embrapa 2015) / ciclo médio 110 d"
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): fim na maturação fisiológica = fim do ciclo da linha"
     }
   ],
   "evidencias": [
@@ -577,6 +605,48 @@
       "fonte": "CONFERÊNCIA: WOFOST sorghum.yaml (Van Heemst 1988, tropical)",
       "url": "https://github.com/ajwdewit/WOFOST_crop_parameters",
       "trecho": "TSUMEM 70 + TSUM1 730 + TSUM2 600 = 1400 °C·d da semeadura à maturidade; DTSMTB Tb 10, teto 30 °C"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Staggenborg, S.; Fjell, D.; Dhuyvetter, K.; Vanderlip, R., Fall Freeze Damage in Summer Grain Crops, K-State Research and Extension MF-2234, agosto de 1996 (resume Staggenborg & Vanderlip, Agron. J. 88:473-477, 1996, artigo não lido)",
+      "url": "https://bookstore.ksre.ksu.edu/pubs/MF2234.pdf",
+      "trecho": "Sorghum plants were exposed to temperatures of 32°F, 28°F, and 24°F for 2, 4 and 8 hours during grainfill. The results indicate that sorghum grain weight is not reduced by temperatures of 32°F (Figure 1). However, as the air temperatures decrease below freezing, the amount of damage to a sorghum plant increases and seed weight decreases. Maximum damage occurs when plants are exposed for 2 hours or more at a temperature of 28°F or lower. [...] grain sorghum exposed to air temperatures of 28°F or lower, is unable to continue filling grain from carbohydrates stored in the stem or remaining leaves."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Mantovani, E. C.; Ribas, P. M., Plantio, em Cultivo do Sorgo, Embrapa Milho e Sorgo Sistemas de Produção 2, 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748792/1/Sorgo-Plantio.pdf",
+      "trecho": "A panícula emerge ao final desse período e o florescimento se dá entre 60 a 70 dias após a emergência da planta para a maioria das cultivares comerciais. [...] Próximo da idade de 90 dias após emergência, a planta está fisiologicamente madura"
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac (conferência)"
+      ],
+      "fonte": "Magalhães, P. C. et al., Ecofisiologia, em Cultivo do Sorgo, Embrapa Milho e Sorgo Sistemas de Produção 2, 9ª ed., 2015",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "Estádio 6 (50% de floração) – O período da emergência a 50% de floração (cerca de 60 dias) é de aproximadamente 2/3 do período da emergência à maturação fisiológica."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003, Growth Stage I",
+      "url": "https://leon.agrilife.org/files/2024/08/Sorghum-Growth-and-Development-TAMU-SCSC-PU-069-2021.pdf",
+      "trecho": "Sorghum can tolerate high degrees of stress from drought, hail and freezing temperatures in GS I with little adverse affect on yield."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (alternativa)"
+      ],
+      "fonte": "CONFERÊNCIA (critério alternativo, não usado no valor): MAPA, Portaria SPA/MAPA nº 282, de 20/07/2026, ZARC sorgo granífero no Paraná, ano-safra 2026/2027, item 1.8.1 (o mesmo texto nas portarias de DF, SP e RS de 2026)",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/parana/PO7A7A1.PDF",
+      "trecho": "Foram restringidos os decêndios com temperaturas mínimas médias abaixo de 12 °C e temperaturas máximas acima de 38 °C. Considerou-se o risco de ocorrência de geadas por meio da probabilidade de ocorrência de valores de temperaturas mínimas menores a 2 °C observadas no abrigo meteorológico."
     }
   ],
   "pendencias": [
@@ -592,7 +662,8 @@
     "graus-dia: Se o time preferir Tb 7 (melhor ajuste de Sans & Guiscem e Boletim 55 da Embrapa), a soma da mesma fonte é 1751 até a maturação (1192 até o florescimento). Não misture Tb e soma.",
     "graus-dia: O máximo (1870) vem do híbrido tardio do Texas, com teto de 100 °F; não achei soma brasileira para os sorgos de ciclo tardio (Grupo III ZARC, >120 dias da emergência à maturação).",
     "graus-dia: A conta da Texas A&M em °C (÷ 1,8) é minha. O WOFOST (1400, teto 30) fica um pouco abaixo do mínimo, coerente com o teto.",
-    "graus-dia: Sorgo é de dias curtos (Menezes et al. 2015 classifica pelo florescimento); semeaduras de safrinha tendem ao lado baixo da faixa."
+    "graus-dia: Sorgo é de dias curtos (Menezes et al. 2015 classifica pelo florescimento); semeaduras de safrinha tendem ao lado baixo da faixa.",
+    "DANO POR FRIO (15/11): tmin_critica_c = -2 (28 °F) no enchimento (frações 0,59-1,00) vem de um estudo em câmara (Staggenborg & Vanderlip 1996, via K-State MF-2234). Na câmara a planta fica na temperatura do ar; no campo, em noite clara, a folha fica alguns graus abaixo do abrigo, então -2 no abrigo pode subestimar o dano. Não achei relação publicada câmara-abrigo para o sorgo. DECISÃO para o coordenador: o ZARC do sorgo granífero (Port. 282/2026 PR e as de DF, SP e RS) usa Tmin < 2 °C no abrigo para o risco de geada (sem dizer a fase) e restringe decêndios com Tmin MÉDIA abaixo de 12 °C (média do decêndio, não dia a dia; não cabe na regra 17). A esterilidade por frio no emborrachamento do sorgo (Embrapa: 'um dos cultivos mais sensíveis a baixas temperaturas noturnas', produtividade cai abaixo de 16 °C) ficou sem limiar diário com fonte; resolveria um artigo com Tmin no abrigo e esterilidade no emborrachamento."
   ],
   "pendencias_resolvidas": [
     "temp_base_c = 10 ficou sem trecho literal que dê 'Tb = 10 °C' para o sorgo. A única fonte brasileira lida (Sans & Guiscem, 2002, resumo de congresso) testou só 7 a 10 °C e achou 7 °C o melhor, mas 7 é o menor valor testado, então o ótimo pode ser ainda mais baixo. A Ecofisiologia diz apenas que abaixo de 10 °C o crescimento é prejudicado. Mantive 10 para ficar coerente com o milho e com o uso internacional (que conheço de memória, sem fonte lida). Se o coordenador preferir só a fonte brasileira, use 7."
@@ -693,6 +764,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "medido",
       "nota": "semeadura -> maturação fisiológica; Tb 10; Sem conversão de Tb: as três fontes usam Tb 10 °C. Sans & Guiscem 2002 (Sete Lagoas, 4 cultivares, 8 épocas): GDD contados da semeadura, 1473 °C dia até a maturação fisiológica (100 dias) e 999 até o florescimento (73 dias), modelo 4 (Tb 10). Sem teto. Marin et al. 2006 (SP): 1574 °C dia da GERMINAÇÃO à maturidade fisiológica; somando a semeadura -> germinação (~5 d × (24 − 10) = ~70, CÁLCULO): ~1640. Gerik et al. 2003 (Texas A&M B-6137): unidades em °F com piso 50 °F e TETO 100 °F (Tmax limitada), da semeadura (planting): camada preta 2673 °F (híbrido precoce) e 3360 °F (tardio); ÷ 1,8 = 1485 e 1867 °C dia. O motor não usa teto, então em local quente acumularia um pouco mais que a fonte para a mesma fenologia. Faixa: 1470 (Sans & Guiscem, média brasileira, ~= híbrido precoce do Texas) a 1870 (híbrido tardio do Texas). A colheita vem 10-20 dias depois da maturação, sem soma publicada. | plausibilidade: Tmed típica na safra/safrinha 23-25 °C. 1470/(24 − 10) = 105 d; 1870/(24 − 10) = 134 d; a 25 °C: 98-125 d. CSV: ciclo_dias 90-130 (até a colheita). Bate. Sans & Guiscem: 1473/100 d = 14,7 °C dia/dia -> Tmed ~24,7 °C em Sete Lagoas, coerente com a climatologia POWER (out-jan 23,2-24,7 °C)."
+    },
+    "tmin_critica_c": {
+      "tipo": "estudo_unico",
+      "nota": "Ar a 2 m (abrigo), lido como a extensão aplica o número no campo. K-State MF-2234 (Staggenborg & Vanderlip 1996, plantas expostas em câmara a 32, 28 e 24 °F no enchimento): a 32 °F (0 °C) a massa de grãos não cai; a perda cresce abaixo de 0 °C e é máxima com 2 h ou mais a 28 °F (-2,2 °C) ou menos, quando o grão para de encher. 28 °F -> -2. Estudo único em câmara = estudo_unico; reusado como fisiologia da espécie. O ZARC do sorgo usa 2 °C no abrigo para o risco de geada (critério mais conservador, ver pendências)."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Fase: do florescimento à maturação fisiológica (camada preta). O estudo da K-State é no enchimento; o sorgo tolera geada na fase vegetativa (Gerik et al. B-6137, GS I). Ciclo da linha da emergência à maturação (90-130 d, médio 110). Mantovani & Ribas (Embrapa 2015): florescimento 60-70 dias após a emergência, meio 65 -> 65/110 = 0,59 (conferência: Magalhães et al., Embrapa 2015, emergência a 50% de floração ~2/3 do ciclo = 0,67). Fim = maturação fisiológica = fim do ciclo = 1,00."
     }
   },
   "confianca_calculo": {

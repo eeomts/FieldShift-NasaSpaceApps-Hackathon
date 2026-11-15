@@ -35,7 +35,11 @@
     "condicao_semeadura": "apos_colheita_graos|a_lanco_lavoura_em_pe",
     "estados_validos": "GO|MG|MS|MT|SP",
     "lacuna_informacao": "Não achamos medição de quanta água o milheto usa até ser dessecado; usamos um cálculo com o clima. O calor que ele precisa até o ponto de manejo vem de um só ensaio, no Rio de Janeiro, refeito com o clima. Por isso a água e o tempo até o manejo são estimativas.",
-    "risco_revisao_local": "Semeie logo depois da colheita da soja, do fim de janeiro a meados de abril: quanto mais tarde, menos palha. Em boa parte de Goiás o zoneamento só indica até março. Disseque no começo do pendão, 45 a 60 dias depois. Confirme a data e a cultivar com o agrônomo."
+    "risco_revisao_local": "Semeie logo depois da colheita da soja, do fim de janeiro a meados de abril: quanto mais tarde, menos palha. Em boa parte de Goiás o zoneamento só indica até março. Disseque no começo do pendão, 45 a 60 dias depois. Confirme a data e a cultivar com o agrônomo.",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "mudancas": [
     {
@@ -199,6 +203,12 @@
       "antes": "(vazio)",
       "depois": "textos para o produtor",
       "motivo": "REVISÃO 15/11 (pacote 9): confiança baixa (água e graus-dia por cálculo); textos de 261 e 260 caracteres"
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio, fase_frio_inicio_frac, fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): cobertura dessecada na pré-floração; sem limiar de geada no abrigo com fonte para o milheto (ver origem e pendências); o motor mantém 2 °C no terço do meio"
     }
   ],
   "evidencias": [
@@ -771,7 +781,8 @@
     "graus-dia: Viés do POWER: em Seropédica (2002) a Tmed do POWER ficou ~1,2 °C abaixo da Tmed da estação do ensaio (24,8 vs 26 °C em jan-abr; 23,2 vs 24,4 °C em mar-jun). Com Tb 13 isso reduz a soma do POWER em ~10%. Ver nota geral sobre o viés em culturas de Tb alta.",
     "Janela (15/11): a linha ficou com o sistema safrinha depois da soja (semeadura 21/01 a 15/04; graus-dia de Costa 2005 com semeaduras de janeiro e março). A primavera antes da soja (agosto-setembro) foi para regua.arranjos.primavera. Mas agua_ciclo_mm_max = 260 vem do cenário de primavera (15/ago, 60 d, 264 mm): só na safrinha o cálculo dá 83-157 mm (até 193 com Kc ini 0,6). O coordenador decide se estreita a água da linha para a safrinha (não mudei os números do filtro).",
     "ZARC x janela da linha: o fim da safrinha pela Embrapa ('meados de abril', 15/04) passa do ZARC de GO (Port. 325/2020) na maioria dos municípios: risco de 20% vai até 10/03 em todos e até 10/04 só em 106 de 246. O ZARC simula o ciclo até o grão (Grupo I até 110 dias), mais longo que a cobertura dessecada aos 45-60 dias, por isso é mais restritivo. Se o motor tiver o ZARC do município, vale mostrar as duas datas.",
-    "estados_validos = GO|MG|MS|MT|SP pela lista de regiões da SP3 para o plantio de outono (oeste de SP, Triângulo Mineiro, sul de GO, sul de MT, centro-norte de MS). Ficaram de fora sem fonte: DF e TO (Cerrado, mesmo sistema provável; o cálculo de água usou Planaltina-DF), oeste da BA e PR. RS fica fora com motivo: a SP3 diz que no Sul o cultivo de outono e inverno é arriscado pela geada, e o ZARC de Passo Fundo (Port. 349/2020) só indica até 10/02. BA: em Irecê o ZARC (Port. 329/2020) indica o milheto só de 21/11 a 20/01, como cultura de verão, não como safrinha."
+    "estados_validos = GO|MG|MS|MT|SP pela lista de regiões da SP3 para o plantio de outono (oeste de SP, Triângulo Mineiro, sul de GO, sul de MT, centro-norte de MS). Ficaram de fora sem fonte: DF e TO (Cerrado, mesmo sistema provável; o cálculo de água usou Planaltina-DF), oeste da BA e PR. RS fica fora com motivo: a SP3 diz que no Sul o cultivo de outono e inverno é arriscado pela geada, e o ZARC de Passo Fundo (Port. 349/2020) só indica até 10/02. BA: em Irecê o ZARC (Port. 329/2020) indica o milheto só de 21/11 a 20/01, como cultura de verão, não como safrinha.",
+    "DANO POR FRIO (15/11): tmin_critica_c e fase vazias (não sei). A esterilidade por frio na pré-floração (13-16 °C, Circ. 29) não se aplica à cobertura dessecada no 'charuto'; o dano relevante é a geada matar a planta antes do manejo, e só achei 'não toleram geadas' (Embrapa, Clima, 2009), sem número no abrigo. Na região da linha (GO, MG, MS, MT, SP, semeadura de 21/1 a 15/4) a geada é rara antes do manejo, salvo no sul do MS e em SP de maior altitude. Resolveria: ensaio ou portaria com Tmin no abrigo que mata o milheto (fase ciclo_todo, 0 a 1)."
   ],
   "pendencias_resolvidas": [
     "Ciclo mistura dois usos de propósito: ciclo_dias_min=45 é o manejo da COBERTURA (dessecação na pré-floração, florescimento das cultivares 43-58 dias); ciclo_dias_max=105 é a colheita de GRÃO (maturidade fisiológica 97-104 DAE; ADR 500/ADR 7010 100 dias). Se o integrador preferir só o uso de cobertura, usar 45-60; só grão, usar 76-105 (ENA 1 76 dias no plantio das secas). O ZARC agrupa cultivares em Grupo I até 110 dias, II 110-130 e III acima de 130 dias (emergência-maturação), mas as cultivares descritas no SP3 ficam em 76-104 dias.",
@@ -903,6 +914,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "Régua NASA POWER até o estádio de manejo (E5-E6, Costa 2005, Seropédica: águas 577-718, seca 519-614; mediana sobre os dias possíveis do mês de semeadura). Somavilla 2023 (888, até o florescimento da última planta) fica fora: passa do ponto de manejo da cobertura."
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Vazio = não sei. A cobertura é dessecada na pré-floração ('charuto', 50-60 dias após a emergência, Circ. 29), antes da fase em que o frio causa esterilidade (13-16 °C na pré-floração, Mastingaidze & Muchena 1982, citados na Circ. 29), e essa esterilidade só tira grão, que a cobertura não produz. O dano que conta antes do manejo é a geada matar a planta e cortar a biomassa: a Embrapa diz que 'plantas de milheto não toleram geadas', mas sem número de temperatura no abrigo. Não achei portaria do ZARC do milheto com critério de geada. O motor mantém o comportamento atual (2 °C no terço do meio, sensivel_geada = true)."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_sei",
+      "nota": "Sem tmin_critica_c com fonte, a fase fica vazia. Se houver um limiar, a fase seria ciclo_todo (0 a 1): a geada mata a planta em qualquer fase antes do manejo."
     }
   },
   "confianca_calculo": {

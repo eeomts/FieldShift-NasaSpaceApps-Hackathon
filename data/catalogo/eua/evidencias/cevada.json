@@ -33,13 +33,17 @@
     "nome_zarc": "",
     "codigo_nass": "BARLEY",
     "calendario_usda": "Barley, spring",
-    "fontes": "SISTEMA: cevada de primavera (Hordeum vulgare, seis ou duas fileiras, malte ou ração), sequeiro, Dakota do Norte; Montana em regua.arranjos.montana; a cevada de outono (Meio-Atlântico, Califórnia, Arizona) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita da cevada de primavera em ND, MN, SD e MT)|NDAWN, Barley Growing Degree Day Information (Enz & Vasey 2005, de Bauer et al. 1992; Tb 32 °F; emergência 176 GDD °F; lido em cópia do Internet Archive de 8/5/2026)|Bongard, Oelke & Simmons, UMN Extension, Spring barley growth and development guide, revisto em 2021 (Fig. 2: maturação 85 dias e 2260 GDD base 40 °F depois da emergência; lido em cópia do Internet Archive de 11/8/2026)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/cevada_gd.json (emergência pelo NDAWN + maturação pela UMN, graus-dia sem teto, Tb 0, NASA POWER 2001-2020, Fargo, Carrington e Langdon; mínimo = mediana do cenário mais frio, cevada_langdon_clima_0525_81d)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/cevada_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|NDSU Extension A1049-24, North Dakota Barley, Oat and Rye Variety Trial Results for 2024 (dias até o espigamento das variedades) e NDSU Carrington REC, 2025 Variety Trial Data, Barley - Dryland (semeadura, espigamento e colheita)|Peel, NDSU, Small grain growth stages (maturação fisiológica no grão farináceo duro; temperatura ótima da cevada 70 °F)|McVay et al., MSU Extension EB0186 Montana Barley Production Guide, rev. nov. 2017 (ET da cevada irrigada em Montana 15-20 pol.; maturação fisiológica com ~35% de umidade)|Ransom, NDSU, Crop Water Use & Rooting Depth (apresentação; água da cevada 11-16 pol.)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz da cevada)|FAO ECOCROP Hordeum vulgare id 1232 (temperatura ótima)|Penn State Extension, Will Late Spring Low Temperatures Affect Small Grains?, atualizado em abr. 2026 (geada na floração; cevada a mais sensível dos cereais)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade da cevada em ND e MT 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Barley) e 11.1a (resíduo acima do solo)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão da cevada; conferência)|PROXY: Hangs & Schoenau, Univ. of Saskatchewan, pôster 2018 (C/N do resíduo de cevada, Saskatchewan)|Rogers et al., Agrosystems, Geosciences & Environment 2025, e70229 (C/N e decomposição da palha de cevada, Aberdeen-ID; resumo)|PROXY: k da palha de trigo da linha trigo dos EUA (Schomberg & Steiner 1999; Ghidey & Alberts 1993; Stott et al. 1990; Rogers et al. 2025)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (proteína da palha de cevada)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), lido direto na tabela por estado do Handbook 628 (North Dakota); a cultura não está em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "fontes": "SISTEMA: cevada de primavera (Hordeum vulgare, seis ou duas fileiras, malte ou ração), sequeiro, Dakota do Norte; Montana em regua.arranjos.montana; a cevada de outono (Meio-Atlântico, Califórnia, Arizona) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita da cevada de primavera em ND, MN, SD e MT)|NDAWN, Barley Growing Degree Day Information (Enz & Vasey 2005, de Bauer et al. 1992; Tb 32 °F; emergência 176 GDD °F; lido em cópia do Internet Archive de 8/5/2026)|Bongard, Oelke & Simmons, UMN Extension, Spring barley growth and development guide, revisto em 2021 (Fig. 2: maturação 85 dias e 2260 GDD base 40 °F depois da emergência; lido em cópia do Internet Archive de 11/8/2026)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/cevada_gd.json (emergência pelo NDAWN + maturação pela UMN, graus-dia sem teto, Tb 0, NASA POWER 2001-2020, Fargo, Carrington e Langdon; mínimo = mediana do cenário mais frio, cevada_langdon_clima_0525_81d)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/cevada_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|NDSU Extension A1049-24, North Dakota Barley, Oat and Rye Variety Trial Results for 2024 (dias até o espigamento das variedades) e NDSU Carrington REC, 2025 Variety Trial Data, Barley - Dryland (semeadura, espigamento e colheita)|Peel, NDSU, Small grain growth stages (maturação fisiológica no grão farináceo duro; temperatura ótima da cevada 70 °F)|McVay et al., MSU Extension EB0186 Montana Barley Production Guide, rev. nov. 2017 (ET da cevada irrigada em Montana 15-20 pol.; maturação fisiológica com ~35% de umidade)|Ransom, NDSU, Crop Water Use & Rooting Depth (apresentação; água da cevada 11-16 pol.)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz da cevada)|FAO ECOCROP Hordeum vulgare id 1232 (temperatura ótima)|Penn State Extension, Will Late Spring Low Temperatures Affect Small Grains?, atualizado em abr. 2026 (geada na floração; cevada a mais sensível dos cereais)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade da cevada em ND e MT 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Barley) e 11.1a (resíduo acima do solo)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão da cevada; conferência)|PROXY: Hangs & Schoenau, Univ. of Saskatchewan, pôster 2018 (C/N do resíduo de cevada, Saskatchewan)|Rogers et al., Agrosystems, Geosciences & Environment 2025, e70229 (C/N e decomposição da palha de cevada, Aberdeen-ID; resumo)|PROXY: k da palha de trigo da linha trigo dos EUA (Schomberg & Steiner 1999; Ghidey & Alberts 1993; Stott et al. 1990; Rogers et al. 2025)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (proteína da palha de cevada)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), lido direto na tabela por estado do Handbook 628 (North Dakota); a cultura não está em data/eua/nass/datas_plantio.csv (janela de semeadura)|PROXY: K-State C-646 1995 (limiar de dano por frio do trigo: -1 °C por 2 h no espigamento e na floração) convertido para o abrigo (+2 °C, Leske & Biddulph 2022 Genes 13(4):578) = 1 °C|Robertson, Univ. of Idaho Bulletin 724, 1991 (a cevada floresce na emergência da espiga)|NDSU A1049-24 (fase sensível ao frio: 57-66 dias da semeadura ao espigamento)|Zheng et al. 2015 J. Exp. Bot. 66(12):3611 (conferência: limiar de 0 °C no abrigo depois do espigamento)",
     "confianca_parametros": "baixa",
     "estados_validos": "ND|MN",
     "lacuna_informacao": "Não achamos medição na Dakota do Norte de quantos dias e quanto calor a cevada precisa para amadurecer, de quanta água usa, nem do calor que prejudica a floração. Calculamos com um guia de Minnesota e clima de satélite, para uma variedade de ciclo médio.",
     "risco_revisao_local": "Variedades precoces ou tardias podem amadurecer alguns dias antes ou depois. Confirme com a extensão da Universidade Estadual da Dakota do Norte a variedade e a data de semeadura e, na cevada para malte, se o comprador aceita a variedade.",
     "semeadura_inicio": "04-26",
-    "semeadura_fim": "05-25"
+    "semeadura_fim": "05-25",
+    "tmin_critica_c": "1",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.61",
+    "fase_frio_fim_frac": "0.71"
   },
   "origem": {
     "temp_base_c": {
@@ -85,6 +89,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Barley 1,0-1,5 m; limite superior (sequeiro). A NDSU fala em zona efetiva de 36-42 pol. (0,9-1,07 m), com a maior parte da água tirada do topo (resumo de busca de um boletim Water Spouts da NDSU, não lido; ver pendências)."
+    },
+    "tmin_critica_c": {
+      "tipo": "proxy",
+      "nota": "PROXY do trigo: não achei limiar de dano por frio próprio da cevada em fonte dos EUA. A Penn State (citando Kentucky) dá 30 °F por 2 h na floração e diz que a cevada é o cereal mais sensível; a Univ. de Idaho (Bulletin 724) usa a figura da K-State para os cereais. K-State C-646: 30 °F (-1,1 °C) por 2 horas no espigamento e na floração (a fase mais sensível). A publicação não diz a que altura a temperatura é medida e avisa que a estação oficial pode não refletir a temperatura na lavoura; tratei o número como temperatura do ar junto à cultura e converti para o abrigo com a relação publicada de Leske & Biddulph 2022 (0 °C na altura do dossel ≈ 2 °C no abrigo a 1,2 m; medido: abrigo 1,3 a 1,8 °C mais quente na madrugada de geada): -1,1 + 2 = 0,9 -> 1 °C. Conferência no abrigo: ZARC trigo RS (Portaria 385/2022) usa Tmin do ar no abrigo <= 1,0 °C ao redor do espigamento; Zheng et al. 2015 (Austrália) acharam 0 °C no abrigo como o limiar que melhor explica os danos depois do espigamento. Como a cevada é mais sensível que o trigo, o limiar real pode ser um pouco mais alto."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Conta simples sobre números oficiais. A cevada floresce praticamente na emergência da espiga (Idaho Bulletin 724), então a fase é o espigamento das cultivares de ND: 57 (Conlon) a 66 dias (CDC Fraser) depois da SEMEADURA (NDSU A1049-24). Ciclo médio da linha: (81 + 105)/2 = 93. Frações: 57/93 = 0,613 -> 0,61; 66/93 = 0,710 -> 0,71. Com a semeadura de 26/abr a 25/mai, a fase cai de fim de junho a fim de julho."
     }
   },
   "reuso_brasil": [
@@ -314,6 +326,57 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"BARLEY - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'BARLEY', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 3848, COUNTY 57293"
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Robertson, L.D., Spring Freeze Injury to Idaho Cereals, University of Idaho, Bulletin No. 724, 1991 (PDF digitalizado; texto em duas colunas lido por OCR)",
+      "url": "https://objects.lib.uidaho.edu/uiext/uiext1426.pdf",
+      "trecho": "Barley flowers more nearly at the time of head emergence. Symptoms of freeze injury at heading and flowering are nearly identical. The flowering stage is the most temperature sensitive."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "NDSU Extension A1049-24, North Dakota Barley, Oat and Rye Variety Trial Results for 2024 and Selection Guide, Tab. 1 (dias até o espigamento; a mesma fonte do ciclo)",
+      "url": "https://info.ext.nodak.edu/agriculture/sites/default/files/2025-01/a1049-24.pdf",
+      "trecho": "Table 1. 2024 North Dakota barley variety descriptions. [...] Days to Head [...] Conlon7 M/F ND 1996 S L White 30 57 [...] CDC Fraser M/F CDC 2016 R L White 30 66 [...] Days after planting."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Penn State Extension, Will Late Spring Low Temperatures Affect Small Grains?, atualizado em 7/4/2026 (cita a Universidade de Kentucky; a mesma fonte de sensivel_geada)",
+      "url": "https://extension.psu.edu/will-late-spring-low-temperatures-affect-small-grains",
+      "trecho": "At Feekes stage 10.5, or flowering (anthers visible), temperatures need only reach 30 degrees for 2 hours for injury to occur. [...] Next in cold hardiness is triticale, followed by wheat, then barley, which is most susceptible."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Shroyer, J.P.; Mikesell, M.E.; Paulsen, G.M., Spring Freeze Injury to Kansas Wheat, Kansas State University, C-646, março de 1995, Tab. 1 e texto",
+      "url": "https://bookstore.ksre.ksu.edu/download/spring-freeze-injury-to-kansas-wheat_C646",
+      "trecho": "Approximate injurious temperature (two hours) [...] Boot 28 F (-2 C) [...] Heading 30 F (-1 C) Floret sterility; white awns or white spikes [...] Flowering 30 F (-1 C) [...] Milk 28 F (-2 C) [...] Official weather stations may not reflect true in-field temperatures. [...] Wheat usually flowers about one week after the spikes appear. [...] Flowering proceeds from florets near the center of wheat spikes to florets at the top and bottom of the spikes over a 2- to 4-day period."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Leske, B.A.; Biddulph, T.B., Estimating Effects of Radiation Frost on Wheat Using a Field-Based Frost Control Treatment to Stop Freezing Damage, Genes 13(4):578, 2022 (Dale, Austrália Ocidental, 2018-2019; texto completo lido no Europe PMC), doi 10.3390/genes13040578",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9031182/",
+      "trecho": "The term “frost(s)” is defined here as air temperature ≤0 °C at canopy height, which is approximately equivalent to 2 °C air temperature in a Stevenson screen 1200 mm above ground level (AGL) [...] Screen temperatures were warmer than the unshielded canopy air temperature in non-heated plots by 1.3 to 1.8 °C from 12 a.m. to 7 a.m."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (conferência)"
+      ],
+      "fonte": "Zheng, B.; Chapman, S.C.; Christopher, J.T.; Frederiks, T.M.; Chenu, K., Frost trends and their estimated impact on yield in the Australian wheatbelt, J. Exp. Bot. 66(12):3611-3623, 2015 (texto completo lido no Europe PMC; conferência do limiar no abrigo), doi 10.1093/jxb/erv163",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4463805/",
+      "trecho": "To determine a Stevenson screen temperature threshold, temperatures from –5 °C to +2 °C were assessed in 1 °C increments (data not shown). Based on consultation with agronomists and on trial data, it was determined that a threshold temperature of 0 °C best explained major recent incidences of frost damage."
     }
   ],
   "regua": {
@@ -466,6 +529,24 @@
       "antes": "pendência: codigo_nass: 'BARLEY' continua NÃO conferido no QuickStats (15/11): a série baixada pelo time (data/scripts/baixar_nass_eua.py, data/eua/nass/producao_condado.c... | observacoes.codigos: codigo_nass 'BARLEY' = nome da tabela do Crop Production (inclui a cevada de outono do Meio-Atlântico, pouca área); não ...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'BARLEY - ACRES PLANTED', registros SURVEY: STATE 3848, COUNTY 57293; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "1",
+      "motivo": "REVISÃO 15/11 (dano por frio): PROXY do trigo: K-State C-646, -1,1 °C (30 °F) por 2 h no espigamento e na floração, convertido para o abrigo com +2 °C (Leske & Biddulph 2022). Origem: proxy."
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "floracao",
+      "motivo": "REVISÃO 15/11 (dano por frio): a cevada floresce na emergência da espiga (Idaho Bulletin 724); a floração é a fase mais sensível."
+    },
+    {
+      "coluna": "fase_frio_inicio_frac / fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "0.61 / 0.71",
+      "motivo": "REVISÃO 15/11 (dano por frio): espigamento das cultivares de ND, 57 a 66 dias da semeadura (NDSU A1049-24), sobre o ciclo médio de 93 dias. Origem: publicado."
     }
   ],
   "pendencias": [
@@ -477,7 +558,9 @@
     "profundidade_raiz_m = 1,5 (FAO-56, limite superior). A NDSU (Water Spouts, visto só no resumo da busca) fala em zona efetiva de 36-42 pol. (0,9-1,07 m).",
     "regua: C/N de dois estudos (Idaho, resumo; Saskatchewan, pôster), k PROXY do trigo, digestibilidade da palha vazia (só PB e NDT na NDSU).",
     "calendario_usda: 'Barley, spring' = nome da linha nas tabelas por estado do Handbook 628 (2010); a cultura não está em data/eua/nass/datas_plantio.csv (o mapa do time não a inclui).",
-    "semeadura_inicio/fim (04-26 a 05-25) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 19/abr, fim 3/jun), lido direto no texto do Handbook: a cevada não está em data/eua/nass/datas_plantio.csv (o mapa do time não a inclui). Minnesota: 'most active' 23/abr-25/mai. Bate com cenarios/cevada_gd.json (emergência com semeadura em 26/abr e 25/mai; cenário do mínimo em Langdon com semeadura em 25/mai, o fim da janela)."
+    "semeadura_inicio/fim (04-26 a 05-25) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 19/abr, fim 3/jun), lido direto no texto do Handbook: a cevada não está em data/eua/nass/datas_plantio.csv (o mapa do time não a inclui). Minnesota: 'most active' 23/abr-25/mai. Bate com cenarios/cevada_gd.json (emergência com semeadura em 26/abr e 25/mai; cenário do mínimo em Langdon com semeadura em 25/mai, o fim da janela).",
+    "Dano por frio (15/11): tmin_critica_c = 1 é PROXY do trigo (K-State C-646 convertido para o abrigo com +2 °C). A cevada é mais sensível que o trigo (Penn State), então o limiar real pode ser mais alto. Resolveria: um limiar medido para a cevada no espigamento (ex.: Frederiks et al. 2011, Crop Pasture Sci. 62:736, cevada na Austrália, não lido) com a temperatura do abrigo.",
+    "Dano por frio (15/11): a fase cai em fim de junho-julho na Dakota do Norte, quando geada é rara; o efeito prático é tirar o teste de geada de maio (terço do meio na regra antiga), que eliminaria a cevada sem motivo. Carrington 2025 (sequeiro) espigou com 52-54 dias (0,56-0,58 do ciclo médio), um pouco antes da faixa de 2024."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

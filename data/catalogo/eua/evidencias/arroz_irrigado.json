@@ -33,10 +33,16 @@
     "nome_zarc": "",
     "codigo_nass": "RICE",
     "calendario_usda": "Rice, all",
-    "fontes": "SISTEMA: arroz semeado a seco com inundação tardia do Delta do Arkansas; só é candidato com várzea e água de irrigação (regra 8 do motor)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita do Arkansas)|Hardke (ed.), Univ. of Arkansas Rice Production Handbook MP192, cap. 2 (Moldenhauer, Counce & Hardke: estádios, R9 a 20-22% de umidade, 35 d de enchimento, temperaturas), cap. 4 (Tab. 4-8 dias da semeadura à emergência; Tab. 4-15 datas de 20% de umidade por cultivar e época), cap. 6 (Hardke & Norman: método DD50, Tab. 6-3), cap. 9 (biomassa total) e cap. 10 (lâmina e água aplicada)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/arroz_irrigado_gd.json (graus-dia sem teto, Tb 11, na régua do NASA POWER, Stuttgart-AR 2001-2020)|Reavis, Suvočarev, Reba & Runkle, Journal of Hydrology 596:126080, 2021 (ET medida por eddy covariance em lavouras comerciais do leste do Arkansas, 2015-2017; Kc medido)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/arroz_irrigado_etc.json|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C de Infeld et al. 1998, reusada do Brasil)|SOSBAI 2025, Tab. 3.2 (temperaturas ótimas e críticas, reusadas do Brasil)|FAO-56 Tab. 11, 12, 14 e 22 (Kc, fases e raiz)|USDA NASS, Crop Production 2022 Summary (jan. 2023) e 2025 Summary (jan. 2026) (produtividade do arroz no Arkansas 2021-2025)|IPCC 2019 Refinement, Vol. 4, Cap. 11, Tab. 11.2 e 11.1a (resíduo acima do solo)|Linquist, Brouder & Hill, Agronomy Journal 98:1050-1059, 2006 (palha e decomposição no inverno, Califórnia)|PROXY: Feedipedia, Rice straw (PB e digestibilidade; média mundial)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "fontes": "SISTEMA: arroz semeado a seco com inundação tardia do Delta do Arkansas; só é candidato com várzea e água de irrigação (regra 8 do motor)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita do Arkansas)|Hardke (ed.), Univ. of Arkansas Rice Production Handbook MP192, cap. 2 (Moldenhauer, Counce & Hardke: estádios, R9 a 20-22% de umidade, 35 d de enchimento, temperaturas), cap. 4 (Tab. 4-8 dias da semeadura à emergência; Tab. 4-15 datas de 20% de umidade por cultivar e época), cap. 6 (Hardke & Norman: método DD50, Tab. 6-3), cap. 9 (biomassa total) e cap. 10 (lâmina e água aplicada)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/arroz_irrigado_gd.json (graus-dia sem teto, Tb 11, na régua do NASA POWER, Stuttgart-AR 2001-2020)|Reavis, Suvočarev, Reba & Runkle, Journal of Hydrology 596:126080, 2021 (ET medida por eddy covariance em lavouras comerciais do leste do Arkansas, 2015-2017; Kc medido)|CÁLCULO (conferência): scripts/etc_nasa_power.py, cenários eua/cenarios/arroz_irrigado_etc.json|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C de Infeld et al. 1998, reusada do Brasil)|SOSBAI 2025, Tab. 3.2 (temperaturas ótimas e críticas, reusadas do Brasil)|FAO-56 Tab. 11, 12, 14 e 22 (Kc, fases e raiz)|USDA NASS, Crop Production 2022 Summary (jan. 2023) e 2025 Summary (jan. 2026) (produtividade do arroz no Arkansas 2021-2025)|IPCC 2019 Refinement, Vol. 4, Cap. 11, Tab. 11.2 e 11.1a (resíduo acima do solo)|Linquist, Brouder & Hill, Agronomy Journal 98:1050-1059, 2006 (palha e decomposição no inverno, Califórnia)|PROXY: Feedipedia, Rice straw (PB e digestibilidade; média mundial)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Moldenhauer, Counce & Hardke, MP192 cap. 2 (frio: 50 °F ou menos por duas noites seguidas nas 2 semanas antes da floração e na floração; tmin_critica_c)|Moldenhauer, Counce & Hardke, MP192 cap. 2, Effect of Temperature (sul dos EUA = japônica tropical, 'reasonably good cold tolerance'; frio aumenta a esterilidade, efeito de perda forte a só dano na folha; grupo de cultivar e tmin_efeito)|SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, 2025, cap. 3.2 e 6 (cultivares americanas da subespécie japônica; japônicas mais tolerantes ao frio que as índicas do RS; grupo de cultivar)",
     "confianca_parametros": "media",
     "semeadura_inicio": "04-14",
-    "semeadura_fim": "05-19"
+    "semeadura_fim": "05-19",
+    "tmin_critica_c": "10",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.63",
+    "fase_frio_fim_frac": "0.74",
+    "tmin_dias_seguidos": "2",
+    "tmin_efeito": "aviso"
   },
   "origem": {
     "temp_base_c": {
@@ -82,6 +88,18 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Rice 0,5-1,0 m; limite inferior, que o FAO-56 indica para manejo de irrigação, porque o solo fica inundado. Mesma escolha do Brasil (exceção à regra do limite superior)."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Mínima noturna do ar (abrigo). Univ. of Arkansas MP192, cap. 2 (Management Key): 50 °F ou menos por duas noites seguidas nas 2 semanas antes da floração e/ou na floração podem causar esterilidade excessiva. 50 °F = (50 - 32)/1,8 = 10 °C. tmin_efeito = aviso: o dano é esterilidade (espiguetas vazias, 'blanks'), perda parcial; o MP192 diz que o efeito do frio e do calor vai de 'severely reduced yield' a 'merely cosmetic leaf injury'. GRUPO DE CULTIVAR: o arroz do sul dos EUA é japônica tropical, com 'reasonably good cold tolerance' (MP192 cap. 2); a SOSBAI 2025 diz que as cultivares americanas são japônicas (cap. 6) e que as japônicas toleram mais o frio que as índicas (cap. 3.2), que são as cultivares do RS. Por isso o limiar (10 °C/2 noites) é diferente do Brasil (15 °C/3 dias, ZARC RS): exceção de grupo de cultivar do README ('Dano por frio') e de EXCECOES_FRIO."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Fase: as 2 semanas antes da floração e a floração (MP192 cap. 2). Ciclo da linha da semeadura a R9 (113-134 d, médio 123,5). MP192 Tab. 6-3 (10 cultivares emergidas em 1/mai): 50% de espigamento aos 76-86 dias da emergência, mediana 79; Tab. 4-8: 12-15 dias da semeadura à emergência, média 13. Espigamento = 13 + 79 = 92 dias da semeadura. Início = 92 - 14 = 78 -> 78/123,5 = 0,63. Fim = 92/123,5 = 0,74. Contas simples sobre tabelas oficiais da Univ. of Arkansas."
+    },
+    "tmin_dias_seguidos": {
+      "tipo": "publicado",
+      "nota": "2 = 'two consecutive nights' de 50 °F ou menos (MP192 cap. 2, Management Key), na mesma frase do limiar de 10 °C. A fonte diz '50°F or less'; a regra 17 conta Tmin abaixo de 10 °C (diferença de borda)."
     }
   },
   "reuso_brasil": [
@@ -168,6 +186,12 @@
       "valor_brasil": "palhada 7,3 t/ha, C/N 53, k 0,0040, PB 5,6, DMS 46,1",
       "decisao": "trocado",
       "motivo": "Produtividade NASS do Arkansas + IPCC; N da palha e decomposição medidos na Califórnia; forragem pela Feedipedia (média mundial)."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "valor_brasil": "15 (ZARC RS, Tmin ≤ 15 °C por 3 dias seguidos na pré-floração)",
+      "decisao": "trocado",
+      "motivo": "Fonte americana para as cultivares do Arkansas: 50 °F = 10 °C por duas noites seguidas (MP192 cap. 2); as japônicas tropicais do sul dos EUA toleram mais o frio que as índicas do RS."
     }
   ],
   "evidencias": [
@@ -377,6 +401,43 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"RICE - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'RICE', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 799, COUNTY 6397"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "tmin_dias_seguidos"
+      ],
+      "fonte": "Moldenhauer, K.; Counce, P.; Hardke, J., Rice Growth and Development, cap. 2 do Arkansas Rice Production Handbook (MP192), Management Key da fase reprodutiva",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-2.pdf",
+      "trecho": "Extremes in temperatures, such as 50°F or less, for two consecutive nights 2 weeks prior to and/or at flowering can cause excessive sterility or blanks. [...] Japonica types common in the southern USA tend to have reasonably good cold tolerance."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Hardke, J.; Norman, R., DD50 Rice Management Program, cap. 6 do Arkansas Rice Production Handbook (MP192), Tab. 6-3; e cap. 4, Tab. 4-8 (dias da semeadura à emergência)",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-6.pdf",
+      "trecho": "Table 6-3. Days required for ten rice cultivars, emerged on May 1, to reach specific growth stages. [...] 50% Heading [...] CL151 76 [...] CL153 80 [...] CL172 81 [...] Diamond 80 [...] LaKast 78 [...] Roy J 86 [...] RT CLXL745 76 [...] RT XP753 76 [...] Jupiter 81 [...] Titan 78 [cap. 4, Tab. 4-8: Days from seeding to emergence 15 13 12]"
+    },
+    {
+      "colunas": [
+        "tmin_efeito",
+        "tmin_critica_c"
+      ],
+      "fonte": "Moldenhauer, K.; Counce, P.; Hardke, J., Rice Growth and Development, cap. 2 do Arkansas Rice Production Handbook (MP192), Effect of Temperature on Growth and Development of Rice (grupo de cultivar e efeito do frio)",
+      "url": "https://www.uaex.uada.edu/publications/pdf/mp192/chapter-2.pdf",
+      "trecho": "Most of the rice grown in the southern USA is a tropical japonica type. Both high and low temperature extremes can influence rice production in Arkansas. However, the overall effects can range from severely reduced yield to merely cosmetic leaf injury. Japonica types common in the southern USA tend to have reasonably good cold tolerance. [...] Symptoms of low temperature stress include reduced germination, leaf discoloration, stunting, delayed maturity and increased sterility."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 3.2 e cap. 6 (grupo de cultivar: as americanas são japônicas; as do RS, índicas)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "A faixa crítica de temperatura para induzir esterilidade de espiguetas é de 15 a 17°C, para os genótipos tolerantes ao frio, e de 17 a 19°C, para os mais sensíveis. Os genótipos respondem distintamente à tolerância ao frio, sendo que, em geral, os genótipos da subespécie Japônica são mais tolerantes do que os da subespécie Índica. [cap. 6] As cultivares americanas, também pertencentes à subespécie japônica, foram introduzidas dos Estados Unidos [...] BR/IRGA 409 e BR/IRGA 410 [...] Diferentemente das anteriores, essas cultivares pertencem à subespécie índica. Apresentam porte baixo, folhas eretas, alta capacidade de perfilhamento [...] As cultivares modernas por apresentarem um potencial produtivo superior, substituíram as dos outros grupos agronômicos e atualmente são cultivadas na quase totalidade da área de arroz irrigado do Rio Grande do Sul e de Santa Catarina."
     }
   ],
   "regua": {
@@ -414,7 +475,8 @@
       "coleta": "Palhada = resíduo acima do solo depois da colheita do grão, pela Tab. 11.2 do IPCC 2019: AGDM = 0,95 × Crop + 2,46 (t MS/ha), com Crop = produtividade × 1,121/1000 (lb/acre -> t/ha) × 0,89 (DRY, Tab. 11.1a). Produtividade NASS do Arkansas (todas as classes), 2021-2025: 7630, 7410, 7550, 7640, 7480 lb/acre. Típico = mediana 7550 lb/acre = 8,46 t/ha -> 9,6 t/ha; mínimo 2022 (7410) -> 9,5; máximo 2024 (7640) -> 9,7. Conferências: a Univ. of Arkansas (MP192 cap. 9) dá 20.000 lb/acre de biomassa seca total para 200 bu/acre (9.000 lb de grão), ou ~11.000 lb/acre (12,3 t/ha) de palha; Linquist et al. 2006 mediram 6,9-7,4 t/ha de palha na Califórnia. Não desconta queima, enfardamento nem a parte enterrada no preparo. C/N: N da palha medido por Linquist et al. 2006 (0,74% e 0,89%) com C de 40% (premissa, a mesma usada no Brasil): 40/0,89 = 45 (mínimo), 40/0,74 = 54 (máximo), 40/0,815 = 49 (típico). Sem C/N medido no Arkansas.",
       "decomposicao": "Linquist et al. 2006, Tab. 3: palha rolada que restava nas sacolas antes do preparo de primavera: sem inundação 59% (Maxwell) e 65% (Biggs); com inundação de inverno 45% e 52%. O artigo não dá a data exata de retirada: as sacolas entraram depois do manejo de outono (a inundação começou em 1 e 12/nov) e saíram antes do preparo de primavera (as operações começaram em abril). Premissa: 150 dias. k = -ln(fração)/150: 0,0035, 0,0029, 0,0053, 0,0044; valor = mediana = 0,0040 (T½ = 0,693/0,0040 = 173 d); mínimo 0,0029, máximo 0,0053. Com 130 ou 170 dias o valor iria de 0,0046 a 0,0035. Palhada que sobra em 60 dias: 9,6 × e^(-0,0040×60) = 7,6 t/ha.",
       "colheita": "Handbook 628 (AR): colheita usual de 29/ago a 24/out, 'most active' de 9/set a 10/out. O MP192 manda drenar ~2 semanas antes da colheita e colher antes do R9 de toda a lavoura, para não perder rendimento de grãos inteiros.",
-      "codigos": "codigo_nass 'RICE' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'RICE - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'RICE', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 799, COUNTY 6397. Série de produção: 'RICE - PRODUCTION, MEASURED IN CWT'. No arquivo do time (data/eua/nass/producao_condado.csv) a cultura se chama 'arroz' (cultura_id), não 'arroz_irrigado'."
+      "codigos": "codigo_nass 'RICE' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'RICE - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'RICE', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 799, COUNTY 6397. Série de produção: 'RICE - PRODUCTION, MEASURED IN CWT'. No arquivo do time (data/eua/nass/producao_condado.csv) a cultura se chama 'arroz' (cultura_id), não 'arroz_irrigado'.",
+      "grupo_cultivar": "Cultivares do arroz irrigado do Arkansas: japônica tropical. MP192 cap. 2: 'Most of the rice grown in the southern USA is a tropical japonica type' e 'Japonica types common in the southern USA tend to have reasonably good cold tolerance' (o MP192 cita a geada de 2007 na plântula como demonstração). SOSBAI 2025: as cultivares americanas são da subespécie japônica (cap. 6) e as japônicas são em geral mais tolerantes ao frio que as índicas (cap. 3.2), que ocupam quase toda a área do RS. É o motivo do limiar de frio diferente entre esta linha (10 °C/2 noites) e a do Brasil (15 °C/3 dias)."
     },
     "resultado": {
       "aporte_biomassa": "alto",
@@ -466,6 +528,48 @@
       "antes": "pendência: codigo_nass: 'RICE' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato... | observacoes.codigos: codigo_nass 'RICE'. short_desc 'RICE - ...' = commodity_desc 'RICE', todas as classes (sem classe no nome). No arquivo d...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'RICE - ACRES PLANTED', registros SURVEY: STATE 799, COUNTY 6397; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "10",
+      "motivo": "REVISÃO 15/11 (dano por frio): 50 °F (10 °C) ou menos por duas noites seguidas antes e na floração causam esterilidade (MP192 cap. 2)"
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "floracao",
+      "motivo": "REVISÃO 15/11 (dano por frio): as 2 semanas antes da floração e a floração (MP192 cap. 2)"
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.63",
+      "motivo": "REVISÃO 15/11 (dano por frio): 50% de espigamento aos 13 + 79 = 92 dias da semeadura (MP192 Tab. 4-8 e 6-3) menos 14 dias = 78 / ciclo médio 123,5 d"
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "0.74",
+      "motivo": "REVISÃO 15/11 (dano por frio): 92 / 123,5 d"
+    },
+    {
+      "coluna": "tmin_dias_seguidos",
+      "antes": "(vazio)",
+      "depois": "2",
+      "motivo": "REVISÃO 15/11 (revisão do frio): '50°F or less, for two consecutive nights 2 weeks prior to and/or at flowering' (MP192 cap. 2)"
+    },
+    {
+      "coluna": "tmin_efeito",
+      "antes": "(vazio)",
+      "depois": "aviso",
+      "motivo": "REVISÃO 15/11 (revisão do frio): o dano é esterilidade ('excessive sterility or blanks'), perda parcial; efeito de 'severely reduced yield' a 'merely cosmetic leaf injury' (MP192 cap. 2); decisão do usuário: aviso, como o calor na regra 11"
+    },
+    {
+      "coluna": "origem.tmin_critica_c, regua.observacoes.grupo_cultivar",
+      "antes": "nota com 'a regra 17 conta um dia só'",
+      "depois": "grupo japônica tropical com fonte (MP192 cap. 2; SOSBAI cap. 3.2 e 6)",
+      "motivo": "REVISÃO 15/11 (revisão do frio): exceção de grupo de cultivar (README, 'Dano por frio')"
     }
   ],
   "pendencias": [
@@ -480,7 +584,8 @@
     "Frio na pré-floração (esterilidade) continua sem coluna, como no Brasil; no Arkansas o risco de calor noturno no enchimento (qualidade e rendimento de grãos inteiros, MP192 cap. 2) também não tem coluna.",
     "regua: decomposição e N da palha são da Califórnia (Linquist et al. 2006), com a duração das sacolas estimada em 150 dias; C/N calculada com C de 40% (premissa). PB e digestibilidade são a média mundial da Feedipedia (PROXY). A palhada pelo IPCC (9,6 t/ha) fica entre a medida da Califórnia (7,0) e a conta da Univ. of Arkansas (12,3). No Arkansas muita palha é queimada, rolada ou fica sob a inundação de inverno (aves aquáticas); isso não foi descontado. Resolveria: medidas de palha e decomposição no Delta (USDA-ARS Jonesboro ou Univ. of Arkansas).",
     "calendario_usda: 'Rice, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Todas as classes ('Rice, all').",
-    "semeadura_inicio/fim (04-14 a 05-19) = 'most active' do Handbook 628 (2010) no Arkansas (início 6/abr, fim 2/jun); em data/eua/nass/datas_plantio.csv a linha está como cultura_id 'arroz'. Bate com cenarios/arroz_irrigado_gd.json (18/abr, 2/mai e 19/mai em Stuttgart); as conferências de Humnoke (8 e 10/abr) ficam poucos dias antes do 'most active', dentro do início de 6/abr."
+    "semeadura_inicio/fim (04-14 a 05-19) = 'most active' do Handbook 628 (2010) no Arkansas (início 6/abr, fim 2/jun); em data/eua/nass/datas_plantio.csv a linha está como cultura_id 'arroz'. Bate com cenarios/arroz_irrigado_gd.json (18/abr, 2/mai e 19/mai em Stuttgart); as conferências de Humnoke (8 e 10/abr) ficam poucos dias antes do 'most active', dentro do início de 6/abr.",
+    "FRIO (revisão 15/11): a tolerância ao frio da japônica do sul dos EUA que o MP192 demonstra é na plântula (geada de 2007), não na microsporogênese; o limiar de 10 °C/2 noites é recomendação de manejo da extensão, sem ensaio citado. Resolveria: ensaio de esterilidade por frio na fase reprodutiva com cultivares do Arkansas (B.R. Wells Rice Research Studies). No Delta o risco é baixo (0-1 de 19 anos em Stuttgart com qualquer critério, simulação do coordenador)."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
@@ -489,5 +594,8 @@
       "graus_dia_ciclo_min",
       "graus_dia_ciclo_max"
     ]
-  }
+  },
+  "pendencias_resolvidas": [
+    "DANO POR FRIO (15/11): tmin_critica_c = 10 (50 °F, MP192), fase floracao, 0,63-0,74; a pendência antiga 'Frio na pré-floração continua sem coluna' fica atendida. A fonte pede duas noites seguidas e a regra 17 conta um dia: no Delta do Arkansas não muda nada (conferência no NASA POWER, Stuttgart 2001-2019, semeaduras de 14/4 e 19/5: 0 de 19 anos com Tmin < 10 °C nos meses da fase, julho e agosto). O limiar é diferente do Brasil (15 °C) por causa das cultivares (japônica tropical nos EUA); se o motor usar a regra de dias seguidos para o arroz do Brasil (ver a pendência de arroz_irrigado do Brasil), usar 2 noites aqui. -> RESOLVIDA 15/11 (revisão do frio): tmin_dias_seguidos = 2 (MP192) e tmin_efeito = aviso; a regra 17 revista conta só os dias da fase, com N dias seguidos."
+  ]
 }

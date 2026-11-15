@@ -1,7 +1,7 @@
 [project]
 name = "agroia-api"
 version = "0.1.0"
-description = "API do AgroIA (FastAPI): login e onboarding do produtor"
+description = "API do AgroAI (FastAPI): login e onboarding do produtor"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115",

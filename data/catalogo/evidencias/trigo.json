@@ -23,10 +23,14 @@
     "valor_forrageiro": "medio",
     "codigo_pam": "40127",
     "nome_zarc": "Trigo",
-    "fontes": "FAO-56 Tab.12 linha Spring Wheat + grupo Cereals (Kc)|FAO-56 Tab.22 Spring Wheat 1.0-1.5 m (raiz; limite superior)|Embrapa 2016 Trigo: o produtor pergunta Cap.2 (trigos de primavera no Brasil; geada no espigamento-floração)|Silva et al. 2008 PAB 43(10) Embrapa Trigo (geada no espigamento)|ZARC trigo MAPA Portarias 385/2022 RS e 02/2021 GO e 434/2025 BA (ciclo por grupo; geada no espigamento; calor como limitante na região tropical)|Embrapa Cerrados Circular Técnica 49 2021 BRS 264 (ciclo mínimo)|Embrapa Trigo folheto Cultivares Embrapa 2021 (ciclo das tardias de duplo propósito: BRS Tarumã 160-165 d e BRS Tarumaxi 162-167 d até a maturação)|Embrapa Trigo folder BRS Tarumã 2016 (maturação fisiológica 162 d)|Fontaneli et al. 2019 Revista Plantio Direto 29(168) BRS Pastoreio (156 d da emergência à maturação; BRS Tarumã cerca de uma semana mais longo)|Embrapa Trigo Comunicado Técnico 324 2013 (temperatura base 0 °C; soma térmica ET-ANT 388-512 GD)|Walter et al. 2009 Ciência Rural 39(8) (soma térmica emergência-maturidade fisiológica 1964-2504 °C dia com Tb 0 °C)|Embrapa Trigo Sistema de Produção 4 Cultivo de Trigo 2ª ed. 2014 (filocrono ~100 GD com Tb 0 °C; critério ZARC SP de Tmax média na floração <= 28 °C)|FAO ECOCROP Triticum aestivum (temperatura ótima)|Ferris et al. 1998 Ann. Bot. 82(5):631-639 (tmax na antese: perda de rendimento acima da base de 31 °C)|Porter & Gawith 1999 Eur J Agron 10:23-36 via Jacott & Boden 2020 J Exp Bot (tmax na antese 31 °C; original de acesso fechado, não lido)|FAO Irrigation Water Management Training Manual 3 Tab.14 (água)|Antonini et al. 2024 Embrapa Cerrados Boletim de P&D 416 (lâmina irrigada 445-498 mm no ciclo do BRS 264 no DF)",
+    "fontes": "FAO-56 Tab.12 linha Spring Wheat + grupo Cereals (Kc)|FAO-56 Tab.22 Spring Wheat 1.0-1.5 m (raiz; limite superior)|Embrapa 2016 Trigo: o produtor pergunta Cap.2 (trigos de primavera no Brasil; geada no espigamento-floração)|Silva et al. 2008 PAB 43(10) Embrapa Trigo (geada no espigamento)|ZARC trigo MAPA Portarias 385/2022 RS e 02/2021 GO e 434/2025 BA (ciclo por grupo; geada no espigamento; calor como limitante na região tropical)|Embrapa Cerrados Circular Técnica 49 2021 BRS 264 (ciclo mínimo)|Embrapa Trigo folheto Cultivares Embrapa 2021 (ciclo das tardias de duplo propósito: BRS Tarumã 160-165 d e BRS Tarumaxi 162-167 d até a maturação)|Embrapa Trigo folder BRS Tarumã 2016 (maturação fisiológica 162 d)|Fontaneli et al. 2019 Revista Plantio Direto 29(168) BRS Pastoreio (156 d da emergência à maturação; BRS Tarumã cerca de uma semana mais longo)|Embrapa Trigo Comunicado Técnico 324 2013 (temperatura base 0 °C; soma térmica ET-ANT 388-512 GD)|Walter et al. 2009 Ciência Rural 39(8) (soma térmica emergência-maturidade fisiológica 1964-2504 °C dia com Tb 0 °C)|Embrapa Trigo Sistema de Produção 4 Cultivo de Trigo 2ª ed. 2014 (filocrono ~100 GD com Tb 0 °C; critério ZARC SP de Tmax média na floração <= 28 °C)|FAO ECOCROP Triticum aestivum (temperatura ótima)|Ferris et al. 1998 Ann. Bot. 82(5):631-639 (tmax na antese: perda de rendimento acima da base de 31 °C)|Porter & Gawith 1999 Eur J Agron 10:23-36 via Jacott & Boden 2020 J Exp Bot (tmax na antese 31 °C; original de acesso fechado, não lido)|FAO Irrigation Water Management Training Manual 3 Tab.14 (água)|Antonini et al. 2024 Embrapa Cerrados Boletim de P&D 416 (lâmina irrigada 445-498 mm no ciclo do BRS 264 no DF)|ZARC trigo MAPA Portaria 385/2022 RS (dano por frio: Tmin do ar no abrigo <= 1,0 °C nos 20 dias ao redor do espigamento)|Embrapa Trigo folheto Cultivares Embrapa 2021 (fase sensível ao frio: BRS Belajoia, 85 d até o espigamento, 135 d até a maturação)|K-State C-646 1995 Spring Freeze Injury to Kansas Wheat (conferência do limiar: -1 °C por 2 h no espigamento e na floração)|Leske & Biddulph 2022 Genes 13(4):578 (conferência: 0 °C no dossel ≈ 2 °C no abrigo)|Zheng et al. 2015 J. Exp. Bot. 66(12):3611 (conferência: limiar de 0 °C no abrigo depois do espigamento)",
     "confianca_parametros": "media",
     "graus_dia_ciclo_min": "2000",
-    "graus_dia_ciclo_max": "2600"
+    "graus_dia_ciclo_max": "2600",
+    "tmin_critica_c": "1",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.59",
+    "fase_frio_fim_frac": "0.73"
   },
   "mudancas": [
     {
@@ -100,6 +104,24 @@
       "antes": "alta",
       "depois": "media",
       "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (estudo_unico), graus_dia_ciclo_max (estudo_unico)"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "1",
+      "motivo": "REVISÃO 15/11 (dano por frio): critério de geada do ZARC trigo RS (Portaria 385/2022): Tmin do ar no abrigo <= 1,0 °C ao redor do espigamento. Origem: publicado."
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "floracao",
+      "motivo": "REVISÃO 15/11 (dano por frio): espigamento-floração, o período crítico à geada (Embrapa 2016, perguntas 55 e 57; ZARC RS). Geada no perfilhamento não entra no teste."
+    },
+    {
+      "coluna": "fase_frio_inicio_frac / fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "0.59 / 0.73",
+      "motivo": "REVISÃO 15/11 (dano por frio): 20 dias ao redor do espigamento (ZARC RS) da BRS Belajoia (espigamento aos 92 dias da semeadura, folheto Embrapa 2021): 82/140 e 102/140, com o ciclo médio da linha. Origem: publicado."
     }
   ],
   "evidencias": [
@@ -406,6 +428,58 @@
       "fonte": "Rodrigues, O. et al. Caracterização ontogenética de cultivares brasileiras de trigo. Embrapa Trigo, Comunicado Técnico 324, 2013 (Tb 0 da Embrapa)",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/988430/1/2013comunicadotecnicoonline324.pdf",
       "trecho": "A duração das respectivas fases foi quantificada em soma térmica utilizando-se a temperatura basal de zero grau."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "MAPA/SPA, Portaria nº 385, de 6/12/2022, ZARC trigo de sequeiro RS, ano-safra 2022/2023, item I (Temperatura)",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2022-2023/rio-grande-do-sul-rs/port-no-385-trigo-de-sequeiro-rs-ret.pdf",
+      "trecho": "Foi considerado o risco de geada foi estimado pela análise da frequência de ocorrência de temperaturas do ar igual ou menor a 1,0 C, com base na temperatura do ar em abrigo meteorológico. O diagnóstico de risco de geada foi considerado em dois decêndios (20 dias) ao redor do espigamento, incluindo o decêndio imediatamente anterior (n-1) e no decêndio do espigamento (n)."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Cunha, G.R. da et al. (Embrapa, 2016), Trigo: o produtor pergunta, cap.2, perguntas 55 e 57",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1040316/1/ID436112016LVTrigoCap2.pdf",
+      "trecho": "A sensibilidade do trigo à geada começa a aumentar depois do início do emborrachamento. Atinge o seu máximo na floração e diminui após os estádios de grão em massa mole e dura. [...] quando intensas e coincidindo com o momento crítico da cultura (espigamento/floração), podem causar até mesmo a perda total da lavoura."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Embrapa Trigo. Folheto Cultivares Embrapa (trigo e aveia), 2021 (fase sensível ao frio)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1133636/1/FLYER-CULTIVARES-EMBRAPA-2021-03.08.21-b.pdf",
+      "trecho": "BRS REPONTE / BRS BELAJOIA [...] Região de adaptação PR 1, SC 1 e 2, RS 1 e 2 [...] Ciclo Precoce / Médio [...] Dias até espigamento Média de 75 / Média de 85 [...] Dias até maturação Média de 125 / Média de 135"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (conferência)"
+      ],
+      "fonte": "Shroyer, J.P.; Mikesell, M.E.; Paulsen, G.M., Spring Freeze Injury to Kansas Wheat, Kansas State University, C-646, março de 1995, Tab. 1 e texto",
+      "url": "https://bookstore.ksre.ksu.edu/download/spring-freeze-injury-to-kansas-wheat_C646",
+      "trecho": "Approximate injurious temperature (two hours) [...] Boot 28 F (-2 C) [...] Heading 30 F (-1 C) Floret sterility; white awns or white spikes [...] Flowering 30 F (-1 C) [...] Milk 28 F (-2 C) [...] Official weather stations may not reflect true in-field temperatures. [...] Wheat usually flowers about one week after the spikes appear. [...] Flowering proceeds from florets near the center of wheat spikes to florets at the top and bottom of the spikes over a 2- to 4-day period."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (conferência)"
+      ],
+      "fonte": "Leske, B.A.; Biddulph, T.B., Estimating Effects of Radiation Frost on Wheat Using a Field-Based Frost Control Treatment to Stop Freezing Damage, Genes 13(4):578, 2022 (Dale, Austrália Ocidental, 2018-2019; texto completo lido no Europe PMC), doi 10.3390/genes13040578",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9031182/",
+      "trecho": "The term “frost(s)” is defined here as air temperature ≤0 °C at canopy height, which is approximately equivalent to 2 °C air temperature in a Stevenson screen 1200 mm above ground level (AGL) [...] Screen temperatures were warmer than the unshielded canopy air temperature in non-heated plots by 1.3 to 1.8 °C from 12 a.m. to 7 a.m."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (conferência)"
+      ],
+      "fonte": "Zheng, B.; Chapman, S.C.; Christopher, J.T.; Frederiks, T.M.; Chenu, K., Frost trends and their estimated impact on yield in the Australian wheatbelt, J. Exp. Bot. 66(12):3611-3623, 2015 (texto completo lido no Europe PMC; conferência do limiar no abrigo), doi 10.1093/jxb/erv163",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4463805/",
+      "trecho": "To determine a Stevenson screen temperature threshold, temperatures from –5 °C to +2 °C were assessed in 1 °C increments (data not shown). Based on consultation with agronomists and on trial data, it was determined that a threshold temperature of 0 °C best explained major recent incidences of frost damage."
     }
   ],
   "pendencias": [
@@ -418,7 +492,10 @@
     "temp_otima (15–23) vem do ECOCROP, que é genérico para a espécie. Não achei faixa ótima da Embrapa para cultivares brasileiras. Walter et al. 2009 usam Tot = 22 °C no cálculo térmico, o que é coerente com o teto de 23.",
     "graus-dia: Uma só fonte de ciclo completo (Walter 2009, RS). Não achei soma térmica com Tb 0 para o trigo tropical do Cerrado; o mínimo de 2000 foi checado só por cálculo (105 dias × 19,5 °C).",
     "graus-dia: A Revista Cultivar (2025) cita 1450 °C·dia até a maturação no Brasil Central sem dizer a Tb; não usado.",
-    "graus-dia: Semeadura->emergência é CÁLCULO (~110 GD). WOFOST usa 120 e AquaCrop 150 com Tb 0, o que confere."
+    "graus-dia: Semeadura->emergência é CÁLCULO (~110 GD). WOFOST usa 120 e AquaCrop 150 com Tb 0, o que confere.",
+    "Dano por frio (15/11): tmin_critica_c = 1 é o critério de RISCO de geada do ZARC (Tmin do ar no abrigo <= 1,0 °C ao redor do espigamento), lido na portaria do RS (385/2022); não conferi a portaria do PR. Não achei fonte brasileira com a temperatura do ABRIGO que causa esterilidade medida no campo (os estudos da Embrapa Trigo, como Silva et al. 2008, aplicam -7 °C às plantas em câmara). As conferências ficam entre 0 e 1 °C no abrigo (K-State C-646 convertido com Leske & Biddulph 2022; Zheng et al. 2015). Um estudo da Embrapa Trigo com dano no espigamento e a Tmin da estação resolveria.",
+    "Dano por frio (15/11): a janela literal do ZARC são os decêndios n-1 e n (mais antes do espigamento); usei 10 dias antes e 10 depois ('20 dias ao redor do espigamento') para incluir a floração, a fase de sensibilidade máxima (Embrapa 2016). As frações vêm da BRS Belajoia (ciclo médio, perto do ciclo médio da linha); cultivar precoce entra na fase mais cedo e tardia mais tarde. No Cerrado (BRS 264, 50 dias da emergência ao espigamento) a fase cai antes, em ~0,42-0,60 do próprio ciclo, mas lá o limitante é o calor (ZARC BA), não a geada.",
+    "Dano por frio (15/11): sensivel_geada = true está coerente com a fonte do limiar (geada no espigamento-floração)."
   ],
   "pendencias_resolvidas": [
     "tmax_critica_c (31): a fonte lida é uma revisão secundária (Jacott & Boden 2020) que cita Porter & Gawith 1999. Não li o original e não achei limiar numérico em documento da Embrapa.",
@@ -518,6 +595,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "estudo_unico",
       "nota": "semeadura -> maturação fisiológica; Tb 0; Valor já coletado em evidencias/trigo.json. Walter et al. 2009 (Santa Maria-RS, 6 cultivares, 13 datas de semeadura), Tb 0, da EMERGÊNCIA à maturidade fisiológica: 1963,5 (BRS Louro) a 2503,6 (BRS Tarumã). TETO: a fonte usa função com Tot 22 °C e TB 35 °C (a taxa cai acima de 22), não o linear do motor; no inverno gaúcho a Tmed raramente passa de 22 e os dois métodos quase coincidem. Semeadura->emergência (CÁLCULO): a fonte não dá; 7 d × 15 °C = 105 ≈ 110 GD. Da semeadura: 1964 + 110 = 2074 e 2504 + 110 = 2614. Faixa: 2000 (arredondado para baixo para cobrir o precoce do Cerrado, ver plausibilidade) a 2600. | plausibilidade: Cerrado irrigado (BRS 264, ciclo_dias_min 105, maio-set, Tmed ~19,5 °C): 105 × 19,5 = 2048 GD, e 2000/19,5 = 103 dias. RS (Tarumã, Tmed ~15 °C): 2600/15 = 173 dias, contra ciclo_dias_max 175. Contra ciclo_dias 105-175 do CSV. Coerente. No Cerrado a Tmed passa de 22 em parte do ciclo; ali o motor linear soma mais que a função de Walter."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "ZARC trigo de sequeiro RS (Portaria MAPA 385/2022): o risco de geada é a frequência de Tmin do ar no ABRIGO meteorológico <= 1,0 °C nos dois decêndios ao redor do espigamento. Já é temperatura do abrigo (a mesma medida do T2M_MIN do POWER), sem conversão. O ZARC usa '<= 1,0' e a regra 17 usa 'abaixo de': com o dado diário em décimos, a diferença é desprezível. É o critério oficial de risco, não um limiar de esterilidade medido no abrigo; conferência: K-State C-646 (-1 °C por 2 h no espigamento e na floração, temperatura na lavoura) convertido para o abrigo com Leske & Biddulph 2022 (+2 °C) dá ~1 °C; Zheng et al. 2015 (Austrália) usam 0 °C no abrigo depois do espigamento."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Conta simples sobre números oficiais. Fenologia: BRS Belajoia (Embrapa Trigo, folheto Cultivares 2021; ciclo médio, trigo de grão, RS/SC/PR): 85 dias até o espigamento e 135 até a maturação, contados da emergência (mesma base do ciclo_dias_max, ver pendência). + 7 dias da semeadura à emergência (a mesma conta dos graus-dia deste arquivo) = espigamento aos 92 e maturação aos 142 dias da semeadura, perto do ciclo médio da linha, (105 + 175)/2 = 140. Fase: '20 dias ao redor do espigamento' (ZARC RS) = 92 - 10 = 82 a 92 + 10 = 102 dias da semeadura. Frações com o ciclo médio: 82/140 = 0,586 -> 0,59; 102/140 = 0,729 -> 0,73. A janela cobre o fim do emborrachamento, o espigamento e a floração (Embrapa 2016: sensibilidade máxima na floração; K-State C-646: floração cerca de 1 semana depois do espigamento). Conferência no ciclo de cada cultivar: BRS Reponte (precoce, 75 e 125 d da emergência): (82 ± 10)/132 = 0,55-0,70; BRS Tarumã (duplo propósito, 110,5 e 162,5 d): (117,5 ± 10)/169,5 = 0,63-0,75."
     }
   },
   "confianca_calculo": {

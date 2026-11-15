@@ -23,10 +23,16 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40102",
     "nome_zarc": "Arroz",
-    "fontes": "SISTEMA: arroz irrigado por inundação das várzeas/terras baixas do RS e SC, em rotação com soja; o arroz de terras altas fica na linha arroz|SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, 2025, cap. 2, 3, 6 e 8 (ciclo das cultivares 100-145 d; temperaturas críticas Tab.3.2 Yoshida 1981; esterilidade por frio 15-19 °C e por calor >35 °C; ET média 7,2 mm/dia; período de irrigação 80-100 d; lâmina total 6.000-12.000 m³/ha; resteva usada para pastejo)|MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado subtropical RS 2026/2027 (grupos de ciclo ≤105 a ≥136 d; Tmin ≤15 °C na pré-floração; Tmax ≥35 °C na floração; geada Tmin <2 °C; déficit hídrico nulo por ser irrigado)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C, Infeld et al. 1998, arroz irrigado RS)|Meus et al., Ecofisiologia do arroz visando altas produtividades, Santa Maria, 2020 (Tb 11 °C no PlanejArroz/SimulArroz; temperaturas cardinais 11/26/40 °C da emissão de folhas)|Parfitt et al., Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 313, 2018 (ET do arroz ~650 mm, Mota et al. 1990; uso de água 8-10 mil m³/ha)|Stone, Irrigação, cap. 17 de A Cultura do Arroz no Brasil, 2ª ed., Embrapa Arroz e Feijão, 2006 (ET diária 6,8-8,7 mm no RS, Mota et al. 1990)|FAO Irrigation Water Management Training Manual 3, Tab.14 (Rice paddy 450-700 mm; conferência da água)|FAO-56 Tab.12 e Tab.14 (Kc de Rice: ini 1.05 para arroz com lâmina, mid 1.20, end 0.90-0.60)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite inferior, de manejo de irrigação, porque o solo fica inundado)|IBGE PAM tabela 5457 (código 40102; não separa irrigado de terras altas)",
+    "fontes": "SISTEMA: arroz irrigado por inundação das várzeas/terras baixas do RS e SC, em rotação com soja; o arroz de terras altas fica na linha arroz|SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, 2025, cap. 2, 3, 6 e 8 (ciclo das cultivares 100-145 d; temperaturas críticas Tab.3.2 Yoshida 1981; esterilidade por frio 15-19 °C e por calor >35 °C; ET média 7,2 mm/dia; período de irrigação 80-100 d; lâmina total 6.000-12.000 m³/ha; resteva usada para pastejo)|MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado subtropical RS 2026/2027 (grupos de ciclo ≤105 a ≥136 d; Tmin ≤15 °C na pré-floração; Tmax ≥35 °C na floração; geada Tmin <2 °C; déficit hídrico nulo por ser irrigado)|Steinmetz et al., Embrapa Clima Temperado, CBAgro 2007 (Tb 11 °C, Infeld et al. 1998, arroz irrigado RS)|Meus et al., Ecofisiologia do arroz visando altas produtividades, Santa Maria, 2020 (Tb 11 °C no PlanejArroz/SimulArroz; temperaturas cardinais 11/26/40 °C da emissão de folhas)|Parfitt et al., Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 313, 2018 (ET do arroz ~650 mm, Mota et al. 1990; uso de água 8-10 mil m³/ha)|Stone, Irrigação, cap. 17 de A Cultura do Arroz no Brasil, 2ª ed., Embrapa Arroz e Feijão, 2006 (ET diária 6,8-8,7 mm no RS, Mota et al. 1990)|FAO Irrigation Water Management Training Manual 3, Tab.14 (Rice paddy 450-700 mm; conferência da água)|FAO-56 Tab.12 e Tab.14 (Kc de Rice: ini 1.05 para arroz com lâmina, mid 1.20, end 0.90-0.60)|FAO-56 Tab.22 (raiz 0.5-1.0 m; limite inferior, de manejo de irrigação, porque o solo fica inundado)|IBGE PAM tabela 5457 (código 40102; não separa irrigado de terras altas)|MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado RS (frio: 3 ou mais dias seguidos de Tmin ≤ 15 °C na pré-floração; tmin_critica_c)|Steinmetz et al., Agrometeoros 25(2):405-414, 2017 (Embrapa Clima Temperado; dias da emergência a R2 e R4 por grupo de ciclo)|Steinmetz & Almeida, Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 175, 2012 (risco de frio no período reprodutivo no RS: 15 °C como referência de esterilidade; decréscimos acentuados de produtividade em alguns anos; tmin_efeito)|Marschalek et al., Rev. Ciênc. Agrovet. 22(1), 2023 (Epagri/UDESC; evento de frio < 17 °C na fase reprodutiva em Araranguá-SC, 2019/20: esterilidade de 13-41% com produtividade de 6,5-13,0 t/ha; perda parcial, tmin_efeito)|Cruz, Duarte & Cabreira, Scientia Agricola 67(6), 2010 (IRGA 424 da subespécie índica e sensível ao frio na plântula; japônicas tolerantes; grupo de cultivar)",
     "confianca_parametros": "alta",
     "graus_dia_ciclo_min": "1180",
-    "graus_dia_ciclo_max": "1760"
+    "graus_dia_ciclo_max": "1760",
+    "tmin_critica_c": "15",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.66",
+    "fase_frio_fim_frac": "0.77",
+    "tmin_dias_seguidos": "3",
+    "tmin_efeito": "aviso"
   },
   "mudancas": [
     {
@@ -160,6 +166,48 @@
       "antes": "(coluna nova)",
       "depois": "1180-1760",
       "motivo": "REVISÃO 14/11: coluna nova com a exigência de graus-dia da semeadura à maturação (grãos) ou ao manejo no florescimento (coberturas), GD = soma de max(0, Tmed - Tb), sem teto, com a temp_base_c da linha. Origem: medido"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "15",
+      "motivo": "REVISÃO 15/11 (dano por frio): Tmin do ar ≤ 15 °C na pré-floração (ZARC RS, Port. 66/2026); esterilidade a 15-17 °C nas cultivares tolerantes (SOSBAI 2025)"
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "floracao",
+      "motivo": "REVISÃO 15/11 (dano por frio): microsporogênese/emborrachamento e floração (SOSBAI 2025; ZARC RS)"
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.66",
+      "motivo": "REVISÃO 15/11 (dano por frio): R2 aos 81 dias da emergência no grupo Médio (Steinmetz et al. 2017) / ciclo médio 122,5 d"
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "0.77",
+      "motivo": "REVISÃO 15/11 (dano por frio): R4 (antese) aos 94 dias da emergência (Steinmetz et al. 2017) / ciclo médio 122,5 d"
+    },
+    {
+      "coluna": "tmin_dias_seguidos",
+      "antes": "(vazio)",
+      "depois": "3",
+      "motivo": "REVISÃO 15/11 (revisão do frio): 3 ou mais dias seguidos de Tmin do ar ≤ 15 °C na pré-floração (ZARC RS, Port. 66/2026, item 1.10.1), critério casado com o limiar de 15 °C"
+    },
+    {
+      "coluna": "tmin_efeito",
+      "antes": "(vazio)",
+      "depois": "aviso",
+      "motivo": "REVISÃO 15/11 (revisão do frio): frio na microsporogênese causa esterilidade de parte das espiguetas, perda parcial (SOSBAI 2025; Steinmetz & Almeida 2012; Marschalek et al. 2023: 13-41% de esterilidade com a lavoura colhida); decisão do usuário: aviso, como o calor na regra 11"
+    },
+    {
+      "coluna": "origem.tmin_critica_c, regua.observacoes.grupo_cultivar",
+      "antes": "nota com 'a regra 17 conta um dia só'",
+      "depois": "par limiar + dias só do ZARC (risco); dano pela SOSBAI/Embrapa; grupo índica com fonte",
+      "motivo": "REVISÃO 15/11 (revisão do frio): exceção de grupo de cultivar (README, 'Dano por frio'): cultivares do RS índicas (SOSBAI cap. 6; Cruz et al. 2010), menos tolerantes ao frio que as japônicas (SOSBAI cap. 3.2)"
     }
   ],
   "evidencias": [
@@ -554,12 +602,80 @@
       "fonte": "MAPA, Portaria SPA/MAPA nº 66/2026, ZARC arroz irrigado subtropical RS 2026/2027, item 3.1 (semeadura->emergência)",
       "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/rio-grande-do-sul/PORTN62.PDF",
       "trecho": "O risco do ciclo de cultivo estimado para cada decêndio de semeadura considera um intervalo médio entre 5 e 10 dias para ocorrência da emergência."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "tmin_dias_seguidos"
+      ],
+      "fonte": "MAPA, Portaria SPA/MAPA nº 66, de 14/04/2026, ZARC arroz irrigado subtropical RS, ano-safra 2026/2027, itens 1.2, 1.10.1 e 1.10.2",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/rio-grande-do-sul/PORTN62.PDF",
+      "trecho": "As fases mais críticas da planta às baixas temperaturas do ar são a pré-floração (microsporogênese) e a floração [...] Foram restringidos os decêndios com risco de ocorrência de três ou mais dias consecutivos temperaturas mínimas do ar ≤ 15 °C na fase de pré-floração da cultura [...] Fase III – Diferenciação da panícula até o início da floração (R4)"
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "tmin_critica_c (conferência)"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 3",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "A planta de arroz é mais sensível a baixas temperaturas na fase de pré-floração ou, mais especificamente, na microsporogênese (estádio R2, da escala de COUNCE et al. (2000)). Para fins práticos, considera-se que o período de 7 a 14 dias antes da emissão das panículas, período esse conhecido como emborrachamento, é o mais sensível a baixas temperaturas. A segunda fase mais sensível é a floração."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Steinmetz, S.; Cuadra, S. V.; Almeida, I. R. de; Magalhães Júnior, A. M. de; Fagundes, P. R. R., Soma térmica e estádios de desenvolvimento da planta de grupos de cultivares de arroz irrigado, Agrometeoros 25(2):405-414, 2017, Tabela 2 (Embrapa Clima Temperado, Capão do Leão-RS, 2004/05 a 2015/16, seis épocas por safra)",
+      "url": "https://seer.sct.embrapa.br/index.php/agrometeoros/article/download/26111/14098",
+      "trecho": "Tabela 2. Número médio de dias da emergência a cada um dos seis estádios de desenvolvimento da planta e porcentagem do ciclo total [...] Médio (M) B 21 (17) B 61 (50) B 81 (67) B 94 (78) B 114 (94) B 121 (100) [V4, R1, R2, R4, R8, R9] [...] R2= formação do colar da folha bandeira (emborrachamento); R4= antese (uma ou mais espiguetas)"
+    },
+    {
+      "colunas": [
+        "tmin_efeito"
+      ],
+      "fonte": "Steinmetz, S.; Almeida, I. R. de, Caracterização e mapeamento do risco de frio durante o período reprodutivo do arroz irrigado no Estado do Rio Grande do Sul, Embrapa Clima Temperado, Boletim de Pesquisa e Desenvolvimento 175, 2012, Introdução",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/967308/1/Boletim175.pdf",
+      "trecho": "Apesar dos altos índices de produtividade – média de 7,2 t ha-1 nas três safras – a ocorrência de baixas temperaturas do ar durante o período reprodutivo da planta pode causar, em alguns anos, decréscimos acentuados na produtividade de grãos (TERRES; GALLI, 1985; MOTA, 1994). [...] A temperatura crítica, que causa esterilidade das espiguetas, varia de acordo com as características dos estudos realizados. Mas, no Rio Grande do Sul, a temperatura de 15 °C tem sido usada como referência em estudos climatológicos (MOTA, 1994; STEINMETZ et al., 2007)."
+    },
+    {
+      "colunas": [
+        "tmin_efeito"
+      ],
+      "fonte": "Marschalek, R.; Oliveira, D. G. de; Souza, N. M. de; Facchinello, P. H. K.; Terres, L. R.; Sangoi, L., Avaliação de tolerância a baixas temperaturas em genótipos de arroz irrigado na fase reprodutiva em experimento a campo, durante evento climático espontâneo na safra 2019/2020, Revista de Ciências Agroveterinárias 22(1), 2023 (Epagri/UDESC; VCU de Araranguá-SC, pré-germinado, 3 repetições), Resumo e Tabela 1",
+      "url": "https://revistas.udesc.br/index.php/agroveterinaria/article/download/22850/15362",
+      "trecho": "Aproveitando-se a ocorrência de um evento espontâneo de baixas temperaturas (<17 oC) em experimento de campo de arroz irrigado, coincidente com a fase reprodutiva da cultura, foram avaliados a produtividade, a porcentagem de esterilidade de espiguetas e o número de panículas por metro quadrado. [...] Tabela 1. Panículas m-2, esterilidade (%) e produtividade (kg ha-1) [...] SC 1029 851 41,0 7817 [...] SCS116 Satoru 920 33,2 7952 [...] SC 806 1179 13,3 9897"
+    },
+    {
+      "colunas": [
+        "tmin_efeito"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 2.4 (subperíodo de desenvolvimento reprodutivo)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "No estádio R1, ocorre a diferenciação das ramificações da panícula. [...] estádio R2. Nesse estádio está ocorrendo a divisão das células-mãe dos grãos de pólen, sendo um dos mais críticos à ocorrência de estresses, principalmente os causados por baixa temperatura (inferior a 17°C) [...] A ocorrência de condições favoráveis ao desenvolvimento da planta durante os estádios R0 a R4 (antese) determina baixa esterilidade de espiguetas, resultando em maior número de grãos por panícula."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "SOSBAI, Arroz irrigado: recomendações técnicas da pesquisa para o Sul do Brasil, XXXIV Reunião Técnica da Cultura do Arroz Irrigado, Santa Maria, 2025, cap. 3.2 e cap. 6 (grupo de cultivar: subespécie das cultivares do RS e tolerância ao frio)",
+      "url": "https://www.sosbai.com.br/uploads/documentos/recomendacoes-tecnicas-da-pesquisa-para-o-sul-do-brasil_310.pdf",
+      "trecho": "A faixa crítica de temperatura para induzir esterilidade de espiguetas é de 15 a 17°C, para os genótipos tolerantes ao frio, e de 17 a 19°C, para os mais sensíveis. Os genótipos respondem distintamente à tolerância ao frio, sendo que, em geral, os genótipos da subespécie Japônica são mais tolerantes do que os da subespécie Índica. [cap. 6] BR/IRGA 409 e BR/IRGA 410 [...] Diferentemente das anteriores, essas cultivares pertencem à subespécie índica. Apresentam porte baixo, folhas eretas, alta capacidade de perfilhamento [...] As cultivares modernas por apresentarem um potencial produtivo superior, substituíram as dos outros grupos agronômicos e atualmente são cultivadas na quase totalidade da área de arroz irrigado do Rio Grande do Sul e de Santa Catarina. [...] BRS Pampa - Possui ciclo precoce em torno de 118 dias. Apresenta planta do tipo “moderno”, de folhas pilosas, estatura média e ampla adaptação no RS. [...] IRGA 417 - Foi a primeira cultivar do tipo agronômico moderno, derivada de cruzamento entre genitores das subespécies índica e japônica."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Cruz, R. P. da; Duarte, I. T. de L.; Cabreira, C., Inheritance of rice cold tolerance at the seedling stage, Scientia Agricola 67(6), 2010 (IRGA, Cachoeirinha-RS), Material and Methods e Results",
+      "url": "https://www.scielo.br/j/sa/a/QYGgRnNkRDvKBWF39ykWn5R/?lang=en",
+      "trecho": "Three of them belong to the japonica subspecies and are cold tolerant (Rizabela, Alan and L2825CA) and the other three belong to the indica subspecies and have intermediate or sensitive reaction to cold temperature at seedling stage (INIA Olimar, IRGA 2852-20-4-3-3V and IRGA 424). [...] Parental means in experiment II had a wide variation from 2.5% of plant survival in IRGA 424 to 97.7% in Rizabela"
     }
   ],
   "pendencias": [
     "BLOQUEIO DE CARGA (revisão 14/11, P-01): o id arroz_irrigado ainda não existe em agroia/base/culturas.json, que é a fonte única de ids. Não carregar esta linha no banco antes de incluir o id lá, com sinônimos (arroz irrigado, arroz de várzea, arroz inundado).",
     "codigo_pam 40102 é o mesmo da linha arroz: a PAM do IBGE não separa arroz irrigado de arroz de terras altas. Qualquer cruzamento com a PAM (área, produção) mistura os dois sistemas; no RS e em SC quase toda a área é irrigada, no Centro-Norte predomina terras altas.",
-    "Frio (risco central no RS), sem coluna: a esterilidade de espiguetas por frio na microsporogênese (R2, 7-14 dias antes da emissão das panículas) ocorre com temperatura de 15-17 °C nos genótipos tolerantes e 17-19 °C nos sensíveis (SOSBAI). O ZARC RS restringe decêndios com 3 ou mais dias seguidos de Tmin ≤15 °C na pré-floração e usa como critério auxiliar Tmed <14 °C no 1º decêndio após a emergência e <19 °C nos 3 últimos decêndios. tmax_critica_c só cobre calor; sensivel_geada=true não captura esse risco. Sugestão: criar uma coluna tmin_critica_c (15 °C, critério do ZARC) aplicada à fase de pré-floração.",
     "Água: agua_ciclo 580-720 mm é CONSUMO (ET), estimado como ET média de 7,2 mm/dia (SOSBAI) × período de irrigação de 80-100 dias (SOSBAI). Bate com os ~650 mm de Mota et al. 1990 (citado pela Embrapa BPD 313; não li o original). A conta cobre só o período inundado: a ET entre a semeadura e o início da irrigação em V3/V4 (~15 dias após a emergência) e a da fase final após a supressão ficam de fora, então 720 pode subestimar ciclos longos (tardias de SC, 145 d).",
     "Água: o volume de irrigação é outra coisa e NÃO entrou na coluna: 6.000-12.000 m³/ha (600-1.200 mm, SOSBAI) ou 8-10 mil m³/ha (Embrapa BPD 313), porque inclui saturação do solo, formação da lâmina, percolação, fluxo lateral e perdas em canais. A pendência da linha arroz citava 688-1.210 mm da Embrapa; isso também é lâmina aplicada (1,0-1,4 L/s/ha por 80-100 d), não ET.",
     "Motor: o filtro 'precisa de mais água do que a chuva dá' vai eliminar o arroz irrigado em quase todo lugar se tratar a cultura como sequeiro. O ZARC assume déficit hídrico nulo por ser irrigado. O motor precisa de uma regra própria: só sugerir arroz_irrigado em terras baixas/várzeas com água de irrigação disponível, e não aplicar o filtro de chuva (ou tratar a irrigação como entrada). Não há coluna para isso hoje. A chuva no período de irrigação cobre em média 46% da ET (SOSBAI).",
@@ -572,10 +688,16 @@
     "Fonte da SOSBAI: usei a edição de 2025 (XXXIV Reunião Técnica, Santa Maria), a disponível no site. Os números de água (6.000-12.000 m³/ha; 7,2 mm/dia de ET) e as temperaturas podem ter sido herdados de edições anteriores sem mudança.",
     "graus-dia: Os valores são de Capão do Leão-RS (clima temperado). O programa GD Arroz usa o mesmo conjunto para 17 locais do RS. Para arroz irrigado tropical (TO, GO, várzeas do Norte) não achei soma térmica com Tb 11.",
     "graus-dia: A fonte de 2021 limita Tn a 21 °C e Tx a 34 °C (DD50). Se o motor quiser bater exatamente com o GD Arroz, deveria aplicar os mesmos limites. Sem teto, o motor tende a superestimar o desenvolvimento em locais quentes.",
-    "graus-dia: Semeadura->emergência é CÁLCULO (5-7 d × 8 °C). Com semente pré-germinada a fase é mais curta; com semeadura em solo frio (setembro) pode passar de 10 dias (ZARC)."
+    "graus-dia: Semeadura->emergência é CÁLCULO (5-7 d × 8 °C). Com semente pré-germinada a fase é mais curta; com semeadura em solo frio (setembro) pode passar de 10 dias (ZARC).",
+    "DANO POR FRIO (15/11): a pendência antiga 'Frio (risco central no RS), sem coluna' fica atendida por tmin_critica_c = 15, fase floracao, frações 0,66-0,77 (R2 a R4). Alternativa com a fase do ZARC (pré-floração = Fase III, R1 a R4): 0,50-0,77.",
+    "FRIO (revisão 15/11): o par 15 °C + 3 dias seguidos é critério de risco do ZARC, não um limiar de dano medido com Tmin no abrigo. A SOSBAI dá 15-17/17-19 °C de temperatura MÉDIA; Marschalek et al. 2023 (SC) mediram a esterilidade com < 17 °C sem dizer o número de dias. Resolveria: ensaio no RS que relacione dias seguidos de Tmin no abrigo com a esterilidade (Embrapa Clima Temperado ou IRGA).",
+    "FRIO, grupo de cultivar: a SOSBAI diz que as cultivares modernas do RS são índicas e que a BRS Pampa é do tipo 'moderno', mas não diz 'índica' ao lado do nome da BRS Pampa, e o tipo 'moderno' não prova índica pura (a IRGA 417, também 'moderna', vem de genitores índica e japônica, SOSBAI cap. 6). A IRGA 424 é índica por Cruz et al. 2010, que mediram a sensibilidade ao frio na plântula, não na microsporogênese. Cultivares de origem índica x japônica (IRGA 417, SCSBRS126 Dueto, tolerante ao frio na fase reprodutiva, SOSBAI cap. 6.1.6) podem tolerar mais que o limiar da linha.",
+    "FRIO, motor: tmin_efeito = aviso precisa da regra 17 implementada com o clima por dia (ou decêndio) e do texto 'frio na floração' (não 'geada'). Com a simulação do coordenador (Santa Maria, 15 °C/3 dias, só os dias da fase: 4-9 de 19 anos) o arroz fica com o aviso nas pontas da época de semeadura, sem ser eliminado."
   ],
   "pendencias_resolvidas": [
-    "Pendência da linha arroz: 'O arroz irrigado por inundação (RS/SC) fica fora [...] Se o app precisar dele, crie uma linha separada' — resolvida com esta linha nova arroz_irrigado (Kc ini 1.05; água como ET, não como lâmina; ciclo até 145 d)."
+    "Pendência da linha arroz: 'O arroz irrigado por inundação (RS/SC) fica fora [...] Se o app precisar dele, crie uma linha separada' — resolvida com esta linha nova arroz_irrigado (Kc ini 1.05; água como ET, não como lâmina; ciclo até 145 d).",
+    "Frio (risco central no RS), sem coluna: a esterilidade de espiguetas por frio na microsporogênese (R2, 7-14 dias antes da emissão das panículas) ocorre com temperatura de 15-17 °C nos genótipos tolerantes e 17-19 °C nos sensíveis (SOSBAI). O ZARC RS restringe decêndios com 3 ou mais dias seguidos de Tmin ≤15 °C na pré-floração e usa como critério auxiliar Tmed <14 °C no 1º decêndio após a emergência e <19 °C nos 3 últimos decêndios. tmax_critica_c só cobre calor; sensivel_geada=true não captura esse risco. Sugestão: criar uma coluna tmin_critica_c (15 °C, critério do ZARC) aplicada à fase de pré-floração. -> RESOLVIDA 15/11 (revisão do frio): tmin_critica_c = 15, tmin_dias_seguidos = 3 (ZARC) e tmin_efeito = aviso (esterilidade, perda parcial).",
+    "DANO POR FRIO (15/11), DECISÃO para o coordenador ANTES de implementar a regra 17 no arroz: com tmin_critica_c = 15 e a regra como está (um dia com Tmin < 15 em qualquer dia dos meses que tocam a fase), o motor elimina o arroz irrigado no próprio RS. Conferência no NASA POWER (CÁLCULO; 2001-2019; semeaduras de 1/10, 20/10, 10/11 e 30/11; emergência 7 dias depois; janela R2-R4 = 88 a 101 dias da semeadura): Capão do Leão, anos com pelo menos um dia de risco nos meses da fase = 19, 7, 9 e 17 de 19; Uruguaiana = 16, 7, 12 e 19 de 19 (acima de 30% em todas as datas, também nas indicadas pelo ZARC). Contando só os dias da janela: 2-10 de 19. Com o critério do ZARC (3 ou mais dias seguidos com Tmin ≤ 15 na janela): 0-2 de 19. Sugestão: para o arroz, usar a janela exata e 3 dias seguidos (ZARC), ou outra coluna com o número de dias seguidos. Lembrar que o POWER fica 1-2 °C mais frio que as estações do RS (README). -> RESOLVIDA 15/11 (revisão do frio): decisão do usuário: coluna tmin_dias_seguidos = 3 (ZARC), contagem só nos dias da fase (regra 17 revista) e tmin_efeito = aviso, como o calor na regra 11; o arroz não sai mais pelo frio de esterilidade."
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -610,7 +732,8 @@
     "uso_forrageiro": "residual",
     "observacoes": {
       "coleta": "Palhada = resteva (palha + soca) após a colheita. Típico 7,3 t/ha = média dos dois anos de Massoni 2013 (7,1 e 7,5 t/ha, Santa Maria). 3,7 e 8,2 t/ha são a 'palha residual atual' medida antes da semeadura seguinte em lavouras gaúchas (Beutler 2014 e 2012), já depois da decomposição e do pastejo no inverno. Conferência: pela proporção de Cruz (palha = 62,8% da planta) uma lavoura de 8 t/ha de grão deixaria ~11,8 t/ha (7,0 t MS de grão x 62,8/37,2); as medidas ficam abaixo disso. C/N: 52,6 é medida em palha de arroz de Pelotas (Machado 1983), por isso o típico é 53; a faixa 44-58 é a mesma da linha arroz (44,2 citada; 58 estimada pela PB 4,3% de Cruz com C 40%). pb_pct/NDT da palha (Cruz 1983). A soca/rebrota pastejada no inverno deve ter PB maior, mas não achei número. Uso 'residual' (só a resteva).",
-      "decomposicao": "Massoni usa o modelo assintótico: só a fração lábil A decai; 100-A fica parada no período. Para ter um k único (exponencial simples) calculei a MSR prevista aos 164 d e k = -ln(MSR)/164. Sem preparo 2009: MSR = 45 e^(-0,030x164) + 55 = 55,3% -> k = -ln(0,553)/164 = 0,0036; 2010: 56 e^(-0,015x164) + 44 = 48,8% -> k = 0,0044. Média 0,0040/dia; T½ = 0,693/0,0040 = 173 d. Mínimo = lâmina de água permanente 2009: 43 e^(-1,64) + 57 = 65,3% -> k = 0,0026; T½ = 267 d (o texto fala em 60% de MSR para esse tratamento). Lâmina 2010: 52,8% -> k = 0,0039. Máximo = Winckler 2017: k > 0,010/dia em sacolas dentro da água, em 70 dias de inverno (T½ < 69 d). É um limite inferior do k, medido com malha larga (0,5 cm) e em período curto, que pega só a fase rápida. Ressalva: o modelo assintótico diz que ~45-55% da palha é recalcitrante e quase não some em 164 d; a fase lábil some rápido (k 0,015-0,030). Na prática a resteva persiste na entressafra, mas o produtor costuma incorporar ou queimar antes da semeadura."
+      "decomposicao": "Massoni usa o modelo assintótico: só a fração lábil A decai; 100-A fica parada no período. Para ter um k único (exponencial simples) calculei a MSR prevista aos 164 d e k = -ln(MSR)/164. Sem preparo 2009: MSR = 45 e^(-0,030x164) + 55 = 55,3% -> k = -ln(0,553)/164 = 0,0036; 2010: 56 e^(-0,015x164) + 44 = 48,8% -> k = 0,0044. Média 0,0040/dia; T½ = 0,693/0,0040 = 173 d. Mínimo = lâmina de água permanente 2009: 43 e^(-1,64) + 57 = 65,3% -> k = 0,0026; T½ = 267 d (o texto fala em 60% de MSR para esse tratamento). Lâmina 2010: 52,8% -> k = 0,0039. Máximo = Winckler 2017: k > 0,010/dia em sacolas dentro da água, em 70 dias de inverno (T½ < 69 d). É um limite inferior do k, medido com malha larga (0,5 cm) e em período curto, que pega só a fase rápida. Ressalva: o modelo assintótico diz que ~45-55% da palha é recalcitrante e quase não some em 164 d; a fase lábil some rápido (k 0,015-0,030). Na prática a resteva persiste na entressafra, mas o produtor costuma incorporar ou queimar antes da semeadura.",
+      "grupo_cultivar": "Cultivares do arroz irrigado do RS e SC: subespécie índica. SOSBAI 2025, cap. 6: as cultivares modernas (porte baixo, folhas eretas), a partir de BR/IRGA 409 e 410, 'pertencem à subespécie índica' e hoje ocupam 'a quase totalidade' da área do RS e SC. IRGA 424 é índica (Cruz et al. 2010, Scientia Agricola 67(6)). SOSBAI cap. 3.2: 'em geral, os genótipos da subespécie Japônica são mais tolerantes do que os da subespécie Índica'. As cultivares americanas são japônicas (SOSBAI cap. 6) e, no sul dos EUA, japônica tropical (MP192 cap. 2). É o motivo do limiar de frio diferente entre esta linha (15 °C/3 dias) e a dos EUA (10 °C/2 noites)."
     },
     "resultado": {
       "aporte_biomassa": "alto",
@@ -671,6 +794,18 @@
     "graus_dia_ciclo_max": {
       "tipo": "medido",
       "nota": "semeadura -> maturação fisiológica; Tb 11; Fonte conta da EMERGÊNCIA até R9 (maturidade completa dos grãos da panícula), Tb 11 (a mesma do CSV). Semeadura->emergência (CÁLCULO): o ZARC RS usa 5 a 10 dias; a fonte não dá GD dessa fase. 7 d × (19 − 11) = 56 GD, com Tmed ~19 °C em out-nov no RS (premissa). Min: subgrupo Muito Precoce 1, 1122 + 56 = 1178 ≈ 1180. Max: subgrupo Tardio, 1708 + 56 = 1764 ≈ 1760. TETO: a fonte de 2021 aplica o método DD50 de Slaton (Tx limitada a 34 °C e Tn a 21 °C antes de fazer a média); o motor não usa teto, então em dias quentes soma mais GD por dia e fecha o ciclo um pouco antes (no RS o efeito é pequeno; no arroz irrigado tropical, TO/GO, é maior). O trabalho de 2007 (mesma equipe, 10 cultivares) não cita limites e dá R9 de 1143 (BRS Ligeirinho) a 1422 (BRS Pelota), dentro da faixa. | plausibilidade: Tmed efetiva implícita na fonte: MP1 = 11 + 1122/91 = 23,3 °C; Tardio = 11 + 1708/145 = 22,8 °C. 1180/(23,3 − 11) = 96 dias e 1760/(22,8 − 11) = 149 dias, contra ciclo_dias 100-145 do CSV (contado da emergência, como no ZARC). Coerente; o máximo passa 4 dias porque inclui a semeadura->emergência."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Tmin do ar no abrigo. No Brasil o par limiar + dias (15 °C e 3 dias seguidos) vem só do ZARC arroz irrigado RS (Port. 66/2026, item 1.10.1: restringe decêndios com risco de 3 ou mais dias seguidos de Tmin do ar ≤ 15 °C na pré-floração). É critério de RISCO do zoneamento, não medida de dano. A evidência de DANO é outra: SOSBAI 2025 (cap. 3.2: esterilidade de espiguetas com 15-17 °C nos genótipos tolerantes e 17-19 °C nos sensíveis, temperatura média; cap. 2.4: menos esterilidade = mais grãos por panícula), Embrapa Clima Temperado (Steinmetz & Almeida 2012: 15 °C é a referência no RS; frio no período reprodutivo causa 'decréscimos acentuados' de produtividade em alguns anos) e Marschalek et al. 2023 (evento de frio < 17 °C em SC: 13-41% de espiguetas estéreis e 6,5-13,0 t/ha colhidas). tmin_efeito = aviso: o dano é esterilidade de parte das espiguetas (perda parcial); a planta não morre e a lavoura é colhida. GRUPO DE CULTIVAR: as cultivares do RS são índicas (SOSBAI cap. 6: as modernas, de porte baixo, são da subespécie índica e ocupam 'a quase totalidade' da área do RS e SC; IRGA 424 é índica e sensível ao frio na plântula, Cruz et al. 2010), e as índicas toleram menos o frio que as japônicas (SOSBAI cap. 3.2). Por isso o limiar (15 °C/3 dias) é diferente do arroz irrigado dos EUA (10 °C/2 noites, japônica tropical, MP192): exceção de grupo de cultivar do README ('Dano por frio') e de EXCECOES_FRIO."
+    },
+    "fase_frio_frac": {
+      "tipo": "estudo_unico",
+      "nota": "Fase: emborrachamento/microsporogênese (R2, 7-14 dias antes da emissão das panículas, a mais sensível, SOSBAI) até o início da antese (R4, a segunda mais sensível). Ciclo da linha da emergência à maturação (100-145 d, médio 122,5). Steinmetz et al. 2017 (Tab. 2, grupo Médio, R9 = 121 d, o mais perto do ciclo médio): R2 aos 81 e R4 aos 94 dias da emergência -> 81/122,5 = 0,66 e 94/122,5 = 0,77 (a própria tabela dá 67% e 78%). Um local (Capão do Leão-RS) com 12 safras = estudo_unico. O ZARC chama de pré-floração a Fase III, de R1 a R4 (61/122,5 = 0,50 a 0,77)."
+    },
+    "tmin_dias_seguidos": {
+      "tipo": "publicado",
+      "nota": "3 dias seguidos = critério do ZARC arroz irrigado RS (Port. 66/2026, item 1.10.1: 'três ou mais dias consecutivos' de Tmin do ar ≤ 15 °C na pré-floração). Critério de risco do zoneamento, casado com o limiar de 15 °C; nenhuma fonte de dano lida dá a duração do frio (a SOSBAI diz só que o efeito depende 'da intensidade e da duração do período de frio', cap. 6.1.6). O ZARC usa ≤ 15 °C; a regra 17 conta Tmin abaixo de 15 °C (diferença de borda)."
     }
   },
   "confianca_calculo": {
