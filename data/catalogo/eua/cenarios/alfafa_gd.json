@@ -1,0 +1,248 @@
+{
+  "_leia": "SÓ REFERÊNCIA DE MANEJO: o motor não usa graus-dia na alfafa. A linha é perene forrageira e segue o padrão da pastagem (decisão do usuário, revisão de 15/11): ciclo_dias e graus_dia_ciclo ficam vazios (vazio_nao_se_aplica). Estes cenários documentam os números de manejo citados em evidencias/alfafa.json (regua.observacoes.manejo_cortes): graus-dia do green-up até o primeiro corte e entre cortes, para scripts/gd_nasa_power.py. Tb 5 °C (41 °F), sem teto: o GDD da alfafa nos EUA é ((Tmax + Tmin)/2) - 41, sem teto (ISU), o mesmo método do catálogo; por isso 750 GDD °F = 750/1,8 = 417 °C·dia sem conversão de régua. Cenários: (1) primeiro corte, do green-up ('early to mid-April', UNL G1778) até atingir 750 GDD °F (UNL CropWatch 2026), no modo alvo_com_teto com teto de 200 °F (= sem teto na prática; o modo eleva a Tmin a 41 °F, diferença pequena na primavera), para conferir a data ('late May and early June'); (2) primeiro corte em dias, green-up 10/abr até 31/mai e até 7/jun; (3) intervalos de verão em dias, 30 e 40 dias depois do corte ('every 30 to 40 days', UNL G1778); (4) conferência fisiológica pelo modelo de Sharratt et al. 1989 (via UC IPM): 1/10 de flor com 425 °C·dia acima de 7,5 °C (início do verão) e de 10 °C (fim do verão), convertidos para Tb 5 sem teto. Período 2005-2024, e não 2001-2020: o cache local do POWER (data/brutos/nasa_power/) só tem Mead e North Platte de 2005 em diante; como nada daqui entra nas colunas, não foi baixada outra série. 'anos' = anos do início do ciclo. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "mead": {
+      "nome": "Mead-NE (UNL Eastern Nebraska Research, Extension and Education Center; leste, sequeiro e irrigado)",
+      "lat": 41.15,
+      "lon": -96.49,
+      "elevacao_m": 357.8
+    },
+    "northplatte": {
+      "nome": "North Platte-NE (UNL West Central Research, Extension and Education Center; oeste, irrigado)",
+      "lat": 41.09,
+      "lon": -100.77,
+      "elevacao_m": 891.72
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "alfafa_mead_0410_1corte_750F",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "04-10",
+      "alvo_com_teto": {
+        "valor": 750,
+        "unidade": "F",
+        "tb": 41,
+        "teto": 200
+      },
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "UNL CropWatch (Beckman, 04/05/2026): primeiro corte com 750 GDD do green-up; 750 / 1,8 = 417 °C·dia (Tb 41 °F = 5 °C, sem teto). Os dias impressos conferem a data do corte com 'late May and early June'."
+      }
+    },
+    {
+      "nome": "alfafa_northplatte_0410_1corte_750F",
+      "cultura": "alfafa",
+      "local": "northplatte",
+      "semeadura": "04-10",
+      "alvo_com_teto": {
+        "valor": 750,
+        "unidade": "F",
+        "tb": 41,
+        "teto": 200
+      },
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Mesmo alvo da UNL no oeste do Nebraska."
+      }
+    },
+    {
+      "nome": "alfafa_mead_0410_ate_0531",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "04-10",
+      "fim": "05-31",
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Green-up 10/abr (UNL G1778: 'early to mid-April') até 31/mai ('late May', UNL 2026)."
+      }
+    },
+    {
+      "nome": "alfafa_mead_0410_ate_0607",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "04-10",
+      "fim": "06-07",
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Green-up 10/abr até 7/jun ('early June', UNL 2026)."
+      }
+    },
+    {
+      "nome": "alfafa_mead_0601_30d",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "06-01",
+      "dias": 30,
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Segundo ciclo (rebrota depois do primeiro corte, ~1/jun), intervalo curto de 30 dias (UNL G1778: 'every 30 to 40 days')."
+      }
+    },
+    {
+      "nome": "alfafa_mead_0701_40d",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "07-01",
+      "dias": 40,
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Terceiro ciclo (meio do verão), intervalo longo de 40 dias (UNL G1778)."
+      }
+    },
+    {
+      "nome": "alfafa_northplatte_0601_30d",
+      "cultura": "alfafa",
+      "local": "northplatte",
+      "semeadura": "06-01",
+      "dias": 30,
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Segundo ciclo, 30 dias, oeste do Nebraska."
+      }
+    },
+    {
+      "nome": "alfafa_northplatte_0701_40d",
+      "cultura": "alfafa",
+      "local": "northplatte",
+      "semeadura": "07-01",
+      "dias": 40,
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Terceiro ciclo, 40 dias, oeste do Nebraska."
+      }
+    },
+    {
+      "nome": "alfafa_mead_0810_40d",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "08-10",
+      "dias": 40,
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 417,
+        "nota": "Último ciclo antes do outono (rebrota de ~10/ago), 40 dias (UNL G1778)."
+      }
+    },
+    {
+      "nome": "alfafa_mead_0601_sharratt_inicio_verao",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "06-01",
+      "alvo_com_teto": {
+        "valor": 425,
+        "unidade": "C",
+        "tb": 7.5,
+        "teto": 60
+      },
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 425,
+        "nota": "Sharratt, Sheaffer & Baker 1989 (Field Crops Res. 21:95-102), via UC IPM: 1/10 de flor do início do verão = 425 °C·dia acima de 7,5 °C, contados do corte. Teto de 60 °C = sem teto. O script dá os dias e o GD com Tb 5."
+      }
+    },
+    {
+      "nome": "alfafa_mead_0705_sharratt_fim_verao",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "07-05",
+      "alvo_com_teto": {
+        "valor": 425,
+        "unidade": "C",
+        "tb": 10,
+        "teto": 60
+      },
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 425,
+        "nota": "Sharratt et al. 1989 via UC IPM: 1/10 de flor do fim do verão = 425 °C·dia acima de 10 °C, do corte."
+      }
+    },
+    {
+      "nome": "alfafa_northplatte_0705_sharratt_fim_verao",
+      "cultura": "alfafa",
+      "local": "northplatte",
+      "semeadura": "07-05",
+      "alvo_com_teto": {
+        "valor": 425,
+        "unidade": "C",
+        "tb": 10,
+        "teto": 60
+      },
+      "tb": 5,
+      "anos": [
+        2005,
+        2024
+      ],
+      "referencia": {
+        "estatistica": "mediana",
+        "valor": 425,
+        "nota": "Sharratt et al. 1989 via UC IPM, oeste do Nebraska."
+      }
+    }
+  ]
+}

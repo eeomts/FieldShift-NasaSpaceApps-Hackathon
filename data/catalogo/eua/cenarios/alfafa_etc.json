@@ -1,0 +1,41 @@
+{
+  "_leia": "Cenários de água da alfafa (alfalfa hay, perene, Nebraska) para scripts/etc_nasa_power.py. CONFERÊNCIA das colunas agua_ciclo_mm_min/max, que nas perenes são a exigência ANUAL (estação de crescimento inteira) e vêm da extensão (UNL G1778: 'Seasonal water use in Nebraska ranges from 30 to 38 inches, including precipitation'). Estação: do green-up ('early to mid-April', UNL G1778; FAO-56 Tab. 11: 'last -4°C in spring until first -4°C in fall') até ~20/out (fim da colheita no Nebraska, USDA NASS 2010: 15/out). Curva com o Kc das médias de corte do FAO-56 Tab. 12 (Alfalfa Hay - averaged cutting effects 0,40/0,95/0,90, altura 0,7 m), que 'averages Kc for both before and following cuttings' (nota 13) e se aplica do fim do primeiro desenvolvimento até o início do último período final. Fases: inicial 10 e desenvolvimento 30 (primeiro ciclo de Idaho na Tab. 11: 10/30), média até o fim da estação e final 10. Período 2005-2024, e não 2001-2020 (B-05 da revisão de 15/11): o cache local do POWER (data/brutos/nasa_power/) só tem Mead e North Platte de 2005 a 2024/2025, e refazer com 2001-2020 pede baixar de novo a série dos dois pontos, o que ficou fora desta correção. Não muda nenhuma coluna: a água da linha vem da UNL G1778 e este cálculo é só conferência. Para refazer: trocar 'anos' para [2001, 2020] e rodar com rede. Água do Nebraska; não vale para a Califórnia. No sequeiro do leste (Mead) a chuva mediana da estação (571 mm) fica abaixo do consumo pleno, e o motor marca 'água no limite' sem eliminar. 'anos' = anos do início; 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "mead": {
+      "nome": "Mead-NE (UNL Eastern Nebraska Research, Extension and Education Center; leste)",
+      "lat": 41.15,
+      "lon": -96.49,
+      "elevacao_m": 357.8
+    },
+    "northplatte": {
+      "nome": "North Platte-NE (UNL West Central Research, Extension and Education Center; oeste)",
+      "lat": 41.09,
+      "lon": -100.77,
+      "elevacao_m": 891.72
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "alfafa_mead_0410_194d_anual",
+      "cultura": "alfafa",
+      "local": "mead",
+      "semeadura": "04-10",
+      "fases_dias": [10, 30, 144, 10],
+      "kc": {"ini": 0.4, "mid": 0.95, "end": 0.9},
+      "altura_m": 0.7,
+      "anos": [2005, 2024],
+      "referencia": {"estatistica": "mediana", "valor": 762, "nota": "UNL G1778 (Irmak et al. 2007): uso sazonal de água no Nebraska de 30 a 38 polegadas; 30 in x 25,4 = 762 mm (leste, mais úmido)."}
+    },
+    {
+      "nome": "alfafa_northplatte_0410_194d_anual",
+      "cultura": "alfafa",
+      "local": "northplatte",
+      "semeadura": "04-10",
+      "fases_dias": [10, 30, 144, 10],
+      "kc": {"ini": 0.4, "mid": 0.95, "end": 0.9},
+      "altura_m": 0.7,
+      "anos": [2005, 2024],
+      "referencia": {"estatistica": "mediana", "valor": 965, "nota": "UNL G1778: 38 in x 25,4 = 965 mm (oeste, mais seco e com mais vento)."}
+    }
+  ]
+}

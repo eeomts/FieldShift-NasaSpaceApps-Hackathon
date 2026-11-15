@@ -1,0 +1,97 @@
+{
+  "_leia": "Cenários de graus-dia do trevo-encarnado (crimson clover, Trifolium incarnatum, cobertura de inverno antes do milho na Geórgia) para scripts/gd_nasa_power.py. A exigência vai da semeadura (set-out) ao manejo (dessecação na primavera, 10-14 dias antes da semeadura do milho). Tb 4 °C (3,9 °C, Pessotto et al. 2023, Agrosyst. Geosci. Environ. 6:e20393, arredondada). Modo 'fim'. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus; Coastal Plain da Geórgia)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    },
+    "watkinsville": {
+      "nome": "Watkinsville-GA (USDA-ARS J. Phil Campbell Center; Piedmont da Geórgia)",
+      "lat": 33.87,
+      "lon": -83.45,
+      "elevacao_m": 278.6
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "trevo_watkinsville_1010_0308",
+      "cultura": "trevo",
+      "local": "watkinsville",
+      "semeadura": "10-10",
+      "fim": "03-08",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo da linha (Piedmont): semeadura mais tardia da janela (10/out) e manejo mais cedo (8/mar). Revisão de 15/11 (pacote 6): a célula do Piedmont na Tab. 5.4 do SARE ('Sept 15-Sept 20') repete a do trevo-arrowleaf e parece erro de diagramação; a UGA (Bulletin 1584, 2025, Tab. 2) dá ao Piedmont 'September to middle October', que contém a janela da linha (10/set a 10/out). Por isso o cenário mais frio passa a ser Watkinsville 10/out -> 8/mar. Manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar) menos 14 dias (NRCS). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "trevo_tifton_1010_0308",
+      "cultura": "trevo",
+      "local": "tifton",
+      "semeadura": "10-10",
+      "fim": "03-08",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo (Coastal Plain): semeadura mais tardia (10/out) e manejo mais cedo (8/mar). Datas da Geórgia: semeadura do trevo-encarnado 'Sept 10-Oct 10' no Coastal Plain e 'Sept 15-Sept 20' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "trevo_watkinsville_0920_0308",
+      "cultura": "trevo",
+      "local": "watkinsville",
+      "semeadura": "09-20",
+      "fim": "03-08",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "SUBSTITUÍDO como mínimo pelo trevo_watkinsville_1010_0308 (fica como conferência). mínimo (Piedmont): semeadura mais tardia (20/set) e manejo mais cedo (8/mar). Datas da Geórgia: semeadura do trevo-encarnado 'Sept 10-Oct 10' no Coastal Plain e 'Sept 15-Sept 20' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "trevo_tifton_0925_0401",
+      "cultura": "trevo",
+      "local": "tifton",
+      "semeadura": "09-25",
+      "fim": "04-01",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico (Coastal Plain): semeadura em 25/set e manejo em 1/abr. Datas da Geórgia: semeadura do trevo-encarnado 'Sept 10-Oct 10' no Coastal Plain e 'Sept 15-Sept 20' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "trevo_tifton_0910_0424",
+      "cultura": "trevo",
+      "local": "tifton",
+      "semeadura": "09-10",
+      "fim": "04-24",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo (Coastal Plain): semeadura mais cedo (10/set) e manejo mais tardio (24/abr). Datas da Geórgia: semeadura do trevo-encarnado 'Sept 10-Oct 10' no Coastal Plain e 'Sept 15-Sept 20' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "trevo_watkinsville_0915_0424",
+      "cultura": "trevo",
+      "local": "watkinsville",
+      "semeadura": "09-15",
+      "fim": "04-24",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo (Piedmont): semeadura mais cedo (15/set) e manejo mais tardio (24/abr). Datas da Geórgia: semeadura do trevo-encarnado 'Sept 10-Oct 10' no Coastal Plain e 'Sept 15-Sept 20' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    }
+  ]
+}

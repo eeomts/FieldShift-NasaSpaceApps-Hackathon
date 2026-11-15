@@ -1,0 +1,551 @@
+{
+  "id": "nabo_forrageiro",
+  "pais": "EUA",
+  "nome": "Nabo forrageiro (forage/tillage radish)",
+  "nome_cientifico": "Raphanus sativus",
+  "familia_botanica": "Brassicaceae",
+  "sistema": "Nabo forrageiro ('forage' ou 'tillage radish', Raphanus sativus, sobretudo tipo daikon) solteiro como cobertura no Corn Belt: semeado de 1/ago a meados de setembro (NRCS/ISU, dados do MCCC), depois de cereal de inverno ou silagem ou a lanço na cultura em pé, e morto pelo inverno (o 'manejo' é o congelamento), antes do milho ou da soja. Ciclo, graus-dia, água e Kc vão da semeadura à morte pelo frio, no vegetativo (roseta). No Brasil a linha é o nabo oleaginoso manejado no florescimento.",
+  "regiao_referencia": "Iowa e Indiana (Corn Belt)",
+  "valores": {
+    "tipos": "cobertura|forrageira|raiz_profunda",
+    "perene": "false",
+    "ciclo_dias_min": "61",
+    "ciclo_dias_max": "127",
+    "graus_dia_ciclo_min": "330",
+    "graus_dia_ciclo_max": "1280",
+    "temp_base_c": "5",
+    "temp_otima_min_c": "12",
+    "temp_otima_max_c": "25",
+    "tmax_critica_c": "",
+    "sensivel_geada": "false",
+    "agua_ciclo_mm_min": "100",
+    "agua_ciclo_mm_max": "315",
+    "kc_inicial": "0.7",
+    "kc_medio": "0.9",
+    "kc_final": "0.9",
+    "profundidade_raiz_m": "1.8",
+    "fixa_nitrogenio": "false",
+    "raiz_profunda": "true",
+    "cobertura_solo": "baixa",
+    "aporte_biomassa": "medio",
+    "valor_forrageiro": "medio",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "",
+    "calendario_usda": "",
+    "semeadura_inicio": "08-01",
+    "semeadura_fim": "09-15",
+    "manejo_inicio": "11-14",
+    "manejo_fim": "12-05",
+    "tipo_manejo": "morte_pelo_frio",
+    "condicao_semeadura": "apos_cereal_inverno|apos_silagem|a_lanco_lavoura_em_pe",
+    "estados_validos": "IA|IL|IN|NE",
+    "lacuna_informacao": "Ainda não há medição nos Estados Unidos de quanta água o nabo de cobertura usa nem da temperatura em que ele começa a crescer; usamos um cálculo com o clima da NASA e dados de uma planta parecida, a canola. A data em que o frio mata o nabo também é aproximada.",
+    "risco_revisao_local": "Só funciona semeado de começo de agosto a meados de setembro, depois de trigo ou silagem, ou a lanço na lavoura em pé. Depois do milho ou da soja colhidos em outubro rende quase nada. Sozinho deixa pouca palha contra a erosão. Confirme a data e a mistura com a extensão.",
+    "fontes": "USDA NRCS Iowa & ISU Extension, Radish Cover Crop Fact Sheet for Iowa (CROP 3203), maio 2025 (janela de semeadura do MCCC, tolerância ao frio 15 °F, C/N 19-20:1, massa 1.200-3.000 lb/acre, pastejo, resíduo pouco duradouro)|USDA NRCS Booneville PMC, Plant Guide Oilseed radish (Raphanus sativus), 2012 (raiz pivotante a seis pés; morre abaixo de 20 °F; pelo menos 60 dias de crescimento antes da morte pelo frio)|Weil, White & Lawley, Forage Radish: New Multi-Purpose Cover Crop for the Mid-Atlantic, Univ. of Maryland Fact Sheet 824 (dossel fechado em 3-4 semanas; tolera geada até 25 °F; raiz a seis pés; resíduo some até março)|Cavadini & Kladivko, Can Radish Cover Crops be Used to Manage Soil Phosphorus?, Purdue AY-359-W, maio 2025 (Lafayette-IN: semeado na última semana de agosto, 2.260 lb/acre de parte aérea em novembro, morto pelo inverno)|USDA NRCS Plant Materials Program, Evaluation of Cool Season Cover Crops in the North Central Region, 2020 (12 cultivares de nabo daikon/forrageiro morreram no inverno em KS, MI e MO)|Univ. of Wisconsin Extension, Cover crop options for planting after winter wheat (palhada do nabo solteiro insuficiente contra erosão)|MCCC, Indiana Cover Crop Recipe: Post Wheat, Going to Soybean or Corn: Use Oats and Radish Mix, 2022 (semeadura em agosto; morte pelo inverno)|SARE LNC13-352, ISU (amostragem de outono na 2ª semana de novembro em Iowa)|Lenz, Cox-O'Neill, Hales & Drewnoski, Crop Forage Turfgrass Manage., 2019 (PB e IVOMD da parte aérea do nabo; enxofre; lido no resumo)|Nebraska Beef Cattle Report 2018 (folhas de nabo e nabiça de novembro a janeiro, Clay Center-NE; resumo)|Fietz, Silva, Comunello & Souza, Water requirement of oilseed radish, CIGR/CONBEA 2008, Embrapa Agropecuária Oeste (Kc medido em lisímetro: 0,91 no vegetativo)|FAO-56 Tab. 12 (grupo a. Small Vegetables Kc ini 0,7; Radish Kc mid 0,90), Tab. 11 (fases do rabanete) e Tab. 22 (Radishes 0,3-0,5 m, rabanete de horta)|FAO-56 cap. 6 (Kc end alto em cultura colhida verde; convenção para cobertura que morre verde)|Dalmago et al., Pesq. agropec. bras. 48(6), 2013 (Tb 5 °C da canola) (PROXY: canola, Brassica napus, para temp_base_c)|FAO ECOCROP Raphanus sativus var. oleiferus (cópia OpenCLIM/ecocrop: TOPMN 12, TOPMX 25; TMAX 30 só registro, tmax_critica_c vazio porque o nabo de outono não floresce)|Thorup-Kristensen, Plant and Soil 288:233-248, 2006 (raiz do fodder radish a ~2,0 m; conferência)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/nabo_forrageiro_gd.json (graus-dia sem teto, Tb 5, da semeadura à morte pelo frio, NASA POWER 2001-2020)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/nabo_forrageiro_etc.json (Kc FAO-56 do rabanete × ET0 do NASA POWER, 2001-2020)|Drewnoski, MacDonald, Ulmer & Cox, Value of Oats and Brassicas for Fall Forage, UNL CropWatch, 01/12/2016 (PB das folhas de brássicas)|University of Illinois Extension, Quick Guide to Cover Crops for Forage, 2019, e Frillman, Winter-kill cover crops, 2023 (nabo semeado no fim do verão e morto no inverno em Illinois)|UNL CropWatch 2016 (misturas de aveia e brássicas depois do trigo e da silagem)",
+    "confianca_parametros": "baixa"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "proxy",
+      "nota": "Tb 5 °C da canola (Brassica napus; Dalmago et al. 2013), a mesma do catálogo do Brasil (PROXY). Não achei Tb publicada para o nabo forrageiro nem nos EUA (NRCS, MCCC, UMD, Purdue e extensões falam de temperatura de germinação e de tolerância ao frio, não de Tb). O NRCS/ISU dá germinação mínima com o solo a 45 °F (7,2 °C)."
+    },
+    "ciclo_dias_min": {
+      "tipo": "convencao_com_fonte",
+      "nota": "Semeadura -> morte pelo frio (o 'manejo' desta cobertura). Semeadura 'Early August to Mid September' (NRCS/ISU, CROP 3203, dados do MCCC); o NRCS (Plant Guide 2012) pede 'at least 60 days of plant growth before winterkill'. Mínimo = 15/set -> 14/nov (2ª semana de novembro, amostragem de outono em Iowa, SARE LNC13-352) = 61 dias corridos. Convenção do time: fim do ciclo = última amostragem antes do congelamento."
+    },
+    "ciclo_dias_max": {
+      "tipo": "convencao_com_fonte",
+      "nota": "Semeadura mais cedo (1/ago, NRCS/ISU) -> 5/dez = 127 dias corridos. Fim em início de dezembro: amostras de Lenz et al. 2019 (Nebraska) e UMD FS 824 ('damaged by frost by early December' em Maryland; morte completa só em janeiro, mais ao sul). Típico (25/ago, Purdue, -> 20/nov) = 88 dias. O MCCC de Indiana não recomenda semear antes de agosto (o nabo pode florescer)."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO na régua do POWER (sem teto, Tb 5), scripts/gd_nasa_power.py com eua/cenarios/nabo_forrageiro_gd.json, 2001-2020. As fontes dão datas, não GDD. Menor mediana dos cenários de mínimo (15/set -> 14/nov): Nashua 338 (P10 271, P90 444); Sutherland 390; Ames 421; Crawfordsville 456; Lafayette-IN 481. Mínimo = 330 (arredondado para baixo)."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo, cenários de máximo (1/ago -> 5/dez): Crawfordsville 1284 (P10 1191, P90 1497); Lafayette 1277; Ames 1213; Sutherland 1154; Nashua 1030. Máximo = 1280. Típico (25/ago -> 20/nov): Nashua 659, Sutherland 722, Ames 770, Crawfordsville 816, Lafayette 852. A soma no Brasil (800-1800, até o florescimento) não se compara: aqui o nabo morre no vegetativo."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "calculo",
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/nabo_forrageiro_etc.json (Kc × ET0 FAO-56 do POWER, 2001-2020). Curva FAO-56 do rabanete (Kc ini 0,7 do grupo Small Vegetables; Kc mid 0,90 da linha Radish); fase inicial 10 d (Tab. 11, rabanete de inverno) e desenvolvimento 15 d (dossel fechado em 3-4 semanas, UMD FS 824); fase média até a morte pelo frio. Nashua, 15/set -> 14/nov (61 d): média 101 mm (P10 75, P90 122) -> 100 (arredondado para baixo). Sutherland: 121. Não achei medição americana do consumo de água do nabo de cobertura."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "calculo",
+      "nota": "Mesmo cálculo: Crawfordsville, 1/ago -> 5/dez (127 d): média 316 mm (P10 263, P90 366) -> 315; Lafayette-IN: 295. Típico (25/ago -> 20/nov): Ames 199, Lafayette 193. A chuva mediana do POWER no mesmo período (124-371 mm) fica perto da ETc."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, grupo a. Small Vegetables, Kc ini 0,7 (a linha Radish não tem Kc ini próprio). Mesma espécie (Raphanus sativus), mas a linha é o rabanete de horta."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, linha Radish, Kc mid 0,90 (a própria espécie). Confere com o Kc medido em lisímetro no vegetativo do nabo forrageiro (Fietz et al. 2008, Dourados: 0,91 da emergência ao botão floral). O 1,42 medido do botão ao florescimento pleno (limitado a 1,25 no Brasil) não se aplica: nos EUA o nabo morre em roseta, sem florescer."
+    },
+    "kc_final": {
+      "tipo": "convencao_com_fonte",
+      "nota": "kc_final = kc_medio: a cobertura morre verde pelo frio (FAO-56 cap. 6: Kc end alto em cultura colhida verde), a mesma convenção do Brasil."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "1,8 m = seis pés: 'taproot that reaches depths of six feet' (NRCS Plant Guide 2012, nabo oleaginoso) e 'The thin lower part of the taproot can grow to a depth of six feet' (UMD FS 824, nabo forrageiro). O FAO-56 Tab. 22 (Radishes 0,3-0,5 m) é do rabanete de horta e não representa o nabo de cobertura. Thorup-Kristensen 2006 (Dinamarca) achou ~2,0 m (valor do Brasil)."
+    },
+    "tmax_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: nesta linha o nabo é semeado em agosto-setembro e morre no inverno em roseta, sem florescer (NRCS Plant Guide; NRCS PMC 2020). O tmax_critica_c só vale numa fase sensível que a cultura atravessa no sistema (evidencias/README, regra 11); o TMAX 30 do ECOCROP é limite de crescimento, não de dano, e fica só como registro na evidência (no Brasil entra porque lá o nabo é manejado no florescimento). Não é coluna do filtro de confiança."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "nome_cientifico, familia_botanica",
+      "valor_brasil": "Raphanus sativus, Brassicaceae",
+      "decisao": "reusado",
+      "motivo": "Mesma espécie. Nos EUA o 'forage/tillage radish' é sobretudo o tipo daikon (var. longipinnatus); o 'oilseed radish' (var. oleiformis) também é usado (UMD FS 824). No Brasil a linha é o nabo oleaginoso."
+    },
+    {
+      "coluna": "tipos",
+      "valor_brasil": "cobertura|forrageira|raiz_profunda|tolerante_seca",
+      "decisao": "trocado",
+      "motivo": "Retirado 'tolerante_seca': o NRCS/ISU dá 'Drought tolerance: Fair'. Mantidos cobertura, forrageira ('Grazing quality: Good') e raiz_profunda (seis pés)."
+    },
+    {
+      "coluna": "temp_base_c",
+      "valor_brasil": "5 (PROXY canola)",
+      "decisao": "reusado",
+      "motivo": "Sem Tb publicada para o nabo nos EUA; mantida a Tb 5 da canola para a mesma régua."
+    },
+    {
+      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
+      "valor_brasil": "12, 25, 30",
+      "decisao": "trocado",
+      "motivo": "temp_otima 12 e 25 reusados (ECOCROP da espécie, var. oleiferus; sem número americano). tmax_critica_c trocado para vazio (revisão de 15/11, M-04): o TMAX 30 do ECOCROP não é limiar de dano, e o nabo de outono morre no inverno sem florescer; fica só como registro."
+    },
+    {
+      "coluna": "sensivel_geada",
+      "valor_brasil": "false",
+      "decisao": "conferido e mantido",
+      "motivo": "Tolera geada até ~25 °F (UMD FS 824; NRCS/ISU: cold tolerance 15 °F) e morre com várias noites abaixo de ~20 °F (NRCS Plant Guide), o que é o manejo planejado do sistema. Ver regua.observacoes.geada."
+    },
+    {
+      "coluna": "kc_inicial",
+      "valor_brasil": "0.7 (PROXY)",
+      "decisao": "conferido e mantido",
+      "motivo": "FAO-56 grupo Small Vegetables (o grupo da linha Radish, a mesma espécie): conta como publicado."
+    },
+    {
+      "coluna": "kc_medio, kc_final",
+      "valor_brasil": "1.25, 1.25",
+      "decisao": "trocado",
+      "motivo": "0,90 (FAO-56, Radish). O 1,25 do Brasil é o 1,42 medido do botão floral ao florescimento pleno (Fietz 2008), limitado pelo FAO-56; nos EUA o nabo morre em roseta, e o Kc medido no vegetativo foi 0,91."
+    },
+    {
+      "coluna": "profundidade_raiz_m",
+      "valor_brasil": "2.0 (estudo único, Dinamarca)",
+      "decisao": "trocado",
+      "motivo": "1,8 m = seis pés, publicado pelo NRCS e pela UMD."
+    },
+    {
+      "coluna": "ciclo_dias, graus_dia, agua",
+      "valor_brasil": "60-120 d; 800-1800 °C·dia; 110-350 mm",
+      "decisao": "trocado",
+      "motivo": "Outro sistema: no Brasil o nabo vai da semeadura de outono ao florescimento pleno; nos EUA é semeado no fim do verão e morre pelo frio no vegetativo (61-127 d)."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "ciclo_dias_max",
+        "sensivel_geada",
+        "cn_palhada",
+        "ms_palhada_t_ha",
+        "uso_forrageiro",
+        "tipos",
+        "semeadura_inicio",
+        "semeadura_fim",
+        "condicao_semeadura",
+        "estados_validos"
+      ],
+      "fonte": "USDA NRCS Iowa & Iowa State University Extension and Outreach, Radish Cover Crop Fact Sheet for Iowa (CROP 3203), maio de 2025",
+      "url": "https://nrcs-prod.azureedge.us/sites/default/files/2025-05/Radish%20Cover%20Crop%20Fact%20Sheet.pdf",
+      "trecho": "Tillage radishes (Raphanus sativus) are a cool-season annual brassica cover crop. [...] Minimum germination soil temperature: 45° F » Cold tolerance temperature: 15° F » Seeding date: Early August to Mid September* [...] Tillage Radish 19:1 to 20:1 [...] Dry matter = 1,200 - 3,000 lbs./acre per year [...] Grazing quality Good [...] Lasting residue Fair [...] Drought tolerance Fair [...] The grazing palatability of radishes improves after frost. [o texto extraído do PDF mostra '450 F' e '150 F': o símbolo de grau se perdeu] [...] » Aerial (6 lbs./acre PLS) [...] Radishes interseeded in 60” corn rows in northeast Iowa. [...] » Cash crop overseed (late seed fill) Good"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "raiz_profunda",
+        "sensivel_geada",
+        "ciclo_dias_min",
+        "tipo_manejo"
+      ],
+      "fonte": "USDA NRCS Booneville Plant Materials Center, Plant Guide: Oilseed radish (Raphanus sativus), 2012",
+      "url": "https://plants.usda.gov/DocumentLibrary/plantguide/pdf/pg_rasa2.pdf",
+      "trecho": "Oilseed radish develops a unique taproot that reaches depths of six feet. [...] Plants cannot survive freezing temperatures of 20⁰F or below (Sundermeier, 2008). [...] Planting times should allow at least 60 days of plant growth before winterkill (Sundermeier, 2008)."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "sensivel_geada",
+        "ciclo_dias_max",
+        "agua_ciclo_mm_min",
+        "cobertura_solo",
+        "manejo_fim"
+      ],
+      "fonte": "Weil, R.; White, C.; Lawley, Y., Forage Radish: New Multi-Purpose Cover Crop for the Mid-Atlantic, University of Maryland Extension Fact Sheet 824",
+      "url": "https://enst.umd.edu/sites/enst.umd.edu/files/files/documents/Research&Extension/Forage_Radish_Cover_Crop.pdf",
+      "trecho": "The thin lower part of the taproot can grow to a depth of six feet [...] a good stand can provide full canopy closure in three to four weeks. [...] Forage radish is tolerant of frost until temperatures dip below 25°F. It takes several nights of temperatures in the low 20s to kill forage radish. [...] Usually in Maryland forage radish is damaged by frost by early December but does not die completely until the longer cold spells of January. [...] forage radish tissues decompose rapidly once killed by frost and leave only a thin film of residue by March."
+    },
+    {
+      "colunas": [
+        "ms_palhada_t_ha",
+        "ciclo_dias_max",
+        "graus_dia_ciclo_max",
+        "estados_validos"
+      ],
+      "fonte": "Cavadini, J.; Kladivko, E., Can Radish Cover Crops be Used to Manage Soil Phosphorus?, Purdue University AY-359-W, maio de 2025 (Lafayette-IN, 3 sítios)",
+      "url": "https://edustore.purdue.edu/media/wysiwyg/downloads/pubs/AY/AY-359-W-A.pdf",
+      "trecho": "Cover crops were planted with a no-till drill in late August. [...] Cover crop biomass samples were collected in November [...] Amount of above-ground growth averaged 2,260 lbs DM/acre for radish, 3,033 lbs DM/acre for radish + oats [...] Two of the treatments completely winter-killed after fall sampling"
+    },
+    {
+      "colunas": [
+        "sensivel_geada",
+        "profundidade_raiz_m",
+        "tipo_manejo"
+      ],
+      "fonte": "USDA NRCS Plant Materials Program, Evaluation of Cool Season Cover Crops in the North Central Region, maio de 2020 (Manhattan-KS, East Lansing-MI, Elsberry-MO; semeadura de 12 a 22/set)",
+      "url": "https://midwestcovercrops.b-cdn.net/wp-content/uploads/2021/05/NRCS_2020_Evaluation-fo-Cool-Season-Cover-Crops-in-NCR.pdf",
+      "trecho": "Radish develops a unique taproot which may reach depths of 24 inches or more. [...] None of the varieties survived the winters in Manhattan, KS, East Lansing, MI, Elsberry, MO. [a parte grossa da raiz; não é a profundidade máxima das raízes finas]"
+    },
+    {
+      "colunas": [
+        "cobertura_solo"
+      ],
+      "fonte": "University of Wisconsin-Madison Division of Extension, Cover crop options for planting after winter wheat",
+      "url": "https://cropsandsoils.extension.wisc.edu/articles/cover-crop-options-for-planting-after-winter-wheat/",
+      "trecho": "monoculture stands of turnips and/or radishes often do not provide sufficient residue cover for erosion reduction"
+    },
+    {
+      "colunas": [
+        "ciclo_dias_max",
+        "sensivel_geada",
+        "semeadura_inicio",
+        "condicao_semeadura",
+        "estados_validos"
+      ],
+      "fonte": "Midwest Cover Crops Council, Indiana Cover Crop Recipe: Post Wheat, Going to Soybean or Corn: Use Oats and Radish Mix, dez. 2022 (lido pela página do MCCC)",
+      "url": "https://www.midwestcovercrops.org/2023/10/26/indiana-cover-crop-recipe-post-wheat-going-to-soybean-or-corn-use-oats-and-radish-mix/",
+      "trecho": "Plant oats and radish anytime in August after wheat harvest. [...] Planting a cool-season annual, such as radish, prior to August is not recommended [...] mild winters and good snow cover sometimes allow radish to overwinter."
+    },
+    {
+      "colunas": [
+        "ciclo_dias_min",
+        "graus_dia_ciclo_min",
+        "manejo_inicio",
+        "estados_validos"
+      ],
+      "fonte": "Lenssen, A. et al., Improved Cover Crop Options for Corn Belt Farmers, SARE LNC13-352 (final report), Iowa State University",
+      "url": "https://projects.sare.org/project-reports/lnc13-352/",
+      "trecho": "Fall cover crop biomass sampling occurred the second week of November."
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct",
+        "uso_forrageiro",
+        "manejo_fim",
+        "estados_validos"
+      ],
+      "fonte": "Lenz, M.E.; Cox-O'Neill, J.L.; Hales, K.E.; Drewnoski, M.E., Nutritive value change during the fall of late-summer-planted oats, radishes, and turnips, Crop, Forage & Turfgrass Management, 2019 (Nebraska; lido no resumo; a mesma fonte do catálogo do Brasil)",
+      "url": "https://doi.org/10.2134/cftm2018.12.0097",
+      "trecho": "The mean in vitro organic matter digestibility (IVOMD) of radish (86%) and turnip (87%) tops were high and were greater than oats (75%) [...] crude protein (CP) of all forages was high, with oats (16% CP) being less than both radish (27%) and turnip (24%) tops. [...] Brassicas remain high in sulfur through the fall with potential for toxicity [última frase segundo o resumo visto em resultado de busca]"
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "digestibilidade_pct"
+      ],
+      "fonte": "Nebraska Beef Cattle Report 2018, Late Summer Planted Oat-Brassica Forage Quality Changes during Winter Grazing (UNL Digital Commons, resumo)",
+      "url": "https://digitalcommons.unl.edu/animalscinbcr/972",
+      "trecho": "Brassica (radish and turnip) leaves were more similar to a concentrate (81–83% IVOMD and 23–26% CP) even in January."
+    },
+    {
+      "colunas": [
+        "pb_pct",
+        "condicao_semeadura"
+      ],
+      "fonte": "Drewnoski, M.; MacDonald, J.; Ulmer, K.; Cox, J., Value of Oats and Brassicas for Fall Forage, UNL CropWatch, 01/12/2016",
+      "url": "https://cropwatch.unl.edu/2016/value-oats-and-brassicas-fall-forage",
+      "trecho": "planted in mid-August after wheat (two trials at Mead) or early September after corn silage harvest [...] the tops of brassicas often have crude protein (CP) values of 20% to 25% [...] Both late summer-planted oats and brassicas are 70-80% IVDMD (TDN) in late October"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 12 e Tabela 11",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "a. Small Vegetables 0.7 1.05 0.95 [...] Radish 0.90 0.85 0.3 [...] [Tab. 11:] Radish 5 10 15 5 35 Mar/Apr Medit.; Europe 10 10 15 5 40 Winter Arid Region"
+    },
+    {
+      "colunas": [
+        "kc_medio"
+      ],
+      "fonte": "Fietz, C.R.; Silva, F.C.; Comunello, E.; Souza, F.R., Water requirement of oilseed radish (Raphanus sativus L.), CIGR/CONBEA 2008, Embrapa Agropecuária Oeste (Dourados-MS; a mesma fonte do catálogo do Brasil)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/255674/1/31128.pdf",
+      "trecho": "Table 2: E - BB 27 d, ETm 2,59, Kc 0,91; BB – FB 21 d, ETm 4,12, Kc 1,42 [...] 'The crop evapotranspiration was measured by a weighing lysimeter'"
+    },
+    {
+      "colunas": [
+        "kc_final"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), cap. 6, Kc end",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "This reduction in K c end is characteristic of crops that are harvested 'green' or before becoming completely dead"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56 (Allen et al. 1998), Tabela 22 (rabanete de horta; só conferência)",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Radishes 0.3-0.5 0.30"
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "Thorup-Kristensen, K., Plant and Soil 288:233-248, 2006 (Dinamarca; a fonte do catálogo do Brasil; conferência)",
+      "url": "https://orgprints.org/id/eprint/7905/",
+      "trecho": "Very different rooting depths were obtained, from only 0.5 m (leek), to approximately 1.0 m (ryegrass and barley), 1.5 m (red beet), 2.0 m (fodder radish and white cabbage)"
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Dalmago, G.A. et al., Filocrono e número de folhas da canola em diferentes condições ambientais, Pesq. agropec. bras. 48(6), 2013 (PROXY: canola; a mesma fonte do catálogo do Brasil)",
+      "url": "https://seer.sct.embrapa.br/index.php/pab/article/download/14647/12147",
+      "trecho": "A temperatura‑base considerada para a canola foi de 5ºC (Nanda et al., 1995)."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, Raphanus sativus var. oleiferus, código 83541 (cópia EcoCrop_DB.csv, OpenCLIM; a mesma fonte do catálogo do Brasil) (o TMAX 30 é só registro: tmax_critica_c ficou vazio nos EUA porque o nabo morre no inverno sem florescer)",
+      "url": "https://raw.githubusercontent.com/OpenCLIM/ecocrop/main/EcoCrop_DB.csv",
+      "trecho": "83541, Raphanus sativus var. oleiferus: TOPMN 12, TOPMX 25, TMIN 5, TMAX 30"
+    },
+    {
+      "colunas": [
+        "graus_dia_ciclo_min",
+        "graus_dia_ciclo_max"
+      ],
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/nabo_forrageiro_gd.json (NASA POWER diário, comunidade AG, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "0915_1114: nashua mediana 338 (P10 271, P90 444), sutherland 390, ames 421, crawfordsville 456, lafayette 481 | 0825_1120: 659/722/770/816/852 | 0801_1205: nashua 1030, sutherland 1154, ames 1213, lafayette 1277, crawfordsville 1284 (P10 1191, P90 1497)"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CÁLCULO: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/nabo_forrageiro_etc.json (NASA POWER, 2001-2020)",
+      "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
+      "trecho": "nabo_forrageiro_nashua_0915_61d: média 101 mm (P10 75, P90 122), ET0 122, chuva 124; sutherland_0915_61d: 121; ames_0825_88d: 199; lafayette_0825_88d: 193; crawfordsville_0801_127d: 316 (P10 263, P90 366), ET0 381, chuva 320; lafayette_0801_127d: 295"
+    },
+    {
+      "colunas": [
+        "calendario_usda",
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010 (sem linha de nabo ou rabanete)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "[busca por 'radish' no texto do relatório: nenhuma ocorrência]"
+    },
+    {
+      "colunas": [
+        "estados_validos"
+      ],
+      "fonte": "University of Illinois Extension, Quick Guide to Cover Crops for Forage 2019 (tabela de coberturas para forragem; 24/06/2019)",
+      "url": "https://extension.illinois.edu/sites/default/files/covercropsquickguide2019.pdf",
+      "trecho": "Radish 4 to 6 1 to 3 1/2 April - September 5 50-60 1 to 3 Annual [linha da tabela; texto extraído do PDF]"
+    },
+    {
+      "colunas": [
+        "estados_validos"
+      ],
+      "fonte": "Frillman, N., Harness the power of nature with winter-kill cover crops, University of Illinois Extension (blog de horticultura), 04/08/2023 (só apoio: texto voltado a hortas)",
+      "url": "https://extension.illinois.edu/blogs/flowers-fruits-and-frass/2023-08-04-harness-power-nature-winter-kill-cover-crops",
+      "trecho": "Oilseed radish grows vigorously in fall, and releases nutrients back to the soil, when it dies in winter. [...] To maximize the benefits of winter-kill cover crops, establish in late August or early September."
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": 1.35,
+      "max": 3.36,
+      "tipico": 2.44
+    },
+    "cn_palhada": {
+      "min": 19,
+      "max": 20,
+      "tipico": 19.5
+    },
+    "k_dia": {
+      "valor": null,
+      "min": null,
+      "max": null
+    },
+    "meia_vida_dias": {
+      "valor": null
+    },
+    "condicao_decomposicao": "Sem medição americana de decomposição com massa e datas no Corn Belt. A palhada morre em novembro-dezembro e se desfaz no inverno: 'leave only a thin film of residue by March' (UMD FS 824, Maryland).",
+    "pb_pct": 27,
+    "digestibilidade_pct": {
+      "valor": 86,
+      "tipo": "IVOMD",
+      "n": null,
+      "medicao": "medida",
+      "nota": "Digestibilidade in vitro da matéria orgânica da parte aérea (folhas) do nabo semeado no fim do verão, média das amostras de novembro a janeiro (Lenz et al. 2019, Nebraska); n não informado no resumo. Conferência: 81-83% de IVOMD nas folhas de brássicas em janeiro (Nebraska Beef Report 2018). Conferência de PB: 20-25% nas folhas de brássicas (UNL CropWatch 2016); a raiz tem PB menor (o mesmo texto, lido por resumo)."
+    },
+    "uso_forrageiro": "com_restricao",
+    "cenario_forragem": "Parte aérea do nabo pastejada no outono e início do inverno, no vegetativo (roseta), em geral em mistura com aveia. 'com_restricao': o NRCS/ISU dá 'Grazing quality: Good' e 'Mechanical forage harvest: Poor'; as brássicas acumulam enxofre, com risco de toxicidade se forem a dieta principal (Lenz et al. 2019); a palatabilidade melhora depois da geada (NRCS/ISU).",
+    "excecoes": {
+      "cobertura_solo": {
+        "valor": "baixa",
+        "motivo": "Sem k medido, mas há fonte direta: a palhada do nabo se desfaz no inverno e deixa 'only a thin film of residue by March' (UMD FS 824); 'monoculture stands of turnips and/or radishes often do not provide sufficient residue cover for erosion reduction' (UW Extension); 'Lasting residue: Fair' e 'Erosion control: Fair' (NRCS/ISU)."
+      }
+    },
+    "observacoes": {
+      "coleta": "Massa da parte aérea do nabo solteiro no fim do outono, semeado de agosto a meados de setembro no Corn Belt; um valor por fonte (mediana): Purdue AY-359-W (Lafayette-IN, semeado no fim de agosto, amostrado em novembro, 3 sítios): 2.260 lb/acre × 1,121 = 2,53 t/ha; NRCS/ISU CROP 3203 (Iowa, 1.200-3.000 lb/acre, sem n): ponto médio 2.100 × 1,121 = 2,35 t/ha. Típico = mediana dos dois = 2,44 t/ha. Mínimo = 1.200 lb/acre = 1,35 t/ha; máximo = 3.000 lb/acre = 3,36 t/ha (faixa do NRCS/ISU). Ficaram de fora, por serem do Meio-Atlântico (fora do Corn Belt, semeadura mais cedo e outono mais longo): UMD FS 824 ('5,000 lb/acre shoots plus 2,000 lb/acre of root dry matter' num bom estande), Lawley (tese UMD: 3.900-6.600 kg/ha de parte aérea) e o NRCS Plant Guide ('up to 2 ton/acre', Dean & Weil 2009). Raiz carnuda: Purdue achou 40% da massa total abaixo do solo (todos os tratamentos). C/N: 19-20:1 (NRCS/ISU, 'Tillage Radish').",
+      "decomposicao": "k vazio (não sei): não achei estudo americano com massa remanescente e datas para o nabo morto pelo inverno no Corn Belt (Jahanzad et al. 2016, Massachusetts, e o projeto SARE GNE22-301 não abriram ou não trazem k no texto). A exceção de cobertura_solo usa as fontes qualitativas.",
+      "geada": "sensivel_geada = false: o nabo tolera geada até ~25 °F (-4 °C; UMD FS 824) e só morre com várias noites abaixo de ~20 °F (-7 °C; NRCS Plant Guide; o NRCS/ISU dá tolerância a 15 °F, -9 °C). A morte pelo congelamento é o manejo planejado desta cobertura, não um dano. O nabo não atravessa o inverno no Corn Belt (12 cultivares morreram em KS, MI e MO, NRCS PMC 2020), salvo em inverno ameno com neve (MCCC Indiana).",
+      "codigos": "Sem código: o nabo de cobertura não aparece no NASS QuickStats como commodity (conferido só pela ausência no Crop Production e no Handbook 628; sem NASS_API_KEY) nem no Handbook 628 (nenhuma ocorrência de 'radish'). codigo_nass e calendario_usda vazios = não se aplica.",
+      "colheita": "Não se aplica: a cobertura não é colhida.",
+      "janela": "Janela gravada em valores (revisão de 15/11, M-02): semeadura 08-01 a 09-15 (NRCS/ISU, dados do MCCC); manejo = morte pelo frio, 11-14 a 12-05. As datas da morte são CONVENÇÃO com fonte (não há data publicada para o Corn Belt): 11-14 = última amostragem antes do congelamento em Iowa (SARE LNC13-352); 12-05 = início de dezembro (UMD FS 824: 'damaged by frost by early December', em Maryland, mais ao sul; amostras de início de dezembro no Nebraska, Lenz et al. 2019). São as mesmas datas do ciclo, dos graus-dia e da água. Condição: apos_cereal_inverno (trigo, MCCC Indiana), apos_silagem (UNL 2016) e a_lanco_lavoura_em_pe (NRCS/ISU; pela regra 12 do motor só aparece como informação). Decisão do usuário (15/11): manter só esta linha, sem variante."
+    },
+    "resultado": {
+      "aporte_biomassa": "medio",
+      "cobertura_solo": "baixa",
+      "valor_forrageiro": "medio"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": 2.44,
+      "ms_remanescente_t_ha": null,
+      "depende_da_epoca": {
+        "aporte_biomassa": true,
+        "cobertura_solo": null
+      },
+      "excecoes_aplicadas": [
+        "cobertura_solo"
+      ]
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "aporte_biomassa",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "cobertura_solo",
+      "antes": "",
+      "depois": "baixa",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "medio",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "semeadura_inicio",
+      "antes": "",
+      "depois": "08-01",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-02: janela 'Early August to Mid September' (NRCS/ISU CROP 3203, dados do MCCC), a mesma do ciclo_dias_max; o MCCC de Indiana não recomenda antes de agosto"
+    },
+    {
+      "coluna": "semeadura_fim",
+      "antes": "",
+      "depois": "09-15",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-02: fim da janela 'Mid September' (NRCS/ISU CROP 3203), a mesma do ciclo_dias_min"
+    },
+    {
+      "coluna": "manejo_inicio",
+      "antes": "",
+      "depois": "11-14",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-02: morte pelo frio, início = 2ª semana de novembro (última amostragem antes do congelamento em Iowa, SARE LNC13-352), a mesma convenção do ciclo_dias_min"
+    },
+    {
+      "coluna": "manejo_fim",
+      "antes": "",
+      "depois": "12-05",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-02: morte pelo frio, fim = início de dezembro (UMD FS 824: 'damaged by frost by early December'; amostras de início de dezembro no Nebraska, Lenz et al. 2019), a mesma convenção do ciclo_dias_max"
+    },
+    {
+      "coluna": "tipo_manejo",
+      "antes": "",
+      "depois": "morte_pelo_frio",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-02: 'Plants cannot survive freezing temperatures of 20⁰F or below' (NRCS Plant Guide); nenhuma das 12 cultivares sobreviveu ao inverno em KS, MI e MO (NRCS PMC 2020)"
+    },
+    {
+      "coluna": "condicao_semeadura",
+      "antes": "",
+      "depois": "apos_cereal_inverno|apos_silagem|a_lanco_lavoura_em_pe",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-02: depois do trigo (MCCC Indiana), depois da silagem de milho (UNL 2016, misturas de aveia e brássicas) ou a lanço/avião na lavoura em pé (NRCS/ISU: 'Aerial', 'Cash crop overseed (late seed fill) Good', 'Radishes interseeded in 60” corn rows'). Decisão do usuário: manter só esta linha, sem variante"
+    },
+    {
+      "coluna": "estados_validos",
+      "antes": "",
+      "depois": "IA|IL|IN|NE",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-09: estados com fonte para a janela de agosto e setembro e a morte pelo inverno: IA (NRCS/ISU, SARE LNC13-352), IL (University of Illinois Extension 2019 e 2023), IN (Purdue AY-359-W, MCCC Indiana), NE (Lenz et al. 2019, UNL 2016)"
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "antes": "30",
+      "depois": "",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-04: o nabo de outono morre no inverno em roseta, sem florescer; o TMAX 30 do ECOCROP não é limiar de dano e só valeria com manejo no florescimento (Brasil). Valor antigo mantido só como registro na evidência"
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "",
+      "depois": "Ainda não há medição nos Estados Unidos de quanta água o nabo de cobertura usa nem da temperatura em que ele começa a crescer; usamos um cálculo com o clima da NASA e dados de uma planta parecida, a canola. A data em que o frio mata o nabo também é aproximada.",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-11: texto para o produtor (confiança baixa)"
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "",
+      "depois": "Só funciona semeado de começo de agosto a meados de setembro, depois de trigo ou silagem, ou a lanço na lavoura em pé. Depois do milho ou da soja colhidos em outubro rende quase nada. Sozinho deixa pouca palha contra a erosão. Confirme a data e a mistura com a extensão.",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), M-11: texto para o produtor (confiança baixa)"
+    }
+  ],
+  "pendencias": [
+    "Sistema: a linha é o nabo forrageiro/'tillage radish' (sobretudo tipo daikon) solteiro, semeado de 1/ago a meados de setembro (depois de cereal de inverno ou silagem, ou a lanço no milho/soja em pé) e morto pelo inverno, antes do milho ou da soja. No Corn Belt o nabo é usado mais em mistura com aveia ou centeio (MCCC: receitas de aveia + nabo em Indiana, Michigan, Minnesota/Wisconsin). Se o motor tratar misturas, criar um arranjo próprio.",
+    "temp_base_c = 5 continua PROXY da canola: não há Tb publicada para o nabo forrageiro (nem nos EUA). Resolveria: estudo de fenologia ou de crescimento do nabo com Tb estimada (a tese de doutorado da MSU sobre nabo oleaginoso, de 2015, tem cálculo de graus-dia, mas não foi lida).",
+    "ciclo: o fim do ciclo é a morte pelo frio, aproximada pelas datas da última amostragem antes do congelamento (14/nov em Iowa a 5/dez). A tolerância publicada varia: 25 °F (UMD), 20 °F (NRCS Plant Guide), 15 °F (NRCS/ISU 2025). Resolveria: série de datas da primeira temperatura <= -7 °C por local ou ensaio de Iowa com a data da morte.",
+    "graus_dia e água: CÁLCULO com o POWER nas datas acima. A faixa de graus-dia (330-1280) depende só das datas; sugestão para o motor: usar o filtro de graus-dia desta cobertura como teste de frio. A água usa o Kc do rabanete de horta (0,90), que confere com o vegetativo medido no Brasil (0,91), mas não há medição americana.",
+    "kc_medio mudou de 1,25 (Brasil, florescimento) para 0,90 (EUA, vegetativo). Decisão para o coordenador: as duas linhas usam o mesmo id com Kc diferentes porque os sistemas param em fases diferentes.",
+    "profundidade_raiz_m = 1,8 m (seis pés, NRCS e UMD) é o máximo das raízes finas; a parte grossa da raiz chega a 0,3-0,6 m (UMD; NRCS PMC 2020). Em 60-90 dias de outono a raiz pode não chegar ao máximo.",
+    "regua: massa típica de um ensaio (Purdue, Indiana) e uma faixa de extensão sem n (NRCS/ISU). k de decomposição vazio; cobertura_solo = baixa por exceção com fontes qualitativas. Resolveria: um estudo de bolsas de decomposição do nabo morto pelo inverno no Corn Belt e massas de nabo solteiro nos relatórios ISRF da ISU.",
+    "forragem: PB e IVOMD de Lenz et al. 2019 lidos só no resumo (folhas jovens de outono; superestimam a planta inteira, porque a raiz tem PB menor); n não informado.",
+    "codigo_nass e calendario_usda vazios: o nabo de cobertura não é commodity do NASS nem consta do Handbook 628.",
+    "DECISÃO do usuário (15/11): manter só a linha de semeadura em agosto e setembro, sem variante. Pela regra 12 do motor, o nabo não aparece depois do milho ou da soja colhidos em outubro.",
+    "tmax_critica_c vazio (revisão de 15/11, M-04): o nabo de outono morre no inverno em roseta, sem florescer. O TMAX 30 do ECOCROP fica só como registro (no Brasil vale porque o manejo é no florescimento).",
+    "Janela (manejo_inicio 11-14, manejo_fim 12-05): convenção com fonte, as mesmas datas do ciclo. A tolerância publicada ao frio varia (25, 20 e 15 °F). Resolveria: série da data da primeira noite abaixo de ~20 °F (-7 °C) por local, ou um ensaio de Iowa com a data da morte.",
+    "estados_validos = IA|IL|IN|NE: IL e NE só com fonte da janela e da morte pelo inverno (University of Illinois Extension 2019 e 2023, este um texto para hortas; Lenz et al. 2019; UNL 2016), sem cálculo de graus-dia e água nesses estados (o cálculo usou locais de Iowa e Lafayette-IN). KS, MI e MO têm só a morte pelo inverno (NRCS PMC 2020, semeadura de 12 a 22/set), sem janela lida: ficaram de fora."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 5,
+    "colunas": [
+      "temp_base_c",
+      "graus_dia_ciclo_min",
+      "graus_dia_ciclo_max",
+      "agua_ciclo_mm_min",
+      "agua_ciclo_mm_max"
+    ]
+  }
+}

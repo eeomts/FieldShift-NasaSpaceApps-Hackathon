@@ -1,0 +1,276 @@
+{
+  "_leia": "Cenários de graus-dia da ervilhaca (hairy vetch, Vicia villosa, cobertura de inverno antes do milho) para scripts/gd_nasa_power.py. A exigência vai da semeadura (fim do verão) ao manejo (dessecação na primavera, 10-14 dias antes da semeadura do milho). Tb 4 °C (Teasdale et al. 2004, Agron. J. 96:1266). As fontes dão datas, não GDD: modo 'fim'. A LINHA é só do Corn Belt (revisão de 15/11, A-05): Iowa (Nashua, Ames, Crawfordsville) Illinois (Urbana, Carbondale) e leste do Nebraska (Mead), com a janela de Iowa. Os cenários da Geórgia (Tifton, Watkinsville) ficam só para regua.arranjos.sudeste e NÃO entram na faixa da linha. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; NE de Iowa, o local mais frio)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU, centro de Iowa)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; SE de Iowa)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    },
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus; Coastal Plain da Geórgia)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    },
+    "watkinsville": {
+      "nome": "Watkinsville-GA (USDA-ARS J. Phil Campbell Center; Piedmont da Geórgia)",
+      "lat": 33.87,
+      "lon": -83.45,
+      "elevacao_m": 278.6
+    },
+    "urbana": {
+      "nome": "Urbana-IL (University of Illinois, centro de Illinois)",
+      "lat": 40.08,
+      "lon": -88.24,
+      "elevacao_m": 208.77
+    },
+    "carbondale": {
+      "nome": "Carbondale-IL (Southern Illinois University; sul de Illinois, local do ensaio de Sievers & Cook 2018)",
+      "lat": 37.71,
+      "lon": -89.22,
+      "elevacao_m": 143.07
+    },
+    "mead": {
+      "nome": "Mead-NE (UNL Eastern Nebraska Research, Extension and Education Center; local do ensaio da UNL 2022)",
+      "lat": 41.15,
+      "lon": -96.49,
+      "elevacao_m": 357.8
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "ervilhaca_nashua_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "nashua",
+      "semeadura": "09-15",
+      "fim": "04-11",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo em Iowa: semeadura mais tardia (15/set) e manejo mais cedo (11/abr). Datas de Iowa: semeadura 'Early August to Mid September' (NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet, CROP 3279, 2025, dados do Midwest Cover Crop Council); manejo = semeadura do milho em Iowa (Handbook 628, 2010: início da fase mais ativa 25/abr, fim 26/mai) menos 14 dias (início, 11/abr) ou 10 dias (fim, 16/mai), 'Ten to fourteen days are recommended before planting the summer cash crop' (NRCS Plant Guide, 2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_ames_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "ames",
+      "semeadura": "09-15",
+      "fim": "04-11",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo em Iowa: semeadura mais tardia (15/set) e manejo mais cedo (11/abr). Datas de Iowa: semeadura 'Early August to Mid September' (NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet, CROP 3279, 2025, dados do Midwest Cover Crop Council); manejo = semeadura do milho em Iowa (Handbook 628, 2010: início da fase mais ativa 25/abr, fim 26/mai) menos 14 dias (início, 11/abr) ou 10 dias (fim, 16/mai), 'Ten to fourteen days are recommended before planting the summer cash crop' (NRCS Plant Guide, 2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_crawfordsville_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "crawfordsville",
+      "semeadura": "09-15",
+      "fim": "04-11",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo em Iowa: semeadura mais tardia (15/set) e manejo mais cedo (11/abr). Datas de Iowa: semeadura 'Early August to Mid September' (NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet, CROP 3279, 2025, dados do Midwest Cover Crop Council); manejo = semeadura do milho em Iowa (Handbook 628, 2010: início da fase mais ativa 25/abr, fim 26/mai) menos 14 dias (início, 11/abr) ou 10 dias (fim, 16/mai), 'Ten to fourteen days are recommended before planting the summer cash crop' (NRCS Plant Guide, 2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_ames_0901_0425",
+      "cultura": "ervilhaca",
+      "local": "ames",
+      "semeadura": "09-01",
+      "fim": "04-25",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico em Iowa: semeadura em 1/set e manejo em 25/abr. Datas de Iowa: semeadura 'Early August to Mid September' (NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet, CROP 3279, 2025, dados do Midwest Cover Crop Council); manejo = semeadura do milho em Iowa (Handbook 628, 2010: início da fase mais ativa 25/abr, fim 26/mai) menos 14 dias (início, 11/abr) ou 10 dias (fim, 16/mai), 'Ten to fourteen days are recommended before planting the summer cash crop' (NRCS Plant Guide, 2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_nashua_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "nashua",
+      "semeadura": "08-01",
+      "fim": "05-16",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Iowa: semeadura mais cedo (1/ago) e manejo mais tardio (16/mai). Datas de Iowa: semeadura 'Early August to Mid September' (NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet, CROP 3279, 2025, dados do Midwest Cover Crop Council); manejo = semeadura do milho em Iowa (Handbook 628, 2010: início da fase mais ativa 25/abr, fim 26/mai) menos 14 dias (início, 11/abr) ou 10 dias (fim, 16/mai), 'Ten to fourteen days are recommended before planting the summer cash crop' (NRCS Plant Guide, 2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_ames_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "ames",
+      "semeadura": "08-01",
+      "fim": "05-16",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Iowa: semeadura mais cedo (1/ago) e manejo mais tardio (16/mai). Datas de Iowa: semeadura 'Early August to Mid September' (NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet, CROP 3279, 2025, dados do Midwest Cover Crop Council); manejo = semeadura do milho em Iowa (Handbook 628, 2010: início da fase mais ativa 25/abr, fim 26/mai) menos 14 dias (início, 11/abr) ou 10 dias (fim, 16/mai), 'Ten to fourteen days are recommended before planting the summer cash crop' (NRCS Plant Guide, 2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_crawfordsville_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "crawfordsville",
+      "semeadura": "08-01",
+      "fim": "05-16",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Iowa: semeadura mais cedo (1/ago) e manejo mais tardio (16/mai). Datas de Iowa: semeadura 'Early August to Mid September' (NRCS Iowa & ISU, Hairy Vetch Cover Crop Fact Sheet, CROP 3279, 2025, dados do Midwest Cover Crop Council); manejo = semeadura do milho em Iowa (Handbook 628, 2010: início da fase mais ativa 25/abr, fim 26/mai) menos 14 dias (início, 11/abr) ou 10 dias (fim, 16/mai), 'Ten to fourteen days are recommended before planting the summer cash crop' (NRCS Plant Guide, 2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_urbana_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "urbana",
+      "semeadura": "09-15",
+      "fim": "04-11",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "conferência do mínimo em Illinois (semeadura 15/set, manejo 11/abr). Illinois com a janela de Iowa: a semeadura de 1/ago a 15/set cabe na de Illinois ('Aug- October', University of Illinois Extension, Quick Guide to Cover Crops for Forage, jul. 2022) e o manejo de 11/abr a 16/mai cabe na regra do milho de Illinois (Handbook 628, 2010: fase mais ativa 21/abr a 23/mai, fim 5/jun; menos 10-14 dias = 7/abr a 26/mai). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_urbana_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "urbana",
+      "semeadura": "08-01",
+      "fim": "05-16",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Illinois (semeadura 1/ago, manejo 16/mai). Illinois com a janela de Iowa: a semeadura de 1/ago a 15/set cabe na de Illinois ('Aug- October', University of Illinois Extension, Quick Guide to Cover Crops for Forage, jul. 2022) e o manejo de 11/abr a 16/mai cabe na regra do milho de Illinois (Handbook 628, 2010: fase mais ativa 21/abr a 23/mai, fim 5/jun; menos 10-14 dias = 7/abr a 26/mai). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_carbondale_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "carbondale",
+      "semeadura": "09-15",
+      "fim": "04-11",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "conferência do mínimo em Illinois (semeadura 15/set, manejo 11/abr). Illinois com a janela de Iowa: a semeadura de 1/ago a 15/set cabe na de Illinois ('Aug- October', University of Illinois Extension, Quick Guide to Cover Crops for Forage, jul. 2022) e o manejo de 11/abr a 16/mai cabe na regra do milho de Illinois (Handbook 628, 2010: fase mais ativa 21/abr a 23/mai, fim 5/jun; menos 10-14 dias = 7/abr a 26/mai). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_carbondale_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "carbondale",
+      "semeadura": "08-01",
+      "fim": "05-16",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Illinois (semeadura 1/ago, manejo 16/mai). Illinois com a janela de Iowa: a semeadura de 1/ago a 15/set cabe na de Illinois ('Aug- October', University of Illinois Extension, Quick Guide to Cover Crops for Forage, jul. 2022) e o manejo de 11/abr a 16/mai cabe na regra do milho de Illinois (Handbook 628, 2010: fase mais ativa 21/abr a 23/mai, fim 5/jun; menos 10-14 dias = 7/abr a 26/mai). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_mead_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "mead",
+      "semeadura": "09-15",
+      "fim": "04-11",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "conferência do mínimo no leste do Nebraska (semeadura 15/set, manejo 11/abr). Nebraska (leste) com a janela de Iowa: o ensaio da UNL em Mead semeou em 26/ago e dessecou em 29/abr (UNL CropWatch 2022), dentro da janela; o manejo de 11/abr a 16/mai cabe na regra do milho do Nebraska (Handbook 628, 2010: fase mais ativa 27/abr a 15/mai, fim 21/mai; menos 10-14 dias = 13/abr a 11/mai, quase igual). Modo 'fim', sem teto."
+    },
+    {
+      "nome": "ervilhaca_mead_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "mead",
+      "semeadura": "08-01",
+      "fim": "05-16",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "conferência do máximo no leste do Nebraska (semeadura 1/ago, manejo 16/mai). Nebraska (leste) com a janela de Iowa: o ensaio da UNL em Mead semeou em 26/ago e dessecou em 29/abr (UNL CropWatch 2022), dentro da janela; o manejo de 11/abr a 16/mai cabe na regra do milho do Nebraska (Handbook 628, 2010: fase mais ativa 27/abr a 15/mai, fim 21/mai; menos 10-14 dias = 13/abr a 11/mai, quase igual). Modo 'fim', sem teto."
+    },
+    {
+      "nome": "ervilhaca_tifton_1101_0308",
+      "cultura": "ervilhaca",
+      "local": "tifton",
+      "semeadura": "11-01",
+      "fim": "03-08",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "ARRANJO SUDESTE (regua.arranjos.sudeste; não entra na faixa da linha do Corn Belt). mínimo na Geórgia (Coastal Plain): semeadura mais tardia (1/nov) e manejo mais cedo (8/mar). Datas da Geórgia: semeadura da ervilhaca 'Sept 15-Nov 1' no Coastal Plain e 'Sept 15-Oct 15' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr), NRCS Plant Guide (2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_watkinsville_1015_0308",
+      "cultura": "ervilhaca",
+      "local": "watkinsville",
+      "semeadura": "10-15",
+      "fim": "03-08",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "ARRANJO SUDESTE (regua.arranjos.sudeste; não entra na faixa da linha do Corn Belt). mínimo na Geórgia (Piedmont): semeadura mais tardia (15/out) e manejo mais cedo (8/mar). Datas da Geórgia: semeadura da ervilhaca 'Sept 15-Nov 1' no Coastal Plain e 'Sept 15-Oct 15' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr), NRCS Plant Guide (2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_tifton_0915_0424",
+      "cultura": "ervilhaca",
+      "local": "tifton",
+      "semeadura": "09-15",
+      "fim": "04-24",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "ARRANJO SUDESTE (regua.arranjos.sudeste; não entra na faixa da linha do Corn Belt). máximo na Geórgia (Coastal Plain): semeadura mais cedo (15/set) e manejo mais tardio (24/abr). Datas da Geórgia: semeadura da ervilhaca 'Sept 15-Nov 1' no Coastal Plain e 'Sept 15-Oct 15' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr), NRCS Plant Guide (2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    },
+    {
+      "nome": "ervilhaca_watkinsville_0915_0424",
+      "cultura": "ervilhaca",
+      "local": "watkinsville",
+      "semeadura": "09-15",
+      "fim": "04-24",
+      "tb": 4,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "ARRANJO SUDESTE (regua.arranjos.sudeste; não entra na faixa da linha do Corn Belt). máximo na Geórgia (Piedmont): semeadura mais cedo (15/set) e manejo mais tardio (24/abr). Datas da Geórgia: semeadura da ervilhaca 'Sept 15-Nov 1' no Coastal Plain e 'Sept 15-Oct 15' no Piedmont (SARE, Conservation Tillage Systems in the Southeast, cap. 5, Tab. 5.4, fonte Geórgia); manejo = semeadura do milho na Geórgia (Handbook 628, 2010: início da fase mais ativa 22/mar, fim 4/mai) menos 14 dias (8/mar) ou 10 dias (24/abr), NRCS Plant Guide (2023). Modo 'fim': GD = soma de max(0, Tmed - 4), sem teto; 'anos' = ano da semeadura (o manejo cai no ano seguinte)."
+    }
+  ]
+}

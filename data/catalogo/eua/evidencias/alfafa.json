@@ -1,0 +1,487 @@
+{
+  "id": "alfafa",
+  "pais": "EUA",
+  "nome": "Alfafa (alfalfa hay)",
+  "nome_cientifico": "Medicago sativa",
+  "familia_botanica": "Fabaceae",
+  "sistema": "alfalfa hay (feno), perene forrageira, Nebraska, sem déficit hídrico (irrigado por pivô no centro-oeste; sequeiro no leste). Segue o padrão da pastagem do Brasil (decisão do usuário, revisão de 15/11): sem ciclo de colheita, então ciclo e graus-dia não se aplicam; água e Kc são ANUAIS (estação de crescimento, do green-up em abril à geada de outubro). A Califórnia (irrigada, 6-10 cortes por ano) fica em pendência. Não há linha de alfafa no catálogo do Brasil.",
+  "regiao_referencia": "Nebraska (Mead, leste; North Platte, oeste)",
+  "valores": {
+    "tipos": "comercial|forrageira|fixadora_n|raiz_profunda",
+    "perene": "true",
+    "ciclo_dias_min": "",
+    "ciclo_dias_max": "",
+    "graus_dia_ciclo_min": "",
+    "graus_dia_ciclo_max": "",
+    "temp_base_c": "5",
+    "temp_otima_min_c": "21",
+    "temp_otima_max_c": "27",
+    "tmax_critica_c": "",
+    "sensivel_geada": "false",
+    "agua_ciclo_mm_min": "760",
+    "agua_ciclo_mm_max": "965",
+    "kc_inicial": "0.4",
+    "kc_medio": "0.95",
+    "kc_final": "0.9",
+    "profundidade_raiz_m": "2.0",
+    "fixa_nitrogenio": "true",
+    "raiz_profunda": "true",
+    "cobertura_solo": "",
+    "aporte_biomassa": "",
+    "valor_forrageiro": "alto",
+    "codigo_pam": "",
+    "nome_zarc": "",
+    "codigo_nass": "HAY, ALFALFA",
+    "calendario_usda": "Alfalfa Hay",
+    "fontes": "Irmak, Hay, Anderson, Kranz & Yonts, UNL Extension NebGuide G1778, Irrigation Management and Crop Characteristics of Alfalfa, out. 2007 (uso sazonal de água 30-38 in no Nebraska; green-up no início/meados de abril; raízes de 8-12 pés; intervalo de 30-40 dias entre cortes, só referência de manejo)|Beckman & Volesky, UNL CropWatch, Pasture and Forage Minute: First Alfalfa Cutting, 04/05/2026 (primeiro corte com 750 GDD do green-up; referência de manejo)|Gruss, Iowa State Univ. ICM Blog, When Should I Take My Final Alfalfa Cutting?, 10/09/2025 (GDD da alfafa com Tb 41 °F, sem teto; geada que mata a parte aérea a 24 °F)|Beckman, UNL CropWatch, Pasture and Forage Minute: Winterizing Alfalfa, 25/10/2021 (GDD base 41 °F no Nebraska)|UC IPM, Alfalfa harvest phenology model, citando Sharratt, Sheaffer & Baker 1989, Field Crops Res. 21:95-102 (graus-dia até 1/10 de flor; artigo original não lido; referência de manejo)|REFERÊNCIA DE MANEJO (não entra nas colunas): scripts/gd_nasa_power.py, cenários eua/cenarios/alfafa_gd.json (graus-dia do green-up ao primeiro corte e entre cortes, Mead e North Platte-NE, 2005-2024)|FAO-56 Tab.11 (estação da alfafa, da última à primeira geada de -4 °C), Tab.12 (Kc, Alfalfa Hay - averaged cutting effects 0,40/0,95/0,90) e texto 'Kc curves for forage crops'|FAO-56 Tab.22 (raiz, Alfalfa for hay 1,0-2,0 m; limite superior)|CONFERÊNCIA: scripts/etc_nasa_power.py, cenários eua/cenarios/alfafa_etc.json (ETc anual com Kc médio de cortes, Mead e North Platte-NE, 2005-2024)|FAO ECOCROP, Medicago sativa, código 1428 - números da cópia EcoCrop_DB.csv (github.com/OpenCLIM/ecocrop) (temperatura ótima 21-27 °C, mínima 5 °C)|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Alfalfa Hay (colheita no Nebraska 19/mai-15/out)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024), Alfalfa and Alfalfa Mixtures for Hay (produtividade NE e CA 2021-2025)|Hanson, Bali & Sanden, UC ANR Pub. 8293, Irrigating Alfalfa in Arid Regions, 2008 (ET sazonal na Califórnia; cortes a cada 28-30 dias)|Putnam, UC ANR Pub. 8287, Alfalfa Production Systems in California, 2008 (fixação de N2; cortes a cada 26-28 dias)|Hanson, Orloff, Bali, Sanden & Putnam, UC, Coping with low water years (ET medida da alfafa irrigada sem déficit, 31,9-65,2 in)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Alfalfa hay, node 11743 (PB 18,2% MS, n=1358; digestibilidade da MO 61,8%, n=80, média por equação)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N do feno de alfafa maduro 25:1; referência, não usada na régua)|PERENE FORRAGEIRA (padrão da pastagem, decisão do usuário 15/11): ciclo e graus-dia não se aplicam; água e Kc ANUAIS (estação de crescimento)",
+    "confianca_parametros": "alta"
+  },
+  "origem": {
+    "temp_base_c": {
+      "tipo": "publicado",
+      "nota": "Tb 41 °F = 5 °C, o padrão da extensão americana para a alfafa: 'GDD alfalfa = ((T max + T min ) / 2) – 41' (Gruss, ISU 2025), sem teto; a UNL usa a mesma base ('GDD at a base 41°F', Beckman 2021). Conferido com o FAO ECOCROP (Medicago sativa, temperatura mínima absoluta 5 °C). Sharratt et al. 1989 (via UC IPM) acharam Tb que muda com a estação (3,5 °C na primavera, 7,5 °C no início e 10 °C no fim do verão): ver pendências. Não há linha de alfafa no Brasil para reaproveitar."
+    },
+    "ciclo_dias_min": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "perene forrageira: sem ciclo de colheita; igual à pastagem. Regra 14 do motor: sem filtro de ciclo nem de graus-dia; o vazio é 'não se aplica'. Referência de manejo (fora das colunas) em regua.observacoes.manejo_cortes."
+    },
+    "ciclo_dias_max": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "perene forrageira: sem ciclo de colheita; igual à pastagem. Regra 14 do motor: sem filtro de ciclo nem de graus-dia; o vazio é 'não se aplica'. Referência de manejo (fora das colunas) em regua.observacoes.manejo_cortes."
+    },
+    "graus_dia_ciclo_min": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "perene forrageira: sem ciclo de colheita; igual à pastagem. Regra 14 do motor: sem filtro de ciclo nem de graus-dia; o vazio é 'não se aplica'. Referência de manejo (fora das colunas) em regua.observacoes.manejo_cortes."
+    },
+    "graus_dia_ciclo_max": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "perene forrageira: sem ciclo de colheita; igual à pastagem. Regra 14 do motor: sem filtro de ciclo nem de graus-dia; o vazio é 'não se aplica'. Referência de manejo (fora das colunas) em regua.observacoes.manejo_cortes."
+    },
+    "agua_ciclo_mm_min": {
+      "tipo": "publicado",
+      "nota": "PERENE FORRAGEIRA: exigência ANUAL (estação de crescimento, abr-out; a alfafa fica dormente no inverno), como a pastagem. UNL G1778: 'Seasonal water use in Nebraska ranges from 30 to 38 inches, including precipitation, depending on location and weather conditions'. 30 in x 25,4 = 762 mm, arredondado para baixo = 760. É consumo de lavoura sem déficit (guia de irrigação para crescimento ótimo), não chuva ótima: por isso é publicado, e não proxy como a pastagem do Brasil. Água do Nebraska; não vale para a Califórnia. Conferência no POWER (alfafa_etc.json, Kc médio de cortes 0,40/0,95/0,90, 10/abr a 20/out, 2005-2024): Mead mediana 841 mm (683-1094)."
+    },
+    "agua_ciclo_mm_max": {
+      "tipo": "publicado",
+      "nota": "PERENE FORRAGEIRA, ANUAL. UNL G1778: 38 in x 25,4 = 965 mm (oeste do Nebraska, mais seco e com mais vento). Conferência no POWER: North Platte mediana 953 mm (801-1265), -1,2% da fonte. Na Califórnia o consumo é bem maior (até 76 in; ver pendências)."
+    },
+    "kc_inicial": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Alfalfa Hay - averaged cutting effects: Kc ini 0,40 (a própria linha da alfafa para feno)."
+    },
+    "kc_medio": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Alfalfa Hay - averaged cutting effects: 0,95. Nota 13: 'This Kc mid coefficient for hay crops is an overall average Kc mid coefficient that averages Kc for both before and following cuttings'. Escolhido porque a água da linha é ANUAL (o motor multiplica pelo ET0 da estação). O Kc de cada intervalo entre cortes (individual cutting periods, 0,40/1,20/1,15) não é usado."
+    },
+    "kc_final": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 12, Alfalfa Hay - averaged cutting effects: Kc end 0,90 (fim da estação, antes da geada)."
+    },
+    "profundidade_raiz_m": {
+      "tipo": "publicado",
+      "nota": "FAO-56 Tab. 22, Alfalfa for hay 1,0-2,0 m; limite superior (solo sem impedimento). A UNL G1778 diz que as raízes ativas chegam a 8-12 pés (2,4-3,7 m), mas que a alfafa tira '75 to 90 percent of its moisture from the upper four feet of soil' (1,2 m)."
+    }
+  },
+  "reuso_brasil": [
+    {
+      "coluna": "todas as colunas",
+      "valor_brasil": "",
+      "decisao": "trocado",
+      "motivo": "Não há linha de alfafa no catálogo do Brasil (data/catalogo/culturas.csv) nem arquivo de evidências; todos os valores vêm de fontes dos EUA e da FAO. A Tb de 5 °C fica registrada aqui para uma futura linha brasileira usar a mesma régua."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max (perene forrageira)",
+      "valor_brasil": "pastagem: 750-1500 mm de chuva anual ótima (proxy)",
+      "decisao": "conferido e mantido",
+      "motivo": "Mesma unidade das perenes (exigência anual, regra do README de evidências), mas aqui é consumo publicado pela extensão (30-38 in), não chuva ótima."
+    },
+    {
+      "coluna": "ciclo_dias, graus_dia_ciclo (perene forrageira)",
+      "valor_brasil": "pastagem: vazios (não se aplica)",
+      "decisao": "reusado",
+      "motivo": "Mesmo padrão da pastagem do Brasil (decisão do usuário, revisão de 15/11): perene forrageira sem ciclo de colheita, colunas vazias com vazio_nao_se_aplica. O intervalo entre cortes e os graus-dia do primeiro corte ficam só como referência de manejo."
+    },
+    {
+      "coluna": "regua (método)",
+      "valor_brasil": "mesma régua (2,3 e 6 t/ha, 60 dias, digestibilidade 60%)",
+      "decisao": "reusado",
+      "motivo": "Só o método; os dados de forragem são de base internacional (Feedipedia) e a palhada ficou sem dado."
+    }
+  ],
+  "evidencias": [
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Irmak, Hay, Anderson, Kranz & Yonts, Irrigation Management and Crop Characteristics of Alfalfa, UNL Extension NebGuide G1778, outubro de 2007, Summary",
+      "url": "https://extensionpubs.unl.edu/publication/g1778/2007/pdf/view/g1778-2007.pdf",
+      "trecho": "Seasonal water use in Nebraska ranges from 30 to 38 inches, including precipitation, depending on location and weather conditions."
+    },
+    {
+      "colunas": [
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "UNL NebGuide G1778, 2007, Alfalfa Water Use",
+      "url": "https://extensionpubs.unl.edu/publication/g1778/2007/pdf/view/g1778-2007.pdf",
+      "trecho": "After harvest, alfalfa re-growth begins and the water use cycle begins again. This cycle is repeated for each cutting (i.e., every 30 to 40 days)."
+    },
+    {
+      "colunas": [
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "UNL NebGuide G1778, 2007, Alfalfa Water Use (início da estação)",
+      "url": "https://extensionpubs.unl.edu/publication/g1778/2007/pdf/view/g1778-2007.pdf",
+      "trecho": "For Nebraska conditions, growth typically begins in early to mid-April."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m",
+        "raiz_profunda"
+      ],
+      "fonte": "UNL NebGuide G1778, 2007",
+      "url": "https://extensionpubs.unl.edu/publication/g1778/2007/pdf/view/g1778-2007.pdf",
+      "trecho": "The active roots of the alfalfa plant can penetrate 8 to 12 feet in deep, well-drained soils. However, alfalfa will obtain 75 to 90 percent of its moisture from the upper four feet of soil."
+    },
+    {
+      "colunas": [
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "Beckman & Volesky, Pasture and Forage Minute: First Alfalfa Cutting, Selecting Summer Annual Forages, Hay Equipment Maintenance, UNL CropWatch, 04/05/2026",
+      "url": "https://cropwatch.unl.edu/pasture-and-forage-minute-first-alfalfa-cutting-selecting-summer-annual-forages-hay-equipment/",
+      "trecho": "Aim for 750 growing degree days from green-up and target the late bud to early bloom stage. Depending on the quality you are shooting for, this typically falls between late May and early June."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "Gruss, S., When Should I Take My Final Alfalfa Cutting?, Iowa State University Integrated Crop Management Blog, 10/09/2025",
+      "url": "https://crops.extension.iastate.edu/post/when-should-i-take-my-final-alfalfa-cutting",
+      "trecho": "Alfalfa GDDs are calculated similarly to corn, but with a lower base temperature of 41°F: GDD alfalfa = ((T max + T min ) / 2) – 41"
+    },
+    {
+      "colunas": [
+        "sensivel_geada"
+      ],
+      "fonte": "Gruss, ISU ICM Blog, 10/09/2025",
+      "url": "https://crops.extension.iastate.edu/post/when-should-i-take-my-final-alfalfa-cutting",
+      "trecho": "A killing frost for alfalfa usually occurs when temperatures drop to 24°F (-4°C) or lower for several hours. After this, the top growth is damaged and active growth stops."
+    },
+    {
+      "colunas": [
+        "temp_base_c"
+      ],
+      "fonte": "Beckman, Pasture and Forage Minute: Winterizing Alfalfa and Grazing Small Grains, UNL CropWatch, 25/10/2021",
+      "url": "https://cropwatch.unl.edu/2021/pasture-and-forage-minute-winterizing-alfalfa-and-grazing-small-grains",
+      "trecho": "Work from the University of Wisconsin calculated winterkill risk looking at GDD at a base 41°F accumulating until a killing frost of 25°F."
+    },
+    {
+      "colunas": [
+        "temp_base_c",
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "UC IPM (Univ. of California), Alfalfa harvest - phenology model description, Model 1: Sharratt, Sheaffer & Baker 1989, Field Crops Research 21:95-102 (artigo original não lido; números lidos no UC IPM)",
+      "url": "https://ipm.ucanr.edu/weather/phenology-models-description/alfalfa-harvest/",
+      "trecho": "Lower developmental threshold: Spring 38.3 (°F) 3.5 (°C) Early summer (June to mid-July) 45.5 (°F) 7.5 (°C) Late summer (mid-July to late August) 50.0 (°F) 10.0 (°C) [...] One-tenth flower (Spring) 1053 (°F) 585 (°C) One-tenth flower (Early summer) 765 (°F) 425 (°C) One-tenth flower (Late summer) 765 (°F) 425 (°C)"
+    },
+    {
+      "colunas": [
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "REFERÊNCIA DE MANEJO (o motor não usa graus-dia na alfafa): scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/alfafa_gd.json (NASA POWER, Tb 5 °C, sem teto, 2005-2024)",
+      "url": "data/catalogo/eua/cenarios/alfafa_gd.json",
+      "trecho": "alfafa_mead_0410_1corte_750F: dias mediana 44, 37-50; GD mediana 405 | alfafa_northplatte_0410_1corte_750F: dias 48, 40-54; GD 397 | alfafa_mead_0601_sharratt_inicio_verao: 27 dias; GD 501 | alfafa_mead_0705_sharratt_fim_verao: 27 dias; GD 570 (546-589) | alfafa_northplatte_0705_sharratt_fim_verao: 28 dias; GD 570 (547-612) | alfafa_mead_0601_30d: 563 | alfafa_northplatte_0601_30d: 525 | alfafa_mead_0701_40d: 820 | alfafa_northplatte_0701_40d: 805 | alfafa_mead_0810_40d: 710"
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final",
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "Allen et al., FAO Irrigation and Drainage Paper 56, 1998, cap. 6, 'Kc curves for forage crops'",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Many crops grown for forage or hay are harvested several times during the growing season. Each harvest essentially terminates a 'sub' growing season and associated K c curve and initiates a new 'sub' growing season and associated K c curve."
+    },
+    {
+      "colunas": [
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "FAO-56, Tab. 11 (duração das fases), j. Forages",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Alfalfa, total season 4 [...] last -4°C in spring until first -4°C in fall | Alfalfa 4 1 st cutting cycle 10 20 20 10 60 Jan Apr (last - 4°C) Calif., USA. 10 30 25 10 75 Idaho, USA. | Alfalfa 4 , other cutting cycles 5 10 10 5 30 Mar Calif., USA. 5 20 10 10 45 Jun Idaho, USA."
+    },
+    {
+      "colunas": [
+        "kc_inicial",
+        "kc_medio",
+        "kc_final"
+      ],
+      "fonte": "FAO-56, Tab. 12, j. Forages, e notas 13 e 14",
+      "url": "https://www.fao.org/4/x0490e/x0490e0b.htm",
+      "trecho": "Alfalfa Hay - averaged cutting effects 0.40 0.95 13 0.90 0.7 - individual cutting periods 0.40 14 1.20 14 1.15 14 0.7 [...] 13 This K c mid coefficient for hay crops is an overall average K c mid coefficient that averages K c for both before and following cuttings."
+    },
+    {
+      "colunas": [
+        "profundidade_raiz_m"
+      ],
+      "fonte": "FAO-56, Tab. 22, j. Forages",
+      "url": "https://www.fao.org/4/x0490e/x0490e0e.htm",
+      "trecho": "Alfalfa - for hay 1.0-2.0 0.55"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "CONFERÊNCIA: scripts/etc_nasa_power.py --cenarios data/catalogo/eua/cenarios/alfafa_etc.json (NASA POWER, 2005-2024)",
+      "url": "data/catalogo/eua/cenarios/alfafa_etc.json",
+      "trecho": "alfafa_mead_0410_194d_anual: ET0 mediana 910 mm, chuva 571 mm, Kc mid 0.971, ETc mediana 841 (683-1094), referência 762 -> +10.4% | alfafa_northplatte_0410_194d_anual: ET0 1030, chuva 483, Kc mid 1.001, ETc mediana 953 (801-1265), referência 965 -> -1.2% [chuva mediana da estação abaixo do consumo pleno nos dois locais]"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c",
+        "temp_base_c",
+        "sensivel_geada"
+      ],
+      "fonte": "FAO ECOCROP, Medicago sativa (EcoPortCode 1428), cópia EcoCrop_DB.csv do repositório OpenCLIM/ecocrop (site oficial fora do ar)",
+      "url": "https://raw.githubusercontent.com/OpenCLIM/ecocrop/main/EcoCrop_DB.csv",
+      "trecho": "Medicago sativa [...] LISPA perennial; TOPMN 21; TOPMX 27; TMIN 5; TMAX 45; ROPMN 600; ROPMX 1200; KTMPR -25; KTMP 0"
+    },
+    {
+      "colunas": [
+        "calendario_usda",
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), outubro de 2010, 'Alfalfa Hay Usual Planting and Harvesting Dates - States'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "In most areas, the crop is harvested at least two or three times a year. [...] Nebraska .......:     950     (NA)        (NA)       (NA)   May 19 (NA)            Oct 15 [...] California .....:     980     (NA)        (NA)       (NA)   Feb 15 (NA)            Nov 20"
+    },
+    {
+      "colunas": [
+        "codigo_nass",
+        "tipos"
+      ],
+      "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, 'Alfalfa and Alfalfa Mixtures for Hay Area Harvested, Yield, and Production - States and United States: 2023-2025'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
+      "trecho": "California ....:     480         480         460       6.50          6.60        6.80 [...] Nebraska ......:     850         810         865       3.40          4.30        3.70"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Crop Production 2023 Summary, janeiro de 2024, mesma tabela (2021-2023)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/k3569432s/ns065v292/wd377h97d/cropan24.txt",
+      "trecho": "California ....:     500         480         480       7.40        7.20        6.50 [...] Nebraska ......:     930         810         850       4.10        3.10        3.40"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Hanson, Bali & Sanden, Irrigating Alfalfa in Arid Regions, cap. 7 de Irrigated Alfalfa Management for Mediterranean and Desert Zones, UC ANR Publication 8293, 2008",
+      "url": "https://alfalfa.ucdavis.edu/sites/g/files/dgvnsk12586/files/media/documents/UCAlfalfa8293Irrigation-reg.pdf",
+      "trecho": "The average historical seasonal ET for various locations in California is 48–49 inches (1219–1247 mm) for the Central Valley, 33 inches (840 mm) for the northeastern mountain areas, and 76 inches (1930 mm) for the southern desert areas (Hanson et al. 1999)."
+    },
+    {
+      "colunas": [
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "UC ANR Publication 8293, 2008, Influence of Cutting Schedule",
+      "url": "https://alfalfa.ucdavis.edu/sites/g/files/dgvnsk12586/files/media/documents/UCAlfalfa8293Irrigation-reg.pdf",
+      "trecho": "the harvest schedule, which occurs about every 28 to 30 days in most areas."
+    },
+    {
+      "colunas": [
+        "fixa_nitrogenio",
+        "regua.observacoes.manejo_cortes"
+      ],
+      "fonte": "Putnam, Alfalfa Production Systems in California, cap. 1 de Irrigated Alfalfa Management for Mediterranean and Desert Zones, UC ANR Publication 8287, 2008",
+      "url": "https://alfalfa.sf.ucdavis.edu/sites/g/files/dgvnsk12586/files/media/documents/UCAlfalfa8287ProdSystems-reg.pdf",
+      "trecho": "Alfalfa’s role in protecting the soil, reducing the energy costs of agriculture, N2 fixation from biological sources [...] alfalfa is typically harvested every 26 to 28 days to maintain the high quality demanded by the dairy industry."
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Hanson, Orloff, Bali, Sanden & Putnam, Coping with low water years: what strategies can you use?, University of California (anais de simpósio, sem data no PDF)",
+      "url": "https://ucanr.edu/sites/default/files/2014-03/187122.pdf",
+      "trecho": "Seasonal evapotranspiration ranged from 31.9 inches (Scott Valley 2008) to 65.2 inches (Imperial Valley 2008) (Table 1)."
+    },
+    {
+      "colunas": [
+        "valor_forrageiro"
+      ],
+      "fonte": "Feedipedia (INRAE, CIRAD, AFZ, FAO), Alfalfa hay, tabela de composição (node 11743); valores pontuais citados",
+      "url": "https://www.feedipedia.org/node/11743",
+      "trecho": "Crude protein % DM 18.2 2.6 11.3 25.3 1358 [...] OM digestibility, Ruminant % 61.8 3.3 53.3 66.4 80 * [...] The asterisk * indicates that the average value was obtained by an equation."
+    },
+    {
+      "colunas": [
+        "regua"
+      ],
+      "fonte": "USDA NRCS East National Technology Support Center, Carbon to Nitrogen Ratios in Cropping Systems, janeiro de 2011, Tabela 1",
+      "url": "https://sarep.ucdavis.edu/sites/g/files/dgvnsk9171/files/media/documents/NRCS-C_N_ratios_cropping_systems.pdf",
+      "trecho": "mature alfalfa hay 25:1 [...] legume hay 17:1"
+    },
+    {
+      "colunas": [
+        "agua_ciclo_mm_min",
+        "agua_ciclo_mm_max"
+      ],
+      "fonte": "Água do Nebraska; não vale para a Califórnia (UNL G1778 e conferência em eua/cenarios/alfafa_etc.json; Califórnia: UC ANR 8293)",
+      "url": "https://extensionpubs.unl.edu/publication/g1778/2007/pdf/view/g1778-2007.pdf",
+      "trecho": "Seasonal water use in Nebraska ranges from 30 to 38 inches, including precipitation [...] [POWER, Mead, 10/abr-20/out: chuva mediana 571 mm, ETc mediana 841 mm]. No sequeiro do leste do Nebraska a chuva da estação (Mead, 571 mm) fica abaixo do consumo pleno e o motor marca 'água no limite', sem eliminar (regra 1)."
+    }
+  ],
+  "regua": {
+    "ms_palhada_t_ha": {
+      "min": null,
+      "max": null,
+      "tipico": null
+    },
+    "cn_palhada": {
+      "min": null,
+      "max": null,
+      "tipico": null
+    },
+    "k_dia": {
+      "valor": null,
+      "min": null,
+      "max": null
+    },
+    "meia_vida_dias": {
+      "valor": null
+    },
+    "pb_pct": 18.2,
+    "digestibilidade_pct": {
+      "valor": 61.8,
+      "tipo": "OMD",
+      "n": 80,
+      "medicao": "estimada",
+      "nota": "Digestibilidade da matéria orgânica em ruminantes do feno de alfafa (Feedipedia, Alfalfa hay): média 61,8%, DP 3,3, faixa 53,3-66,4, n=80. A Feedipedia marca a média com '*', 'obtained by an equation' (estimada, não média de ensaios in vivo). A base reúne dados de vários países, não só dos EUA. NASEM 2021, Dairy One e a tabela da OSU não abriram (bloqueio do site); a Dairy One publica IVTD (digestibilidade verdadeira), que não entra na régua."
+    },
+    "uso_forrageiro": "principal",
+    "cenario_forragem": "Feno de alfafa: a planta inteira cortada no botão floral ou início da flor e enfardada é o produto da linha (vendida para gado de leite e de corte). PB 18,2% da MS (Feedipedia, n=1358, medida). Não há dupla contagem com a palhada porque a palhada da linha ficou sem dado (o feno sai do campo).",
+    "excecoes": {},
+    "observacoes": {
+      "palhada": "SEM DADO (aporte_biomassa e cobertura_solo ficam vazios = 'não sei'). Num sistema de feno quase toda a parte aérea sai do campo a cada corte; o que fica é o restolho, as coroas e as raízes, e a rebrota de outono quando a lavoura é encerrada antes do milho. Não achei medição americana da massa de restolho e rebrota no encerramento, nem k de decomposição desse material. A C/N do NRCS (feno de alfafa maduro 25:1; feno de leguminosa 17:1) é do feno, não do resíduo, e não foi usada.",
+      "colheita": "USDA NASS 2010 (Handbook 628): no Nebraska a colheita do feno vai de 19/mai a 15/out (950 mil acres em 2009); na Califórnia, de 15/fev a 20/nov. 'In most areas, the crop is harvested at least two or three times a year.' A UNL fala no primeiro corte no fim de maio/início de junho, ciclos de 30-40 dias e último corte com pelo menos 500 GDD °F antes da geada de 25 °F (Beckman 2021).",
+      "primeiro_ciclo": "Do green-up (início/meados de abril, G1778) até o primeiro corte com 750 GDD °F: mediana de 44 dias em Mead (37-50) e 48 em North Platte (40-54), datas de 20 a 28 de maio, conferindo com 'late May and early June' (UNL 2026). É mais longo em dias e menor em graus-dia que os ciclos de verão.",
+      "produtividade": "USDA NASS, feno de alfafa e misturas, t curtas/acre: Nebraska 4,10 (2021), 3,10 (2022), 3,40 (2023), 4,30 (2024), 3,70 (2025) = 7,0-9,6 t/ha de feno (x 2,242); Califórnia 6,50-7,40 t curtas/acre. A média do Nebraska mistura sequeiro e irrigado. Pela regra da UNL G1778 de ~6 in de água por t curta de feno ('averages approximately six inches for each ton of hay produced'), 30-38 in correspondem a 5-6 t curtas/acre, nível do irrigado.",
+      "forragem": "uso_forrageiro = principal: o feno é o próprio produto. OMD 61,8% (>= 60) mantém a classe alta; a faixa vai de 53 a 66% conforme o estádio no corte.",
+      "manejo_cortes": "REFERÊNCIA DE MANEJO, fora das colunas (perene forrageira, padrão da pastagem). Intervalo entre cortes: 30 a 40 dias no Nebraska (UNL G1778: 'This cycle is repeated for each cutting (i.e., every 30 to 40 days)'); 26-30 dias na Califórnia (UC ANR 8287 e 8293). Primeiro corte: 750 GDD °F (Tb 41 °F, sem teto) do green-up (UNL CropWatch 2026) = 750/1,8 = 417 °C·dia (410 arredondado para baixo); no POWER (alfafa_gd.json, 2005-2024) o alvo cai em 44 dias em Mead (37-50) e 48 em North Platte (40-54), de 20 a 28 de maio. Ciclos de verão: Sharratt et al. 1989 (via UC IPM), 1/10 de flor com 425 °C·dia acima de 7,5 °C (início do verão) e de 10 °C (fim do verão), refeito com Tb 5 no POWER = 501 °C·dia (Mead, junho) e 570 °C·dia (Mead e North Platte, julho), 27-28 dias. Faixa de referência: 410 a 570 °C·dia (Tb 5) e 30 a 40 dias. O motor não usa esses números (regra 14).",
+      "agua_sequeiro": "Água do Nebraska; não vale para a Califórnia (ET sazonal de 48-49 in no Vale Central e 76 in no deserto do sul, UC ANR 8293). No sequeiro do leste do Nebraska a chuva da estação (Mead, mediana 571 mm no POWER, 10/abr-20/out) fica abaixo do consumo pleno (760 mm; ETc 841 mm no POWER) e o motor marca 'água no limite', sem eliminar (regra 1). A produtividade plena no sequeiro depende da água do perfil (raiz até 2-3,7 m) e da chuva de inverno."
+    },
+    "resultado": {
+      "aporte_biomassa": "",
+      "cobertura_solo": "",
+      "valor_forrageiro": "alto"
+    },
+    "detalhe": {
+      "ms_tipico_t_ha": null,
+      "ms_remanescente_t_ha": null,
+      "depende_da_epoca": {
+        "aporte_biomassa": null,
+        "cobertura_solo": null
+      }
+    }
+  },
+  "mudancas": [
+    {
+      "coluna": "valor_forrageiro",
+      "antes": "",
+      "depois": "alto",
+      "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "ciclo_dias_min",
+      "antes": "30",
+      "depois": "",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem; o número antigo vira referência de manejo em regua.observacoes.manejo_cortes"
+    },
+    {
+      "coluna": "origem.ciclo_dias_min",
+      "antes": "publicado",
+      "depois": "vazio_nao_se_aplica",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem"
+    },
+    {
+      "coluna": "ciclo_dias_max",
+      "antes": "40",
+      "depois": "",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem; o número antigo vira referência de manejo em regua.observacoes.manejo_cortes"
+    },
+    {
+      "coluna": "origem.ciclo_dias_max",
+      "antes": "publicado",
+      "depois": "vazio_nao_se_aplica",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem"
+    },
+    {
+      "coluna": "graus_dia_ciclo_min",
+      "antes": "410",
+      "depois": "",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem; o número antigo vira referência de manejo em regua.observacoes.manejo_cortes"
+    },
+    {
+      "coluna": "origem.graus_dia_ciclo_min",
+      "antes": "publicado",
+      "depois": "vazio_nao_se_aplica",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem"
+    },
+    {
+      "coluna": "graus_dia_ciclo_max",
+      "antes": "570",
+      "depois": "",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem; o número antigo vira referência de manejo em regua.observacoes.manejo_cortes"
+    },
+    {
+      "coluna": "origem.graus_dia_ciclo_max",
+      "antes": "calculo",
+      "depois": "vazio_nao_se_aplica",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem). perene forrageira: sem ciclo de colheita; igual à pastagem"
+    },
+    {
+      "coluna": "sistema, fontes",
+      "antes": "CONVENÇÃO DE PERENE: ciclo e graus-dia de um ciclo de corte",
+      "depois": "perene forrageira, padrão da pastagem",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem)"
+    },
+    {
+      "coluna": "pendencias",
+      "antes": "CONVENÇÃO DE PERENE a confirmar com o coordenador",
+      "depois": "DECISÃO do usuário (padrão da pastagem); números de corte como referência de manejo; água do Nebraska; B-05",
+      "motivo": "Revisão dos lotes 1 e 2 (15/11), pacote 6, ADENDO M-03 (decisão do usuário: alfafa segue o padrão da pastagem)"
+    },
+    {
+      "coluna": "confianca_parametros",
+      "antes": "media",
+      "depois": "alta",
+      "motivo": "Regra de confiança: nenhuma lacuna"
+    }
+  ],
+  "pendencias": [
+    "Sistema: a linha é o Nebraska sem déficit hídrico (água de produtividade plena). Não achei a fração irrigada x sequeiro da alfafa do Nebraska (as tabelas do Censo Agropecuário 2017/2022 não abriram). A UC diz que 'more than 90 percent of alfalfa grown in the 11 western U.S. states is irrigated', mas o Nebraska não está nesse grupo.",
+    "Califórnia (segunda região de referência) fica para outra linha ou para o motor: ET sazonal medida sem déficit de 50,3 a 65,2 in no Vale Central e no Imperial (1278-1656 mm; Hanson et al., UC), média histórica de 48-49 in no Vale Central e 76 in (1930 mm) no deserto do sul (UC ANR 8293); cortes a cada 26-30 dias (UC ANR 8287 e 8293), colheita de fevereiro a novembro. O intervalo entre cortes (~30 dias) e o Kc são parecidos; a água anual é outra.",
+    "DECISÃO (usuário, revisão 15/11): a alfafa segue o padrão da pastagem do Brasil. ciclo_dias e graus_dia_ciclo vazios (vazio_nao_se_aplica: perene forrageira, sem ciclo de colheita); água (760-965 mm) e Kc (0,40/0,95/0,90) anuais. Referência de manejo, fora das colunas: intervalo de 30-40 dias entre cortes (UNL G1778); primeiro corte com 750 GDD °F do green-up (417 °C·dia, Tb 5; UNL 2026); ciclos de verão até ~570 °C·dia (Sharratt et al. 1989 refeito no POWER). Detalhes em regua.observacoes.manejo_cortes.",
+    "Referência de manejo (750 GDD °F do primeiro corte): a matéria da UNL de 2026 não diz a base dos 750 GDD; a base 41 °F vem da ISU (2025) e da própria UNL (2021). As páginas da MSU e da UMN com '750 GDD (base 41°F)' não abriram (403); foram vistas só pelo resumo da busca.",
+    "Referência de manejo (graus-dia dos ciclos de verão, ~570 °C·dia): vem do modelo de Sharratt et al. 1989 (Minnesota), lido pelo UC IPM, com Tb que muda por estação (3,5/7,5/10 °C), convertido para Tb 5 no POWER do Nebraska. Não entra nas colunas.",
+    "temp_base_c: Sharratt et al. 1989 mediram Tb de 3,5 °C na primavera a 10 °C no fim do verão; a extensão usa 41 °F (5 °C) o ano todo. Mantido 5 °C (régua da extensão).",
+    "temp_otima_min/max (21-27 °C) só do ECOCROP; sem fonte de extensão dos EUA. tmax_critica_c vazio (sem fonte).",
+    "sensivel_geada = false: a geada (-4 °C, ISU) só encerra o crescimento da parte aérea; a planta estabelecida é perene e passa o inverno dormente (ECOCROP: temperatura letal no repouso -25 °C). A plântula recém-semeada é mais sensível; não achei fonte dos EUA com o limite para a plântula.",
+    "kc_medio: Kc médio de cortes (0,95) porque a água é anual. O Kc de cada intervalo entre cortes no FAO-56 (individual cutting periods) é 0,40/1,20/1,15 e não é usado. No POWER o Kc médio ajustado pela eq. 62 ficou 0,97 (Mead) e 1,00 (North Platte).",
+    "agua: água do Nebraska; não vale para a Califórnia. No sequeiro do leste do Nebraska a chuva da estação (Mead, 571 mm) fica abaixo do consumo pleno e o motor marca 'água no limite', sem eliminar (regra 1). A G1778 é de 2007; o cálculo no POWER (841 e 953 mm de mediana) confere. Em North Platte a chuva da estação (483 mm) também fica abaixo do consumo; lá a alfafa é irrigada.",
+    "regua: palhada, C/N e k sem dado (aporte_biomassa e cobertura_solo vazios). Resolveria: massa de restolho e de rebrota de outono no encerramento da alfafa antes do milho (ensaios da Univ. of Minnesota, Yost et al., ou da UW-Madison) e decomposição de coroas e raízes.",
+    "regua: OMD 61,8% é média estimada por equação (Feedipedia) e mistura países. Resolveria: NASEM 2021 (tabela de alimentos), Dairy One (só IVTD) ou ensaios da UNL com DMD in vivo do feno de alfafa.",
+    "codigo_nass: 'HAY, ALFALFA' é o commodity HAY com a classe ALFALFA do QuickStats (sem NASS_API_KEY no ambiente, não conferido na API). No relatório Crop Production a tabela se chama 'Alfalfa and Alfalfa Mixtures for Hay'.",
+    "calendario_usda: 'Alfalfa Hay' é o nome da seção no relatório de 2010; o relatório não dá datas de semeadura da alfafa ((NA)), só de colheita.",
+    "B-05: alfafa_etc.json (e alfafa_gd.json) usam 2005-2024, e não 2001-2020. O cache local do POWER (data/brutos/nasa_power/) só tem Mead e North Platte de 2005 a 2024/2025; refazer com 2001-2020 pede baixar a série dos dois pontos (fora do escopo desta correção). A água é conferência (a coluna vem da UNL G1778) e os graus-dia são só referência de manejo, então a troca de período não muda nenhuma coluna. Resolve: rodar etc_nasa_power.py com 'anos' [2001, 2020] quando houver rede."
+  ],
+  "confianca_calculo": {
+    "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
+    "contagem": 0,
+    "colunas": []
+  }
+}

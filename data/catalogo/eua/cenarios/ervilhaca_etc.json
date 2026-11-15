@@ -1,0 +1,335 @@
+{
+  "_leia": "Cenários de água da ervilhaca (hairy vetch, cobertura de inverno antes do milho) para scripts/etc_nasa_power.py. ETc da semeadura ao manejo na primavera. 'fases_dias' = inicial, desenvolvimento, média, final; quando o manejo cai no desenvolvimento, 'mid' = Kc atingido no dia do manejo (ver 'nota'). Mesmas datas de eua/cenarios/ervilhaca_gd.json. A LINHA é só do Corn Belt (revisão de 15/11, A-05): Iowa, Illinois e leste do Nebraska, com a janela de Iowa. Os cenários da Geórgia (Tifton, Watkinsville) ficam só para regua.arranjos.sudeste e NÃO entram na faixa da linha. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "nashua": {
+      "nome": "Nashua-IA (ISU Northeast Research Farm; NE de Iowa, o local mais frio)",
+      "lat": 42.93,
+      "lon": -92.57,
+      "elevacao_m": 329.36
+    },
+    "ames": {
+      "nome": "Ames-IA (ISU, centro de Iowa)",
+      "lat": 42.01,
+      "lon": -93.74,
+      "elevacao_m": 310.22
+    },
+    "crawfordsville": {
+      "nome": "Crawfordsville-IA (ISU Southeast Research Farm; SE de Iowa)",
+      "lat": 41.19,
+      "lon": -91.48,
+      "elevacao_m": 205.49
+    },
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus; Coastal Plain da Geórgia)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    },
+    "watkinsville": {
+      "nome": "Watkinsville-GA (USDA-ARS J. Phil Campbell Center; Piedmont da Geórgia)",
+      "lat": 33.87,
+      "lon": -83.45,
+      "elevacao_m": 278.6
+    },
+    "urbana": {
+      "nome": "Urbana-IL (University of Illinois, centro de Illinois)",
+      "lat": 40.08,
+      "lon": -88.24,
+      "elevacao_m": 208.77
+    },
+    "carbondale": {
+      "nome": "Carbondale-IL (Southern Illinois University; sul de Illinois, local do ensaio de Sievers & Cook 2018)",
+      "lat": 37.71,
+      "lon": -89.22,
+      "elevacao_m": 143.07
+    },
+    "mead": {
+      "nome": "Mead-NE (UNL Eastern Nebraska Research, Extension and Education Center; local do ensaio da UNL 2022)",
+      "lat": 41.15,
+      "lon": -96.49,
+      "elevacao_m": 357.8
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "ervilhaca_nashua_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "nashua",
+      "semeadura": "09-15",
+      "fases_dias": [
+        175,
+        34,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.74,
+        "end": 0.74
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo em Iowa (semeadura 15/set, manejo 11/abr). PROXY: curva do trigo de inverno do FAO-56 em Idaho (Tab. 11: semeadura em outubro, fase inicial de 160 dias, até ~9/mar, e desenvolvimento de 75 dias), com Kc ini 0,4 (FAO-56 Tab. 12, grupo das leguminosas; o mesmo do trigo de inverno 'with frozen soils') e Kc mid 1,15 (Tab. 12, grupo das leguminosas e ervilha verde). A ervilhaca 'grows slowly in fall [...] Growth quickens in spring' (SARE MCCP): fase inicial da semeadura até 9/mar; o manejo cai no desenvolvimento. Manejo após 34 dos 75 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 34/75 × 0,75 = 0.74.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 117,
+        "nota": "agua_ciclo_mm_min = 115: média 117 mm (P10 96, P90 141), arredondada para baixo. Menor média dos cenários de mínimo da linha (Mead-NE 167)."
+      }
+    },
+    {
+      "nome": "ervilhaca_ames_0901_0425",
+      "cultura": "ervilhaca",
+      "local": "ames",
+      "semeadura": "09-01",
+      "fases_dias": [
+        189,
+        48,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.88,
+        "end": 0.88
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico em Iowa (semeadura 1/set, manejo 25/abr). PROXY: curva do trigo de inverno do FAO-56 em Idaho (Tab. 11: semeadura em outubro, fase inicial de 160 dias, até ~9/mar, e desenvolvimento de 75 dias), com Kc ini 0,4 (FAO-56 Tab. 12, grupo das leguminosas; o mesmo do trigo de inverno 'with frozen soils') e Kc mid 1,15 (Tab. 12, grupo das leguminosas e ervilha verde). A ervilhaca 'grows slowly in fall [...] Growth quickens in spring' (SARE MCCP): fase inicial da semeadura até 9/mar; o manejo cai no desenvolvimento. Manejo após 48 dos 75 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 48/75 × 0,75 = 0.88.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 200,
+        "nota": "Cenário típico em Iowa (conferência; não define a faixa)."
+      }
+    },
+    {
+      "nome": "ervilhaca_crawfordsville_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "crawfordsville",
+      "semeadura": "08-01",
+      "fases_dias": [
+        220,
+        69,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.09,
+        "end": 1.09
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Iowa (semeadura 1/ago, manejo 16/mai). PROXY: curva do trigo de inverno do FAO-56 em Idaho (Tab. 11: semeadura em outubro, fase inicial de 160 dias, até ~9/mar, e desenvolvimento de 75 dias), com Kc ini 0,4 (FAO-56 Tab. 12, grupo das leguminosas; o mesmo do trigo de inverno 'with frozen soils') e Kc mid 1,15 (Tab. 12, grupo das leguminosas e ervilha verde). A ervilhaca 'grows slowly in fall [...] Growth quickens in spring' (SARE MCCP): fase inicial da semeadura até 9/mar; o manejo cai no desenvolvimento. Manejo após 69 dos 75 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 69/75 × 0,75 = 1.09.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 331,
+        "nota": "Cenário de máximo em Iowa (conferência): média 331 mm (P10 280, P90 378)."
+      }
+    },
+    {
+      "nome": "ervilhaca_urbana_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "urbana",
+      "semeadura": "08-01",
+      "fases_dias": [
+        220,
+        69,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.09,
+        "end": 1.09
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Illinois com a janela de Iowa (semeadura 1/ago, manejo 16/mai; cabe na janela de Illinois: semeadura 'Aug- October', University of Illinois Extension 2022, e milho de Illinois no Handbook 628). PROXY: curva do trigo de inverno do FAO-56 em Idaho (Tab. 11: semeadura em outubro, fase inicial de 160 dias, até ~9/mar, e desenvolvimento de 75 dias), com Kc ini 0,4 (FAO-56 Tab. 12, grupo das leguminosas; o mesmo do trigo de inverno 'with frozen soils') e Kc mid 1,15 (Tab. 12, grupo das leguminosas e ervilha verde). A ervilhaca 'grows slowly in fall [...] Growth quickens in spring' (SARE MCCP): fase inicial da semeadura até 9/mar; o manejo cai no desenvolvimento. Manejo após 69 dos 75 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 69/75 × 0,75 = 1.09.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 327,
+        "nota": "Cenário de máximo no centro de Illinois (conferência)."
+      }
+    },
+    {
+      "nome": "ervilhaca_carbondale_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "carbondale",
+      "semeadura": "08-01",
+      "fases_dias": [
+        220,
+        69,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.09,
+        "end": 1.09
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo em Illinois com a janela de Iowa (semeadura 1/ago, manejo 16/mai; cabe na janela de Illinois: semeadura 'Aug- October', University of Illinois Extension 2022, e milho de Illinois no Handbook 628). PROXY: curva do trigo de inverno do FAO-56 em Idaho (Tab. 11: semeadura em outubro, fase inicial de 160 dias, até ~9/mar, e desenvolvimento de 75 dias), com Kc ini 0,4 (FAO-56 Tab. 12, grupo das leguminosas; o mesmo do trigo de inverno 'with frozen soils') e Kc mid 1,15 (Tab. 12, grupo das leguminosas e ervilha verde). A ervilhaca 'grows slowly in fall [...] Growth quickens in spring' (SARE MCCP): fase inicial da semeadura até 9/mar; o manejo cai no desenvolvimento. Manejo após 69 dos 75 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 69/75 × 0,75 = 1.09.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 326,
+        "nota": "Cenário de máximo no sul de Illinois (conferência)."
+      }
+    },
+    {
+      "nome": "ervilhaca_mead_0915_0411",
+      "cultura": "ervilhaca",
+      "local": "mead",
+      "semeadura": "09-15",
+      "fases_dias": [
+        175,
+        34,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.74,
+        "end": 0.74
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "conferência do mínimo no leste do Nebraska (semeadura 15/set, manejo 11/abr). Nebraska (leste) com a janela de Iowa: o ensaio da UNL em Mead semeou em 26/ago e dessecou em 29/abr (UNL CropWatch 2022), dentro da janela; o manejo de 11/abr a 16/mai cabe na regra do milho do Nebraska (Handbook 628, 2010: fase mais ativa 27/abr a 15/mai, fim 21/mai; menos 10-14 dias = 13/abr a 11/mai, quase igual). Mesma curva de Kc do cenário de Nashua.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 167,
+        "nota": "Cenário de mínimo no leste do Nebraska (conferência)."
+      }
+    },
+    {
+      "nome": "ervilhaca_mead_0801_0516",
+      "cultura": "ervilhaca",
+      "local": "mead",
+      "semeadura": "08-01",
+      "fases_dias": [
+        220,
+        69,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.09,
+        "end": 1.09
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "conferência do máximo no leste do Nebraska (semeadura 1/ago, manejo 16/mai). Nebraska (leste) com a janela de Iowa: o ensaio da UNL em Mead semeou em 26/ago e dessecou em 29/abr (UNL CropWatch 2022), dentro da janela; o manejo de 11/abr a 16/mai cabe na regra do milho do Nebraska (Handbook 628, 2010: fase mais ativa 27/abr a 15/mai, fim 21/mai; menos 10-14 dias = 13/abr a 11/mai, quase igual). Mesma curva de Kc do cenário de Crawfordsville.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 384,
+        "nota": "agua_ciclo_mm_max = 385: média 384 mm (P10 330, P90 433), a maior entre os cenários de máximo da linha (Crawfordsville 331, Urbana 327, Carbondale 326)."
+      }
+    },
+    {
+      "nome": "ervilhaca_tifton_1101_0308",
+      "cultura": "ervilhaca",
+      "local": "tifton",
+      "semeadura": "11-01",
+      "fases_dias": [
+        30,
+        98,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 0.92,
+        "end": 0.92
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "ARRANJO SUDESTE (regua.arranjos.sudeste; não entra na faixa da linha do Corn Belt). mínimo na Geórgia (Coastal Plain; semeadura 1/nov, manejo 8/mar). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, grupo das leguminosas e ervilha verde). Manejo após 98 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 98/140 × 0,75 = 0.92.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 143,
+        "nota": "Arranjo Sudeste (conferência; não define a faixa da linha)."
+      }
+    },
+    {
+      "nome": "ervilhaca_watkinsville_1015_0308",
+      "cultura": "ervilhaca",
+      "local": "watkinsville",
+      "semeadura": "10-15",
+      "fases_dias": [
+        30,
+        115,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.02,
+        "end": 1.02
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "ARRANJO SUDESTE (regua.arranjos.sudeste; não entra na faixa da linha do Corn Belt). mínimo na Geórgia (Piedmont; semeadura 15/out, manejo 8/mar). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, grupo das leguminosas e ervilha verde). Manejo após 115 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 115/140 × 0,75 = 1.02.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 112,
+        "nota": "Arranjo Sudeste (conferência; não define a faixa da linha)."
+      }
+    },
+    {
+      "nome": "ervilhaca_tifton_0915_0424",
+      "cultura": "ervilhaca",
+      "local": "tifton",
+      "semeadura": "09-15",
+      "fases_dias": [
+        30,
+        140,
+        52,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "ARRANJO SUDESTE (regua.arranjos.sudeste; não entra na faixa da linha do Corn Belt). máximo na Geórgia (Coastal Plain; semeadura 15/set, manejo 24/abr). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, grupo das leguminosas e ervilha verde). Desenvolvimento completo (140 dias) e 52 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 451,
+        "nota": "Arranjo Sudeste (conferência; não define a faixa da linha)."
+      }
+    }
+  ]
+}

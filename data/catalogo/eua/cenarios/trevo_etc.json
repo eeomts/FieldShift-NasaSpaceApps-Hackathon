@@ -1,0 +1,187 @@
+{
+  "_leia": "Cenários de água do trevo-encarnado (crimson clover, cobertura de inverno antes do milho na Geórgia) para scripts/etc_nasa_power.py. ETc da semeadura ao manejo na primavera. 'fases_dias' = inicial, desenvolvimento, média, final; quando o manejo cai no desenvolvimento, 'mid' = Kc atingido no dia do manejo (ver 'nota'). Mesmas datas de eua/cenarios/trevo_gd.json. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API).",
+  "locais": {
+    "tifton": {
+      "nome": "Tifton-GA (UGA Tifton Campus; Coastal Plain da Geórgia)",
+      "lat": 31.47,
+      "lon": -83.53,
+      "elevacao_m": 95.89
+    },
+    "watkinsville": {
+      "nome": "Watkinsville-GA (USDA-ARS J. Phil Campbell Center; Piedmont da Geórgia)",
+      "lat": 33.87,
+      "lon": -83.45,
+      "elevacao_m": 278.6
+    }
+  },
+  "cenarios": [
+    {
+      "nome": "trevo_watkinsville_1010_0308",
+      "cultura": "trevo",
+      "local": "watkinsville",
+      "semeadura": "10-10",
+      "fases_dias": [
+        30,
+        120,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.04,
+        "end": 1.04
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo da linha (Piedmont; semeadura 10/out, manejo 8/mar). Revisão de 15/11 (pacote 6): a célula do Piedmont na Tab. 5.4 do SARE ('Sept 15-Sept 20') repete a do trevo-arrowleaf e parece erro de diagramação; a UGA (Bulletin 1584, 2025, Tab. 2) dá ao Piedmont 'September to middle October', que contém a janela da linha (10/set a 10/out). Por isso o cenário mais frio passa a ser Watkinsville 10/out -> 8/mar. PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, Clover hay, Berseem, 'individual cutting periods': Kc ini 0,40 e Kc mid 1,15, PROXY de outra espécie do mesmo gênero). Manejo após 120 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 120/140 × 0,75 = 1.04.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 120,
+        "nota": "agua_ciclo_mm_min = 120: média 120 mm (P10 107, P90 134), mesma estatística do máximo da linha."
+      }
+    },
+    {
+      "nome": "trevo_watkinsville_0920_0308",
+      "cultura": "trevo",
+      "local": "watkinsville",
+      "semeadura": "09-20",
+      "fases_dias": [
+        30,
+        140,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "SUBSTITUÍDO como mínimo pelo trevo_watkinsville_1010_0308 (fica como conferência). mínimo (Piedmont; semeadura 20/set, manejo 8/mar). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, Clover hay, Berseem, 'individual cutting periods': Kc ini 0,40 e Kc mid 1,15, PROXY de outra espécie do mesmo gênero). Manejo após 140 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 140/140 × 0,75 = 1.15.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 158,
+        "nota": "Antigo mínimo da linha (155 mm), antes da revisão de 15/11: média 158 mm (P10 141, P90 174)."
+      }
+    },
+    {
+      "nome": "trevo_tifton_1010_0308",
+      "cultura": "trevo",
+      "local": "tifton",
+      "semeadura": "10-10",
+      "fases_dias": [
+        30,
+        120,
+        0,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.04,
+        "end": 1.04
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "mínimo (Coastal Plain; semeadura 10/out, manejo 8/mar). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, Clover hay, Berseem, 'individual cutting periods': Kc ini 0,40 e Kc mid 1,15, PROXY de outra espécie do mesmo gênero). Manejo após 120 dos 140 dias de desenvolvimento (contando o dia do manejo): Kc no manejo = 0,4 + 120/140 × 0,75 = 1.04.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 194,
+        "nota": "Cenário de mínimo no Coastal Plain (conferência): média 194 mm."
+      }
+    },
+    {
+      "nome": "trevo_tifton_0925_0401",
+      "cultura": "trevo",
+      "local": "tifton",
+      "semeadura": "09-25",
+      "fases_dias": [
+        30,
+        140,
+        19,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "típico (Coastal Plain; semeadura 25/set, manejo 1/abr). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, Clover hay, Berseem, 'individual cutting periods': Kc ini 0,40 e Kc mid 1,15, PROXY de outra espécie do mesmo gênero). Desenvolvimento completo (140 dias) e 19 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 318,
+        "nota": "Cenário típico (conferência; não define a faixa)."
+      }
+    },
+    {
+      "nome": "trevo_tifton_0910_0424",
+      "cultura": "trevo",
+      "local": "tifton",
+      "semeadura": "09-10",
+      "fases_dias": [
+        30,
+        140,
+        57,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo (Coastal Plain; semeadura 10/set, manejo 24/abr). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, Clover hay, Berseem, 'individual cutting periods': Kc ini 0,40 e Kc mid 1,15, PROXY de outra espécie do mesmo gênero). Desenvolvimento completo (140 dias) e 57 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 467,
+        "nota": "agua_ciclo_mm_max = 470: média 467 mm (P10 409, P90 529), arredondada para cima."
+      }
+    },
+    {
+      "nome": "trevo_watkinsville_0915_0424",
+      "cultura": "trevo",
+      "local": "watkinsville",
+      "semeadura": "09-15",
+      "fases_dias": [
+        30,
+        140,
+        52,
+        0
+      ],
+      "kc": {
+        "ini": 0.4,
+        "mid": 1.15,
+        "end": 1.15
+      },
+      "altura_m": null,
+      "anos": [
+        2001,
+        2020
+      ],
+      "nota": "máximo (Piedmont; semeadura 15/set, manejo 24/abr). PROXY: curva do trigo de inverno do FAO-56 no clima de inverno ameno (Tab. 11, 'Mediterranean', semeadura em novembro: inicial 30, desenvolvimento 140, média 40 dias), com Kc ini 0,4 e Kc mid 1,15 (FAO-56 Tab. 12, Clover hay, Berseem, 'individual cutting periods': Kc ini 0,40 e Kc mid 1,15, PROXY de outra espécie do mesmo gênero). Desenvolvimento completo (140 dias) e 52 dias na fase média (contando o dia do manejo) (Kc 1,15) até o manejo.",
+      "referencia": {
+        "estatistica": "media",
+        "valor": 313,
+        "nota": "Cenário de máximo no Piedmont (conferência): média 313 mm."
+      }
+    }
+  ]
+}
