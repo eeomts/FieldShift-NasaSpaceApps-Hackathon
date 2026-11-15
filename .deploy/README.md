@@ -133,6 +133,20 @@ Migration nova entra sozinha no start. Os dados ficam no volume.
   ```
 - Teste a restauração de vez em quando no ambiente `local`: backup que nunca foi restaurado é só uma esperança.
 
+## Contas da demo
+
+Cada pessoa que entra na demo vira uma conta `demo-<aleatório>@demo.agroai.app` no mesmo banco do site completo. O `limpar-demo` apaga as que têm mais de N dias (padrão 7), com fazenda, calendário e conversas; as contas reais não são tocadas.
+
+```bash
+./.deploy/limpar-demo producao        # mais de 7 dias
+./.deploy/limpar-demo producao 30     # mais de 30 dias
+```
+
+Agende na VPS junto com o backup, depois dele:
+```cron
+30 3 * * * cd /home/<usuario>/agroai && ./.deploy/limpar-demo producao >> .deploy/backups/limpar-demo.log 2>&1
+```
+
 ## Armadilhas
 
 1. **`./.deploy/agroai <ambiente> down -v` apaga o banco** (e o certificado). É o único comando que mexe nos volumes.
