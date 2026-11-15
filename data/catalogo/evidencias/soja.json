@@ -23,10 +23,16 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "40124",
     "nome_zarc": "Soja",
-    "fontes": "Embrapa Soja Circular Técnica 48 (2007) (temperatura e água)|Embrapa Soja Documentos 284 e 309 (ciclo)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes)|FAO-56 Tab.22 (raiz)|IBGE PAM tabela 5457 (código)",
+    "fontes": "Embrapa Soja Circular Técnica 48 (2007) (temperatura e água)|Embrapa Soja Documentos 284 e 309 (ciclo)|FAO-56 Tab.12 (Kc; Kc ini do grupo Legumes)|FAO-56 Tab.22 (raiz)|IBGE PAM tabela 5457 (código)|MAPA ZarcNM Soja PR Portaria SPA/MAPA 205/2026 (geada: Tmin <= 3 °C no abrigo meteorológico)|NDSU A1172 Soybean Production Field Guide 2023 (perda por geada até R6, maior em R5, nenhuma depois de R7; dias entre estádios de Fehr & Caviness)|Bortoluzzi et al. 2021 Rev. Bras. Meteorologia 36(2) (R5-R7 de 30 a 35 dias no RS)|CÁLCULO: fase_frio_inicio_frac = (ciclo médio 120 - 32,5 dias de R5-R7)/120|Hurburgh, Vittetoe & Anderson, ISU Integrated Crop Management, Frost Damage to Soybeans, 2019 (geada que mata: 28 °F; fonte principal do frio)|Kessler, Archontoulis & Licht, Agron. J. 2020 (geada que mata, -2,22 °C, Iowa; manuscrito do ISU Digital Repository)|FAO Frost Protection vol. 1, Tab. 4.5 (Ventskevich 1958; soja -2/-3 °C na floração e na frutificação, no abrigo; conferência)",
     "confianca_parametros": "media",
     "graus_dia_ciclo_min": "1600",
-    "graus_dia_ciclo_max": "2050"
+    "graus_dia_ciclo_max": "2050",
+    "tmin_critica_c": "-2.2",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.73",
+    "fase_frio_fim_frac": "1.00",
+    "tmin_dias_seguidos": "",
+    "tmin_efeito": ""
   },
   "mudancas": [
     {
@@ -88,6 +94,36 @@
       "antes": "alta",
       "depois": "media",
       "motivo": "Recontagem (revisão 14/11): graus_dia_ciclo_min (calculo), graus_dia_ciclo_max (calculo)"
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "3",
+      "motivo": "REVISÃO 15/11 (dano por frio): ZARC Soja (Port. SPA/MAPA 205/2026, PR): geada deletéria = Tmin <= 3 °C no abrigo meteorológico. Origem: publicado."
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao",
+      "motivo": "REVISÃO 15/11 (dano por frio): perda por geada até R6, maior em R5, nenhuma depois de R7 (NDSU A1172)."
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.73",
+      "motivo": "REVISÃO 15/11 (dano por frio): R5 = (120 - 32,5)/120, com R5-R7 de 30-35 dias no RS (Bortoluzzi et al. 2021) e ciclo médio da linha de 120 dias. Origem: calculo."
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): R7 = fim do ciclo da linha (semeadura -> maturação fisiológica)."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "3",
+      "depois": "-2.2",
+      "motivo": "REVISÃO 15/11 (revisão do frio): decisão do usuário, dano medido e o mesmo valor nos dois países. Geada que mata a soja, 28 °F (ISU 2019, NDSU A1172, Kessler et al. 2020), como na linha dos EUA; FAO Tab. 4.5 (-2/-3 °C no abrigo) como conferência. Os 3 °C do ZARC (critério de risco, não de dano) ficam só como conferência na origem. Origem: publicado."
     }
   ],
   "evidencias": [
@@ -302,6 +338,63 @@
       "fonte": "Embrapa Soja, Circular Técnica 48, 2007, p. 3 (Tb 10 do CSV)",
       "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/470308/1/circtec48.pdf",
       "trecho": "Regiões com temperaturas menores ou iguais a 10°C graus são impróprias ao cultivo da soja, pois nesses locais o crescimento vegetativo da soja é pequeno ou nulo."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "CONFERÊNCIA (critério de risco, não de dano): MAPA, Portaria SPA/MAPA nº 205, de 30/06/2026, ZarcNM Soja Paraná, ano-safra 2026/2027, anexo, item 1.11 b",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/safra-vigente/parana/PORTN205SOJANMPR.pdf",
+      "trecho": "O risco de ocorrência de temperaturas muito baixas (geadas) e deletérias à cultura, por meio da probabilidade de ocorrência de temperaturas mínimas menores ou igual a 3°C observadas no abrigo meteorológico"
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio"
+      ],
+      "fonte": "Kandel & Endres (eds.), NDSU Extension, North Dakota Soybean Production Field Guide A1172, rev. jan. 2023, p. 132-133 (Frost Damage) e p. 7 (dias entre estádios, Fehr & Caviness 1977)",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2023-01/a1172.pdf",
+      "trecho": "Yield loss with frost occurs through the R6 stage with greatest lost at the R5 stage. [...] A frost will not hurt soybean yields if the soybean growth stage is beyond R7. [...] R5 to R6 15 11-20 / R6 to R7 18 9-30 [...] From Fehr and Caviness"
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Bortoluzzi, M.P. et al., Numerical Climatic Analysis of Soybean Development in Sowing Dates in Humid Subtropical Climate, Rev. Bras. Meteorologia 36(2), 2021 (Santa Maria e Pelotas-RS; lido no HTML da SciELO, sem tabela: a duração por fase está só nas figuras)",
+      "url": "https://scielo.br/j/rbmet/a/kwpRmWj8kpLmVTLV5y5qbTn/?lang=en",
+      "trecho": "[R5-R7] with a mean of approximately 30 to 35 days [...] longer duration for the last sowing dates"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Hurburgh, C.R.; Vittetoe, R.; Anderson, M., Frost Damage to Soybeans, Iowa State University Integrated Crop Management, 17/10/2019",
+      "url": "https://crops.extension.iastate.edu/post/frost-damage-soybeans",
+      "trecho": "Temperatures below 32°F can damage soybean leaves [...] temperatures below 30°F for an extended time periods can damage the stems, pods, and seeds. [...] A killing freeze is considered to be 28°F for soybeans."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Kandel & Endres (eds.), NDSU Extension, North Dakota Soybean Production Field Guide A1172, rev. jan. 2023, p. 132-133 (Frost Damage)",
+      "url": "https://www.ndsu.edu/agriculture/sites/default/files/2023-01/a1172.pdf",
+      "trecho": "Soybean plants may be damaged by frost at 32 F or lower temperatures. Temperatures of 28 F for several hours can completely kill soybean plants (stems and leaves). [...] Yield loss with frost occurs through the R6 stage with greatest lost at the R5 stage."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Kessler, A.; Archontoulis, S.V.; Licht, M.A., Soybean Yield and Crop Stage Response to Planting Date and Cultivar Maturity in Iowa, USA, Agronomy Journal, 2020 (manuscrito aceito no ISU Digital Repository), Resultados",
+      "url": "https://dr.lib.iastate.edu/entities/publication/a25f58b7-b5a0-4745-a420-79cb527706a7",
+      "trecho": "Fall frost can also be a yield limiting factor for soybean in Iowa. The typical killing frost (-2.22°C) date for Iowa falls in mid-October [...] several plots at North Central were damaged by a killing frost in 2014."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "FAO, Frost Protection: fundamentals, practice and economics, vol. 1, Tabela 4.5 ('SOURCE: After Ventskevich, 1958') e, para a medida no abrigo, o capítulo sobre dano por geada (https://www.fao.org/4/y7223e/y7223e07.htm); CONFERÊNCIA, lida em 15/11/2026",
+      "url": "https://www.fao.org/4/y7223e/y7223e0a.htm",
+      "trecho": "A range of critical damage temperatures (°C) for grain, forage and silage crops [...] GERMINATION FLOWERING FRUITING [...] Soybeans -3, -4 -2, -3 -2, -3 [...] SOURCE: After Ventskevich, 1958. || This damaging plant tissue temperature is correlated with air temperatures called \"critical temperatures\" measured in standard instrument shelters."
     }
   ],
   "pendencias": [
@@ -310,7 +403,9 @@
     "graus-dia: Máximo (2050) é CÁLCULO: não achei medição de GD com Tb 10 para cultivares tardias (GM 8-9) no Cerrado/MATOPIBA.",
     "graus-dia: Souza et al. 2013 (Rev. Ciências Agrárias, UFRA, Paragominas-PA, BRS Tracajá, Tb 10 com cardinais 10/31/40) têm ~1753 GD da emergência a R8 segundo o resumo indexado, mas o site da revista falhou no certificado e o texto não foi lido.",
     "graus-dia: A literatura brasileira de soja usa várias Tb (7,6 °C em Santa Maria; 14 °C em Cascavel e Embrapa Cerrados), o que obriga a converter. A conversão só é exata quando Tmed > Tb todos os dias.",
-    "graus-dia: Sugestão para o motor: no futuro, guardar GD por grupo de maturação (ou por faixa de latitude), porque o GD do ciclo só vale para o GM adaptado à latitude."
+    "graus-dia: Sugestão para o motor: no futuro, guardar GD por grupo de maturação (ou por faixa de latitude), porque o GD do ciclo só vale para o GM adaptado à latitude.",
+    "Frio (15/11): a portaria do ZARC não diz em que fase aplica o critério de geada; a fase (R5 a R7) veio da NDSU (EUA), fisiologia da espécie. Geada no estabelecimento (semeadura de setembro no Sul) fica de fora da janela. Também não confirmei se o 'ciclo total' dos Documentos 284/309 vai até R7 ou até R8; se for até R8, as frações passam a 0,65-0,93.",
+    "Frio (15/11): com -2,2 °C (geada que mata) no lugar dos 3 °C do ZARC, o teste de frio no Sul (PR, SC, RS) fica menos rigoroso que o zoneamento, que é critério de risco do seguro. Conferir na tela soja no RS e no PR depois da regra 17."
   ],
   "regua": {
     "ms_palhada_t_ha": {
@@ -411,6 +506,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "semeadura -> maturação fisiológica; Tb 10; (1) Cascavel-PR (Wazilewski et al. 2011), cultivares precoces CD 202, CD 213RR e CD 214RR, 4 safras, Tb 14 da EMERGÊNCIA à maturação plena: 1079 a 1218 GD (média 1166) em 110-130 dias. Conversão para Tb 10 (CÁLCULO, exata porque Tmed do período foi 23-24 °C, sempre acima de 14): GD10 = GD14 + 4 × dias → 1079 + 4 × 112 = 1527 até 1218 + 4 × 119 = 1694 (média 1166 + 4 × 120,3 = 1647). (2) Semeadura->emergência: 92,5 °C·dia com Tb 10 (Schneider et al. 1987, adotado por Bortoluzzi et al. 2021). Cascavel da semeadura: 1620 a 1790 (média 1740). (3) Belterra-PA (Alves et al. 2018, Tb 10, Tmax limitada a 30 °C = TETO): 1522 a 1742 GD da emergência à colheita; da semeadura ≈ 1615 a 1835. Mínimo adotado 1600 (as duas fontes medidas). (4) Máximo (CÁLCULO, sem medição): cultivar tardia de grupo de maturação alto no Cerrado, ciclo_dias_max 140 × (24,5 − 10) = 2030 ≈ 2050; no RS, GM 7,4-8,0 semeado em setembro chega a 159 dias (Bortoluzzi 2021), 159 × (21 − 10) ≈ 1750, abaixo do teto. | plausibilidade: 1600/(Tmed 26 − 10) = 100 dias (Norte, safra) e 2050/(24,5 − 10) = 141 dias (Cerrado), contra ciclo_dias 100-140 do CSV. Cascavel: 1740/(23,5 − 10) = 129 dias da semeadura, contra 7 + 120 = 127 observados. Coerente."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Geada que mata a planta, o mesmo valor e a mesma fonte principal nas linhas do Brasil e dos EUA (decisão do usuário de 15/11: dano medido nos dois países). 28 °F = (28 - 32) × 5/9 = -2.2 °C. Fonte principal: 'A killing freeze is considered to be 28°F for soybeans' (ISU, Hurburgh et al. 2019). Apoio: 'Temperatures of 28 F for several hours can completely kill soybean plants' (NDSU A1172); Kessler et al. 2020 (artigo revisado, Iowa) usam 'typical killing frost (-2.22°C)'. É dano à produção: planta morta antes de R7 perde grão (NDSU A1172). tmin_efeito vazio (= elimina): a fonte fala em morte da planta. tmin_dias_seguidos vazio: a NDSU fala em 'several hours', não em dias. Conferência no abrigo: FAO Frost Protection, Tab. 4.5 (Ventskevich 1958), soja -2/-3 °C na floração e na frutificação, temperaturas críticas 'measured in standard instrument shelters'. As fontes americanas não dizem a altura da medida (a data climatológica da geada que mata, em Kessler, é de estação meteorológica); a NDSU lembra que 32 °F na estação podem ser 28-29 °F nas baixadas da lavoura. Abaixo de 30 °F (-1.1 °C) por muito tempo já há dano a hastes, vagens e grãos (ISU), mas o motor só tem a mínima diária, sem duração, por isso ficou o limiar de morte. Conferência no Brasil: o ZARC Soja (MAPA, ZarcNM PR 2026/2027, Port. SPA/MAPA 205/2026; o mesmo texto na de SC, Port. 210/2026) usa Tmin <= 3 °C no abrigo meteorológico como geada 'deletéria à cultura'. É critério de risco, não de dano, e por isso fica só como conferência, não como o valor da coluna (era o valor até 15/11)."
+    },
+    "fase_frio_frac": {
+      "tipo": "calculo",
+      "nota": "Fase = R5 (início do enchimento) a R7 (maturação fisiológica): a perda por geada vai até R6, é maior em R5 e não há perda depois de R7 (NDSU A1172). Duração R5-R7 no RS: 'approximately 30 to 35 days' (Bortoluzzi et al. 2021, Santa Maria, semeaduras de set. a dez.); usei 32,5 dias. Ciclo médio da linha = (100 + 140)/2 = 120 dias, semeadura -> maturação fisiológica (R7). Início = (120 - 32,5)/120 = 0,729 -> 0.73; fim = R7 = fim do ciclo = 1.00. Conferência: Fehr & Caviness (R5-R6 15 d + R6-R7 18 d = 33 d) daria (120 - 33)/120 = 0,725 -> 0.73. Se o ciclo das fontes da linha (Embrapa Doc. 284/309, 'ciclo total') for até R8 e não até R7, a janela recua uns 9 dias (R7-R8 de Fehr & Caviness): 0,65 a 0,93 (ver pendências)."
     }
   },
   "confianca_calculo": {
@@ -420,5 +523,8 @@
       "graus_dia_ciclo_min",
       "graus_dia_ciclo_max"
     ]
-  }
+  },
+  "pendencias_resolvidas": [
+    "Frio (15/11): tmin_critica_c = 3 °C vem do critério de geada do ZARC (abrigo), que marca a ocorrência de geada na folha; a linha dos EUA usa -2.2 °C (28 °F, geada que mata a planta: ISU, NDSU, Kessler et al. 2020). A espécie é a mesma; o coordenador decide se unifica. Com 3 °C o teste fica mais rigoroso no Sul (PR, SC, RS), como o próprio ZARC. (Resolvida. Motivo: 15/11: decisão do usuário, dano medido nos dois países.)"
+  ]
 }

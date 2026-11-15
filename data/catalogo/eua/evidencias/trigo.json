@@ -33,10 +33,14 @@
     "nome_zarc": "",
     "codigo_nass": "WHEAT, WINTER",
     "calendario_usda": "Wheat, winter",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do trigo de inverno no Kansas)|K-State, Kansas Crop Planting Guide L-818, 1996 (janelas de semeadura por zona; datas médias de geada)|Lollato, K-State Agronomy eUpdate 592, Optimum sowing dates and seeding rates for wheat in Kansas (janela ótima por região; semeadura real NASS 1994-2015)|Kansas Mesonet (K-State), Wheat Growth Stage (GDD do trigo: (Tmax+Tmin)/2 - 32 °F, sem teto; >3000 desde 1/jan = maturação fisiológica)|Kansas Mesonet (K-State), Winter Wheat Phenology (maturação ~2 semanas antes da colheita)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trigo_gd.json (graus-dia sem teto, Tb 0, na régua do NASA POWER, safras 2001/02 a 2020/21)|Paulsen et al., K-State Wheat Production Handbook C-529, 1997 (crescimento e desenvolvimento; geada na floração; raiz; água 16-24 pol.)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F, Tupper 79 °F)|FAO-56 Tab.12 Winter Wheat (Kc) e cap. 8 (Kc do trigo de inverno em período congelado)|FAO-56 Tab.22 Winter Wheat 1,5-1,8 m (raiz; limite superior)|Ferris et al. 1998 Ann. Bot. 82(5):631-639, mantido do Brasil (tmax na antese 31 °C)|FAO ECOCROP Triticum aestivum, mantido do Brasil (temperatura ótima)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do trigo de inverno no Kansas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Winter wheat) e 11.1a (resíduo acima do solo)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N da palha de trigo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição na superfície, Bushland-TX; resumo)|Stott et al., SSSAJ 54:92-98, 1990 (perda de palha de trigo no campo, WA, TX e IN; resumo)|Rogers et al., Agrosyst. Geosci. Environ. 2025, e70229 (decomposição e C/N de trigo duro vermelho, Idaho; resumo)|Ma et al., Agron. J. 91:401-409, 1999 (C/N da palha de trigo no leste do Colorado)|Waggoner, K-State Beef Tips, jul. 2022, dados de Cattlemen's Day 2014 (PB e IVDMD da palha de trigo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do trigo de inverno no Kansas)|K-State, Kansas Crop Planting Guide L-818, 1996 (janelas de semeadura por zona; datas médias de geada)|Lollato, K-State Agronomy eUpdate 592, Optimum sowing dates and seeding rates for wheat in Kansas (janela ótima por região; semeadura real NASS 1994-2015)|Kansas Mesonet (K-State), Wheat Growth Stage (GDD do trigo: (Tmax+Tmin)/2 - 32 °F, sem teto; >3000 desde 1/jan = maturação fisiológica)|Kansas Mesonet (K-State), Winter Wheat Phenology (maturação ~2 semanas antes da colheita)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trigo_gd.json (graus-dia sem teto, Tb 0, na régua do NASA POWER, safras 2001/02 a 2020/21)|Paulsen et al., K-State Wheat Production Handbook C-529, 1997 (crescimento e desenvolvimento; geada na floração; raiz; água 16-24 pol.)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F, Tupper 79 °F)|FAO-56 Tab.12 Winter Wheat (Kc) e cap. 8 (Kc do trigo de inverno em período congelado)|FAO-56 Tab.22 Winter Wheat 1,5-1,8 m (raiz; limite superior)|Ferris et al. 1998 Ann. Bot. 82(5):631-639, mantido do Brasil (tmax na antese 31 °C)|FAO ECOCROP Triticum aestivum, mantido do Brasil (temperatura ótima)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do trigo de inverno no Kansas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Winter wheat) e 11.1a (resíduo acima do solo)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N da palha de trigo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição na superfície, Bushland-TX; resumo)|Stott et al., SSSAJ 54:92-98, 1990 (perda de palha de trigo no campo, WA, TX e IN; resumo)|Rogers et al., Agrosyst. Geosci. Environ. 2025, e70229 (decomposição e C/N de trigo duro vermelho, Idaho; resumo)|Ma et al., Agron. J. 91:401-409, 1999 (C/N da palha de trigo no leste do Colorado)|Waggoner, K-State Beef Tips, jul. 2022, dados de Cattlemen's Day 2014 (PB e IVDMD da palha de trigo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|K-State C-646 1995 Spring Freeze Injury to Kansas Wheat (limiar de dano por frio: -1 °C por 2 h no espigamento e na floração; floração ~1 semana depois do espigamento)|CÁLCULO: tmin_critica_c = -1,1 °C (C-646) + 2 °C (diferença abrigo-dossel, Leske & Biddulph 2022 Genes 13(4):578) = 1 °C|USDA NASS Crop Progress 12/05/2025 e 19/05/2025 (trigo de inverno espigado no Kansas, média 2020-2024; fase sensível ao frio)|Zheng et al. 2015 J. Exp. Bot. 66(12):3611 (conferência: limiar de 0 °C no abrigo depois do espigamento)|ZARC trigo MAPA Portaria 385/2022 RS (conferência: Tmin do ar no abrigo <= 1,0 °C ao redor do espigamento)",
     "confianca_parametros": "media",
     "semeadura_inicio": "09-15",
-    "semeadura_fim": "10-20"
+    "semeadura_fim": "10-20",
+    "tmin_critica_c": "1",
+    "fase_sensivel_frio": "floracao",
+    "fase_frio_inicio_frac": "0.87",
+    "fase_frio_fim_frac": "0.92"
   },
   "origem": {
     "temp_base_c": {
@@ -82,6 +86,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Winter Wheat 1,5-1,8 m; limite superior (sequeiro, solo sem impedimento). Confere com o C-529: 'penetration to 6 feet under favorable conditions' (1,83 m). No Brasil (Spring Wheat) é 1,5."
+    },
+    "tmin_critica_c": {
+      "tipo": "calculo",
+      "nota": "K-State C-646: 30 °F (-1,1 °C) por 2 horas no espigamento e na floração (a fase mais sensível). A publicação não diz a que altura a temperatura é medida e avisa que a estação oficial pode não refletir a temperatura na lavoura; tratei o número como temperatura do ar junto à cultura e converti para o abrigo com a relação publicada de Leske & Biddulph 2022 (0 °C na altura do dossel ≈ 2 °C no abrigo a 1,2 m; medido: abrigo 1,3 a 1,8 °C mais quente na madrugada de geada): -1,1 + 2 = 0,9 -> 1 °C. Conferência no abrigo: ZARC trigo RS (Portaria 385/2022) usa Tmin do ar no abrigo <= 1,0 °C ao redor do espigamento; Zheng et al. 2015 (Austrália) acharam 0 °C no abrigo como o limiar que melhor explica os danos depois do espigamento."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Conta simples sobre números oficiais. Espigamento: 50% do trigo de inverno do Kansas espigado por volta de 12/mai (USDA NASS Crop Progress, média 2020-2024: 47% em 11/mai e 71% em 18/mai). Fim da floração: espigamento + 7 dias (floração 'about one week after the spikes appear') + 4 dias (a espiga floresce 'over a 2- to 4-day period'), K-State C-646 = 23/mai. Semeadura típica de 1/out (cenário de Hays, cenarios/trigo_gd.json; 1/out a 14/jun = 256 dias, perto do ciclo médio). Ciclo médio da linha: (230 + 280)/2 = 255. 1/out -> 12/mai = 223 dias; 1/out -> 23/mai = 234 dias. Frações: 223/255 = 0,875 -> 0,87; 234/255 = 0,918 -> 0,92. Pela regra 17, a fase cai em maio para a semeadura de set-out."
     }
   },
   "reuso_brasil": [
@@ -402,6 +414,50 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"WHEAT, WINTER - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'WHEAT', class_desc 'WINTER', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 6059, COUNTY 130218"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c",
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Shroyer, J.P.; Mikesell, M.E.; Paulsen, G.M., Spring Freeze Injury to Kansas Wheat, Kansas State University, C-646, março de 1995, Tab. 1 e texto",
+      "url": "https://bookstore.ksre.ksu.edu/download/spring-freeze-injury-to-kansas-wheat_C646",
+      "trecho": "Approximate injurious temperature (two hours) [...] Boot 28 F (-2 C) [...] Heading 30 F (-1 C) Floret sterility; white awns or white spikes [...] Flowering 30 F (-1 C) [...] Milk 28 F (-2 C) [...] Official weather stations may not reflect true in-field temperatures. [...] Wheat usually flowers about one week after the spikes appear. [...] Flowering proceeds from florets near the center of wheat spikes to florets at the top and bottom of the spikes over a 2- to 4-day period."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Leske, B.A.; Biddulph, T.B., Estimating Effects of Radiation Frost on Wheat Using a Field-Based Frost Control Treatment to Stop Freezing Damage, Genes 13(4):578, 2022 (Dale, Austrália Ocidental, 2018-2019; texto completo lido no Europe PMC), doi 10.3390/genes13040578",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9031182/",
+      "trecho": "The term “frost(s)” is defined here as air temperature ≤0 °C at canopy height, which is approximately equivalent to 2 °C air temperature in a Stevenson screen 1200 mm above ground level (AGL) [...] Screen temperatures were warmer than the unshielded canopy air temperature in non-heated plots by 1.3 to 1.8 °C from 12 a.m. to 7 a.m."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (conferência)"
+      ],
+      "fonte": "Zheng, B.; Chapman, S.C.; Christopher, J.T.; Frederiks, T.M.; Chenu, K., Frost trends and their estimated impact on yield in the Australian wheatbelt, J. Exp. Bot. 66(12):3611-3623, 2015 (texto completo lido no Europe PMC; conferência do limiar no abrigo), doi 10.1093/jxb/erv163",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4463805/",
+      "trecho": "To determine a Stevenson screen temperature threshold, temperatures from –5 °C to +2 °C were assessed in 1 °C increments (data not shown). Based on consultation with agronomists and on trial data, it was determined that a threshold temperature of 0 °C best explained major recent incidences of frost damage."
+    },
+    {
+      "colunas": [
+        "tmin_critica_c (conferência)"
+      ],
+      "fonte": "MAPA/SPA, Portaria nº 385, de 6/12/2022, ZARC trigo de sequeiro RS, ano-safra 2022/2023, item I (Temperatura)",
+      "url": "https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/portarias/2022-2023/rio-grande-do-sul-rs/port-no-385-trigo-de-sequeiro-rs-ret.pdf",
+      "trecho": "Foi considerado o risco de geada foi estimado pela análise da frequência de ocorrência de temperaturas do ar igual ou menor a 1,0 C, com base na temperatura do ar em abrigo meteorológico. O diagnóstico de risco de geada foi considerado em dois decêndios (20 dias) ao redor do espigamento, incluindo o decêndio imediatamente anterior (n-1) e no decêndio do espigamento (n)."
+    },
+    {
+      "colunas": [
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "USDA NASS, Crop Progress, releases de 12/05/2025 e 19/05/2025, tabela 'Winter Wheat Headed - Selected States' (média 2020-2024)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/8336h188j/9k421b436/xp68nf89d/prog1925.txt",
+      "trecho": "Winter Wheat Headed - Selected States [...] State : May 11, 2024 : May 4, 2025 : May 11, 2025 : 2020-2024 Average [...] Kansas ..........: 70 45 71 47 [semana seguinte, prog2025.txt (https://esmis.nal.usda.gov/sites/default/release-files/8336h188j/np1957469/q524mm26s/prog2025.txt): May 18, 2024 : May 11, 2025 : May 18, 2025 : 2020-2024 Average [...] Kansas ..........: 88 71 84 71]"
     }
   ],
   "regua": {
@@ -497,6 +553,24 @@
       "antes": "pendência: codigo_nass: 'WHEAT, WINTER' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_d... | observacoes.codigos: codigo_nass 'WHEAT, WINTER'. short_desc 'WHEAT, WINTER - ...' = commodity_desc 'WHEAT' + class_desc 'WINTER'. Atenção: n...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'WHEAT, WINTER - ACRES PLANTED', registros SURVEY: STATE 6059, COUNTY 130218; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "1",
+      "motivo": "REVISÃO 15/11 (dano por frio): K-State C-646, -1,1 °C (30 °F) por 2 h no espigamento e na floração, convertido para o abrigo com +2 °C (Leske & Biddulph 2022). Origem: calculo."
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "floracao",
+      "motivo": "REVISÃO 15/11 (dano por frio): espigamento e floração, 'the most freeze-sensitive stage' (K-State C-646). O trigo de inverno tolera o frio no inverno; a geada que tira produção é a tardia de maio."
+    },
+    {
+      "coluna": "fase_frio_inicio_frac / fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "0.87 / 0.92",
+      "motivo": "REVISÃO 15/11 (dano por frio): do espigamento (50% espigado no Kansas por volta de 12/mai, NASS Crop Progress, média 2020-2024) ao fim da floração (+11 dias, C-646), com semeadura em 1/out: 223/255 e 234/255. Origem: publicado."
     }
   ],
   "pendencias": [
@@ -510,7 +584,10 @@
     "kc_inicial 0,4 (solo congelado) vale para o noroeste e o centro do Kansas; no sul (Oklahoma, norte do Texas) com inverno sem solo congelado o FAO-56 dá 0,7.",
     "regua: nenhum estudo de decomposição no Kansas; as quatro fontes de k são do Texas, Missouri, Idaho e de vários estados (três lidas só pelo resumo). Digestibilidade sem n. A palhada não desconta o enfardamento. O pastejo do trigo no outono-inverno (duplo propósito) não entrou no valor forrageiro.",
     "calendario_usda: 'Wheat, winter' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass).",
-    "semeadura_inicio/fim (09-15 a 10-20) = 'most active' do Handbook 628 (2010) no Kansas (início 10/set, fim 1/nov). Bate com cenarios/trigo_gd.json (semeaduras de 15/set em Colby, 1/out em Hays e 20/out em Hutchinson)."
+    "semeadura_inicio/fim (09-15 a 10-20) = 'most active' do Handbook 628 (2010) no Kansas (início 10/set, fim 1/nov). Bate com cenarios/trigo_gd.json (semeaduras de 15/set em Colby, 1/out em Hays e 20/out em Hutchinson).",
+    "Dano por frio (15/11): a C-646 não diz a que altura a temperatura é medida; tratei os -1 °C como temperatura do ar na lavoura e somei 2 °C para o abrigo (Leske & Biddulph 2022, Austrália). Se os números da C-646 já forem de abrigo, o limiar seria -1 °C. Bate com o ZARC do Brasil (<= 1,0 °C no abrigo) e com Zheng et al. 2015 (0 °C no abrigo). Uma série da K-State com dano de geada e a Tmin do Kansas Mesonet (2 m) resolveria.",
+    "Dano por frio (15/11): no trigo de inverno o espigamento depende da primavera, não da data de semeadura. As frações (0,87-0,92) foram tiradas com a semeadura de 1/out; com a semeadura de 15/set a fase calculada pela regra 17 cai em fim de abril, e com a de 20/out no fim de maio. No noroeste do Kansas o espigamento é mais tarde que a média do estado (12/mai). O motor deveria, no trigo de inverno, preferir uma data de espigamento por local; com a fração, o teste fica em abril-maio, que é a época certa.",
+    "Dano por frio (15/11): sensivel_geada = true está coerente com a fonte do limiar."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

@@ -33,10 +33,14 @@
     "nome_zarc": "",
     "codigo_nass": "CORN, GRAIN",
     "calendario_usda": "Corn for grain",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita IA/IL)|Elmore, ISU Integrated Crop Management News, Corn Hybrids Adjust to Late Planting Dates, 2011, Tab. 1 (dias até R6 e GDD por RM, Nashua e Lewis-IA)|Abendroth & Elmore, ISU Encyclopedia, Delayed planting: hybrids adjust to planting dates, 2007 (dias até R1 e R6, dados de Nielsen et al. 2002)|Elmore, ISU ICM News, Corn and Dry Soils at Planting Part II, 2013 (GDD por RM em Iowa)|Archontoulis, ISU ICM News, Corn Grain Moisture August 28, 2025 (110 RM ~ 2650 °F-days)|Nafziger, farmdoc Univ. of Illinois, Late-Season Dry Weather and Corn, 2013 (GDD do centro de Illinois)|Nielsen, Purdue, Heat Unit Concepts Related to Corn Development, 2020 (Tb 50 °F, teto 86/50)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/milho_gd.json (graus-dia sem teto na régua do NASA POWER)|Licht, Archontoulis & Hatfield, ISU ICM News, Corn Water Use and Evapotranspiration, 2017 (água por produtividade)|ISU Encyclopedia, Crop water use or evapotranspiration (água por região de Iowa)|ISU Encyclopedia, Corn pollination: effect of high temperature and stress (tmax crítica, conferência)|Nielsen, Purdue, Predicting Corn Grain Maturity Dates for Delayed Plantings, 2019 (geada)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade IA/IL 2023-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (resíduo acima do solo)|Al-Kaisi & Guzman, Soil & Tillage Research 129:32-39, 2013 (decomposição e C/N, Ames-IA)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD do resíduo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita IA/IL)|Elmore, ISU Integrated Crop Management News, Corn Hybrids Adjust to Late Planting Dates, 2011, Tab. 1 (dias até R6 e GDD por RM, Nashua e Lewis-IA)|Abendroth & Elmore, ISU Encyclopedia, Delayed planting: hybrids adjust to planting dates, 2007 (dias até R1 e R6, dados de Nielsen et al. 2002)|Elmore, ISU ICM News, Corn and Dry Soils at Planting Part II, 2013 (GDD por RM em Iowa)|Archontoulis, ISU ICM News, Corn Grain Moisture August 28, 2025 (110 RM ~ 2650 °F-days)|Nafziger, farmdoc Univ. of Illinois, Late-Season Dry Weather and Corn, 2013 (GDD do centro de Illinois)|Nielsen, Purdue, Heat Unit Concepts Related to Corn Development, 2020 (Tb 50 °F, teto 86/50)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/milho_gd.json (graus-dia sem teto na régua do NASA POWER)|Licht, Archontoulis & Hatfield, ISU ICM News, Corn Water Use and Evapotranspiration, 2017 (água por produtividade)|ISU Encyclopedia, Crop water use or evapotranspiration (água por região de Iowa)|ISU Encyclopedia, Corn pollination: effect of high temperature and stress (tmax crítica, conferência)|Nielsen, Purdue, Predicting Corn Grain Maturity Dates for Delayed Plantings, 2019 (geada)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade IA/IL 2023-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (resíduo acima do solo)|Al-Kaisi & Guzman, Soil & Tillage Research 129:32-39, 2013 (decomposição e C/N, Ames-IA)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD do resíduo)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)|Nielsen, Purdue Corny News Network, set. 2002 (killing frost: ar a 28 °F = -2 °C)|Staggenborg et al., K-State MF-2234, 1996 (folhas do milho sofrem abaixo de 29 °F)",
     "confianca_parametros": "media",
     "semeadura_inicio": "04-25",
-    "semeadura_fim": "05-18"
+    "semeadura_fim": "05-18",
+    "tmin_critica_c": "-2",
+    "fase_sensivel_frio": "enchimento_grao",
+    "fase_frio_inicio_frac": "0.51",
+    "fase_frio_fim_frac": "1.00"
   },
   "origem": {
     "temp_base_c": {
@@ -82,6 +86,14 @@
     "profundidade_raiz_m": {
       "tipo": "publicado",
       "nota": "FAO-56 Tab. 22, Maize 1,0-1,7 m; limite superior para solo sem impedimento (sequeiro). Igual ao Brasil."
+    },
+    "tmin_critica_c": {
+      "tipo": "publicado",
+      "nota": "Ar a 2 m (abrigo). Purdue (Nielsen 2002): 'killing fall frost' = ar a 28 °F (-2 °C) ou menos, morte da planta inteira; K-State MF-2234: folhas do milho começam a sofrer abaixo de 29 °F (-1,7 °C). 28 °F = (28 - 32)/1,8 = -2,2 °C -> -2. Perda de 12 a 55% com a morte da planta antes de R6 (Carter & Hesterman 1990, via Purdue). Mesmo valor da linha do Brasil (fisiologia da espécie)."
+    },
+    "fase_frio_frac": {
+      "tipo": "publicado",
+      "nota": "Fase: do embonecamento (R1) à maturação fisiológica (R6); depois de R6 o grão está 'safe from frost' (Purdue). Ciclo da linha da semeadura a R6 (123-140 d, médio 131,5). Nielsen et al. 2002 (via ISU): semeadura ao embonecamento 75, 66 e 61 dias (cedo, meio, tarde), média 67,3 -> 67,3/131,5 = 0,51. Fim = R6 = fim do ciclo = 1,00 (conferência: R6 cerca de 65 dias após o embonecamento, Purdue; 131,5 - 65 = 66,5)."
     }
   },
   "reuso_brasil": [
@@ -156,6 +168,12 @@
       "valor_brasil": "palhada 7,0 t/ha, C/N 76, k 0,0045, PB 3,9, DMO 49",
       "decisao": "trocado",
       "motivo": "Mesmo método com dados dos EUA: produtividade NASS + IPCC, decomposição medida em Ames-IA, C/N medida em Ames e NRCS, forragem UNL."
+    },
+    {
+      "coluna": "tmin_critica_c, fase_sensivel_frio, fase_frio_*_frac",
+      "valor_brasil": "-2, enchimento_grao, 0.51-1.00",
+      "decisao": "conferido e mantido",
+      "motivo": "O limiar é o mesmo nos dois países (fisiologia da espécie, fontes americanas); as frações seguem o ciclo de cada linha e deram o mesmo número por coincidência."
     }
   ],
   "evidencias": [
@@ -397,6 +415,40 @@
       "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
       "url": "https://quickstats.nass.usda.gov/api",
       "trecho": "short_desc \"CORN, GRAIN - ACRES HARVESTED\" (2023, NATIONAL): commodity_desc 'CORN', class_desc 'ALL CLASSES', util_practice_desc 'GRAIN', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA HARVESTED', unit_desc 'ACRES'; registros SURVEY: STATE 9613, COUNTY 190948"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Nielsen, R.L., Risk of Fall Frost Injury to Immature Corn Grain, Purdue University Corny News Network, set. 2002",
+      "url": "https://www.agry.purdue.edu/Ext/corn/news/articles.02/Grain_Maturation_Frost-0910.pdf",
+      "trecho": "Many agronomists define a “killing fall frost” in terms of air temperature at 28 degrees F (-2 degrees C) or less that causes complete death of whole plants. Frost damage that occurs at slightly warmer temperatures will injure leaves, but will not necessarily kill the whole plant. [...] Yield losses from total plant death prior to kernel black layer are estimated to be 55, 41, and 12 % for soft dough, full dent, and half-milk line stages of development"
+    },
+    {
+      "colunas": [
+        "tmin_critica_c"
+      ],
+      "fonte": "Staggenborg, S.; Fjell, D.; Dhuyvetter, K.; Vanderlip, R., Fall Freeze Damage in Summer Grain Crops, K-State Research and Extension MF-2234, agosto de 1996",
+      "url": "https://bookstore.ksre.ksu.edu/pubs/MF2234.pdf",
+      "trecho": "The minimum temperature required to cause freeze injury in corn is similar to that of grain sorghum. Field observations from Canada indicate corn leaves are not seriously damaged at temperatures near 32°F. A conclusion of this study was that damage to corn leaves begins to occur at temperatures below 29°F."
+    },
+    {
+      "colunas": [
+        "fase_sensivel_frio",
+        "fase_frio_inicio_frac",
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Abendroth, L.; Elmore, R., Delayed planting: Hybrids adjust to planting dates, Iowa State University Encyclopedia (ICM IC-498(8), 2007), resumindo Nielsen et al. 2002, Agron. J. 94:549-558 (Indiana e Ohio; artigo original não lido)",
+      "url": "https://crops.extension.iastate.edu/encyclopedia/delayed-planting-hybrids-adjust-planting-dates",
+      "trecho": "three hybrids with relative maturity ratings of 106, 111, and 115 [...] days from planting to silking were 75, 66, and 61, respectively, for Early, Mid, and Late planting dates [...] days from silking to physiological maturity were 63, 66, and 68"
+    },
+    {
+      "colunas": [
+        "fase_frio_fim_frac"
+      ],
+      "fonte": "Nielsen, R.L., Predicting Corn Grain Maturity Dates for Delayed Plantings, Purdue University Corny News Network, 16/09/2019",
+      "url": "https://agry.purdue.edu/ext/corn/news/timeless/RStagePrediction.html",
+      "trecho": "Kernel dry weight reaches its maximum at this point and the grain is generally considered to be safe from the effects of a subsequent killing fall freeze. [...] Physiological maturity (kernel black layer) for adapted corn hybrids occurs approximately 65 days after silking in the central Corn Belt"
     }
   ],
   "regua": {
@@ -485,6 +537,30 @@
       "antes": "pendência: codigo_nass: 'CORN, GRAIN' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_des... | observacoes.codigos: codigo_nass 'CORN, GRAIN'. short_desc 'CORN, GRAIN - ACRES HARVESTED' e 'CORN, GRAIN - PRODUCTION, MEASURED IN BU' = com...",
       "depois": "evidência da API do QuickStats (15/11/2026): 'CORN, GRAIN - ACRES HARVESTED', registros SURVEY: STATE 9613, COUNTY 190948; observacoes.codigos reescrita como CONFERIDO na API",
       "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
+    },
+    {
+      "coluna": "tmin_critica_c",
+      "antes": "(vazio)",
+      "depois": "-2",
+      "motivo": "REVISÃO 15/11 (dano por frio): limiar de morte de folhas e planta no ar a 2 m, 28 °F = -2,2 °C (Purdue 2002; K-State MF-2234)"
+    },
+    {
+      "coluna": "fase_sensivel_frio",
+      "antes": "(vazio)",
+      "depois": "enchimento_grao",
+      "motivo": "REVISÃO 15/11 (dano por frio): dano do embonecamento a R6; depois de R6 o grão está a salvo (Purdue)"
+    },
+    {
+      "coluna": "fase_frio_inicio_frac",
+      "antes": "(vazio)",
+      "depois": "0.51",
+      "motivo": "REVISÃO 15/11 (dano por frio): semeadura ao embonecamento 67,3 d (média de Nielsen et al. 2002, via ISU) / ciclo médio 131,5 d"
+    },
+    {
+      "coluna": "fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "1.00",
+      "motivo": "REVISÃO 15/11 (dano por frio): fim em R6 = fim do ciclo da linha"
     }
   ],
   "pendencias": [
@@ -499,7 +575,8 @@
     "regua: digestibilidade sem n (a UNL não informa); só duas fontes de C/N nos EUA; a palhada não desconta enfardamento nem pastejo. O k de Ames (inverno congelado) é bem menor que o do Brasil (0,0045), e a palhada que sobra em 60 dias fica em 10,6 t/ha.",
     "calendario_usda: 'Corn for grain' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto (vem do catálogo da série).",
     "graus_dia_min (revisão do lote 3, 15/11): 1250 segue a convenção (Nashua 16/mai + ciclo_dias_min 123 d, mediana 1258). O ciclo de 123 d é de um híbrido 110 RM em Lewis (sudoeste de Iowa); em Nashua o híbrido da fonte (105 RM) leva 135-140 d, então o cenário mistura o ciclo mais curto com o local mais frio, como pede a convenção. DECISÃO para o coordenador/motor: se a janela do motor juntar a semeadura mais cedo (25/abr) com 123 d, a mediana em Nashua é 1140, acima do corte (1125), mas no limite.",
-    "semeadura_inicio/fim (04-25 a 05-18) = 'most active' do Handbook 628 (2010) em Iowa (início 19/abr, fim 26/mai). Illinois, a outra região de referência: 'most active' 21/abr-23/mai (início 14/abr, fim 5/jun). Bate com os cenários de graus-dia (cenarios/milho_gd.json: semeaduras de 25/abr a 16/mai em Nashua e Lewis; 1/mai e 15/mai em Champaign, dentro da janela de Illinois). A edição é de 2010; o calendário atual pode ser alguns dias mais cedo."
+    "semeadura_inicio/fim (04-25 a 05-18) = 'most active' do Handbook 628 (2010) em Iowa (início 19/abr, fim 26/mai). Illinois, a outra região de referência: 'most active' 21/abr-23/mai (início 14/abr, fim 5/jun). Bate com os cenários de graus-dia (cenarios/milho_gd.json: semeaduras de 25/abr a 16/mai em Nashua e Lewis; 1/mai e 15/mai em Champaign, dentro da janela de Illinois). A edição é de 2010; o calendário atual pode ser alguns dias mais cedo.",
+    "DANO POR FRIO (15/11): tmin_critica_c = -2 (ar a 2 m, 28 °F) do embonecamento a R6 (0,51-1,00), igual à linha do Brasil. No Corn Belt o risco real é a geada de outono antes de R6 em semeadura tardia. A fonte não diz se os 28 °F são do abrigo; tratei como temperatura do ar da estação (é como a extensão usa o número). Em noite clara e calma a folha fica abaixo do ar (K-State e Purdue avisam que há dano de folha 'at slightly warmer temperatures'), então -2 pode subestimar o risco de dano só nas folhas, que também tira produção no enchimento (35% na massa mole, Purdue)."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

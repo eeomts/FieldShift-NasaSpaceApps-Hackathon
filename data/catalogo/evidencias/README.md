@@ -54,6 +54,7 @@ O motor ainda não lê este catálogo. Ao implementar, siga estas regras, que v�
 14. **Perenes forrageiras (`pastagem`, `alfafa`):** sem filtro de ciclo nem de graus-dia; o vazio dessas colunas é "não se aplica", não "não sei". Água anual pela regra 1.
 15. **Faixa junto com a classe:** quando `regua.detalhe.depende_da_epoca` for `true`, a tela mostra a classe com a faixa (ex.: "palhada baixa, de 0,5 a 5 t/ha conforme a data de manejo").
 16. **Aviso junto da classe:** se `regua.avisos.<coluna>` existir, a tela mostra o texto sempre junto da classe daquela coluna (no cartão, não só no detalhe), em qualquer confiança. Como o aviso está no arquivo de evidência e não no CSV, o carregador do catálogo precisa levar o bloco `regua.avisos` junto com a linha.
+17. **Frio (decidida em 15/11, a implementar):** com `tmin_critica_c` preenchida, o teste usa o limiar da cultura (no lugar dos 2 °C fixos do indicador de geada) **só nos dias da fase sensível**, não em meses inteiros. A fase vai da semeadura + `fase_frio_inicio_frac` × ciclo até a semeadura + `fase_frio_fim_frac` × ciclo, com ciclo = média de `ciclo_dias_min` e `ciclo_dias_max` da linha (`ciclo_todo` = o ciclo inteiro; perene = o ano todo). Um ano conta quando, dentro da fase, houver `tmin_dias_seguidos` dias seguidos (vazio = 1) com mínima do ar **abaixo de `tmin_critica_c`**. Se mais de 30% dos anos contarem: com `tmin_efeito` = `elimina` (ou vazio), a cultura sai; com `aviso` (dano parcial, como a esterilidade do arroz por frio), ela fica, com o aviso "frio na floração em X% dos anos", como o calor na regra 11. O texto da tela diz "geada" só quando o limiar é de geada (até 0 °C); acima disso, "frio". Sem `tmin_critica_c`: comportamento atual (2 °C no terço do meio, se `sensivel_geada`). Por decisão de 15/11 ficam assim, por falta de limiar com fonte: feijão-caupi, mandioca, milheto e braquiária (Brasil) e amendoim (EUA). Isso pede o clima por dia (ou ao menos por decêndio), e não só o `clima_mensal` de hoje, que guarda os dias abaixo de 2 °C.
 
 ### Como o motor usa cada coluna por tipo de cultura
 
@@ -63,6 +64,7 @@ O motor ainda não lê este catálogo. Ao implementar, siga estas regras, que v�
 | `graus_dia_ciclo_*` | mediana local < 90% do mín. elimina (regra 2) | igual ao grão | só aviso (regra 2) | não se aplica |
 | `tmax_critica_c` | aviso na fase sensível (regra 11) | aviso | vazio, salvo manejo no florescimento | aviso, se houver |
 | `sensivel_geada` | elimina se a geada cair na fase sensível da evidência | igual | dano só na fase dita na evidência | idem |
+| `tmin_critica_c`, fase, `tmin_dias_seguidos`, `tmin_efeito` | limiar, dias da fase e dias seguidos do teste de frio (regra 17) | igual (esterilidade = aviso) | igual, se a fase cair antes do manejo | fase `ciclo_todo` |
 | janela e `condicao_semeadura` | — | — | decide se cabe depois da cultura anterior (regra 12) | — |
 | `estados_validos` | regra 13 | regra 13 | regra 13 | regra 13 |
 
@@ -98,6 +100,24 @@ Valem para os dois catálogos (Brasil e EUA). Vazias = "não sei" (ou "sem restr
 | `risco_revisao_local` | texto simples, até 300 caracteres | O que o produtor deve confirmar com o agrônomo ou a extensão. **Obrigatório com confiança `baixa`** |
 
 Os dois textos são para o produtor: sem sigla, sem nome de modelo, sem "proxy" ou "P10". Exemplo: "Não achamos medição de quanta água o trevo-encarnado usa na Geórgia; usamos a de um trevo parecido."
+
+## Dano por frio (`tmin_critica_c` e fase sensível)
+Valem para os dois catálogos. Vazias = "não sei". A fisiologia é a mesma da espécie nos dois países (mesmo limiar, mesma fase, mesma fonte principal); a fração do ciclo segue o ciclo de cada linha. **Exceção:** grupo de cultivar diferente, quando uma fonte diz que os grupos diferem no frio (ex.: arroz japônica dos EUA x cultivares do Brasil); cada evidência registra o grupo, com fonte, e o validador aceita a diferença só na lista de exceções (`EXCECOES_FRIO` em `scripts/montar_csv.py`).
+
+| Coluna | Formato | O que é |
+|---|---|---|
+| `tmin_critica_c` | °C | Temperatura **mínima diária do ar a 2 m** (abrigo meteorológico, a mesma medida do `T2M_MIN` do NASA POWER) abaixo da qual há **dano à produção** na fase sensível |
+| `fase_sensivel_frio` | `emergencia`, `vegetativo`, `floracao`, `enchimento_grao` ou `ciclo_todo` | Em que fase o frio causa esse dano. `floracao` inclui o espigamento ou o emborrachamento quando a fonte junta as fases |
+| `fase_frio_inicio_frac`, `fase_frio_fim_frac` | 0 a 1 | Onde a fase cai no ciclo da linha (`ciclo_dias`, da semeadura à maturação ou ao manejo): dias da semeadura ao início e ao fim da fase, publicados, divididos pelo ciclo médio da linha. `ciclo_todo` = 0 e 1. Perenes: vazias |
+| `tmin_dias_seguidos` | inteiro ≥ 2 | Quantos dias seguidos abaixo do limiar a fonte exige (ex.: 3 no arroz pelo zoneamento). Só com fonte que diga a duração; vazia = 1 dia |
+| `tmin_efeito` | `elimina` ou `aviso` | O que o dano faz: `elimina` = mata a planta ou perde a lavoura; `aviso` = perda parcial (ex.: esterilidade de parte das flores). Vazia = `elimina` |
+
+- **Temperatura do abrigo, não da folha.** Fonte que dá a temperatura na relva, na folha ou no tecido: registre o valor da fonte e só converta para o abrigo com uma relação publicada (a relva fica alguns graus abaixo do abrigo em noite de geada), marcada como `calculo`. Sem conversão com fonte, deixe vazia.
+- **Dano à produção, não à folha.** Queima de folha que a planta recupera não conta. O limiar é o da fase em que o frio tira produção (esterilidade, aborto de flor, morte da planta).
+- **Cobertura:** limiar de dano antes do manejo. Cobertura que tolera o frio do sistema, ou cujo fim é a morte pelo frio (`tipo_manejo` = `morte_pelo_frio`), fica vazia, com a justificativa em `origem`. Cobertura tropical que morre na geada antes do manejo (crotalária, guandu) leva o limiar, com `ciclo_todo`.
+- Cada coluna preenchida aparece em `evidencias[].colunas` (fonte, URL e trecho literal) e tem `origem` (mesmos tipos da tabela de Confiança) em uma destas chaves: `tmin_critica_c` (limiar e `tmin_efeito`), `fase_frio_frac` (a fase e as duas frações) e `tmin_dias_seguidos`. Estas colunas **não entram** na conta de `confianca_parametros`.
+- **Vazio justificado:** a justificativa fica em `origem.tmin_critica_c` (tipo `vazio_nao_sei` ou `vazio_nao_se_aplica`); uma entrada em `evidencias` é opcional, quando houver trecho que sustente o vazio.
+- `sensivel_geada` continua como está; se a fonte do limiar contradisser a coluna, registre em `pendencias`.
 
 ## Régua das colunas qualitativas
 Calculada por `../scripts/regua.py` a partir do bloco `regua` de cada arquivo (`python3 -I data/catalogo/scripts/regua.py` mostra a prévia; `--apply` grava, e rodar de novo não duplica nada).

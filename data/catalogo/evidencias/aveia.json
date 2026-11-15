@@ -35,7 +35,11 @@
     "condicao_semeadura": "apos_colheita_graos",
     "estados_validos": "PR|SC|RS",
     "lacuna_informacao": "Não há medição no Brasil de quanta água a aveia-preta usa até florescer, nem da temperatura em que ela começa a crescer. Usamos um cálculo com o clima e dados da aveia branca, uma planta parecida. O calor que ela precisa até florescer também é estimado.",
-    "risco_revisao_local": "Semeie de abril a maio, depois da colheita da soja ou do milho, e faça a dessecação no florescimento pleno, antes de formar semente. No norte e no oeste do Paraná a semeadura começa em março. Confirme a cultivar e a época com a Emater ou a cooperativa."
+    "risco_revisao_local": "Semeie de abril a maio, depois da colheita da soja ou do milho, e faça a dessecação no florescimento pleno, antes de formar semente. No norte e no oeste do Paraná a semeadura começa em março. Confirme a cultivar e a época com a Emater ou a cooperativa.",
+    "tmin_critica_c": "",
+    "fase_sensivel_frio": "",
+    "fase_frio_inicio_frac": "",
+    "fase_frio_fim_frac": ""
   },
   "mudancas": [
     {
@@ -193,6 +197,12 @@
       "antes": "(vazio)",
       "depois": "Semeie de abril a maio, depois da colheita da soja ou do milho, e faça a dessecação no florescimento pleno, antes de formar semente. No norte e no oeste do Paraná a semeadura começa em março. Confirme a cultivar e a época com a Emater ou a cooperativa.",
       "motivo": "REVISÃO 15/11 (pacote 9): texto para o produtor (confiança baixa): época, cultivar e dessecação antes da semente (CBPA 2014; IAPAR 61)."
+    },
+    {
+      "coluna": "tmin_critica_c / fase_sensivel_frio / fase_frio_inicio_frac / fase_frio_fim_frac",
+      "antes": "(vazio)",
+      "depois": "(vazio, justificado)",
+      "motivo": "REVISÃO 15/11 (dano por frio): aveia-preta de cobertura tolera geada ('alta tolerância ao frio e às geadas', CBPA 2014) e é dessecada no florescimento; sem limiar de dano à massa com fonte primária. Origem: vazio_nao_se_aplica."
     }
   ],
   "evidencias": [
@@ -702,7 +712,8 @@
     "Janela (15/11): semeadura 01/04 a 31/05 = 'Abril/maio para as demais Regiões do Sul do país' do folder IAPAR 61 (aveia-preta, forragem e cobertura). A CBPA 2014 dá 'de março a maio' para as aveias forrageiras, e o mesmo folder dá 'Março/abril' para o norte e o oeste do PR: lá a janela real começa em março e termina antes (fica no texto para o produtor, sem arranjo, porque o motor separa por UF e o PR teria duas janelas). A água da linha foi calculada com semeadura até 15/05; semear até 31/05 dá menos água (inverno), então o máximo continua valendo.",
     "Manejo (15/11): 10/07 a 18/10 não é data publicada; é semeadura + ciclo da linha (01/04 + 100 d; 31/05 + 140 d), com a dessecação no florescimento pleno (CBPA 2014). Conferência: nos ensaios da Embrapa Trigo (Passo Fundo e Guarapuava, 2012-2015) a aveia-preta foi dessecada ~30 dias antes da soja semeada no 2º-3º decêndio de outubro, ou seja, de meados de setembro ao início de outubro; Ziech et al. 2015 achou pleno florescimento em 01/09 (semeadura 12/05). As duas caem dentro da janela. O motor deve preferir a data do florescimento pela soma de calor local quando tiver.",
     "estados_validos = PR|SC|RS (15/11): a janela tem fonte para o Sul (folder IAPAR 61) e os números da linha são do Sul/PR. Fora: MS, onde a Embrapa Agropecuária Oeste (folder Aveia, 1999) também recomenda 'a semeadura em abril-maio' e dá ciclo de 110 a 140 dias; a água não foi calculada lá (Dourados é mais quente). Decisão para o coordenador: incluir MS ou criar arranjo. GO e BA (demo) ficam fora: a CBPA cita aveia em GO só para forragem (chuvas de janeiro a maio ou irrigada de maio a setembro) e não achei recomendação de aveia-preta de cobertura em GO nem na BA.",
-    "condicao_semeadura (15/11): só apos_colheita_graos (depois da soja; IAPAR 61 cita soja, feijão, algodão, milho e girassol). Sobressemeadura a lanço na soja em pé não entrou: não li fonte primária para a aveia-preta."
+    "condicao_semeadura (15/11): só apos_colheita_graos (depois da soja; IAPAR 61 cita soja, feijão, algodão, milho e girassol). Sobressemeadura a lanço na soja em pé não entrou: não li fonte primária para a aveia-preta.",
+    "Dano por frio (15/11): colunas vazias (vazio_nao_se_aplica). Procurei limiar de dano antes do manejo e só achei a Feedipedia ('Black oat does not survive below -8°C', sem dizer se é abrigo ou relva). Resolveria: um ensaio do Sul (Planalto do RS/SC) com a Tmin da estação e a perda de massa da aveia-preta depois de geada forte. Na aveia-preta para grão ou semente (fora desta linha), a fase sensível seria a floração."
   ],
   "pendencias_resolvidas": [
     "temp_otima_min_c/temp_otima_max_c: não achei fonte primária com a faixa ótima de crescimento da aveia-preta. O 15-20 do rascunho não tinha fonte e ficou vazio. Achei: germinação ideal de 20-25 °C para a aveia (CBPA 2014) e um ótimo de 22 °C da emergência à antese da aveia branca (Mantai 2017). Fonte ainda não lida: Derpsch & Calegari 1992 (IAPAR, Plantas para adubação verde de inverno). O FAO ECOCROP estava fora do ar (erro de banco de dados) e não deu para ver a ficha de Avena sativa.",
@@ -804,6 +815,14 @@
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
       "nota": "semeadura -> manejo no florescimento; Tb 4; Não achei soma térmica publicada até o florescimento para a aveia-PRETA (A. strigosa). Três caminhos, todos com Tb 4 (a do CSV, PROXY da aveia branca, Mantai 2017): (1) Dias da CBPA × Tmed do POWER (climatologia mai-set): emergência -> florescimento 101 (IPR Cabocla), 102 (Embrapa 139), 115 (UPFA 21 Moreninha), 134 (Iapar 61) dias; + ~7 dias da semeadura à emergência (a CBPA não dá; CÁLCULO). Tmed mai-set POWER: Passo Fundo 13,9; Santa Maria 14,1; Ponta Grossa 15,1 °C. Mínimo: 108 d × (14 − 4) = 1080. Máximo: 141 d × (15,1 − 4) = 1565 (Passo Fundo: 141 × 9,9 = 1396). (2) Aveia-preta no pleno florescimento em Dois Vizinhos-PR (Ziech et al. 2015), POWER diário: semeadura 5/7/2010 -> 6/10/2010 (93 DAS) = 1251 °C dia; 12/5/2011 -> 1/9/2011 (112 DAS) = 1355 °C dia; nenhum dia com Tmed < 4. (3) Conferência com aveia BRANCA (A. sativa, Görgen Chaves et al. 2017, Santa Maria 2014, Tb 3 da fonte, da emergência até a última contagem de folhas, 'until the plant flowering'): 1080,8-1640,3 °C dia (Tb 3). Conversão para Tb 4: − 1 × dias: Charrua abr 1258,2 − 96 = 1162; Estampa abr 1640,3 − 124 = 1516; Charrua jul 1080,8 − 73 = 1008; Estampa jul 1195,3 − 80 = 1115. Semeadura -> emergência 6-8 d; com a taxa do próprio artigo nos primeiros dias (132/7 ≈ 19 °C dia/dia em Tb 3 em maio; 154,5/11 ≈ 14 em junho) dá ~+80 a +110. Total Tb 4: ~1090-1620. A mesma conta com POWER diário (sem conversão) dá 879-1329, ~18% abaixo. Faixa adotada 1080-1570 (preta,"
+    },
+    "tmin_critica_c": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Vazio: cobertura que tolera o frio do sistema. A CBPA (2014) dá à aveia-preta 'alta tolerância ao frio e às geadas' (sensivel_geada = false) e a linha é dessecada no florescimento pleno, 'sem ter viabilizado as sementes'. O dano por frio que tira produção nos cereais é a esterilidade da espiga ou panícula, e aqui o produto é a massa, não o grão. Não achei limiar de dano à massa antes do manejo em fonte primária: o único número é o da Feedipedia ('does not survive below -8°C'), base secundária que não diz se a temperatura é do abrigo ou da relva, então não foi usado nem convertido."
+    },
+    "fase_frio_frac": {
+      "tipo": "vazio_nao_se_aplica",
+      "nota": "Sem fase sensível antes do manejo: a fase reprodutiva só começa no florescimento, quando a aveia é dessecada."
     }
   },
   "confianca_calculo": {
