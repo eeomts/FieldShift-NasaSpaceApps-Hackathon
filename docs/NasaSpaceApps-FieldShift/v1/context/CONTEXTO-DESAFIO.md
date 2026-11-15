@@ -20,6 +20,8 @@
 
 **Problema em uma frase:** mudanças de temperatura, chuva irregular, escassez de água, eventos extremos e degradação do solo tornam difícil escolher rotações de culturas que protejam o campo, economizem água e aumentem a resiliência; a NASA tem décadas de dados ambientais que podem orientar essa escolha, mas eles não chegam ao agricultor de forma utilizável.
 
+> **Dados usados nesta versão do app (15/11/2026):** NASA POWER (clima), SRTM (relevo) e SoilGrids (solo), mais a Open-Meteo para a previsão. A **umidade do solo (SMAP)** e o **NDVI (MODIS, VIIRS, HLS)** ficaram fora desta versão, e o AppEEARS foi descartado (D-009 em `DECISOES.md`). O texto oficial do desafio (seção 2) e o levantamento das seções seguintes citam esses dados como possibilidades, não como o que o app usa.
+
 ---
 
 ## 2. Texto original do desafio (referência literal)

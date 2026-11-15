@@ -4,6 +4,8 @@ Referência dos dados e ferramentas usados no desafio **Field Shift: Adapting Fa
 
 > **Atenção:** resoluções, cobertura e links devem ser confirmados nas páginas oficiais antes do uso.
 
+> **Dados usados na versão atual do app (15/11/2026):** NASA POWER (clima), SRTM (relevo) e SoilGrids (solo). A umidade do solo (SMAP L4, GLDAS), o NDVI (MODIS, VIIRS, HLS) e a chuva de satélite (GPM IMERG) ficaram fora desta versão, e o AppEEARS foi descartado em 15/11/2026 (ver D-009 em `DECISOES.md`). As tabelas abaixo são o levantamento e o plano: a coluna "Uso na ferramenta" diz o que cada dataset poderia fazer, não o que o app faz hoje.
+
 ---
 
 ## 1. Datasets da NASA da lista do desafio (cobertura global)

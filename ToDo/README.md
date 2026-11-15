@@ -25,18 +25,18 @@ ToDo/
 | Pessoa | Tarefas | Prioridade |
 |---|---|---|
 | **1 — Yury** (agronomia) | ~~01 corrigir o `culturas.csv` duplicado~~ (feito, só conferir) · 02 script da PAM | 02 já pode começar |
-| **2 — Augusto** (dados) | 01 pontos da demo · 02 script da malha municipal · 03 script do AppEEARS · 04 exigência de equipamento · 05 script do ZARC (passou do Yury em 15/11/2026) · dados dos EUA (D-010) | 01 primeiro: destrava o AppEEARS |
+| **2 — Augusto** (dados) | 01 pontos da demo · 02 script da malha municipal · ~~03 script do AppEEARS~~ (descartada em 15/11/2026, ver D-009 em DECISOES.md) · 04 exigência de equipamento · 05 script do ZARC (passou do Yury em 15/11/2026) · dados dos EUA (D-010) | 01 primeiro |
 | **3 — _____** (conteúdo) | 01 textos do RAG · 02 sinônimos das culturas · 03 fotos de solo | 01 primeiro: o agente depende dele |
 
 ## Dependências
 
 ```text
 P1-01 culturas.csv corrigido (feito) ──► P1-02 PAM, P2-05 ZARC, P2-04 equipamentos, P3-01 fichas das culturas
-P2-01 pontos da demo ─────────► P2-03 AppEEARS
+P2-01 pontos da demo ─────────► (P2-03 AppEEARS descartada em 15/11/2026)
 P2-02 malha municipal ────────► (backend liga cada fazenda ao município da PAM e do ZARC)
 ```
 
-## Regras para os scripts (P1-02, P2-02, P2-03, P2-05)
+## Regras para os scripts (P1-02, P2-02, P2-05; o P2-03 foi descartado)
 
 - Ficam em `data/scripts/`, em **Python 3.12+**, um arquivo por fonte (`baixar_pam.py`, `baixar_zarc.py`...).
 - Rodam com um comando só, da raiz do repositório: `python data/scripts/baixar_pam.py`.

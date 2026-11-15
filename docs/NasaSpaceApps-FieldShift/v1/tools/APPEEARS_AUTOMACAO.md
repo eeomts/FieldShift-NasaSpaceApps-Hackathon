@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Coleta automática via AppEEARS
 
 Complemento a `APPEEARS.md`, `EARTHDATA_SEARCH.md` e `comparative/COMPARATIVO_FINAL.md`. Explica como baixar os dados da NASA de forma automática e sempre atualizada, sem pedido manual e sem manutenção de token.

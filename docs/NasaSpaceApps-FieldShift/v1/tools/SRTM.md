@@ -1,3 +1,5 @@
+> Em 15/11/2026 o AppEEARS foi descartado (ver D-009 em DECISOES.md): as partes deste arquivo sobre o recorte pelo AppEEARS são históricas. O SRTM continua em uso no app, pelo OpenTopoData.
+
 # SRTM — Análise e documentação
 
 ## Elevação e relevo (30 m)

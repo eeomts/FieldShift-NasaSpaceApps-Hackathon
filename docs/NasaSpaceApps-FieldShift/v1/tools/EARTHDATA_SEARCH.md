@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Earthdata Search no Field Shift Brasil
 
 Complemento à *Documentação do Projeto* e ao *Banco de Dados NASA*. Explica por que usar o Earthdata Search e o Earthdata Login, como eles entram na ferramenta e o que mudam para o produtor, com um caso hipotético que mostra a equipe montando os dados de uma região do Semiárido.

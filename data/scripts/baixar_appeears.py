@@ -1,5 +1,7 @@
 """Baixa do AppEEARS o NDVI (MODIS + VIIRS) e a umidade do solo (SMAP L4) dos pontos da demo.
 
+DESCARTADO em 15/11/2026 (ver D-009 em DECISOES.md): o projeto não usa mais o AppEEARS, nem o NDVI e a umidade do solo (SMAP) nesta versão. Script mantido só como histórico.
+
 Uso, da raiz do repositório:
 
     python data/scripts/baixar_appeears.py           # envia (ou reaproveita) os pedidos, espera e baixa

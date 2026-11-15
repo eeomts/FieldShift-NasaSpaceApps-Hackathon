@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # 03 — Script do AppEEARS (NDVI e umidade dos pontos da demo)
 
 **Dono:** Pessoa 2 · **Status:** em andamento (pedidos na fila do AppEEARS) · **Depende de:** 01

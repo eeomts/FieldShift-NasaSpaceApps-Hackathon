@@ -11,8 +11,8 @@
 | 1 | **Parâmetros das culturas** (`data/catalogo/culturas.csv`) | Pesquisa agronômica | Alguém de agronomia | **Alto** | Motor inteiro, ZARC, PAM |
 | 2 | Sinônimos das culturas (campo `nomes` do `agroai/base/culturas.json`) | Revisão de lista | Qualquer pessoa | Baixo | Texto livre do onboarding |
 | 3 | O que cada cultura exige de equipamento (`cultura_equipamentos.csv`) | Planilha | Qualquer pessoa | Baixo | Filtro da pergunta 26b |
-| 4 | Pontos da demo (`pontos_demo.csv`) | Decisão do time + teste | Time | Baixo | AppEEARS, pré-cálculo |
-| 5 | Pedido no AppEEARS (NDVI e SMAP dos pontos) | Download | Quem tiver conta Earthdata | Médio (espera) | Cartão "meses descobertos" |
+| 4 | Pontos da demo (`pontos_demo.csv`) | Decisão do time + teste | Time | Baixo | Pré-cálculo |
+| 5 | ~~Pedido no AppEEARS (NDVI e SMAP dos pontos)~~ **descartada em 15/11/2026** (D-009 em `DECISOES.md`) | — | — | — | — |
 | 6 | ZARC (tábua de risco) | Download | Qualquer pessoa | Médio | Janelas da base de culturas |
 | 7 | Códigos da PAM de cada cultura | Consulta | Qualquer pessoa | Baixo | Critério de renda |
 | 8 | Textos do RAG | Escrita | Quem escreve bem para o produtor | Médio | Agente |
@@ -22,7 +22,7 @@ A antiga tarefa 9 (`perguntas.yaml`) saiu: o questionário já está implementad
 
 **Fonte única do catálogo:** ids, nomes, sinônimos, família, grupo e tipos das culturas ficam em `agroai/base/culturas.json`; as categorias de equipamento, em `agroai/base/equipamentos.json`. Os arquivos de `data/catalogo/` usam esses mesmos ids e só acrescentam o que falta (parâmetros agronômicos e exigência de equipamento).
 
-**Ordem:** a tarefa 1 é o caminho crítico e começa já. As tarefas 4 e 5 também começam cedo, porque o AppEEARS demora para responder. O resto anda em paralelo.
+**Ordem:** a tarefa 1 é o caminho crítico e começa já. A tarefa 4 também começa cedo. A tarefa 5 foi descartada. O resto anda em paralelo.
 
 A malha municipal do IBGE, a PAM em si e os dados do NASA POWER, SoilGrids e SRTM são baixados **por script**, não à mão.
 
@@ -136,7 +136,9 @@ O app tem só português e inglês: cada cultura tem nomes em PT e EN. A tarefa 
 
 ---
 
-## 5. AppEEARS: NDVI e SMAP dos pontos da demo
+## 5. AppEEARS: NDVI e SMAP dos pontos da demo (descartada em 15/11/2026)
+
+> **Descartada em 15/11/2026 (D-009 em `DECISOES.md`).** O projeto não usa mais o AppEEARS, e a umidade do solo (SMAP) e o NDVI ficaram fora desta versão. O guia abaixo fica só como histórico. Os dados usados são NASA POWER, SRTM e SoilGrids.
 
 **Para quê:** o cartão "meses descobertos" (NDVI) e "quantos dias o solo aguenta" (SMAP).
 
@@ -191,7 +193,7 @@ O download dos valores por município é feito por script.
 | Documento | Conteúdo | Base existente |
 |---|---|---|
 | `metodologia-indicadores.md` | Como cada indicador é calculado e o que ele significa (geada, déficit hídrico, meses descobertos, erosão…) | `architecture/MOTOR-DE-ANALISE.md` |
-| `o-que-mede-cada-satelite.md` | NASA POWER, SoilGrids, SRTM, MODIS/VIIRS, SMAP, IMERG: o que cada um vê, em linguagem simples, e o limite de escala | Notas de `tools/` (só a parte "o que é" e "limitações") |
+| `o-que-mede-cada-satelite.md` | NASA POWER, SoilGrids, SRTM (usados) e MODIS/VIIRS, SMAP, IMERG (só referência, não usados nesta versão): o que cada um vê, em linguagem simples, e o limite de escala | Notas de `tools/` (só a parte "o que é" e "limitações") |
 | `fichas-culturas.md` | Uma seção por cultura: para que serve, vantagens para o solo, cuidados | Base de culturas |
 | Revisão do glossário | Trocar linguagem técnica por linguagem de produtor | `.md/glossario-cientifico-ampliado-field-shift-brasil.md` |
 
@@ -257,7 +259,7 @@ Isso alimenta a seção "dados usados" da submissão do Space Apps e a coluna "d
 - [ ] Sinônimos regionais revisados no `agroai/base/culturas.json`
 - [ ] `cultura_equipamentos.csv` cobrindo plantio e colheita de todas as culturas do motor, com ids do `equipamentos.json`
 - [ ] `pontos_demo.csv` com todos os pontos marcados `soilgrids_ok = true`
-- [ ] Tarefa do AppEEARS concluída e CSVs guardados
+- ~~Tarefa do AppEEARS concluída e CSVs guardados~~ (descartada em 15/11/2026)
 - [ ] `mapa_culturas_zarc.csv` e `codigo_pam` preenchidos onde existirem
 - [ ] Textos do RAG revisados com as regras de escrita
 - [ ] 12 fotos de solo com créditos, com os nomes do `CREDITOS.md`

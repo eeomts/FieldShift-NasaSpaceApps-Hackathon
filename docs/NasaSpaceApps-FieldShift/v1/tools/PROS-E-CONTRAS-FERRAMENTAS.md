@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Prós e contras de cada ferramenta
 
 > Documento para discussão da equipe (14/11/2026). Para cada fonte de dados e ferramenta de acesso estudada no repositório: o que é, o papel no Field Shift, prós, contras, custo para implementar em 48 h e um **veredito proposto**. O veredito é uma proposta, não uma decisão. **Cada ferramenta tem um espaço "Argumentos do time"** para quem concordar ou discordar escrever o motivo. A decisão final vai para o `context/DECISOES.md`.

@@ -21,11 +21,14 @@ Atualizado: 15-11-26
 - 15-11-26: modelo do chat no local: `gemini-3.5-flash-lite`.
 - 15-11-26: ordem do que falta: solo → pacote A → pacote B → pacote C.
 
+## Dados usados
+- Nesta versão o app usa NASA POWER (clima), SRTM (relevo) e SoilGrids (solo), mais a previsão da Open-Meteo. Umidade do solo (SMAP) e NDVI ficaram fora; o AppEEARS foi descartado em 15/11/2026.
+
 ## Pendências
 - Yury: validar as propostas de `parametros.py` e criar `tmin_critica_c` por cultura (geada do trigo exagerada).
 - Pedro: categorias de equipamento que faltam; fotos de solo no lugar das amostras de cor.
 - Equipe: duas D-010 no `DECISOES.md`: renumerar uma.
-- Augusto: confirmar pontos da demo e AppEEARS (caixas do `ToDo/` desmarcadas).
+- Augusto: confirmar pontos da demo (caixas do `ToDo/` desmarcadas). O AppEEARS foi descartado em 15/11/2026 (D-009): não há mais pedido a fazer.
 - PR #46 (docs sem espanhol) aberto.
 - Faturamento do Gemini antes da demo.
 

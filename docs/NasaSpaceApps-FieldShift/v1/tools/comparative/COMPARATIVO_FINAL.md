@@ -1,3 +1,5 @@
+> Descartado em 15/11/2026 (ver D-009 em DECISOES.md): arquivo histórico.
+
 # Comparativo final das ferramentas
 
 > 14/11/2026. Consolida as três análises sobre as ferramentas do projeto e propõe a lista final para a **D-010**:

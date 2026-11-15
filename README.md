@@ -11,7 +11,7 @@ Clima mudando, chuva irregular, falta de água e solo se desgastando tornam dif�
 Um site em português e inglês, pensado primeiro para o celular, para pequenos e médios produtores do Brasil e dos EUA. Nele o produtor:
 
 1. **Responde um questionário curto** sobre a fazenda: local, o que planta e quando, o que sabe do solo e suas prioridades.
-2. **Acompanha um painel (dashboard)** com o retrato do solo, satélite (umidade do solo, NDVI e chuva), previsão do tempo e a comparação da rotação atual com duas alternativas.
+2. **Acompanha um painel (dashboard)** com o retrato do solo, o clima do local (NASA POWER), o relevo (SRTM), a previsão do tempo e a comparação da rotação atual com duas alternativas.
 3. **Conversa com a AgroAI**, um assistente que conhece a fazenda dele e explica os dados em linguagem simples, citando a fonte.
 
 > A ferramenta **apoia, não decide**. A palavra final é do produtor e do técnico local. Todo número tem fonte, e a IA nunca calcula nem inventa número.
@@ -22,7 +22,7 @@ Um site em português e inglês, pensado primeiro para o celular, para pequenos 
 |---|---|---|
 | 1 | Login e cadastro | Pronta |
 | 2 | Questionário do produtor (onboarding), em PT e EN | Pronta |
-| 3 | Dados da NASA: clima (NASA POWER), satélite (SMAP, MODIS, GPM IMERG), solo (SoilGrids), relevo (SRTM) | Pronta (solo em revisão) |
+| 3 | Dados da NASA: clima (NASA POWER), solo (SoilGrids), relevo (SRTM). Umidade do solo (SMAP) e NDVI ficaram fora desta versão | Pronta (solo em revisão) |
 | 4 | Comparação de 3 estratégias de rotação (motor) | Pronta a v1; v2 em andamento |
 | 5 | Chat AgroAI com base de conhecimento (RAG) | Pronta |
 | — | Versão de apresentação (`agroai/web-demo`) | Pronta |
@@ -111,20 +111,16 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 | Ajudar com os dados | [`data/README.md`](data/README.md) e [`ToDo/README.md`](ToDo/README.md) |
 | Saber como acessar uma fonte | a nota da fonte em [`tools/`](docs/NasaSpaceApps-FieldShift/v1/tools/) |
 
-## Dados principais (D-009)
+## Dados usados nesta versão
 
 | Para quê | Fonte |
 |---|---|
-| Clima | NASA POWER, ERA5 |
-| Chuva | GPM IMERG |
-| Água no solo | SMAP L4, GLDAS |
-| Vegetação (NDVI) | MODIS, HLS |
-| Relevo | SRTM |
-| Solo e aptidão | SoilGrids, FAO GAEZ v5 |
-| Mercado | NASA Harvest Portal |
-| Brasil (uso do solo, validação) | MapBiomas, ZARC, INMET/CEMADEN, IBGE PAM |
-| EUA (D-010) | USDA NASS |
-| Acesso | Earthdata, earthaccess, AppEEARS |
+| Clima (chuva, temperatura, geada, calor; ET0 calculada pelo AgroAI) | NASA POWER |
+| Relevo (declividade) | SRTM |
+| Solo | SoilGrids |
+| Previsão do tempo | Open-Meteo |
+
+**Ficaram fora desta versão:** a umidade do solo (SMAP L4), o NDVI (MODIS, VIIRS e HLS), a chuva de satélite (GPM IMERG) e o AppEEARS, que foi descartado em 15/11/2026 (ver D-009 em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md)). Os dados do IBGE PAM, do ZARC e do USDA NASS estão preparados em `data/`, mas o motor ainda não os lê. As demais fontes da D-009 (ERA5, GLDAS, FAO GAEZ, NASA Harvest, MapBiomas, INMET/CEMADEN) são plano: o app não as usa.
 
 A previsão do tempo dos próximos dias vem da **Open-Meteo**, porque a NASA não publica previsão. Ela já está no app, mas ainda não foi registrada no `DECISOES.md` (ver "Pontos em aberto").
 
