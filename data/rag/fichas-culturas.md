@@ -24,7 +24,7 @@ Vantagens do milho para o solo: produz muita palhada, que dura mais no chão do 
 
 Cuidados com o milho: pede bastante água e adubo, principalmente nitrogênio. É sensível à falta de chuva no pendoamento e no enchimento do grão; um veranico nessa hora derruba a colheita. Sofre com geada e com calor forte na floração. O milho safrinha corre mais risco de seca e de frio no fim do ciclo. Milho atrás de milho favorece pragas como a cigarrinha e doenças.
 
-Na base do Field Shift, o milho tem ciclo de 110 a 145 dias (de 1.500 a 1.900 graus-dia), é sensível a geada, usa de 500 a 800 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita palhada. Quando é plantado para grão, sobra pouco para os animais; a silagem de milho é outro uso, que tira a palhada do campo. No zoneamento agrícola do Brasil (ZARC), o milho tem janelas separadas para a 1ª safra, de verão, e a 2ª safra, a safrinha. Confiança dos números: média.
+Na base do Field Shift, o milho tem ciclo de 110 a 145 dias (de 1.500 a 1.900 graus-dia), é sensível a geada, usa de 500 a 800 mm de água no ciclo, cresce melhor entre 24 e 30 °C, sofre com calor acima de 33 °C na floração e deixa muita palhada. Quando é plantado para grão, sobra pouco para os animais; a silagem de milho é outro uso, que tira a palhada do campo. No zoneamento agrícola do Brasil (ZARC), o milho tem janelas separadas para a 1ª safra, de verão, e a 2ª safra, a safrinha, e uma linha própria para o milho consorciado com braquiária. Confiança dos números: média.
 
 Como o produtor costuma dizer: milho, milharal, roça de milho, milho de verão, milho safrinha, milho 2ª safra, milho verde, corn, maize.
 
@@ -80,7 +80,7 @@ Vantagens do arroz irrigado: aproveita várzeas e terras baixas que encharcam e 
 
 Cuidados com o arroz irrigado: só é opção para quem tem várzea ou estrutura de irrigação e drenagem, além de água disponível; por isso, no Field Shift ele só aparece como alternativa nesses casos. Frio na floração faz o grão ficar chocho, um risco conhecido no Sul. A brusone é a doença mais séria. Como a várzea fica alagada, a escolha de culturas para rotação ali é limitada; soja e pastagem são as mais usadas.
 
-Na base do Field Shift, o arroz irrigado tem ciclo de 100 a 145 dias (de 1.180 a 1.760 graus-dia), é sensível a geada, cresce melhor entre 20 e 33 °C, sofre com calor acima de 35 °C e usa de 580 a 720 mm de água no ciclo, além da água que fica na lâmina. Deixa muita palhada. No zoneamento agrícola do Brasil (ZARC), as janelas do arroz irrigado ficam separadas das do arroz de sequeiro. Confiança dos números: alta.
+Na base do Field Shift, o arroz irrigado tem ciclo de 100 a 145 dias (de 1.180 a 1.760 graus-dia), é sensível a geada, cresce melhor entre 20 e 33 °C, sofre com calor acima de 35 °C e usa de 580 a 720 mm de água no ciclo, além da água que fica na lâmina. Deixa muita palhada. No zoneamento agrícola do Brasil (ZARC), as janelas do arroz irrigado ficam separadas das do arroz de sequeiro, na tábua das culturas sem safra, junto com as perenes. Confiança dos números: alta.
 
 Como o produtor costuma dizer: arroz irrigado, arroz de várzea, arroz inundado, arroz alagado, arroz de banhado, irrigated rice, paddy rice.
 
