@@ -322,7 +322,7 @@ Fonte: Field Shift, glossário científico (incerteza, qualidade e validação l
 
 ## Aptidão agrícola
 
-Aptidão agrícola é dizer se um lugar tem clima e solo adequados para uma cultura, considerando algumas condições de manejo. Bases como o GAEZ, da FAO, e o ZARC, do Ministério da Agricultura, mostram onde e quando cada cultura tem menos risco.
+Aptidão agrícola é dizer se um lugar tem clima e solo adequados para uma cultura, considerando algumas condições de manejo. Bases como o GAEZ, da FAO, e o ZARC, do Ministério da Agricultura, mostram onde e quando cada cultura tem menos risco. O ZARC só existe no Brasil e não cobre todas as culturas; o GAEZ cobre o mundo todo.
 
 Ser "apto" não é promessa de colheita boa nem de lucro. A aptidão olha o clima e o solo da região, mas não sabe do mercado, do preço, das máquinas, da experiência do produtor, nem do ano que vai vir.
 

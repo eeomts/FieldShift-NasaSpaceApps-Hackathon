@@ -1,6 +1,6 @@
-# 03 — Script do ZARC (janelas de plantio)
+# 05 — Script do ZARC (janelas de plantio)
 
-**Dono:** Pessoa 1 (Yury) · **Status:** pendente · **Depende de:** 01
+**Dono:** Pessoa 2 (Augusto; era do Yury até 15/11/2026) · **Status:** em andamento (mapa de nomes feito; falta o `janelas.csv`) · **Depende de:** P1-01
 
 ## Por quê
 As janelas de plantio oficiais (risco climático de 20 %, 30 % e 40 %) por município, tipo de solo e ciclo validam as estratégias do motor. O ZARC entra só como dado preparado, nunca consultado ao vivo.
@@ -10,7 +10,7 @@ As janelas de plantio oficiais (risco climático de 20 %, 30 % e 40 %) por munic
 - Arquivo completo em `data/brutos/zarc/` (fora do Git).
 
 ## Saídas
-**1. `data/brasil/zarc/mapa_culturas_zarc.csv`** (já existe, vazio): o nome exato que o ZARC usa para cada `cultura_id`.
+**1. `data/brasil/zarc/mapa_culturas_zarc.csv`** (feito, PR #34): o nome exato que o ZARC usa para cada `cultura_id`. Quando o ZARC separa a cultura (1ª e 2ª safra), os nomes vêm separados por `|`, o principal primeiro.
 
 | `cultura_id` | `nome_zarc` | `observacao` |
 |---|---|---|
@@ -37,6 +37,6 @@ As janelas de plantio oficiais (risco climático de 20 %, 30 % e 40 %) por munic
 4. Decêndio: o ano tem 36 (3 por mês: dias 1–10, 11–20 e 21–fim). **Confirme no dicionário** se a numeração do ZARC segue isso.
 
 ## Pronto quando
-- [ ] `mapa_culturas_zarc.csv` preenchido para toda cultura que existe no ZARC (as que não existem, com observação).
+- [x] `mapa_culturas_zarc.csv` preenchido para toda cultura que existe no ZARC (as que não existem, com observação).
 - [ ] `janelas.csv` gerado pelo script, com o tamanho dentro do limite (~20 MB); se passar, gere só as UFs da demo e avise.
 - [ ] Conferência manual: 2 janelas batem com o Painel de Indicação de Riscos do ZARC.
