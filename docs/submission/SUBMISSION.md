@@ -16,7 +16,7 @@ AgroAI is a mobile-first decision-support website, in English and Portuguese, th
 
 ## Link to Project Demo
 
-[TODO: public link to the 30-second video (YouTube or Google Drive, no login). If the narration is not in English, it must have English subtitles.]
+https://www.youtube.com/watch?v=Do6FTY6CYfc
 
 ## Link to Final Project
 
@@ -45,7 +45,7 @@ Full documentation: `docs/README.md` in the repository.
 
 ## Use of Super Intelligence (SI)
 
-Yes. (1) The code was developed with AI assistance: the team used Claude Code (Anthropic) to help write and review code, tests, data scripts and documentation. The idea, product rules, data choices and methodology are the team's, and all code was reviewed and tested by the team. (2) The team also used Claude Code to research and compile the crop-parameter catalog from primary sources (Embrapa, FAO, USDA, extension services); every value keeps its cited source in `data/catalogo/`. (3) The demo video uses AI-generated clips, made and edited with [TODO: tool names]; every AI-generated clip carries a visible watermark, and the video description says "Contains AI-generated footage". (4) In the product, Google Gemini reads the farmer's free-text answers, powers the chat assistant and creates embeddings for the knowledge-base search. It never computes or invents numbers: every number comes from NASA data, the crop catalog or a formula in code, and the prompt forbids the model from producing numbers on its own. No AI-generated content uses NASA branding. Details: `docs/07-ai-use.md`.
+Yes. (1) The code was developed with AI assistance: the team used Claude Code (Anthropic) to help write and review code, tests, data scripts and documentation. The idea, product rules, data choices and methodology are the team's, and all code was reviewed and tested by the team. (2) The team also used Claude Code to research and compile the crop-parameter catalog from primary sources (Embrapa, FAO, USDA, extension services); every value keeps its cited source in `data/catalogo/`. (3) The demo video was generated with Claude Opus 5.5 (Anthropic): illustrations, animation, captions and the code of the background music. The narrator voice was synthesized with Chatterbox TTS (Resemble AI), cloned from team member Guilherme Melo's own voice with his consent; the voice of the fictional farmer "Dona Marta" is Microsoft Ava neural TTS. A visible "AI-generated (SI)" watermark is on every frame, and the MP4 metadata states it too. Numbers on screen are illustrative. (4) In the product, Google Gemini reads the farmer's free-text answers, powers the chat assistant and creates embeddings for the knowledge-base search. It never computes or invents numbers: every number comes from NASA data, the crop catalog or a formula in code, and the prompt forbids the model from producing numbers on its own. No AI-generated content uses NASA branding. Details: `docs/07-ai-use.md`.
 
 ## NASA Data
 

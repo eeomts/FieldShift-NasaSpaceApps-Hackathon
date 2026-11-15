@@ -4,7 +4,7 @@
 
 Built for the **NASA Space Apps Challenge 2026**, challenge **Field Shift: Adapting Farms with NASA Data**.
 
-**Live demo (no password):** https://demo-agroai.mateusmoreira.dev  |  **Demo video:** [TODO: public link]  |  **Documentation:** [`docs/`](docs/README.md)
+**Live demo (no password):** https://demo-agroai.mateusmoreira.dev  |  **Demo video (30 s):** https://www.youtube.com/watch?v=Do6FTY6CYfc  |  **Documentation:** [`docs/`](docs/README.md)
 
 ---
 
@@ -65,6 +65,7 @@ Optional key (Gemini) and tests: [Run Locally](docs/08-run-locally.md).
 | [References](docs/06-references.md) | Other data, libraries, images, licenses |
 | [Use of AI](docs/07-ai-use.md) | AI in the product, in development and in media |
 | [Run Locally](docs/08-run-locally.md) | How to run the app on your computer |
+| [Demo Video](docs/09-demo-video.md) | The 30-second video and its AI disclosure |
 | [Submission](docs/submission/SUBMISSION.md) | The Space Apps project form, field by field |
 
 ## Tech stack
@@ -74,7 +75,7 @@ React, Vite, TypeScript, Tailwind CSS, Leaflet, Python, FastAPI, SQLAlchemy, Ale
 ## Use of AI
 
 - **Code and data:** developed with AI assistance (Claude Code, Anthropic): code, tests, data scripts, documentation and the research of the crop-parameter catalog, where every value keeps its cited source. Reviewed and tested by the team.
-- **Demo video:** uses AI-generated clips, made and edited with AI tools [TODO: tool names]; every AI-generated clip has a visible watermark.
+- **Demo video:** generated with Claude Opus 5.5 (Anthropic); narrator voice by Chatterbox TTS (Resemble AI), cloned from a team member's voice with his consent; "Dona Marta" voice by Microsoft Ava neural TTS. A visible "AI-generated (SI)" watermark is on every frame. Details: [Demo Video](docs/09-demo-video.md).
 - **Product:** Google Gemini reads free text and powers the chat. It never computes or invents numbers.
 
 Full statement: [Use of AI](docs/07-ai-use.md).
