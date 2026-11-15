@@ -19,7 +19,7 @@ def _resultado(estrategia: Estrategia, e: EntradasMotor, pesos: dict[str, float]
     notas, lac_notas = calcular_notas(estrategia, e)
     nota, efetivos = nota_final(notas, pesos)
     conf, lac_conf = confianca(estrategia.itens, e.catalogo)
-    lacunas = list(dict.fromkeys(filtro.lacunas + lac_notas + lac_conf))
+    lacunas = list(dict.fromkeys([*estrategia.lacunas, *filtro.lacunas, *lac_notas, *lac_conf]))
     return ResultadoEstrategia(estrategia, notas, nota, efetivos, [], filtro.alertas, conf, lacunas)
 
 

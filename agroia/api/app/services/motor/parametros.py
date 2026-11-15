@@ -4,6 +4,8 @@ DIAS_POR_MES = 30.4  # 365 / 12, arredondado
 
 # Candidatas
 MAX_CANDIDATAS = 30  # proposta, validar com o Yury
+# Regra 12: cobertura com condicao_semeadura "apos_cereal_inverno" só entra depois de um destes (ids do catálogo)
+CEREAIS_INVERNO = ("trigo", "aveia", "cevada", "centeio")  # proposta, validar com o Yury
 
 # Filtro de graus-dia (regra 2, Yury 14/11)
 GD_ELIMINA_ABAIXO = 0.90  # abaixo de 90 % do mínimo da cultura elimina
