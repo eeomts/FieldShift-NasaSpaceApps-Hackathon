@@ -15,14 +15,7 @@ class Fonte:
 
 # Só conhecimento para o produtor. Documentação técnica de API não entra: enche o contexto do agente.
 FONTES: list[Fonte] = [
-    Fonte(
-        caminho="docs/NasaSpaceApps-FieldShift/v1/.md/glossario-cientifico-ampliado-field-shift-brasil.md",
-        titulo="Glossário científico do Field Shift",
-        tipo="glossario",
-        fonte="Equipe Field Shift",
-        licenca="interna",
-    ),
-    # Os quatro abaixo ainda serão escritos (ver data/rag/README.md); a ingestão pula o que não existe.
+    # O glossário científico (docs/.../glossario-cientifico-ampliado...) fica fora: é referência da equipe, não do produtor.
     Fonte(
         caminho="data/rag/glossario-produtor.md",
         titulo="Glossário para o produtor",

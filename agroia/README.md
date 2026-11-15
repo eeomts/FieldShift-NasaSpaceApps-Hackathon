@@ -143,7 +143,7 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 
 ## Base de conhecimento (RAG)
 
-Os textos listados em `api/app/services/rag/fontes.py` (o glossário e os de `data/rag/`) viram trechos com embedding do Gemini (`gemini-embedding-001`, 768 dimensões). Precisa de `GEMINI_API_KEY` no `.env` e do banco com a extensão `vector`.
+Os textos listados em `api/app/services/rag/fontes.py` (os de `data/rag/`) viram trechos com embedding do Gemini (`gemini-embedding-001`, 768 dimensões). Precisa de `GEMINI_API_KEY` no `.env` e do banco com a extensão `vector`.
 
 ```bash
 cd agroia/api

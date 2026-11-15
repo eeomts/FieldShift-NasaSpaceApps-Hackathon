@@ -19,7 +19,6 @@ COPY agroia/api/ ./
 COPY agroia/base/ /app/agroia/base/
 COPY data/catalogo/ /app/data/catalogo/
 COPY data/rag/ /app/data/rag/
-COPY docs/NasaSpaceApps-FieldShift/v1/.md/glossario-cientifico-ampliado-field-shift-brasil.md /app/docs/NasaSpaceApps-FieldShift/v1/.md/
 
 RUN useradd --system --no-create-home agroia && chown -R agroia /app
 USER agroia
