@@ -280,6 +280,15 @@
       "fonte": "McVay, Burrows, Jones, Wanner & Menalled, Montana Barley Production Guide, MSU Extension EB0186, revisado em novembro de 2017 (conferência: canola deixa menos resíduo que os cereais)",
       "url": "https://fdn.montana.edu/extension/Full_HTML_Pubs/EB0186-MontanaBarleyProductionGuide/EB0186_MontanaBarleyProductionGuide.html",
       "trecho": "Crops like canola and mustard produce less residue at harvest so alternating these crops with small grains, a high-residue-producing crop, is a good management practice."
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim"
+      ],
+      "fonte": "Kandel, H. (ed.), Canola Production Field Guide, NDSU Extension A1280, 2011 (Planting Dates) (não usado: só indica a janela, sem data de início)",
+      "url": "https://www.library.nd.gov/statedocs/NDSUExtensionService/a128020110825.pdf",
+      "trecho": "To maximize yield, canola should be planted in April to early May. Planting date research indicates that delayed planting beyond May 5 in the southwestern region, May 15 across most of the state and May 31 in the northeastern region may result in yield reductions."
     }
   ],
   "regua": {
@@ -317,7 +326,7 @@
       "coleta": "Palhada = resíduo acima do solo na colheita = razão resíduo/grão × produtividade. Razão do USDA-ARS em Mandan-ND (1999/2000) para canola depois de trigo = 2,25 (2,19-2,67 conforme o cultivo anterior; a canola em ND costuma vir depois de trigo ou cevada). Produtividade NASS da canola em ND, 2021-2025: 1340, 1820, 1810, 1860 e 2120 lb/acre; mediana 1820. Típico = 2,25 × 1820 = 4095 lb/acre × 1,121 = 4,59 -> 4,6 t/ha; mínimo 2021 (1340) = 3,38 -> 3,4; máximo 2025 (2120) = 5,35 -> 5,3. Mesma ressalva do girassol: a razão foi medida em Mandan com produtividade do fim dos anos 1990, e o resíduo não cresce na mesma proporção do grão. A MSU (EB0186) diz que a canola produz menos resíduo que os cereais de inverno e primavera na colheita; pela mesma conta a cevada de ND dá 4,0 t/ha (IPCC), parecido. C/N: só um valor lido (86, Saskatchewan, Hangs & Schoenau 2018).",
       "decomposicao": "k em dia⁻¹ por k = -ln(fração remanescente)/dias, Lupwayi et al. 2004 (B. rapa), plantio direto, 12 meses: 31% decomposto -> -ln(0,69)/365 = 0,00102; 41% -> -ln(0,59)/365 = 0,00145; meio (36%) -> 0,00122 (valor). T½ = 0,693/0,00122 = 568 d. Palhada que sobra em 60 dias: 4,6 × e^(-0,00122×60) = 4,3 t/ha. Na mesma fonte o trigo perdeu 27% em 12 meses (k 0,00086): a palha de canola decompõe um pouco mais rápido que a de trigo.",
       "colheita": "O Handbook 628 não tem canola na Dakota do Norte (só Oklahoma, canola de inverno semeada em setembro e colhida em junho). Nos ensaios da NDSU de 2023-2025 a colheita foi de 14/ago a 25/set. A NDSU (A1280) manda enleirar quando 30-40% das sementes da haste principal mudaram de cor, ou colher direto.",
-      "codigos": "codigo_nass 'CANOLA' = nome da tabela do Crop Production (sem classe). calendario_usda vazio: a única tabela de canola do Handbook 628 é de Oklahoma (canola de inverno), outro sistema."
+      "codigos": "codigo_nass 'CANOLA' = nome da tabela do Crop Production (sem classe). calendario_usda vazio: a única tabela de canola do Handbook 628 é de Oklahoma (canola de inverno), outro sistema. Não conferido no QuickStats: a série baixada pelo time (data/scripts/baixar_nass_eua.py) não inclui a canola."
     },
     "resultado": {
       "aporte_biomassa": "medio",
@@ -390,7 +399,8 @@
     "tmax_critica_c = 29,5 °C na floração (Morrison & Stewart 2002, Ottawa, lido pelo resumo); o número fica, é o da fonte. A NDSU (A686) não dá número, só diz que a canola é 'very susceptible to heat and drought stress during flowering'. Frequência no clima de ND (T2M_MAX do NASA POWER, cache data/brutos/nasa_power, 2001-2020, dias de julho com máxima acima de 29,5 °C; contagem do arquiteto conferida no mesmo cache): mediana Langdon 7,5, Carrington 11,5, Minot 11 dias; pelo menos 1 dia em 19 (Langdon) e 20 (Carrington, Minot) de 20 anos; 5 dias ou mais em 14 (Langdon), 18 (Carrington) e 17 (Minot) de 20 anos. O limiar é passado quase todo ano: se o motor eliminar ou rebaixar por 'Tmax acima do crítico', a canola cai em toda a ND. DECISÃO do usuário (fora deste pacote): como o motor lê o calor (contar dias acima do limiar na fase sensível e mostrar a frequência, ou usar a média).",
     "raiz_profunda: DECISÃO do usuário (revisão do lote 3): manter os dois. O catálogo dos EUA fica false (NDSU: raiz 'medium', como a do trigo) e agroia/base/culturas.json continua com 'raiz_profunda' nos tipos da canola. A divergência fica registrada aqui, sem mudar nenhum dos dois.",
     "regua: C/N (Saskatchewan) e k (Alberta, canola polonesa B. rapa) são PROXY canadenses, um estudo cada, k lido pelo resumo. A palhada usa a razão de Mandan medida em 1999/2000. Sem digestibilidade da palha.",
-    "codigo_nass: 'CANOLA' conferido no Crop Production 2025 Summary; não conferido no QuickStats (sem NASS_API_KEY)."
+    "codigo_nass: 'CANOLA' continua NÃO conferido no QuickStats (15/11): a série baixada pelo time (data/scripts/baixar_nass_eua.py, data/eua/nass/producao_condado.csv) não inclui a canola, e não havia NASS_API_KEY no ambiente. Segue o nome da tabela do Crop Production 2025 Summary. Resolveria: rodar get_param_values (commodity_desc e short_desc) com a chave, ou incluir a cultura no script do time.",
+    "semeadura_inicio/fim VAZIOS: o Handbook 628 (2010) não tem canola na Dakota do Norte (só a de inverno de Oklahoma) e data/eua/nass/datas_plantio.csv não traz canola. A NDSU (A1280, 2011) recomenda semear 'in April to early May' e diz que semear depois de 5/mai no sudoeste, 15/mai na maior parte do estado e 31/mai no nordeste pode reduzir a produtividade; não virou janela porque o início ('April') não tem data. Os cenários de graus-dia (cenarios/canola_gd.json) usam as semeaduras dos ensaios da NDSU, de 6/mai a 1/jun. Resolveria: data final de plantio do seguro (USDA RMA) para a canola em ND ou o progresso de semeadura do NASS (Crop Progress, ND)."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

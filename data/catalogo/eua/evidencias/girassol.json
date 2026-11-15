@@ -32,11 +32,13 @@
     "codigo_pam": "",
     "nome_zarc": "",
     "codigo_nass": "SUNFLOWER, OIL TYPE",
-    "calendario_usda": "All Sunflower",
-    "fontes": "SISTEMA: girassol oleícola de sequeiro da Dakota do Norte; o confeiteiro (non-oil) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita de ND)|Kandel, Endres & Buetow (eds.), NDSU Extension A1995 Sunflower Production Guide, dez. 2020 (Tab. 1 GDD e dias até R9; água 19 in; raiz efetiva ~4 ft; geada; épocas de semeadura; tolerância à seca)|NDAWN, Sunflower Growing Degree Days Help (Tb 44 °F, sem teto, R9 = 2310 GDD °F; lido em cópia do Internet Archive de 15/10/2026)|NDSU Extension A652, North Dakota Sunflower Variety Trial Results 2021, 2023, 2024 e 2025 (dias da semeadura à maturação dos híbridos oleícolas em Fargo, Carrington e Langdon)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/girassol_gd.json (graus-dia sem teto, Tb 4, na régua do NASA POWER: mínimo pela mediana 2001-2020 em Langdon, máximo nas datas dos ensaios)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/girassol_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|Barni et al. 1993 via Ungaro et al. 2009, INMET (Tb 4 °C, reusada do Brasil)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz)|USDA NASS, Crop Production 2022 Summary (jan. 2023) e 2025 Summary (jan. 2026) (produtividade do girassol oleícola de ND 2021-2025)|van Donk, Merrill, Tanaka & Krupinsky, Transactions of the ASABE 51(5):1623-1632, 2008 (resíduo medido na colheita em Mandan-ND, cobertura medida, parâmetros do WEPS)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão 1999/2000)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (resíduo de girassol no pastejo)|PROXY: Feedipedia, Sunflower forage and crop residues (PB e digestibilidade da palhada; média mundial)|PROXY: C/N e k da palhada reusados do Brasil (Marcelo 2012; Embrapa CT 147)",
+    "calendario_usda": "Sunflower, all",
+    "fontes": "SISTEMA: girassol oleícola de sequeiro da Dakota do Norte; o confeiteiro (non-oil) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita de ND)|Kandel, Endres & Buetow (eds.), NDSU Extension A1995 Sunflower Production Guide, dez. 2020 (Tab. 1 GDD e dias até R9; água 19 in; raiz efetiva ~4 ft; geada; épocas de semeadura; tolerância à seca)|NDAWN, Sunflower Growing Degree Days Help (Tb 44 °F, sem teto, R9 = 2310 GDD °F; lido em cópia do Internet Archive de 15/10/2026)|NDSU Extension A652, North Dakota Sunflower Variety Trial Results 2021, 2023, 2024 e 2025 (dias da semeadura à maturação dos híbridos oleícolas em Fargo, Carrington e Langdon)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/girassol_gd.json (graus-dia sem teto, Tb 4, na régua do NASA POWER: mínimo pela mediana 2001-2020 em Langdon, máximo nas datas dos ensaios)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/girassol_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|Barni et al. 1993 via Ungaro et al. 2009, INMET (Tb 4 °C, reusada do Brasil)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz)|USDA NASS, Crop Production 2022 Summary (jan. 2023) e 2025 Summary (jan. 2026) (produtividade do girassol oleícola de ND 2021-2025)|van Donk, Merrill, Tanaka & Krupinsky, Transactions of the ASABE 51(5):1623-1632, 2008 (resíduo medido na colheita em Mandan-ND, cobertura medida, parâmetros do WEPS)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão 1999/2000)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (resíduo de girassol no pastejo)|PROXY: Feedipedia, Sunflower forage and crop residues (PB e digestibilidade da palhada; média mundial)|PROXY: C/N e k da palhada reusados do Brasil (Marcelo 2012; Embrapa CT 147)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
     "confianca_parametros": "baixa",
     "lacuna_informacao": "Não há medição na Dakota do Norte de quanta água o girassol de sequeiro usa; usamos um cálculo com o clima da NASA. O calor mínimo para amadurecer foi calculado com 20 anos de clima no lugar mais frio dos ensaios; o máximo vem de ensaios de um só ano, e a tabela oficial do estado dá outro valor.",
-    "risco_revisao_local": "Em ano seco a chuva da estação fica abaixo do que o girassol usaria com produção plena. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido, a data de semeadura e se ele amadurece antes da geada de outono."
+    "risco_revisao_local": "Em ano seco a chuva da estação fica abaixo do que o girassol usaria com produção plena. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido, a data de semeadura e se ele amadurece antes da geada de outono.",
+    "semeadura_inicio": "05-19",
+    "semeadura_fim": "06-08"
   },
   "origem": {
     "temp_base_c": {
@@ -349,6 +351,32 @@
       "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026 (nome da commodity e do tipo na tabela oficial; o QuickStats não foi consultado por falta de NASS_API_KEY)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/795725/cropan26.txt",
       "trecho": "Sunflower Area Planted and Harvested, Yield, and Production by Type - States and United States: 2023-2025 [...] Varietal type and State [...] Oil [...] Non-oil [...] All"
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats (API), séries por condado baixadas pelo time em 15/11/2026 com data/scripts/baixar_nass_eua.py (saída data/eua/nass/producao_condado.csv: 211 linhas de 'girassol', 2016-2025); conferência do nome da série, não dos números",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "O short_desc é o nome exato da série no Quick Stats (conferido por condado com get_counts). [...] \"SUNFLOWER, OIL TYPE - ACRES PLANTED\", \"SUNFLOWER, OIL TYPE - ACRES HARVESTED\", \"SUNFLOWER, OIL TYPE - PRODUCTION, MEASURED IN LB\""
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS, Quick Stats API, página de uso (exemplo de resposta do api_GET), lida em 15/11/2026 (formato do short_desc e nomes dos campos)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "\"util_practice_desc\":\"ALL UTILIZATION PRACTICES\" [...] \"short_desc\":\"CORN - ACRES PLANTED\" [...] \"Class_desc\":\"ALL CLASSES\" [...] \"commodity_desc\":\"CORN\""
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - North Dakota'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "North Dakota [...] Sunflower, all .........:    868.0   May 14 May 19 - Jun 8  Jun 15  Oct 1  Oct 9 - Nov 10  Nov 23 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
     }
   ],
   "regua": {
@@ -386,7 +414,8 @@
       "coleta": "Palhada = resíduo acima do solo na colheita (toda a parte aérea menos o grão), medido à mão em Mandan-ND, plantio direto, 1999-2001 (van Donk et al. 2008, Tab. 2): 8,49 (1999), 5,82, 5,14, 5,87, 3,55, 4,29 (2000), 5,76, 5,45, 4,22, 5,70 t/ha (2001), conforme o cultivo anterior. Típico = mediana dos 10 valores = (5,45 + 5,70)/2 = 5,6 t/ha; mínimo 3,6 (girassol sobre girassol, 2000); máximo 8,5 (1999). CONFERÊNCIA, não usada (DECISÃO de 15/11: vale a massa medida; a regra 6 do motor só escala pelo IPCC soja, milho, trigo, arroz e sorgo). Método razão × NASS: a razão resíduo/grão medida pelo USDA-ARS em Mandan (1999/2000) é 3,84 depois de trigo (3,53-5,33 conforme o cultivo anterior); vezes a produtividade do NASS para o girassol oleícola de ND em 2021-2025 (1590, 1900, 1970, 1800, 1940 lb/acre; mediana 1900 lb/acre = 2,13 t/ha) daria 8,2 t/ha (mínimo 6,8 em 2021; máximo 8,5 em 2023). Não usei porque a razão foi medida com produtividade de ~1300 lb/acre (5,6 / 3,84 = 1,45 t/ha) e o resíduo não cresce na mesma proporção do grão. Pelo índice de colheita de 0,33 do Brasil daria 4,3 t/ha. A medida direta (5,6) fica entre as duas contas. C/N: PROXY do Brasil (34 Embrapa CT 147; 39 e 83 Marcelo 2012; típico 39); não achei C/N do resíduo de girassol medido nos EUA.",
       "cobertura": "O resíduo de girassol cobre pouco o solo por unidade de massa: no WEPS o fator massa-cobertura é 2,1 m²/kg, contra 6,5 do trigo (van Donk et al. 2008). Cobertura medida na primavera seguinte, depois da semeadura do trigo, em Mandan: média de 58% (35-87%) quando o girassol foi o segundo cultivo. A NDSU (A1995) recomenda não gradear os talos depois da colheita porque o solo fica 'extremely susceptible to wind and water erosion'. Com o k proxy, a régua dá 5,6 × e^(-0,0052×60) = 4,1 t/ha que sobram em 60 dias (classe 'media'), coerente com os 58% medidos (pela curva de Lopes et al. 1987, 58% de cobertura ≈ 2,9 t/ha).",
       "decomposicao": "WEPS (van Donk et al. 2008, Tab. 1): k do girassol = 0,0250 por 'dia de decomposição' (dia com temperatura e umidade ótimas), o mais alto depois da soja (0,0300) e acima do trigo (0,0133). Não é k por dia de calendário, por isso não entrou no bloco. O valor do bloco é o do Brasil (Marcelo 2012: 0,0042 e 0,0063 → 0,0052; mínimo 0,0041 da Embrapa CT 147; máximo 0,0071 de Teodoro 2019).",
-      "colheita": "Handbook 628 (ND): colheita usual de 1/out a 23/nov, 'most active' de 9/out a 10/nov. Nos ensaios da NDSU de 2021-2025 a colheita foi de 17/out a 22/nov, 3 a 8 semanas depois da maturação fisiológica (secagem no campo)."
+      "colheita": "Handbook 628 (ND): colheita usual de 1/out a 23/nov, 'most active' de 9/out a 10/nov. Nos ensaios da NDSU de 2021-2025 a colheita foi de 17/out a 22/nov, 3 a 8 semanas depois da maturação fisiológica (secagem no campo).",
+      "codigos": "codigo_nass 'SUNFLOWER, OIL TYPE'. short_desc 'SUNFLOWER, OIL TYPE - ...' = commodity_desc 'SUNFLOWER' + class_desc 'OIL TYPE'. Atenção: no arquivo do time (producao_condado.csv) a cultura 'girassol' soma o oleícola com o confeiteiro ('SUNFLOWER, NON-OIL TYPE'); para esta linha use só a série OIL TYPE. Conferido em 15/11 na série baixada pelo time (data/scripts/baixar_nass_eua.py)."
     },
     "resultado": {
       "aporte_biomassa": "medio",
@@ -450,6 +479,18 @@
       "antes": "1800",
       "depois": "1560",
       "motivo": "Revisão do lote 3 (15/11; arquiteto, 'Fora da implementação'; pedido do usuário): convenção do mínimo de graus-dia (evidencias/README.md): mediana 2001-2020 do cenário de menor soma da região de referência (local mais frio com ensaio ou recomendação, data de semeadura usada ali, ciclo_dias_min). Langdon 23/mai + 104 d = mediana 1567 (Langdon 30/mai = 1585). Com 1800 (corte 1620) o motor eliminaria o girassol em Langdon, onde a NDSU tem ensaio. Os ensaios ficam como conferência; lacuna_informacao, fontes, reuso_brasil e pendências ajustados."
+    },
+    {
+      "coluna": "calendario_usda",
+      "antes": "All Sunflower",
+      "depois": "Sunflower, all",
+      "motivo": "Conferência de 15/11 (pedido do coordenador): o nome passa a ser o da linha nas tabelas por estado do Handbook 628, o mesmo de data/eua/nass/datas_plantio.csv (coluna nome_nass). 'All Sunflower' é o título da tabela nacional."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "",
+      "depois": "05-19 / 06-08",
+      "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para North Dakota, lida em data/eua/nass/datas_plantio.csv (linha girassol,Sunflower, all,ND)."
     }
   ],
   "pendencias": [
@@ -461,8 +502,9 @@
     "raiz_profunda = false segue o Brasil (a raiz não rompe camada compactada). A NDSU destaca a raiz profunda (efetiva ~4 ft, tira água e nitrato abaixo de 2 ft); se a coluna for usada como 'explora camadas profundas', rever.",
     "temp_otima_min_c, temp_otima_max_c e tmax_critica_c: sem fonte americana; reusados do Brasil.",
     "DECISÃO (revisão de 15/11, do arquiteto, aceita pelo usuário): a palhada fica a massa medida em Mandan-ND (van Donk et al. 2008), típico 5,6 t/ha, faixa 3,6-8,5, classe 'medio'. A regra 6 do motor só escala a palhada pelo IPCC na soja, no milho, no trigo, no arroz e no sorgo; nas demais culturas vale o típico do bloco regua. O método razão × NASS (3,84 × mediana de 2,13 t/ha = 8,2 t/ha, classe 'alto') fica só como conferência em regua.observacoes.coleta. Continua fraco: C/N, k, PB e digestibilidade são PROXY (Brasil e Feedipedia), sem dado dos EUA; o k do WEPS (0,025) é por dia de decomposição ótimo, não por dia de calendário.",
-    "codigo_nass: 'SUNFLOWER, OIL TYPE' segue o relatório Crop Production (tipo 'Oil'); no QuickStats o commodity é 'SUNFLOWER' e a classe 'OIL TYPE'. Não conferido no QuickStats (sem NASS_API_KEY).",
-    "calendario_usda: o Handbook 628 só tem 'All Sunflower' (oleícola e confeiteiro juntos)."
+    "codigo_nass: 'SUNFLOWER, OIL TYPE' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato; 211 linhas de 'girassol' em data/eua/nass/producao_condado.csv, 2016-2025). Forma no QuickStats: short_desc 'SUNFLOWER, OIL TYPE - ...' = commodity_desc 'SUNFLOWER' + class_desc 'OIL TYPE'. Atenção: no arquivo do time (producao_condado.csv) a cultura 'girassol' soma o oleícola com o confeiteiro ('SUNFLOWER, NON-OIL TYPE'); para esta linha use só a série OIL TYPE. A divisão do nome nos campos (commodity_desc etc.) vem do formato do short_desc, não foi conferida campo a campo: o arquivo do time só guarda o short_desc.",
+    "calendario_usda: 'Sunflower, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Oleícola e confeiteiro juntos ('Sunflower, all').",
+    "semeadura_inicio/fim (05-19 a 06-08) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 14/mai, fim 15/jun), oleícola e confeiteiro juntos. Bate com cenarios/girassol_gd.json (semeaduras de 19/mai a 6/jun)."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

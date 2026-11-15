@@ -33,10 +33,12 @@
     "nome_zarc": "",
     "codigo_nass": "PEANUTS",
     "calendario_usda": "Peanuts",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Peanuts (janela de semeadura e colheita GA)|Monfort, UGA Extension, August Peanut Pointers - Agronomy/Maturity Update, 2022 (dias até a maturação por cultivar)|UGA Peanut Team, 2026 Peanut Quick Reference Guide (cultivares, janela de semeadura, UGA Checkbook 18 in)|Anco, Kirk & Hiers, Peanut Science 51(1), 2024 (graus-dia base 56 °F, teto 95 °F, no arranquio ótimo de runners modernos, Blackville-SC)|Jordan, NC State, 2025 Peanut Information, cap. 3 (base 56 °F, teto 95 °F, só referência, não é dano; 2650-2700 GDD para o tipo Virginia; geada)|Zoong Lwe et al., Scientific Reports 10:22163, 2020 (Clemson; dano ao pólen e às vagens com calor na floração, Carolina do Sul; cita o limiar de 34 °C de Prasad et al. 1999)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/amendoim_gd.json (graus-dia sem teto na régua do NASA POWER, Tifton)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/amendoim_etc.json (água máxima, Kc FAO-56 x ET0 do NASA POWER, Tifton)|FAO-56 Tab.11, Tab.12 (Kc) e Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade GA 2023-2025, conferência da palhada)|Jani, Mulvaney, Bashyal & Singh, UF/IFAS EDIS SS-AGR-432, 2019 (massa de restos no Sudeste)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (conferência da palhada)|Balkcom, Wood, Adams & Wood, Peanut Science 31:6-11, 2004 (C/N dos restos, Geórgia)|UGA Commercial Pest Management Handbook, Peanut Pest Management SB 28-24, 2025 (rótulos que proíbem dar a rama tratada aos animais)|Feedipedia, Peanut forage / Peanut crop residues, dry (PB e DMO; valores pontuais)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, Peanuts (janela de semeadura e colheita GA)|Monfort, UGA Extension, August Peanut Pointers - Agronomy/Maturity Update, 2022 (dias até a maturação por cultivar)|UGA Peanut Team, 2026 Peanut Quick Reference Guide (cultivares, janela de semeadura, UGA Checkbook 18 in)|Anco, Kirk & Hiers, Peanut Science 51(1), 2024 (graus-dia base 56 °F, teto 95 °F, no arranquio ótimo de runners modernos, Blackville-SC)|Jordan, NC State, 2025 Peanut Information, cap. 3 (base 56 °F, teto 95 °F, só referência, não é dano; 2650-2700 GDD para o tipo Virginia; geada)|Zoong Lwe et al., Scientific Reports 10:22163, 2020 (Clemson; dano ao pólen e às vagens com calor na floração, Carolina do Sul; cita o limiar de 34 °C de Prasad et al. 1999)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/amendoim_gd.json (graus-dia sem teto na régua do NASA POWER, Tifton)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/amendoim_etc.json (água máxima, Kc FAO-56 x ET0 do NASA POWER, Tifton)|FAO-56 Tab.11, Tab.12 (Kc) e Tab.22 (raiz; limite superior = sequeiro)|USDA NASS, Crop Production 2025 Summary, jan. 2026 (produtividade GA 2023-2025, conferência da palhada)|Jani, Mulvaney, Bashyal & Singh, UF/IFAS EDIS SS-AGR-432, 2019 (massa de restos no Sudeste)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 e 11.1a (conferência da palhada)|Balkcom, Wood, Adams & Wood, Peanut Science 31:6-11, 2004 (C/N dos restos, Geórgia)|UGA Commercial Pest Management Handbook, Peanut Pest Management SB 28-24, 2025 (rótulos que proíbem dar a rama tratada aos animais)|Feedipedia, Peanut forage / Peanut crop residues, dry (PB e DMO; valores pontuais)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
     "confianca_parametros": "baixa",
     "lacuna_informacao": "A soma de calor até o ponto de arrancar vem de um estudo só, na Carolina do Sul, com três cultivares; não há medida na Geórgia. A água no ano de maior demanda é calculada, não medida no campo. Os tipos Virgínia e Spanish não foram avaliados.",
-    "risco_revisao_local": "Confirme com a extensão local o ponto de arrancar da sua cultivar. Antes de dar a rama ou o feno ao gado, leia o rótulo dos inseticidas usados: vários proíbem esse uso. Calor acima de 34 °C na floração pode reduzir o número de vagens."
+    "risco_revisao_local": "Confirme com a extensão local o ponto de arrancar da sua cultivar. Antes de dar a rama ou o feno ao gado, leia o rótulo dos inseticidas usados: vários proíbem esse uso. Calor acima de 34 °C na floração pode reduzir o número de vagens.",
+    "semeadura_inicio": "05-06",
+    "semeadura_fim": "05-31"
   },
   "origem": {
     "temp_base_c": {
@@ -237,6 +239,16 @@
       "fonte": "Prasad, P.V.V.; Craufurd, P.Q.; Summerfield, R.J., Fruit number in relation to pollen production and viability in groundnut exposed to short episodes of heat stress, Annals of Botany 84(3):381-386, 1999 (ambiente controlado; dia 28, 34, 42 e 48 °C x noite 22 e 28 °C por 6 dias na floração). Lido pelo resumo; a tabela completa não foi lida",
       "url": "https://doi.org/10.1006/anbo.1999.0926",
       "trecho": "The threshold day temperature for pollen production and viability was 34 degrees C and there were strong negative linear relations between both pollen production and pollen viability and accumulated temperature >34 degrees C."
+    },
+    {
+      "colunas": [
+        "semeadura_inicio",
+        "semeadura_fim",
+        "calendario_usda"
+      ],
+      "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Georgia'",
+      "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
+      "trecho": "Georgia [...] Peanuts ................:    505     Apr 27 May 6 - May 31  Jun 7   Sep 15 Sep 25 - Oct 31 Nov 11 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
     }
   ],
   "regua": {
@@ -331,6 +343,12 @@
       "antes": "34",
       "depois": "34",
       "motivo": "Revisão 15/11: limiar de 34 °C conferido no resumo de Prasad et al. 1999 (fonte primária, antes só citada por Zoong Lwe 2020); alternativa de 38 °C descartada por ser nível de tratamento, não limiar."
+    },
+    {
+      "coluna": "semeadura_inicio/semeadura_fim",
+      "antes": "",
+      "depois": "05-06 / 05-31",
+      "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Georgia, lida direto no texto do Handbook (a cultura não está em data/eua/nass/datas_plantio.csv, porque o mapa_culturas_nass.csv do time não a inclui)."
     }
   ],
   "pendencias": [
@@ -341,8 +359,10 @@
     "DECISÃO (revisão de 15/11, arquiteto; aceita pelo usuário): a palhada fica a massa medida no Sudeste (EDIS SS-AGR-432: 3,4 t/ha, faixa 3,25-5,0; classe 'medio'). O valor do método do milho (IPCC 2019 Tab. 11.2 x produtividade NASS da Geórgia 2023-2025 = 6,1 t/ha, classe 'alto') fica só como conferência, em regua.observacoes.coleta. Não há conflito com o método: a regra 6 do motor só escala a palhada pelo IPCC na soja, no milho, no trigo, no arroz e no sorgo; nas demais culturas usa o típico do bloco regua. A rama enfardada como feno sai do campo e não foi descontada.",
     "regua: sem k de decomposição de massa (só liberação de N) -> cobertura_solo sem classe. Resolveria: Mulvaney et al. 2017 (Agron. J. 109:696-705) ou Jani et al. 2019 (Nutr. Cycl. Agroecosyst. 113:63-76), se publicarem a massa restante.",
     "regua: digestibilidade da Feedipedia calculada por equação (n = 8, global, não dos EUA). uso_forrageiro = com_restricao pelos rótulos de inseticidas (UGA SB 28-24).",
-    "codigo_nass: 'PEANUTS' conferido pelo nome da tabela do Crop Production 2025 Summary e do Handbook 628; no QuickStats a commodity é PEANUTS (sem NASS_API_KEY no ambiente para conferir).",
-    "Tipo comercial: a linha é do runner da Geórgia. O tipo Virginia (Carolina do Norte e Virgínia) pede menos graus-dia pela NC State (2650-2700 °F-dias -> 1489 em Tifton) e o Spanish/Valencia do Texas e do Novo México não foi avaliado."
+    "codigo_nass: 'PEANUTS' continua NÃO conferido no QuickStats (15/11): a série baixada pelo time (data/scripts/baixar_nass_eua.py, data/eua/nass/producao_condado.csv) não inclui o amendoim, e não havia NASS_API_KEY no ambiente. Segue o nome da tabela do Crop Production 2025 Summary. Resolveria: rodar get_param_values (commodity_desc e short_desc) com a chave, ou incluir a cultura no script do time.",
+    "Tipo comercial: a linha é do runner da Geórgia. O tipo Virginia (Carolina do Norte e Virgínia) pede menos graus-dia pela NC State (2650-2700 °F-dias -> 1489 em Tifton) e o Spanish/Valencia do Texas e do Novo México não foi avaliado.",
+    "calendario_usda: 'Peanuts' = nome da linha nas tabelas por estado do Handbook 628 (2010); a cultura não está em data/eua/nass/datas_plantio.csv (o mapa do time não a inclui).",
+    "semeadura_inicio/fim (05-06 a 05-31) = 'most active' do Handbook 628 (2010) na Geórgia (início 27/abr, fim 7/jun), lido direto no texto do Handbook: o amendoim não está em data/eua/nass/datas_plantio.csv (o mapa do time não o inclui). Bate com cenarios/amendoim_gd.json (semeadura de 10/mai em Tifton) e com a UGA (fim de abril a fim de maio, de preferência depois de 10/mai)."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
