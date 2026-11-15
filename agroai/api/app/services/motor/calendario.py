@@ -1,7 +1,16 @@
 """Meses de um período, janela vazia e divisão do ciclo em terços (meses inteiros, 1 a 12)."""
 import math
+from calendar import monthrange
 
 from app.services.motor.parametros import DIAS_POR_MES
+
+
+def dia_do_ano(mm_dd: str) -> int:
+    """Posição do dia "MM-DD" no ano (1 a 365; o ano não tem 29/02). ValueError se o texto não for uma data."""
+    mes, dia = (int(x) for x in mm_dd.split("-"))
+    if not (1 <= mes <= 12 and 1 <= dia <= monthrange(2001, mes)[1]):
+        raise ValueError(f"data fora do calendário: {mm_dd!r}")
+    return sum(monthrange(2001, m)[1] for m in range(1, mes)) + dia
 
 
 def meses_do_periodo(inicio: int | None, fim: int | None, perene: bool) -> list[int]:

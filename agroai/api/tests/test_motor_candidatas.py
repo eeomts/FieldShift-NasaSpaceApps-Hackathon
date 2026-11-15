@@ -1,6 +1,12 @@
 """Candidatas: atual, janela vazia, troca da principal por tolerante à seca e leguminosa."""
-from app.services.motor.calendario import maior_janela_vazia, meses_do_periodo, meses_necessarios, partes_por_terco
-from app.services.motor.candidatas import _mes_na_janela_de_semeadura, chave, gerar_candidatas
+import importlib.util
+
+import pytest
+
+from app.core.caminhos import RAIZ_REPO
+from app.services.motor import candidatas as modulo_candidatas
+from app.services.motor.calendario import dia_do_ano, maior_janela_vazia, meses_do_periodo, meses_necessarios, partes_por_terco
+from app.services.motor.candidatas import _mes_na_janela_de_semeadura, _terminam_antes, chave, gerar_candidatas
 from app.services.motor.motor_service import analisar_entradas
 from app.services.motor.modelo import Estrategia
 from app.services.motor.parametros import MAX_CANDIDATAS
@@ -240,3 +246,137 @@ def test_lacuna_da_candidata_chega_ao_resultado_da_analise():
     achadas = [r for r in a.melhores if any(i.cultura_id == "milheto" for i in r.estrategia.itens)]
     assert achadas and all("ainda não confirmamos a melhor época" in " ".join(r.lacunas) for r in achadas)
     assert "ainda não confirmamos a melhor época" not in " ".join(a.atual.lacunas)
+
+
+# --- A1: cobertura semeada no mês da colheita da cultura anterior (uma regra para a janela vazia e as trocas)
+CENTEIO = dict(tipos=("cobertura", "forrageira"), ciclo_dias_min=178, semeadura_inicio="09-17", semeadura_fim="10-29", condicao_semeadura="apos_colheita_graos")
+IOWA = atual(item("milho", 5, 10), item("soja", 5, 10))  # vazio: nov-abr
+VAZIOS_IOWA = [11, 12, 1, 2, 3, 4]
+
+
+def candidata(id_, a, catalogo, vazios, origem="janela"):
+    achadas = [x for x in gerar_candidatas(a, catalogo, vazios) if x.id == id_]
+    return achadas[0] if achadas else None
+
+
+def test_terminam_antes_conta_quem_termina_no_mes_anterior_e_no_proprio_mes():
+    a = (item("a", 2, 5), item("b", 3, 6), item("c", 1, 4), item("d", 8, 6, perene=True), item("e", None, None))
+    assert [i.cultura_id for i in _terminam_antes(a, 6)] == ["a", "b"]  # fim em 5 e em 6; o perene e o sem meses ficam de fora
+    assert [i.cultura_id for i in _terminam_antes(a, 6, ignorar=0)] == ["b"]
+    assert [i.cultura_id for i in _terminam_antes((item("x", 8, 12),), 1)] == ["x"]  # dezembro -> janeiro
+
+
+def test_centeio_depois_de_milho_e_soja_em_iowa_entra_no_mes_da_colheita_com_a_lacuna():
+    cat = {"milho": cultura("milho"), "soja": cultura("soja"), "centeio": cultura("centeio", **CENTEIO)}
+    c = candidata("janela:centeio", IOWA, cat, VAZIOS_IOWA)
+    assert c is not None
+    novo = c.itens[-1]
+    assert (novo.cultura_id, novo.inicio_mes, novo.fim_mes) == ("centeio", 10, 4)  # outubro (colheita) a abril: 6 meses vazios cobrem 178 d
+    assert c.nome == "Plantar Centeio logo depois da colheita (out–abr)"
+    assert c.lacunas == ("Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita.",)
+
+
+def test_o_mes_da_colheita_nao_conta_para_o_ciclo_minimo():
+    cat = {"milho": cultura("milho"), "soja": cultura("soja"), "centeio": cultura("centeio", **{**CENTEIO, "ciclo_dias_min": 190})}
+    assert candidata("janela:centeio", IOWA, cat, VAZIOS_IOWA) is None  # 190 d > 6 meses vazios (182,4 d), mesmo com outubro
+    cat["centeio"] = cultura("centeio", **{**CENTEIO, "ciclo_dias_min": 100})
+    c = candidata("janela:centeio", IOWA, cat, VAZIOS_IOWA)
+    assert (c.itens[-1].inicio_mes, c.itens[-1].fim_mes) == (10, 2)  # 100 d = 4 meses, contados a partir de novembro
+
+
+def test_mes_vazio_na_janela_de_semeadura_tem_preferencia_sobre_o_mes_da_colheita():
+    cat = {"milho": cultura("milho"), "soja": cultura("soja"), "centeio": cultura("centeio", **{**CENTEIO, "semeadura_inicio": "09-17", "semeadura_fim": "11-20", "ciclo_dias_min": 100})}
+    c = candidata("janela:centeio", IOWA, cat, VAZIOS_IOWA)
+    assert (c.itens[-1].inicio_mes, c.itens[-1].fim_mes) == (11, 2) and c.nome.startswith("Plantar Centeio no período vazio") and c.lacunas == ()
+
+
+def test_semeadura_no_primeiro_mes_vazio_nao_tem_a_lacuna_da_colheita():
+    cat = {"milho": cultura("milho"), "centeio": cultura("centeio", **CENTEIO)}
+    a = atual(item("milho", 5, 9))  # colhe em setembro; a janela vazia (out-abr) começa em outubro, que já está na janela de semeadura
+    c = candidata("janela:centeio", a, cat, [10, 11, 12, 1, 2, 3, 4])
+    assert (c.itens[-1].inicio_mes, c.itens[-1].fim_mes) == (10, 3) and c.lacunas == ()
+    assert c.nome == "Plantar Centeio no período vazio (out–mar)"
+
+
+def test_comercial_nunca_usa_o_mes_da_colheita():
+    venda = cultura("trigo2", ciclo_dias_min=100, semeadura_inicio="09-17", semeadura_fim="10-29")
+    cat = {"milho": cultura("milho"), "soja": cultura("soja"), "trigo2": venda}
+    assert candidata("janela:trigo2", IOWA, cat, VAZIOS_IOWA) is None  # outubro é o mês da colheita; nov-abr fora da janela
+
+
+def test_troca_por_cobertura_logo_depois_da_colheita_ganha_a_lacuna():
+    cat = {
+        "soja": cultura("soja", ciclo_dias_max=140),
+        "milho": cultura("milho", ciclo_dias_max=145),
+        "milheto": cultura("milheto", tipos=("cobertura", "tolerante_seca"), ciclo_dias_min=45, semeadura_inicio="01-21", semeadura_fim="04-15", condicao_semeadura="apos_colheita_graos"),
+    }
+    a = atual(item("soja", 10, 2), item("milho", 2, 6))  # a soja é colhida em fevereiro, quando o milheto entra no lugar do milho
+    troca = candidata("tolerante_seca:milho->milheto", a, cat, [7, 8, 9])
+    assert troca.lacunas == ("Milheto: a semeadura é em fevereiro, logo depois da colheita de Soja; depende da data da sua colheita.",)
+    sem_colheita_no_mes = atual(item("soja", 10, 1), item("milho", 2, 6))  # a soja sai em janeiro: o mês de fevereiro já era livre
+    assert candidata("tolerante_seca:milho->milheto", sem_colheita_no_mes, cat, [7, 8, 9]).lacunas == ()
+
+
+def test_troca_por_comercial_nao_ganha_a_lacuna_da_colheita():
+    cat = {
+        "soja": cultura("soja", ciclo_dias_max=140),
+        "milho": cultura("milho", ciclo_dias_max=145),
+        "sorgo": cultura("sorgo", tipos=("comercial", "tolerante_seca"), ciclo_dias_min=90),
+    }
+    a = atual(item("soja", 10, 2), item("milho", 2, 6))
+    assert candidata("tolerante_seca:milho->sorgo", a, cat, [7, 8, 9]).lacunas == ()
+
+
+# --- M7: a janela de semeadura do catálogo vale também para culturas de venda que a têm
+def venda(id_="graos", inicio="05-08", fim="06-02", ciclo=60, **mais):
+    return cultura(id_, ciclo_dias_min=ciclo, semeadura_inicio=inicio, semeadura_fim=fim, **mais)
+
+
+def test_comercial_com_janela_comeca_no_primeiro_mes_da_janela_de_semeadura():
+    a = atual(item("soja", 10, 2))
+    cat = {"soja": cultura("soja"), "graos": venda()}
+    c = candidata("janela:graos", a, cat, [3, 4, 5, 6, 7, 8, 9])
+    assert (c.itens[-1].inicio_mes, c.itens[-1].fim_mes) == (5, 6) and c.lacunas == ()  # maio: primeiro mês com dia na janela
+    assert candidata("janela:graos", a, cat, [7, 8, 9]) is None  # jul-set fora da janela
+
+
+def test_comercial_com_janela_nao_entra_em_janela_vazia_fora_da_epoca():
+    cat = {"milho": cultura("milho"), "soja": cultura("soja"), "graos": venda()}
+    assert candidata("janela:graos", IOWA, cat, VAZIOS_IOWA) is None  # nov-abr fora de 08/05-02/06
+    sem_janela = {**cat, "graos": cultura("graos", ciclo_dias_min=60)}
+    assert candidata("janela:graos", IOWA, sem_janela, VAZIOS_IOWA) is not None  # sem janela no catálogo: nenhuma restrição
+
+
+def test_troca_por_comercial_com_janela_exige_o_mes_da_troca_na_janela():
+    cat = {
+        "soja": cultura("soja", ciclo_dias_max=140),
+        "milho": cultura("milho", ciclo_dias_max=145),
+        "sorgo": venda("sorgo", "05-15", "06-20", 90, tipos=("comercial", "tolerante_seca")),
+    }
+    em_maio = atual(item("soja", 10, 2), item("milho", 5, 8))
+    assert candidata("tolerante_seca:milho->sorgo", em_maio, cat, []) is not None
+    em_marco = atual(item("soja", 10, 2), item("milho", 3, 6))
+    assert candidata("tolerante_seca:milho->sorgo", em_marco, cat, []) is None  # março fora da janela
+    sem_mes = atual(item("soja", 10, 2), item(None, None, None, texto="x"), item("milho", 5, 8))
+    assert candidata("tolerante_seca:milho->sorgo", sem_mes, cat, []) is not None
+
+
+# --- B8: o motor entende exatamente as condições que o catálogo aceita; datas "MM-DD"
+def _montar_csv():
+    spec = importlib.util.spec_from_file_location("montar_csv_motor", RAIZ_REPO / "data" / "catalogo" / "scripts" / "montar_csv.py")
+    modulo = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
+def test_condicoes_de_semeadura_do_motor_sao_as_do_montar_csv():
+    m = modulo_candidatas
+    assert {m.APOS_COLHEITA_GRAOS, m.APOS_CEREAL_INVERNO, m.APOS_SILAGEM, m.A_LANCO_EM_PE} == _montar_csv().CONDICOES
+    assert set(m.CONDICOES_VERIFICAVEIS) <= _montar_csv().CONDICOES
+
+
+def test_dia_do_ano_ignora_29_de_fevereiro_e_recusa_data_invalida():
+    assert dia_do_ano("01-01") == 1 and dia_do_ano("03-01") == 60 and dia_do_ano("12-31") == 365
+    for ruim in ("abc", "13-01", "1-2-3", ""):
+        with pytest.raises(ValueError):
+            dia_do_ano(ruim)

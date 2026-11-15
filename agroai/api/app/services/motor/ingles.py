@@ -10,10 +10,16 @@ from functools import lru_cache
 
 from app.services import catalogo as base
 from app.services.motor import catalogo as catalogo_motor
+from app.services.motor.parametros import MESES_POR_EXTENSO
 
 _MESES_PT = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 _MESES_EN = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 _MES = "|".join(_MESES_PT)
+_MES_POR_EXTENSO_EN = dict(zip(
+    MESES_POR_EXTENSO,
+    ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
+    strict=True,
+))  # fmt: skip
 
 _CLASSES = {
     "baixo": "low", "baixa": "low", "medio": "medium", "media": "medium", "médio": "medium", "média": "medium",
@@ -79,6 +85,7 @@ _REGRAS: list[_Regra] = [
         # nomes das estratégias
         (r"^Sua rotação atual$", "Your current rotation"),
         (r"^Plantar (.+?) no período vazio \((.+?)\)$", r"Plant \1 in the empty period (\2)"),
+        (r"^Plantar (.+?) logo depois da colheita \((.+?)\)$", r"Plant \1 right after the harvest (\2)"),
         (r"^Trocar (.+?) por (.+)$", r"Swap \1 for \2"),
         # por que / onde piora
         (r"^(.+?): nota (\S+) contra (\S+) da sua rotação atual\.$", lambda m: f"{_FRASES.get(m.group(1), m.group(1))}: score {m.group(2)} vs. {m.group(3)} for your current rotation."),
@@ -177,6 +184,9 @@ _REGRAS: list[_Regra] = [
          r"\1: we could not confirm after which crop this cover crop can be sown. Check with your agronomist."),
         (r"^(.+?): esta cobertura só serve depois de uma cultura colhida para silagem, e não sabemos se a sua é\. Confirme antes de semear\.$",
          r"\1: this cover crop only fits after a crop harvested for silage, and we don't know if yours is. Check before sowing."),
+        (r"^(.+?): a semeadura é em (\w+), logo depois da colheita de (.+?); depende da data da sua colheita\.$",
+         lambda m: f"{m.group(1)}: sowing is in {_MES_POR_EXTENSO_EN.get(m.group(2), m.group(2))}, right after the harvest of "
+                   f"{m.group(3).replace(' e ', ' and ')}; it depends on your harvest date."),
         # critérios: animais
         (r"^(.+?): valor forrageiro desconhecido \((.+?)\)\.$", r"\1: unknown forage value (\2)."),
         (r"^Sem dado de comida para os animais nas culturas desta rotação\.$", "No animal-feed data for the crops in this rotation."),

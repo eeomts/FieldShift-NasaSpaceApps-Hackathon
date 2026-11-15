@@ -114,6 +114,10 @@ def test_frases_soltas(pt, en):
         "Pasto: em 60% dos anos houve geada ao longo do ano (mínima abaixo de -3 °C) e ela é sensível.",
         "Soja: sem a mínima diária do local para a fase enchimento dos grãos, não checamos o frio.",
         "Milho: sem a mínima diária do local para a fase todo o ciclo, não checamos o frio.",
+        # A1: cobertura semeada no mês da colheita
+        "Plantar Centeio logo depois da colheita (out–abr)",
+        "Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita.",
+        "Trevo: a semeadura é em março, logo depois da colheita de Soja; depende da data da sua colheita.",
         # renda: frase acrescentada à explicação
         "A rotação tem 2 cultura(s) para vender: Milho, Feijão. Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota.",
         # regra 12 (candidatas): lacunas da janela de semeadura
@@ -126,6 +130,13 @@ def test_frases_da_revisao_de_dados_sem_portugues(pt):
     en = traduzir(pt)
     assert en != pt
     assert not _PT.search(en), en
+
+
+def test_frases_novas_da_revisao_em_ingles_exatas():
+    assert traduzir("Centeio: a semeadura é em outubro, logo depois da colheita de Milho e Soja; depende da data da sua colheita.") == (
+        "Rye: sowing is in October, right after the harvest of Corn and Soybean; it depends on your harvest date."
+    )
+    assert traduzir("Plantar Centeio logo depois da colheita (out–abr)") == "Plant Rye right after the harvest (Oct–Apr)"
 
 
 def test_frio_traduz_limiar_e_dias_seguidos():

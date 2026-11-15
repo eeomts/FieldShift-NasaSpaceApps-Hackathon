@@ -34,6 +34,12 @@ FASES_FRIO_TEXTO = {
 FASE_FRIO_PADRAO = ("na fase sensível", "fase sensível")  # fase com nome que ainda não conhecemos
 FASE_FRIO_PERENE = ("ao longo do ano", "ano todo")  # perene: o ano todo
 
+# Mês por extenso (frases da regra 12 com o mês da colheita)
+MESES_POR_EXTENSO = (
+    "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+    "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+)  # fmt: skip
+
 # Pesos das prioridades (decisão do usuário, 15/11)
 PESOS_PRIORIDADE = (0.5, 0.3, 0.2)  # 1ª, 2ª e 3ª escolha, reescalados para sobrar PESO_NAO_ESCOLHIDO aos demais
 PESO_NAO_ESCOLHIDO = 0.05

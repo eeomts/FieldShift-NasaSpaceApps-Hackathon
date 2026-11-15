@@ -1,11 +1,11 @@
 """Candidatas: a rotação atual mais três regras (janela vazia, troca por tolerante à seca, leguminosa)."""
 from calendar import monthrange
 
-from app.services.motor.calendario import maior_janela_vazia, meses_necessarios, meses_para_dias
+from app.services.motor.calendario import dia_do_ano, maior_janela_vazia, meses_necessarios, meses_para_dias
 from app.services.motor.catalogo import CulturaMotor
 from app.services.motor.formatos import periodo_texto
 from app.services.motor.modelo import Estrategia, ItemRotacao
-from app.services.motor.parametros import CEREAIS_INVERNO, MAX_CANDIDATAS
+from app.services.motor.parametros import CEREAIS_INVERNO, MAX_CANDIDATAS, MESES_POR_EXTENSO
 
 # Valores de `condicao_semeadura` que o motor entende (regra 12); outro valor vira lacuna, nunca sugestão firme
 APOS_COLHEITA_GRAOS = "apos_colheita_graos"
@@ -20,18 +20,13 @@ def chave(e: Estrategia) -> frozenset[tuple]:
     return frozenset((i.cultura_id, i.inicio_mes, i.fim_mes, i.perene) for i in e.itens)
 
 
-def _dia_do_ano(mm_dd: str) -> int:
-    mes, dia = (int(x) for x in mm_dd.split("-"))
-    return sum(monthrange(2001, m)[1] for m in range(1, mes)) + dia  # ano sem 29/02
-
-
 def _mes_na_janela_de_semeadura(c: CulturaMotor, mes: int) -> bool | None:
     """O mês tem algum dia dentro da janela de semeadura da cultura (que pode virar o ano)? None: sem janela legível."""
     if not c.semeadura_inicio or not c.semeadura_fim:
         return None
     try:
-        ini, fim = _dia_do_ano(c.semeadura_inicio), _dia_do_ano(c.semeadura_fim)
-        primeiro = _dia_do_ano(f"{mes:02d}-01")
+        ini, fim = dia_do_ano(c.semeadura_inicio), dia_do_ano(c.semeadura_fim)
+        primeiro = dia_do_ano(f"{mes:02d}-01")
         ultimo = primeiro + monthrange(2001, mes)[1] - 1
     except (ValueError, IndexError):
         return None
@@ -48,6 +43,10 @@ def _lacuna_sem_cultura_anterior(c: CulturaMotor) -> str:
 
 def _lacuna_silagem(c: CulturaMotor) -> str:
     return f"{c.nome}: esta cobertura só serve depois de uma cultura colhida para silagem, e não sabemos se a sua é. Confirme antes de semear."
+
+
+def _lacuna_colheita(c: CulturaMotor, mes: int, anteriores: list[str]) -> str:
+    return f"{c.nome}: a semeadura é em {MESES_POR_EXTENSO[mes - 1]}, logo depois da colheita de {' e '.join(anteriores)}; depende da data da sua colheita."
 
 
 def _condicao_semeadura(c: CulturaMotor, anteriores: list[ItemRotacao], catalogo: dict[str, CulturaMotor]) -> list[str] | None:
@@ -71,29 +70,40 @@ def _condicao_semeadura(c: CulturaMotor, anteriores: list[ItemRotacao], catalogo
     return None
 
 
-def _lacunas_da_cobertura(c: CulturaMotor, mes: int | None, anteriores: list[ItemRotacao], catalogo: dict[str, CulturaMotor]) -> list[str] | None:
-    """Regra 12 para a cobertura semeada em `mes`: None se não pode ser sugerida; senão, as lacunas (vazio = tudo confirmado).
+def _lacunas_da_cobertura(
+    c: CulturaMotor, mes: int | None, anteriores: list[ItemRotacao], catalogo: dict[str, CulturaMotor]
+) -> list[str] | None:
+    """Regra 12 para a cultura semeada em `mes`: None se não pode ser sugerida; senão, as lacunas (vazio = tudo confirmado).
 
-    Só vale para quem não é `comercial` (grão não tem janela de recomendação no catálogo).
+    `comercial`: só a janela de semeadura do catálogo, quando ela existe (sem janela, sem restrição e sem lacuna); a
+    condição de semeadura e a colheita da anterior não entram. Cobertura: janela, condição e, se uma cultura anterior
+    termina no próprio `mes`, a lacuna "depende da data da sua colheita".
     """
-    if c.tem_tipo("comercial"):
-        return []
     na_janela = None if mes is None else _mes_na_janela_de_semeadura(c, mes)
     if na_janela is False:
         return None
+    if c.tem_tipo("comercial"):
+        return []
     sem_janela = [_lacuna_sem_janela(c)] if na_janela is None else []
     if c.semeadura_inicio is None and c.semeadura_fim is None and not c.condicao_semeadura:
         return sem_janela  # catálogo sem janela nem condição: segue como antes, só com a lacuna
     cond = _condicao_semeadura(c, anteriores, catalogo)
-    return None if cond is None else sem_janela + cond
+    if cond is None:
+        return None
+    colhendo = [a for a in anteriores if a.fim_mes == mes] if mes is not None else []
+    if colhendo:
+        nomes = list(dict.fromkeys(_nome_do_item(a, catalogo) for a in colhendo))
+        cond = cond + [_lacuna_colheita(c, mes, nomes)]
+    return sem_janela + cond
 
 
-def _terminam_antes(atual: tuple[ItemRotacao, ...], mes: int, ignorar: int | None = None, no_mesmo_mes: bool = False) -> list[ItemRotacao]:
-    """Itens da rotação atual que terminam no mês anterior a `mes` (as culturas depois das quais a nova começa).
+def _terminam_antes(atual: tuple[ItemRotacao, ...], mes: int, ignorar: int | None = None) -> list[ItemRotacao]:
+    """Itens da rotação atual que terminam no mês anterior a `mes` ou no próprio `mes`.
 
-    `no_mesmo_mes`: conta também quem termina em `mes` (troca de uma cultura que começa quando a anterior é colhida, como a safrinha).
+    São as culturas depois das quais a nova começa: a que termina no mês anterior e a que é colhida no mês da semeadura
+    (como a safrinha, que entra no mês em que a soja sai).
     """
-    fins = {(mes - 2) % 12 + 1, mes} if no_mesmo_mes else {(mes - 2) % 12 + 1}
+    fins = {(mes - 2) % 12 + 1, mes}
     return [i for p, i in enumerate(atual) if p != ignorar and not i.perene and i.inicio_mes is not None and i.fim_mes in fins]
 
 
@@ -102,8 +112,9 @@ def _item_na_janela(
 ) -> tuple[ItemRotacao, list[str]] | None:
     """Cultura plantada na janela vazia, pelo menos o ciclo mínimo (meses inteiros), e as lacunas da regra 12.
 
-    Começa no primeiro mês da janela que cai na janela de semeadura da cobertura e em que o ciclo mínimo ainda cabe
-    até o fim da janela vazia. None se não houver mês assim.
+    Começa no primeiro mês da janela que cai na janela de semeadura da cultura e em que o ciclo mínimo ainda cabe
+    até o fim da janela vazia. Se nenhum mês da janela serve, uma cobertura pode ser semeada no mês da colheita da
+    cultura anterior (`_item_no_mes_da_colheita`). None se não houver mês assim.
     """
     if c.perene or c.ciclo_dias_min is None:
         return None
@@ -111,7 +122,7 @@ def _item_na_janela(
     anteriores = _terminam_antes(atual, inicio)
     for k in range(n_janela):
         if c.ciclo_dias_min > meses_para_dias(n_janela - k):
-            return None  # os próximos meses restam ainda menos
+            break  # os próximos meses restam ainda menos
         mes = (inicio - 1 + k) % 12 + 1
         lacunas = _lacunas_da_cobertura(c, mes, anteriores, catalogo)
         if lacunas is None:
@@ -121,7 +132,28 @@ def _item_na_janela(
         n = min(meses_necessarios(c.ciclo_dias_min), n_janela - k)
         fim = (mes - 1 + n - 1) % 12 + 1
         return ItemRotacao(c.id, mes, fim, False, f"{c.nome} ({periodo_texto(mes, fim, False)})"), lacunas
-    return None
+    return _item_no_mes_da_colheita(c, inicio, n_janela, anteriores, catalogo)
+
+
+def _item_no_mes_da_colheita(
+    c: CulturaMotor, inicio: int, n_janela: int, anteriores: list[ItemRotacao], catalogo: dict[str, CulturaMotor]
+) -> tuple[ItemRotacao, list[str]] | None:
+    """Cobertura semeada no mês da colheita (o mês anterior à janela vazia), quando a janela de semeadura dela só chega até lá.
+
+    Só para quem não é `comercial`, e só se uma cultura anual termina nesse mês. O mês da colheita não conta para o
+    ciclo: o ciclo mínimo tem de caber nos meses vazios. A lacuna avisa que depende da data da colheita.
+    """
+    colheita = (inicio - 2) % 12 + 1
+    if c.tem_tipo("comercial") or not [a for a in anteriores if a.fim_mes == colheita]:
+        return None
+    if c.ciclo_dias_min is None or c.ciclo_dias_min > meses_para_dias(n_janela) or _mes_na_janela_de_semeadura(c, colheita) is not True:
+        return None
+    lacunas = _lacunas_da_cobertura(c, colheita, anteriores, catalogo)
+    if lacunas is None:
+        return None
+    n = min(meses_necessarios(c.ciclo_dias_min), n_janela)
+    fim = (inicio - 1 + n - 1) % 12 + 1
+    return ItemRotacao(c.id, colheita, fim, False, f"{c.nome} ({periodo_texto(colheita, fim, False)})"), lacunas
 
 
 def _principal(atual: tuple[ItemRotacao, ...], catalogo: dict[str, CulturaMotor]) -> int | None:
@@ -145,11 +177,18 @@ def _lacunas_da_troca(atual: Estrategia, pos: int, nova: CulturaMotor, catalogo:
     velho = atual.itens[pos]
     if velho.inicio_mes is None:
         return _lacunas_da_cobertura(nova, None, [], catalogo)
-    return _lacunas_da_cobertura(nova, velho.inicio_mes, _terminam_antes(atual.itens, velho.inicio_mes, ignorar=pos, no_mesmo_mes=True), catalogo)
+    return _lacunas_da_cobertura(nova, velho.inicio_mes, _terminam_antes(atual.itens, velho.inicio_mes, ignorar=pos), catalogo)
 
 
 def _nome_do_item(i: ItemRotacao, catalogo: dict[str, CulturaMotor]) -> str:
     return catalogo[i.cultura_id].nome if i.cultura_id in catalogo else i.texto
+
+
+def _nome_na_janela(c: CulturaMotor, item: ItemRotacao, janela: tuple[int, int]) -> str:
+    """Nome da candidata de janela. Se a semeadura cai no mês da colheita (antes da janela vazia): "logo depois da colheita"."""
+    inicio, n = janela
+    onde = "logo depois da colheita" if (item.inicio_mes - inicio) % 12 >= n else "no período vazio"
+    return f"Plantar {c.nome} {onde} ({periodo_texto(item.inicio_mes, item.fim_mes, False)})"
 
 
 def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses_vazios: list[int], estado: str | None = None) -> list[Estrategia]:
@@ -180,7 +219,7 @@ def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses
     for c in novas:
         if (achado := na_janela(c)) is not None:
             item, lacunas = achado
-            adicionar(f"janela:{c.id}", f"Plantar {c.nome} no período vazio ({periodo_texto(item.inicio_mes, item.fim_mes, False)})", "janela", atual.itens + (item,), lacunas)
+            adicionar(f"janela:{c.id}", _nome_na_janela(c, item, janela), "janela", atual.itens + (item,), lacunas)
 
     # 2. A principal trocada por cada cultura tolerante à seca, no mesmo período
     pos = _principal(atual.itens, catalogo)
@@ -196,7 +235,7 @@ def gerar_candidatas(atual: Estrategia, catalogo: dict[str, CulturaMotor], meses
             continue
         if (achado := na_janela(c)) is not None:
             item, lacunas = achado
-            adicionar(f"leguminosa:janela:{c.id}", f"Plantar {c.nome} no período vazio ({periodo_texto(item.inicio_mes, item.fim_mes, False)})", "leguminosa", atual.itens + (item,), lacunas)
+            adicionar(f"leguminosa:janela:{c.id}", _nome_na_janela(c, item, janela), "leguminosa", atual.itens + (item,), lacunas)
         if c.id in ja_na_atual:
             continue
         for p, velho in enumerate(atual.itens):
