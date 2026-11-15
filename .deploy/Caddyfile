@@ -3,11 +3,12 @@
 	admin off
 }
 
-# O endereço vem do SITE do .deploy/env/<ambiente>.env, pelo ./.deploy/agroai.
+# Os endereços vêm do SITE e do SITE_DEMO do .deploy/env/<ambiente>.env, pelo ./.deploy/agroai.
 # https://dominio -> certificado emitido e renovado sozinho
-# http://localhost -> HTTP puro, sem certificado
-# :80 -> atrás do nginx do host (PROXY), que cuida do certificado
-{$AGROAI_SITE} {
+# http://dominio  -> HTTP puro, sem certificado (local, ou atrás do nginx do host com PROXY)
+
+# Um site: {args[0]} é a pasta do build. Os dois usam a mesma API.
+(site) {
 	encode zstd gzip
 
 	# arquivo oculto nunca é servido
@@ -22,7 +23,7 @@
 
 	# site: arquivo do build; rota do React cai no index.html
 	handle {
-		root * /srv
+		root * {args[0]}
 		try_files {path} /index.html
 		file_server
 	}
@@ -41,4 +42,14 @@
 	log {
 		output stderr
 	}
+}
+
+# versão completa (agroai/web)
+{$AGROAI_SITE} {
+	import site /srv/web
+}
+
+# versão de apresentação (agroai/web-demo)
+{$AGROAI_SITE_DEMO} {
+	import site /srv/demo
 }

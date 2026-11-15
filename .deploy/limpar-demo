@@ -1,0 +1,23 @@
+#!/bin/sh
+# Apaga as contas criadas pela demo (demo-*@demo.agroai.app) com mais de N dias: ./.deploy/limpar-demo <local|producao> [dias=7]
+
+set -eu
+
+cd "$(dirname "$0")/.."
+. .deploy/lib.sh
+
+carregar_env "${1:-}"
+exigir DB_HOST DB_NAME DB_USER DB_PASSWORD
+
+DIAS=${2:-7}
+case "$DIAS" in
+    ''|*[!0-9]*)
+        echo "erro: dias deve ser um numero inteiro (ex.: 7)" >&2
+        exit 1
+        ;;
+esac
+
+# fazenda, calendario, conversas e mensagens saem junto (ON DELETE CASCADE)
+echo "$(date '+%Y-%m-%d %H:%M') apagando contas da demo com mais de $DIAS dias ($AMBIENTE)"
+pg psql -v ON_ERROR_STOP=1 -At -c \
+    "DELETE FROM usuario WHERE email LIKE 'demo-%@demo.agroai.app' AND criado_em < now() - interval '$DIAS days'"

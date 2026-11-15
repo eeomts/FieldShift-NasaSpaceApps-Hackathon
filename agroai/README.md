@@ -265,5 +265,5 @@ Confira o arquivo gerado em `migrations/versions/` antes de rodar `alembic upgra
 - **Faixas de área (pergunta 2):** até 2 / 2–20 / 20–200 / 200–1.000 / mais de 1.000 ha (ou o equivalente em acres nos EUA).
 - **Pergunta 19:** fotos reais da cor e do jeito da terra (`web/public/fotos-solo/`, créditos em `CREDITOS.md`).
 - **Idioma:** português e inglês nas telas, com o idioma salvo na conta. A base de culturas também tem nomes em espanhol.
-- **Duas interfaces:** `web/` é a versão completa e a que vai para a VPS; `web-demo/` é uma cópia para a apresentação e não recebe sozinha o que muda no `web/`.
+- **Duas interfaces:** `web/` é a versão completa e `web-demo/` é uma cópia para a apresentação; as duas vão para a VPS (`agroai` e `demo-agroai.mateusmoreira.dev`), com a mesma API e o mesmo banco. O `web-demo/` não recebe sozinha o que muda no `web/`.
 - **CORS:** em desenvolvimento, a API aceita o site em qualquer porta do `localhost` (as duas versões funcionam sem configurar nada). Em produção, liste o domínio em `CORS_ORIGINS`.
