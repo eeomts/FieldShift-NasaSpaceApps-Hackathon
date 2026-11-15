@@ -336,6 +336,14 @@
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Texas'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "Texas [...] Cotton, all ............: 3,517.8    Mar 22 Apr 8 - Jun 7   Jun 20  Aug 10 Sep 13 - Dec 21 Jan 11 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"COTTON, UPLAND - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'COTTON', class_desc 'UPLAND', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 2153, COUNTY 37082"
     }
   ],
   "regua": {
@@ -374,7 +382,7 @@
       "decomposicao": "k = -ln(fração restante)/dias: superfície em plantio direto, 75% restantes em 20 semanas (140 dias) -> k = -ln(0,75)/140 = 0,0021 por dia (T½ = 0,693/0,0021 = 330 d); enterrado no convencional, 45% restantes -> 0,0057. O valor da régua é o da superfície (palhada que cobre o solo). Palhada que sobra em 60 dias: 2,2 × e^(-0,0021×60) = 1,9 t/ha.",
       "colheita": "Handbook 628 (NASS 2010), All Cotton, 'most active': Geórgia, semeadura 2/mai-31/mai e colheita 10/out-2/dez; Texas (estado todo, inclui o sul do Texas), semeadura 8/abr-7/jun e colheita 13/set-21/dez. Em Bushland (norte do High Plains), Howell et al. 2002 colheram em 14/nov (2000) e 30/out (2001).",
       "destruicao_de_restos": "No Brasil a linha tem exceção (vazio sanitário do bicudo). Nos EUA não li norma que obrigue destruir os restos em Lubbock ou na Geórgia (não pesquisei os prazos estaduais de destruição de soqueira). Triturar a soqueira não tira a massa do campo. Sem fonte, não há exceção.",
-      "codigos": "codigo_nass 'COTTON, UPLAND'. short_desc 'COTTON, UPLAND - ...' = commodity_desc 'COTTON' + class_desc 'UPLAND' (o Pima fica de fora). Conferido em 15/11 na série baixada pelo time (data/scripts/baixar_nass_eua.py)."
+      "codigos": "codigo_nass 'COTTON, UPLAND' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'COTTON, UPLAND - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'COTTON', class_desc 'UPLAND', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 2153, COUNTY 37082. Série de produção: 'COTTON, UPLAND - PRODUCTION, MEASURED IN 480 LB BALES'. O Pima (class PIMA) fica de fora."
     },
     "resultado": {
       "aporte_biomassa": "baixo",
@@ -387,6 +395,17 @@
       "depende_da_epoca": {
         "aporte_biomassa": true,
         "cobertura_solo": true
+      }
+    },
+    "arranjos": {
+      "georgia": {
+        "estados": "GA",
+        "semeadura_inicio": "05-02",
+        "semeadura_fim": "05-31",
+        "origem": {
+          "semeadura": "publicado"
+        },
+        "nota": "Handbook 628 (2010), tabela da Georgia, 'most active'; linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv; os cenários de Tifton semeiam em 1/mai"
       }
     }
   },
@@ -420,10 +439,28 @@
       "antes": "",
       "depois": "04-08 / 06-07",
       "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Texas, lida em data/eua/nass/datas_plantio.csv (linha algodao,Cotton, all,TX)."
+    },
+    {
+      "coluna": "regua.arranjos.georgia",
+      "antes": "",
+      "depois": "GA: semeadura 05-02 a 05-31 (origem publicado)",
+      "motivo": "Revisão 'eua-nass-janelas 15_11_26', M-06 (decisão do usuário): janela 'most active' do Handbook 628 (2010) para a Geórgia, conferida na linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv (pico 05-02 a 05-31). A linha fica com o Texas; estados_validos continua vazio. Números da linha não mudados."
+    },
+    {
+      "coluna": "pendencias (duas regiões; semeadura)",
+      "antes": "Uma linha cobre duas regiões muito diferentes (Lubbock: estação curta, sequeiro com pouca chuva, alta demanda de ET; sul ...",
+      "depois": "pendência 'uma linha com duas regiões; separar quando o motor ler arranjos regionais'; pendência da semeadura aponta para regua.arranjos.georgia",
+      "motivo": "Revisão 'eua-nass-janelas 15_11_26', M-06 (decisão do usuário): manter a mistura Texas/Geórgia nos números da linha e documentá-la."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'COTTON, UPLAND' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_... | observacoes.codigos: codigo_nass 'COTTON, UPLAND'. short_desc 'COTTON, UPLAND - ...' = commodity_desc 'COTTON' + class_desc 'UPLAND' (o Pima ...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'COTTON, UPLAND - ACRES PLANTED', registros SURVEY: STATE 2153, COUNTY 37082; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
     }
   ],
   "pendencias": [
-    "Uma linha cobre duas regiões muito diferentes (Lubbock: estação curta, sequeiro com pouca chuva, alta demanda de ET; sul da Geórgia: estação longa e úmida). Os mínimos de graus-dia e de ciclo vêm do Texas, os máximos de graus-dia da Geórgia; a água vai ao contrário (mínimo na Geórgia, máximo no Texas). Se o motor precisar, separar em duas linhas.",
+    "UMA LINHA COM DUAS REGIÕES; separar quando o motor ler arranjos regionais (decisão do usuário, 15/11: manter assim e documentar). Os números da linha misturam o Texas (Lubbock, Southern High Plains: estação curta, sequeiro com pouca chuva, alta demanda de ET) e a Geórgia (Tifton, Coastal Plain: estação longa e úmida): ciclo_dias (130-160) e graus_dia_ciclo_min vêm do Texas; graus_dia_ciclo_max e agua_ciclo_mm_min vêm da Geórgia; agua_ciclo_mm_max vem do Texas. A semeadura da linha é a do Texas; a da Geórgia está em regua.arranjos.georgia. estados_validos fica vazio de propósito: com 'TX', Tifton passaria a ver 'sem dado para sua região'.",
     "temp_base_c = 15 (Brasil) contra 15,6 (DD60 americano). As exigências foram convertidas no POWER (Tb 15, sem teto); com Tb 15 a soma fica ~4-6% acima do DD60/1,8 da fonte.",
     "ciclo_dias 130-160 vem de uma newsletter de extensão do Texas (tabela sem referência primária) e do guia da UGA; é semeadura -> 'harvest ready' (capulhos abertos, desfolha), não maturação fisiológica de grão. No POWER, os 2200 DD60 do High Plains chegam em mediana 111 dias (86-144) a partir de 15/mai em Lubbock, bem antes de 130 dias. Faltou uma fonte com dias até 60-90% de capulhos abertos por cultivar em Lubbock (ensaios RACE da Texas A&M).",
     "graus_dia_min (1270) vem de 2200 DD60 'based on research conducted on the High Plains' sem a referência primária; Peng et al. 1989 (citação secundária) dá 2610 °F-dias para produtividade ótima no sul do High Plains (-> 1505). Se o motor tratar o mínimo como 'colheita plena', o mínimo seria ~1500. Resolveria: ler Peng, Krieg & Hicks 1989 (Field Crops Res. 19:253-262) ou os relatórios RACE com DD60 por cultivar.",
@@ -432,9 +469,8 @@
     "agua_min (420) é da Geórgia, onde o sequeiro recebe ~535 mm de chuva no ciclo (POWER); em Lubbock a chuva do ciclo é ~315 mm (POWER) e o algodão de sequeiro vive da água guardada no solo. Com a regra 'abaixo do mínimo elimina', o motor pode eliminar algodão de sequeiro em Lubbock; o mínimo 'para colher algo' do Texas é 13 in (330 mm).",
     "tmax_critica_c = 38 e temp_otima_min_c = 20 sem fonte americana (mantidos do Brasil). A UGA limita a Tmax do DD60 em 93 °F (33,9 °C).",
     "regua: razão resíduo:pluma 2,6 lida por citação secundária (nota do arquivo do WEPS); conferir no banco do RUSLE2. A produtividade do Texas é do estado todo. C/N estimada (sem medida nos EUA). Decomposição de um estudo, lido só no resumo (local não informado no resumo). Digestibilidade com n = 1 (Feedipedia).",
-    "codigo_nass: 'COTTON, UPLAND' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato; 3021 linhas de 'algodao' em data/eua/nass/producao_condado.csv, 2016-2025). Forma no QuickStats: short_desc 'COTTON, UPLAND - ...' = commodity_desc 'COTTON' + class_desc 'UPLAND' (o Pima fica de fora). A divisão do nome nos campos (commodity_desc etc.) vem do formato do short_desc, não foi conferida campo a campo: o arquivo do time só guarda o short_desc.",
     "calendario_usda: 'Cotton, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). O Handbook não separa o upland ('Cotton, all').",
-    "semeadura_inicio/fim (04-08 a 06-07) = 'most active' do Handbook 628 (2010) no Texas, a região de referência principal (início 22/mar, fim 20/jun). É o estado inteiro: inclui o sul do Texas (março-abril); em Lubbock a semeadura é em maio-junho. Sul da Geórgia, a outra região: 'most active' 2/mai-31/mai (início 23/abr, fim 11/jun). Conferência com cenarios/algodao_gd.json (graus-dia e ciclo NÃO mudados): Lubbock 15/mai e 1/jun dentro da janela do Texas; Tifton 1/mai fica 1 dia antes do 'most active' da Geórgia (dentro do início de 23/abr). Uma janela só não serve bem às duas regiões: se a linha for separada por região, usar a da Geórgia no arranjo."
+    "semeadura_inicio/fim (04-08 a 06-07) = 'most active' do Handbook 628 (2010) no Texas, a região de referência principal (início 22/mar, fim 20/jun). É o estado inteiro: inclui o sul do Texas (março-abril); em Lubbock a semeadura é em maio-junho. A janela do sul da Geórgia ('most active' 2/mai-31/mai; início 23/abr, fim 11/jun; linha algodao,Cotton, all,GA de data/eua/nass/datas_plantio.csv) está em regua.arranjos.georgia (15/11, decisão do usuário, M-06). Conferência com cenarios/algodao_gd.json (graus-dia e ciclo NÃO mudados): Lubbock 15/mai e 1/jun dentro da janela do Texas; Tifton 1/mai fica 1 dia antes do 'most active' da Geórgia (dentro do início de 23/abr). O motor ainda não lê regua.arranjos nem a janela dos grãos: hoje nenhuma das duas janelas filtra Tifton; quando o motor passar a ler, Tifton deve usar a da Geórgia."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",

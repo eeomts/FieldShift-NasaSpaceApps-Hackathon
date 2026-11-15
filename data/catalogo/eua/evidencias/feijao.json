@@ -31,7 +31,7 @@
     "valor_forrageiro": "baixo",
     "codigo_pam": "",
     "nome_zarc": "",
-    "codigo_nass": "BEANS, DRY EDIBLE",
+    "codigo_nass": "BEANS, DRY EDIBLE, INCL CHICKPEAS",
     "calendario_usda": "Beans, dry edible",
     "fontes": "NDSU Carrington Research Extension Center, Dry Edible Bean - Dryland, Variety Trial Data 2018, 2019, 2020, 2022, 2023 e 2025 (dias da semeadura à maturação fisiológica, DAP, e data de semeadura)|NDSU Langdon Research Extension Center, Dry Bean Variety Trial Data 2019, 2020 e 2022 (dias até R9, 80% das vagens amarelas)|Michigan Bean Commission 2023 Research Report (MSU): ensaio estadual de 2022 (Tab. 1 datas de semeadura e GDD base 50 °F; Tab. 5 navy, maturação em DAP) e ensaio de qualidade pinto/preto 2020-2021 (dias até a maturação fisiológica) - só no arranjo regua.arranjos.michigan|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010, 'Beans, dry edible' (semeadura e colheita ND e MI)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/feijao_gd.json (graus-dia sem teto, Tb 10, NASA POWER): máximo no ano e no local de cada ensaio da ND; mínimo pela convenção (mediana 2001-2020 de feijao_langdon_clima_0525_86d); arranjo de Michigan com feijao_pigeon_clima_0617_96d e os ensaios de MI|NDSU Extension, Water Spouts No. 306, ago. 2019 (uso de água do feijão pinto na estação, 15-17 pol.) e No. 311, jul. 2020 (julho+agosto = 12,8 pol., ~70% do total)|CONFERÊNCIA e CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/feijao_etc.json (Kc FAO-56 x ET0 do NASA POWER, 2001-2020): conferência da água na ND; água do arranjo de Michigan (feijao_min_kawkawlin_0605_96d e feijao_kawkawlin_0605_103d)|Yonts, UNL Panhandle REC, Dry Bean Water Management, Central Plains Irrigation Association Proceedings 2006 (16 pol. de água; raízes nos primeiros 18 pol.; conferência, oeste do Nebraska)|High Plains Regional Climate Center (UNL), AWDN crop_drybean (GDD 86/50 por fase; conferência, sem autor nem data)|FAO-56 Tab.11 (fases do feijão seco, clima continental), Tab.12 (Kc; Kc ini do grupo Legumes) e Tab.22 (raiz; limite superior = sequeiro)|Embrapa e ZARC/MAPA, mantidos do Brasil (Tb 10, temperatura ótima, tmax 30 °C na floração, geada; ver data/catalogo/evidencias/feijao.json)|Utah State Univ. Extension, Vegetable Guide, Legumes - Physiological Disorders (queda de flores com +90 °F de dia e 75 °F à noite; conferência americana da tmax)|USDA NASS, Crop Production 2025 Summary (jan. 2026) e 2023 Summary (jan. 2024) (produtividade do feijão seco ND 2021-2025; MI no arranjo)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.1a (R_AG de Beans and Pulses, regra 6 do motor) e Tab. 11.2 (Dry bean, conferência)|Chatterjee & Acharya, Archives of Agronomy and Soil Science 66(5):614-624, 2020 (decomposição no Vale do Red River, ND/MN; lido só o resumo)|Feedipedia (INRAE/CIRAD/AFZ/FAO), Common bean straw, node 12006 (PB e DMO; valores pontuais)|USDA NASS Quick Stats, séries por condado baixadas pelo time em 15/11/2026 (data/scripts/baixar_nass_eua.py; conferência do codigo_nass)|USDA NASS, Handbook 628 (2010), tabela por estado, 'most active' (15-85% semeado), também em data/eua/nass/datas_plantio.csv (janela de semeadura)",
     "confianca_parametros": "media",
@@ -407,6 +407,14 @@
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - North Dakota'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "North Dakota [...] Beans, dry edible ......:    580.0   May 14 May 19 - Jun 6  Jun 13  Aug 30 Sep 7 - Oct 11  Oct 26 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES PLANTED\": 13.499 registros SURVEY (1.365 por condado na Dakota do Norte); séries de produção: \"BEANS, DRY EDIBLE, INCL CHICKPEAS - PRODUCTION, MEASURED IN CWT\". \"BEANS, DRY EDIBLE\" sozinho: só CENSUS (98 registros), nenhum SURVEY (api_GET de \"BEANS, DRY EDIBLE - PRODUCTION, MEASURED IN CWT\" com SURVEY: HTTP 400). \"BEANS, DRY EDIBLE, (EXCL CHICKPEAS) - ACRES PLANTED\" (commodity_desc 'BEANS', class_desc 'DRY EDIBLE, (EXCL CHICKPEAS)'): 437 registros SURVEY (116 por condado na Dakota do Norte)"
     }
   ],
   "regua": {
@@ -473,7 +481,7 @@
       "decomposicao": "k = -ln(0,55)/365 = 0,0016/dia (55% de massa restante após 1 ano na superfície, Chatterjee & Acharya 2020), meia-vida = 0,693/0,0016 = 423 dias. Palhada que sobra em 60 dias: 3,64 x e^(-0,0016 x 60) = 3,30 t/ha. No mesmo ensaio a soja ficou com 74% e o milho com 82%: o feijão decompõe mais rápido que eles.",
       "colheita": "Handbook 628 (2010): ND, semeadura 14/mai-13/jun (mais ativa 19/mai-6/jun), colheita 30/ago-26/out; MI, semeadura 29/mai-28/jun (mais ativa 3-17/jun), colheita 3/set-24/out. Nos ensaios de Carrington a colheita foi de 29/ago a 30/set. Fica fora do ciclo.",
       "forragem": "uso_forrageiro = residual: só restos culturais. A palha tem pouca proteína e digestibilidade abaixo de 60%.",
-      "codigos": "codigo_nass 'BEANS, DRY EDIBLE' (começo comum das séries). A única série do QuickStats conferida pelo time é 'BEANS, DRY EDIBLE, INCL CHICKPEAS - ...' (commodity_desc 'BEANS'; o resto do nome é a classe). Ela inclui o grão-de-bico (outra espécie) e, por condado, só trouxe 2016-2018 no arquivo do time. O codigo_nass 'BEANS, DRY EDIBLE' é o começo comum dessas séries, não uma série exata conferida. Decisão pendente: ver pendências."
+      "codigos": "codigo_nass 'BEANS, DRY EDIBLE, INCL CHICKPEAS' CONFERIDO na API (15/11/2026): é o começo exato das séries SURVEY das pesquisas anuais (ex.: 'BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES PLANTED', 13.499 registros SURVEY, 1.365 por condado na Dakota do Norte; produção: 'BEANS, DRY EDIBLE, INCL CHICKPEAS - PRODUCTION, MEASURED IN CWT'). commodity_desc 'BEANS'; o resto do nome é a classe ('DRY EDIBLE, INCL CHICKPEAS', pela mesma forma da série EXCL CHICKPEAS, cuja class_desc foi lida na API). A série INCLUI o grão-de-bico (Cicer arietinum, outra espécie): área e produção do NASS para o feijão ficam acima das do Phaseolus. Não se usou 'BEANS, DRY EDIBLE, (EXCL CHICKPEAS)' (sem grão-de-bico) porque a série é curta: 437 registros SURVEY, só 116 por condado na Dakota do Norte. O código antigo 'BEANS, DRY EDIBLE' sozinho só existe no CENSUS (98 registros), não no SURVEY. A produtividade usada na palhada vem do Crop Production ('Excludes chickpeas'), não desta série. Decisão do usuário (15/11/2026). calendario_usda 'Beans, dry edible' = linha das tabelas por estado do Handbook 628 (2010)."
     },
     "resultado": {
       "aporte_biomassa": "medio",
@@ -549,6 +557,18 @@
       "antes": "",
       "depois": "05-19 / 06-06",
       "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para North Dakota, lida em data/eua/nass/datas_plantio.csv (linha feijao,Beans, dry edible,ND)."
+    },
+    {
+      "coluna": "regua.observacoes.codigos, pendencias (codigo_nass; valor sem mudança)",
+      "antes": "'Decisão pendente' / 'DECISÃO para o coordenador' (trocar para a série com grão-de-bico ou conferir com NASS_API_KEY)",
+      "depois": "Decidido (15/11, usuário): mantém 'BEANS, DRY EDIBLE', NÃO conferido (a série baixada pelo time é 'BEANS, DRY EDIBLE, INCL CHICKPEAS', que inclui grão-de-bico) até a consulta com a NASS_API_KEY.",
+      "motivo": "Revisão eua-nass-janelas (15/11), 02-arquiteto, pacote 1 (M-01 b/c, A-01): decisão do usuário registrada; a pendência de conferir com a NASS_API_KEY continua."
+    },
+    {
+      "coluna": "codigo_nass, evidencias, regua.observacoes.codigos, pendencias",
+      "antes": "codigo_nass 'BEANS, DRY EDIBLE' (NÃO conferido; mantido até a consulta com a NASS_API_KEY) | pendência: codigo_nass: Decidido (15/11, usuário): mantém 'BEANS, DRY EDIBLE', NÃO conferido (a série baixada pelo time é 'BEANS, DRY EDIBLE, INCL CHIC...",
+      "depois": "codigo_nass 'BEANS, DRY EDIBLE, INCL CHICKPEAS', CONFERIDO na API do QuickStats (15/11/2026); nova pendência curta: a série inclui grão-de-bico",
+      "motivo": "Decisão do usuário (15/11/2026), com a conferência do coordenador na API: 'BEANS, DRY EDIBLE' sozinho só existe no CENSUS (98 registros); 'BEANS, DRY EDIBLE, INCL CHICKPEAS - ACRES PLANTED' tem 13.499 registros SURVEY (1.365 por condado na ND) e é a série das pesquisas anuais baixada pelo time; a alternativa '(EXCL CHICKPEAS)' tem só 437 (116 por condado na ND)."
     }
   ],
   "pendencias": [
@@ -563,7 +583,7 @@
     "regua: palhada pela regra 6 do motor (R_AG = 2,1 da Tab. 11.1a do IPCC, 'Beans and Pulses', que mistura soja, feijão, lentilha, ervilha). A linha 'Dry bean' da Tab. 11.2 (uma fonte só, Ortega 1988, razão 1,6, R² 0,15) daria só 1,3 t/ha na ND (0,36 x 1,73 + 0,68): classe 'baixo'. No arranquio e enleiramento a palha volta picada, frágil e com pouca cobertura. Resolveria: medição americana de resíduo do feijão seco (RUSLE2 ou ensaios da NDSU/MSU).",
     "regua: C/N sem dado americano (o NRCS 2011 não tem feijão; o Brasil mediu 37). k vem de um só ensaio de 1 ano no Vale do Red River (ND/MN), lido só no resumo: 55% de massa restante em 365 dias a partir de 31/out (inclui o inverno, quando quase não decompõe); no verão a perda deve ser mais rápida.",
     "regua: forragem pela Feedipedia (palha de feijão comum; PB n=13; DMO estimada por equação, n=4), base internacional. Não achei análise americana da palha do feijão seco; a UNL (G2036, 2010) analisou a planta inteira de feijão preto depois da geada (PB 9,0%, IVDMD 66,3%), que inclui os grãos e por isso não é o cenário da linha.",
-    "codigo_nass: 'BEANS, DRY EDIBLE' NÃO bate exatamente com a série do QuickStats conferida pelo time (data/scripts/baixar_nass_eua.py; 203 linhas de 'feijao' em data/eua/nass/producao_condado.csv, só 2016-2018): 'BEANS, DRY EDIBLE, INCL CHICKPEAS', que inclui o grão-de-bico (outra espécie). Mantive 'BEANS, DRY EDIBLE' (começo comum das séries de feijão seco; o Crop Production exclui o grão-de-bico). DECISÃO para o coordenador: trocar para 'BEANS, DRY EDIBLE, INCL CHICKPEAS' (a série que o time baixou) ou conferir com NASS_API_KEY se existe a série sem grão-de-bico por estado e usá-la.",
+    "codigo_nass: a área e a produção do NASS para o feijão incluem grão-de-bico ('BEANS, DRY EDIBLE, INCL CHICKPEAS'; a série sem grão-de-bico é curta). Ver regua.observacoes.codigos.",
     "calendario_usda: 'Beans, dry edible' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Não há seção nacional do feijão. Colheita: ND 30/ago-26/out (mais ativa 7/set-11/out); MI 3/set-24/out (mais ativa 12/set-12/out). Fica fora do ciclo.",
     "semeadura_inicio/fim (05-19 a 06-06) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 14/mai, fim 13/jun). Minnesota (estados_validos): 'most active' 14/mai-7/jun. Michigan (regua.arranjos.michigan): 3/jun-17/jun. Bate com cenarios/feijao_gd.json (Carrington e Langdon, 20/mai a 5/jun); em Michigan os cenários de 31/mai e 2/jun ficam poucos dias antes do 'most active' (dentro do início de 29/mai)."
   ],

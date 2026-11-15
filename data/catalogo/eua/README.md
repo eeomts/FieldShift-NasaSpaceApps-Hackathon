@@ -18,9 +18,11 @@ data/catalogo/eua/
 
 Cada agente escreve **só os arquivos da sua cultura**. O CSV é montado depois, por script, sem conflito entre agentes.
 
-Colunas: as do Brasil + `codigo_nass` (commodity no USDA NASS QuickStats, no lugar do `codigo_pam`) e `calendario_usda` (nome da cultura no USDA Agricultural Handbook 628, no lugar do `nome_zarc`). No CSV dos EUA, `codigo_pam` e `nome_zarc` ficam vazios. As colunas de janela, região e texto para o produtor (`semeadura_*`, `manejo_*`, `tipo_manejo`, `condicao_semeadura`, `estados_validos`, `lacuna_informacao`, `risco_revisao_local`) são as mesmas do Brasil e estão descritas em `../evidencias/README.md`; nos EUA, `estados_validos` usa siglas USPS.
+Colunas: as do Brasil + `codigo_nass` (começo do `short_desc` da série no USDA NASS QuickStats, isto é, `commodity_desc` mais a classe ou a utilização, ex.: "CORN, GRAIN"; para filtrar, use `short_desc` começando por esse texto, não `commodity_desc`; no lugar do `codigo_pam`) e `calendario_usda` (nome da cultura no USDA Agricultural Handbook 628, no lugar do `nome_zarc`). No CSV dos EUA, `codigo_pam` e `nome_zarc` ficam vazios. As colunas de janela, região e texto para o produtor (`semeadura_*`, `manejo_*`, `tipo_manejo`, `condicao_semeadura`, `estados_validos`, `lacuna_informacao`, `risco_revisao_local`) são as mesmas do Brasil e estão descritas em `../evidencias/README.md`; nos EUA, `estados_validos` usa siglas USPS.
 
-Nas **coberturas**, `codigo_nass` e `calendario_usda` ficam **vazios**: os códigos do NASS e o Handbook 628 descrevem o grão (ex.: aveia de primavera semeada em março), não a cobertura. A explicação fica em `regua.observacoes.codigos`. Os códigos NASS das demais culturas foram conferidos (15/11) com os `short_desc` do script do time (`data/scripts/baixar_nass_eua.py`) e as séries por condado de `data/eua/nass/`, **exceto amendoim, canola e cevada**, que não estão nessas séries e continuam prováveis até a consulta com a `NASS_API_KEY`. No feijão, a série baixada é "BEANS, DRY EDIBLE, INCL CHICKPEAS" (inclui grão-de-bico); o catálogo mantém "BEANS, DRY EDIBLE". Nas séries por condado do time, `trigo` soma inverno e primavera e `girassol` soma oleícola e confeiteiro. A janela de semeadura dos grãos (`semeadura_inicio/fim`) vem do "most active" do USDA Handbook 628 (2010) no estado de referência (`data/eua/nass/datas_plantio.csv`).
+Nas **coberturas**, `codigo_nass` e `calendario_usda` ficam **vazios**: os códigos do NASS e o Handbook 628 descrevem o grão (ex.: aveia de primavera semeada em março), não a cobertura. A explicação fica em `regua.observacoes.codigos`. Códigos NASS **conferidos na API do QuickStats (15/11/2026)** para as 12 culturas com código: cada `codigo_nass` é o começo exato de séries SURVEY reais, com dados por condado (a divisão em `commodity_desc`, classe e uso está em `regua.observacoes.codigos` de cada cultura). O feijão usa "BEANS, DRY EDIBLE, INCL CHICKPEAS" (decisão do usuário): "BEANS, DRY EDIBLE" sozinho só existe no Censo, e a série sem grão-de-bico é curta; por isso a área e a produção do NASS para o feijão **incluem grão-de-bico**. Nas séries por condado do time (`data/eua/nass/`), `trigo` soma inverno e primavera e `girassol` soma oleícola e confeiteiro.
+
+A janela de semeadura dos grãos (`semeadura_inicio/fim`) é o "most active" (15 a 85% semeado) do USDA Handbook 628 (2010) no estado de referência principal: o que os produtores fazem, não uma recomendação. Vem de `data/eua/nass/datas_plantio.csv`, exceto amendoim (Geórgia) e cevada (Dakota do Norte), lidos direto no texto do Handbook porque não estão nesse arquivo. A canola fica sem janela de propósito (o Handbook só tem a canola de inverno de Oklahoma) e a alfafa é perene. Numa linha com duas regiões, a outra região pode cair fora dessa janela (ex.: algodão, com a janela da Geórgia em `regua.arranjos.georgia`). As janelas dos grãos ficam no CSV como referência: o motor ainda não as usa (só a janela das coberturas entra, na regra 12).
 
 ## Culturas e sistemas
 
@@ -32,14 +34,14 @@ Os sistemas seguem os testes de chat do produtor americano (`docs/NasaSpaceApps-
 | 1 | `soja` | Soybean, sequeiro | Iowa; Delta do Arkansas |
 | 1 | `trigo` | **Hard red winter wheat** (trigo de inverno; o de primavera fica em pendência) | Kansas |
 | 1 | `sorgo` | Grain sorghum, incluindo o double-crop depois do trigo | Kansas; oeste do Texas |
-| 1 | `algodao` | Upland cotton, sequeiro | Oeste do Texas (Lubbock); sul da Geórgia |
+| 1 | `algodao` | Upland cotton, sequeiro | Oeste do Texas (Lubbock); sul da Geórgia (janela da Geórgia em `regua.arranjos.georgia`; ciclo e graus-dia mínimo do Texas, graus-dia máximo e água mínima da Geórgia: separar quando o motor ler arranjos) |
 | 1 | `arroz_irrigado` | Rice, inundado (só candidato com várzea ou irrigação, regra 8) | Delta do Arkansas |
 | 1 | `girassol` | Oilseed sunflower | Dakota do Norte |
 | 1 | `amendoim` | Peanut (runner), em rotação com algodão | Sul da Geórgia |
 | 1 | `centeio` | Cereal rye, cobertura de inverno depois do milho/soja | Iowa |
 | 2 | `aveia` | Oats (*Avena sativa*), cobertura | Corn Belt |
 | 2 | `ervilhaca` | Hairy vetch (*Vicia villosa*), cobertura de inverno antes do milho | Corn Belt (o Sudeste fica em `regua.arranjos.sudeste`) |
-| 2 | `trevo` | Crimson clover (*Trifolium incarnatum*), cobertura | Sudeste |
+| 2 | `trevo` | Crimson clover (*Trifolium incarnatum*), cobertura | Geórgia (Alabama e Tennessee em `regua.arranjos.alabama` e `regua.arranjos.tennessee`) |
 | 2 | `nabo_forrageiro` | Forage/tillage radish, cobertura | Corn Belt |
 | 2 | `alfafa` | Alfalfa hay, perene forrageira: sem ciclo nem graus-dia (padrão da pastagem); água anual | Nebraska (a Califórnia fica em pendência) |
 | 3 | `pastagem` | Tall fescue (*Lolium arundinaceum*), pasto perene forrageira: sem ciclo nem graus-dia; água anual; aviso do fungo em `regua.avisos` | Missouri e Kentucky (mesma faixa do Fescue Belt) |
@@ -51,7 +53,9 @@ Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no B
 
 `arroz_irrigado` entrou em `agroia/base/culturas.json` no commit f910193 (antes era bloqueio do `montar_csv.py`). Quando o produtor escreve só "arroz" ou "rice", o app pede que ele diga se é irrigado ou de terras altas; não decide pelo país.
 
-**Uma linha, uma região.** Quando a mesma espécie tem sistemas diferentes em regiões distantes (ex.: ervilhaca no Corn Belt e no Sudeste), a linha fica com a região de referência e a outra vai para `regua.arranjos.<regiao>` com `estados`, ou para as pendências. `estados_validos` diz onde a linha vale (ex.: trevo-encarnado só no Sudeste).
+**Uma linha, uma região.** Quando a mesma espécie tem sistemas diferentes em regiões distantes (ex.: ervilhaca no Corn Belt e no Sudeste), a linha fica com a região de referência e a outra vai para `regua.arranjos.<regiao>` com `estados`, ou para as pendências. `estados_validos` diz onde a linha vale (ex.: trevo-encarnado só na Geórgia).
+
+**Os arranjos regionais ficam guardados e o motor AINDA NÃO os lê** (trevo AL/TN, feijão MI, ervilhaca Sudeste, cevada MT, algodão GA): um ponto nesses estados vê "sem dado para sua região" (quando a linha tem `estados_validos`) ou os números da linha. Ler os arranjos é a regra 13 completa, ainda a implementar no motor.
 
 ## O que reaproveitar do Brasil
 
@@ -72,7 +76,7 @@ Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no B
 
 | Brasil | EUA |
 |---|---|
-| IBGE PAM (produção e produtividade por município) | USDA NASS QuickStats (por condado), commodity em `codigo_nass` |
+| IBGE PAM (produção e produtividade por município) | USDA NASS QuickStats (por condado); começo do `short_desc` em `codigo_nass` |
 | ZARC/MAPA (janela de plantio e ciclo) | USDA Agricultural Handbook 628; USDA RMA (datas finais de plantio do seguro) |
 | Embrapa (sistemas de produção, circulares) | Extensão das universidades land-grant (Iowa State, K-State, UNL, NDSU, Texas A&M AgriLife, UGA, Univ. of Arkansas) e USDA-ARS |
 | CQBAL (valor nutritivo) | NASEM/NRC (tabelas de alimentos), Dairy One Feed Composition Library, Feedipedia |

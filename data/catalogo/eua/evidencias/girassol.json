@@ -377,6 +377,14 @@
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - North Dakota'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "North Dakota [...] Sunflower, all .........:    868.0   May 14 May 19 - Jun 8  Jun 15  Oct 1  Oct 9 - Nov 10  Nov 23 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"SUNFLOWER, OIL TYPE - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'SUNFLOWER', class_desc 'OIL TYPE', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 661, COUNTY 6113"
     }
   ],
   "regua": {
@@ -415,7 +423,7 @@
       "cobertura": "O resíduo de girassol cobre pouco o solo por unidade de massa: no WEPS o fator massa-cobertura é 2,1 m²/kg, contra 6,5 do trigo (van Donk et al. 2008). Cobertura medida na primavera seguinte, depois da semeadura do trigo, em Mandan: média de 58% (35-87%) quando o girassol foi o segundo cultivo. A NDSU (A1995) recomenda não gradear os talos depois da colheita porque o solo fica 'extremely susceptible to wind and water erosion'. Com o k proxy, a régua dá 5,6 × e^(-0,0052×60) = 4,1 t/ha que sobram em 60 dias (classe 'media'), coerente com os 58% medidos (pela curva de Lopes et al. 1987, 58% de cobertura ≈ 2,9 t/ha).",
       "decomposicao": "WEPS (van Donk et al. 2008, Tab. 1): k do girassol = 0,0250 por 'dia de decomposição' (dia com temperatura e umidade ótimas), o mais alto depois da soja (0,0300) e acima do trigo (0,0133). Não é k por dia de calendário, por isso não entrou no bloco. O valor do bloco é o do Brasil (Marcelo 2012: 0,0042 e 0,0063 → 0,0052; mínimo 0,0041 da Embrapa CT 147; máximo 0,0071 de Teodoro 2019).",
       "colheita": "Handbook 628 (ND): colheita usual de 1/out a 23/nov, 'most active' de 9/out a 10/nov. Nos ensaios da NDSU de 2021-2025 a colheita foi de 17/out a 22/nov, 3 a 8 semanas depois da maturação fisiológica (secagem no campo).",
-      "codigos": "codigo_nass 'SUNFLOWER, OIL TYPE'. short_desc 'SUNFLOWER, OIL TYPE - ...' = commodity_desc 'SUNFLOWER' + class_desc 'OIL TYPE'. Atenção: no arquivo do time (producao_condado.csv) a cultura 'girassol' soma o oleícola com o confeiteiro ('SUNFLOWER, NON-OIL TYPE'); para esta linha use só a série OIL TYPE. Conferido em 15/11 na série baixada pelo time (data/scripts/baixar_nass_eua.py)."
+      "codigos": "codigo_nass 'SUNFLOWER, OIL TYPE' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'SUNFLOWER, OIL TYPE - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'SUNFLOWER', class_desc 'OIL TYPE', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 661, COUNTY 6113. Série de produção: 'SUNFLOWER, OIL TYPE - PRODUCTION, MEASURED IN LB'. Atenção: no arquivo do time (data/eua/nass/producao_condado.csv) a cultura 'girassol' soma o oleícola com o confeiteiro ('SUNFLOWER, NON-OIL TYPE'); para esta linha use só a série OIL TYPE."
     },
     "resultado": {
       "aporte_biomassa": "medio",
@@ -491,6 +499,12 @@
       "antes": "",
       "depois": "05-19 / 06-08",
       "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para North Dakota, lida em data/eua/nass/datas_plantio.csv (linha girassol,Sunflower, all,ND)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'SUNFLOWER, OIL TYPE' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo s... | observacoes.codigos: codigo_nass 'SUNFLOWER, OIL TYPE'. short_desc 'SUNFLOWER, OIL TYPE - ...' = commodity_desc 'SUNFLOWER' + class_desc 'OIL...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'SUNFLOWER, OIL TYPE - ACRES PLANTED', registros SURVEY: STATE 661, COUNTY 6113; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
     }
   ],
   "pendencias": [
@@ -502,7 +516,6 @@
     "raiz_profunda = false segue o Brasil (a raiz não rompe camada compactada). A NDSU destaca a raiz profunda (efetiva ~4 ft, tira água e nitrato abaixo de 2 ft); se a coluna for usada como 'explora camadas profundas', rever.",
     "temp_otima_min_c, temp_otima_max_c e tmax_critica_c: sem fonte americana; reusados do Brasil.",
     "DECISÃO (revisão de 15/11, do arquiteto, aceita pelo usuário): a palhada fica a massa medida em Mandan-ND (van Donk et al. 2008), típico 5,6 t/ha, faixa 3,6-8,5, classe 'medio'. A regra 6 do motor só escala a palhada pelo IPCC na soja, no milho, no trigo, no arroz e no sorgo; nas demais culturas vale o típico do bloco regua. O método razão × NASS (3,84 × mediana de 2,13 t/ha = 8,2 t/ha, classe 'alto') fica só como conferência em regua.observacoes.coleta. Continua fraco: C/N, k, PB e digestibilidade são PROXY (Brasil e Feedipedia), sem dado dos EUA; o k do WEPS (0,025) é por dia de decomposição ótimo, não por dia de calendário.",
-    "codigo_nass: 'SUNFLOWER, OIL TYPE' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato; 211 linhas de 'girassol' em data/eua/nass/producao_condado.csv, 2016-2025). Forma no QuickStats: short_desc 'SUNFLOWER, OIL TYPE - ...' = commodity_desc 'SUNFLOWER' + class_desc 'OIL TYPE'. Atenção: no arquivo do time (producao_condado.csv) a cultura 'girassol' soma o oleícola com o confeiteiro ('SUNFLOWER, NON-OIL TYPE'); para esta linha use só a série OIL TYPE. A divisão do nome nos campos (commodity_desc etc.) vem do formato do short_desc, não foi conferida campo a campo: o arquivo do time só guarda o short_desc.",
     "calendario_usda: 'Sunflower, all' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). Oleícola e confeiteiro juntos ('Sunflower, all').",
     "semeadura_inicio/fim (05-19 a 06-08) = 'most active' do Handbook 628 (2010) na Dakota do Norte (início 14/mai, fim 15/jun), oleícola e confeiteiro juntos. Bate com cenarios/girassol_gd.json (semeaduras de 19/mai a 6/jun)."
   ],

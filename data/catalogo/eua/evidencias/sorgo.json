@@ -419,6 +419,14 @@
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Kansas'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "Kansas [...] Sorghum for grain ......:   2,550    May 5  May 15 - Jun 20 Jul 15  Sep 10 Sep 25 - Nov 10 Nov 25 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"SORGHUM, GRAIN - ACRES HARVESTED\" (2023, NATIONAL): commodity_desc 'SORGHUM', class_desc 'ALL CLASSES', util_practice_desc 'GRAIN', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA HARVESTED', unit_desc 'ACRES'; registros SURVEY: STATE 2454, COUNTY 56339"
     }
   ],
   "regua": {
@@ -456,7 +464,7 @@
       "coleta": "Palhada = resíduo acima do solo depois da colheita, pela Tab. 11.2 do IPCC 2019 para Sorghum: AGDM = 0,88 × Crop + 1,33 (t MS/ha), com Crop = produtividade × 0,0628 (bu/acre -> t/ha, 56 lb/bu) × 0,89 (DRY, Tab. 11.1a). Produtividade NASS 2021-2025: Kansas 78, 39, 52, 65, 90; Texas 61, 53, 49, 62, 53 bu/acre. Mediana dos 10 estado-anos = 57 bu/acre -> Crop 3,19 t MS/ha -> 4,1 t/ha (típico). Mínimo = Kansas 2022 (39 bu/acre, seca) -> 3,2; máximo = Kansas 2025 (90) -> 5,8. O R² da regressão do IPCC para o sorgo é baixo (0,36). Não desconta o pastejo do restolho. C/N, todos com N medido e C assumido em 40%: 21,3 (Ghidey & Alberts, Missouri, resíduo colhido na senescência), 33 (Schomberg & Steiner, Bushland: N inicial 12,2 g/kg -> 400/12,2 = 33, conta minha), 53 (Ma et al., Colorado). Típico = 33 (a mediana, do local mais próximo da região de referência). No Brasil o típico era 66.",
       "decomposicao": "k em dia⁻¹, um por estudo: Schomberg & Steiner 1999 (Bushland-TX, superfície): 2,0 g kg⁻¹ d⁻¹ = 0,0020; Ghidey & Alberts 1993 (Missouri, superfície): 66% perdidos em 1 ano -> k = -ln(0,34)/365 = 0,0030. Valor = média dos dois = 0,0025; T½ = 0,693/0,0025 = 277 d. Palhada que sobra em 60 dias: 4,1 × e^(-0,0025×60) = 3,5 t/ha. Ma et al. 1999 (Colorado) só dão k em graus-dia (0,000361 por grau-dia, todas as culturas juntas), não usado.",
       "colheita": "Colheita típica (Handbook 628): Kansas início 10/set, 'most active' 25/set-10/nov, fim 25/nov; Texas 'most active' 8/jul-16/nov (o sul do Texas semeia em março). A colheita vem semanas depois da maturação fisiológica: o grão sai de 25-40% de umidade na camada preta (K-State C-687) e perde ~0,7% ao dia (K-State MF3046, Manhattan 2019); muitos produtores esperam a geada para secar a planta.",
-      "codigos": "codigo_nass 'SORGHUM, GRAIN'. short_desc 'SORGHUM, GRAIN - ACRES HARVESTED' e 'SORGHUM, GRAIN - PRODUCTION, MEASURED IN BU' = commodity_desc 'SORGHUM' + util_practice_desc 'GRAIN'. A área plantada só existe como 'SORGHUM - ACRES PLANTED' (inclui a silagem). Conferido em 15/11 na série baixada pelo time (data/scripts/baixar_nass_eua.py)."
+      "codigos": "codigo_nass 'SORGHUM, GRAIN' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'SORGHUM, GRAIN - ACRES HARVESTED' (2023, NATIONAL) = commodity_desc 'SORGHUM', class_desc 'ALL CLASSES', util_practice_desc 'GRAIN', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 2454, COUNTY 56339. Série de produção: 'SORGHUM, GRAIN - PRODUCTION, MEASURED IN BU'. A área plantada só existe como 'SORGHUM - ACRES PLANTED' (sem GRAIN; inclui a silagem)."
     },
     "resultado": {
       "aporte_biomassa": "medio",
@@ -520,6 +528,12 @@
       "antes": "",
       "depois": "05-15 / 06-20",
       "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Kansas, lida em data/eua/nass/datas_plantio.csv (linha sorgo,Sorghum for grain,KS)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'SORGHUM, GRAIN' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_... | observacoes.codigos: codigo_nass 'SORGHUM, GRAIN'. short_desc 'SORGHUM, GRAIN - ACRES HARVESTED' e 'SORGHUM, GRAIN - PRODUCTION, MEASURED IN ...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'SORGHUM, GRAIN - ACRES HARVESTED', registros SURVEY: STATE 2454, COUNTY 56339; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
     }
   ],
   "pendencias": [
@@ -529,7 +543,6 @@
     "temp_base_c: mantido 10 °C (Gerik et al., 50 °F). A K-State MF3740 (2026) usa 46 °F (7,8 °C) para o sorgo; com Tb 7,8 a exigência seria outra.",
     "agua_ciclo_mm_max 686 vem do sorgo irrigado em Bushland-TX (norte do Texas, Panhandle), não de Lubbock; o guia diz que a demanda cai para o norte do oeste do Texas, então em Lubbock pode ser um pouco maior. Valores de extensão; não refiz com etc_nasa_power.py.",
     "regua: C/N com C assumido (40%) em todas as fontes; só dois estudos de decomposição (Texas e Missouri), um lido só pelo resumo. A IVDMD do restolho é média simples de folha e colmo (a UNL não dá a proporção) e sem n.",
-    "codigo_nass: 'SORGHUM, GRAIN' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato; 1210 linhas de 'sorgo' em data/eua/nass/producao_condado.csv, 2016-2025). Forma no QuickStats: short_desc 'SORGHUM, GRAIN - ACRES HARVESTED' e 'SORGHUM, GRAIN - PRODUCTION, MEASURED IN BU' = commodity_desc 'SORGHUM' + util_practice_desc 'GRAIN'. A área plantada só existe como 'SORGHUM - ACRES PLANTED' (inclui a silagem). A divisão do nome nos campos (commodity_desc etc.) vem do formato do short_desc, não foi conferida campo a campo: o arquivo do time só guarda o short_desc.",
     "temp_otima_min_c 22 e temp_otima_max_c 34: sem fonte americana, mantidos do Brasil (Embrapa 2015 e FAO ECOCROP; fisiologia da espécie). Nas fontes dos EUA lidas (Gerik et al. B-6137, K-State MF3740, Texas A&M SCSC-2026-09) só há a Tb, o teto de 100 °F do cálculo de graus-dia e o ideal de 70 °F para germinação. tmax_critica_c 36 = dano ao pólen do emborrachamento à floração, agora com fonte americana (Texas A&M SCSC-2026-09: ~97 °F = 36,1 °C, citando Djanaguiraman et al. 2018, K-State); o artigo de Djanaguiraman não foi lido. Resolveria a faixa ótima: tabela de temperatura ótima de crescimento de um manual da K-State ou da Texas A&M.",
     "graus_dia_min (revisão do lote 3, 15/11): 1280 segue a convenção (Manhattan 25/mai + ciclo_dias_min 84 d, mediana 1284) e fica ~210 °C·dia abaixo da exigência do híbrido curto de Gerik et al. convertida no POWER (1490-1504, atingida em 88-98 dias). O ciclo de 84-85 d foi medido num só ano (2010, quente). Resolveria: dias até a camada preta do híbrido precoce em mais anos no Kansas (ensaios de híbridos da K-State).",
     "calendario_usda: 'Sorghum for grain' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass).",

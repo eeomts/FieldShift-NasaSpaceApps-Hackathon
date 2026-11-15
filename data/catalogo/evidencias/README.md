@@ -89,7 +89,7 @@ Valem para os dois catálogos (Brasil e EUA). Vazias = "não sei" (ou "sem restr
 
 | Coluna | Formato | O que é |
 |---|---|---|
-| `semeadura_inicio`, `semeadura_fim` | `MM-DD` | Janela de semeadura recomendada na região de referência, com fonte. **Obrigatória nas coberturas** (sem `comercial`) |
+| `semeadura_inicio`, `semeadura_fim` | `MM-DD` | Janela de semeadura recomendada na região de referência, com fonte. **Obrigatória nas coberturas** (sem `comercial`). Nos grãos dos EUA, é o "most active" (15 a 85% semeado) do USDA Handbook 628: o que os produtores fazem, não uma recomendação |
 | `manejo_inicio`, `manejo_fim` | `MM-DD` | Janela de manejo (dessecação, rolagem, corte) ou data típica da morte pelo frio |
 | `tipo_manejo` | `dessecacao`, `morte_pelo_frio`, `rolagem`, `corte` ou vazio | Como a cobertura termina |
 | `condicao_semeadura` | lista com `\|`: `apos_colheita_graos`, `apos_cereal_inverno`, `apos_silagem`, `a_lanco_lavoura_em_pe` | Depois de quê a cobertura pode ser semeada na janela |
@@ -126,6 +126,6 @@ Calculada por `../scripts/regua.py` a partir do bloco `regua` de cada arquivo (`
 **Campos extras do bloco `regua`**
 - `excecoes`: valor que vence a régua quando a fonte diz outra coisa (algodão: restos destruídos por lei; mandioca: "não devolve quase nada ao solo"; crotalária: tóxica e recusada pelo animal).
 - `arranjos` (pastagem): MS de cada arranjo. A linha usa a braquiária solteira; o consórcio com milho safrinha fica guardado para o motor usar quando a rotação for de integração lavoura-pecuária.
-- `arranjos` regionais (ex.: `regua.arranjos.sudeste` da ervilhaca, `regua.arranjos.michigan` do feijão nos EUA): a linha vale para a região de referência; o arranjo guarda os números de outra região (ciclo, graus-dia, água e palhada, quando houver, com `origem` de cada número pelos mesmos tipos da tabela de Confiança) e `estados` como texto com `|` (ex.: `"MI"`, `"GA|AL"`), no mesmo formato de `estados_validos`, para o motor usar quando o ponto estiver nela.
+- `arranjos` regionais (ex.: `regua.arranjos.sudeste` da ervilhaca, `regua.arranjos.michigan` do feijão nos EUA): a linha vale para a região de referência; o arranjo guarda os números de outra região (ciclo, graus-dia, água e palhada, quando houver, com `origem` de cada número pelos mesmos tipos da tabela de Confiança) e `estados` como texto com `|` (ex.: `"MI"`, `"GA|AL"`), no mesmo formato de `estados_validos`, para o motor usar quando o ponto estiver nela, quando ele passar a ler arranjos (ainda não lê).
 - `avisos`: texto curto (até 200 caracteres, linguagem do produtor) por coluna qualitativa, ex.: `{"valor_forrageiro": "Atenção: ..."}`. É para um risco que a classe sozinha esconde (ex.: o fungo da festuca, que intoxica o gado, numa forragem "alta"). O `regua.py` não mexe nesta chave. Ver a regra 16.
 - `detalhe.depende_da_epoca`: `true` quando o mínimo e o máximo da faixa caem em classes diferentes. Na tela, mostre a classe **junto com a faixa** e o aviso "depende da época" (não só no detalhe).

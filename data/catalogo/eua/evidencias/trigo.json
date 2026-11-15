@@ -394,6 +394,14 @@
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Kansas'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "Kansas [...] Wheat, winter ..........:   8,800    Sep 10 Sep 15 - Oct 20 Nov 1   Jun 15 Jun 20 - Jul 5  Jul 15 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"WHEAT, WINTER - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'WHEAT', class_desc 'WINTER', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 6059, COUNTY 130218"
     }
   ],
   "regua": {
@@ -431,7 +439,7 @@
       "coleta": "Palhada = resíduo acima do solo depois da colheita, pela Tab. 11.2 do IPCC 2019 para Winter wheat: AGDM = 1,61 × Crop + 0,40 (t MS/ha), com Crop = produtividade × 0,0673 (bu/acre -> t/ha, 60 lb/bu) × 0,89 (DRY, Tab. 11.1a). Produtividade NASS do trigo de inverno no Kansas, 2021-2025: 52, 37, 35, 43 e 51 bu/acre; mediana 43 -> Crop 2,58 t MS/ha -> 4,5 t/ha (típico). Mínimo = 2023 (35 bu/acre) -> 3,8; máximo = 2021 (52) -> 5,4. Mesmo critério de unidade do milho (o intercepto só faz sentido em t/ha). Não desconta o enfardamento da palha nem o pastejo do restolho. No oeste do Kansas o trigo vem antes de um pousio (trigo-pousio ou trigo-sorgo-pousio) e a palha fica no campo por 10-14 meses. C/N: 80 (NRCS, tabela nacional, sem n), 74,1 (Ghidey & Alberts, N medido e C assumido em 40%), 81 (Ma et al., Colorado, estimado do N), 105 (Rogers et al., trigo duro vermelho em Idaho). Típico = 80.",
       "decomposicao": "k em dia⁻¹, um valor por estudo: Schomberg & Steiner 1999 (Bushland-TX, trigo de inverno na superfície): 1,1 g kg⁻¹ d⁻¹ = 0,0011; Ghidey & Alberts 1993 (Missouri, superfície): 36% perdidos em 1 ano -> k = -ln(0,645)/365 = 0,0012; Stott et al. 1990: 35-42% perdidos em 30 semanas -> k = -ln(0,65)/210 = 0,0021 a -ln(0,58)/210 = 0,0026; Rogers et al. 2025 (Idaho): 0,00075. Valor = mediana dos quatro estudos (0,00075; 0,0011; 0,0012; 0,0023 = meio de Stott) = 0,00115; T½ = 0,693/0,00115 = 603 d. Mínimo = Rogers (0,00075), máximo = Stott (0,0026). Palhada que sobra em 60 dias: 4,5 × e^(-0,00115×60) = 4,2 t/ha. A palha de trigo decompõe bem mais devagar nos EUA do que em Londrina-PR (0,0047 no Brasil).",
       "colheita": "Colheita típica (Handbook 628, Kansas): início 15/jun, 'most active' 20/jun-5/jul, fim 15/jul. A maturação fisiológica vem cerca de 2 semanas antes (Kansas Mesonet), com o grão secando de 30-35% para 12-13% de umidade (C-529).",
-      "codigos": "codigo_nass 'WHEAT, WINTER'. short_desc 'WHEAT, WINTER - ...' = commodity_desc 'WHEAT' + class_desc 'WINTER'. Atenção: no arquivo do time (producao_condado.csv) a cultura 'trigo' soma o de inverno com o de primavera ('WHEAT, SPRING, (EXCL DURUM)'); para esta linha use só a série de inverno. Conferido em 15/11 na série baixada pelo time (data/scripts/baixar_nass_eua.py)."
+      "codigos": "codigo_nass 'WHEAT, WINTER' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'WHEAT, WINTER - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'WHEAT', class_desc 'WINTER', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 6059, COUNTY 130218. Série de produção: 'WHEAT, WINTER - PRODUCTION, MEASURED IN BU'. Atenção: no arquivo do time (data/eua/nass/producao_condado.csv) a cultura 'trigo' soma o de inverno com o de primavera ('WHEAT, SPRING, (EXCL DURUM)'); para esta linha use só a série WINTER."
     },
     "resultado": {
       "aporte_biomassa": "medio",
@@ -483,6 +491,12 @@
       "antes": "",
       "depois": "09-15 / 10-20",
       "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Kansas, lida em data/eua/nass/datas_plantio.csv (linha trigo,Wheat, winter,KS)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'WHEAT, WINTER' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_d... | observacoes.codigos: codigo_nass 'WHEAT, WINTER'. short_desc 'WHEAT, WINTER - ...' = commodity_desc 'WHEAT' + class_desc 'WINTER'. Atenção: n...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'WHEAT, WINTER - ACRES PLANTED', registros SURVEY: STATE 6059, COUNTY 130218; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
     }
   ],
   "pendencias": [
@@ -495,7 +509,6 @@
     "agua_ciclo_mm: 16-24 pol. é número de extensão (C-529, 1997), sem a conta do clima de cada região do Kansas. Não refiz com etc_nasa_power.py: o ciclo com dormência pediria fases de Kc próprias do Kansas que não achei (FAO-56 Tab. 11 tem Idaho, 160/75/75/25 dias). Um cenário Kc × ET0 em Garden City conferiria o máximo.",
     "kc_inicial 0,4 (solo congelado) vale para o noroeste e o centro do Kansas; no sul (Oklahoma, norte do Texas) com inverno sem solo congelado o FAO-56 dá 0,7.",
     "regua: nenhum estudo de decomposição no Kansas; as quatro fontes de k são do Texas, Missouri, Idaho e de vários estados (três lidas só pelo resumo). Digestibilidade sem n. A palhada não desconta o enfardamento. O pastejo do trigo no outono-inverno (duplo propósito) não entrou no valor forrageiro.",
-    "codigo_nass: 'WHEAT, WINTER' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato; 8513 linhas de 'trigo' em data/eua/nass/producao_condado.csv, 2016-2025). Forma no QuickStats: short_desc 'WHEAT, WINTER - ...' = commodity_desc 'WHEAT' + class_desc 'WINTER'. Atenção: no arquivo do time (producao_condado.csv) a cultura 'trigo' soma o de inverno com o de primavera ('WHEAT, SPRING, (EXCL DURUM)'); para esta linha use só a série de inverno. A divisão do nome nos campos (commodity_desc etc.) vem do formato do short_desc, não foi conferida campo a campo: o arquivo do time só guarda o short_desc. calendario_usda: ver a pendência própria.",
     "calendario_usda: 'Wheat, winter' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass).",
     "semeadura_inicio/fim (09-15 a 10-20) = 'most active' do Handbook 628 (2010) no Kansas (início 10/set, fim 1/nov). Bate com cenarios/trigo_gd.json (semeaduras de 15/set em Colby, 1/out em Hays e 20/out em Hutchinson)."
   ],

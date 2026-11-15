@@ -372,6 +372,12 @@
         "manejo_inicio": "03-08",
         "manejo_fim": "04-24",
         "tipo_manejo": "dessecacao",
+        "origem": {
+          "ms_palhada_t_ha": "publicado",
+          "ciclo_dias": "publicado",
+          "graus_dia_ciclo": "calculo",
+          "agua_ciclo_mm": "calculo"
+        },
         "nota": "Ervilhaca antes do milho na Geórgia (Coastal Plain e Piedmont), números que estavam na linha até 15/11 (revisão A-05). Semeadura 'Sept 15-Nov 1' no Coastal Plain e 'Sept 15-Oct 15' no Piedmont (SARE Southeast, Tab. 5.4); manejo = semeadura do milho na Geórgia (Handbook 628: 22/mar a 4/mai) menos 14 ou 10 dias. Ciclo 127 d (1/nov -> 8/mar) a 221 d (15/set -> 24/abr). Graus-dia (Tb 4, sem teto, POWER 2001-2020): mínimo Watkinsville 15/out -> 8/mar mediana 751 -> 750 (Tifton 1/nov -> 8/mar: 999); máximo Tifton 15/set -> 24/abr 2400. Água (mesma curva PROXY, fases do trigo 'Mediterranean'): Watkinsville 112 mm -> 110; Tifton 451 -> 455. Palhada: UGA C1077, média do Coastal Plain 3300 lb/acre = 3,70 t/ha e do Piedmont 4400 = 4,93 (típico = mediana 4,32); máximo do Piedmont 6300 = 7,06. Sem k medido no Sudeste (usar o da linha; o clima quente e úmido acelera a decomposição). Antes do algodão o manejo é mais tardio (meados de abril, SARE MCCP). Cenários: ervilhaca_tifton_* e ervilhaca_watkinsville_* em eua/cenarios/ervilhaca_{gd,etc}.json."
       }
     }
@@ -496,6 +502,12 @@
       "antes": "",
       "depois": "textos para o produtor",
       "motivo": "Revisão de 15/11, M-11: obrigatórios com confiança baixa."
+    },
+    {
+      "coluna": "regua.arranjos.sudeste.origem",
+      "antes": "",
+      "depois": "{\"ms_palhada_t_ha\": \"publicado\", \"ciclo_dias\": \"publicado\", \"graus_dia_ciclo\": \"calculo\", \"agua_ciclo_mm\": \"calculo\"}",
+      "motivo": "Revisão de 15/11 (pacote 4, B-03): o arranjo não tinha a origem de cada número (evidencias/README.md, arranjos regionais). Números não mudaram. ciclo_dias = publicado (semeadura da Tab. 5.4 do SARE Southeast e manejo = semeadura do milho do Handbook 628 menos 10-14 dias do NRCS, mesma classe do ciclo da linha); graus_dia_ciclo = calculo (gd_nasa_power.py, eua/cenarios/ervilhaca_gd.json); agua_ciclo_mm = calculo (etc_nasa_power.py, eua/cenarios/ervilhaca_etc.json, curva de Kc PROXY como na linha); ms_palhada_t_ha = publicado (UGA C1077, Tab. 1: tabela oficial da extensão com a média e a máxima de biomassa relatadas para a ervilhaca por região do Sudeste; não é um ensaio com locais e anos declarados, por isso não é medido, e não é estudo único). Mesmo padrão de trevo.json (alabama, tennessee) e feijao.json (michigan)."
     }
   ],
   "pendencias": [

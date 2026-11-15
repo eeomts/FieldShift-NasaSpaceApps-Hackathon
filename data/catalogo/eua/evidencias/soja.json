@@ -347,6 +347,14 @@
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Iowa'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "Iowa [...] Soybeans ...............:   9,530    May 2  May 8 - Jun 2   Jun 16  Sep 21 Sep 28 - Oct 20 Oct 31 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"SOYBEANS - ACRES PLANTED\" (2023, NATIONAL): commodity_desc 'SOYBEANS', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA PLANTED', unit_desc 'ACRES'; registros SURVEY: STATE 4182, COUNTY 94050"
     }
   ],
   "regua": {
@@ -384,7 +392,7 @@
       "coleta": "Palhada = resíduo acima do solo depois da colheita, pela Tab. 11.2 do IPCC 2019: AGDM = 0,93 × Crop + 1,35 (t MS/ha), com Crop = produtividade × 0,0673 (bu/acre -> t/ha, 60 lb/bu) × 0,91 (DRY, Tab. 11.1a). Produtividade NASS de IA e AR em 2021-2025 (10 estado-anos: IA 63,0; 58,5; 58,0; 60,0; 63,5 e AR 52,0; 52,0; 54,0; 55,0; 55,0 bu/acre): mediana 56,5 -> Crop 3,46 t MS/ha -> 4,6 t/ha (típico). Mínimo = AR 2021/2022 (52,0) -> 4,3; máximo = IA 2025 (63,5) -> 5,0. Conferência: ~4 Mg/ha/ano medidos em Morris-MN (Ojekanmi & Johnson 2021). Não desconta o pastejo. C/N: não achei medição americana lida para o resíduo inteiro (a K-State cita 15:1 e o Manitoba 65:1, só vistos em resultados de busca); ficou vazio.",
       "decomposicao": "k = -ln(fração restante)/dias, com 1 ano = 365 d (Ghidey & Alberts 1993): superfície 66% de perda -> -ln(0,34)/365 = 0,0030/dia (valor), T½ = 0,693/0,00296 = 234 d; acima da superfície (em pé) 37% -> 0,0013 (mín.); enterrado 79% -> 0,0043 (máx., outra posição, só referência). No mesmo ensaio o milho perdeu a mesma fração na superfície (66%), e o k do milho em Ames (Al-Kaisi & Guzman 2013, linha do milho) é 0,0027: no inverno do Corn Belt a soja não decompõe muito mais rápido que o milho, ao contrário do Cerrado (k 0,0137 no Brasil). Palhada que sobra em 60 dias: 4,6 × e^(-0,0030×60) = 3,8 t/ha.",
       "colheita": "Handbook 628 (2010): colheita em Iowa 28/set-20/out e no Arkansas 29/set-13/nov (15-85%). R8 ~1 semana depois de R7 (FSA2194); grão a 13% ~12 dias depois de R7 (ISU 2017). Não entra no ciclo.",
-      "codigos": "codigo_nass 'SOYBEANS'. short_desc 'SOYBEANS - ...' = commodity_desc 'SOYBEANS', sem classe nem utilização no nome. Conferido em 15/11 na série baixada pelo time (data/scripts/baixar_nass_eua.py)."
+      "codigos": "codigo_nass 'SOYBEANS' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'SOYBEANS - ACRES PLANTED' (2023, NATIONAL) = commodity_desc 'SOYBEANS', class_desc 'ALL CLASSES', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 4182, COUNTY 94050. Série de produção: 'SOYBEANS - PRODUCTION, MEASURED IN BU'."
     },
     "resultado": {
       "aporte_biomassa": "medio",
@@ -424,6 +432,12 @@
       "antes": "",
       "depois": "05-08 / 06-02",
       "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Iowa, lida em data/eua/nass/datas_plantio.csv (linha soja,Soybeans,IA)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'SOYBEANS' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc e... | observacoes.codigos: codigo_nass 'SOYBEANS'. short_desc 'SOYBEANS - ...' = commodity_desc 'SOYBEANS', sem classe nem utilização no nome. Conf...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'SOYBEANS - ACRES PLANTED', registros SURVEY: STATE 4182, COUNTY 94050; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
     }
   ],
   "pendencias": [
@@ -434,7 +448,6 @@
     "agua_ciclo_mm_min: 500 mm (20 in) é do Arkansas para 40-50 bu/acre; em Iowa a ISU dá 21,5-22,3 in (546-566). A conferência Kc × ET0 deu menos no norte de Iowa (Nashua, ciclo de 118 dias: média 437 mm, P90 529) e mais no Delta (588). Se o coordenador preferir o cálculo, a faixa seria ~430-590 mm (origem: calculo).",
     "temp_otima_min_c = 20 sem fonte americana (APSIM só dá base, ótima e máxima).",
     "regua: C/N vazio (sem medição americana lida). O k vem de um só ensaio (Missouri, 1993), lido só no resumo do AGRIS (sem o mês de instalação); o Chatterjee & Acharya 2020 (Vale do Red River, ND/MN: soja com 74% da massa depois de 1 ano) só foi visto em resultado de busca. A digestibilidade é da dieta selecionada (OMD), sem n. Resolveria: Kochsiek et al. 2013 (SSSAJ, Mead-NE, sacolas de soja e milho por 3 anos) ou o texto completo de Ghidey & Alberts.",
-    "codigo_nass: 'SOYBEANS' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato; 12616 linhas de 'soja' em data/eua/nass/producao_condado.csv, 2016-2025). Forma no QuickStats: short_desc 'SOYBEANS - ...' = commodity_desc 'SOYBEANS', sem classe nem utilização no nome. A divisão do nome nos campos (commodity_desc etc.) vem do formato do short_desc, não foi conferida campo a campo: o arquivo do time só guarda o short_desc.",
     "calendario_usda: 'Soybeans' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto. A tabela de 2010 do Arkansas (semeadura 5/mai-22/jun) inclui a soja depois do trigo e já está defasada: o Handbook do Arkansas (2014) diz que a semeadura antecipa ~1 dia por ano desde 1985.",
     "semeadura_inicio/fim (05-08 a 06-02) = 'most active' do Handbook 628 (2010) em Iowa (início 2/mai, fim 16/jun). Delta do Arkansas, a outra região de referência: 'most active' 5/mai-22/jun (início 19/abr, fim 5/jul), com a soja depois do trigo junto. DIVERGÊNCIA com cenarios/soja_gd.json (graus-dia e ciclo NÃO mudados): os cenários 'início de maio' de Iowa semeiam em 4-6/mai, poucos dias antes da janela (dentro do início de 2/mai); os do Arkansas semeiam em 15/mar e 5/abr (antes do início de 19/abr do Handbook, que está defasado, ver o Handbook do Arkansas de 2014) e em 15/jun (dentro)."
   ],

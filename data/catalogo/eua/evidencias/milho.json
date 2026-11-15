@@ -389,6 +389,14 @@
       "fonte": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), 29/10/2010, tabela 'Usual Planting and Harvesting Dates by Crop - Iowa'; a mesma linha está em data/eua/nass/datas_plantio.csv (gerado pelo time com data/scripts/preparar_datas_plantio_eua.py)",
       "url": "https://esmis.nal.usda.gov/sites/default/release-files/vm40xr56k/dv13zw65p/z603r1055/planting-10-29-2010.txt",
       "trecho": "Iowa [...] Corn for grain .........:  13,400    Apr 19 Apr 25 - May 18 May 26  Sep 21 Oct 5 - Nov 9   Nov 21 [...] The \"most active\" range indicates when between 15 and 85 percent of the crop is planted or harvested."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"CORN, GRAIN - ACRES HARVESTED\" (2023, NATIONAL): commodity_desc 'CORN', class_desc 'ALL CLASSES', util_practice_desc 'GRAIN', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA HARVESTED', unit_desc 'ACRES'; registros SURVEY: STATE 9613, COUNTY 190948"
     }
   ],
   "regua": {
@@ -425,7 +433,7 @@
     "observacoes": {
       "coleta": "Palhada = resíduo acima do solo depois da colheita do grão, pela Tab. 11.2 do IPCC 2019: AGDM = 1,03 × Crop + 0,61 (t MS/ha), com Crop = produtividade × 0,0628 (bu/acre -> t/ha, 56 lb/bu) × 0,87 (DRY do IPCC, Tab. 11.1a). Produtividade NASS de IA e IL em 2023-2025: média 209,8 bu/acre -> Crop 11,46 t MS/ha -> 12,4 t/ha (típico). Mínimo = Iowa 2023 (201 bu/acre) -> 11,9; máximo = Illinois 2024 (217) -> 12,8. Com 150 bu/acre daria 9,1 t/ha. O cabeçalho da Tab. 11.2 de 2019 diz kg MS/ha, mas o intercepto 0,61 só faz sentido em t/ha (como nas Diretrizes de 2006): usei t/ha. Não desconta a retirada de palha (enfardamento) nem o pastejo. C/N: 47,0 e 47,1 medidas em folhas e colmos frescos em Ames (Al-Kaisi & Guzman 2013) e 57 do NRCS (2011, tabela nacional, sem n); típico = a medida em Iowa.",
       "decomposicao": "k = constante de primeira ordem ajustada pelos autores para o resíduo na superfície (plantio direto) em Ames-IA: 0,0032 (2005), 0,0022 (2006) e 0,0027 (2007) por dia; valor = 0,0027 (mediana), T½ = 0,693/0,0027 = 257 d (o artigo dá 256). Conferência pelas massas: 34-49% restantes depois de 12 meses -> k = -ln(0,34)/365 = 0,0030 e -ln(0,49)/365 = 0,0020. Nos 3 primeiros meses depois da colheita (o horizonte de 60 dias da régua cai no inverno de Iowa): perdas de 11-22% (2005) e 12-26% (2006) -> k = 0,0013-0,0033; 43% em 2007 (março quente) -> 0,0062. Palhada que sobra em 60 dias: 12,4 × e^(-0,0027×60) = 10,6 t/ha.",
-      "codigos": "codigo_nass 'CORN, GRAIN'. short_desc 'CORN, GRAIN - ACRES HARVESTED' e 'CORN, GRAIN - PRODUCTION, MEASURED IN BU' = commodity_desc 'CORN' + util_practice_desc 'GRAIN'. A área plantada só existe como 'CORN - ACRES PLANTED' (inclui a silagem; o NASS não separa). Conferido em 15/11 na série baixada pelo time (data/scripts/baixar_nass_eua.py)."
+      "codigos": "codigo_nass 'CORN, GRAIN' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'CORN, GRAIN - ACRES HARVESTED' (2023, NATIONAL) = commodity_desc 'CORN', class_desc 'ALL CLASSES', util_practice_desc 'GRAIN', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 9613, COUNTY 190948. Série de produção: 'CORN, GRAIN - PRODUCTION, MEASURED IN BU'. A área plantada só existe como 'CORN - ACRES PLANTED' (sem GRAIN; inclui a silagem, o NASS não separa)."
     },
     "resultado": {
       "aporte_biomassa": "alto",
@@ -471,6 +479,12 @@
       "antes": "",
       "depois": "04-25 / 05-18",
       "motivo": "Pedido do coordenador (15/11, pendências dos EUA): janela de semeadura do grão = 'most active' (15-85% semeado) do Handbook 628 (2010) para Iowa, lida em data/eua/nass/datas_plantio.csv (linha milho,Corn for grain,IA)."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'CORN, GRAIN' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_des... | observacoes.codigos: codigo_nass 'CORN, GRAIN'. short_desc 'CORN, GRAIN - ACRES HARVESTED' e 'CORN, GRAIN - PRODUCTION, MEASURED IN BU' = com...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'CORN, GRAIN - ACRES HARVESTED', registros SURVEY: STATE 9613, COUNTY 190948; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
     }
   ],
   "pendencias": [
@@ -483,7 +497,6 @@
     "agua_ciclo_mm_min: 500 = 20 in para 200 bu/acre (produtividade típica de IA/IL). Se o motor tratar o mínimo como 'água para colher alguma coisa', o valor seria 16 in = 406 -> 400 mm (150 bu/acre). Os números da ISU 2017 são de modelo (APSIM calibrado com ET medida). Não refiz com etc_nasa_power.py; um cenário Kc × ET0 em Ames daria a conferência.",
     "kc_medio 1,20 é do clima padrão; no Corn Belt úmido e com pouco vento a eq. 62 baixaria um pouco (o motor ajusta no local).",
     "regua: digestibilidade sem n (a UNL não informa); só duas fontes de C/N nos EUA; a palhada não desconta enfardamento nem pastejo. O k de Ames (inverno congelado) é bem menor que o do Brasil (0,0045), e a palhada que sobra em 60 dias fica em 10,6 t/ha.",
-    "codigo_nass: 'CORN, GRAIN' CONFERIDO (15/11) na série do QuickStats baixada pelo time (data/scripts/baixar_nass_eua.py, que consulta o QuickStats pelo short_desc exato; 14151 linhas de 'milho' em data/eua/nass/producao_condado.csv, 2016-2025). Forma no QuickStats: short_desc 'CORN, GRAIN - ACRES HARVESTED' e 'CORN, GRAIN - PRODUCTION, MEASURED IN BU' = commodity_desc 'CORN' + util_practice_desc 'GRAIN'. A área plantada só existe como 'CORN - ACRES PLANTED' (inclui a silagem; o NASS não separa). A divisão do nome nos campos (commodity_desc etc.) vem do formato do short_desc, não foi conferida campo a campo: o arquivo do time só guarda o short_desc.",
     "calendario_usda: 'Corn for grain' = nome da linha nas tabelas por estado do Handbook 628 (2010), conferido com data/eua/nass/datas_plantio.csv (nome_nass). o arquivo de 2010 lido é a edição 'Field Crops Usual Planting and Harvesting Dates' da NASS; o número 628 não aparece no texto (vem do catálogo da série).",
     "graus_dia_min (revisão do lote 3, 15/11): 1250 segue a convenção (Nashua 16/mai + ciclo_dias_min 123 d, mediana 1258). O ciclo de 123 d é de um híbrido 110 RM em Lewis (sudoeste de Iowa); em Nashua o híbrido da fonte (105 RM) leva 135-140 d, então o cenário mistura o ciclo mais curto com o local mais frio, como pede a convenção. DECISÃO para o coordenador/motor: se a janela do motor juntar a semeadura mais cedo (25/abr) com 123 d, a mediana em Nashua é 1140, acima do corte (1125), mas no limite.",
     "semeadura_inicio/fim (04-25 a 05-18) = 'most active' do Handbook 628 (2010) em Iowa (início 19/abr, fim 26/mai). Illinois, a outra região de referência: 'most active' 21/abr-23/mai (início 14/abr, fim 5/jun). Bate com os cenários de graus-dia (cenarios/milho_gd.json: semeaduras de 25/abr a 16/mai em Nashua e Lewis; 1/mai e 15/mai em Champaign, dentro da janela de Illinois). A edição é de 2010; o calendário atual pode ser alguns dias mais cedo."

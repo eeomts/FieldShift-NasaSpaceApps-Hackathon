@@ -333,6 +333,14 @@
       "fonte": "Água do Nebraska; não vale para a Califórnia (UNL G1778 e conferência em eua/cenarios/alfafa_etc.json; Califórnia: UC ANR 8293)",
       "url": "https://extensionpubs.unl.edu/publication/g1778/2007/pdf/view/g1778-2007.pdf",
       "trecho": "Seasonal water use in Nebraska ranges from 30 to 38 inches, including precipitation [...] [POWER, Mead, 10/abr-20/out: chuva mediana 600 mm, ETc mediana 832 mm, 2001-2020]. No sequeiro do leste do Nebraska a chuva da estação (Mead, 600 mm) fica abaixo do consumo pleno e o motor marca 'água no limite', sem eliminar (regra 1)."
+    },
+    {
+      "colunas": [
+        "codigo_nass"
+      ],
+      "fonte": "USDA NASS Quick Stats API (get_param_values, api_GET, get_counts), consulta de 15/11/2026 (feita pelo coordenador; source_desc SURVEY)",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "trecho": "short_desc \"HAY, ALFALFA - ACRES HARVESTED\" (2023, NATIONAL): commodity_desc 'HAY', class_desc 'ALFALFA', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES', statisticcat_desc 'AREA HARVESTED', unit_desc 'ACRES'; registros SURVEY: STATE 6218, COUNTY 71641"
     }
   ],
   "regua": {
@@ -373,7 +381,7 @@
       "forragem": "uso_forrageiro = principal: o feno é o próprio produto. OMD 61,8% (>= 60) mantém a classe alta; a faixa vai de 53 a 66% conforme o estádio no corte.",
       "manejo_cortes": "REFERÊNCIA DE MANEJO, fora das colunas (perene forrageira, padrão da pastagem). Intervalo entre cortes: 30 a 40 dias no Nebraska (UNL G1778: 'This cycle is repeated for each cutting (i.e., every 30 to 40 days)'); 26-30 dias na Califórnia (UC ANR 8287 e 8293). Primeiro corte: 750 GDD °F (Tb 41 °F, sem teto) do green-up (UNL CropWatch 2026) = 750/1,8 = 417 °C·dia (410 arredondado para baixo); no POWER (alfafa_gd.json, 2001-2020) o alvo cai em 44 dias em Mead (37-50) e 48 em North Platte (40-54), de 20 a 28 de maio. Ciclos de verão: Sharratt et al. 1989 (via UC IPM), 1/10 de flor com 425 °C·dia acima de 7,5 °C (início do verão) e de 10 °C (fim do verão), refeito com Tb 5 no POWER = 504 °C·dia (Mead, junho) e 568-571 °C·dia (North Platte e Mead, julho), 27-28 dias. Faixa de referência: 410 a 570 °C·dia (Tb 5) e 30 a 40 dias. O motor não usa esses números (regra 14).",
       "agua_sequeiro": "Água do Nebraska; não vale para a Califórnia (ET sazonal de 48-49 in no Vale Central e 76 in no deserto do sul, UC ANR 8293). No sequeiro do leste do Nebraska a chuva da estação (Mead, mediana 600 mm no POWER, 10/abr-20/out, 2001-2020) fica abaixo do consumo pleno (760 mm; ETc 832 mm no POWER) e o motor marca 'água no limite', sem eliminar (regra 1). A produtividade plena no sequeiro depende da água do perfil (raiz até 2-3,7 m) e da chuva de inverno.",
-      "codigos": "codigo_nass 'HAY, ALFALFA' = commodity HAY + classe ALFALFA, na forma 'COMMODITY, CLASSE' do short_desc do QuickStats. Conferido (15/11) com os arquivos que a main trouxe (só leitura): data/scripts/baixar_nass_eua.py usa short_desc como 'CORN, GRAIN - ACRES HARVESTED' e 'SORGHUM, GRAIN - PRODUCTION, MEASURED IN BU' (prefixo = a mesma forma do codigo_nass do milho e do sorgo), e a forma 'HAY, ALFALFA' segue o mesmo padrão (séries esperadas: 'HAY, ALFALFA - ACRES HARVESTED' e 'HAY, ALFALFA - PRODUCTION, MEASURED IN TONS'). Mas a alfafa não está em data/eua/nass/producao_condado.csv (9 culturas: milho, soja, trigo, arroz, algodao, sorgo, girassol, aveia, feijao) nem em mapa_culturas_nass.csv (que usa o nome do Handbook 628, como 'Corn for grain', e não o do QuickStats); por isso o nome exato da série não foi confirmado na API (sem NASS_API_KEY no ambiente). calendario_usda 'Alfalfa Hay' = seção do Handbook 628 (2010)."
+      "codigos": "codigo_nass 'HAY, ALFALFA' CONFERIDO na API (15/11/2026): é o começo exato de séries SURVEY do QuickStats. Série consultada: 'HAY, ALFALFA - ACRES HARVESTED' (2023, NATIONAL) = commodity_desc 'HAY', class_desc 'ALFALFA', util_practice_desc 'ALL UTILIZATION PRACTICES', prodn_practice_desc 'ALL PRODUCTION PRACTICES'; registros SURVEY: STATE 6218, COUNTY 71641. Série de produção: 'HAY, ALFALFA - PRODUCTION, MEASURED IN TONS'. No relatório Crop Production a tabela se chama 'Alfalfa and Alfalfa Mixtures for Hay'. calendario_usda 'Alfalfa Hay' = seção do Handbook 628 (2010)."
     },
     "resultado": {
       "aporte_biomassa": "",
@@ -473,6 +481,24 @@
       "antes": "'HAY, ALFALFA' não conferido",
       "depois": "forma conferida com data/scripts/baixar_nass_eua.py (short_desc 'COMMODITY, CLASSE - ...'); série da alfafa ausente de data/eua/nass/, não confirmada",
       "motivo": "Pedido do coordenador (15/11): conferir o codigo_nass com os arquivos do NASS que a main trouxe. codigo_nass mantido."
+    },
+    {
+      "coluna": "regua.observacoes.codigos (texto; codigo_nass sem mudança)",
+      "antes": "começava com 'Conferido (15/11) com os arquivos que a main trouxe'",
+      "depois": "começa com 'NÃO conferido no QuickStats (15/11): forma inferida do padrão dos short_desc do script do time'",
+      "motivo": "Revisão eua-nass-janelas (15/11), 02-arquiteto, pacote 1 (M-01 b/c, A-01): o padrão do script não confere a série da alfafa, que não foi baixada; a pendência de conferir com a NASS_API_KEY continua."
+    },
+    {
+      "coluna": "cenarios/alfafa_etc.json (_leia; números sem mudança)",
+      "antes": "chuva mediana da estação em Mead 571 mm (valor de 2005-2024 que ficou no texto)",
+      "depois": "600 mm (2001-2020), conferido rodando etc_nasa_power.py com o cache local (alfafa_mead_0410_194d_anual: chuva mediana 600 mm; North Platte 494 mm)",
+      "motivo": "Revisão eua-nass-janelas (15/11), 02-arquiteto, pacote 1: _leia alinhado ao período 2001-2020 do cenário. Em alfafa.json a chuva já estava em 600 mm; os 571 restantes são graus-dia (Sharratt, julho), não chuva."
+    },
+    {
+      "coluna": "codigo_nass (conferência; valor sem mudança), pendencias, evidencias, regua.observacoes.codigos",
+      "antes": "pendência: codigo_nass: 'HAY, ALFALFA' é o commodity HAY com a classe ALFALFA do QuickStats, na mesma forma 'COMMODITY, CLASSE' dos short_desc usados em data/scripts/baixa... | observacoes.codigos: NÃO conferido no QuickStats (15/11): forma inferida do padrão dos short_desc do script do time (data/scripts/baixar_nass...",
+      "depois": "evidência da API do QuickStats (15/11/2026): 'HAY, ALFALFA - ACRES HARVESTED', registros SURVEY: STATE 6218, COUNTY 71641; observacoes.codigos reescrita como CONFERIDO na API",
+      "motivo": "Conferência dos códigos NASS feita pelo coordenador na API do QuickStats em 15/11/2026 (get_param_values, api_GET, get_counts). O codigo_nass não mudou."
     }
   ],
   "pendencias": [
@@ -488,7 +514,6 @@
     "agua: água do Nebraska; não vale para a Califórnia. No sequeiro do leste do Nebraska a chuva da estação (Mead, 600 mm, 2001-2020) fica abaixo do consumo pleno e o motor marca 'água no limite', sem eliminar (regra 1). A G1778 é de 2007; o cálculo no POWER (832 e 955 mm de mediana, 2001-2020) confere. Em North Platte a chuva da estação (494 mm) também fica abaixo do consumo; lá a alfafa é irrigada.",
     "regua: palhada, C/N e k sem dado (aporte_biomassa e cobertura_solo vazios). Resolveria: massa de restolho e de rebrota de outono no encerramento da alfafa antes do milho (ensaios da Univ. of Minnesota, Yost et al., ou da UW-Madison) e decomposição de coroas e raízes.",
     "regua: OMD 61,8% é média estimada por equação (Feedipedia) e mistura países. Resolveria: NASEM 2021 (tabela de alimentos), Dairy One (só IVTD) ou ensaios da UNL com DMD in vivo do feno de alfafa.",
-    "codigo_nass: 'HAY, ALFALFA' é o commodity HAY com a classe ALFALFA do QuickStats, na mesma forma 'COMMODITY, CLASSE' dos short_desc usados em data/scripts/baixar_nass_eua.py (ex.: 'CORN, GRAIN - ACRES HARVESTED'). Os arquivos de data/eua/nass/ (main, 15/11) não têm a alfafa (só 9 grãos), então a série não foi confirmada; sem NASS_API_KEY no ambiente, não conferido na API. Resolve: get_counts com short_desc 'HAY, ALFALFA - ACRES HARVESTED' (nível COUNTY ou STATE). No relatório Crop Production a tabela se chama 'Alfalfa and Alfalfa Mixtures for Hay'. Detalhes em regua.observacoes.codigos.",
     "calendario_usda: 'Alfalfa Hay' é o nome da seção no relatório de 2010; o relatório não dá datas de semeadura da alfafa ((NA)), só de colheita.",
     "B-05 (RESOLVIDO 15/11): alfafa_etc.json e alfafa_gd.json refeitos com 2001-2020, a mesma base dos outros cenários; as séries 2001-2020 de Mead e North Platte foram baixadas pelos scripts do repositório para data/brutos/nasa_power/. Água (conferência): Mead mediana 832 mm (antes 841, 2005-2024), North Platte 955 mm (antes 953), contra 762-965 mm da UNL G1778; chuva mediana da estação 600 e 494 mm. Graus-dia (referência de manejo): primeiro corte 406 e 397 °C·dia em 44 e 48 dias (antes 405 e 397); ciclos de verão 504-571 °C·dia (antes 501-570). Nenhuma coluna da linha muda: a água vem da UNL G1778 (publicado) e o motor não usa graus-dia na alfafa."
   ],
