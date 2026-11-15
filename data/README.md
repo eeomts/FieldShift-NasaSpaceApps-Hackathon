@@ -35,7 +35,7 @@ As 16 culturas (os mesmos `id` do `agroia/base/culturas.json`) **já têm os par
 |---|---|---|
 | 4. Pontos da demo (decidir com o time e testar no SoilGrids) | `demo/pontos_demo.csv` | Baixo |
 | 5. Pedido no AppEEARS (NDVI + SMAP dos pontos) | `demo/appeears/<id_da_tarefa>/` | Médio (espera) |
-| 6. ZARC: baixar a tábua de risco e mapear os nomes das culturas | bruto em `brutos/zarc/`; mapa em `brasil/zarc/mapa_culturas_zarc.csv`; recorte das 16 culturas em `brasil/zarc/` | Médio |
+| 6. ZARC: baixar a tábua de risco e mapear os nomes das culturas | bruto em `brutos/zarc/`; mapa em `brasil/zarc/mapa_culturas_zarc.csv`; janelas em `brasil/zarc/janelas.csv.gz` (script `scripts/preparar_zarc.py`) | Médio |
 | 3. O que cada cultura exige de equipamento (ids do `agroia/base/equipamentos.json`) | `catalogo/cultura_equipamentos.csv` | Baixo |
 | Registro de tudo que baixar | `FONTES.md` | — |
 
@@ -71,7 +71,8 @@ data/
 │   ├── municipios/                 # Pessoa 2 (malha do IBGE)
 │   └── zarc/
 │       ├── mapa_culturas_zarc.csv  # Pessoa 2 (cultura_id → nome no ZARC)
-│       └── <recortes>.csv          # Pessoa 2 (só as 16 culturas)
+│       ├── janelas.csv.gz          # Pessoa 2 (janelas de plantio por município, solo e ciclo; gzip)
+│       └── portarias.csv           # Pessoa 2 (portaria do MAPA de cada cultura e UF)
 ├── eua/                            # Pessoa 2 (o mesmo papel do brasil/, ver abaixo)
 │   ├── condados/                   # condados.csv + condados.geojson (Censo, TIGERweb)
 │   └── nass/
