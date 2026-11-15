@@ -264,3 +264,23 @@ def test_onde_piora_nas_melhores_e_vazio_na_atual():
         perdas = [c for c, n in r.notas.items() if n.nota is not None and a.atual.notas[c].nota is not None and a.atual.notas[c].nota - n.nota >= 0.1 - 1e-9]
         assert len(r.onde_piora) == min(3, len(perdas))
         assert all("contra" in f for f in r.onde_piora)
+
+
+# --- erodibilidade K vem do retrato da fazenda (a busca do SoilGrids é em segundo plano)
+def test_entradas_pegam_o_k_do_retrato_da_fazenda():
+    e = montar(fazenda(retrato_solo={"soilgrids": {"k_usle": 0.0145, "sem_dado": False}}))
+    assert e.erodibilidade.k_usle == 0.0145 and e.erodibilidade.fonte == "SoilGrids 2.0 (ISRIC)"
+
+
+@pytest.mark.parametrize("retrato", [{}, None, {"soilgrids": None}, {"soilgrids": {"sem_dado": True, "k_usle": None}}, {"soilgrids": {"sem_dado": False, "k_usle": None}}])
+def test_sem_mapa_ou_sem_dado_ou_sem_k_a_erodibilidade_e_none(retrato):
+    assert montar(fazenda(retrato_solo=retrato)).erodibilidade is None
+
+
+def test_analise_cita_a_fonte_do_k_e_a_lacuna_quando_falta():
+    com = analisar_entradas(montar(fazenda(retrato_solo={"soilgrids": {"k_usle": 0.03, "sem_dado": False}})))
+    assert "SoilGrids 2.0 (ISRIC)" in com.fontes
+    assert not any("erodibilidade" in l for l in com.atual.lacunas)
+    sem = analisar_entradas(montar(fazenda(retrato_solo={})))
+    assert "SoilGrids 2.0 (ISRIC)" not in sem.fontes
+    assert any("erodibilidade" in l for l in sem.atual.lacunas)

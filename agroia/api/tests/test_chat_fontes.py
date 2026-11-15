@@ -35,3 +35,9 @@ def test_imerg_esta_em_ainda_nao_usa():
     assert "GPM IMERG" in nao_usadas
     assert "GPM IMERG" not in usadas
     assert "NASA POWER" in usadas
+
+
+def test_soilgrids_esta_em_usa_hoje_com_o_que_entrega():
+    usadas, nao_usadas = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
+    assert "SoilGrids (solo por ponto: textura, matéria orgânica, pH, erodibilidade; mapa global de 250 m)" in usadas
+    assert "SoilGrids" not in nao_usadas

@@ -568,3 +568,17 @@ def test_comparar_estrategias_power_fora_do_ar(client, auth, conversa, fazenda, 
     r = perguntar(client, auth, conversa, "o que eu planto?")
     assert r.status_code == 200 and r.json()["fontes"] == []
     assert "Não consegui o clima" in respostas_de_ferramenta(m.chamadas)[0]["response"]["erro"]
+
+
+def test_ver_ficha_manda_a_sintese_do_solo_sem_coordenada(client, auth, conversa, fazenda, modelo):
+    m = modelo([chamada("ver_ficha"), fala("ok")])
+    perguntar(client, auth, conversa, "como é o solo da minha fazenda?")
+    solo = respostas_de_ferramenta(m.chamadas)[0]["response"]["retrato_solo"]
+    assert [a["atributo"] for a in solo["sintese"]] == ["textura", "materia_organica", "acidez"]
+    textura = solo["sintese"][0]
+    assert textura["valor"] == "argilosa" and textura["confianca"] in ("alta", "media", "baixa")
+    mapa = next(e for e in textura["evidencias"] if e["fonte"] == "soilgrids")
+    assert mapa["texto"].startswith("Mapa global: 40% de argila")  # número do mapa, com a fonte; a IA não calcula
+    assert set(mapa) == {"fonte", "valor", "texto"}  # sem o peso interno
+    bruto = json.dumps(solo, ensure_ascii=False)
+    assert "-11.31" not in bruto and "-41.81" not in bruto and "lat" not in solo and "k_usle" not in bruto

@@ -9,6 +9,10 @@ from app.services.motor.parametros import (
     CLASSE_FORRAGEIRO,
     FATOR_DECLIVE,
     FATOR_DECLIVE_SEM_DADO,
+    FATOR_K,
+    FATOR_K_SEM_DADO,
+    K_LIMITE_BAIXA,
+    K_LIMITE_MEDIA,
     PRAGAS_DESCONTO_MESMA_FAMILIA,
     RENDA_MAXIMA,
     RENDA_POR_COMERCIAIS,
@@ -21,6 +25,10 @@ FONTE_BASE = "Base de culturas do Field Shift"
 FONTE_CALENDARIO = "Calendário informado pelo produtor"
 Par = tuple[ItemRotacao, CulturaMotor]
 Saida = tuple[NotaCriterio, list[str]]  # nota e lacunas
+
+
+def classe_do_k(k: float) -> str:
+    return "baixa" if k < K_LIMITE_BAIXA else "media" if k < K_LIMITE_MEDIA else "alta"
 
 
 def _limita(v: float) -> float:
@@ -116,13 +124,24 @@ def nota_erosao(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMot
     if fator is None:
         fator = FATOR_DECLIVE_SEM_DADO
         lac.append("Sem declividade do terreno: usamos um valor médio para a erosão." if e.relevo is None else f"Classe de declive desconhecida ({e.relevo.classe}): usamos um valor médio para a erosão.")
-    nota = _limita(1 - (1 - parcela) * fator)
+    classe_k = None
+    fator_k = FATOR_K_SEM_DADO
+    if e.erodibilidade is None:
+        lac.append("Sem a erodibilidade do solo (mapa global de solo): contamos um valor médio para a erosão.")
+    else:
+        classe_k = classe_do_k(e.erodibilidade.k_usle)
+        fator_k = FATOR_K[classe_k]
+    nota = _limita(1 - (1 - parcela) * fator * fator_k)
     terreno = "sem dado de declive" if e.relevo is None else f"terreno {e.relevo.classe.replace('_', ' ')}"
     texto = f"{pct(parcela)} dos dias de chuva forte caem em meses com planta no campo; {terreno}."
+    if classe_k is not None:
+        texto += f" O solo tem erodibilidade {classe_k.replace('media', 'média')}."
     evid = [Evidencia("Dias de chuva forte que caem em meses com planta", round(parcela * 100, 1), "%", e.clima.fonte, e.clima.periodo)]
     if e.relevo is not None:
         valor = e.relevo.declividade_pct if e.relevo.declividade_pct is not None else e.relevo.classe.replace("_", " ")
         evid.append(Evidencia("Declividade do terreno", valor, "%" if e.relevo.declividade_pct is not None else "classe", e.relevo.fonte, None))
+    if e.erodibilidade is not None:
+        evid.append(Evidencia(f"Erodibilidade do solo (K da USLE, classe {classe_k.replace('media', 'média')})", e.erodibilidade.k_usle, "t·ha·h/(ha·MJ·mm)", e.erodibilidade.fonte, None))
     return NotaCriterio("erosao", nota, texto, evid), lac
 
 

@@ -120,7 +120,7 @@ def _indicador(atributo: str, valor: str, origem: str, confianca: str, texto: st
             "confianca": confianca, "numero": numero}
 
 
-def _classe(numero: float, faixas: list[tuple[float, str]], acima: str) -> str:
+def classe_da_faixa(numero: float, faixas: list[tuple[float, str]], acima: str) -> str:
     """Primeira faixa cujo limite superior é maior que o número; senão, `acima`."""
     for limite, classe in faixas:
         if numero < limite:
@@ -128,13 +128,17 @@ def _classe(numero: float, faixas: list[tuple[float, str]], acima: str) -> str:
     return acima
 
 
+# Faixas PRELIMINARES (Embrapa / CFSEMG), [verificar com agronomia]; o SoilGrids usa as mesmas (services/solo/derivados.py).
+FAIXAS_TEXTURA = ([(15, "arenosa"), (35, "media")], "argilosa")  # argila, %
+FAIXAS_ACIDEZ = ([(5.0, "alta"), (6.0, "media"), (7.0, "adequada")], "alcalino")  # pH em água
+FAIXAS_MATERIA_ORGANICA = ([(20, "baixa"), (40, "media")], "alta")  # g/dm³
+
 # Laudo: (atributo, faixas de classe ou None, rótulo e unidade para a tela).
-# Faixas PRELIMINARES (Embrapa / CFSEMG), [verificar com agronomia].
 # Fósforo e potássio não têm classe aqui: a interpretação depende da textura e do extrator.
 _LAUDO = {
-    "argila_pct": ("textura", ([(15, "arenosa"), (35, "media")], "argilosa"), "Argila", "%"),
-    "ph_agua": ("acidez", ([(5.0, "alta"), (6.0, "media"), (7.0, "adequada")], "alcalino"), "pH em água", ""),
-    "materia_organica_g_dm3": ("materia_organica", ([(20, "baixa"), (40, "media")], "alta"), "Matéria orgânica", "g/dm³"),
+    "argila_pct": ("textura", FAIXAS_TEXTURA, "Argila", "%"),
+    "ph_agua": ("acidez", FAIXAS_ACIDEZ, "pH em água", ""),
+    "materia_organica_g_dm3": ("materia_organica", FAIXAS_MATERIA_ORGANICA, "Matéria orgânica", "g/dm³"),
     "saturacao_bases_pct": ("saturacao_bases", ([(50, "baixa"), (70, "media")], "alta"), "Saturação por bases (V%)", "%"),
     "fosforo_mg_dm3": ("fosforo", None, "Fósforo", "mg/dm³"),
     "potassio_mg_dm3": ("potassio", None, "Potássio", "mg/dm³"),
@@ -150,7 +154,7 @@ def _indicadores_do_laudo(r: Respostas) -> list[dict]:
         if numero is None:
             continue
         atributo, faixas, rotulo, unidade = _LAUDO[campo]
-        valor = _classe(numero, *faixas) if faixas else "informado"
+        valor = classe_da_faixa(numero, *faixas) if faixas else "informado"
         texto = f"{rotulo}: {numero:g} {unidade}".strip() + " (laudo)"
         itens.append(_indicador(atributo, valor, f"q12_laudo.{campo}", "alta", texto, fonte="laudo", numero=numero))
     return itens

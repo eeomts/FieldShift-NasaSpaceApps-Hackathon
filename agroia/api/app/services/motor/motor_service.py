@@ -46,6 +46,8 @@ def analisar_entradas(e: EntradasMotor, agora: datetime | None = None) -> Analis
     fontes = [FONTE_BASE, e.clima.fonte, FONTE_CALENDARIO, "Prioridades e restrições informadas pelo produtor"]
     if e.relevo is not None:
         fontes.insert(2, e.relevo.fonte)
+    if e.erodibilidade is not None:
+        fontes.insert(2, e.erodibilidade.fonte)
     # sem nota da atual não dá para dizer; senão, ela é a melhor se nenhuma das melhores a supera
     atual_e_a_melhor = atual.nota_final is not None and not any(r.nota_final is not None and r.nota_final > atual.nota_final for r in top)
     return Analise(e.pais, atual, top, eliminadas, pesos, fontes, agora or datetime.now(timezone.utc), atual_e_a_melhor)
