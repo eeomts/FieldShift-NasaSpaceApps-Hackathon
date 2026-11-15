@@ -12,7 +12,6 @@ from app.main import app
 from app.repositories.conhecimento_repository import ConhecimentoRepository
 from app.services import catalogo
 from app.services.agente import agente_service
-from app.services.agente import ferramentas as ferramentas_mod
 from app.services.agente.agente_service import de_json, para_json, provedor_de_busca
 from app.services.agente.busca_conhecimento_service import BuscaConhecimentoService
 from app.services.agente.modelo import get_modelo
@@ -20,6 +19,7 @@ from app.services.agente.prompt import RESPOSTA_FORA_DO_ESCOPO
 from app.services.conversa_service import titulo_da_pergunta
 from app.services.integracao import srtm
 from app.services.integracao.nasa_power import DiaPower, ErroNasaPower, SeriePower, get_cliente
+from app.services.motor.catalogo import catalogo_do_pais
 
 SEM_TOKEN = {}
 IRECE = {
@@ -431,11 +431,83 @@ def test_info_cultura(client, auth, conversa, modelo):
     sorgo = ferramentas[0]["response"]
     assert sorgo["encontrada"] and sorgo["id"] == "sorgo"
     assert sorgo["parametros"]["ciclo_dias_min"] == 90 and sorgo["parametros"]["sensivel_geada"] is True
-    assert sorgo["parametros"]["confianca_parametros"] == ferramentas_mod._parametros_csv()["sorgo"]["confianca_parametros"]
+    assert sorgo["parametros"]["confianca_parametros"] == catalogo_do_pais("BR")["sorgo"].confianca_parametros
+    assert sorgo["pais_da_base"] == "BR"  # sem fazenda: Brasil, como sempre foi
     # fonte repetida entra uma vez só; a ferramenta também
     assert len(r.json()["fontes"]) == 1 and r.json()["fontes"][0]["tipo"] == "cultura"
     assert r.json()["fontes"][0]["titulo"] == "Base de culturas: Sorgo"
     assert r.json()["ferramentas_usadas"] == ["info_cultura"]
+
+
+IOWA = {"q1_quem": "produtor", "q4_animais": "nao", "q6_irrigacao": "nao", "q5_local": {"lat": 42.07, "lon": -93.45, "nome": "Story County, IA"}}
+SEM_LOCAL = {"q1_quem": "produtor", "q4_animais": "nao", "q6_irrigacao": "nao"}
+FORA_DOS_PARAMETROS = {
+    "id", "pais", "nome", "nome_cientifico", "familia_botanica", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
+    "extras", "fontes", "estados_validos", "perene", "tipos", "fixa_nitrogenio", "raiz_profunda",
+}  # fmt: skip
+
+
+def _info(client, auth, conversa, modelo, cultura):
+    m = modelo([chamada("info_cultura", cultura=cultura), fala("ok")])
+    r = perguntar(client, auth, conversa, f"e {cultura}?")
+    return respostas_de_ferramenta(m.chamadas)[0]["response"], r.json()
+
+
+def _salva(client, auth, respostas):
+    assert client.put("/fazenda", headers=auth, json={"respostas": respostas}).status_code == 200
+
+
+def test_info_cultura_fazenda_dos_eua_usa_a_base_dos_eua(client, auth, conversa, modelo):
+    _salva(client, auth, IOWA)
+    soja, corpo = _info(client, auth, conversa, modelo, "soja")
+    eua, br = catalogo_do_pais("US")["soja"], catalogo_do_pais("BR")["soja"]
+    assert soja["pais_da_base"] == "US"
+    assert soja["parametros"]["ciclo_dias_min"] == eua.ciclo_dias_min == 117 and soja["parametros"]["ciclo_dias_max"] == eua.ciclo_dias_max
+    assert soja["parametros"]["ciclo_dias_min"] != br.ciclo_dias_min
+    assert soja["fontes_dos_parametros"] and soja["nome_cientifico"] == eua.nome_cientifico
+    assert corpo["fontes"][0]["tipo"] == "cultura"
+
+
+def test_info_cultura_parametros_sem_campos_internos_nem_duplicados(client, auth, conversa, modelo):
+    _salva(client, auth, IOWA)
+    soja, _ = _info(client, auth, conversa, modelo, "soja")
+    assert not FORA_DOS_PARAMETROS & set(soja["parametros"])
+    assert soja["perene"] is False and soja["tipos"]  # vêm do topo (culturas.json), uma vez só
+    assert all(v is not None for v in soja["parametros"].values())
+
+
+def test_info_cultura_alfafa_so_dos_eua_tem_parametros(client, auth, conversa, modelo):
+    _salva(client, auth, IOWA)
+    alfafa, _ = _info(client, auth, conversa, modelo, "alfafa")
+    assert alfafa["pais_da_base"] == "US" and alfafa["parametros"]["profundidade_raiz_m"] == catalogo_do_pais("US")["alfafa"].profundidade_raiz_m
+    assert "mensagem" not in alfafa
+
+
+def test_info_cultura_alfafa_no_brasil_fica_sem_parametros(client, auth, conversa, modelo):
+    _salva(client, auth, IRECE)
+    alfafa, corpo = _info(client, auth, conversa, modelo, "alfafa")
+    assert alfafa["pais_da_base"] == "BR" and "parametros" not in alfafa and "na base do seu país" in alfafa["mensagem"]
+    assert corpo["fontes"][0]["detalhe"] == "Sem parâmetros numéricos na base"
+
+
+def test_info_cultura_mandioca_nos_eua_sem_reserva_do_brasil(client, auth, conversa, modelo):
+    _salva(client, auth, IOWA)
+    mandioca, _ = _info(client, auth, conversa, modelo, "mandioca")
+    assert mandioca["encontrada"] is True and mandioca["pais_da_base"] == "US"
+    assert "parametros" not in mandioca and "ainda sem parâmetros numéricos" in mandioca["mensagem"] and "na base do seu país" in mandioca["mensagem"]
+
+
+def test_info_cultura_fazenda_do_brasil_usa_a_base_do_brasil(client, auth, conversa, modelo):
+    _salva(client, auth, IRECE)
+    soja, _ = _info(client, auth, conversa, modelo, "soja")
+    br = catalogo_do_pais("BR")["soja"]
+    assert soja["pais_da_base"] == "BR" and soja["parametros"]["ciclo_dias_min"] == br.ciclo_dias_min == 100
+
+
+def test_info_cultura_fazenda_sem_local_usa_o_brasil(client, auth, conversa, modelo):
+    _salva(client, auth, SEM_LOCAL)
+    soja, _ = _info(client, auth, conversa, modelo, "soja")
+    assert soja["pais_da_base"] == "BR" and soja["parametros"]["ciclo_dias_min"] == 100
 
 
 def test_info_cultura_so_arroz_pede_o_tipo(client, auth, conversa, modelo):

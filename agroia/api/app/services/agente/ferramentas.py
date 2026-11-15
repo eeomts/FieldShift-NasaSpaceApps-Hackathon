@@ -1,17 +1,14 @@
 """As 5 ferramentas do agente: declaradas para o Gemini e executadas aqui; cada uma devolve dados e as fontes que os geraram."""
-import csv
 import inspect
 import logging
 import re
 from collections import Counter
 from collections.abc import Callable
-from dataclasses import dataclass, field, replace
+from dataclasses import asdict, dataclass, field, replace
 from datetime import date
-from functools import lru_cache
 
 from google.genai import types
 
-from app.core.caminhos import RAIZ_REPO
 from app.core.erros import ErroDeNegocio
 from app.models import Fazenda, Usuario
 from app.schemas.chat import Fonte
@@ -21,13 +18,21 @@ from app.services.agente.busca_conhecimento_service import BuscaConhecimentoServ
 from app.services.clima.clima_service import ClimaService
 from app.services.clima.limiares import BASE_INICIO, CHUVA_DIA_SECO_MM, TMAX_CALOR_C, TMIN_GEADA_C
 from app.services.integracao.nasa_power import ErroNasaPower
+from app.services.motor.catalogo import CulturaMotor, catalogo_do_pais
+from app.services.motor.local import pais_e_codigo
 from app.services.motor.modelo import Analise, ResultadoEstrategia
 from app.services.motor.motor_service import MotorService
 from app.services.onboarding import perfil
 
 log = logging.getLogger(__name__)
 
-CSV_CULTURAS = RAIZ_REPO / "data" / "catalogo" / "culturas.csv"
+# Campos do catálogo que NÃO vão ao modelo: identificação e códigos de outras bases, texto interno, e o que já vai no topo vindo de
+# agroia/base/culturas.json (perene, tipos, fixa_nitrogenio, raiz_profunda: um valor só, sem contradição). O resto vai (filtro por exclusão).
+CAMPOS_FORA_DOS_PARAMETROS = frozenset({
+    "id", "pais", "nome", "nome_cientifico", "familia_botanica", "codigo_pam", "nome_zarc", "codigo_nass", "calendario_usda",
+    "extras", "fontes", "estados_validos", "lacuna_informacao", "risco_revisao_local",
+    "perene", "tipos", "fixa_nitrogenio", "raiz_profunda",
+})  # fmt: skip
 MAX_FONTES_CULTURA = 3
 MAX_CHARS_FONTE = 150
 MAX_TRECHOS_CONHECIMENTO = 3  # os mais bem ordenados da busca: vão ao modelo e às fontes
@@ -61,7 +66,7 @@ DECLARACOES = [
             ),
             _declaracao(
                 "info_cultura",
-                "Parâmetros agronômicos de uma cultura da base do AgroAI: ciclo, temperaturas, sensibilidade à geada, "
+                "Parâmetros agronômicos de uma cultura na base do país da fazenda (Brasil ou EUA): ciclo, temperaturas, sensibilidade à geada, "
                 "água, Kc, raiz. Se a cultura não estiver na base, avisa. Se o nome for ambíguo (ex.: só arroz ou só batata), "
                 "devolve as opções para perguntar ao produtor, sem parâmetros.",
                 {"cultura": types.Schema(type="STRING", description="Nome da cultura como o produtor disse (ex.: sorgo, feijão, macaxeira).")},
@@ -114,27 +119,23 @@ def _r(v: float | None, casas: int = 1) -> float | None:
     return None if v is None else round(v, casas)
 
 
-@lru_cache
-def _parametros_csv() -> dict[str, dict]:
-    with CSV_CULTURAS.open(encoding="utf-8", newline="") as f:
-        return {linha["id"]: linha for linha in csv.DictReader(f)}
+def _numero_limpo(v):
+    return int(v) if isinstance(v, float) and v.is_integer() else v
 
 
-def _converte(valor: str):
-    if valor in ("true", "false"):
-        return valor == "true"
-    try:
-        n = float(valor)
-    except ValueError:
-        return valor
-    return int(n) if n.is_integer() and "." not in valor else n
+def _parametros_da_cultura(c: CulturaMotor) -> dict:
+    """Números da base do país, sem os campos de CAMPOS_FORA_DOS_PARAMETROS; vazio (None) fica de fora."""
+    return {k: _numero_limpo(v) for k, v in asdict(c).items() if k not in CAMPOS_FORA_DOS_PARAMETROS and v not in (None, "", (), [])}
 
 
-def _parametros_da_cultura(linha: dict) -> tuple[dict, list[str]]:
-    ignorar = {"id", "nome", "nome_cientifico", "familia_botanica", "codigo_pam", "nome_zarc", "tipos", "fontes"}
-    fontes = [s.strip() for s in (linha.get("fontes") or "").split("|") if s.strip()]
-    params = {k: _converte(v) for k, v in linha.items() if k not in ignorar and v not in ("", None)}
-    return params, fontes
+def _pais_da_fazenda(f: Fazenda | None) -> str:
+    """País da base de culturas: o da fazenda (BR ou US); sem fazenda, sem local ou fora das malhas, BR."""
+    if f is None:
+        return "BR"
+    pais = f.pais
+    if not pais and f.lat is not None and f.lon is not None:
+        pais = pais_e_codigo(f.lat, f.lon)[0]
+    return pais if pais in ("BR", "US") else "BR"
 
 
 class Ferramentas:
@@ -253,12 +254,17 @@ class Ferramentas:
             "tipos": item["tipos"],
         }
         titulo = f"Base de culturas: {nome}"
-        linha = _parametros_csv().get(cultura_id)
+        pais = _pais_da_fazenda(self.usuario.fazenda)
+        dados["pais_da_base"] = pais
+        linha = catalogo_do_pais(pais).get(cultura_id)
         if linha is None:
-            dados["mensagem"] = "Esta cultura está na base, mas ainda sem parâmetros numéricos (ciclo, temperatura, água). Diga isso."
+            dados["mensagem"] = (
+                "Esta cultura está na base, mas ainda sem parâmetros numéricos (ciclo, temperatura, água) na base do seu país. Diga isso."
+            )
             return Resultado(_poda(dados), [Fonte(tipo="cultura", titulo=titulo, detalhe="Sem parâmetros numéricos na base")])
-        params, fontes = _parametros_da_cultura(linha)
-        dados["nome_cientifico"] = linha["nome_cientifico"]
+        params = _parametros_da_cultura(linha)
+        fontes = list(linha.fontes)
+        dados["nome_cientifico"] = linha.nome_cientifico
         dados["parametros"] = params
         dados["fontes_dos_parametros"] = [_corta(s, MAX_CHARS_FONTE) for s in fontes[:MAX_FONTES_CULTURA]]
         detalhe = f"Parâmetros agronômicos, confiança {params.get('confianca_parametros', 'não informada')}"
