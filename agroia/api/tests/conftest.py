@@ -12,7 +12,7 @@ import pytest  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
 from sqlalchemy import text  # noqa: E402
 
-from app.db import get_engine  # noqa: E402
+from app.core.db import get_engine  # noqa: E402
 from app.main import app  # noqa: E402
 
 assert os.environ["DB_HOST"] in ("127.0.0.1", "localhost"), "testes só rodam em banco local"

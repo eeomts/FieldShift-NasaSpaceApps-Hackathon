@@ -1,29 +1,16 @@
-"""Tabelas da parte 1 (login) e parte 2 (onboarding).
-
-Uma fazenda = um campo (decisão da equipe). As respostas completas ficam em
-JSONB (`respostas`); os campos que o resto do sistema consulta viram colunas.
-"""
+"""Fazenda e calendário do produtor (onboarding)."""
 from datetime import datetime
+from typing import TYPE_CHECKING
 from uuid import UUID, uuid4
 
 from sqlalchemy import Boolean, CheckConstraint, DateTime, Float, ForeignKey, Integer, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.db import Base
+from app.core.db import Base
 
-
-class Usuario(Base):
-    __tablename__ = "usuario"
-
-    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
-    email: Mapped[str] = mapped_column(String(254), unique=True, index=True)
-    senha_hash: Mapped[str] = mapped_column(String(255))
-    nome: Mapped[str] = mapped_column(String(120))
-    idioma: Mapped[str] = mapped_column(String(5), default="pt")
-    criado_em: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
-
-    fazenda: Mapped["Fazenda | None"] = relationship(back_populates="usuario", cascade="all, delete-orphan", uselist=False)
+if TYPE_CHECKING:
+    from app.models.usuario import Usuario
 
 
 class Fazenda(Base):
@@ -60,7 +47,7 @@ class Fazenda(Base):
     criado_em: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     atualizado_em: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
-    usuario: Mapped[Usuario] = relationship(back_populates="fazenda")
+    usuario: Mapped["Usuario"] = relationship(back_populates="fazenda")
     calendario: Mapped[list["CalendarioItem"]] = relationship(
         back_populates="fazenda", cascade="all, delete-orphan", order_by="CalendarioItem.ordem"
     )

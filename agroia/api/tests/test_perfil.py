@@ -1,5 +1,5 @@
-from app.onboarding.perfil import calcula_papel, calcula_perfil, meses_sem_cobertura, proximos_passos, retrato_solo
-from app.onboarding.schemas import ItemCalendario, Respostas
+from app.services.onboarding.perfil import calcula_papel, calcula_perfil, meses_sem_cobertura, proximos_passos, retrato_solo
+from app.schemas.onboarding import ItemCalendario, Respostas
 
 
 LAUDO = dict(q12_analise="sim", q12_tem_resultado="sim", q12_laudo={"ph_agua": 5.2, "argila_pct": 42})
