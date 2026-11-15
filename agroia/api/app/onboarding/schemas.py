@@ -35,6 +35,24 @@ class ItemCalendario(BaseModel):
         return v
 
 
+class Laudo(BaseModel):
+    """Principais valores de uma análise de solo de laboratório (pergunta 12). Tudo opcional.
+
+    Unidades como costumam vir nos laudos brasileiros. Se a matéria orgânica vier em dag/kg ou %,
+    multiplique por 10 para ter g/dm³.
+    """
+    ph_agua: float | None = Field(default=None, ge=3, le=10)
+    materia_organica_g_dm3: float | None = Field(default=None, ge=0, le=300)
+    fosforo_mg_dm3: float | None = Field(default=None, ge=0, le=1000)
+    potassio_mg_dm3: float | None = Field(default=None, ge=0, le=2000)
+    argila_pct: float | None = Field(default=None, ge=0, le=100)
+    ctc_cmolc_dm3: float | None = Field(default=None, ge=0, le=100)
+    saturacao_bases_pct: float | None = Field(default=None, ge=0, le=100)
+
+    def valores_preenchidos(self) -> int:
+        return sum(v is not None for v in self.model_dump().values())
+
+
 class Perda(BaseModel):
     resposta: SNS | None = None
     ano: int | None = Field(default=None, ge=1950, le=2100)
@@ -97,6 +115,7 @@ class Respostas(BaseModel):
     q12_analise: SNS | None = None
     q12_tem_resultado: SNS | None = None
     q12_ano: int | None = Field(default=None, ge=1950, le=2100)
+    q12_laudo: Laudo | None = None
     q13_textura: Literal["arenosa", "media", "argilosa", "nao_sei"] | None = None
     q14_encharca: SNS | None = None
     q15_casca: SNS | None = None

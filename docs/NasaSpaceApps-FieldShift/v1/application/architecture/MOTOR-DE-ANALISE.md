@@ -4,7 +4,7 @@
 
 | # | O que calcula | Técnica | Usa peso? |
 |---|---|---|---|
-| 1 | **Perfil** do produtor (A, B, C, D) | Regras simples | Não |
+| 1 | **Perfil** do produtor (A, B, C) e papel | Regras simples | Não |
 | 2 | **Retrato do solo** (drenagem, textura, matéria orgânica, compactação, erosão) | Fusão de evidências | Sim, **peso por fonte** |
 | 3 | **Match das rotações** | Filtro + pontuação por critério (análise multicritério) | Sim, **peso pelas prioridades do produtor** |
 
@@ -14,9 +14,10 @@ As perguntas não têm peso fixo. Cada resposta vira uma evidência sobre um atr
 
 ## Cálculo 1: perfil
 
-- **D** se a pergunta 1 = "técnico".
-- **C** se a pergunta 12 = "sim" **e** tem o resultado em mãos.
-- **B** se respondeu a textura (13) **ou** pelo menos 6 perguntas do bloco 4 sem "não sei".
+O perfil é o **nível de dado sobre o solo** (A, B ou C). Quem respondeu fica num campo separado, o **papel** (`produtor` ou `tecnico`, pela pergunta 1), que só muda o nível de detalhe da tela.
+
+- **C** se a pergunta 12 = "sim", tem o resultado em mãos **e** informou pelo menos 2 valores do laudo.
+- **B** se respondeu a textura (13) **ou** pelo menos 5 das 8 perguntas de **observação** do solo sem "não sei" (13 a 18, 20 e a 19, que vale uma quando tem cor e jeito). As perguntas de manejo (12, 21 e 22) não contam.
 - **A** nos demais casos.
 
 Modificadores: irrigação (pergunta 6) e criação de animais (pergunta 4).

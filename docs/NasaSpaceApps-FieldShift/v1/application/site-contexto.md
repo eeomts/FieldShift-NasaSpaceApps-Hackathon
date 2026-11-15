@@ -110,7 +110,7 @@ Rotas protegidas: `/onboarding`, `/dashboard`, `/agroia` e `/fazenda`. Sem onboa
 - **Local = 1 ponto no mapa** (pergunta 5). Tem botão "usar meu GPS".
 - **Texto livre interpretado por IA** nas perguntas **8** (o que planta e quando), **26a** (culturas que não plantaria) e **26b** (equipamentos). Fluxo: `texto → Gemini extrai JSON → casa com a base → produtor confirma item a item`. A IA **só devolve itens que existem na base** ou "não encontrado". Se o Gemini falhar, o produtor escolhe de uma lista com ícones.
 - **Histórico de perdas com ano** (bloco 5): o back-end procura o evento nos dados NASA e mostra se confirma ("Em 2021 o NASA POWER registrou 3 noites abaixo de 0 °C em julho no seu local").
-- **Saídas:** perfil A–D + modificadores, calendário confirmado, retrato provisório do solo, histórico de perdas, prioridades (até 3), culturas excluídas, equipamentos, próximo passo sugerido.
+- **Saídas:** perfil A–C + papel (produtor/técnico) + modificadores, calendário confirmado, retrato provisório do solo, histórico de perdas, prioridades (até 3), culturas excluídas, equipamentos, próximo passo sugerido.
 
 Ao terminar, a API dispara o **processamento inicial** da fazenda (seção 7). O front mostra "Preparando os dados da sua fazenda…" e abre o Dashboard quando ficar pronto.
 
@@ -191,7 +191,7 @@ Pergunta do produtor
 Pequena e bem escolhida (20 a 50 documentos), respeitando licenças. Indexar por idioma ou usar embeddings multilíngues.
 
 ### 6.3 Regras de comportamento (prompt de sistema)
-1. Responder no **idioma do usuário**, em linguagem simples, adaptada ao **perfil A–D**.
+1. Responder no **idioma do usuário**, em linguagem simples, adaptada ao **perfil A–C** e ao **papel** (produtor ou técnico).
 2. **Usar só números presentes no contexto.** Se não houver, dizer "não tenho essa informação" e sugerir onde conseguir.
 3. **Citar fonte e data:** "(NASA SMAP L4, dado de 12/11)".
 4. Dizer a **escala** quando relevante: "esse dado cobre cerca de 9 km ao redor do seu campo".
