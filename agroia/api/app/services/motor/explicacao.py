@@ -61,7 +61,7 @@ def confianca(itens: tuple[ItemRotacao, ...], catalogo: dict[str, CulturaMotor])
         else:
             niveis.append(0)
             lac.append(f"{c.nome}: confiança dos parâmetros não informada; tratada como baixa.")
-        if c.confianca_parametros == "baixa":  # regra 10: o que não sabemos e o que confirmar, em linguagem simples
+        if c.confianca_parametros == "baixa" and c.arranjo_aplicado is None:  # regra 10: o que não sabemos e o que confirmar; os textos da linha falam da região de referência, não do arranjo
             lac += [t for t in (f"{c.nome}: {x}" for x in (c.lacuna_informacao, c.risco_revisao_local) if x) if t not in lac]
     if not niveis:
         return "baixa", ["Nenhuma cultura da rotação está na base: confiança baixa."]
