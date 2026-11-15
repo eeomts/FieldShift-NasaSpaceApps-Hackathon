@@ -23,7 +23,7 @@ ToDo/
 | Pessoa | Tarefas | Prioridade |
 |---|---|---|
 | **1 — Yury** (agronomia) | ~~01 corrigir o `culturas.csv` duplicado~~ (feito, só conferir) · 02 script da PAM · 03 script do ZARC | 02 e 03 já podem começar |
-| **2 — _____** (dados) | 01 pontos da demo · 02 script da malha municipal · 03 script do AppEEARS · 04 exigência de equipamento | 01 primeiro: destrava o AppEEARS |
+| **2 — Augusto** (dados) | 01 pontos da demo · 02 script da malha municipal · 03 script do AppEEARS · 04 exigência de equipamento | 01 primeiro: destrava o AppEEARS |
 | **3 — _____** (conteúdo) | 01 textos do RAG · 02 sinônimos das culturas · 03 fotos de solo | 01 primeiro: o agente depende dele |
 
 ## Dependências
