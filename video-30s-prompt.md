@@ -1,6 +1,6 @@
-# AgroIA · Prompt estruturado para o vídeo de 30s
+# AgroAI · Prompt estruturado para o vídeo de 30s
 
-Vídeo de apresentação do **AgroIA** (Field Shift, NASA Space Apps 2026).
+Vídeo de apresentação do **AgroAI** (Field Shift, NASA Space Apps 2026).
 Pensado para gerar em ferramentas de vídeo com IA (Veo, Sora, Runway, Kling, Pika) **cena por cena**, já que a maioria gera clipes de 5 a 8s. As telas do app entram como gravação de tela ou mockup por cima.
 
 ---
@@ -11,8 +11,8 @@ Pensado para gerar em ferramentas de vídeo com IA (Veo, Sora, Runway, Kling, Pi
 |---|---|
 | **Objetivo** | Em 30s, o jurado entende o problema, a solução e por que dados da NASA importam |
 | **Público** | Jurados internacionais do Space Apps → narração em **inglês**, legendas em PT opcionais |
-| **Mensagem central** | *"NASA has 40 years of data about every farm. AgroIA turns it into words a farmer can use, and answers every 'what if', any time."* |
-| **Diferencial em destaque** | O **agente AgroIA**, disponível 24/7, que responde todos os "e se…" do produtor ("e se não chover em janeiro?", "e se eu plantar milheto em abril?") com base nos dados da fazenda dele, citando a fonte |
+| **Mensagem central** | *"NASA has 40 years of data about every farm. AgroAI turns it into words a farmer can use, and answers every 'what if', any time."* |
+| **Diferencial em destaque** | O **agente AgroAI**, disponível 24/7, que responde todos os "e se…" do produtor ("e se não chover em janeiro?", "e se eu plantar milheto em abril?") com base nos dados da fazenda dele, citando a fonte |
 | **Personagem** | Dona Marta, 52 anos, 80 ha de soja no Cerrado (Luís Eduardo Magalhães, BA) |
 | **Arco** | Espaço → problema na terra → app no celular → raio-x do campo → estratégias → **agente responde os "e se" de madrugada** → amanhecer e marca |
 | **Formato** | 16:9, 1920×1080, 24 fps. Versão 9:16 recortando o centro (manter ação no centro) |
@@ -65,11 +65,11 @@ Duas vozes: o **narrador** (inglês) e a **Dona Marta** (português do interior,
 |---|---|---|---|---|
 | 1 | 0–3s | Satélite orbitando a Terra, câmera desce até o Brasil | — | 🎙️ Narrador: "Satellites have watched every farm for 40 years." |
 | 2 | 3–8s | Dona Marta de costas/perfil olhando o campo seco, solo rachado, enxurrada na encosta | legenda + **7 months bare soil** | 👩‍🌾 Marta (voz em off): **"Meu pai plantava assim… mas a chuva não vem mais como antes."** |
-| 3 | 8–11s | Mão segura o celular: marca a fazenda no mapa, escolhe prioridades | **AgroIA** | 🎙️ "AgroIA learns her farm…" |
+| 3 | 8–11s | Mão segura o celular: marca a fazenda no mapa, escolhe prioridades | **AgroAI** | 🎙️ "AgroAI learns her farm…" |
 | 4 | 11–15s | Cartões do "raio-x do campo" surgem sobre a vista aérea da fazenda | selos MODIS · SMAP · GPM | 🎙️ "…turns NASA data into plain words…" |
 | 5 | 15–18s | Comparação A / B / C; a B (soja + milheto) se destaca | **3 strategies, side by side** | 🎙️ "…and compares crop rotations." |
-| 6 | 18–27s | **O agente.** Noite, varanda, relógio 2:14. Marta grava **mensagem de voz** para a AgroIA, celular perto da boca; respostas chegam com selo de fonte | legendas + **Every "what if". 24/7.** | 👩‍🌾 **"E se não chover em janeiro?"** … 👩‍🌾 **"E se eu plantar milheto em abril?"** … 🎙️ "Every 'what if'. Answered any time." |
-| 7 | 27–30s | Amanhecer: campo verde coberto, Marta sorri. Fecha no logo | **AgroIA · Field Shift** / *Supports. Never decides.* | 👩‍🌾 (voz em off) **"Agora eu decido sabendo."** |
+| 6 | 18–27s | **O agente.** Noite, varanda, relógio 2:14. Marta grava **mensagem de voz** para a AgroAI, celular perto da boca; respostas chegam com selo de fonte | legendas + **Every "what if". 24/7.** | 👩‍🌾 **"E se não chover em janeiro?"** … 👩‍🌾 **"E se eu plantar milheto em abril?"** … 🎙️ "Every 'what if'. Answered any time." |
+| 7 | 27–30s | Amanhecer: campo verde coberto, Marta sorri. Fecha no logo | **AgroAI · Field Shift** / *Supports. Never decides.* | 👩‍🌾 (voz em off) **"Agora eu decido sabendo."** |
 
 A cena 6 é a mais longa de propósito: é o diferencial. Marta perguntar **por voz** reforça a ideia: quem não gosta de digitar também consegue usar.
 
@@ -156,12 +156,12 @@ and gives a small relieved smile. Slow push-in from medium shot to close-up. Moo
 ```
 Plano B (se a ferramenta só gera 5s): dividir em *(a)* close do rosto preocupado iluminado pela tela, 3s, e *(b)* close da mão digitando, 5s.
 
-➜ Na edição, a tela vira o **chat da AgroIA** (fundo creme, balões arredondados):
-- Canto da tela: relógio **2:14 AM** e um selo verde pulsando **"AgroIA · online 24/7"**
+➜ Na edição, a tela vira o **chat da AgroAI** (fundo creme, balões arredondados):
+- Canto da tela: relógio **2:14 AM** e um selo verde pulsando **"AgroAI · online 24/7"**
 - 🎤 Marta: balão de **mensagem de voz** (ondinha de áudio) com a transcrição embaixo: *"E se não chover em janeiro?"*; legenda do vídeo em inglês: *"What if it doesn't rain in January?"*
-- 🌱 AgroIA (aparece digitando "…" por 0,5s): *"Your soybeans would be filling their grains then. In 6 of the last 10 years, January soil was drier than normal here. Sowing a bit earlier lowers that risk."* · selo **SMAP · NASA POWER**
+- 🌱 AgroAI (aparece digitando "…" por 0,5s): *"Your soybeans would be filling their grains then. In 6 of the last 10 years, January soil was drier than normal here. Sowing a bit earlier lowers that risk."* · selo **SMAP · NASA POWER**
 - 🎤 Marta (mensagem de voz): *"E se eu plantar milheto em abril?"*; legenda: *"What if I plant millet in April?"*
-- 🌱 AgroIA: *"Good fit: millet handles dry spells and covers your soil until October."* · selo **MODIS · GPM**
+- 🌱 AgroAI: *"Good fit: millet handles dry spells and covers your soil until October."* · selo **MODIS · GPM**
 - Texto grande por cima no fim: **Every "what if". 24/7.**
 
 As respostas precisam ser curtas (no máximo duas linhas na tela) e marcadas como ilustrativas se não vierem do app de verdade. Se o chat já estiver funcionando no dia, gravar a tela real é ainda melhor.
@@ -174,7 +174,7 @@ breeze, warm backlight, lens flare. Camera pulls back slowly, leaving clean
 cream-colored sky space at the top for a title.
 ```
 A passagem da noite (cena 6) para o amanhecer (cena 7) é o "respiro" do vídeo: a dúvida da madrugada vira tranquilidade.
-➜ Na edição: fundo vai para creme `#FFF7EA`, logo AgroIA + "Field Shift · NASA Space Apps 2026" + *Supports. Never decides.*
+➜ Na edição: fundo vai para creme `#FFF7EA`, logo AgroAI + "Field Shift · NASA Space Apps 2026" + *Supports. Never decides.*
 
 ---
 

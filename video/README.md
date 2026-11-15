@@ -1,4 +1,4 @@
-# Vídeo de 30s do AgroIA
+# Vídeo de 30s do AgroAI
 
 Vídeo de apresentação do Field Shift (NASA Space Apps 2026), em cartoon 2D com as cores do app.
 O roteiro e a estética estão em [`../video-30s-prompt.md`](../video-30s-prompt.md).
