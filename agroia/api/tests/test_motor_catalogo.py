@@ -32,7 +32,8 @@ def test_soja_tipada():
     assert soja.graus_dia_ciclo_min == 1600.0 and soja.temp_base_c == 10.0 and soja.kc_medio == 1.15
     assert soja.codigo_pam == "40124"
     assert len(soja.fontes) >= 2
-    assert soja.nome_zarc is None  # vazio no CSV: None, nunca "" nem 0
+    assert soja.nome_zarc == "Soja"
+    assert catalogo_do_pais("BR")["crotalaria"].nome_zarc is None  # vazio no CSV: None, nunca "" nem 0
 
 
 def test_celula_vazia_vira_none_e_nao_zero(tmp_path):
