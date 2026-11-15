@@ -1,0 +1,81 @@
+# Suba sempre pelo ./.deploy/agroia: ele le o .deploy/env/<ambiente>.env e preenche estas variaveis.
+
+services:
+
+  web:
+    build:
+      context: ../agroia/web
+      dockerfile: ../../.deploy/web.Dockerfile
+    restart: always
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      AGROIA_SITE: ${AGROIA_SITE:?suba pelo ./.deploy/agroia}
+    ports:
+      - "${AGROIA_PORTA_HTTP:?suba pelo ./.deploy/agroia}:80"
+      - "${AGROIA_PORTA_HTTPS:-443}:443"
+      - "${AGROIA_PORTA_HTTPS:-443}:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy:/data
+      - caddy-config:/config
+
+  api:
+    build:
+      context: ../agroia
+      dockerfile: ../.deploy/api.Dockerfile
+      additional_contexts:
+        deploy: .
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+        required: false
+    environment:
+      DB_HOST: ${DB_HOST:?suba pelo ./.deploy/agroia}
+      DB_PORT: ${DB_PORT:-5432}
+      DB_NAME: ${DB_NAME:?suba pelo ./.deploy/agroia}
+      DB_USER: ${DB_USER:?suba pelo ./.deploy/agroia}
+      DB_PASSWORD: ${DB_PASSWORD:?suba pelo ./.deploy/agroia}
+      DB_SSLMODE: ${DB_SSLMODE:-prefer}
+      JWT_SECRET: ${JWT_SECRET:?suba pelo ./.deploy/agroia}
+      JWT_EXPIRES_MIN: ${JWT_EXPIRES_MIN:-10080}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.8-flash}
+      CORS_ORIGINS: ${CORS_ORIGINS:-}
+      CORS_ORIGIN_REGEX: ""
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/saude', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  db:
+    profiles: ["banco"]
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME:?suba pelo ./.deploy/agroia}
+      POSTGRES_USER: ${DB_USER:?suba pelo ./.deploy/agroia}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?suba pelo ./.deploy/agroia}
+    ports:
+      # so esta maquina enxerga (para DBeaver/psql); nunca 0.0.0.0
+      - "127.0.0.1:${AGROIA_PORTA_BANCO:-5434}:5432"
+    volumes:
+      - banco:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  banco:
+  caddy:
+  caddy-config:

@@ -1,0 +1,34 @@
+#!/bin/sh
+# Substitui o banco do ambiente por um backup: ./.deploy/restaurar <local|producao> <arquivo.sql.gz>
+
+set -eu
+
+cd "$(dirname "$0")/.."
+. .deploy/lib.sh
+
+ARQUIVO=${2:-}
+if [ -z "$ARQUIVO" ] || [ ! -f "$ARQUIVO" ]; then
+    echo "uso: ./.deploy/restaurar <local|producao> .deploy/backups/agroia-<ambiente>-<data>.sql.gz" >&2
+    exit 1
+fi
+
+carregar_env "${1:-}"
+exigir DB_HOST DB_NAME DB_USER DB_PASSWORD
+
+gzip -t "$ARQUIVO" || { echo "erro: $ARQUIVO esta corrompido" >&2; exit 1; }
+
+echo "Isto SUBSTITUI o banco $DB_NAME ($AMBIENTE) pelo conteudo de:"
+echo "  $ARQUIVO"
+printf 'Para confirmar, digite RESTAURAR: '
+read -r resposta
+if [ "$resposta" != "RESTAURAR" ]; then
+    echo "cancelado, nada mudou"
+    exit 1
+fi
+
+# guarda o estado atual antes de mexer; se nao conseguir, para
+./.deploy/backup "$AMBIENTE" || { echo "erro: nao consegui guardar o estado atual; nada foi alterado" >&2; exit 1; }
+
+gzip -dc "$ARQUIVO" | pg psql -v ON_ERROR_STOP=1 --quiet --output=/dev/null
+
+echo "restaurado a partir de $ARQUIVO"
