@@ -34,7 +34,9 @@
     "codigo_nass": "SUNFLOWER, OIL TYPE",
     "calendario_usda": "All Sunflower",
     "fontes": "SISTEMA: girassol oleícola de sequeiro da Dakota do Norte; o confeiteiro (non-oil) fica de fora|USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (janela de semeadura e colheita de ND)|Kandel, Endres & Buetow (eds.), NDSU Extension A1995 Sunflower Production Guide, dez. 2020 (Tab. 1 GDD e dias até R9; água 19 in; raiz efetiva ~4 ft; geada; épocas de semeadura; tolerância à seca)|NDAWN, Sunflower Growing Degree Days Help (Tb 44 °F, sem teto, R9 = 2310 GDD °F; lido em cópia do Internet Archive de 15/10/2026)|NDSU Extension A652, North Dakota Sunflower Variety Trial Results 2021, 2023, 2024 e 2025 (dias da semeadura à maturação dos híbridos oleícolas em Fargo, Carrington e Langdon)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/girassol_gd.json (graus-dia sem teto, Tb 4, na régua do NASA POWER, nas datas dos ensaios)|CÁLCULO: scripts/etc_nasa_power.py, cenários eua/cenarios/girassol_etc.json (Kc FAO-56 × ET0 do POWER, Fargo, Carrington e Langdon, 2001-2020)|Barni et al. 1993 via Ungaro et al. 2009, INMET (Tb 4 °C, reusada do Brasil)|FAO-56 Tab. 11, 12 e 22 (fases, Kc, altura e raiz)|USDA NASS, Crop Production 2022 Summary (jan. 2023) e 2025 Summary (jan. 2026) (produtividade do girassol oleícola de ND 2021-2025)|van Donk, Merrill, Tanaka & Krupinsky, Transactions of the ASABE 51(5):1623-1632, 2008 (resíduo medido na colheita em Mandan-ND, cobertura medida, parâmetros do WEPS)|USDA-ARS Mandan, Crop Sequence Calculator, Crop Production Parameters (razão resíduo/grão 1999/2000)|Lardy, NDSU Extension AS1182 Alternative Feeds for Ruminants, 2022 (resíduo de girassol no pastejo)|PROXY: Feedipedia, Sunflower forage and crop residues (PB e digestibilidade da palhada; média mundial)|PROXY: C/N e k da palhada reusados do Brasil (Marcelo 2012; Embrapa CT 147)",
-    "confianca_parametros": "baixa"
+    "confianca_parametros": "baixa",
+    "lacuna_informacao": "Não há medição na Dakota do Norte de quanta água o girassol de sequeiro usa; usamos um cálculo com o clima da NASA. O calor que ele precisa para amadurecer vem de poucos ensaios, cada um de um só ano, e a tabela oficial do estado dá um valor diferente.",
+    "risco_revisao_local": "Em ano seco a chuva da estação fica abaixo do que o girassol usaria com produção plena. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido, a data de semeadura e se ele amadurece antes da geada de outono."
   },
   "origem": {
     "temp_base_c": {
@@ -59,11 +61,11 @@
     },
     "agua_ciclo_mm_min": {
       "tipo": "calculo",
-      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/girassol_etc.json, cenário girassol_min_langdon_0525_105d (norte de ND, semeadura 25/mai, híbrido precoce de 105 d até a maturação, fases 20/28/37/20 na proporção do FAO-56 Tab. 11, Kc 0,35/1,15/0,35 com o médio ajustado pela eq. 62, h = 2,0 m), 2001-2020: mediana 441 mm (P10 366, P90 504). Mínimo = 441 arredondado para baixo = 440. Conferência: NDSU A1995, 'Seasonal water use by sunflower averages about 19 inches under irrigated conditions' (483 mm, sudeste de ND, sem limitação de água); o cenário médio em Fargo (119 d) dá 506 mm (+4,7%)."
+      "nota": "CÁLCULO: scripts/etc_nasa_power.py com eua/cenarios/girassol_etc.json, cenário girassol_min_langdon_0525_105d (norte de ND, semeadura 25/mai, híbrido precoce de 105 d até a maturação, fases 20/28/37/20 na proporção do FAO-56 Tab. 11, Kc 0,35/1,15/0,35 com o médio ajustado pela eq. 62, h = 2,0 m), 2001-2020: mediana 441 mm (P10 366, P90 504). Mínimo = 441 arredondado para baixo = 440. Conferência: NDSU A1995, 'Seasonal water use by sunflower averages about 19 inches under irrigated conditions' (483 mm, sudeste de ND, sem limitação de água); o cenário médio em Fargo (119 d) dá 506 mm (+4,7%). Regra 1 do motor (revisão de 15/11): a coluna é consumo sem déficit e não elimina o girassol de sequeiro. A chuva mediana da estação no POWER (2001-2020) fica abaixo do mínimo: 279 mm em Langdon (cenário de 105 d), 291 em Carrington e 341-348 em Fargo (119-130 d); o motor só marca 'água no limite' e mostra o déficit. O número não foi rebaixado para caber na chuva."
     },
     "agua_ciclo_mm_max": {
       "tipo": "calculo",
-      "nota": "CÁLCULO, mesmo script e arquivo: híbrido tardio de 130 d (fases 25/35/45/25 do FAO-56 Tab. 11), semeadura 20/mai, 2001-2020: Carrington mediana 560 mm (P90 619) e Fargo 534 mm (P90 618). Máximo = 560 (Carrington, o local de maior demanda). Fica 16% acima dos 19 in médios da NDSU, como esperado para o híbrido mais tardio."
+      "nota": "CÁLCULO, mesmo script e arquivo: híbrido tardio de 130 d (fases 25/35/45/25 do FAO-56 Tab. 11), semeadura 20/mai, 2001-2020: Carrington mediana 560 mm (P90 619) e Fargo 534 mm (P90 618). Máximo = 560 (Carrington, o local de maior demanda). Fica 16% acima dos 19 in médios da NDSU, como esperado para o híbrido mais tardio. Chuva mediana da estação no mesmo cálculo: Carrington 291 mm e Fargo 348 mm, bem abaixo do máximo (regra 1: só aviso de 'água no limite')."
     },
     "kc_inicial": {
       "tipo": "publicado",
@@ -381,7 +383,7 @@
     "cenario_forragem": "Resíduo do girassol para grão depois da colheita (hastes e capítulos sem sementes, com sementes caídas), pastejado no fim do outono antes da neve (NDSU AS1182). Silagem de girassol é outro cenário e não entra.",
     "excecoes": {},
     "observacoes": {
-      "coleta": "Palhada = resíduo acima do solo na colheita (toda a parte aérea menos o grão), medido à mão em Mandan-ND, plantio direto, 1999-2001 (van Donk et al. 2008, Tab. 2): 8,49 (1999), 5,82, 5,14, 5,87, 3,55, 4,29 (2000), 5,76, 5,45, 4,22, 5,70 t/ha (2001), conforme o cultivo anterior. Típico = mediana dos 10 valores = (5,45 + 5,70)/2 = 5,6 t/ha; mínimo 3,6 (girassol sobre girassol, 2000); máximo 8,5 (1999). DESVIO do método padrão (razão × NASS): a razão resíduo/grão medida pelo USDA-ARS em Mandan (1999/2000) é 3,84 depois de trigo (3,53-5,33 conforme o cultivo anterior); vezes a produtividade do NASS para o girassol oleícola de ND em 2021-2025 (1590, 1900, 1970, 1800, 1940 lb/acre; mediana 1900 lb/acre = 2,13 t/ha) daria 8,2 t/ha (mínimo 6,8 em 2021; máximo 8,5 em 2023). Não usei porque a razão foi medida com produtividade de ~1300 lb/acre (5,6 / 3,84 = 1,45 t/ha) e o resíduo não cresce na mesma proporção do grão. Pelo índice de colheita de 0,33 do Brasil daria 4,3 t/ha. A medida direta (5,6) fica entre as duas contas. C/N: PROXY do Brasil (34 Embrapa CT 147; 39 e 83 Marcelo 2012; típico 39); não achei C/N do resíduo de girassol medido nos EUA.",
+      "coleta": "Palhada = resíduo acima do solo na colheita (toda a parte aérea menos o grão), medido à mão em Mandan-ND, plantio direto, 1999-2001 (van Donk et al. 2008, Tab. 2): 8,49 (1999), 5,82, 5,14, 5,87, 3,55, 4,29 (2000), 5,76, 5,45, 4,22, 5,70 t/ha (2001), conforme o cultivo anterior. Típico = mediana dos 10 valores = (5,45 + 5,70)/2 = 5,6 t/ha; mínimo 3,6 (girassol sobre girassol, 2000); máximo 8,5 (1999). CONFERÊNCIA, não usada (DECISÃO de 15/11: vale a massa medida; a regra 6 do motor só escala pelo IPCC soja, milho, trigo, arroz e sorgo). Método razão × NASS: a razão resíduo/grão medida pelo USDA-ARS em Mandan (1999/2000) é 3,84 depois de trigo (3,53-5,33 conforme o cultivo anterior); vezes a produtividade do NASS para o girassol oleícola de ND em 2021-2025 (1590, 1900, 1970, 1800, 1940 lb/acre; mediana 1900 lb/acre = 2,13 t/ha) daria 8,2 t/ha (mínimo 6,8 em 2021; máximo 8,5 em 2023). Não usei porque a razão foi medida com produtividade de ~1300 lb/acre (5,6 / 3,84 = 1,45 t/ha) e o resíduo não cresce na mesma proporção do grão. Pelo índice de colheita de 0,33 do Brasil daria 4,3 t/ha. A medida direta (5,6) fica entre as duas contas. C/N: PROXY do Brasil (34 Embrapa CT 147; 39 e 83 Marcelo 2012; típico 39); não achei C/N do resíduo de girassol medido nos EUA.",
       "cobertura": "O resíduo de girassol cobre pouco o solo por unidade de massa: no WEPS o fator massa-cobertura é 2,1 m²/kg, contra 6,5 do trigo (van Donk et al. 2008). Cobertura medida na primavera seguinte, depois da semeadura do trigo, em Mandan: média de 58% (35-87%) quando o girassol foi o segundo cultivo. A NDSU (A1995) recomenda não gradear os talos depois da colheita porque o solo fica 'extremely susceptible to wind and water erosion'. Com o k proxy, a régua dá 5,6 × e^(-0,0052×60) = 4,1 t/ha que sobram em 60 dias (classe 'media'), coerente com os 58% medidos (pela curva de Lopes et al. 1987, 58% de cobertura ≈ 2,9 t/ha).",
       "decomposicao": "WEPS (van Donk et al. 2008, Tab. 1): k do girassol = 0,0250 por 'dia de decomposição' (dia com temperatura e umidade ótimas), o mais alto depois da soja (0,0300) e acima do trigo (0,0133). Não é k por dia de calendário, por isso não entrou no bloco. O valor do bloco é o do Brasil (Marcelo 2012: 0,0042 e 0,0063 → 0,0052; mínimo 0,0041 da Embrapa CT 147; máximo 0,0071 de Teodoro 2019).",
       "colheita": "Handbook 628 (ND): colheita usual de 1/out a 23/nov, 'most active' de 9/out a 10/nov. Nos ensaios da NDSU de 2021-2025 a colheita foi de 17/out a 22/nov, 3 a 8 semanas depois da maturação fisiológica (secagem no campo)."
@@ -418,17 +420,41 @@
       "antes": "",
       "depois": "baixo",
       "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "lacuna_informacao",
+      "antes": "",
+      "depois": "Não há medição na Dakota do Norte de quanta água o girassol de sequeiro usa; usamos um cálculo com o clima da NASA. O calor que ele precisa para amadurecer vem de poucos ensaios, cada um de um só ano, e a tabela oficial do estado dá um valor diferente.",
+      "motivo": "Revisão 15/11 (M-11): confiança baixa exige o texto para o produtor. Resume as lacunas da água (cálculo, única fonte de ND é irrigada) e dos graus-dia (ensaios de um ano; modelo do NDAWN incoerente)."
+    },
+    {
+      "coluna": "risco_revisao_local",
+      "antes": "",
+      "depois": "Em ano seco a chuva da estação fica abaixo do que o girassol usaria com produção plena. Confirme com a extensão da Universidade Estadual da Dakota do Norte o híbrido, a data de semeadura e se ele amadurece antes da geada de outono.",
+      "motivo": "Revisão 15/11 (M-11): o que confirmar com a extensão. Chuva da estação abaixo do consumo sem déficit (regra 1) e geada antes da maturação (NDSU A1995)."
+    },
+    {
+      "coluna": "regua.ms_palhada_t_ha",
+      "antes": "5.6 (pendência: decisão para o coordenador)",
+      "depois": "5.6 (DECISÃO)",
+      "motivo": "Revisão 15/11, decisão do arquiteto aceita pelo usuário: massa medida em Mandan-ND; o 8,2 t/ha do método razão × NASS fica como conferência. Número e classe não mudam."
+    },
+    {
+      "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
+      "antes": "440, 560",
+      "depois": "440, 560",
+      "motivo": "Revisão 15/11 (regra 1 do motor): notas de origem e pendência reescritas. A coluna é consumo sem déficit; a chuva da estação em ND (279-348 mm) fica abaixo do mínimo, o que só gera aviso. Números não mudam."
     }
   ],
   "pendencias": [
     "graus_dia: o modelo oficial do NDAWN/NDSU (R9 = 2310 GDD °F, Tb 44 °F, sem teto) refeito no POWER dá só ~1530-1550 °C·dia (Tb 4) e é atingido em 86-98 dias, enquanto os ensaios da NDSU de 2021-2025 mostram 104-137 dias até a maturação e 1827-2275 °C·dia. A própria Tab. 1 do A1995 é incoerente no POWER: 2310 °F com 119 dias (os 119 dias dão 1948 em Fargo). Usei os ensaios (dias observados). Hipóteses: a tabela do NDAWN é antiga (híbridos dos anos 1980) ou de clima mais frio; o POWER pode estar mais quente que as estações do NDAWN. Resolveria: GDD do NDAWN até R9 medido em híbridos atuais, ou as séries das estações NDAWN de Fargo e Carrington para comparar com o POWER (o site do NDAWN não respondeu nesta sessão).",
     "graus_dia: cada valor de ensaio é de um só ano; o mínimo (1827) e o máximo (2275) são extremos de 8 ensaios. Pelas medianas dos ensaios a faixa seria 1900-2050. 2021 foi um ano quente e seco em ND (o maior valor, Carrington 2021, é desse ano).",
     "ciclo e graus-dia: só os ensaios de Fargo (USDA-ARS, B. Hulke) dizem 'Days to PM' (maturação fisiológica); Carrington e Langdon dizem 'Days to Maturity' sem definir o estádio. Os valores mais longos (Carrington, 129-137 dias) podem estar mais perto da maturação de colheita. Sem eles a faixa seria 104-131 dias e 1800-2190 °C·dia.",
-    "agua: CÁLCULO (Kc × ET0 do POWER); a única fonte de ND é a média de 19 in (483 mm) do girassol irrigado no sudeste do estado (NDSU A1995, que cita Ennen 1979). Resolveria: ET medida de girassol em ND por híbrido ou local (NDAWN Crop Water Use; USDA-ARS Mandan ou Sidney-MT).",
+    "agua: CÁLCULO (Kc × ET0 do POWER), consumo com produtividade plena (sem déficit). A única fonte de ND é a média de 19 in (483 mm) do girassol IRRIGADO no sudeste do estado (NDSU A1995, que cita Ennen 1979); não há medida do girassol de sequeiro. A chuva mediana da estação no POWER (2001-2020) fica abaixo do mínimo de 440 mm em todos os locais de referência: Langdon 279, Carrington 291, Fargo 341-348 mm. Pela regra 1 do motor (15/11) isso não elimina o girassol, que é a cultura típica de sequeiro da região: marca 'água no limite' com o déficit estimado. O número não foi rebaixado para caber na chuva. Resolveria: ET medida de girassol de sequeiro em ND por híbrido ou local (NDAWN Crop Water Use; USDA-ARS Mandan ou Sidney-MT), incluindo a água do solo usada abaixo de 4 ft.",
     "temp_base_c = 4 (Brasil) contra 44 °F = 6,7 °C da NDSU/NDAWN. As somas térmicas desta linha já estão na Tb 4. Se o coordenador quiser a Tb americana, os cenários de girassol_gd.json podem ser refeitos trocando 'tb'.",
     "raiz_profunda = false segue o Brasil (a raiz não rompe camada compactada). A NDSU destaca a raiz profunda (efetiva ~4 ft, tira água e nitrato abaixo de 2 ft); se a coluna for usada como 'explora camadas profundas', rever.",
     "temp_otima_min_c, temp_otima_max_c e tmax_critica_c: sem fonte americana; reusados do Brasil.",
-    "regua: a palhada típica (5,6 t/ha) vem de medida direta em Mandan (1999-2001), não da conta razão × NASS pedida no método (que daria 8,2 t/ha e classe 'alto'). Decisão para o coordenador. C/N, k, PB e digestibilidade são PROXY (Brasil e Feedipedia), sem dado dos EUA; o k do WEPS (0,025) é por dia de decomposição ótimo, não por dia de calendário.",
+    "DECISÃO (revisão de 15/11, do arquiteto, aceita pelo usuário): a palhada fica a massa medida em Mandan-ND (van Donk et al. 2008), típico 5,6 t/ha, faixa 3,6-8,5, classe 'medio'. A regra 6 do motor só escala a palhada pelo IPCC na soja, no milho, no trigo, no arroz e no sorgo; nas demais culturas vale o típico do bloco regua. O método razão × NASS (3,84 × mediana de 2,13 t/ha = 8,2 t/ha, classe 'alto') fica só como conferência em regua.observacoes.coleta. Continua fraco: C/N, k, PB e digestibilidade são PROXY (Brasil e Feedipedia), sem dado dos EUA; o k do WEPS (0,025) é por dia de decomposição ótimo, não por dia de calendário.",
     "codigo_nass: 'SUNFLOWER, OIL TYPE' segue o relatório Crop Production (tipo 'Oil'); no QuickStats o commodity é 'SUNFLOWER' e a classe 'OIL TYPE'. Não conferido no QuickStats (sem NASS_API_KEY).",
     "calendario_usda: o Handbook 628 só tem 'All Sunflower' (oleícola e confeiteiro juntos)."
   ],

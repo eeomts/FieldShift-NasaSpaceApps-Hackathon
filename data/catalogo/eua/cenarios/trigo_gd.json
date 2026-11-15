@@ -1,5 +1,5 @@
 {
-  "_leia": "Cenários de graus-dia do trigo de inverno (hard red winter wheat, sequeiro, Kansas) para scripts/gd_nasa_power.py. GD = soma de max(0, Tmed - 0), sem teto, Tb 0 °C (= 32 °F do Kansas Mesonet e da K-State MF3740). Os cenários 'trigo_<local>_<semeadura>_<maturação>' dão a exigência da semeadura (outono) à maturação fisiológica (junho do ano seguinte), com a dormência de inverno incluída: dias com Tmed <= 0 somam zero. 'anos' = anos da semeadura (o fim cai no ano seguinte). Os cenários '_conf_0101_' conferem a data de maturação com o limiar do Kansas Mesonet (3000 GDD °F desde 1/jan = 1667 °C·dia) e os '_outono_' dão a parte de setembro-dezembro. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
+  "_leia": "Cenários de graus-dia do trigo de inverno (hard red winter wheat, sequeiro, Kansas) para scripts/gd_nasa_power.py. GD = soma de max(0, Tmed - 0), sem teto, Tb 0 °C (= 32 °F do Kansas Mesonet e da K-State MF3740). Os cenários 'trigo_<local>_<semeadura>_<maturação>' dão a exigência da semeadura (outono) à maturação fisiológica (junho do ano seguinte), com a dormência de inverno incluída: dias com Tmed <= 0 somam zero. 'anos' = anos da semeadura (o fim cai no ano seguinte): todos os cenários usam 2001-2020, a base do catálogo, e os de safra inteira e de outono vão até a safra 2020/21. Revisão 15/11 (B-05): esses cenários estavam em 2000-2019 e foram refeitos com 2001-2020 pelo scripts/gd_nasa_power.py; o cache do POWER de Hays e Hutchinson já cobria 2001-2021, e o de Colby (2001-2021, um ponto, ~0,9 MB) foi baixado da API do POWER. Mudança: Colby 2635 -> 2647, Hays 2288 -> 2298, Hutchinson 2016 -> 2016. Os cenários '_conf_0101_' conferem a data de maturação com o limiar do Kansas Mesonet (3000 GDD °F desde 1/jan = 1667 °C·dia) e os '_outono_' dão a parte de setembro-dezembro. 'elevacao_m' = elevação da célula do POWER (geometry da resposta da API); o script de graus-dia não a usa.",
   "locais": {
     "colby": {
       "nome": "Colby-KS (K-State Northwest Research-Extension Center)",
@@ -29,8 +29,8 @@
       "fim": "06-21",
       "tb": 0,
       "anos": [
-        2000,
-        2019
+        2001,
+        2020
       ],
       "nota": "Ciclo mais longo: noroeste do Kansas. Semeadura em 15/set (início da janela ótima do noroeste, 10-30/set, K-State; início do 'most active' do Kansas no Handbook 628, 15/set-20/out). Maturação fisiológica = fim da colheita 'most active' do Kansas (5/jul, Handbook 628) menos 14 dias (regra do produto de fenologia do Kansas Mesonet: maturação ~2 semanas antes da colheita) = 21/jun. Duração: 280 dias (semeadura e maturação incluídas)."
     },
@@ -42,8 +42,8 @@
       "fim": "06-14",
       "tb": 0,
       "anos": [
-        2000,
-        2019
+        2001,
+        2020
       ],
       "nota": "Ciclo típico: centro-oeste do Kansas. Semeadura em 1/out (50% da área do Kansas semeada até 4/out, NASS 1994-2015, via K-State eUpdate). Maturação fisiológica = meio da colheita 'most active' do Kansas (27-28/jun, Handbook 628) menos 14 dias = 14/jun. Duração: 257 dias (semeadura e maturação incluídas)."
     },
@@ -55,8 +55,8 @@
       "fim": "06-06",
       "tb": 0,
       "anos": [
-        2000,
-        2019
+        2001,
+        2020
       ],
       "nota": "Ciclo mais curto: centro-sul do Kansas. Semeadura em 20/out (fim do 'most active' do Kansas no Handbook 628 e da janela ótima do sudeste, 5-20/out, K-State). Maturação fisiológica = início da colheita 'most active' do Kansas (20/jun, Handbook 628) menos 14 dias = 6/jun. Duração: 230 dias (semeadura e maturação incluídas)."
     },
@@ -85,8 +85,8 @@
       "fim": "12-31",
       "tb": 0,
       "anos": [
-        2000,
-        2019
+        2001,
+        2020
       ],
       "nota": "Graus-dia do outono (semeadura a 31/dez), para somar aos 1667 °C·dia do Kansas Mesonet (1/jan à maturação) na conferência."
     },
@@ -115,8 +115,8 @@
       "fim": "12-31",
       "tb": 0,
       "anos": [
-        2000,
-        2019
+        2001,
+        2020
       ],
       "nota": "Graus-dia do outono (semeadura a 31/dez), para somar aos 1667 °C·dia do Kansas Mesonet (1/jan à maturação) na conferência."
     },
@@ -145,8 +145,8 @@
       "fim": "12-31",
       "tb": 0,
       "anos": [
-        2000,
-        2019
+        2001,
+        2020
       ],
       "nota": "Graus-dia do outono (semeadura a 31/dez), para somar aos 1667 °C·dia do Kansas Mesonet (1/jan à maturação) na conferência."
     }

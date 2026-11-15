@@ -12,7 +12,7 @@
     "ciclo_dias_min": "230",
     "ciclo_dias_max": "280",
     "graus_dia_ciclo_min": "2000",
-    "graus_dia_ciclo_max": "2640",
+    "graus_dia_ciclo_max": "2650",
     "temp_base_c": "0",
     "temp_otima_min_c": "15",
     "temp_otima_max_c": "23",
@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "WHEAT, WINTER",
     "calendario_usda": "Winter wheat",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do trigo de inverno no Kansas)|K-State, Kansas Crop Planting Guide L-818, 1996 (janelas de semeadura por zona; datas médias de geada)|Lollato, K-State Agronomy eUpdate 592, Optimum sowing dates and seeding rates for wheat in Kansas (janela ótima por região; semeadura real NASS 1994-2015)|Kansas Mesonet (K-State), Wheat Growth Stage (GDD do trigo: (Tmax+Tmin)/2 - 32 °F, sem teto; >3000 desde 1/jan = maturação fisiológica)|Kansas Mesonet (K-State), Winter Wheat Phenology (maturação ~2 semanas antes da colheita)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trigo_gd.json (graus-dia sem teto, Tb 0, na régua do NASA POWER, 2000-2020)|Paulsen et al., K-State Wheat Production Handbook C-529, 1997 (crescimento e desenvolvimento; geada na floração; raiz; água 16-24 pol.)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F, Tupper 79 °F)|FAO-56 Tab.12 Winter Wheat (Kc) e cap. 8 (Kc do trigo de inverno em período congelado)|FAO-56 Tab.22 Winter Wheat 1,5-1,8 m (raiz; limite superior)|Ferris et al. 1998 Ann. Bot. 82(5):631-639, mantido do Brasil (tmax na antese 31 °C)|FAO ECOCROP Triticum aestivum, mantido do Brasil (temperatura ótima)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do trigo de inverno no Kansas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Winter wheat) e 11.1a (resíduo acima do solo)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N da palha de trigo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição na superfície, Bushland-TX; resumo)|Stott et al., SSSAJ 54:92-98, 1990 (perda de palha de trigo no campo, WA, TX e IN; resumo)|Rogers et al., Agrosyst. Geosci. Environ. 2025, e70229 (decomposição e C/N de trigo duro vermelho, Idaho; resumo)|Ma et al., Agron. J. 91:401-409, 1999 (C/N da palha de trigo no leste do Colorado)|Waggoner, K-State Beef Tips, jul. 2022, dados de Cattlemen's Day 2014 (PB e IVDMD da palha de trigo)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do trigo de inverno no Kansas)|K-State, Kansas Crop Planting Guide L-818, 1996 (janelas de semeadura por zona; datas médias de geada)|Lollato, K-State Agronomy eUpdate 592, Optimum sowing dates and seeding rates for wheat in Kansas (janela ótima por região; semeadura real NASS 1994-2015)|Kansas Mesonet (K-State), Wheat Growth Stage (GDD do trigo: (Tmax+Tmin)/2 - 32 °F, sem teto; >3000 desde 1/jan = maturação fisiológica)|Kansas Mesonet (K-State), Winter Wheat Phenology (maturação ~2 semanas antes da colheita)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/trigo_gd.json (graus-dia sem teto, Tb 0, na régua do NASA POWER, safras 2001/02 a 2020/21)|Paulsen et al., K-State Wheat Production Handbook C-529, 1997 (crescimento e desenvolvimento; geada na floração; raiz; água 16-24 pol.)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (trigo de inverno: Tlower 32 °F, Tupper 79 °F)|FAO-56 Tab.12 Winter Wheat (Kc) e cap. 8 (Kc do trigo de inverno em período congelado)|FAO-56 Tab.22 Winter Wheat 1,5-1,8 m (raiz; limite superior)|Ferris et al. 1998 Ann. Bot. 82(5):631-639, mantido do Brasil (tmax na antese 31 °C)|FAO ECOCROP Triticum aestivum, mantido do Brasil (temperatura ótima)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do trigo de inverno no Kansas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Winter wheat) e 11.1a (resíduo acima do solo)|USDA NRCS, Carbon to Nitrogen Ratios in Cropping Systems, 2011 (C/N da palha de trigo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição na superfície, Bushland-TX; resumo)|Stott et al., SSSAJ 54:92-98, 1990 (perda de palha de trigo no campo, WA, TX e IN; resumo)|Rogers et al., Agrosyst. Geosci. Environ. 2025, e70229 (decomposição e C/N de trigo duro vermelho, Idaho; resumo)|Ma et al., Agron. J. 91:401-409, 1999 (C/N da palha de trigo no leste do Colorado)|Waggoner, K-State Beef Tips, jul. 2022, dados de Cattlemen's Day 2014 (PB e IVDMD da palha de trigo)",
     "confianca_parametros": "media"
   },
   "origem": {
@@ -51,11 +51,11 @@
     },
     "graus_dia_ciclo_min": {
       "tipo": "calculo",
-      "nota": "CÁLCULO na régua do POWER (Tb 0, sem teto), scripts/gd_nasa_power.py com eua/cenarios/trigo_gd.json, safras 2000/01 a 2019/20. Cenário trigo_hutchinson_1020_0606 (centro-sul, semeadura 20/out, maturação 6/jun): mediana 2016 (P10 1775, P90 2320). Conferência independente pelo limiar do Kansas Mesonet: outono (20/out-31/dez) mediana 440 + 1667 (3000 °F·dia desde 1/jan, mesmo método, Tb 32 °F sem teto) = 2107. Mínimo = 2016 arredondado para baixo = 2000. Dias com Tmed <= 0 °C (dormência) somam zero; dias amenos de inverno somam, como no Mesonet."
+      "nota": "CÁLCULO na régua do POWER (Tb 0, sem teto), scripts/gd_nasa_power.py com eua/cenarios/trigo_gd.json, safras 2001/02 a 2020/21 (anos de semeadura 2001-2020). Cenário trigo_hutchinson_1020_0606 (centro-sul, semeadura 20/out, maturação 6/jun): mediana 2016 (P10 1777, P90 2320). Conferência independente pelo limiar do Kansas Mesonet: outono (20/out-31/dez) mediana 450 + 1667 (3000 °F·dia desde 1/jan, mesmo método, Tb 32 °F sem teto) = 2117. Mínimo = 2016 arredondado para baixo = 2000. Dias com Tmed <= 0 °C (dormência) somam zero; dias amenos de inverno somam, como no Mesonet."
     },
     "graus_dia_ciclo_max": {
       "tipo": "calculo",
-      "nota": "CÁLCULO no POWER (mesmo script e arquivo). Cenário trigo_colby_0915_0621 (noroeste, semeadura 15/set, maturação 21/jun): mediana 2635 (P10 2272, P90 2973). Conferência pelo Mesonet: outono (15/set-31/dez) mediana 966 + 1667 = 2633. Máximo = 2640. Cenário típico (Hays, 1/out a 14/jun): mediana 2288; pelo Mesonet 709 + 1667 = 2376."
+      "nota": "CÁLCULO no POWER (mesmo script e arquivo). Cenário trigo_colby_0915_0621 (noroeste, semeadura 15/set, maturação 21/jun): mediana 2647 (P10 2282, P90 2973). Conferência pelo Mesonet: outono (15/set-31/dez) mediana 969 + 1667 = 2636. Máximo = 2647 arredondado à dezena = 2650. Cenário típico (Hays, 1/out a 14/jun): mediana 2298; pelo Mesonet 717 + 1667 = 2384."
     },
     "agua_ciclo_mm_min": {
       "tipo": "publicado",
@@ -147,7 +147,7 @@
       "coluna": "graus_dia_ciclo_min, graus_dia_ciclo_max",
       "valor_brasil": "2000, 2600",
       "decisao": "trocado",
-      "motivo": "Refeito no POWER para o Kansas (semeadura no outono à maturação em junho): 2000-2640. Coincide com a faixa brasileira, mas a soma vem de outro calendário (cerca de 25-35% dela no outono, antes da dormência)."
+      "motivo": "Refeito no POWER para o Kansas (semeadura no outono à maturação em junho): 2000-2650. Coincide com a faixa brasileira, mas a soma vem de outro calendário (cerca de 25-35% dela no outono, antes da dormência)."
     },
     {
       "coluna": "agua_ciclo_mm_min, agua_ciclo_mm_max",
@@ -226,9 +226,9 @@
         "ciclo_dias_min",
         "ciclo_dias_max"
       ],
-      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/trigo_gd.json (NASA POWER diário, comunidade AG, safras 2000/01 a 2019/20)",
+      "fonte": "CÁLCULO: scripts/gd_nasa_power.py --cenarios data/catalogo/eua/cenarios/trigo_gd.json (NASA POWER diário, comunidade AG, safras 2001/02 a 2020/21)",
       "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-      "trecho": "trigo_colby_0915_0621: mediana 2635 (mín 2223, máx 2998, P10 2272, P90 2973); trigo_hays_1001_0614: mediana 2288 (P10 2075, P90 2707); trigo_hutchinson_1020_0606: mediana 2016 (P10 1775, P90 2320); conferência 1/jan à maturação contra 1667 do Mesonet: Colby 1685 (+1,1%), Hays 1609 (-3,5%), Hutchinson 1525 (-8,5%); outono (semeadura a 31/dez): Colby 966, Hays 709, Hutchinson 440"
+      "trecho": "trigo_colby_0915_0621: mediana 2647 (mín 2223, máx 2998, P10 2282, P90 2973); trigo_hays_1001_0614: mediana 2298 (P10 2077, P90 2707); trigo_hutchinson_1020_0606: mediana 2016 (P10 1777, P90 2320); conferência 1/jan à maturação contra 1667 do Mesonet: Colby 1685 (+1,1%), Hays 1609 (-3,5%), Hutchinson 1525 (-8,5%); outono (semeadura a 31/dez): Colby 969, Hays 717, Hutchinson 450"
     },
     {
       "colunas": [
@@ -436,11 +436,17 @@
       "antes": "",
       "depois": "baixo",
       "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "graus_dia_ciclo_max",
+      "antes": "2640",
+      "depois": "2650",
+      "motivo": "Revisão 15/11 (B-05): os cenários de safra inteira de cenarios/trigo_gd.json estavam em 2000-2019 (anos de semeadura) e passaram para 2001-2020, a base do catálogo (mesma convenção do centeio, da ervilhaca e do trevo: anos de semeadura, fim no ano seguinte). Rodado com scripts/gd_nasa_power.py. Colby: mediana 2635 -> 2647 (arredondado à dezena = 2650). Hays: 2288 -> 2298. Hutchinson: 2016 -> 2016, e o mínimo da linha continua 2000. Outono: Colby 966 -> 969, Hays 709 -> 717, Hutchinson 440 -> 450. Os cenários de conferência (1/jan à maturação) já estavam em 2001-2020 e não mudaram."
     }
   ],
   "pendencias": [
     "SISTEMA: a linha 'trigo' dos EUA é trigo de INVERNO (HRW, Kansas) e a do Brasil é trigo de PRIMAVERA. Mesmo id, outro calendário: ciclo de 230-280 dias, com dormência. O trigo de primavera dos EUA (hard red spring, Dakota do Norte; semeadura em abril-maio, colheita em agosto) fica para outra linha ou para o motor escolher pelo local. DECISÃO para o coordenador: o motor precisa saber que, nos EUA, o ciclo do trigo começa no outono e atravessa o ano.",
-    "graus-dia: a soma inclui a dormência de inverno (dias com Tmed > 0 °C somam, como no Kansas Mesonet). O motor deve somar os graus-dia de set-out até junho do ano seguinte, sem teto e com Tb 0. Não há conversão de teto: o Mesonet já usa o mesmo método do catálogo. Os 2000-2640 vêm de datas de semeadura e maturação do calendário oficial (não de cultivar); faltou um ensaio do Kansas com a data de maturação fisiológica medida por cultivar e data de semeadura. Resolveria: dados de fenologia dos ensaios da K-State (Kansas Wheat Performance Tests trazem só o espigamento, e só em algumas tabelas).",
+    "graus-dia: a soma inclui a dormência de inverno (dias com Tmed > 0 °C somam, como no Kansas Mesonet). O motor deve somar os graus-dia de set-out até junho do ano seguinte, sem teto e com Tb 0. Não há conversão de teto: o Mesonet já usa o mesmo método do catálogo. Os 2000-2650 vêm de datas de semeadura e maturação do calendário oficial (não de cultivar); faltou um ensaio do Kansas com a data de maturação fisiológica medida por cultivar e data de semeadura. Resolveria: dados de fenologia dos ensaios da K-State (Kansas Wheat Performance Tests trazem só o espigamento, e só em algumas tabelas).",
     "ciclo_dias: a maturação fisiológica = colheita do Handbook 628 menos 14 dias (regra do Kansas Mesonet, que cita Robertson et al. 2004; o original não foi lido). No centro-sul (Hutchinson) o POWER soma 8,5% menos que o limiar de maturação do Mesonet até 6/jun, então a maturação real pode vir uns 5 dias depois e o ciclo mínimo seria ~235 dias.",
     "sensivel_geada = true pela fase sensível (geada no espigamento-floração, maio). O trigo de inverno tolera o frio no vegetativo; o motor não deve eliminar o trigo de inverno por geada no inverno, só por geada tardia na floração.",
     "temp_otima_max_c: mantido 23 (ECOCROP, Brasil). A K-State MF3740 dá 79 °F (26 °C) como limite superior do ótimo do trigo de inverno. Se o coordenador preferir a fonte dos EUA, seria 26.",

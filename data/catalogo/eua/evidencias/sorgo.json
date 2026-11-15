@@ -33,7 +33,7 @@
     "nome_zarc": "",
     "codigo_nass": "SORGHUM, GRAIN",
     "calendario_usda": "Sorghum for grain",
-    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do sorgo granífero no Kansas e no Texas)|Shroyer et al., K-State Kansas Crop Planting Guide L-818, 1996 (janela de semeadura por zona; primeira geada de outono)|Diawara, B., Effect of planting date on growth, development, and yield of grain sorghum hybrids, dissertação de mestrado, Kansas State University, 2012 (dias da semeadura à maturação fisiológica medidos em Manhattan e Hutchinson, 2010-2011)|Trostle, Lege & Keys, Texas A&M AgriLife Extension, 2026 Alternative Crop Options after Failed Cotton and Late-Season Crop Planting for the Texas South Plains (dias à maturação fisiológica por classe de maturidade; conferência)|Vanderlip, How a Sorghum Plant Develops, K-State S-3, 1993 (fases e dias após a emergência; conferência)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F, teto 100 °F; GDU da semeadura à camada preta 2673 e 3360 °F)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/sorgo_gd.json (GDU com teto convertidos para graus-dia sem teto, Tb 10, na régua do NASA POWER, 2001-2020)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (sorgo: Tlower 46 °F, Tupper 100 °F; conferência)|Rogers & Alam, Irrigation, em K-State Grain Sorghum Production Handbook C-687, 1998 (água 18-22 pol. no oeste, 1-2 a menos no leste; raiz até 6 pés)|Ciampitti et al., K-State Kansas Sorghum Management 2020, MF3046 (água 18-26 pol. no oeste; maturação 1-2 semanas antes da geada)|United Sorghum Checkoff Program, West Texas Production Guide, 2018 (ETc do sorgo irrigado 22-27 pol., USDA-ARS Bushland 2000-2009)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|Magalhães et al., Embrapa Cultivo do Sorgo 2015, e FAO ECOCROP, mantidos do Brasil (temperatura ótima)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al., mantido do Brasil (tmax na antese)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do sorgo granífero no Kansas e no Texas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Sorghum) e 11.1a (resíduo acima do solo)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição e N do resíduo de sorgo, Bushland-TX; resumo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Ma et al., Agron. J. 91:401-409, 1999 (C/N do resíduo de sorgo no leste do Colorado)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD da folha e do colmo do sorgo granífero)",
+    "fontes": "USDA NASS, Field Crops Usual Planting and Harvesting Dates (Agricultural Handbook 628), out. 2010 (semeadura e colheita do sorgo granífero no Kansas e no Texas)|Shroyer et al., K-State Kansas Crop Planting Guide L-818, 1996 (janela de semeadura por zona; primeira geada de outono)|Diawara, B., Effect of planting date on growth, development, and yield of grain sorghum hybrids, dissertação de mestrado, Kansas State University, 2012 (dias da semeadura à maturação fisiológica medidos em Manhattan e Hutchinson, 2010-2011)|Trostle, Lege & Keys, Texas A&M AgriLife Extension, 2026 Alternative Crop Options after Failed Cotton and Late-Season Crop Planting for the Texas South Plains (dias à maturação fisiológica por classe de maturidade; conferência)|Vanderlip, How a Sorghum Plant Develops, K-State S-3, 1993 (fases e dias após a emergência; conferência)|Gerik, Bean & Vanderlip, Sorghum Growth and Development, Texas Cooperative Extension B-6137, 2003 (Tb 50 °F, teto 100 °F; GDU da semeadura à camada preta 2673 e 3360 °F)|CÁLCULO: scripts/gd_nasa_power.py, cenários eua/cenarios/sorgo_gd.json (GDU com teto convertidos para graus-dia sem teto, Tb 10, na régua do NASA POWER, 2001-2020)|Soni et al., K-State MF3740 Understanding Growing Degree Days, 2026 (sorgo: Tlower 46 °F, Tupper 100 °F; conferência)|Rogers & Alam, Irrigation, em K-State Grain Sorghum Production Handbook C-687, 1998 (água 18-22 pol. no oeste, 1-2 a menos no leste; raiz até 6 pés)|Ciampitti et al., K-State Kansas Sorghum Management 2020, MF3046 (água 18-26 pol. no oeste; maturação 1-2 semanas antes da geada)|United Sorghum Checkoff Program, West Texas Production Guide, 2018 (ETc do sorgo irrigado 22-27 pol., USDA-ARS Bushland 2000-2009)|FAO-56 Tab.12 (Kc)|FAO-56 Tab.22 (raiz; limite superior = sequeiro)|Magalhães et al., Embrapa Cultivo do Sorgo 2015, e FAO ECOCROP, mantidos do Brasil (temperatura ótima)|Nguyen et al., Functional Plant Biology 40:439-448, 2013, citando Prasad et al., mantido do Brasil (tmax na antese)|Bell, Trostle, Schnell & Heflin, Texas A&M AgriLife SCSC-2026-09, 2026 (dano ao pólen acima de ~97 °F do emborrachamento à floração; conferência americana da tmax)|USDA NASS, Crop Production 2023 Summary (jan. 2024) e 2025 Summary (jan. 2026) (produtividade do sorgo granífero no Kansas e no Texas 2021-2025)|IPCC 2019 Refinement, Vol.4 Cap.11, Tab. 11.2 (Sorghum) e 11.1a (resíduo acima do solo)|Schomberg & Steiner, SSSAJ 63:607-613, 1999 (decomposição e N do resíduo de sorgo, Bushland-TX; resumo)|Ghidey & Alberts, Trans. ASAE 36(6):1611-1617, 1993 (decomposição e C/N, Missouri)|Ma et al., Agron. J. 91:401-409, 1999 (C/N do resíduo de sorgo no leste do Colorado)|Rasby et al., UNL Extension EC278 Grazing Crop Residues with Beef Cattle, 2014 (PB e IVDMD da folha e do colmo do sorgo granífero)",
     "confianca_parametros": "media"
   },
   "origem": {
@@ -102,10 +102,16 @@
       "motivo": "Gerik et al. (B-6137): 50 °F = 10 °C. A K-State MF3740 dá 46 °F; mantido 10 (mesma régua nos dois países e mesma Tb da fonte da exigência)."
     },
     {
-      "coluna": "temp_otima_min_c, temp_otima_max_c, tmax_critica_c",
-      "valor_brasil": "22, 34, 36",
+      "coluna": "temp_otima_min_c, temp_otima_max_c",
+      "valor_brasil": "22, 34",
       "decisao": "reusado",
-      "motivo": "Fisiologia da espécie (Embrapa, ECOCROP, Prasad via Nguyen). O teto de 100 °F (37,8 °C) de Gerik e da MF3740 é o limite do cálculo de GDU, não o ótimo; não contradiz o 34."
+      "motivo": "Fisiologia da espécie (Embrapa 2015 e FAO ECOCROP, evidências copiadas do Brasil). Sem fonte americana para a faixa ótima (ver pendências). O teto de 100 °F (37,8 °C) de Gerik et al. (B-6137) e da K-State MF3740 é o limite do cálculo de graus-dia, não o ótimo; não contradiz o 34."
+    },
+    {
+      "coluna": "tmax_critica_c",
+      "valor_brasil": "36",
+      "decisao": "conferido e mantido",
+      "motivo": "Dano ao pólen e ao pegamento de grãos na floração. Brasil: Prasad et al. via Nguyen et al. 2013 (acima de 36/26 °C dia/noite na antese). EUA: Texas A&M AgriLife SCSC-2026-09 (2026): o pólen começa a sofrer dano acima de ~97 °F (36,1 °C), na janela do emborrachamento à floração."
     },
     {
       "coluna": "sensivel_geada",
@@ -278,6 +284,56 @@
     },
     {
       "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Bell, J.; Trostle, C.; Schnell, R.; Heflin, K., Agronomic Management to Optimize Texas High Plains Grain Sorghum Production, Texas A&M AgriLife Extension SCSC-2026-09, 2026, seção 2 'Planting Date and Heat Stress' (cita Djanaguiraman et al., Plant, Cell and Environment 41:1065-1082, 2018, K-State, e Prasad et al., Crop Science 48:1911-1917, 2008). Fase sensível: do emborrachamento à floração (pólen). ~97 °F = (97 - 32)/1,8 = 36,1 °C -> 36",
+      "url": "https://agrilifeextension.tamu.edu/wp-content/uploads/2026/06/Agronomic-Management-for-Texas-High-Plains-Sorghum-SCSC-2026-09_.pdf",
+      "trecho": "Research indicates that the 10-day window from boot through flowering is the most critical. Heat stress during this period can reduce grain yield by 54% to 87%, even when moisture is adequate [...] Specifically, sorghum pollen begins to sustain damage at temperatures exceeding ~97°F, leading to poor seed set (Djanaguiraman et al., 2018)."
+    },
+    {
+      "colunas": [
+        "temp_otima_max_c",
+        "tmax_critica_c"
+      ],
+      "fonte": "Magalhães, P. C. et al., Ecofisiologia, em Cultivo do Sorgo, Embrapa Milho e Sorgo Sistemas de Produção 2, 9ª ed., 2015 (mantido do Brasil, data/catalogo/evidencias/sorgo.json: fisiologia da espécie; sem fonte americana para a temperatura ótima)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "o sorgo é um dos cultivos agrícolas mais sensíveis a baixas temperaturas noturnas. A temperatura ótima para crescimento está por volta de 33 ºC-34 ºC. Acima de 38 ºC e abaixo de 16 ºC, a produtividade decresce"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c"
+      ],
+      "fonte": "Magalhães et al., Ecofisiologia, Cultivo do Sorgo 9ª ed., 2015 (mantido do Brasil, data/catalogo/evidencias/sorgo.json: fisiologia da espécie; sem fonte americana para a temperatura ótima)",
+      "url": "https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/748779/1/Sorgo-Ecofisiologia.pdf",
+      "trecho": "A grande maioria dos materiais genéticos comerciais de sorgo requerem temperaturas superiores a 21 0C para um bom crescimento e desenvolvimento (Paul 1990)."
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c",
+        "temp_otima_max_c"
+      ],
+      "fonte": "FAO ECOCROP, Sorghum bicolor (id 48747) (mantido do Brasil, data/catalogo/evidencias/sorgo.json: fisiologia da espécie; sem fonte americana para a temperatura ótima)",
+      "url": "https://ecocrop.apps.fao.org/ecocrop/srv/en/dataSheet?id=48747",
+      "trecho": "Temperat. requir. [Optimal Min Max] 22 35 [Absolute] 8 40"
+    },
+    {
+      "colunas": [
+        "temp_otima_min_c"
+      ],
+      "fonte": "Landau, E. C.; Guimarães, D. P., Clima, época de plantio e zoneamento agrícola, em Sorgo: o produtor pergunta, a Embrapa responde, 2015 (mantido do Brasil, data/catalogo/evidencias/sorgo.json: fisiologia da espécie; sem fonte americana para a temperatura ótima)",
+      "url": "https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1015590/1/Climaplantiozoneamento.pdf",
+      "trecho": "a espécie é sensível às baixas temperaturas, e as áreas recomendáveis para plantio devem apresentar temperaturas médias superiores a 21°C"
+    },
+    {
+      "colunas": [
+        "tmax_critica_c"
+      ],
+      "fonte": "Nguyen, C. T. et al., Genetic variability in high temperature effects on seed-set in sorghum, Functional Plant Biology 40:439-448, 2013, citando Prasad et al. 2006 e 2008 (lido por citação secundária; mantido do Brasil, data/catalogo/evidencias/sorgo.json). Fase sensível: antese (floração), em câmara com regime dia/noite",
+      "url": "https://era.dpi.qld.gov.au/id/eprint/3843/1/FP12264.pdf",
+      "trecho": "In vitro pollen germination, pollen viability and seed-set were significantly reduced by temperatures above 32 : 22°C (day : night) around anthesis in sorghum, particularly by temperatures above 36 : 26°C (Prasad et al. 2006a, 2008)."
+    },
+    {
+      "colunas": [
         "ms_palhada_t_ha"
       ],
       "fonte": "USDA NASS, Crop Production 2025 Summary, janeiro de 2026, Sorghum for grain yield por estado (2023-2025)",
@@ -405,16 +461,35 @@
       "antes": "",
       "depois": "baixo",
       "motivo": "Régua das colunas qualitativas (ver evidencias/README.md)"
+    },
+    {
+      "coluna": "pendencias (ciclo_dias)",
+      "antes": "pendência dizia 'se o revisor quiser rigor máximo, seria estudo_unico'",
+      "depois": "pendência cita o critério escrito (2+ locais e 2+ anos = medido) e a Texas A&M como apoio no oeste do Texas",
+      "motivo": "Revisão 15/11 (arquiteto, A-02; decisão aceita pelo usuário): ciclo continua 'medido' e o sorgo continua 'media'. Nenhum valor mudou."
+    },
+    {
+      "coluna": "evidencias (temp_otima_min_c, temp_otima_max_c, tmax_critica_c)",
+      "antes": "sem evidência para 22, 34 e 36",
+      "depois": "evidências do Brasil copiadas (Embrapa 2015, FAO ECOCROP, Nguyen et al. 2013) + Texas A&M SCSC-2026-09 para a tmax (pólen, emborrachamento à floração)",
+      "motivo": "Revisão 15/11 (arquiteto, M-05). Valores mantidos; pendência 'sem fonte americana' aberta para a faixa ótima."
+    },
+    {
+      "coluna": "reuso_brasil (temperaturas)",
+      "antes": "uma entrada 'reusado' para 22, 34 e 36",
+      "depois": "faixa ótima 'reusado'; tmax 'conferido e mantido' com fonte americana",
+      "motivo": "Revisão 15/11 (M-05): a tmax ganhou conferência nos EUA, a faixa ótima não."
     }
   ],
   "pendencias": [
     "DOUBLE-CROP depois do trigo (semeadura no fim de junho e início de julho no centro-sul do Kansas): fica fora da faixa da linha. Medido por Diawara 2012 com semeadura de fim de junho: 80-99 dias para os híbridos precoce e médio e 99-117 para o cheio (em 2011 o cheio chegou à maturação junto com a geada). No POWER, híbrido curto semeado em 1/jul em Hutchinson: mediana 101 dias (79-126) e 1490 °C·dia (n = 19; em 1 ano não atingiu). Ciclo e graus-dia quase iguais aos da linha; o que muda é o risco de geada antes da maturação (primeira geada de 0 °C em 5-25/out, L-818) e a água (o trigo seca o perfil). DECISÃO para o coordenador: tratar no motor como data de semeadura mais tardia, não como outra linha.",
-    "ciclo_dias 84-114 vem de um só estudo de campo no Kansas (Diawara 2012, 2 anos, 2 locais, 3 híbridos), marcado como 'medido' porque converge com as classes da Texas A&M AgriLife (<90 a 111+ dias) e com a K-State S-3. Se o revisor quiser rigor máximo, seria 'estudo_unico' e a confiança cairia para 'baixa'. O PDF da dissertação veio truncado do Internet Archive (as Tabelas 3.7-3.9 foram lidas).",
+    "ciclo_dias 84-114 fica 'medido' pelo critério escrito em evidencias/README.md (Confiança, revisão de 15/11): 'estudo_unico' = uma fonte com 1 local, ou 1 ano, ou 1 cultivar; ensaio de campo com 2 ou mais locais e 2 ou mais anos na região = 'medido'. Diawara 2012 (K-State) tem 2 locais no Kansas (Manhattan e Hutchinson), 2 anos (2010-2011) e 3 híbridos de maturidade diferente (DKS 28-05, DKS 37-07, P84G62). Apoio para o oeste do Texas: Texas A&M AgriLife (Trostle, Lege & Keys 2026, Tab. 3, South Plains) dá dias da semeadura à maturação fisiológica por classe de maturidade, de 'Early' <90 a 'Long' 111+, faixa que cobre 84-114. Também converge com a K-State S-3. O PDF da dissertação veio truncado do Internet Archive (as Tabelas 3.7-3.9 foram lidas).",
     "graus_dia: o máximo (1880, híbrido longo de Gerik et al.) leva 127-129 dias no Kansas no POWER, mais que o ciclo cheio medido (107-114). Os GDD da dissertação de Diawara para a maturação (1258-1806) não informam a Tb nem o teto e não foram usados.",
     "temp_base_c: mantido 10 °C (Gerik et al., 50 °F). A K-State MF3740 (2026) usa 46 °F (7,8 °C) para o sorgo; com Tb 7,8 a exigência seria outra.",
     "agua_ciclo_mm_max 686 vem do sorgo irrigado em Bushland-TX (norte do Texas, Panhandle), não de Lubbock; o guia diz que a demanda cai para o norte do oeste do Texas, então em Lubbock pode ser um pouco maior. Valores de extensão; não refiz com etc_nasa_power.py.",
     "regua: C/N com C assumido (40%) em todas as fontes; só dois estudos de decomposição (Texas e Missouri), um lido só pelo resumo. A IVDMD do restolho é média simples de folha e colmo (a UNL não dá a proporção) e sem n.",
-    "codigo_nass: 'SORGHUM, GRAIN' por analogia com 'CORN, GRAIN' e com o nome 'Sorghum for grain' do Crop Production; não achei a string do QuickStats em fonte lida e não havia NASS_API_KEY no ambiente. Conferir no QuickStats (commodity SORGHUM, utilização GRAIN). calendario_usda: 'Sorghum for grain' = tabela 'Sorghum for Grain Usual Planting and Harvesting Dates - States' (2010)."
+    "codigo_nass: 'SORGHUM, GRAIN' por analogia com 'CORN, GRAIN' e com o nome 'Sorghum for grain' do Crop Production; não achei a string do QuickStats em fonte lida e não havia NASS_API_KEY no ambiente. Conferir no QuickStats (commodity SORGHUM, utilização GRAIN). calendario_usda: 'Sorghum for grain' = tabela 'Sorghum for Grain Usual Planting and Harvesting Dates - States' (2010).",
+    "temp_otima_min_c 22 e temp_otima_max_c 34: sem fonte americana, mantidos do Brasil (Embrapa 2015 e FAO ECOCROP; fisiologia da espécie). Nas fontes dos EUA lidas (Gerik et al. B-6137, K-State MF3740, Texas A&M SCSC-2026-09) só há a Tb, o teto de 100 °F do cálculo de graus-dia e o ideal de 70 °F para germinação. tmax_critica_c 36 = dano ao pólen do emborrachamento à floração, agora com fonte americana (Texas A&M SCSC-2026-09: ~97 °F = 36,1 °C, citando Djanaguiraman et al. 2018, K-State); o artigo de Djanaguiraman não foi lido. Resolveria a faixa ótima: tabela de temperatura ótima de crescimento de um manual da K-State ou da Texas A&M."
   ],
   "confianca_calculo": {
     "regra": "conta colunas do filtro (inclui graus_dia_ciclo_min/max) com origem estudo_unico, calculo, proxy, convencao_sem_fonte ou vazio_nao_sei: 0 = alta, 1-2 = media, 3+ = baixa",
