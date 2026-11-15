@@ -94,8 +94,6 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 │   └── others/                     # análise de ferramentas existentes
 ├── layout/                         # protótipo navegável (HTML e PDF): referência visual das telas
 ├── ToDo/                           # tarefas de dados com dono, uma pasta por tarefa
-├── video/                          # vídeo de 30 s (cartoon com a Dona Marta)
-├── video-new/                      # vídeo de pitch de 29,5 s, no formato oficial do Space Apps
 └── .deploy/                        # Docker, Caddy e scripts para subir na VPS
 ```
 
