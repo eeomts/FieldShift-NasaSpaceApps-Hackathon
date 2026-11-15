@@ -12,6 +12,7 @@ Start here. AgroAI is a crop-rotation decision-support tool for small and mid-si
 | 6 | [References](06-references.md) | Non-NASA data, libraries, images and licenses |
 | 7 | [Use of AI](07-ai-use.md) | Where and how AI was used |
 | 8 | [Run Locally](08-run-locally.md) | How to run the app |
+| 9 | [Demo Video](09-demo-video.md) | The 30-second demo video and its AI disclosure |
 | - | [Submission](submission/SUBMISSION.md) | The Space Apps project form, field by field |
 
 ## Judging criteria map
