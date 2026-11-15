@@ -1,7 +1,8 @@
 """Satélite da fazenda para o Dashboard: umidade do solo (SMAP L4), verde da lavoura (MODIS NDVI) e chuva (GPM IMERG).
 
-Cada parte é independente: se uma falha, as outras aparecem e a que faltou vem em `faltas` com o motivo, sem inventar
-valor. A chuva usa o IMERG; se a conta do Earthdata não tiver acesso à GES DISC, usa a chuva do NASA POWER e diz isso.
+Cada parte é independente: se uma falha, as outras aparecem e a que faltou vem em `faltas` com um código, sem inventar
+valor. A chuva usa o IMERG; se a conta do Earthdata não tiver acesso à GES DISC, usa a chuva do NASA POWER e avisa.
+Faltas e avisos saem como códigos: o texto, em português ou inglês, fica no front.
 """
 import logging
 import statistics
@@ -30,14 +31,23 @@ CONFIAVEL = (0, 1)  # pixel_reliability do MOD13Q1: 0 bom, 1 marginal (2 neve, 3
 
 FONTE_SMAP = "NASA SMAP L4 (SPL4SMGP v8)"
 FONTE_MODIS = "NASA MODIS Terra (MOD13Q1 v6.1)"
-FONTE_IMERG = "NASA GPM IMERG Late, diário (v07)"
+FONTE_IMERG = "NASA GPM IMERG Late (v07)"
 FONTE_POWER = "NASA POWER (PRECTOTCORR)"
 
-MSG_SEM_TOKEN = "O servidor ainda não tem o token do Earthdata (EARTHDATA_TOKEN)."
-MSG_IMERG_BLOQUEADO = (
-    "A conta do Earthdata ainda não autorizou a GES DISC, onde fica o IMERG. "
-    "Mostrando a chuva do NASA POWER, que também vem da NASA."
-)
+# Códigos que o front transforma em texto no idioma do produtor (faltas e avisos).
+SEM_TOKEN, SEM_PERMISSAO, SEM_DADO_PONTO, NUVEM, SEM_ARQUIVO, FORA_DO_AR, ERRO = (
+    "sem_token", "sem_permissao", "sem_dado_ponto", "nuvem", "sem_arquivo", "fora_do_ar", "erro",
+)  # fmt: skip
+AVISO_IMERG_BLOQUEADO, AVISO_IMERG_INDISPONIVEL = "imerg_bloqueado", "imerg_indisponivel"
+
+
+class SemDado(Exception):
+    """O produto respondeu, mas não há valor útil para o ponto. `codigo` vai para `faltas`."""
+
+    def __init__(self, codigo: str, detalhe: str):
+        super().__init__(detalhe)
+        self.codigo = codigo
+
 
 _cache = CacheLru(tamanho=500)
 
@@ -94,8 +104,8 @@ class Satelite:
     umidade: Umidade | None
     ndvi: Ndvi | None
     chuva: Chuva | None
-    faltas: dict[str, str] = field(default_factory=dict)
-    avisos: list[str] = field(default_factory=list)
+    faltas: dict[str, str] = field(default_factory=dict)  # parte -> código (SEM_TOKEN, NUVEM...)
+    avisos: list[str] = field(default_factory=list)  # códigos (AVISO_IMERG_BLOQUEADO...)
     gerado_em: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
@@ -159,13 +169,18 @@ class SateliteService:
                 valor, avisos = fut.result()
                 setattr(resultado, nome, valor)
                 resultado.avisos.extend(avisos)
+            except SemDado as e:
+                log.info("Satélite %s: %s", nome, e)
+                resultado.faltas[nome] = e.codigo
             except ErroEarthdata as e:
-                resultado.faltas[nome] = MSG_SEM_TOKEN if e.sem_permissao and not self.cliente.tem_token else str(e)
+                log.info("Satélite %s: %s", nome, e)
+                resultado.faltas[nome] = (SEM_TOKEN if not self.cliente.tem_token else SEM_PERMISSAO) if e.sem_permissao else FORA_DO_AR
             except ErroNasaPower as e:
-                resultado.faltas[nome] = str(e)
+                log.info("Satélite %s: %s", nome, e)
+                resultado.faltas[nome] = FORA_DO_AR
             except Exception:  # um produto quebrado não derruba o Dashboard
                 log.exception("Satélite: falha inesperada em %s", nome)
-                resultado.faltas[nome] = "Erro inesperado ao ler este dado da NASA."
+                resultado.faltas[nome] = ERRO
         return resultado
 
     def _com_cache(self, nome: str, f, lat: float, lon: float):
@@ -182,7 +197,7 @@ class SateliteService:
         hoje = self.hoje()
         recentes = self.cliente.granulos("SPL4SMGP", hoje - timedelta(days=20), hoje, limite=1)
         if not recentes:
-            raise ErroEarthdata("Não achei arquivo recente do SMAP L4 no catálogo da NASA.")
+            raise SemDado(SEM_ARQUIVO, "sem arquivo recente do SMAP L4 no CMR")
         g = recentes[0]
         linha, coluna = grade.celula_ease2_9km(lat, lon)
         l0, l1, ci = grade.janela(linha, grade.LINHAS_EASE)
@@ -192,7 +207,7 @@ class SateliteService:
         dados = self.cliente.recorte(g.opendap, {sup: idx, raiz: idx})
         v_sup, v_raiz = _centro_ou_media(dados[sup], ci, cj), _centro_ou_media(dados[raiz], ci, cj)
         if v_sup is None or v_raiz is None:
-            raise ErroEarthdata("O SMAP não tem umidade para este ponto (água, cidade ou gelo).")
+            raise SemDado(SEM_DADO_PONTO, "SMAP sem valor no ponto (água, cidade ou gelo)")
 
         def do_ano(ano: int) -> float | None:
             d = _mesmo_dia(g.data, ano)
@@ -228,7 +243,7 @@ class SateliteService:
             if f".{px.tile}." in g.titulo
         ]
         if not granulos:
-            raise ErroEarthdata("Não achei imagens do MODIS para este ponto no último ano.")
+            raise SemDado(SEM_ARQUIVO, "sem imagens do MODIS no último ano")
         l0, l1, ci = grade.janela(px.linha, grade.PIXELS_TILE_250M)
         c0, c1, cj = grade.janela(px.coluna, grade.PIXELS_TILE_250M)
         idx = f"[{l0}:{l1}][{c0}:{c1}]"
@@ -261,11 +276,11 @@ class SateliteService:
         with ThreadPoolExecutor(PARALELO) as ex:
             serie = sorted((p for p in ex.map(ler, granulos) if p is not None), key=lambda p: p.data)
         if not serie:
-            raise ErroEarthdata("As imagens do MODIS do último ano estão cobertas de nuvem neste ponto.")
+            raise SemDado(NUVEM, "MODIS: só nuvem no último ano")
         ultimo = serie[-1]
         return Ndvi(
             fonte=FONTE_MODIS,
-            resolucao="250 m, a cada 16 dias",
+            resolucao="250 m",
             data=ultimo.data,
             valor=ultimo.valor,
             situacao=situacao_ndvi(ultimo.valor),
@@ -279,7 +294,7 @@ class SateliteService:
                 return self._chuva_imerg(lat, lon), []
             except ErroEarthdata as e:
                 log.info("IMERG indisponível, usando o NASA POWER: %s", e)
-                aviso = MSG_IMERG_BLOQUEADO if e.sem_permissao else f"IMERG indisponível agora ({e}). Mostrando a chuva do NASA POWER."
+                aviso = AVISO_IMERG_BLOQUEADO if e.sem_permissao else AVISO_IMERG_INDISPONIVEL
                 return self._chuva_power(lat, lon), [aviso]
         return self._chuva_power(lat, lon), []
 
@@ -287,7 +302,7 @@ class SateliteService:
         hoje = self.hoje()
         gs = self.cliente.granulos("GPM_3IMERGDL", hoje - timedelta(days=DIAS_CHUVA + 10), hoje, versao="07", limite=DIAS_CHUVA)
         if not gs:
-            raise ErroEarthdata("Não achei arquivos recentes do IMERG.")
+            raise ErroEarthdata("sem arquivos recentes do IMERG no CMR")
         i_lon, i_lat = grade.celula_imerg(lat, lon)
         a0, a1, ci = grade.janela(i_lon, grade.COLUNAS_IMERG)
         b0, b1, cj = grade.janela(i_lat, grade.LINHAS_IMERG)
@@ -310,13 +325,13 @@ class SateliteService:
         serie = self.power.serie_diaria(lat, lon, hoje - timedelta(days=DIAS_CHUVA + 15), hoje)
         dias = [DiaChuva(data=d.data, mm=round(d.chuva, 1)) for d in serie.dias if d.chuva is not None]
         if not dias:
-            raise ErroNasaPower("O NASA POWER ainda não tem a chuva dos últimos dias para este ponto.")
+            raise SemDado(SEM_DADO_PONTO, "NASA POWER sem chuva recente no ponto")
         return _resumo_chuva(FONTE_POWER, "~50 km", dias[-DIAS_CHUVA:])
 
 
 def _resumo_chuva(fonte: str, resolucao: str, dias: list[DiaChuva]) -> Chuva:
     if not dias:
-        raise ErroEarthdata("Sem dias de chuva com dado no último mês.")
+        raise SemDado(SEM_DADO_PONTO, "sem dias de chuva com dado no último mês")
     return Chuva(
         fonte=fonte,
         resolucao=resolucao,

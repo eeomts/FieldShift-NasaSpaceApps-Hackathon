@@ -1,21 +1,24 @@
 // Cartão de uma estratégia: culturas por mês, nota, critérios, motivos e "De onde veio".
 import type { Analise, Criterio, ItemEstrategia, Resultado } from "../../api/tipos";
-import { Cartao, cx, MESES, Selo } from "../ui";
+import { MESES_CURTOS, useIdioma, type Idioma } from "../../i18n";
+import { Cartao, cx, Selo } from "../ui";
 
-const ROTULO: Record<Criterio, string> = {
-  agua: "Economiza água",
-  terra: "Cuida da terra",
-  erosao: "Segura a terra (erosão)",
-  pragas: "Menos praga",
-  renda: "Renda",
-  animais: "Comida pros animais",
+const ROTULO: Record<Criterio, Record<Idioma, string>> = {
+  agua: { pt: "Economiza água", en: "Saves water" },
+  terra: { pt: "Cuida da terra", en: "Cares for the soil" },
+  erosao: { pt: "Segura a terra (erosão)", en: "Holds the soil (erosion)" },
+  pragas: { pt: "Menos praga", en: "Fewer pests" },
+  renda: { pt: "Renda", en: "Income" },
+  animais: { pt: "Comida pros animais", en: "Animal feed" },
 };
 
 const CONFIANCA = {
-  alta: { tom: "folha" as const, rotulo: "Confiança alta", frase: "Há boa medição para estas culturas." },
-  media: { tom: "ceu" as const, rotulo: "Confiança média", frase: "Há alguma medição; confirme com seu técnico." },
-  baixa: { tom: "sol" as const, rotulo: "Confiança baixa", frase: "Estimativa com pouca medição no Brasil, confirme com seu técnico." },
+  alta: { tom: "folha" as const, rotulo: { pt: "Confiança alta", en: "High confidence" }, frase: { pt: "Há boa medição para estas culturas.", en: "These crops are well measured." } },
+  media: { tom: "ceu" as const, rotulo: { pt: "Confiança média", en: "Medium confidence" }, frase: { pt: "Há alguma medição; confirme com seu técnico.", en: "There is some measurement; check with your agronomist." } },
+  baixa: { tom: "sol" as const, rotulo: { pt: "Confiança baixa", en: "Low confidence" }, frase: { pt: "Estimativa com pouca medição na sua região; confirme com seu técnico.", en: "Estimate with little measurement in your region; check with your agronomist." } },
 };
+
+const MESES = MESES_CURTOS.pt; // só para contar os 12 meses
 
 function mesesDe(i: ItemEstrategia): Set<number> {
   if (i.perene) return new Set(MESES.map((_, k) => k + 1));
@@ -31,6 +34,8 @@ function mesesDe(i: ItemEstrategia): Set<number> {
 }
 
 function Faixa({ itens }: { itens: ItemEstrategia[] }) {
+  const { t, idioma } = useIdioma();
+  const nomes = MESES_CURTOS[idioma];
   return (
     <div className="flex flex-col gap-2">
       {itens.map((it, idx) => {
@@ -39,18 +44,18 @@ function Faixa({ itens }: { itens: ItemEstrategia[] }) {
           <div key={idx} className="flex flex-col gap-1">
             <span className="text-base font-bold">
               {it.nome}
-              {ms.size === 0 && <span className="font-normal text-suave"> · época não informada</span>}
+              {ms.size === 0 && <span className="font-normal text-suave"> · {t("época não informada", "season not given")}</span>}
             </span>
             <div className="grid grid-cols-12 gap-1">
               {MESES.map((m, k) => (
-                <div key={m} title={m} className={cx("h-3.5 rounded-full", ms.has(k + 1) ? "bg-folha" : "bg-terra")} />
+                <div key={m} title={nomes[k]} className={cx("h-3.5 rounded-full", ms.has(k + 1) ? "bg-folha" : "bg-terra")} />
               ))}
             </div>
           </div>
         );
       })}
       <div className="grid grid-cols-12 gap-1" aria-hidden="true">
-        {MESES.map((m) => (
+        {nomes.map((m) => (
           <span key={m} className="text-center text-[11px] font-bold text-suave capitalize">{m.slice(0, 1)}</span>
         ))}
       </div>
@@ -71,22 +76,25 @@ function Lista({ titulo, itens }: { titulo: string; itens: string[] }) {
 }
 
 function DeOndeVeio({ r }: { r: Resultado }) {
+  const { t, idioma } = useIdioma();
   return (
     <details className="rounded-2xl bg-creme px-4 py-3">
-      <summary className="cursor-pointer text-base font-bold text-folha-escura">De onde veio</summary>
+      <summary className="cursor-pointer text-base font-bold text-folha-escura">{t("De onde veio", "Where this comes from")}</summary>
       <div className="mt-3 flex flex-col gap-4">
         {r.notas.map((n) => (
           <div key={n.criterio} className="flex flex-col gap-1.5">
-            <span className="text-base font-bold">{ROTULO[n.criterio]}</span>
+            <span className="text-base font-bold">{ROTULO[n.criterio][idioma]}</span>
             <p className="m-0 text-base leading-[1.45] text-suave">{n.explicacao}</p>
             {n.evidencias.length > 0 && (
               <ul className="m-0 flex list-none flex-col gap-1.5 p-0">
                 {n.evidencias.map((e, i) => (
                   <li key={i} className="rounded-xl bg-terra px-3 py-2 text-[15px] leading-snug">
                     {e.texto}
-                    {e.valor != null && <span className="font-bold"> · {e.valor}{e.unidade ? ` ${e.unidade}` : ""}</span>}
+                    {e.valor != null && (
+                      <span className="font-bold"> · {typeof e.valor === "number" ? e.valor.toLocaleString(idioma === "en" ? "en-US" : "pt-BR") : e.valor}{e.unidade ? ` ${e.unidade}` : ""}</span>
+                    )}
                     <span className="block text-sm text-suave">
-                      Fonte: {e.fonte}{e.periodo ? ` · ${e.periodo}` : ""}
+                      {t("Fonte", "Source")}: {e.fonte}{e.periodo ? ` · ${e.periodo}` : ""}
                     </span>
                   </li>
                 ))}
@@ -100,6 +108,7 @@ function DeOndeVeio({ r }: { r: Resultado }) {
 }
 
 export function CartaoEstrategia({ r, pesos, atual }: { r: Resultado; pesos: Analise["pesos"]; atual?: boolean }) {
+  const { t, idioma } = useIdioma();
   // Escolhido = peso acima de 0,06; se todos os pesos são iguais (nada escolhido), não destaca nenhum.
   const valores = Object.values(pesos);
   const algumEscolhido = Math.max(...valores) - Math.min(...valores) > 0.02;
@@ -109,16 +118,16 @@ export function CartaoEstrategia({ r, pesos, atual }: { r: Resultado; pesos: Ana
     <Cartao className="gap-4 lg:p-6">
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1.5">
-          {atual && <Selo tom="ceu">Sua rotação hoje</Selo>}
+          {atual && <Selo tom="ceu">{t("Sua rotação hoje", "Your rotation today")}</Selo>}
           <h3 className="m-0 font-titulo text-xl leading-tight font-extrabold">{r.nome}</h3>
         </div>
         <div className="flex shrink-0 flex-col items-end">
           {pontos == null ? (
-            <span className="text-base font-bold text-suave">sem nota</span>
+            <span className="text-base font-bold text-suave">{t("sem nota", "no score")}</span>
           ) : (
             <>
               <span className="font-titulo text-[32px] leading-none font-extrabold text-folha">{pontos}</span>
-              <span className="text-sm text-suave">de 100 pontos</span>
+              <span className="text-sm text-suave">{t("de 100 pontos", "out of 100")}</span>
             </>
           )}
         </div>
@@ -134,12 +143,12 @@ export function CartaoEstrategia({ r, pesos, atual }: { r: Resultado; pesos: Ana
             <div key={n.criterio} className="flex flex-col gap-1">
               <div className="flex items-baseline justify-between gap-2 text-base">
                 <span className={prioridade ? "font-extrabold" : "font-semibold"}>
-                  {ROTULO[n.criterio]}
-                  {prioridade && <span className="ml-2 rounded-full bg-sol-claro px-2 py-0.5 text-xs font-bold text-sol-texto">Importante pra você</span>}
+                  {ROTULO[n.criterio][idioma]}
+                  {prioridade && <span className="ml-2 rounded-full bg-sol-claro px-2 py-0.5 text-xs font-bold text-sol-texto">{t("Importante pra você", "Matters to you")}</span>}
                 </span>
-                <span className="shrink-0 text-suave">{valor == null ? "sem dado" : valor}</span>
+                <span className="shrink-0 text-suave">{valor == null ? t("sem dado", "no data") : valor}</span>
               </div>
-              <div className="h-2.5 overflow-hidden rounded-full bg-terra" role="img" aria-label={`${ROTULO[n.criterio]}: ${valor == null ? "sem dado" : `${valor} de 100`}`}>
+              <div className="h-2.5 overflow-hidden rounded-full bg-terra" role="img" aria-label={`${ROTULO[n.criterio][idioma]}: ${valor == null ? t("sem dado", "no data") : t(`${valor} de 100`, `${valor} out of 100`)}`}>
                 {valor != null && <div className={cx("h-full rounded-full", prioridade ? "bg-folha" : "bg-morro")} style={{ width: `${valor}%` }} />}
               </div>
             </div>
@@ -147,8 +156,8 @@ export function CartaoEstrategia({ r, pesos, atual }: { r: Resultado; pesos: Ana
         })}
       </div>
 
-      <Lista titulo="Por que" itens={r.por_que} />
-      <Lista titulo="Onde piora" itens={r.onde_piora} />
+      <Lista titulo={t("Por que", "Why")} itens={r.por_que} />
+      <Lista titulo={t("Onde piora", "Where it's worse")} itens={r.onde_piora} />
 
       {r.alertas.length > 0 && (
         <ul className="m-0 flex list-none flex-col gap-2 p-0">
@@ -159,8 +168,8 @@ export function CartaoEstrategia({ r, pesos, atual }: { r: Resultado; pesos: Ana
       )}
 
       <div className="flex flex-col gap-1">
-        <Selo tom={conf.tom}>{conf.rotulo}</Selo>
-        <span className="text-[15px] text-suave">{conf.frase}</span>
+        <Selo tom={conf.tom}>{conf.rotulo[idioma]}</Selo>
+        <span className="text-[15px] text-suave">{conf.frase[idioma]}</span>
       </div>
       {r.lacunas.length > 0 && (
         <ul className="m-0 flex list-none flex-col gap-0.5 p-0 text-[13px] text-suave">

@@ -12,8 +12,9 @@ from app.services.satelite import grade
 from app.services.satelite.satelite_service import (
     FONTE_IMERG,
     FONTE_POWER,
-    MSG_IMERG_BLOQUEADO,
-    MSG_SEM_TOKEN,
+    AVISO_IMERG_BLOQUEADO,
+    SEM_ARQUIVO,
+    SEM_TOKEN,
     SateliteService,
     limpar_cache,
     situacao_ndvi,
@@ -193,7 +194,7 @@ def test_tudo_certo_com_imerg():
 
 def test_imerg_bloqueado_usa_o_power_e_avisa():
     r = servico(EarthdataFalso(bloquear={"imerg"})).obter(-15.6, -47.7)
-    assert r.chuva.fonte == FONTE_POWER and r.avisos == [MSG_IMERG_BLOQUEADO]
+    assert r.chuva.fonte == FONTE_POWER and r.avisos == [AVISO_IMERG_BLOQUEADO]
     assert len(r.chuva.dias) == 30 and r.umidade is not None and r.ndvi is not None
 
 
@@ -205,7 +206,7 @@ def test_imerg_bloqueado_tenta_um_arquivo_so():
 
 def test_sem_token_mostra_o_motivo_e_a_chuva_do_power():
     r = servico(EarthdataFalso(token=None, bloquear={"smap", "modis"})).obter(-15.6, -47.7)
-    assert r.faltas == {"umidade": MSG_SEM_TOKEN, "ndvi": MSG_SEM_TOKEN}
+    assert r.faltas == {"umidade": SEM_TOKEN, "ndvi": SEM_TOKEN}
     assert r.chuva.fonte == FONTE_POWER and r.avisos == []
 
 
@@ -216,7 +217,7 @@ def test_nuvem_no_centro_usa_a_mediana_dos_vizinhos():
 
 def test_uma_parte_falha_e_as_outras_aparecem():
     r = servico(EarthdataFalso(sem_smap=True)).obter(-15.6, -47.7)
-    assert r.umidade is None and "SMAP" in r.faltas["umidade"]
+    assert r.umidade is None and r.faltas["umidade"] == SEM_ARQUIVO
     assert r.ndvi is not None and r.chuva is not None
 
 

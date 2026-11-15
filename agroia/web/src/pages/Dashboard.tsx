@@ -1,17 +1,21 @@
-// Dashboard no visual v3. Questionário, chuva, umidade (SMAP) e NDVI (MODIS) são reais; cada cartão diz a fonte e a data.
+// Dashboard no visual v3. Questionário, previsão (Open-Meteo), chuva, umidade (SMAP) e NDVI (MODIS) são reais; cada cartão diz a fonte e a data.
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { api } from "../api/client";
 import { useSessao } from "../api/sessao";
+import { obterPrevisao } from "../api/previsao";
 import { obterSatelite } from "../api/satelite";
-import type { CulturaBase, Fazenda, Ndvi, Satelite } from "../api/tipos";
+import type { CulturaBase, Fazenda, Ndvi, Previsao, Satelite } from "../api/tipos";
 import { Casca, SeletorIdioma } from "../components/Casca";
 import { Estrategias } from "../components/estrategias/Estrategias";
-import { Buscando, CartaoNdvi, CartaoUmidade, ChuvaRecente, dataCurta, numero, posicaoNoAno, SemDado } from "../components/satelite/Satelite";
+import {
+  Buscando, CartaoNdvi, CartaoUmidade, CHUVA_FORTE_MM, ChuvaRecente, chuvaTexto, dataCurta, diaSemana, numero, posicaoNoAno, PrevisaoSemana, SemDado, textoAviso, textoFalta,
+} from "../components/satelite/Satelite";
 import { Brilho, Pino, Sair } from "../components/icones";
 import { Aviso, BotaoContorno, Carregando, cx } from "../components/ui";
 import { INICIAIS_MESES, MESES_LONGOS, useIdioma } from "../i18n";
 import { OPCOES_AREA, OPCOES_PRIORIDADES, unidadePadrao } from "../onboarding/dados";
+import { passoNoIdioma } from "../onboarding/passos";
 
 const cartao = "rounded-[28px] bg-white p-5 shadow-cartao";
 const icone = { fill: "none", stroke: "currentColor", strokeWidth: 2.2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
@@ -103,6 +107,8 @@ export function Dashboard() {
   const [erro, setErro] = useState<string | null>(null);
   const [sat, setSat] = useState<Satelite | null>(null);
   const [satErro, setSatErro] = useState<string | null>(null);
+  const [prev, setPrev] = useState<Previsao | null>(null);
+  const [prevErro, setPrevErro] = useState<string | null>(null);
 
   const carregar = useCallback(async () => {
     setCarregando(true);
@@ -126,7 +132,10 @@ export function Dashboard() {
     if (!temPonto) return;
     setSat(null);
     setSatErro(null);
+    setPrev(null);
+    setPrevErro(null);
     obterSatelite().then(setSat).catch((e) => setSatErro(textoErro(e)));
+    obterPrevisao().then(setPrev).catch((e) => setPrevErro(textoErro(e)));
   }, [temPonto]);
 
   useEffect(() => {
@@ -150,6 +159,9 @@ export function Dashboard() {
     const itens = r.q8_culturas ?? [];
     const vazios = itens.length ? fazenda.meses_sem_cobertura : [];
     const un = unidadePadrao(r.q5_local?.pais);
+    const imperial = un === "acre";
+    const falta = (parte: "umidade" | "ndvi" | "chuva") => (sat?.faltas[parte] ? textoFalta(sat.faltas[parte]!, t) : satErro);
+    const diaForte = prev?.dias.find((d) => (d.chuva_mm ?? 0) >= CHUVA_FORTE_MM) ?? null;
     const area = OPCOES_AREA.find((o) => o.valor === r.q2_area)?.[un][idioma];
     const lugar = r.q5_local?.nome ?? null;
     const nomeCultura = (it: (typeof itens)[number]) => (it.cultura_id && nomes[it.cultura_id]) || it.texto_original;
@@ -161,7 +173,7 @@ export function Dashboard() {
           ? t("Seu campo fica sem cobertura parte do ano. Chuva forte pode levar terra.", "Your field is bare part of the year. Heavy rain can wash soil away.")
           : t("Chuva forte pode encharcar o campo e levar terra. Vale ficar de olho.", "Heavy rain can flood the field and wash soil away. Worth keeping an eye on it.");
     const prioridades = (r.q25_prioridades ?? []).map((p) => OPCOES_PRIORIDADES.find((o) => o.valor === p)?.[idioma]).filter(Boolean) as string[];
-    const passo1 = fazenda.proximos_passos[0];
+    const passo1 = fazenda.proximos_passos[0] ? passoNoIdioma(fazenda.proximos_passos[0], idioma) : null;
     const perguntar = (q: string) => `/agroia?q=${encodeURIComponent(q)}`;
 
     corpo = (
@@ -179,10 +191,10 @@ export function Dashboard() {
         </div>
 
         {sat && sat.avisos.length > 0 && (
-          <p className="m-0 rounded-2xl bg-sol-claro px-4 py-2.5 text-[13px] leading-snug text-sol-texto lg:col-span-12">{sat.avisos.join(" ")}</p>
+          <p className="m-0 rounded-2xl bg-sol-claro px-4 py-2.5 text-[13px] leading-snug text-sol-texto lg:col-span-12">{sat.avisos.map((a) => textoAviso(a, t)).join(" ")}</p>
         )}
 
-        {/* Alerta: do questionário + a maior chuva medida no último mês */}
+        {/* Alerta: chuva forte prevista (Open-Meteo) ou, sem ela, a maior chuva medida no mês; o texto vem do questionário */}
         <div className="flex flex-col gap-3 rounded-[28px] bg-sol p-5 shadow-degrau-sol lg:col-span-5" style={{ boxShadow: "0 6px 0 var(--color-sol-escuro)" }}>
           <div className="flex items-center gap-2.5">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-tinta text-sol">
@@ -191,9 +203,11 @@ export function Dashboard() {
             <div className="flex min-w-0 flex-1 flex-col">
               <span className="text-xs font-bold tracking-wider uppercase">{t("Fique de olho", "Heads up")}</span>
               <span className="font-titulo text-xl font-extrabold tracking-[-0.02em]">
-                {sat?.chuva?.maior && sat.chuva.maior.mm > 0
-                  ? t(`Maior chuva do mês: ${numero(sat.chuva.maior.mm, idioma)} mm em ${dataCurta(sat.chuva.maior.data, idioma)}`, `Biggest rain this month: ${numero(sat.chuva.maior.mm, idioma)} mm on ${dataCurta(sat.chuva.maior.data, idioma)}`)
-                  : t("Chuva forte e erosão", "Heavy rain and erosion")}
+                {diaForte
+                  ? t(`Chuva forte ${diaSemana(diaForte.data, idioma).toLowerCase()}: ${chuvaTexto(diaForte.chuva_mm!, imperial, idioma)}`, `Heavy rain ${diaSemana(diaForte.data, idioma)}: ${chuvaTexto(diaForte.chuva_mm!, imperial, idioma)}`)
+                  : sat?.chuva?.maior && sat.chuva.maior.mm > 0
+                    ? t(`Maior chuva do mês: ${chuvaTexto(sat.chuva.maior.mm, imperial, idioma)} em ${dataCurta(sat.chuva.maior.data, idioma)}`, `Biggest rain this month: ${chuvaTexto(sat.chuva.maior.mm, imperial, idioma)} on ${dataCurta(sat.chuva.maior.data, idioma)}`)
+                    : t("Chuva forte e erosão", "Heavy rain and erosion")}
               </span>
             </div>
           </div>
@@ -204,15 +218,28 @@ export function Dashboard() {
           </Link>
         </div>
 
+        {/* Previsão dos próximos 7 dias (Open-Meteo, D-014) */}
+        <div className={cx(cartao, "flex flex-col gap-3.5 lg:col-span-7")}>
+          {!temPonto ? (
+            <SemDado texto={t("Marque no mapa onde fica o campo para ver a previsão.", "Mark your field on the map to see the forecast.")} />
+          ) : prev ? (
+            <PrevisaoSemana previsao={prev} imperial={imperial} />
+          ) : prevErro ? (
+            <SemDado texto={prevErro} />
+          ) : (
+            <span className="animate-pulse rounded-2xl bg-areia p-3 text-sm text-suave">{t("Buscando a previsão…", "Fetching the forecast…")}</span>
+          )}
+        </div>
+
         {/* Chuva dos últimos 30 dias (IMERG ou NASA POWER) */}
         <div className={cx(cartao, "flex flex-col gap-3.5 lg:col-span-7")}>
           <h2 className="m-0 font-titulo text-lg font-extrabold">{t("Chuva no seu campo", "Rain on your field")}</h2>
           {!temPonto ? (
             <SemDado texto={t("Marque no mapa onde fica o campo para ver a chuva.", "Mark your field on the map to see the rain.")} />
           ) : sat?.chuva ? (
-            <ChuvaRecente chuva={sat.chuva} />
+            <ChuvaRecente chuva={sat.chuva} imperial={imperial} />
           ) : sat || satErro ? (
-            <SemDado texto={sat?.faltas.chuva ?? satErro ?? ""} />
+            <SemDado texto={falta("chuva") ?? ""} />
           ) : (
             <Buscando />
           )}
@@ -224,14 +251,14 @@ export function Dashboard() {
             <div className="col-span-2 flex flex-col"><Buscando /></div>
           ) : (
             <>
-              <CartaoUmidade umidade={sat?.umidade ?? null} falta={sat?.faltas.umidade ?? satErro} />
-              <CartaoNdvi ndvi={sat?.ndvi ?? null} falta={sat?.faltas.ndvi ?? satErro} />
+              <CartaoUmidade umidade={sat?.umidade ?? null} falta={falta("umidade")} />
+              <CartaoNdvi ndvi={sat?.ndvi ?? null} falta={falta("ndvi")} />
             </>
           )}
         </div>
 
         {/* O verde do campo no ano: calendário do produtor x NDVI real do MODIS */}
-        <div className={cx(cartao, "flex flex-col gap-3 lg:col-span-7")}>
+        <div className={cx(cartao, "flex flex-col gap-3 lg:col-span-12")}>
           <div className="flex flex-col gap-0.5">
             <h2 className="m-0 font-titulo text-lg font-extrabold">{t("O verde do seu campo no ano", "How green your field is over the year")}</h2>
             <span className="text-[13px] text-suave">
@@ -245,7 +272,7 @@ export function Dashboard() {
           )}
           <span className="text-[11px] text-suave">
             {sat?.ndvi
-              ? `${sat.ndvi.fonte} · ${sat.ndvi.resolucao} · ${t(`${sat.ndvi.serie.length} imagens sem nuvem`, `${sat.ndvi.serie.length} cloud-free images`)}`
+              ? `${sat.ndvi.fonte} · ${sat.ndvi.resolucao} · ${t("a cada 16 dias", "every 16 days")} · ${t(`${sat.ndvi.serie.length} imagens sem nuvem`, `${sat.ndvi.serie.length} cloud-free images`)}`
               : t("NASA MODIS NDVI (MOD13Q1) · 250 m · a cada 16 dias", "NASA MODIS NDVI (MOD13Q1) · 250 m · every 16 days")}
           </span>
         </div>

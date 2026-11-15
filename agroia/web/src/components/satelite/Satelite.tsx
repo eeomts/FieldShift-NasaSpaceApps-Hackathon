@@ -1,6 +1,6 @@
 // Cartões do Dashboard com dado real dos satélites da NASA (rota GET /fazenda/satelite).
 import type { ReactNode } from "react";
-import type { Chuva, Ndvi, Umidade } from "../../api/tipos";
+import type { Chuva, CodigoFalta, DiaPrevisao, Ndvi, Previsao, Satelite, Umidade } from "../../api/tipos";
 import { useIdioma, type Idioma } from "../../i18n";
 import { cx } from "../ui";
 
@@ -18,6 +18,42 @@ export const dataCurta = (s: string, idioma: Idioma) =>
 export const numero = (v: number, idioma: Idioma, casas = 0) =>
   v.toLocaleString(idioma === "en" ? "en-US" : "pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas });
 
+/** Fazenda nos EUA: polegadas e °F (o resto do app também usa acre lá). */
+export const chuvaTexto = (mm: number, imperial: boolean, idioma: Idioma) =>
+  imperial ? `${numero(mm / 25.4, idioma, mm / 25.4 < 10 ? 2 : 1)} in` : `${numero(mm, idioma)} mm`;
+
+const temperatura = (c: number, imperial: boolean) => `${Math.round(imperial ? (c * 9) / 5 + 32 : c)}°`;
+
+type T = (pt: string, en: string) => string;
+
+/** Texto, no idioma do produtor, do motivo de um dado de satélite não ter vindo. */
+export function textoFalta(codigo: CodigoFalta, t: T): string {
+  switch (codigo) {
+    case "sem_token":
+      return t("O servidor ainda não tem o acesso aos dados da NASA (Earthdata).", "The server doesn't have access to NASA data (Earthdata) yet.");
+    case "sem_permissao":
+      return t("A NASA recusou o acesso a este dado.", "NASA refused access to this data.");
+    case "sem_dado_ponto":
+      return t("O satélite não tem dado para este ponto (água, cidade ou gelo).", "The satellite has no data for this spot (water, city or ice).");
+    case "nuvem":
+      return t("As imagens do último ano estão cobertas de nuvem neste ponto.", "Last year's images are covered by clouds at this spot.");
+    case "sem_arquivo":
+      return t("A NASA ainda não publicou imagens recentes para este ponto.", "NASA hasn't published recent images for this spot yet.");
+    case "fora_do_ar":
+      return t("Não consegui falar com a NASA agora. Tente de novo em alguns minutos.", "Couldn't reach NASA right now. Please try again in a few minutes.");
+    default:
+      return t("Erro ao ler este dado da NASA.", "Error reading this NASA data.");
+  }
+}
+
+export function textoAviso(codigo: Satelite["avisos"][number], t: T): string {
+  return codigo === "imerg_bloqueado"
+    ? t("A conta do Earthdata ainda não autorizou a GES DISC, onde fica o IMERG. Mostrando a chuva do NASA POWER, que também vem da NASA.",
+        "The Earthdata account hasn't authorized GES DISC, where IMERG lives, yet. Showing NASA POWER rain, which also comes from NASA.")
+    : t("O IMERG não respondeu agora. Mostrando a chuva do NASA POWER, que também vem da NASA.",
+        "IMERG didn't respond right now. Showing NASA POWER rain, which also comes from NASA.");
+}
+
 function Fonte({ children }: { children: ReactNode }) {
   return <span className="text-[11px] leading-snug text-suave">{children}</span>;
 }
@@ -33,7 +69,7 @@ export function Buscando() {
 
 /* ---------------- Chuva dos últimos 30 dias ---------------- */
 
-export function ChuvaRecente({ chuva }: { chuva: Chuva }) {
+export function ChuvaRecente({ chuva, imperial = false }: { chuva: Chuva; imperial?: boolean }) {
   const { t, idioma } = useIdioma();
   const w = 300;
   const h = 96;
@@ -47,15 +83,15 @@ export function ChuvaRecente({ chuva }: { chuva: Chuva }) {
   const raio = Math.min(2, largura / 2);
   const iMaior = chuva.maior ? chuva.dias.findIndex((d) => d.data === chuva.maior!.data) : -1;
   const resumo = t(
-    `Chuva diária nos últimos ${n} dias: ${numero(chuva.total_30d, idioma)} mm no total, ${numero(chuva.total_7d, idioma)} mm nos últimos 7 dias.`,
-    `Daily rain over the last ${n} days: ${numero(chuva.total_30d, idioma)} mm in total, ${numero(chuva.total_7d, idioma)} mm in the last 7 days.`,
+    `Chuva diária nos últimos ${n} dias: ${chuvaTexto(chuva.total_30d, imperial, idioma)} no total, ${chuvaTexto(chuva.total_7d, imperial, idioma)} nos últimos 7 dias.`,
+    `Daily rain over the last ${n} days: ${chuvaTexto(chuva.total_30d, imperial, idioma)} in total, ${chuvaTexto(chuva.total_7d, imperial, idioma)} in the last 7 days.`,
   );
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-wrap gap-x-5 gap-y-1">
-        <span className="text-sm"><b className="font-titulo text-xl font-extrabold">{numero(chuva.total_7d, idioma)} mm</b> <span className="text-suave">{t("nos últimos 7 dias", "in the last 7 days")}</span></span>
-        <span className="text-sm"><b className="font-titulo text-xl font-extrabold">{numero(chuva.total_30d, idioma)} mm</b> <span className="text-suave">{t(`em ${n} dias`, `in ${n} days`)}</span></span>
+        <span className="text-sm"><b className="font-titulo text-xl font-extrabold">{chuvaTexto(chuva.total_7d, imperial, idioma)}</b> <span className="text-suave">{t("nos últimos 7 dias", "in the last 7 days")}</span></span>
+        <span className="text-sm"><b className="font-titulo text-xl font-extrabold">{chuvaTexto(chuva.total_30d, imperial, idioma)}</b> <span className="text-suave">{t(`em ${n} dias`, `in ${n} days`)}</span></span>
       </div>
       <div className="relative h-24">
       {/* Estica na largura (preserveAspectRatio="none"); por isso o rótulo do maior dia fica em HTML, sem deformar. */}
@@ -67,7 +103,7 @@ export function ChuvaRecente({ chuva }: { chuva: Chuva }) {
           const y = base - a;
           return (
             <g key={d.data}>
-              <title>{`${dataCurta(d.data, idioma)}: ${numero(d.mm, idioma, 1)} mm`}</title>
+              <title>{`${dataCurta(d.data, idioma)}: ${imperial ? chuvaTexto(d.mm, true, idioma) : `${numero(d.mm, idioma, 1)} mm`}`}</title>
               <rect x={i * passo} y={0} width={passo} height={h} fill="transparent" />
               {a > 0.5 && (
                 <path
@@ -84,7 +120,7 @@ export function ChuvaRecente({ chuva }: { chuva: Chuva }) {
       {iMaior >= 0 && chuva.maior!.mm > 0 && (
         <span className="pointer-events-none absolute -translate-x-1/2 -translate-y-full text-[10px] font-bold whitespace-nowrap"
           style={{ left: `${Math.min(Math.max(((iMaior + 0.5) / n) * 100, 6), 94)}%`, top: `${base - altura(chuva.maior!.mm) - 2}px` }}>
-          {numero(chuva.maior!.mm, idioma)} mm
+          {chuvaTexto(chuva.maior!.mm, imperial, idioma)}
         </span>
       )}
       </div>
@@ -92,7 +128,7 @@ export function ChuvaRecente({ chuva }: { chuva: Chuva }) {
         <span>{dataCurta(chuva.dias[0].data, idioma)}</span>
         <span>{dataCurta(chuva.dias[n - 1].data, idioma)}</span>
       </div>
-      <Fonte>{chuva.fonte} · {chuva.resolucao} · {t("passe o dedo ou o mouse nas barras para ver cada dia", "hover or tap a bar to see each day")}</Fonte>
+      <Fonte>{chuva.fonte} · {chuva.resolucao} · {t("diário", "daily")} · {t("passe o dedo ou o mouse nas barras para ver cada dia", "hover or tap a bar to see each day")}</Fonte>
     </div>
   );
 }
@@ -163,7 +199,7 @@ export function CartaoNdvi({ ndvi, falta }: { ndvi: Ndvi | null; falta?: string 
           <span className={cx("self-start rounded-full px-2.5 py-1 text-xs font-bold", ndvi.situacao === "descoberto" ? "bg-areia text-terra-texto" : "bg-campo-claro text-folha-escura")}>
             NDVI {numero(ndvi.valor, idioma, 2)}
           </span>
-          <Fonte>{ndvi.fonte} · {ndvi.resolucao} · {t("imagem de", "image from")} {dataCurta(ndvi.data, idioma)}</Fonte>
+          <Fonte>{ndvi.fonte} · {ndvi.resolucao} · {t("a cada 16 dias", "every 16 days")} · {t("imagem de", "image from")} {dataCurta(ndvi.data, idioma)}</Fonte>
         </>
       )}
     </div>
@@ -178,3 +214,61 @@ export const posicaoNoAno = (s: string) => {
   const inicio = new Date(d.getFullYear(), 0, 1);
   return Math.min((d.getTime() - inicio.getTime()) / (365 * 864e5), 0.999);
 };
+
+/* ---------------- Previsão dos próximos 7 dias (Open-Meteo) ---------------- */
+
+/** Dia "forte" de chuva para o alerta: 30 mm ou mais previstos. */
+export const CHUVA_FORTE_MM = 30;
+
+export const diaSemana = (s: string, idioma: Idioma) => {
+  const d = paraData(s).toLocaleDateString(idioma === "en" ? "en-US" : "pt-BR", { weekday: "short" }).replace(".", "");
+  return d.charAt(0).toUpperCase() + d.slice(1);
+};
+
+function IconeTempo({ dia }: { dia: DiaPrevisao }) {
+  const chuva = (dia.chuva_mm ?? 0) >= 1 || (dia.codigo_tempo ?? 0) >= 51;
+  if (chuva)
+    return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563A8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3" /><path d="M8 17v3M12 19v3M16 17v3" /></svg>;
+  if ((dia.codigo_tempo ?? 0) >= 2)
+    return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F5F54" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.7-9h1.8a4.5 4.5 0 1 1 0 9Z" /></svg>;
+  return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C98500" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>;
+}
+
+export function PrevisaoSemana({ previsao, imperial = false }: { previsao: Previsao; imperial?: boolean }) {
+  const { t, idioma } = useIdioma();
+  const total = previsao.dias.reduce((s, d) => s + (d.chuva_mm ?? 0), 0);
+  return (
+    <div className="flex flex-col gap-3.5">
+      <div className="flex items-baseline justify-between gap-2">
+        <h2 className="m-0 font-titulo text-lg font-extrabold">{t("Próximos 7 dias", "Next 7 days")}</h2>
+        <span className="text-[13px] font-bold text-chuva">{t(`${chuvaTexto(total, imperial, idioma)} de chuva`, `${chuvaTexto(total, imperial, idioma)} of rain`)}</span>
+      </div>
+      <ul className="m-0 grid list-none grid-cols-7 gap-1 p-0">
+        {previsao.dias.map((d) => {
+          const forte = (d.chuva_mm ?? 0) >= CHUVA_FORTE_MM;
+          const rotulo = [
+            diaSemana(d.data, idioma),
+            d.tmax != null && t(`máxima ${temperatura(d.tmax, imperial)}`, `high ${temperatura(d.tmax, imperial)}`),
+            d.tmin != null && t(`mínima ${temperatura(d.tmin, imperial)}`, `low ${temperatura(d.tmin, imperial)}`),
+            d.chuva_mm != null && t(`${chuvaTexto(d.chuva_mm, imperial, idioma)} de chuva`, `${chuvaTexto(d.chuva_mm, imperial, idioma)} of rain`),
+            d.chance_chuva != null && t(`${d.chance_chuva}% de chance`, `${d.chance_chuva}% chance`),
+          ].filter(Boolean).join(", ");
+          return (
+            <li key={d.data} title={rotulo} aria-label={rotulo} className={cx("flex flex-col items-center gap-1 rounded-2xl py-2.5", forte ? "bg-sol-claro" : "bg-creme")}>
+              <span className="text-xs font-bold">{diaSemana(d.data, idioma)}</span>
+              <IconeTempo dia={d} />
+              <span className="text-[13px] font-bold">{d.tmax == null ? "–" : temperatura(d.tmax, imperial)}</span>
+              <span className="text-xs text-suave">{d.tmin == null ? "–" : temperatura(d.tmin, imperial)}</span>
+              <span className="text-[11px] font-bold text-chuva">{d.chuva_mm == null ? "–" : imperial ? chuvaTexto(d.chuva_mm, true, idioma) : `${numero(d.chuva_mm, idioma)} mm`}</span>
+            </li>
+          );
+        })}
+      </ul>
+      <Fonte>
+        {t("Previsão", "Forecast")}:{" "}
+        <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" className="font-bold text-suave underline">Open-Meteo</a> ({previsao.licenca}) ·{" "}
+        {t("Histórico, solo e vegetação: NASA", "History, soil and vegetation: NASA")}
+      </Fonte>
+    </div>
+  );
+}

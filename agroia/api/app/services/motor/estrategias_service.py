@@ -7,6 +7,7 @@ from app.schemas import estrategias as s
 from app.services import catalogo
 from app.services.integracao.nasa_power import ErroNasaPower
 from app.services.motor import modelo as m
+from app.services.motor.ingles import traduzir, traduzir_unidade, traduzir_valor
 from app.services.motor.motor_service import MotorService
 
 MSG_SEM_FAZENDA = "Fazenda não encontrada."
@@ -43,8 +44,43 @@ def _resultado(r: m.ResultadoEstrategia, idioma: str) -> s.Resultado:
     )
 
 
+def _em_ingles(r: s.Resultado) -> s.Resultado:
+    return r.model_copy(update={
+        "nome": traduzir(r.nome),
+        "notas": [
+            n.model_copy(update={
+                "explicacao": traduzir(n.explicacao),
+                "evidencias": [
+                    e.model_copy(update={
+                        "texto": traduzir(e.texto), "valor": traduzir_valor(e.valor),
+                        "unidade": traduzir_unidade(e.unidade), "fonte": traduzir(e.fonte), "periodo": traduzir(e.periodo),
+                    })
+                    for e in n.evidencias
+                ],
+            })
+            for n in r.notas
+        ],
+        "por_que": [traduzir(t) for t in r.por_que],
+        "onde_piora": [traduzir(t) for t in r.onde_piora],
+        "alertas": [a.model_copy(update={"texto": traduzir(a.texto)}) for a in r.alertas],
+        "lacunas": [traduzir(t) for t in r.lacunas],
+    })  # fmt: skip
+
+
 def analise_para_saida(a: m.Analise, idioma: str = "pt") -> s.Analise:
-    """Único lugar que converte a análise do motor (dataclass) no schema da rota."""
+    """Único lugar que converte a análise do motor (dataclass) no schema da rota. Em inglês, traduz as frases."""
+    saida = _analise_pt(a, idioma)
+    if idioma != "en":
+        return saida
+    return saida.model_copy(update={
+        "atual": _em_ingles(saida.atual),
+        "melhores": [_em_ingles(r) for r in saida.melhores],
+        "eliminadas": [e.model_copy(update={"nome": traduzir(e.nome), "motivos": [traduzir(t) for t in e.motivos]}) for e in saida.eliminadas],
+        "fontes": [traduzir(f) for f in saida.fontes],
+    })  # fmt: skip
+
+
+def _analise_pt(a: m.Analise, idioma: str) -> s.Analise:
     return s.Analise(
         pais=a.pais,
         atual_e_a_melhor=a.atual_e_a_melhor,

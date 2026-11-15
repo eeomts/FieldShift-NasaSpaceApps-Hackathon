@@ -311,7 +311,27 @@ export interface Satelite {
   umidade: Umidade | null;
   ndvi: Ndvi | null;
   chuva: Chuva | null;
-  faltas: Partial<Record<"umidade" | "ndvi" | "chuva", string>>;
-  avisos: string[];
+  faltas: Partial<Record<"umidade" | "ndvi" | "chuva", CodigoFalta>>;
+  avisos: ("imerg_bloqueado" | "imerg_indisponivel")[];
+  gerado_em: string;
+}
+
+/** Por que um dado de satélite não veio (o texto, em PT ou EN, fica no front). */
+export type CodigoFalta = "sem_token" | "sem_permissao" | "sem_dado_ponto" | "nuvem" | "sem_arquivo" | "fora_do_ar" | "erro";
+
+// Previsão dos próximos 7 dias (rota GET /fazenda/previsao, Open-Meteo).
+export interface DiaPrevisao {
+  data: string;
+  tmax: number | null; // °C
+  tmin: number | null; // °C
+  chuva_mm: number | null;
+  chance_chuva: number | null; // %
+  codigo_tempo: number | null; // WMO
+}
+
+export interface Previsao {
+  fonte: string;
+  licenca: string;
+  dias: DiaPrevisao[];
   gerado_em: string;
 }

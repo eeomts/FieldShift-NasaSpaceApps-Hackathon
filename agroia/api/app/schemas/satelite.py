@@ -53,6 +53,7 @@ class Satelite(BaseModel):
     umidade: Umidade | None
     ndvi: Ndvi | None
     chuva: Chuva | None
-    faltas: dict[str, str]  # parte -> motivo de não ter vindo ("umidade", "ndvi", "chuva")
-    avisos: list[str]
+    # parte ("umidade", "ndvi", "chuva") -> código do motivo; o front escreve o texto no idioma do produtor
+    faltas: dict[str, Literal["sem_token", "sem_permissao", "sem_dado_ponto", "nuvem", "sem_arquivo", "fora_do_ar", "erro"]]
+    avisos: list[Literal["imerg_bloqueado", "imerg_indisponivel"]]
     gerado_em: DataUtc
