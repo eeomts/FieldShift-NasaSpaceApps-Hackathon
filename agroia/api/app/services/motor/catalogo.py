@@ -136,6 +136,20 @@ class CulturaMotor:
         return not self.estados_validos or estado is None or estado in self.estados_validos
 
 
+@dataclass(frozen=True)
+class JanelaSemeadura:
+    inicio: MesDia
+    fim: MesDia
+    condicao_semeadura: tuple[str, ...] = ()  # vazio = sem restrição pela cultura anterior
+
+
+def janela_de_semeadura(c: CulturaMotor, estado: str | None = None) -> JanelaSemeadura | None:
+    """Janela de semeadura da cobertura (regra 12); None = não confirmada. Único ponto de leitura (regra 13 troca pelo arranjo)."""
+    if c.semeadura_inicio is None or c.semeadura_fim is None:
+        return None
+    return JanelaSemeadura(c.semeadura_inicio, c.semeadura_fim, c.condicao_semeadura)
+
+
 def _texto(v: str | None) -> str | None:
     v = (v or "").strip()
     return v or None

@@ -7,6 +7,7 @@ ARRANJOS_DE_CONSORCIO = frozenset({"consorcio_milho_safrinha", "braquiaria_solte
 
 # Candidatas
 MAX_CANDIDATAS = 30  # proposta, validar com o Yury
+CEREAIS_INVERNO = frozenset({"trigo", "cevada", "centeio", "aveia"})  # regra 12, apos_cereal_inverno: proposta, validar com o Yury
 
 # Filtro de graus-dia (regra 2 do README do catálogo, Yury 14/11, revista em 15/11)
 GD_ELIMINA_ABAIXO = 0.90  # abaixo de 90 % do mínimo da cultura elimina (só grãos)

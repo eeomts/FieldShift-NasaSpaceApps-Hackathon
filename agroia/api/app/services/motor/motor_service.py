@@ -20,7 +20,8 @@ def _resultado(estrategia: Estrategia, e: EntradasMotor, pesos: dict[str, float]
     nota, efetivos = nota_final(notas, pesos)
     conf, lac_conf = confianca(estrategia.itens, e.catalogo)
     lacunas = list(dict.fromkeys(filtro.lacunas + lac_notas + lac_conf))
-    return ResultadoEstrategia(estrategia, notas, nota, efetivos, [], filtro.alertas, conf, lacunas)
+    alertas = filtro.alertas + [a for a in estrategia.alertas if a not in filtro.alertas]  # avisos da montagem da candidata
+    return ResultadoEstrategia(estrategia, notas, nota, efetivos, [], alertas, conf, lacunas)
 
 
 def analisar_entradas(e: EntradasMotor, agora: datetime | None = None) -> Analise:

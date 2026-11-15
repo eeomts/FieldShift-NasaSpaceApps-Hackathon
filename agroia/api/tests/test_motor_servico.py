@@ -114,6 +114,14 @@ def test_analise_nao_sugere_cultura_de_outro_estado_e_a_atual_ganha_aviso():
     assert any("não sabemos o estado" in l for l in sem_estado.atual.lacunas)
 
 
+def test_cobertura_sem_janela_chega_ao_resultado_com_o_alerta_de_janela_nao_confirmada():
+    cs = {c.id: c for c in CULTURAS if c.id != "crotalaria"}  # milheto (cobertura) sem semeadura no catálogo
+    a = analisar_entradas(montar(fazenda(), cs))
+    com_milheto = [r for r in a.melhores if any(i.cultura_id == "milheto" for i in r.estrategia.itens)]
+    assert com_milheto and all("janela_nao_confirmada" in [x.codigo for x in r.alertas] for r in com_milheto)
+    assert not any(x.codigo == "janela_nao_confirmada" for x in a.atual.alertas)  # a atual não passa pela regra 12
+
+
 def test_produtor_sem_equipamento_reconhecido_conta_como_nao_respondeu():
     e = montar(fazenda(equipamentos=[{"equipamento_id": None, "texto_original": "?"}]))
     assert e.equipamentos is None
