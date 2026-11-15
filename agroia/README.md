@@ -26,14 +26,17 @@ agroia/
 │   ├── app/                  # em camadas: routers -> services -> repositories -> models
 │   │   ├── main.py           # cria a API, liga as rotas e trata os erros de negócio
 │   │   ├── core/             # config.py (.env), db.py (PostgreSQL), security.py (senha e JWT), erros.py
-│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item)
+│   │   ├── models/           # tabelas: usuario.py, fazenda.py (fazenda, calendario_item), conhecimento.py (documento, trecho), agente.py (busca_log)
 │   │   ├── schemas/          # entrada e saída das rotas: auth.py, fazenda.py, onboarding.py (respostas)
-│   │   ├── repositories/     # acesso ao banco: usuario, fazenda
+│   │   ├── repositories/     # acesso ao banco: usuario, fazenda, conhecimento (busca híbrida)
 │   │   ├── services/         # regras de negócio
 │   │   │   ├── auth_service.py      # cadastro, login, apagar conta
 │   │   │   ├── catalogo.py          # culturas/equipamentos (agroia/base) e casamento por sinônimo
 │   │   │   ├── interpretacao.py     # texto livre -> lista (Gemini, com a lista como reserva)
-│   │   │   └── onboarding/          # perfil.py (perfil A–C, papel, retrato do solo), fazenda_service.py
+│   │   │   ├── onboarding/          # perfil.py (perfil A–C, papel, retrato do solo), fazenda_service.py
+│   │   │   ├── rag/                 # base de conhecimento: chunker, embeddings (Gemini), fontes, ingestao
+│   │   │   └── agente/              # busca_conhecimento_service.py (descarta trecho fraco, grava busca_log)
+│   │   ├── cli/              # comandos: rag.py (ingerir, buscar)
 │   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
 │   ├── tests/                # pytest (só rodam num Postgres local)
@@ -99,7 +102,7 @@ Para subir esse banco uma vez com Docker:
 ```bash
 docker run -d --name agroia-teste -p 55433:5432 \
   -e POSTGRES_USER=agricultura_app -e POSTGRES_PASSWORD=teste -e POSTGRES_DB=agricultura \
-  postgres:17
+  pgvector/pgvector:pg17   # Postgres com a extensão vector (base de conhecimento do RAG)
 
 cd agroia/api
 set -a; . ./.env.test; set +a; uv run alembic upgrade head   # cria as tabelas no banco de teste
@@ -134,6 +137,22 @@ Todas as rotas, menos login, cadastro, listas e `/saude`, exigem o header `Autho
 | `usuario` | Nome, e-mail, hash da senha, idioma |
 | `fazenda` | Uma por usuário. Todas as respostas em JSONB (`respostas`), mais as colunas que o resto do sistema consulta: local, perfil, irrigação, animais, terreno, prioridades, culturas excluídas, equipamentos, retrato do solo |
 | `calendario_item` | Cada cultura que o produtor confirmou, com os meses de plantio e colheita |
+| `documento` | Cada texto da base de conhecimento (glossário, metodologia, culturas, satélites), com fonte, caminho de origem e hash do conteúdo |
+| `trecho` | Pedaços de um documento com embedding (`vector(768)`) e busca textual em português |
+| `busca_log` | Cada busca na base de conhecimento: palavras do produtor, consulta, trechos devolvidos e descartados |
+
+## Base de conhecimento (RAG)
+
+Os textos listados em `api/app/services/rag/fontes.py` (o glossário e os de `data/rag/`) viram trechos com embedding do Gemini (`gemini-embedding-001`, 768 dimensões). Precisa de `GEMINI_API_KEY` no `.env` e do banco com a extensão `vector`.
+
+```bash
+cd agroia/api
+uv run python -m app.cli.rag ingerir                 # grava só o que mudou (compara o hash); pula arquivo que ainda não existe
+uv run python -m app.cli.rag ingerir --forcar        # regrava tudo
+uv run python -m app.cli.rag buscar "veranico no milho" --tipo glossario   # testa uma busca
+```
+
+Documento que sai da lista de fontes é removido do banco na próxima ingestão. Os testes usam um embedder falso: não gastam a API.
 
 Para mudar uma tabela, altere o model em `app/models/` e gere uma migração:
 
