@@ -7,6 +7,7 @@ const ROTULO_FONTE: Record<TipoFonte, string> = {
   conhecimento: "Base de conhecimento",
   cultura: "Dados da cultura",
   fazenda: "Sua fazenda",
+  analise: "Comparação do AgroIA",
 };
 
 function DeOndeVeio({ fontes }: { fontes: Fonte[] }) {

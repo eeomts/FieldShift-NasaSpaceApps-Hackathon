@@ -144,7 +144,7 @@ export interface EquipamentoBase {
 }
 
 // Chat (espelho de agroia/api/app/schemas/chat.py)
-export type TipoFonte = "clima" | "conhecimento" | "cultura" | "fazenda";
+export type TipoFonte = "clima" | "conhecimento" | "cultura" | "fazenda" | "analise";
 
 export interface Fonte {
   tipo: TipoFonte;
@@ -170,4 +170,55 @@ export interface ConversaResumo {
 
 export interface Conversa extends ConversaResumo {
   mensagens: Mensagem[];
+}
+
+// Motor de rotação (espelho de agroia/api/app/schemas/estrategias.py)
+export type Criterio = "agua" | "terra" | "erosao" | "pragas" | "renda" | "animais";
+
+export interface Evidencia {
+  texto: string;
+  valor: number | string | null;
+  unidade: string | null;
+  fonte: string;
+  periodo: string | null;
+}
+
+export interface ItemEstrategia {
+  cultura_id: string | null;
+  nome: string;
+  inicio_mes: number | null;
+  fim_mes: number | null;
+  perene: boolean;
+}
+
+export interface NotaCriterio {
+  criterio: Criterio;
+  nota: number | null;
+  explicacao: string;
+  evidencias: Evidencia[];
+}
+
+export interface Resultado {
+  id: string;
+  nome: string;
+  origem: "atual" | "janela" | "tolerante_seca" | "leguminosa";
+  itens: ItemEstrategia[];
+  nota_final: number | null; // 0 a 1 (a tela mostra 0 a 100 pontos)
+  notas: NotaCriterio[];
+  por_que: string[];
+  onde_piora: string[];
+  alertas: { codigo: string; texto: string }[];
+  confianca: "alta" | "media" | "baixa";
+  lacunas: string[];
+}
+
+export interface Analise {
+  pais: "BR" | "US";
+  atual_e_a_melhor: boolean;
+  pesos: Record<Criterio, number>;
+  atual: Resultado;
+  melhores: Resultado[];
+  eliminadas: { nome: string; motivos: string[] }[];
+  fontes: string[];
+  gerado_em: string; // ISO 8601 UTC
 }
