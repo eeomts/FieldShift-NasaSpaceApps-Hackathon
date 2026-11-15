@@ -3,6 +3,7 @@ from app.models.agente import BuscaLog, Conversa, Mensagem
 from app.models.clima import ClimaCelula, ClimaMensal
 from app.models.conhecimento import Documento, Trecho
 from app.models.fazenda import CalendarioItem, Fazenda
+from app.models.relevo import RelevoPonto
 from app.models.usuario import Usuario
 
 __all__ = [
@@ -14,6 +15,7 @@ __all__ = [
     "Documento",
     "Fazenda",
     "Mensagem",
+    "RelevoPonto",
     "Trecho",
     "Usuario",
 ]

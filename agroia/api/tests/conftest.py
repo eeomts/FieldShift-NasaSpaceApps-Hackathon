@@ -21,7 +21,7 @@ assert os.environ["DB_HOST"] in ("127.0.0.1", "localhost"), "testes só rodam em
 @pytest.fixture(autouse=True)
 def limpa_banco():
     with get_engine().begin() as c:
-        c.execute(text("TRUNCATE usuario, documento, busca_log, clima_celula CASCADE"))  # trecho e clima_mensal caem em cascata
+        c.execute(text("TRUNCATE usuario, documento, busca_log, clima_celula, relevo_ponto CASCADE"))  # trecho e clima_mensal caem em cascata
     yield
 
 

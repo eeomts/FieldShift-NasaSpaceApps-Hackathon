@@ -56,3 +56,36 @@ def test_validacoes(client, auth):
 def test_cultura_fora_da_base_e_aceita_sem_id(client, auth):
     r = client.put("/fazenda", headers=auth, json={"respostas": {"q8_culturas": [{"cultura_id": None, "texto_original": "jambu"}]}})
     assert r.status_code == 200
+
+
+def _local_salvo(usuario_email: str) -> tuple[str | None, str | None]:
+    from sqlalchemy import select
+    from sqlalchemy.orm import Session
+
+    from app.core.db import get_engine
+    from app.models import Fazenda, Usuario
+
+    with Session(get_engine()) as s:
+        f = s.scalars(select(Fazenda).join(Usuario).where(Usuario.email == usuario_email)).one()
+        return f.pais, f.codigo_local
+
+
+def test_salvar_preenche_pais_e_codigo_do_local_e_limpa_quando_sai(client, auth):
+    salvar = lambda local: client.put("/fazenda", headers=auth, json={"respostas": MARTA | {"q5_local": local}})  # noqa: E731
+    assert salvar({"lat": -17.644301, "lon": -51.080503}).status_code == 200
+    assert _local_salvo("marta@exemplo.com") == ("BR", "5218805")  # Rio Verde-GO
+
+    assert salvar({"lat": 42.07, "lon": -93.45}).status_code == 200  # mudou de ponto: recalcula
+    assert _local_salvo("marta@exemplo.com") == ("US", "19169")  # Story-IA
+
+    assert salvar({"lat": 0.0, "lon": -30.0}).status_code == 200  # oceano: sem país
+    assert _local_salvo("marta@exemplo.com") == (None, None)
+
+    assert salvar({"lat": -28.310532, "lon": -52.412854}).status_code == 200
+    assert client.put("/fazenda", headers=auth, json={"respostas": {"q1_quem": "produtor"}}).status_code == 200  # sem local
+    assert _local_salvo("marta@exemplo.com") == (None, None)
+
+
+def test_saida_da_fazenda_nao_ganhou_campos(client, auth):
+    f = client.put("/fazenda", headers=auth, json={"respostas": MARTA}).json()
+    assert "pais" not in f and "codigo_local" not in f

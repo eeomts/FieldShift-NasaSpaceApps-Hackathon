@@ -2,6 +2,7 @@
 from datetime import date, timedelta
 
 import pytest
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.core.db import get_engine
@@ -103,6 +104,32 @@ def test_climatologia_leva_fonte_e_periodo(db):
     assert jan.dias_geada == 0.0  # tmin 15: zero real (há dado), não ausente
     assert c.limite_chuva_forte_mm == 12.0
     assert any("FAO-56" in n for n in c.notas)
+
+
+def test_agregacao_grava_gd_por_tb(db):
+    s, _ = servico(db)
+    c = s.obter(-11.3, -41.8, hoje=HOJE)
+    meses = {(m.ano, m.mes): m for m in s.repositorio.meses(c.id)}
+    fev = meses[(2024, 2)].gd_por_tb  # 29 dias, Tmed = (30 + 15) / 2 = 22,5
+    assert sorted(map(int, fev)) == list(range(0, 21))
+    assert fev["10"] == pytest.approx(29 * 12.5) and fev["0"] == pytest.approx(29 * 22.5)
+    assert fev["20"] == pytest.approx(29 * 2.5)
+    # 1 de janeiro sem temperatura: o mês fica {} (nem soma parcial, nem NULL)
+    assert meses[(2024, 1)].gd_por_tb == {}
+
+
+def test_celula_sem_gd_por_tb_e_baixada_de_novo(db):
+    s, cliente = servico(db)
+    celula = s.obter(-11.3, -41.8, hoje=HOJE)
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 1
+    db.execute(text("UPDATE clima_mensal SET gd_por_tb = NULL WHERE celula_id = :c AND ano = 2000"), {"c": celula.id})
+    db.commit()
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 2
+    assert all(m.gd_por_tb is not None for m in s.repositorio.meses(celula.id))
+    s.obter(-11.3, -41.8, hoje=HOJE)
+    assert len(cliente.chamadas) == 2
 
 
 def test_ano_leva_fonte_e_periodo(db):

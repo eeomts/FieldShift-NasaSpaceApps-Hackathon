@@ -18,6 +18,11 @@ class ClimaRepository:
     def celula_por_id(self, celula_id: str) -> ClimaCelula | None:
         return self.db.get(ClimaCelula, celula_id)
 
+    def faltam_graus_dia(self, celula_id: str) -> bool:
+        """Algum mês da célula sem `gd_por_tb` (baixada antes da coluna existir)."""
+        consulta = select(ClimaMensal.celula_id).where(ClimaMensal.celula_id == celula_id, ClimaMensal.gd_por_tb.is_(None))
+        return self.db.scalars(consulta.limit(1)).first() is not None
+
     def gravar(self, celula: dict, meses: list[dict]) -> ClimaCelula:
         """Grava a célula e seus meses (insere ou atualiza) numa transação só. Cada mês é um dict sem `celula_id`."""
         stmt = insert(ClimaCelula).values(**celula)
