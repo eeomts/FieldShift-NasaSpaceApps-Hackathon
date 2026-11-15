@@ -38,10 +38,10 @@ agroia/
 │   │   │   ├── conversa_service.py  # conversas do usuário (criar, listar, abrir, apagar)
 │   │   │   ├── agente/              # o chat: agente_service.py (laço do Gemini), ferramentas.py, prompt.py, modelo.py, busca_conhecimento_service.py
 │   │   │   ├── clima/               # célula da grade, ET0 (FAO-56), limites, agregação mensal, graus_dia.py, clima_service.py
-│   │   │   ├── motor/               # base do motor de rotação: catalogo.py (CSV do BR e dos EUA), local.py (país e município/condado), relevo_service.py
+│   │   │   ├── motor/               # base do motor de rotação: catalogo.py (CSV do BR e dos EUA), local.py (país e município/condado), relevo_service.py, motor_service.py (a análise), estrategias_service.py (rota: erros e conversão no schema)
 │   │   │   └── integracao/          # nasa_power.py (NASA POWER), srtm.py (declividade, OpenTopoData)
 │   │   ├── cli/              # comandos: rag.py (ingerir, buscar), clima.py (baixar, mostrar, demo)
-│   │   └── routers/          # rotas (só HTTP): auth, fazenda, onboarding, chat
+│   │   └── routers/          # rotas (só HTTP): auth, fazenda, estrategias, onboarding, chat
 │   ├── migrations/           # Alembic: cria e atualiza as tabelas
 │   ├── tests/                # pytest (só rodam num Postgres local)
 │   ├── .env.example          # modelo de configuração
@@ -129,6 +129,7 @@ Os testes cobrem:
 | DELETE | `/me` | Apaga a conta e todos os dados |
 | GET | `/fazenda` | Questionário salvo, perfil e resumo |
 | PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`) |
+| GET | `/fazenda/estrategias` | Compara a rotação atual com as 2 melhores alternativas, na hora (a 1ª vez numa região baixa o NASA POWER, 10–30 s). Erros: 404 sem fazenda, 422 sem local / sem culturas da região / sem calendário, 503 se o NASA POWER falhar |
 | POST | `/onboarding/interpretar` | Texto livre → itens da base (perguntas 8, 26a e 26b) |
 | GET | `/culturas`, `/equipamentos` | Listas reserva |
 | GET | `/chat/conversas` | Lista as conversas do usuário (mais recente primeiro) |
@@ -171,7 +172,7 @@ Documento que sai da lista de fontes é removido do banco na próxima ingestão.
 
 ## Chat (agente)
 
-Um agente com 4 ferramentas, executadas pelo nosso código (o Gemini só pede a chamada): `ver_ficha`, `info_cultura`, `buscar_conhecimento` e `consultar_clima`. Os números vêm das ferramentas, e cada resposta devolve as `fontes` e as `ferramentas_usadas` delas, nunca do texto do modelo. Regras (não prescreve, não faz previsão, não inventa número) em `app/services/agente/prompt.py`.
+Um agente com 5 ferramentas, executadas pelo nosso código (o Gemini só pede a chamada): `ver_ficha`, `info_cultura`, `buscar_conhecimento`, `consultar_clima` e `comparar_estrategias` (roda o motor de rotação na fazenda do usuário e devolve as notas de 0 a 100, o por que e o onde piora; a fonte sai com `tipo: "analise"`). Os números vêm das ferramentas, e cada resposta devolve as `fontes` e as `ferramentas_usadas` delas, nunca do texto do modelo. Regras (não prescreve, não faz previsão, não inventa número) em `app/services/agente/prompt.py`.
 
 - Precisa de `GEMINI_API_KEY` (e `GEMINI_MODEL`) no `.env` e das tabelas da base de conhecimento e do clima. Sem a chave, `POST .../mensagens` responde 503.
 - Até 5 rodadas de ferramenta por pergunta. Se o assistente falhar ou estourar o limite, a resposta é 503 e **nada** daquela pergunta fica gravado.

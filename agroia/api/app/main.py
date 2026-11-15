@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 
 from app.core.config import get_settings
 from app.core.erros import ErroDeNegocio
-from app.routers import auth, chat, fazenda, onboarding
+from app.routers import auth, chat, estrategias, fazenda, onboarding
 
 app = FastAPI(title="AgroIA API", version="0.1.0")
 
@@ -25,6 +25,7 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(fazenda.router)
+app.include_router(estrategias.router)
 app.include_router(onboarding.router)
 app.include_router(chat.router)
 
