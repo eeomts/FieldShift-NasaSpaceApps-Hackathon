@@ -1,5 +1,9 @@
 {
   "id": "aveia",
+  "pais": "BR",
+  "nome": "Aveia-preta",
+  "nome_cientifico": "Avena strigosa",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "cobertura|forrageira",
     "perene": "false",

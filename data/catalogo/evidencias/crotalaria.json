@@ -1,5 +1,9 @@
 {
   "id": "crotalaria",
+  "pais": "BR",
+  "nome": "Crotalária",
+  "nome_cientifico": "Crotalaria juncea",
+  "familia_botanica": "Fabaceae",
   "valores": {
     "tipos": "cobertura|fixadora_n|raiz_profunda",
     "perene": "false",

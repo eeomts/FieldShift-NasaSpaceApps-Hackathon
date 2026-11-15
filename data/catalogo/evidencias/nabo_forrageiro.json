@@ -1,5 +1,9 @@
 {
   "id": "nabo_forrageiro",
+  "pais": "BR",
+  "nome": "Nabo forrageiro",
+  "nome_cientifico": "Raphanus sativus",
+  "familia_botanica": "Brassicaceae",
   "valores": {
     "tipos": "cobertura|forrageira|raiz_profunda|tolerante_seca",
     "perene": "false",

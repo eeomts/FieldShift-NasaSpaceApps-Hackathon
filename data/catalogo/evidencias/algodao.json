@@ -1,5 +1,9 @@
 {
   "id": "algodao",
+  "pais": "BR",
+  "nome": "Algodão",
+  "nome_cientifico": "Gossypium hirsutum",
+  "familia_botanica": "Malvaceae",
   "valores": {
     "tipos": "comercial",
     "perene": "false",

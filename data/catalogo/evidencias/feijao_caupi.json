@@ -1,5 +1,9 @@
 {
   "id": "feijao_caupi",
+  "pais": "BR",
+  "nome": "Feijão-caupi",
+  "nome_cientifico": "Vigna unguiculata",
+  "familia_botanica": "Fabaceae",
   "valores": {
     "tipos": "comercial|fixadora_n|tolerante_seca",
     "perene": "false",

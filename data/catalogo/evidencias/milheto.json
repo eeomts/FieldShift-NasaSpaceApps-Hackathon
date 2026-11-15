@@ -1,5 +1,9 @@
 {
   "id": "milheto",
+  "pais": "BR",
+  "nome": "Milheto",
+  "nome_cientifico": "Pennisetum glaucum",
+  "familia_botanica": "Poaceae",
   "valores": {
     "tipos": "cobertura|forrageira|raiz_profunda|tolerante_seca",
     "perene": "false",

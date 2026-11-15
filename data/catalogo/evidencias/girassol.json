@@ -1,5 +1,9 @@
 {
   "id": "girassol",
+  "pais": "BR",
+  "nome": "Girassol",
+  "nome_cientifico": "Helianthus annuus",
+  "familia_botanica": "Asteraceae",
   "valores": {
     "tipos": "comercial|tolerante_seca",
     "perene": "false",
