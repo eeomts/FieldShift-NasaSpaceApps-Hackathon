@@ -1,7 +1,4 @@
-"""Tabelas do banco (≈ Models do Eloquent). Um arquivo por domínio.
-
-Importar daqui registra todas as tabelas no metadata (o Alembic depende disso).
-"""
+"""Models do banco; importar daqui registra todas as tabelas."""
 from app.models.fazenda import CalendarioItem, Fazenda
 from app.models.usuario import Usuario
 

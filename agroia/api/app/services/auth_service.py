@@ -1,4 +1,4 @@
-"""Regras de cadastro, login e conta (≈ Service)."""
+"""Regras de cadastro, login e conta."""
 from fastapi import Depends
 from sqlalchemy.exc import IntegrityError
 

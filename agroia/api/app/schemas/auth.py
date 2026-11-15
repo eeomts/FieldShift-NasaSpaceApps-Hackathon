@@ -1,4 +1,4 @@
-"""Entrada e saída das rotas de login e conta (≈ FormRequest + Resource)."""
+"""Entrada e saída das rotas de cadastro, login e conta."""
 from typing import Literal
 
 from pydantic import BaseModel, EmailStr, Field

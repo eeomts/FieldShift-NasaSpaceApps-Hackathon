@@ -1,8 +1,4 @@
-"""Regras para salvar e ler o questionário da fazenda (≈ Service).
-
-As regras de cálculo (perfil, papel, retrato do solo, próximos passos) ficam em `perfil.py`,
-como funções puras; aqui é só a orquestração: aplicar as respostas na fazenda e gravar.
-"""
+"""Salva e lê o questionário da fazenda."""
 from fastapi import Depends
 
 from app.core.erros import ErroDeNegocio

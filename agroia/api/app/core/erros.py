@@ -1,8 +1,4 @@
-"""Erros de negócio esperados (e-mail repetido, fazenda inexistente...).
-
-Os services lançam `ErroDeNegocio` sem saber de HTTP; o `main.py` transforma em resposta
-`{"detail": mensagem}` com o status indicado, o mesmo formato do `HTTPException` do FastAPI.
-"""
+"""Erro de negócio lançado pelos services e convertido em resposta HTTP no main.py."""
 
 
 class ErroDeNegocio(Exception):

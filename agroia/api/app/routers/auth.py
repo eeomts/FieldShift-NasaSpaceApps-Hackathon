@@ -1,4 +1,4 @@
-"""Rotas de login e conta (≈ Controller): só HTTP; a regra fica no AuthService."""
+"""Rotas de cadastro, login e conta."""
 from fastapi import APIRouter, Depends, Response, status
 
 from app.core.security import usuario_atual

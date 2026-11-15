@@ -1,8 +1,4 @@
-"""Fazenda e calendário (parte 2: onboarding).
-
-Uma fazenda = um campo (decisão da equipe). As respostas completas ficam em
-JSONB (`respostas`); os campos que o resto do sistema consulta viram colunas.
-"""
+"""Fazenda e calendário do produtor (onboarding)."""
 from datetime import datetime
 from typing import TYPE_CHECKING
 from uuid import UUID, uuid4

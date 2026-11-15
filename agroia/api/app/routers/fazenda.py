@@ -1,4 +1,4 @@
-"""Rotas da fazenda (≈ Controller): só HTTP; a regra fica no FazendaService."""
+"""Rotas da fazenda (questionário)."""
 from fastapi import APIRouter, Depends
 
 from app.core.security import usuario_atual

@@ -1,4 +1,4 @@
-"""Acesso ao banco para a fazenda (≈ Repository)."""
+"""Acesso ao banco para a fazenda."""
 from fastapi import Depends
 from sqlalchemy.orm import Session
 

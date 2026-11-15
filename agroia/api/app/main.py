@@ -1,8 +1,4 @@
-"""Monta a API (≈ bootstrap + routes/api.php do Laravel).
-
-Camadas: routers (HTTP) -> services (regras) -> repositories (banco) -> models (tabelas);
-schemas são a entrada e a saída das rotas. Ver docs/.../application/architecture/.
-"""
+"""Cria a API, liga as rotas e trata os erros de negócio."""
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse

@@ -1,4 +1,4 @@
-"""Acesso ao banco para usuários (≈ Repository)."""
+"""Acesso ao banco para usuários."""
 from uuid import UUID
 
 from fastapi import Depends

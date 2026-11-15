@@ -1,4 +1,4 @@
-"""Rotas de apoio ao onboarding (≈ Controller): texto livre com IA e listas do catálogo."""
+"""Rotas de apoio ao onboarding: texto livre com IA e listas do catálogo."""
 from typing import Literal
 
 from fastapi import APIRouter, Depends

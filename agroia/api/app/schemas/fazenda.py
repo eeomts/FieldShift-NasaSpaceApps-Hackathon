@@ -1,4 +1,4 @@
-"""Entrada e saída das rotas da fazenda (≈ FormRequest + Resource)."""
+"""Entrada e saída das rotas da fazenda."""
 from pydantic import BaseModel, Field
 
 from app.schemas.onboarding import Respostas
