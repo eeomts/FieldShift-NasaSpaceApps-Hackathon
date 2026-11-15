@@ -20,7 +20,7 @@
 |---|---|
 | `q24_perdas.alagamento`: perda por alagamento ou encharcamento | Sempre |
 | `q24_perdas.granizo`: perda por granizo | Sempre |
-| `q24_perdas.salinidade`: perda porque a terra ficou salgada | Só em clima seco (zona B) ou com irrigação |
+| `q24_perdas.salinidade`: perda porque a terra ficou salgada | Só em clima seco (zona B) ou com irrigação em clima mediterrâneo (Csa/Csb) |
 
 ### 🔄 Mudou o funcionamento
 | Pergunta | Antes | Depois |
@@ -28,7 +28,8 @@
 | `q21` | `q21_calcario`, sim/não/não sei | `q21_correcao`, múltipla escolha: calcário · gesso · outra · não · não sei |
 | `q2_area` | Rótulos só em hectare | Hectare ou acre conforme o país |
 | `q5_local` | Toque no mapa ou GPS | + barra de pesquisa; calcula país, zona climática e hemisfério |
-| `q24_perdas.geada` | Aparecia sempre | Some em clima tropical ou árido quente |
+| `q24_perdas.geada` | Aparecia sempre | Some só onde nunca fez frio de geada (histórico do NASA POWER) |
+| `q9_meses_vazios` | Sem ajuda | Em clima com inverno de neve (zona D): ajuda dizendo que neve ou palhada conta como coberto |
 | `q8_texto` ⏸️ | Exemplo fixo do Brasil | Exemplo por zona climática |
 
 ### ✏️ Só texto
@@ -331,6 +332,7 @@ Legenda: 🆕 pergunta nova · 🔄 pergunta reformulada · ⏸️ em espera
 - 🇬🇧 Is the land left bare in these months?  
 - Opções (pt): Sim / Não / Não sei  
 - Options (en): Yes / No / Not sure  
+- *Em clima com inverno de neve (zona D), mostra a ajuda: “Se nesses meses o campo fica coberto de neve ou de palhada, conte como coberto (responda "não").”*  
 
 **`q10_pos_colheita`**  
 - 🇧🇷 E depois da colheita, o que acontece com a área?  
@@ -391,7 +393,7 @@ Legenda: 🆕 pergunta nova · 🔄 pergunta reformulada · ⏸️ em espera
 
 **`q17_dura`**  
 - 🇧🇷 A terra fica dura demais para cavar ou arar?  
-- 🇬🇧 Is the soil too hard to dig or plough?  
+- 🇬🇧 Is the soil too hard to dig or plow?  
 - Opções (pt): Sim / Não / Não sei  
 - Options (en): Yes / No / Not sure  
 
@@ -403,15 +405,15 @@ Legenda: 🆕 pergunta nova · 🔄 pergunta reformulada · ⏸️ em espera
 
 **`q19_cor`**  
 - 🇧🇷 Com qual destas cores a sua terra mais se parece?  
-- 🇬🇧 Which of these colours looks most like your soil?  
+- 🇬🇧 Which of these colors looks most like your soil?  
 - Opções (pt): Preta ou marrom bem escura · Marrom · Vermelha · Amarelada · Cinza ou com manchas cinza · Clara ou esbranquiçada · Não sei  
-- Options (en): Black or very dark brown · Brown · Red · Yellowish · Grey, or grey-mottled · Pale or whitish · Not sure  
+- Options (en): Black or very dark brown · Brown · Red · Yellowish · Gray, or gray-mottled · Pale or whitish · Not sure  
 
 **`q19_jeito`**  
 - 🇧🇷 E quando você pega um punhado na mão, ela fica mais como qual destas?  
 - 🇬🇧 And when you pick up a handful, which does it feel most like?  
 - Opções (pt): Solta, escorre entre os dedos · Fofa, em grumos pequenos · Gruda e dá para moldar molhada · Torrões duros que não se desfazem · Racha quando seca · Muita pedra ou cascalho · Não sei  
-- Options (en): Loose — runs through your fingers · Crumbly, in small lumps · Sticky — you can mould it when wet · Hard clods that won't break up · Cracks open when dry · Lots of stones or gravel · Not sure  
+- Options (en): Loose — runs through your fingers · Crumbly, in small lumps · Sticky — you can mold it when wet · Hard clods that won't break up · Cracks open when dry · Lots of stones or gravel · Not sure  
 
 **`q20_partes_piores`**  
 - 🇧🇷 Tem partes da área onde a lavoura sempre vai pior?  
@@ -424,11 +426,11 @@ Legenda: 🆕 pergunta nova · 🔄 pergunta reformulada · ⏸️ em espera
 - 🇬🇧 Have you ever treated your soil to correct it?  
 - Opções (pt): Calcário (para terra ácida) · Gesso agrícola (para terra com sal) · Outra correção · Não · Não sei  
 - Options (en): Lime (for acid soil) · Gypsum (for salty soil) · Something else · No · Not sure  
-- *Pode marcar mais de uma. Em clima seco (zona B) ou com irrigação, o **gesso aparece primeiro**.*  
+- *Pode marcar mais de uma. Em clima seco (zona B ou mediterrâneo Csa/Csb), o **gesso aparece primeiro**.*  
 
 **`q22_adubo`**  
 - 🇧🇷 Você usa adubo ou esterco?  
-- 🇬🇧 Do you use fertiliser or manure?  
+- 🇬🇧 Do you use fertilizer or manure?  
 - Opções (pt): Sim / Não / Não sei  
 - Options (en): Yes / No / Not sure  
 
@@ -446,7 +448,7 @@ Legenda: 🆕 pergunta nova · 🔄 pergunta reformulada · ⏸️ em espera
 - 🇬🇧 Have you ever lost a crop to frost?  
 - Opções (pt): Sim / Não / Não sei  
 - Options (en): Yes / No / Not sure  
-- ***Não aparece** em clima tropical ou árido quente (Af, Am, Aw, As, BWh, BSh).*  
+- ***Some** só onde o histórico do NASA POWER não tem nenhuma noite abaixo de 2 °C; sem o POWER, some só em clima tropical (zona A).*  
 - *Se sim: “Lembra mais ou menos o ano?” / “Roughly what year was it?”*  
 
 **`q24_perdas.chuva_forte`**  
@@ -489,7 +491,7 @@ Legenda: 🆕 pergunta nova · 🔄 pergunta reformulada · ⏸️ em espera
 - 🇬🇧 Have you ever lost a crop because the soil turned salty (white crust, scorched plants)?  
 - Opções (pt): Sim / Não / Não sei  
 - Options (en): Yes / No / Not sure  
-- ***Só aparece** em clima seco (zona B) ou com irrigação.*  
+- ***Só aparece** em clima seco (zona B) ou com irrigação em clima mediterrâneo (Csa/Csb).*  
 - *Se sim: “Lembra mais ou menos o ano?” / “Roughly what year was it?”*  
 
 
@@ -508,5 +510,5 @@ Legenda: 🆕 pergunta nova · 🔄 pergunta reformulada · ⏸️ em espera
 
 **`q26b_texto`**  
 - 🇧🇷 Que máquinas e ferramentas você tem ou consegue usar?  
-- 🇬🇧 What machinery or equipment do you have, or can get hold of?  
-- *Exemplo: “tenho um trator pequeno e uma plantadeira; a colheita é na mão” / “I've got a small tractor and a planter; we harvest by hand”*  
+- 🇬🇧 What machinery or equipment do you have or can get access to?  
+- *Exemplo: “tenho um trator pequeno e uma plantadeira; a colheita é na mão” / “I have a small tractor and a planter; we harvest by hand”*  
