@@ -1,6 +1,6 @@
 # 01 — Pontos da demo
 
-**Dono:** Pessoa 2 · **Status:** pendente · **Prioridade:** primeira (destrava o AppEEARS)
+**Dono:** Pessoa 2 · **Status:** em revisão (falta o time aprovar as regiões) · **Prioridade:** primeira (destrava o AppEEARS)
 
 ## Por quê
 A apresentação mostra 2 ou 3 produtores concretos em regiões contrastantes, onde os mesmos dados levam a recomendações diferentes. Todos os dados lentos (NDVI, umidade) são pré-calculados para esses pontos.
