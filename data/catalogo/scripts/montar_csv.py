@@ -120,6 +120,9 @@ def main():
             erro(f"estados_validos com sigla inválida: {estados}")
         if "comercial" not in tipos and not (r["semeadura_inicio"] and r["semeadura_fim"]):
             erro("cobertura sem janela de semeadura (semeadura_inicio/fim)")
+        for col, txt in (ev.get("regua", {}).get("avisos") or {}).items():
+            if not isinstance(txt, str) or not txt.strip() or len(txt) > 200:
+                erro(f"regua.avisos.{col} vazio ou com mais de 200 caracteres")
         for c in TEXTOS:
             if len(r[c]) > 300:
                 erro(f"{c} com mais de 300 caracteres")

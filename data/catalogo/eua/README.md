@@ -42,10 +42,10 @@ Os sistemas seguem os testes de chat do produtor americano (`docs/NasaSpaceApps-
 | 2 | `trevo` | Crimson clover (*Trifolium incarnatum*), cobertura | Sudeste |
 | 2 | `nabo_forrageiro` | Forage/tillage radish, cobertura | Corn Belt |
 | 2 | `alfafa` | Alfalfa hay, perene forrageira: sem ciclo nem graus-dia (padrão da pastagem); água anual | Nebraska (a Califórnia fica em pendência) |
-| 3 | `pastagem` | Tall fescue (*Lolium arundinaceum*), pasto perene | Missouri; Kentucky |
-| 3 | `feijao` | Dry edible bean | Dakota do Norte; Michigan |
+| 3 | `pastagem` | Tall fescue (*Lolium arundinaceum*), pasto perene forrageira: sem ciclo nem graus-dia; água anual; aviso do fungo em `regua.avisos` | Missouri e Kentucky (mesma faixa do Fescue Belt) |
+| 3 | `feijao` | Dry edible bean (pinto e navy), sequeiro | Dakota do Norte (Michigan em `regua.arranjos.michigan`) |
 | 3 | `canola` | Canola de primavera | Dakota do Norte |
-| 3 | `cevada` | Barley de primavera | Dakota do Norte; Montana |
+| 3 | `cevada` | Barley de primavera, sequeiro | Dakota do Norte (Montana em `regua.arranjos.montana`) |
 
 Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no Brasil. Isso vale para `aveia` (*A. strigosa* no Brasil, *A. sativa* nos EUA), `pastagem` (braquiária no Brasil, festuca nos EUA) e `trigo` (trigo de primavera no Brasil, de inverno nos EUA). Diga isso em `sistema` e em `nome_cientifico`.
 

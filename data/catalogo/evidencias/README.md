@@ -30,12 +30,12 @@ Ao mudar um valor em `culturas.csv`, atualize também o arquivo da cultura.
 ## Exigência de graus-dia (`graus_dia_ciclo_min/max`)
 - Fase: da **semeadura** até a maturação fisiológica (grãos) ou até o **manejo** (coberturas: no florescimento, na dessecação antes da cultura seguinte ou na morte pelo frio, conforme `tipo_manejo`). Perenes forrageiras (pastagem, alfafa): não se aplica.
 - Método: GD = soma de max(0, Tmed − Tb), com Tmed = (Tmax + Tmin)/2, **sem teto**, e Tb = `temp_base_c` da linha. Fontes com outra Tb ou com teto foram convertidas (a conta está em `origem`).
-- O mínimo é a **mediana** (2001-2020) do cenário mais frio da região de referência (semeadura mais tardia e fim mais cedo). Em ano frio a soma local pode ficar abaixo: por isso o motor compara a mediana local, não o ano a ano (regra 2).
+- O mínimo é a **mediana** (2001-2020) do cenário de **menor soma** da região de referência: o local mais frio onde há ensaio ou recomendação, com a data de semeadura usada ali e o `ciclo_dias_min`. Na maioria das culturas é a semeadura mais tardia; em culturas que somam mais quando semeadas mais tarde (ex.: feijão na Dakota do Norte), é a data dos ensaios. Valor de ensaio de um ano só, ou mediana de ensaios, não substitui essa mediana climática; fica como conferência na evidência. Em ano frio a soma local pode ficar abaixo: por isso o motor compara a mediana local, não o ano a ano (regra 2).
 - Uso no motor: ver a regra 2 (grãos: abaixo de 90% do mínimo elimina; coberturas: não elimina). Em culturas de dia curto (guandu, crotalária, milheto, nabo) e na soja, a soma varia com a época de semeadura e o grupo de maturação.
 - Mandioca: a faixa vai do plantio a uma colheita de 8-12 meses (não é maturação); o filtro serve só como teste de frio (eliminar abaixo do mínimo).
 - **Atenção ao NASA POWER**: nos ensaios conferidos, a Tmed do POWER ficou 1-2 °C abaixo da estação local. Com Tb alta (crotalária 16, mandioca 15, milheto 13) isso tira 12-25% da soma. Decisão (14/11): nas culturas de Tb alta (crotalária, milheto, mandioca), a exigência é recalculada com o POWER nas datas e locais dos ensaios, para ficar na mesma régua do motor.
 
-## Regras para o motor (decididas em 14/11; regras 1, 2, 8 e 11 a 15 revistas em 15/11)
+## Regras para o motor (decididas em 14/11; regras 1, 2, 8 e 11 a 16 revistas em 15/11)
 O motor ainda não lê este catálogo. Ao implementar, siga estas regras, que vêm das decisões tomadas sobre os dados. Valem para os dois catálogos (Brasil e EUA).
 
 1. **Água:** calcular a demanda no local (Kc × ET0 do NASA POWER, a mesma conta de `scripts/etc_nasa_power.py`) e comparar com a chuva local na janela da cultura. A água **nunca elimina cultura de sequeiro**: chuva abaixo da demanda local (ou, sem a conta local, abaixo de `agua_ciclo_mm_min`) marca "água no limite" e mostra o déficit estimado em mm. Só elimina pela água o `arroz_irrigado` sem várzea ou irrigação (regra 8). Perenes forrageiras (`pastagem`, `alfafa`): a coluna é anual; comparar com a chuva do ano, com a mesma regra. Motivo: a coluna é consumo com produtividade plena, e a chuva da estação fica abaixo dela em regiões onde a cultura de sequeiro é típica (girassol na Dakota do Norte, soja em Iowa, algodão em Lubbock, alfafa no Nebraska).
@@ -53,6 +53,7 @@ O motor ainda não lê este catálogo. Ao implementar, siga estas regras, que v�
 13. **Região válida:** com `estados_validos` preenchido e o ponto fora da lista, mostrar "sem dado para sua região" para aquela cultura, sem sugerir nem eliminar. Se houver arranjo regional no bloco `regua` com o estado do ponto, usar os números do arranjo.
 14. **Perenes forrageiras (`pastagem`, `alfafa`):** sem filtro de ciclo nem de graus-dia; o vazio dessas colunas é "não se aplica", não "não sei". Água anual pela regra 1.
 15. **Faixa junto com a classe:** quando `regua.detalhe.depende_da_epoca` for `true`, a tela mostra a classe com a faixa (ex.: "palhada baixa, de 0,5 a 5 t/ha conforme a data de manejo").
+16. **Aviso junto da classe:** se `regua.avisos.<coluna>` existir, a tela mostra o texto sempre junto da classe daquela coluna (no cartão, não só no detalhe), em qualquer confiança. Como o aviso está no arquivo de evidência e não no CSV, o carregador do catálogo precisa levar o bloco `regua.avisos` junto com a linha.
 
 ### Como o motor usa cada coluna por tipo de cultura
 
@@ -125,5 +126,6 @@ Calculada por `../scripts/regua.py` a partir do bloco `regua` de cada arquivo (`
 **Campos extras do bloco `regua`**
 - `excecoes`: valor que vence a régua quando a fonte diz outra coisa (algodão: restos destruídos por lei; mandioca: "não devolve quase nada ao solo"; crotalária: tóxica e recusada pelo animal).
 - `arranjos` (pastagem): MS de cada arranjo. A linha usa a braquiária solteira; o consórcio com milho safrinha fica guardado para o motor usar quando a rotação for de integração lavoura-pecuária.
-- `arranjos` regionais (ex.: `regua.arranjos.sudeste` da ervilhaca nos EUA): a linha vale para a região de referência; o arranjo guarda os números de outra região, com `estados`, para o motor usar quando o ponto estiver nela.
+- `arranjos` regionais (ex.: `regua.arranjos.sudeste` da ervilhaca, `regua.arranjos.michigan` do feijão nos EUA): a linha vale para a região de referência; o arranjo guarda os números de outra região (ciclo, graus-dia, água e palhada, quando houver, com `origem` de cada número pelos mesmos tipos da tabela de Confiança) e `estados` como texto com `|` (ex.: `"MI"`, `"GA|AL"`), no mesmo formato de `estados_validos`, para o motor usar quando o ponto estiver nela.
+- `avisos`: texto curto (até 200 caracteres, linguagem do produtor) por coluna qualitativa, ex.: `{"valor_forrageiro": "Atenção: ..."}`. É para um risco que a classe sozinha esconde (ex.: o fungo da festuca, que intoxica o gado, numa forragem "alta"). O `regua.py` não mexe nesta chave. Ver a regra 16.
 - `detalhe.depende_da_epoca`: `true` quando o mínimo e o máximo da faixa caem em classes diferentes. Na tela, mostre a classe **junto com a faixa** e o aviso "depende da época" (não só no detalhe).
