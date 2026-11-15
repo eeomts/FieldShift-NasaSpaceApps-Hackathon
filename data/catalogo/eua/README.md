@@ -2,7 +2,7 @@
 
 Parâmetros agronômicos das culturas para pontos nos EUA, no **mesmo formato** do catálogo do Brasil (`data/catalogo/culturas.csv`), para que o motor use as duas tabelas do mesmo jeito. Escopo aberto em 15/11/2026 (decisão D-010 em `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md`).
 
-Quem constrói: o agente **`agroia-dataset-eua`** (`.claude/agents/agroia-dataset-eua.md`), chamado pelo coordenador em lotes. Tudo o que aprendemos no catálogo do Brasil está aqui e no agente.
+Quem constrói: o agente **`agroai-dataset-eua`** (`.claude/agents/agroai-dataset-eua.md`), chamado pelo coordenador em lotes. Tudo o que aprendemos no catálogo do Brasil está aqui e no agente.
 
 ## Estrutura
 
@@ -22,7 +22,7 @@ Colunas: as do Brasil + `codigo_nass` (começo do `short_desc` da série no USDA
 
 Nas **coberturas**, `codigo_nass` e `calendario_usda` ficam **vazios**: os códigos do NASS e o Handbook 628 descrevem o grão (ex.: aveia de primavera semeada em março), não a cobertura. A explicação fica em `regua.observacoes.codigos`. Códigos NASS **conferidos na API do QuickStats (15/11/2026)** para as 12 culturas com código: cada `codigo_nass` é o começo exato de séries SURVEY reais, com dados por condado (a divisão em `commodity_desc`, classe e uso está em `regua.observacoes.codigos` de cada cultura). O feijão usa "BEANS, DRY EDIBLE, INCL CHICKPEAS" (decisão do usuário): "BEANS, DRY EDIBLE" sozinho só existe no Censo, e a série sem grão-de-bico é curta; por isso a área e a produção do NASS para o feijão **incluem grão-de-bico**. Nas séries por condado do time (`data/eua/nass/`), `trigo` soma inverno e primavera e `girassol` soma oleícola e confeiteiro. Isso diverge do `codigo_nass` desta tabela (trigo de inverno; girassol `OIL TYPE`), e faltam alfafa, amendoim, canola e cevada: corrigir exige baixar de novo, pendente de decisão do usuário (ver `data/README.md` e `data/FONTES.md`).
 
-A janela de semeadura dos grãos (`semeadura_inicio/fim`) é o "most active" (15 a 85% semeado) do USDA Handbook 628 (2010) no estado de referência principal: o que os produtores fazem, não uma recomendação. Vem de `data/eua/nass/datas_plantio.csv`, exceto amendoim (Geórgia) e cevada (Dakota do Norte), lidos direto no texto do Handbook porque não estão nesse arquivo. A canola fica sem janela de propósito (o Handbook só tem a canola de inverno de Oklahoma) e a alfafa é perene. Numa linha com duas regiões, a outra região pode cair fora dessa janela (ex.: algodão, com a janela da Geórgia em `regua.arranjos.georgia`). As janelas dos grãos ficam no CSV como referência: o motor **não** as aplica. Só a janela das coberturas (as culturas sem `comercial`) entra, na regra 12, tanto nas candidatas novas quanto nas trocas (`agroia/api/app/services/motor/candidatas.py`).
+A janela de semeadura dos grãos (`semeadura_inicio/fim`) é o "most active" (15 a 85% semeado) do USDA Handbook 628 (2010) no estado de referência principal: o que os produtores fazem, não uma recomendação. Vem de `data/eua/nass/datas_plantio.csv`, exceto amendoim (Geórgia) e cevada (Dakota do Norte), lidos direto no texto do Handbook porque não estão nesse arquivo. A canola fica sem janela de propósito (o Handbook só tem a canola de inverno de Oklahoma) e a alfafa é perene. Numa linha com duas regiões, a outra região pode cair fora dessa janela (ex.: algodão, com a janela da Geórgia em `regua.arranjos.georgia`). As janelas dos grãos ficam no CSV como referência: o motor **não** as aplica. Só a janela das coberturas (as culturas sem `comercial`) entra, na regra 12, tanto nas candidatas novas quanto nas trocas (`agroai/api/app/services/motor/candidatas.py`).
 
 ## Culturas e sistemas
 
@@ -51,7 +51,7 @@ Os sistemas seguem os testes de chat do produtor americano (`docs/NasaSpaceApps-
 
 Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no Brasil. Isso vale para `aveia` (*A. strigosa* no Brasil, *A. sativa* nos EUA), `pastagem` (braquiária no Brasil, festuca nos EUA) e `trigo` (trigo de primavera no Brasil, de inverno nos EUA). Diga isso em `sistema` e em `nome_cientifico`.
 
-`arroz_irrigado` entrou em `agroia/base/culturas.json` no commit f910193 (antes era bloqueio do `montar_csv.py`). Quando o produtor escreve só "arroz" ou "rice", o app pede que ele diga se é irrigado ou de terras altas; não decide pelo país.
+`arroz_irrigado` entrou em `agroai/base/culturas.json` no commit f910193 (antes era bloqueio do `montar_csv.py`). Quando o produtor escreve só "arroz" ou "rice", o app pede que ele diga se é irrigado ou de terras altas; não decide pelo país.
 
 **Uma linha, uma região.** Quando a mesma espécie tem sistemas diferentes em regiões distantes (ex.: ervilhaca no Corn Belt e no Sudeste), a linha fica com a região de referência e a outra vai para `regua.arranjos.<regiao>` com `estados`, ou para as pendências. `estados_validos` diz onde a linha vale (ex.: trevo-encarnado só na Geórgia).
 
@@ -91,8 +91,8 @@ Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no B
 - bu/acre para t/ha: milho e sorgo × 0,0628; soja e trigo × 0,0673; cevada × 0,0538; aveia × 0,0359.
 
 ## Fluxo do coordenador
-1. Conferir se os ids do lote existem em `agroia/base/culturas.json`.
-2. Chamar o agente `agroia-dataset-eua` em **lotes de até 4 em paralelo**, cada um com 1 ou 2 culturas, dizendo o id, a prioridade e o sistema desta tabela.
+1. Conferir se os ids do lote existem em `agroai/base/culturas.json`.
+2. Chamar o agente `agroai-dataset-eua` em **lotes de até 4 em paralelo**, cada um com 1 ou 2 culturas, dizendo o id, a prioridade e o sistema desta tabela.
 3. Depois de cada lote, na raiz do repositório. O `regua.py` lê as culturas do CSV já gravado, por isso o CSV é montado **antes** (para entrar a cultura nova) e **depois** (para levar as classes e a confiança):
    ```
    python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua --apply  # valida e grava (cultura nova entra no CSV)
@@ -101,6 +101,10 @@ Atenção: o mesmo `id` pode ser **outra espécie ou outro sistema** do que no B
    python3 -I data/catalogo/scripts/montar_csv.py --catalogo data/catalogo/eua --apply  # grava o CSV
    ```
 4. Revisar com `/revisar` (foco nas culturas de confiança `media` e `baixa`).
-5. Commit no padrão do projeto (skill `commit-agroia`).
+5. Commit no padrão do projeto (skill `commit-agroai`).
 
 As regras de confiança, da régua e do motor são as mesmas do Brasil: `data/catalogo/evidencias/README.md`.
+
+---
+
+Volta para o [`data/README.md`](../../README.md).

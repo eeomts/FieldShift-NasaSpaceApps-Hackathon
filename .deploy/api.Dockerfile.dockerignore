@@ -1,7 +1,7 @@
 # Lista permitida: o contexto é a raiz do repositório, e a API só precisa destes caminhos.
 *
-!agroia/api
-!agroia/base
+!agroai/api
+!agroai/base
 !data/catalogo
 !data/rag
 !data/demo/pontos_demo.csv
@@ -11,6 +11,6 @@
 **/.venv
 **/__pycache__
 **/.pytest_cache
-agroia/api/.env
-agroia/api/.env.test
-agroia/api/tests/
+agroai/api/.env
+agroai/api/.env.test
+agroai/api/tests/

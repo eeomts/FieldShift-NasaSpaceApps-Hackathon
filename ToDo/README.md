@@ -1,8 +1,10 @@
 # ToDo do time
 
+Volta para o [README principal](../README.md). Os dados que estas tarefas produzem estão descritos em [`data/README.md`](../data/README.md).
+
 Tarefas com dono, uma pasta por tarefa. Cada pasta tem um `TODO.md` com o porquê, a entrada, a saída (formato exato), o passo a passo e quando a tarefa está pronta.
 
-```
+```text
 ToDo/
 └── dataset/                       # preparação de dados (pesquisadores)
     ├── pessoa-1-yury/
@@ -28,7 +30,7 @@ ToDo/
 
 ## Dependências
 
-```
+```text
 P1-01 culturas.csv corrigido (feito) ──► P1-02 PAM, P2-05 ZARC, P2-04 equipamentos, P3-01 fichas das culturas
 P2-01 pontos da demo ─────────► P2-03 AppEEARS
 P2-02 malha municipal ────────► (backend liga cada fazenda ao município da PAM e do ZARC)

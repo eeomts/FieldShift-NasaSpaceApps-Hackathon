@@ -1,6 +1,6 @@
 ---
 name: nova-tabela
-description: Cria tabela nova, coluna nova ou mudanca de estrutura no AgroAI seguindo as convencoes do projeto - model SQLAlchemy em agroia/api/app/models, migration Alembic com upgrade/downgrade completos e migracao de dados, teste em upgrade -> downgrade -> upgrade no banco de teste. Use ao planejar ou implementar qualquer mudanca de estrutura de banco.
+description: Cria tabela nova, coluna nova ou mudanca de estrutura no AgroAI seguindo as convencoes do projeto - model SQLAlchemy em agroai/api/app/models, migration Alembic com upgrade/downgrade completos e migracao de dados, teste em upgrade -> downgrade -> upgrade no banco de teste. Use ao planejar ou implementar qualquer mudanca de estrutura de banco.
 ---
 
 # nova-tabela: model + migration
@@ -8,9 +8,9 @@ description: Cria tabela nova, coluna nova ou mudanca de estrutura no AgroAI seg
 ## 1. Conferir o que já existe
 - Rode a skill `schema` nas tabelas que a nova vai referenciar e na que vai ganhar coluna.
 - Veja se o dado cabe numa coluna JSONB existente da `fazenda` (o projeto guarda respostas e derivados do onboarding em JSONB) antes de criar tabela.
-- Catálogo de culturas e equipamentos NÃO vira tabela: a fonte é `agroia/base/*.json`. Referência a cultura é `cultura_id` texto (`"milho"`), sem FK.
+- Catálogo de culturas e equipamentos NÃO vira tabela: a fonte é `agroai/base/*.json`. Referência a cultura é `cultura_id` texto (`"milho"`), sem FK.
 
-## 2. Desenhar com as convenções do `agroia`
+## 2. Desenhar com as convenções do `agroai`
 - Nomes em português, `snake_case`, tabela no singular (`fazenda`, `calendario_item`).
 - Chave primária: `UUID` (`default=uuid4`) para entidades do usuário; `Integer` autoincremento para linhas de série ou itens.
 - FK para a fazenda: `fazenda_id UUID REFERENCES fazenda(id) ON DELETE CASCADE` com índice. Apagar a conta apaga tudo (`DELETE /me`).
@@ -22,7 +22,7 @@ description: Cria tabela nova, coluna nova ou mudanca de estrutura no AgroAI seg
 
 ## 3. Gerar a migration
 ```bash
-cd agroia/api && set -a && . ./.env.test && set +a
+cd agroai/api && set -a && . ./.env.test && set +a
 .venv/Scripts/alembic.exe revision --autogenerate -m "<o que muda>"   # ou: uv run alembic ...
 ```
 - Confira o arquivo gerado em `migrations/versions/`. Numeração do projeto: `0003_<descricao>.py`, `revision = '0003'`, `down_revision` = a anterior.

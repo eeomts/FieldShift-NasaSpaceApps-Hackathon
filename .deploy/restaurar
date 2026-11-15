@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 
 ARQUIVO=${2:-}
 if [ -z "$ARQUIVO" ] || [ ! -f "$ARQUIVO" ]; then
-    echo "uso: ./.deploy/restaurar <local|producao> .deploy/backups/agroia-<ambiente>-<data>.sql.gz" >&2
+    echo "uso: ./.deploy/restaurar <local|producao> .deploy/backups/agroai-<ambiente>-<data>.sql.gz" >&2
     exit 1
 fi
 

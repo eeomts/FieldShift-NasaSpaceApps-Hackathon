@@ -1,6 +1,6 @@
 # Validação dos parâmetros do motor
 
-Conferência, em 15/11/2026, dos números marcados "proposta, validar com o Yury" em `agroia/api/app/services/motor/parametros.py`. Para cada um: a conta que o motor faz, o que dizem as fontes e o veredito.
+Conferência, em 15/11/2026, dos números marcados "proposta, validar com o Yury" em `agroai/api/app/services/motor/parametros.py`. Para cada um: a conta que o motor faz, o que dizem as fontes e o veredito.
 
 - **ok**: o número tem fonte, ou é coerente com uma fonte (dito quando a fonte só confirma a ordem de grandeza).
 - **troca para X**: uma fonte indica outro valor ou outra forma.

@@ -42,4 +42,4 @@ As janelas de plantio oficiais (risco climático de 20 %, 30 % e 40 %) por munic
 - [x] Conferência manual: 2 janelas batem com o Painel de Indicação de Riscos do ZARC. (feito em 15/11/2026: soja Rio Verde AD4 Grupo II e soja Passo Fundo AD4 Grupo II NM1, safra 2026/2027; ver `data/brasil/zarc/README.md`)
 
 ## Próximo: ligar o ZARC ao motor
-- [ ] Aprovar e implementar as regras Z1 a Z8 de `data/brasil/zarc/README.md` (chave, safra, solo SoilGrids -> classe do ZARC, grupo de ciclo, nível de manejo, união dos riscos, três mensagens de ausência, a IA só cita). O motor (`agroia/api/app/services/motor/`) ainda não lê o `janelas.csv`.
+- [ ] Aprovar e implementar as regras Z1 a Z8 de `data/brasil/zarc/README.md` (chave, safra, solo SoilGrids -> classe do ZARC, grupo de ciclo, nível de manejo, união dos riscos, três mensagens de ausência, a IA só cita). O motor (`agroai/api/app/services/motor/`) ainda não lê o `janelas.csv`.

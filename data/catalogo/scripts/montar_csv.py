@@ -20,11 +20,11 @@ Uso (na raiz do repositório):
 
 O cabeçalho do CSV do Brasil vem do próprio data/catalogo/culturas.csv; mudar
 colunas exige editar o cabeçalho dele e as evidências. O teste
-agroia/api/tests/test_dados_consistencia.py gera os dois CSVs numa pasta
+agroai/api/tests/test_dados_consistencia.py gera os dois CSVs numa pasta
 temporária e compara byte a byte com os versionados: rode --apply e versione o CSV
 sempre que mudar uma evidência.
 
-Validações: id existe em agroia/base/culturas.json; todas as colunas presentes
+Validações: id existe em agroai/base/culturas.json; todas as colunas presentes
 (as de janela, região e texto para o produtor são opcionais: ausente = vazio);
 números válidos; mínimo <= máximo; kc_medio <= 1,25; categorias da régua;
 tipos coerentes com fixa_nitrogenio e raiz_profunda; fontes preenchidas; nenhum
@@ -49,7 +49,7 @@ import re
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", ".."))
 BASE_BR = os.path.join(ROOT, "data", "catalogo", "culturas.csv")
-CATALOGO_APP = os.path.join(ROOT, "agroia", "base", "culturas.json")
+CATALOGO_APP = os.path.join(ROOT, "agroai", "base", "culturas.json")
 EXTRAS = ["codigo_nass", "calendario_usda"]
 # Ordem das linhas do culturas.csv do Brasil (a histórica do arquivo). Id fora da lista vai ao fim, em ordem alfabética.
 ORDEM_BR = ["soja", "milho", "feijao", "trigo", "arroz", "algodao", "mandioca", "sorgo", "milheto", "feijao_caupi",
@@ -227,7 +227,7 @@ def montar(catalogo):
             problemas.append(f"{cid}: {msg}")
 
         if cid not in ids_app:
-            erro("id não existe em agroia/base/culturas.json")
+            erro("id não existe em agroai/base/culturas.json")
         faltam = [c for c in colunas if c not in ev.get("valores", {}) and c not in FIXAS | OPCIONAIS and c not in EXTRAS]
         if faltam:
             erro(f"valores sem {faltam}")
