@@ -9,8 +9,8 @@ MAX_CANDIDATAS = 30  # proposta, validar com o Yury
 GD_ELIMINA_ABAIXO = 0.90  # abaixo de 90 % do mínimo da cultura elimina
 GD_ALERTA_ABAIXO = 1.00  # entre 90 % e 100 %: "no limite térmico"
 
-# Filtro de água (regra 1): chuva do período ÷ ETc do período
-AGUA_ELIMINA_ABAIXO = 0.50  # proposta, validar com o Yury
+# Filtro de água (regra 1): chuva do período ÷ ETc do período. A água nunca elimina: só avisa "água no limite"
+AGUA_MUITO_ABAIXO = 0.50  # abaixo disto, com irrigação em parte da área, o aviso diz que só fecha na parte irrigada
 AGUA_ALERTA_ABAIXO = 0.80  # proposta, validar com o Yury
 
 # Filtro de geada (ARQUITETURA-COMPLETA.md: risco na fase sensível > 30 % dos anos)

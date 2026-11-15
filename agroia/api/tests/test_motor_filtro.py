@@ -130,13 +130,23 @@ def agua(chuva_mes, **kc):
     return rodar(c, e_com(c, clima=clima(chuva=chuva_mes)))
 
 
-def test_agua_chuva_abaixo_de_50_por_cento_elimina():
-    r = agua(49.0)  # 147 mm de chuva contra 300 mm: 49 %
-    assert r.eliminada and "falta água" in r.motivos[0] and "49%" in r.motivos[0]
+def test_agua_chuva_abaixo_de_50_por_cento_nao_elimina_e_avisa_o_deficit():
+    r = agua(49.0)  # 147 mm de chuva contra 300 mm: 49 %; o sequeiro não é eliminado pela água (regra 1)
+    assert not r.eliminada and r.motivos == []
+    assert [a.codigo for a in r.alertas] == ["agua_no_limite"]
+    texto = r.alertas[0].texto
+    assert "água no limite" in texto and "49%" in texto and "faltam cerca de 153 mm" in texto  # 300 - 147
 
 
 def test_agua_entre_50_e_80_por_cento_alerta():
     r = agua(60.0)  # 60 %
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"]
+    assert "faltam cerca de 120 mm" in r.alertas[0].texto  # 300 - 180
+
+
+def test_agua_na_atual_tambem_so_avisa():
+    c = cultura("c", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
+    r = rodar(c, e_com(c, clima=clima(chuva=1.0)), eliminar=False)
     assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"]
 
 
@@ -175,7 +185,8 @@ def test_irrigacao_parte_so_alerta():
 
 def test_sem_kc_usa_a_faixa_de_agua_da_base_como_reserva():
     c = cultura("c", kc_inicial=None, kc_medio=None, kc_final=None, agua_ciclo_mm_min=300, agua_ciclo_mm_max=500)
-    assert rodar(c, e_com(c, clima=clima(chuva=99.0))).eliminada  # 297 mm < 300 mm
+    r = rodar(c, e_com(c, clima=clima(chuva=99.0)))  # 297 mm < 300 mm: não elimina, avisa com o déficit
+    assert not r.eliminada and r.alertas[0].codigo == "agua_no_limite" and "faltam cerca de 3 mm" in r.alertas[0].texto
     r = rodar(c, e_com(c, clima=clima(chuva=130.0)))  # 390 mm: entre o mínimo e o máximo
     assert not r.eliminada and r.alertas[0].codigo == "agua_no_limite"
     r = rodar(c, e_com(c, clima=clima(chuva=200.0)))  # 600 mm: acima do máximo
@@ -191,8 +202,10 @@ def test_sem_kc_e_sem_faixa_vira_lacuna():
 def test_perene_compara_com_a_chuva_do_ano():
     p = cultura("pastagem", perene=True, kc_medio=1.0)
     it = item("pastagem", 1, 12, perene=True)
-    assert avaliar([it], entradas([it], [p], clima=clima(chuva=40.0)), True).eliminada  # 480 mm contra 1200 mm
-    assert not avaliar([it], entradas([it], [p], clima=clima(chuva=100.0)), True).eliminada
+    r = avaliar([it], entradas([it], [p], clima=clima(chuva=40.0)), True)  # 480 mm contra 1200 mm: avisa, não elimina
+    assert not r.eliminada and [a.codigo for a in r.alertas] == ["agua_no_limite"] and "faltam cerca de 720 mm" in r.alertas[0].texto
+    r = avaliar([it], entradas([it], [p], clima=clima(chuva=100.0)), True)
+    assert not r.eliminada and not r.alertas
 
 
 # --- geada
@@ -236,6 +249,12 @@ def test_arroz_irrigado_so_passa_com_irrigacao_sim():
     assert not rodar(c, e_com(c, irrigacao="sim")).eliminada
 
 
+def test_arroz_irrigado_sem_irrigacao_continua_eliminado_mesmo_com_chuva_de_sobra():
+    c = cultura("arroz_irrigado", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
+    r = rodar(c, e_com(c, irrigacao="nao", clima=clima(chuva=1000.0)))
+    assert r.eliminada and [a.codigo for a in r.alertas] == []
+
+
 def test_arroz_irrigado_nao_passa_pelo_filtro_de_agua():
     c = cultura("arroz_irrigado", kc_inicial=1.0, kc_medio=1.0, kc_final=1.0)
     r = rodar(c, e_com(c, irrigacao="sim", clima=clima(chuva=0.0)))
@@ -248,7 +267,7 @@ def test_na_atual_os_motivos_viram_alertas():
     e = e_com(c, clima=clima(chuva=1.0, geada={11: 30}), equipamentos=frozenset({"manual"}), equipamentos_cultura={"c": {"plantio": {"x"}, "colheita": {"y"}}})
     r = avaliar([item("c", *RESP)], e, eliminar=False)
     assert not r.eliminada and r.motivos == []
-    assert {a.codigo for a in r.alertas} == {"graus_dia", "agua", "geada", "equipamento"}
+    assert {a.codigo for a in r.alertas} == {"graus_dia", "agua_no_limite", "geada", "equipamento"}
 
 
 def test_cultura_fora_do_catalogo_nao_e_avaliada():
