@@ -179,6 +179,7 @@ def nota_renda(itens: tuple[ItemRotacao, ...], pares: list[Par], e: EntradasMoto
     n = len(comerciais)
     nota = RENDA_POR_COMERCIAIS.get(n, RENDA_MAXIMA)
     texto = f"A rotação tem {n} cultura(s) para vender" + (f": {_lista_nomes(comerciais)}." if n else ".")
+    texto += " Contamos as culturas de venda; preço e produção da sua região ainda não entram nesta nota."
     evid = [Evidencia("Culturas comerciais na rotação", n, "culturas", FONTE_BASE, None)]
     return NotaCriterio("renda", nota, texto, evid), []
 
