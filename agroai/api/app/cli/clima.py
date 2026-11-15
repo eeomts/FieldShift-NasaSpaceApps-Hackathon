@@ -2,7 +2,7 @@
 
     python -m app.cli.clima baixar --lat -11.31 --lon -41.81
     python -m app.cli.clima mostrar --lat -11.31 --lon -41.81
-    python -m app.cli.clima demo
+    python -m app.cli.clima demo    # pontos do Brasil e dos EUA (data/demo/pontos_demo*.csv)
 """
 import argparse
 import csv
@@ -18,7 +18,7 @@ from app.services.clima.celula import id_da_celula
 from app.services.clima.clima_service import ClimaService
 from app.services.integracao.nasa_power import ClienteNasaPower, ErroNasaPower
 
-PONTOS_DEMO = RAIZ_REPO / "data" / "demo" / "pontos_demo.csv"
+PONTOS_DEMO = (RAIZ_REPO / "data" / "demo" / "pontos_demo.csv", RAIZ_REPO / "data" / "demo" / "pontos_demo_eua.csv")
 MESES = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
 # (título, atributo, casas decimais)
 COLUNAS = (
@@ -69,8 +69,10 @@ def mostrar(lat: float, lon: float) -> None:
 
 
 def demo() -> None:
-    with PONTOS_DEMO.open(encoding="utf-8", newline="") as f:
-        pontos = list(csv.DictReader(f))
+    pontos = []
+    for caminho in PONTOS_DEMO:
+        with caminho.open(encoding="utf-8", newline="") as f:
+            pontos += list(csv.DictReader(f))
     for p in pontos:
         lat, lon = float(p["latitude"]), float(p["longitude"])
         print(f"\n== {p['municipio']}-{p['uf']} ({p['regiao']}) ==")
@@ -86,7 +88,7 @@ def main() -> None:
         p = sub.add_parser(nome, help=ajuda)
         p.add_argument("--lat", type=float, required=True)
         p.add_argument("--lon", type=float, required=True)
-    sub.add_parser("demo", help="baixa e mostra os pontos de data/demo/pontos_demo.csv")
+    sub.add_parser("demo", help="baixa e mostra os pontos de data/demo/pontos_demo.csv e pontos_demo_eua.csv")
 
     args = parser.parse_args()
     try:
