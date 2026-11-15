@@ -1,20 +1,29 @@
 # Questionário do onboarding em formato que o código lê.
-# Fontes: application/ONBOARDING.md (conteúdo) e o código já implementado (ids e valores):
-#   agroia/api/app/onboarding/schemas.py  → nomes dos campos (id) e valores aceitos (opcoes.valor)
-#   agroia/api/app/onboarding/perfil.py   → o que cada resposta alimenta (alimenta)
-#   agroia/web/src/onboarding/Passos.tsx  → textos em português das telas
-# Se mudar um id ou valor aqui, mude também no schemas.py (e vice-versa). Dono: Pessoa 3.
+# Fontes:
+#   - versão do questionário revisada pelo time em 14/11/2026: 23 perguntas em 6 partes;
+#   - application/ONBOARDING.md (conteúdo);
+#   - o código já implementado:
+#       agroia/api/app/schemas/onboarding.py          → ids e valores aceitos (Respostas)
+#       agroia/api/app/services/onboarding/perfil.py  → o que cada resposta alimenta (perfil, solo)
+#       agroia/web/src/onboarding/Passos.tsx          → telas
+# Se mudar um id ou valor aqui, mude também no schemas/onboarding.py (e vice-versa). Dono: Pessoa 3.
+# O que foi ajustado na versão revisada e por quê: data/onboarding/relatorio-revisao-questionario.md
 #
 # tipos: sim_nao_nao_sei | escolha | figuras | texto_livre | multipla | mapa | calendario | ano
+#        grade_sim_nao_nao_sei (várias perguntas sim/não/não sei numa tela, uma por linha)
+#        perdas_com_ano (múltipla escolha com um seletor de ano ao lado de cada item marcado)
 #
 # Campos:
-#   id           = nome do campo em Respostas (schemas.py)
-#   bloco        1 a 6, como no ONBOARDING.md
+#   numero       número da pergunta na tela (1 a 23). Algumas perguntas do app ficam juntas numa
+#                mesma tela (ex.: a 14 junta 5 campos); por isso o id não segue o número.
+#   id           nome do campo em Respostas (schemas.py). Mantido mesmo quando a pergunta foi
+#                agrupada, para não quebrar o app: só a apresentação muda.
+#   bloco        parte do questionário (1 a 6)
 #   texto        pt e en (ver "Idiomas" abaixo)
 #   tipo         ver lista acima
 #   opcoes       valor (igual ao schemas.py) + rótulo pt/en (+ imagem nas perguntas de figuras)
 #   obrigatoria  só o local (q5_local) trava o avanço: sem ele não há dado global
-#   mostrar_se   pergunta condicional: só aparece se outra resposta ou o local (q5_local) pedirem
+#   mostrar_se   pergunta ou opção condicional: só aparece se outra resposta ou o local pedirem
 #   por_item     a pergunta se repete em cada cultura encontrada na q8 (cartão por cultura)
 #   alimenta     o que a resposta preenche (perfil.py e coluna "Para quê" do ONBOARDING.md)
 #                fonte: produtor = "informado pelo produtor" (peso 0,5 na fusão de evidências)
@@ -25,19 +34,20 @@
 # Idiomas e região:
 #   - Os textos NÃO são tradução literal: cada idioma usa o jeito que o agricultor fala.
 #   - pt: português do Brasil, tratamento "você".
-#   - en: inglês simples de campo ("farm", "crop", "stubble"), sem termos técnicos.
+#   - en: inglês americano simples de campo ("farm", "crop", "stubble"), sem termos técnicos.
 #   - O idioma padrão vem do país do ponto (q5_local.pais); o produtor pode trocar.
-#   - Algumas perguntas mudam conforme o local: unidade de área (q2), ordem das correções do
-#     solo (q21) e quais perdas aparecem (q24). As regras estão em cada pergunta.
+#   - Algumas perguntas mudam conforme o local: unidade de área (2), ajuda sobre neve (9),
+#     ordem das correções do solo (17) e quais perdas aparecem (20). As regras estão em cada uma.
 #
-# ⚠️ Perguntas sobre culturas (q8 e q26a) estão em espera: serão revistas quando a Pessoa 1
+# ⚠️ Perguntas sobre culturas (8 e 22) estão em espera: serão revistas quando a Pessoa 1
 #    terminar a nova base de culturas.
 
 perguntas:
 
-  # ───────────── Bloco 1: Quem é você ─────────────
+  # ───────────── Parte 1 — Quem é você? ─────────────
 
   - id: q1_quem
+    numero: 1
     bloco: 1
     texto:
       pt: "Quem está respondendo?"
@@ -45,20 +55,21 @@ perguntas:
     tipo: escolha
     opcoes:
       - valor: produtor
-        pt: "Eu sou o produtor"
+        pt: "Sou o produtor"
         en: "I'm the farmer"
       - valor: tecnico
         pt: "Sou técnico ou estou ajudando um produtor"
         en: "I'm an extension agent, or I'm helping a farmer"
     obrigatoria: false
     alimenta:
-      atributo: perfil
-      se_tecnico: D              # perfil D e tela com mais detalhe técnico
+      atributo: papel            # "tecnico" ou "produtor" (perfil.py, calcula_papel). Não muda o
+                                 # perfil A/B/C: um técnico pode ter laudo ou não. Técnico vê mais detalhe.
 
   - id: q2_area
+    numero: 2
     bloco: 1
     texto:
-      pt: "Mais ou menos, qual o tamanho da sua área?"
+      pt: "Qual o tamanho aproximado da sua propriedade?"
       en: "Roughly how big is your farm?"
     tipo: escolha
     # Os valores ficam sempre em hectares (é o que o motor usa). Só o rótulo muda de unidade.
@@ -69,30 +80,31 @@ perguntas:
       pode_trocar: true                      # botão "ha / acre" ao lado da pergunta
     opcoes:
       - valor: "ate_2"
-        ha:   { pt: "Até 2 ha",           en: "Up to 2 ha" }
-        acre: { pt: "Até 5 acres",        en: "Up to 5 acres" }
+        ha:   { pt: "Até 2 ha",             en: "Up to 2 ha" }
+        acre: { pt: "Até 5 acres",          en: "Up to 5 acres" }
       - valor: "2_20"
-        ha:   { pt: "De 2 a 20 ha",       en: "2 to 20 ha" }
-        acre: { pt: "De 5 a 50 acres",    en: "5 to 50 acres" }
+        ha:   { pt: "De 2 a 20 ha",         en: "2 to 20 ha" }
+        acre: { pt: "De 5 a 50 acres",      en: "5 to 50 acres" }
       - valor: "20_200"
-        ha:   { pt: "De 20 a 200 ha",     en: "20 to 200 ha" }
-        acre: { pt: "De 50 a 500 acres",  en: "50 to 500 acres" }
+        ha:   { pt: "De 20 a 200 ha",       en: "20 to 200 ha" }
+        acre: { pt: "De 50 a 500 acres",    en: "50 to 500 acres" }
       - valor: "200_1000"
-        ha:   { pt: "De 200 a 1.000 ha",  en: "200 to 1,000 ha" }
+        ha:   { pt: "De 200 a 1.000 ha",    en: "200 to 1,000 ha" }
         acre: { pt: "De 500 a 2.500 acres", en: "500 to 2,500 acres" }
       - valor: "mais_1000"
-        ha:   { pt: "Mais de 1.000 ha",   en: "More than 1,000 ha" }
-        acre: { pt: "Mais de 2.500 acres", en: "More than 2,500 acres" }
+        ha:   { pt: "Mais de 1.000 ha",     en: "More than 1,000 ha" }
+        acre: { pt: "Mais de 2.500 acres",  en: "More than 2,500 acres" }
     # 1 ha ≈ 2,47 acres; as faixas em acre foram arredondadas para números fáceis.
     obrigatoria: false
     alimenta:
       atributo: escala           # tipo de recomendação
 
   - id: q3_tecnico
+    numero: 3
     bloco: 1
     texto:
-      pt: "Algum técnico agrícola ou agrônomo costuma visitar a sua propriedade?"
-      en: "Does an extension agent or agronomist ever visit your farm?"
+      pt: "Você recebe visitas de técnicos agrícolas ou agrônomos?"
+      en: "Do extension agents or agronomists visit your farm?"
     tipo: escolha
     opcoes:
       - { valor: sim,      pt: "Sim",      en: "Yes" }
@@ -103,6 +115,7 @@ perguntas:
       atributo: assistencia_tecnica   # linguagem e próximo passo sugerido
 
   - id: q4_animais
+    numero: 4
     bloco: 1
     texto:
       pt: "Você cria animais?"
@@ -115,10 +128,11 @@ perguntas:
     alimenta:
       modificador: animais       # valoriza culturas de forragem
 
-  # ───────────── Bloco 2: O campo ─────────────
+  # ───────────── Parte 2 — Sua propriedade ─────────────
 
   - id: q5_local
     bloco: 2
+    numero: 5
     texto:
       pt: "Onde fica a sua propriedade?"
       en: "Where is your farm?"
@@ -164,20 +178,22 @@ perguntas:
     # ou serviço pago. Política: https://operations.osmfoundation.org/policies/nominatim/
 
   - id: q6_irrigacao
+    numero: 6
     bloco: 2
     texto:
-      pt: "Você irriga a lavoura?"
-      en: "Do you irrigate?"
+      pt: "Você irriga sua lavoura?"
+      en: "Do you irrigate your crops?"
     tipo: escolha
     opcoes:
-      - { valor: sim,   pt: "Sim",          en: "Yes" }
-      - { valor: parte, pt: "Só uma parte", en: "Only part of the farm" }
-      - { valor: nao,   pt: "Não",          en: "No" }
+      - { valor: sim,   pt: "Sim, toda a propriedade", en: "Yes, the whole farm" }
+      - { valor: parte, pt: "Somente uma parte",       en: "Only part of it" }
+      - { valor: nao,   pt: "Não",                     en: "No" }
     obrigatoria: false
     alimenta:
       modificador: irrigacao     # balanço de água e culturas possíveis
 
   - id: q7_terreno
+    numero: 7
     bloco: 2
     texto:
       pt: "Como é o terreno?"
@@ -193,11 +209,12 @@ perguntas:
       fonte: produtor
       cruza_com: srtm            # compara com a declividade do SRTM (risco de erosão)
 
-  # ───────────── Bloco 3: O que você planta ─────────────
+  # ───────────── Parte 3 — O que você planta? ─────────────
   # ⚠️ EM ESPERA (q8 e cartões por cultura): revisar quando a Pessoa 1 terminar a base de culturas.
 
   - id: q8_texto
     bloco: 3
+    numero: 8
     texto:
       pt: "Conte do seu jeito o que você planta, e quando."
       en: "Tell us in your own words what you plant, and when."
@@ -244,6 +261,7 @@ perguntas:
   # Passo 8c: um cartão por cultura encontrada. Tudo abaixo vai para o item de q8_culturas.
   - id: q8_culturas.cultura_id
     bloco: 3
+    numero: 8
     por_item: q8_culturas
     texto:
       pt: "Você planta {cultura}?"
@@ -257,6 +275,7 @@ perguntas:
 
   - id: q8_culturas.perene
     bloco: 3
+    numero: 8
     por_item: q8_culturas
     texto:
       pt: "Ocupa o campo o ano todo (perene)"
@@ -269,6 +288,7 @@ perguntas:
 
   - id: q8_culturas.meses
     bloco: 3
+    numero: 8
     por_item: q8_culturas
     mostrar_se: { campo: perene, valor: false }
     texto:
@@ -281,6 +301,7 @@ perguntas:
 
   - id: q8_culturas.consorcio_com
     bloco: 3
+    numero: 8
     por_item: q8_culturas
     mostrar_se: { campo: consorcio_com, nao_vazio: true }   # só se a IA detectou consórcio
     texto:
@@ -294,6 +315,7 @@ perguntas:
 
   - id: q8_culturas.ocupa
     bloco: 3
+    numero: 8
     por_item: q8_culturas
     texto:
       pt: "Ocupa o campo todo ou uma parte?"
@@ -307,11 +329,12 @@ perguntas:
   # ⚠️ Fim do trecho em espera.
 
   - id: q9_meses_vazios
+    numero: 9
     bloco: 3
-    mostrar_se: { calendario: tem_meses_sem_cobertura }   # só aparece se sobrar mês vazio no calendário
+    mostrar_se: { calendario: tem_meses_sem_cobertura }   # só aparece se sobrar mês sem cultura no calendário
     texto:
-      pt: "Nesses meses a terra fica sem nada plantado?"
-      en: "Is the land left bare in these months?"
+      pt: "Nos períodos sem plantio, a terra fica descoberta?"
+      en: "When nothing is planted, is the soil left bare?"
     # Em clima com inverno de neve (zona_climatica começa com D), o campo pode parecer vazio no
     # calendário e no satélite, mas estar coberto de neve e palhada. A ajuda evita a resposta errada.
     ajuda_se: { zona_climatica_comeca_com: D }
@@ -326,22 +349,24 @@ perguntas:
       fonte: produtor
 
   - id: q10_pos_colheita
+    numero: 10
     bloco: 3
     texto:
-      pt: "E depois da colheita, o que acontece com a área?"
+      pt: "Depois da colheita, o que acontece com a área?"
       en: "What happens to the field after harvest?"
     tipo: escolha
     opcoes:
       - { valor: parado,    pt: "Fica parada",                     en: "It's left fallow" }
       - { valor: pasto,     pt: "Vira pasto",                      en: "It's grazed" }
       - { valor: outra,     pt: "Planto outra coisa",              en: "I plant another crop" }
-      - { valor: cobertura, pt: "Planto algo para cobrir a terra", en: "I sow a cover crop" }
+      - { valor: cobertura, pt: "Planto algo para cobrir o solo",  en: "I sow a cover crop" }
     obrigatoria: false
     alimenta:
       atributo: meses_sem_cobertura   # e risco de erosão
       fonte: produtor
 
   - id: q11_palha
+    numero: 11
     bloco: 3
     texto:
       pt: "Você deixa a palha e os restos da colheita no campo?"
@@ -352,9 +377,10 @@ perguntas:
       atributo: palhada          # cobertura do solo e matéria orgânica
       fonte: produtor
 
-  # ───────────── Bloco 4: O que você sabe do seu solo ─────────────
+  # ───────────── Parte 4 — Conhecendo seu solo ─────────────
 
   - id: q12_analise
+    numero: 12
     bloco: 4
     texto:
       pt: "Você já fez análise de solo em laboratório?"
@@ -366,6 +392,7 @@ perguntas:
       se_nao_ou_nao_sei: sugerir_analise_solo
 
   - id: q12_tem_resultado
+    numero: 12
     bloco: 4
     mostrar_se: { pergunta: q12_analise, valor: sim }
     texto:
@@ -374,25 +401,54 @@ perguntas:
     tipo: sim_nao_nao_sei
     obrigatoria: false
     alimenta:
+      atributo: nivel_dado_solo  # o perfil C depende também dos valores do laudo (q12_laudo, abaixo)
+
+  - id: q12_laudo
+    numero: 12
+    bloco: 4
+    mostrar_se: { pergunta: q12_tem_resultado, valor: sim }
+    texto:
+      pt: "Valores do laudo (preencha os que tiver)"
+      en: "Lab report values (fill in the ones you have)"
+    ajuda:
+      pt: "Com pelo menos dois valores, a análise usa o seu laudo no lugar dos mapas globais. Se a matéria orgânica vier em %, multiplique por 10."
+      en: "With at least two values, the analysis uses your lab report instead of the global maps. If organic matter is in %, multiply by 10."
+    tipo: numeros               # campos numéricos, todos opcionais (schemas/onboarding.py, classe Laudo)
+    campos:
+      - { id: ph_agua,                pt: "pH em água",               en: "pH (water)",            unidade: "" }
+      - { id: argila_pct,             pt: "Argila",                   en: "Clay",                  unidade: "%" }
+      - { id: materia_organica_g_dm3, pt: "Matéria orgânica",         en: "Organic matter",        unidade: "g/dm³" }
+      - { id: fosforo_mg_dm3,         pt: "Fósforo (P)",              en: "Phosphorus (P)",        unidade: "mg/dm³" }
+      - { id: potassio_mg_dm3,        pt: "Potássio (K)",             en: "Potassium (K)",         unidade: "mg/dm³" }
+      - { id: ctc_cmolc_dm3,          pt: "CTC",                      en: "CEC",                   unidade: "cmolc/dm³" }
+      - { id: saturacao_bases_pct,    pt: "Saturação por bases (V%)", en: "Base saturation (V%)",  unidade: "%" }
+    # Unidades dos laudos brasileiros. Laudos dos EUA costumam vir em ppm e matéria orgânica em %
+    # (relatório, observação sobre o laudo).
+    obrigatoria: false
+    alimenta:
       atributo: perfil
-      se_sim: C                  # q12_analise = sim e q12_tem_resultado = sim → perfil C (laudo)
+      se_2_ou_mais_valores: C    # perfil.py: tem_laudo() exige MIN_VALORES_LAUDO_C = 2
+      substitui: soilgrids       # os valores do laudo valem mais que o mapa global (peso 0,9)
 
   - id: q12_ano
+    numero: 12
     bloco: 4
     mostrar_se: { pergunta: q12_analise, valor: sim }
     texto:
       pt: "De que ano é?"
       en: "What year was it?"
-    tipo: ano                    # últimos 20 anos ou "não lembro"
+    tipo: ano                    # lista dos últimos 20 anos + "Não lembro"
+    opcao_sem_ano: { pt: "Não lembro", en: "I don't remember" }
     obrigatoria: false
     alimenta:
       atributo: ano_laudo
 
   - id: q13_textura
+    numero: 13
     bloco: 4
     texto:
-      pt: "A sua terra é mais arenosa, mais argilosa ou meio-termo?"
-      en: "Is your soil sandy, clay, or somewhere in between?"
+      pt: "Como você descreveria a terra da sua propriedade?"
+      en: "How would you describe the soil on your farm?"
     tipo: escolha
     opcoes:
       - { valor: arenosa,  pt: "Mais arenosa",          en: "Sandy" }
@@ -406,80 +462,69 @@ perguntas:
       cruza_com: soilgrids
       se_nao_sei: sugerir_teste_do_tato
 
-  - id: q14_encharca
+  # Pergunta 14: os 5 sinais do solo na mesma tela, numa GRADE (uma linha por sinal, com Sim / Não /
+  # Não sei em cada linha). A versão revisada propunha múltipla escolha; virou grade para não perder o
+  # "não" de cada sinal, que vira evidência no retrato do solo e conta na regra do perfil B
+  # (relatório, item 2). Cada linha continua gravando o seu próprio campo do schemas.py.
+  - id: q14_a_q18_sinais_do_solo
+    numero: 14
     bloco: 4
     texto:
-      pt: "Depois de uma chuva forte, a água fica empoçada por mais de um dia?"
-      en: "After a heavy rain, does water sit on the field for more than a day?"
-    tipo: sim_nao_nao_sei
+      pt: "Quais destas situações você já percebeu no seu solo?"
+      en: "Which of these have you noticed in your soil?"
+    ajuda:
+      pt: "Responda cada linha com Sim, Não ou Não sei."
+      en: "Answer each line with Yes, No or Not sure."
+    tipo: grade_sim_nao_nao_sei
+    atalho:                      # botão que marca "Não sei" em todas as linhas de uma vez
+      pt: "Não sei responder nenhuma"
+      en: "I'm not sure about any of these"
+    linhas:
+      - id: q14_encharca
+        pt: "A água fica empoçada por mais de um dia depois de chuva forte"
+        en: "Water stands for more than a day after heavy rain"
+        alimenta: { atributo: drenagem, fonte: produtor, se_sim: ruim, se_nao: boa, se_nao_sei: sugerir_observar_depois_da_chuva }
+      - id: q15_casca
+        pt: "A terra forma uma casca dura quando seca"
+        en: "The soil forms a hard crust when it dries"
+        alimenta: { atributo: encrostamento, fonte: produtor }
+      - id: q16_erosao
+        pt: "A chuva leva terra embora (erosão, valetas ou água barrenta)"
+        en: "Rain washes soil away (erosion, gullies or muddy runoff)"
+        alimenta: { atributo: erosao_observada, fonte: produtor }
+      - id: q17_dura
+        pt: "A terra fica muito dura para cavar ou arar"
+        en: "The soil gets too hard to dig or plow"
+        alimenta: { atributo: compactacao, fonte: produtor }
+      # Sinal BOM: fica na última linha e com destaque diferente, para não ser lido como problema.
+      - id: q18_minhocas
+        sinal: bom
+        pt: "Encontro minhocas quando cavo"
+        en: "I find earthworms when I dig"
+        alimenta: { atributo: vida_no_solo, fonte: produtor, se_nao_sei: sugerir_buraco_de_um_palmo }
     obrigatoria: false
-    alimenta:
-      atributo: drenagem
-      fonte: produtor
-      se_sim: ruim
-      se_nao: boa
-      se_nao_sei: sugerir_observar_depois_da_chuva
 
-  - id: q15_casca
-    bloco: 4
-    texto:
-      pt: "Quando a terra seca, forma uma casca dura por cima?"
-      en: "When the soil dries out, does it form a hard crust on top?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      atributo: encrostamento
-      fonte: produtor
-
-  - id: q16_erosao
-    bloco: 4
-    texto:
-      pt: "Já viu a chuva levar terra embora (valetas, água barrenta saindo do campo)?"
-      en: "Have you seen the rain wash soil away — gullies, or muddy water running off the field?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      atributo: erosao_observada
-      fonte: produtor
-
-  - id: q17_dura
-    bloco: 4
-    texto:
-      pt: "A terra fica dura demais para cavar ou arar?"
-      en: "Is the soil too hard to dig or plow?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      atributo: compactacao
-      fonte: produtor
-
-  - id: q18_minhocas
-    bloco: 4
-    texto:
-      pt: "Quando você cava, encontra minhocas?"
-      en: "When you dig, do you find earthworms?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      atributo: vida_no_solo
-      fonte: produtor
-      se_nao_sei: sugerir_buraco_de_um_palmo
-
+  # Pergunta 15: cor e aparência ao toque na mesma tela, em dois grupos de figuras.
   - id: q19_cor
+    numero: 15
     bloco: 4
     texto:
-      pt: "Com qual destas cores a sua terra mais se parece?"
-      en: "Which of these colors looks most like your soil?"
+      pt: "Com qual destas opções você mais identifica a sua terra?"
+      en: "Which of these looks most like your soil?"
+    grupo:
+      pt: "Cor"
+      en: "Color"
     tipo: figuras
-    # imagem: fotos de data/onboarding/fotos-solo/ (ainda em revisão; até lá o app mostra amostras de cor)
+    # imagem: fotos de data/onboarding/fotos-solo/ (até o app trocar, ele mostra amostras de cor)
     opcoes:
-      - { valor: escura,   imagem: cor_escura.jpg,    pt: "Preta ou marrom bem escura", en: "Black or very dark brown" }
-      - { valor: marrom,   imagem: cor_marrom.jpg,    pt: "Marrom",                     en: "Brown" }
-      - { valor: vermelha, imagem: cor_vermelha.jpg,  pt: "Vermelha",                   en: "Red" }
-      - { valor: amarela,  imagem: cor_amarela.jpg,   pt: "Amarelada",                  en: "Yellowish" }
-      - { valor: cinza,    imagem: cor_cinza.jpg,     pt: "Cinza ou com manchas cinza", en: "Gray, or gray-mottled" }
-      - { valor: clara,    imagem: cor_clara.jpg,     pt: "Clara ou esbranquiçada",     en: "Pale or whitish" }
-      - { valor: nao_sei,  pt: "Não sei",             en: "Not sure" }
+      - { valor: escura,   imagem: cor_escura.jpg,   pt: "Preta ou marrom bem escura", en: "Black or very dark brown" }
+      - { valor: marrom,   imagem: cor_marrom.jpg,   pt: "Marrom",                     en: "Brown" }
+      - { valor: vermelha, imagem: cor_vermelha.jpg, pt: "Vermelha",                   en: "Red" }
+      - { valor: amarela,  imagem: cor_amarela.jpg,  pt: "Amarelada",                  en: "Yellowish" }
+      # "ou com manchas cinza" volta ao rótulo: as manchas são o sinal de terra que encharca (relatório, item 4)
+      - { valor: cinza,    imagem: cor_cinza.jpg,    pt: "Cinza ou com manchas cinza", en: "Gray, or gray-mottled" }
+      - { valor: clara,    imagem: cor_clara.jpg,    pt: "Clara ou esbranquiçada",     en: "Pale or whitish" }
+      - { valor: nao_sei,  pt: "Não sei",            en: "Not sure" }
     obrigatoria: false
     alimenta:
       cruza_com: q19_jeito        # a leitura sai do cruzamento cor × jeito (tabela em q19_jeito)
@@ -493,19 +538,21 @@ perguntas:
         clara: "pouca matéria orgânica; pode ser arenosa"
 
   - id: q19_jeito
+    numero: 15
     bloco: 4
-    texto:
-      pt: "E quando você pega um punhado na mão, ela fica mais como qual destas?"
-      en: "And when you pick up a handful, which does it feel most like?"
+    mesma_tela_de: q19_cor
+    grupo:
+      pt: "Aparência ao toque"
+      en: "How it feels in your hand"
     tipo: figuras
     opcoes:
-      - { valor: solta,   imagem: jeito_solta.jpg,     pt: "Solta, escorre entre os dedos",     en: "Loose — runs through your fingers" }
-      - { valor: fofa,    imagem: jeito_fofa.jpg,      pt: "Fofa, em grumos pequenos",          en: "Crumbly, in small lumps" }
-      - { valor: gruda,   imagem: jeito_gruda.jpg,     pt: "Gruda e dá para moldar molhada",    en: "Sticky — you can mold it when wet" }
-      - { valor: torroes, imagem: jeito_torroes.jpg,   pt: "Torrões duros que não se desfazem", en: "Hard clods that won't break up" }
-      - { valor: racha,   imagem: jeito_racha.jpg,     pt: "Racha quando seca",                 en: "Cracks open when dry" }
-      - { valor: pedras,  imagem: jeito_pedras.jpg,    pt: "Muita pedra ou cascalho",           en: "Lots of stones or gravel" }
-      - { valor: nao_sei, pt: "Não sei",               en: "Not sure" }
+      - { valor: solta,   imagem: jeito_solta.jpg,   pt: "Solta, escorre entre os dedos",         en: "Loose — runs through your fingers" }
+      - { valor: fofa,    imagem: jeito_fofa.jpg,    pt: "Fofa, em pequenos grumos",              en: "Crumbly, in small lumps" }
+      - { valor: gruda,   imagem: jeito_gruda.jpg,   pt: "Gruda e dá para moldar quando molhada", en: "Sticky — you can mold it when wet" }
+      - { valor: torroes, imagem: jeito_torroes.jpg, pt: "Torrões duros que não se desfazem",     en: "Hard clods that won't break up" }
+      - { valor: racha,   imagem: jeito_racha.jpg,   pt: "Racha quando seca",                     en: "Cracks open when dry" }
+      - { valor: pedras,  imagem: jeito_pedras.jpg,  pt: "Pedregosa, com muito cascalho",         en: "Stony, with lots of gravel" }
+      - { valor: nao_sei, pt: "Não sei",             en: "Not sure" }
     obrigatoria: false
     alimenta:
       cruza_com: q19_cor
@@ -528,22 +575,22 @@ perguntas:
         - { cor: escura,   jeito: solta, leitura: "Combinação incomum; vale confirmar com o teste do tato",                     confianca: baixa }
 
   - id: q20_partes_piores
+    numero: 16
     bloco: 4
     texto:
-      pt: "Tem partes da área onde a lavoura sempre vai pior?"
-      en: "Are there patches where the crop always does worse?"
+      pt: "Existem partes da propriedade onde a lavoura sempre produz pior?"
+      en: "Are there parts of the farm where the crop always does worse?"
     tipo: sim_nao_nao_sei
     obrigatoria: false
     alimenta:
       atributo: variacao_no_campo
       fonte: produtor
 
-  # Antes: q21_calcario ("Já usou calcário?"), que só servia para solo ácido tropical.
-  # Agora cobre também solo salino/sódico, comum em regiões secas e irrigadas.
   - id: q21_correcao
+    numero: 17
     bloco: 4
     texto:
-      pt: "Você já fez alguma correção na terra?"
+      pt: "Você já fez alguma correção no solo?"
       en: "Have you ever treated your soil to correct it?"
     ajuda:
       pt: "Pode marcar mais de uma."
@@ -552,16 +599,22 @@ perguntas:
     exclusivas: [nao, nao_sei]   # marcar uma destas desmarca as outras
     opcoes:
       - valor: calcario
-        pt: "Calcário (para terra ácida)"
-        en: "Lime (for acid soil)"
+        pt: "Calcário"
+        en: "Lime"
+        dica: { pt: "para terra ácida", en: "for acid soil" }
       - valor: gesso
-        pt: "Gesso agrícola (para terra com sal)"
-        en: "Gypsum (for salty soil)"
+        pt: "Gesso agrícola"
+        en: "Gypsum"
+        dica: { pt: "para terra com sal", en: "for salty soil" }
       - valor: outra
         pt: "Outra correção"
         en: "Something else"
-      - { valor: nao,     pt: "Não",     en: "No" }
-      - { valor: nao_sei, pt: "Não sei", en: "Not sure" }
+        campo_texto:             # ao marcar "Outra correção", abre um campo para escrever qual
+          id: q21_correcao_outra
+          max_caracteres: 200
+          placeholder: { pt: "Qual?", en: "What was it?" }
+      - { valor: nao,     pt: "Nunca fiz", en: "Never" }
+      - { valor: nao_sei, pt: "Não sei",   en: "Not sure" }
     # Contexto local: em clima seco (zona B, ou mediterrâneo Csa/Csb, com verão sem chuva), onde o
     # sal no solo é comum, o gesso aparece primeiro; nos outros lugares, o calcário aparece primeiro.
     # A irrigação sozinha não conta: um pivô em clima úmido (ex.: Nebraska, Dfa) tem solo ácido ou
@@ -573,11 +626,13 @@ perguntas:
       fonte: produtor
       se_calcario: { atributo: correcao_acidez, valor: feita }
       se_gesso:    { atributo: correcao_salinidade, valor: feita }
+      se_outra:    { guardar_texto: q21_correcao_outra }
 
   - id: q22_adubo
+    numero: 18
     bloco: 4
     texto:
-      pt: "Você usa adubo ou esterco?"
+      pt: "Você utiliza adubo ou esterco?"
       en: "Do you use fertilizer or manure?"
     tipo: sim_nao_nao_sei
     obrigatoria: false
@@ -585,12 +640,13 @@ perguntas:
       atributo: adubacao         # manejo de fertilidade
       fonte: produtor
 
-  # ───────────── Bloco 5: O que você tem sentido no clima ─────────────
+  # ───────────── Parte 5 — Clima e perdas de safra ─────────────
 
   - id: q23_chuva_mudou
+    numero: 19
     bloco: 5
     texto:
-      pt: "Você sente que a chuva mudou nos últimos anos?"
+      pt: "Você sente que as chuvas mudaram nos últimos anos?"
       en: "Do you feel the rains have changed over the last few years?"
     tipo: sim_nao_nao_sei
     obrigatoria: false
@@ -598,122 +654,88 @@ perguntas:
       atributo: percepcao_mudanca_chuva
       cruza_com: tendencia_chuva_power
 
-  # Perdas de colheita. Cada "sim" abre a pergunta do ano (texto igual para todas, abaixo).
-  # Contexto local: geada e sal no solo só aparecem onde fazem sentido (regras em cada uma).
-
-  - id: q24_perdas.geada.resposta
+  # Pergunta 20: todas as perdas numa múltipla escolha, com um seletor de ano AO LADO de cada evento
+  # marcado. A versão revisada propunha um ano só para todos os eventos; cada evento precisa do seu
+  # ano porque o app procura aquele evento no dado da NASA daquele ano (relatório, item 3).
+  - id: q24_perdas
+    numero: 20
     bloco: 5
-    # Some só se o histórico do ponto não tem frio de geada: nenhum dia com temperatura mínima abaixo
-    # de 2 °C no NASA POWER (o mesmo limite do indicador de risco de geada). A regra por zona climática
-    # errava: deserto quente (BWh) e semiárido quente (BSh) também têm geada, como o Vale Central da
-    # Califórnia (teste 6 do TESTES_CHAT_SR_SMITH.md).
-    # Se o POWER ainda não tiver chegado, usar a zona: some só em clima tropical (zona começa com A).
-    mostrar_se:
-      regra: power_tmin_minima_abaixo_de_2c
-      se_sem_power: { zona_climatica_nao_comeca_com: A }
     texto:
-      pt: "Já perdeu a colheita por geada?"
-      en: "Have you ever lost a crop to frost?"
-    tipo: sim_nao_nao_sei
+      pt: "Quais destes eventos já fizeram você perder uma safra?"
+      en: "Have any of these ever cost you a crop?"
+    ajuda:
+      pt: "Pode marcar mais de um. Em cada um, diga mais ou menos o ano."
+      en: "You can pick more than one. For each, give the rough year."
+    tipo: perdas_com_ano
+    exclusivas: [nunca, nao_sei]   # marcar uma destas desmarca as outras
+    opcoes:
+      - valor: geada
+        pt: "Geada"
+        en: "Frost"
+        # Some só se o histórico do ponto não tem frio de geada: nenhum dia com temperatura mínima
+        # abaixo de 2 °C no NASA POWER (o mesmo limite do indicador de risco de geada). A regra por
+        # zona climática errava: deserto quente (BWh) e semiárido quente (BSh) também têm geada, como
+        # o Vale Central da Califórnia (teste 6 do TESTES_CHAT_SR_SMITH.md; relatório, item 1).
+        # Se o POWER ainda não tiver chegado, usar a zona: some só em clima tropical (zona começa com A).
+        mostrar_se:
+          regra: power_tmin_minima_abaixo_de_2c
+          se_sem_power: { zona_climatica_nao_comeca_com: A }
+        cruza_com: temperatura_minima_power
+      - valor: chuva_forte
+        pt: "Chuva forte ou temporal"
+        en: "Heavy rain or storms"
+        cruza_com: [chuva_extrema_power, chuva_extrema_imerg]
+      - valor: alagamento
+        pt: "Alagamento ou encharcamento"
+        en: "Flooding or waterlogging"
+        cruza_com: [chuva_extrema_imerg, umidade_superficie_smap_l4]
+      - valor: granizo
+        pt: "Chuva de granizo"
+        en: "Hail"
+        cruza_com: nenhum          # não há dado NASA de granizo nessa escala: fica só o relato
+      - valor: calor
+        pt: "Calor intenso"
+        en: "Extreme heat"
+        cruza_com: [temperatura_maxima_power, dias_de_calor_power]
+      - valor: seca
+        pt: "Seca ou falta de chuva"
+        en: "Drought"
+        cruza_com: [deficit_hidrico_power, umidade_raizes_smap_l4]
+      - valor: salinidade
+        pt: "Salinidade do solo"
+        en: "Salty soil"
+        dica: { pt: "manchas brancas, planta queimando", en: "white crust, scorched plants" }
+        # Só aparece onde sal no solo é comum: clima seco (zona B), ou irrigação em clima mediterrâneo
+        # (Csa/Csb, verão sem chuva). Pivô em clima úmido não conta (teste 8; relatório, item 1).
+        mostrar_se:
+          ou:
+            - { zona_climatica_comeca_com: B }
+            - { zona_climatica: [Csa, Csb], q6_irrigacao: [sim, parte] }
+        cruza_com: nenhum          # sem dado NASA direto
+        se_marcado: sugerir_analise_salinidade
+      - { valor: nunca,   pt: "Nunca perdi uma safra por esses motivos", en: "I've never lost a crop to any of these" }
+      - { valor: nao_sei, pt: "Não sei",                                 en: "Not sure" }
+    ano_por_evento:              # um seletor ao lado de CADA evento marcado
+      texto:
+        pt: "Lembra mais ou menos em que ano aconteceu?"
+        en: "Roughly what year was it?"
+      anos: desde_1980
+      opcao_sem_ano: { pt: "Não lembro", en: "I don't remember" }
+    # Como a tela vira os campos do schemas.py (Perdas: q24_perdas.<evento>.resposta e .ano):
+    grava:
+      evento_marcado: { resposta: sim, ano: escolhido_ou_vazio }
+      evento_nao_marcado: { resposta: nao }          # quando o produtor marcou outros eventos
+      nunca: { todos_os_eventos: nao }
+      nao_sei: { todos_os_eventos: nao_sei }
+      evento_oculto_pela_regra: { resposta: vazio }  # a pergunta não foi feita
     obrigatoria: false
     alimenta:
       tabela: historico_perdas
-      evento: geada
-      cruza_com: temperatura_minima_power
 
-  - id: q24_perdas.chuva_forte.resposta
-    bloco: 5
-    texto:
-      pt: "Já perdeu a colheita por chuva forte ou temporal?"
-      en: "Have you ever lost a crop to heavy rain or storms?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      tabela: historico_perdas
-      evento: chuva_forte
-      cruza_com: [chuva_extrema_power, chuva_extrema_imerg]
-
-  - id: q24_perdas.alagamento.resposta   # NOVA
-    bloco: 5
-    texto:
-      pt: "Já perdeu a colheita porque a área alagou ou ficou encharcada?"
-      en: "Have you ever lost a crop to flooding or waterlogging?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      tabela: historico_perdas
-      evento: alagamento
-      cruza_com: [chuva_extrema_imerg, umidade_superficie_smap_l4]
-
-  - id: q24_perdas.granizo.resposta      # NOVA
-    bloco: 5
-    texto:
-      pt: "Já perdeu a colheita por chuva de granizo (pedra)?"
-      en: "Have you ever lost a crop to hail?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      tabela: historico_perdas
-      evento: granizo
-      cruza_com: nenhum          # não há dado NASA de granizo nessa escala: fica só o relato do produtor
-
-  - id: q24_perdas.calor.resposta
-    bloco: 5
-    texto:
-      pt: "Já perdeu a colheita por calor forte?"
-      en: "Have you ever lost a crop to extreme heat?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      tabela: historico_perdas
-      evento: calor
-      cruza_com: [temperatura_maxima_power, dias_de_calor_power]
-
-  - id: q24_perdas.seca.resposta
-    bloco: 5
-    texto:
-      pt: "Já perdeu a colheita por seca ou falta de chuva?"
-      en: "Have you ever lost a crop to drought?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      tabela: historico_perdas
-      evento: seca
-      cruza_com: [deficit_hidrico_power, umidade_raizes_smap_l4]
-
-  - id: q24_perdas.salinidade.resposta   # NOVA
-    bloco: 5
-    # Só aparece onde sal no solo é comum: clima seco (zona B), ou irrigação em clima mediterrâneo
-    # (Csa/Csb, verão sem chuva). Pivô em clima úmido não conta (teste 8 do TESTES_CHAT_SR_SMITH.md).
-    mostrar_se:
-      ou:
-        - { zona_climatica_comeca_com: B }
-        - { zona_climatica: [Csa, Csb], q6_irrigacao: [sim, parte] }
-    texto:
-      pt: "Já perdeu a colheita porque a terra ficou salgada (manchas brancas, planta queimando)?"
-      en: "Have you ever lost a crop because the soil turned salty (white crust, scorched plants)?"
-    tipo: sim_nao_nao_sei
-    obrigatoria: false
-    alimenta:
-      tabela: historico_perdas
-      evento: salinidade
-      cruza_com: nenhum          # sem dado NASA direto; sugerir análise de condutividade elétrica do solo
-      se_sim: sugerir_analise_salinidade
-
-  # Pergunta do ano: aparece depois de cada "sim" acima (geada, chuva_forte, alagamento, granizo,
-  # calor, seca, salinidade) e grava em q24_perdas.<evento>.ano.
-  - id: q24_perdas.<evento>.ano
-    bloco: 5
-    mostrar_se: { pergunta: "q24_perdas.<evento>.resposta", valor: sim }
-    texto:
-      pt: "Lembra mais ou menos o ano?"
-      en: "Roughly what year was it?"
-    tipo: ano                    # desde 1980 ou "não lembro"
-    obrigatoria: false
-
-  # ───────────── Bloco 6: O que é importante pra você ─────────────
+  # ───────────── Parte 6 — Suas prioridades ─────────────
 
   - id: q25_prioridades
+    numero: 21
     bloco: 6
     texto:
       pt: "O que é mais importante para você? Escolha até 3."
@@ -721,12 +743,12 @@ perguntas:
     tipo: multipla
     max_escolhas: 3
     opcoes:
-      - { valor: agua,    pt: "Economizar água",       en: "Save water" }
-      - { valor: terra,   pt: "Melhorar a terra",      en: "Build up the soil" }
-      - { valor: erosao,  pt: "Evitar erosão",         en: "Stop erosion" }
-      - { valor: renda,   pt: "Ganhar uma renda extra", en: "Extra income" }
-      - { valor: animais, pt: "Comida para os animais", en: "Feed for my animals" }
-      - { valor: pragas,  pt: "Menos praga",           en: "Fewer pests" }
+      - { valor: agua,    pt: "Economizar água",                en: "Save water" }
+      - { valor: terra,   pt: "Melhorar a terra",               en: "Build up the soil" }
+      - { valor: erosao,  pt: "Evitar erosão",                  en: "Stop erosion" }
+      - { valor: renda,   pt: "Ganhar uma renda extra",         en: "Earn extra income" }
+      - { valor: animais, pt: "Produzir comida para os animais", en: "Grow feed for my animals" }
+      - { valor: pragas,  pt: "Ter menos pragas",               en: "Have fewer pests" }
     obrigatoria: false
     alimenta:
       atributo: pesos_prioridades   # 1ª = 0,5; 2ª = 0,3; 3ª = 0,2 (MOTOR-DE-ANALISE.md)
@@ -734,6 +756,7 @@ perguntas:
   # ⚠️ EM ESPERA (q26a): revisar quando a Pessoa 1 terminar a base de culturas.
   - id: q26a_texto
     bloco: 6
+    numero: 22
     texto:
       pt: "Tem alguma cultura que você não plantaria? Por quê?"
       en: "Is there any crop you would not grow? Why?"
@@ -760,23 +783,47 @@ perguntas:
       tipo_restricao: cultura_excluida
 
   - id: q26b_texto
+    numero: 23
     bloco: 6
     texto:
-      pt: "Que máquinas e ferramentas você tem ou consegue usar?"
+      pt: "Que máquinas e equipamentos você tem ou consegue utilizar?"
       en: "What machinery or equipment do you have or can get access to?"
     exemplo:
       pt: "tenho um trator pequeno e uma plantadeira; a colheita é na mão"
       en: "I have a small tractor and a planter; we harvest by hand"
     tipo: texto_livre
     obrigatoria: false
+    botao_ia: { pt: "Separar com a AgroIA", en: "Sort it with AgroIA" }
     interpretacao:
-      ia: true                    # casa com equipamentos.csv
+      ia: true                    # casa com agroia/base/equipamentos.json
       catalogo: equipamento
       saida: q26b_equipamentos    # lista de Equipamento
       campos: [texto_original, equipamento_id]
+      mostrar_como: etiquetas_removiveis
       confirmar_item_a_item: true
       nao_encontrada: guardar_texto_como_lacuna
-      fallback_sem_ia: lista_da_base
+      fallback_sem_ia: lista_da_base   # também dá para adicionar pela lista a qualquer momento
     alimenta:
       tabela: restricao
       tipo_restricao: equipamento
+
+# ───────────── Resumo final ─────────────
+# Tela que aparece depois da última pergunta. Tudo é calculado pelo perfil.py.
+resumo_final:
+  mostra:
+    - item: perfil               # A, B ou C (perfil.py) + o papel de quem respondeu (produtor ou técnico)
+      pt: "Perfil da propriedade"
+      en: "Farm profile"
+    - item: calendario           # calendário do ano com as culturas e os meses sem cobertura
+      pt: "Calendário anual de culturas"
+      en: "Yearly crop calendar"
+    - item: retrato_solo         # o que o produtor informou sobre o solo
+      pt: "Retrato do solo"
+      en: "Soil snapshot"
+    - item: proximos_passos      # até 3, a partir dos "não sei" (ex.: teste do tato, análise de solo)
+      pt: "Próximos passos recomendados"
+      en: "Suggested next steps"
+      maximo: 3
+  botao:
+    pt: "Ver minha fazenda"
+    en: "See my farm"

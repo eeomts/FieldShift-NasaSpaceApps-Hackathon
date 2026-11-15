@@ -3,9 +3,10 @@ import json
 import re
 import unicodedata
 from functools import lru_cache
-from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parents[3] / "base"  # agroia/base
+from app.core.caminhos import RAIZ_REPO
+
+BASE_DIR = RAIZ_REPO / "agroia" / "base"
 
 
 def normaliza(texto: str) -> str:
