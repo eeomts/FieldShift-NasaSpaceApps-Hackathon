@@ -44,6 +44,15 @@ Nenhuma cobertura dos EUA tem `colhedora` (diferente da aveia-preta, cuja sement
 
 ### Categorias que faltam em `equipamentos.json` (sugestão para o Pedro, por PR)
 
+**Atualização (15/11/2026): a equipe do app criou 4 categorias em `equipamentos.json`**: `enfardadeira`, `arrancador_amendoim`, `plantadeira_manivas` e `afofador_mandioca`. Linhas do `cultura_equipamentos.csv` que mudaram:
+
+- `alfafa,rocadeira,colheita` virou `alfafa,enfardadeira,colheita` (`ensiladeira` continua).
+- `amendoim,colhedora,colheita` virou `amendoim,arrancador_amendoim,colheita` (`manual` continua).
+- Nova: `mandioca,plantadeira_manivas,plantio` (`manual` continua).
+- Nova: `mandioca,afofador_mandioca,colheita` (`manual` continua).
+
+Itens ainda sem categoria: ancinho, enleiradora (a lista abaixo é o histórico da sugestão original).
+
 - **Enfardadora (baler) e ancinho (rake)**: feno de alfafa. Hoje `rocadeira` (nome_en "Mower") representa a linha de feno; é a mais próxima, mas quem só tem segadora não consegue enfardar.
 - **Arrancador-invertedor de amendoim (digger-shaker-inverter)**: hoje coberto por `colhedora`.
 - **Enleiradora (swather/windrower)**: canola; não faz falta porque o corte direto com `colhedora` serve.

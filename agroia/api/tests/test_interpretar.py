@@ -134,7 +134,7 @@ def test_ia_fora_do_ar_cai_na_lista(monkeypatch):
 
 def test_listas(client):
     assert any(c["id"] == "milheto" for c in client.get("/culturas").json())
-    assert len(client.get("/equipamentos").json()) == 10  # nomes em inglês: test_onboarding_v3.py
+    assert len(client.get("/equipamentos").json()) == 14  # nomes em inglês: test_onboarding_v3.py
 
 
 # --- lista reserva (sem Gemini): meses, estações, consórcio, motivo ---
@@ -264,3 +264,26 @@ def test_interpretar_aceita_so_hemisferio_e_idioma_validos(client, auth):
     assert client.post("/onboarding/interpretar", headers=auth, json=corpo | {"hemisferio": "N", "idioma": "en"}).status_code == 200
     assert client.post("/onboarding/interpretar", headers=auth, json=corpo | {"hemisferio": "L"}).status_code == 422
     assert client.post("/onboarding/interpretar", headers=auth, json=corpo | {"idioma": "fr"}).status_code == 422
+
+
+def test_casamento_dos_equipamentos_de_feno_amendoim_e_mandioca():
+    def ids(texto):
+        return [a["id"] for a in base.casa_texto(texto, base.equipamentos())]
+
+    assert ids("enfardadeira") == ["enfardadeira"]
+    assert ids("peanut digger") == ["arrancador_amendoim"]
+    assert ids("plantadeira de manivas") == ["plantadeira_manivas"]
+    assert ids("afofador de mandioca") == ["afofador_mandioca"]
+    assert ids("plantadeira") == ["plantadeira_graos"]
+    assert ids("colhedora") == ["colhedora"]
+    assert ids("combine") == ["colhedora"]
+    assert ids("cassava harvester") == ["afofador_mandioca"]
+
+
+def test_nenhum_sinonimo_em_dois_equipamentos():
+    donos: dict[str, set[str]] = {}
+    for item_id, item in base.equipamentos().items():
+        for nomes in item["nomes"].values():
+            for n in nomes:
+                donos.setdefault(base.normaliza(n), set()).add(item_id)
+    assert {n: ids for n, ids in donos.items() if len(ids) > 1} == {}
