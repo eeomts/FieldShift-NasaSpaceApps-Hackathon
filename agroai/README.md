@@ -1,7 +1,14 @@
 # AgroAI: código
 
 Este é o código do app: login, questionário do produtor, Dashboard e a aba AgroAI (chat), em português e inglês.
-O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpaceApps-FieldShift/v1/application/ONBOARDING.md).
+O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpaceApps-FieldShift/v1/application/ONBOARDING.md). A visão geral do projeto está no [README principal](../README.md).
+
+| Pasta | O que é |
+|---|---|
+| `api/` | Back-end: FastAPI, SQLAlchemy, Alembic e testes (pytest) |
+| `web/` | Front-end completo: React, Vite, TypeScript e Tailwind. Entrada com e-mail e senha, porta 5173 |
+| `web-demo/` | Versão de apresentação: cópia do `web/` com entrada só com o nome, questionário já preenchido e botão **Skip All**, porta 5174. Veja o [README dela](web-demo/README.md) |
+| `base/` | Culturas e equipamentos do questionário (`culturas.json`, `equipamentos.json`): a fonte única desses catálogos no app |
 
 ## O que já funciona
 
@@ -18,7 +25,7 @@ O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpace
 - **Texto livre com IA (culturas, culturas que não planta e máquinas):** o Gemini separa o que o produtor escreveu em itens da base, e o produtor confirma um por um.
   - Sem chave do Gemini, ou se ele falhar, uma reserva sem IA casa os nomes, os meses, as estações e os consórcios.
 - **Resumo final:** perfil do produtor (A, B ou C) e papel (produtor ou técnico), calendário, retrato do solo e próximos passos.
-- **Dashboard:** o que vem do questionário é real, e a comparação de rotações ("Suas estratégias") é calculada com dados da NASA. Previsão, umidade e NDVI ainda são **exemplo**, e a tela avisa.
+- **Dashboard:** retrato do solo ("Sua terra"), satélite no ponto da fazenda (umidade do solo do SMAP, NDVI do MODIS e chuva do GPM IMERG), previsão de 7 dias (Open-Meteo) e a comparação de rotações ("Suas estratégias"), calculada com dados da NASA. O que faltar (por exemplo, sem `EARTHDATA_TOKEN`) aparece com aviso, nunca com número inventado.
 - **Aba AgroAI (`/agroai`):** chat com a lista de conversas. "Perguntar à AgroAI" no Dashboard abre o chat e já envia a pergunta.
 
 ## Como rodar
@@ -50,15 +57,16 @@ env $(grep -v '^#' .env.dev) uv run alembic upgrade head # cria ou atualiza as t
 env $(grep -v '^#' .env.dev) uv run uvicorn app.main:app --reload --port 8000
 ```
 
-**Terminal 2: site**
+**Terminal 2: site** (escolha uma das versões)
 
 ```bash
-cd agroai/web
+cd agroai/web        # completa: abra http://localhost:5173
+cd agroai/web-demo   # apresentação: abra http://localhost:5174
 npm install
-npm run dev                   # abra http://localhost:5173
+npm run dev
 ```
 
-Crie uma conta no site: ela fica só no seu banco local. A documentação interativa da API fica em http://localhost:8000/docs.
+Na versão completa, crie uma conta; na de apresentação, basta digitar um nome. A conta fica só no seu banco local. A documentação interativa da API fica em http://localhost:8000/docs.
 
 > Para testar o chat de verdade, troque `GEMINI_API_KEY=` no `.env.dev` pela sua chave. **Cada mensagem gasta a cota do Gemini.**
 
@@ -93,7 +101,7 @@ Crie uma conta no site: ela fica só no seu banco local. A documentação intera
 
 4. Suba o site igual ao jeito A.
 
-Se a API não estiver em `localhost:8000`, crie `web/.env` com `VITE_API_URL=<endereço da API>`.
+Se a API não estiver em `localhost:8000`, crie `web/.env` (ou `web-demo/.env`) com `VITE_API_URL=<endereço da API>`.
 
 ## Testes
 
@@ -132,7 +140,7 @@ Os testes cobrem:
 | PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`). Com local novo, responde na hora com `status_processamento: "processando"` e busca o solo no SoilGrids em segundo plano (veja "Solo") |
 | GET | `/fazenda/estrategias` | Compara a rotação atual com as 2 melhores alternativas, na hora (a 1ª vez numa região baixa o NASA POWER, 10–30 s). Erros: 404 sem fazenda, 422 sem local / sem culturas da região / sem calendário, 503 se o NASA POWER falhar |
 | GET | `/fazenda/satelite` | Satélite no ponto da fazenda: umidade do solo (SMAP L4, comparada com o mesmo dia dos 8 anos anteriores), NDVI do último ano (MODIS MOD13Q1) e chuva diária dos últimos 30 dias (GPM IMERG; se a conta não tiver acesso à GES DISC, NASA POWER com aviso). Lê só os pixels do ponto pelo OPeNDAP; a 1ª vez numa região leva 10–15 s e depois fica em cache no dia. Cada parte que falhar vem em `faltas` com um código (`sem_token`, `nuvem`...); o front escreve o texto em PT ou EN. Erros: 404 sem fazenda, 422 sem local |
-| GET | `/fazenda/previsao` | Previsão dos próximos 7 dias no ponto da fazenda (Open-Meteo, D-014): máxima, mínima, chuva, chance de chuva e código WMO. Sem chave; cache de 1 hora por ponto. A tela dá o crédito à Open-Meteo (CC BY 4.0). Erros: 404 sem fazenda, 422 sem local, 503 se a Open-Meteo falhar |
+| GET | `/fazenda/previsao` | Previsão dos próximos 7 dias no ponto da fazenda (Open-Meteo; decisão ainda não registrada no `DECISOES.md`): máxima, mínima, chuva, chance de chuva e código WMO. Sem chave; cache de 1 hora por ponto. A tela dá o crédito à Open-Meteo (CC BY 4.0). Erros: 404 sem fazenda, 422 sem local, 503 se a Open-Meteo falhar |
 | POST | `/onboarding/interpretar` | Texto livre → itens da base (perguntas 8, 26a e 26b). Aceita `hemisferio` (`N`/`S`) e `idioma` (`pt`/`en`) |
 | GET | `/culturas`, `/equipamentos` | Listas reserva (`?idioma=pt\|en`) |
 | GET | `/local/buscar?q=&idioma=` | Busca cidade ou região (OpenStreetMap / Nominatim), até 5 resultados. Falha → lista vazia |
@@ -253,8 +261,9 @@ Confira o arquivo gerado em `migrations/versions/` antes de rodar `alembic upgra
 
 - **Uma fazenda por usuário**, marcada por um ponto no mapa (`lat`/`lon`). O PostGIS fica para quando houver consulta geográfica.
 - **Token JWT** no header `Authorization: Bearer`, guardado no `localStorage` do navegador.
-- **Privacidade:** ao Gemini vai só o texto da resposta, nunca nome, e-mail ou local. O nome do lugar é digitado pelo produtor; nenhum serviço de endereço recebe a localização.
-- **Faixas de área (pergunta 2):** até 2 / 2–20 / 20–200 / 200–1.000 / mais de 1.000 ha.
-- **Pergunta 19:** amostras de cor no lugar das fotos reais de solo, até as fotos de `data/onboarding/fotos-solo/` ficarem prontas.
-- **Idioma:** só português nas telas por enquanto. A base de culturas já tem nomes em PT, EN e ES.
-- **CORS:** em desenvolvimento, a API aceita o site em qualquer porta do `localhost`. Em produção, liste o domínio em `CORS_ORIGINS`.
+- **Privacidade:** ao Gemini nunca vai nome, e-mail ou coordenada exata (no chat, o local vai arredondado a 0,1°). A coordenada vai só para os serviços de dados (NASA POWER, satélite da NASA, SoilGrids, OpenTopoData, Open-Meteo) e para o Nominatim, que devolve o nome do lugar.
+- **Faixas de área (pergunta 2):** até 2 / 2–20 / 20–200 / 200–1.000 / mais de 1.000 ha (ou o equivalente em acres nos EUA).
+- **Pergunta 19:** fotos reais da cor e do jeito da terra (`web/public/fotos-solo/`, créditos em `CREDITOS.md`).
+- **Idioma:** português e inglês nas telas, com o idioma salvo na conta. A base de culturas também tem nomes em espanhol.
+- **Duas interfaces:** `web/` é a versão completa e a que vai para a VPS; `web-demo/` é uma cópia para a apresentação e não recebe sozinha o que muda no `web/`.
+- **CORS:** em desenvolvimento, a API aceita o site em qualquer porta do `localhost` (as duas versões funcionam sem configurar nada). Em produção, liste o domínio em `CORS_ORIGINS`.

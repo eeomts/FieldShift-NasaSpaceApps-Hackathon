@@ -2,6 +2,9 @@
 
 Vídeo de apresentação do Field Shift (NASA Space Apps 2026), em cartoon 2D com as cores do app.
 O roteiro e a estética estão em [`../video-30s-prompt.md`](../video-30s-prompt.md).
+O vídeo de pitch mais novo (29,5s, no formato oficial do Space Apps) está em [`../video-new/`](../video-new/README.md).
+
+Volta para o [README principal](../README.md).
 
 | Arquivo | O que é |
 |---|---|

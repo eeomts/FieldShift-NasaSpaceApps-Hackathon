@@ -2,7 +2,7 @@
 
 Gerado por `python data/scripts/baixar_appeears.py`. São **dois pedidos**, cada um com todos os pontos de `data/demo/pontos_demo.csv`, e cada pedido vira uma subpasta com o id que o AppEEARS devolve:
 
-```
+```text
 data/demo/appeears/
 ├── tarefas.json                  # qual pasta é de qual pedido, com produtos, camadas e período
 ├── <id_do_pedido_ndvi>/          # MOD13Q1.061 + VNP13A1.002, desde 2001
@@ -18,3 +18,7 @@ data/demo/appeears/
 - O **`tarefas.json` é versionado de propósito**: ele é o registro de quais pedidos geraram estes arquivos. O script o reescreve a cada rodada (status, data do download, número de arquivos), então ele só é commitado **depois do download**, já com `"baixado"`.
 - Os pedidos pertencem à conta do Earthdata que os criou. Com outra conta, o script avisa que o pedido não existe nela; rode com `--novo`.
 - Registre cada pedido em `data/FONTES.md` (id, produtos, período real e data).
+
+---
+
+Volta para o [`data/README.md`](../../README.md).

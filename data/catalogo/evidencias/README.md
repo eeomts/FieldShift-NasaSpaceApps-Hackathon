@@ -149,3 +149,7 @@ Calculada por `../scripts/regua.py` a partir do bloco `regua` de cada arquivo (`
 - `arranjos` regionais (ex.: `regua.arranjos.sudeste` da ervilhaca, `regua.arranjos.michigan` do feijão nos EUA): a linha vale para a região de referência; o arranjo guarda os números de outra região (ciclo, graus-dia, água e palhada, quando houver, com `origem` de cada número pelos mesmos tipos da tabela de Confiança) e `estados` como texto com `|` (ex.: `"MI"`, `"GA|AL"`), no mesmo formato de `estados_validos`, para o motor usar quando o ponto estiver nela, quando ele passar a ler arranjos (ainda não lê).
 - `avisos`: texto curto (até 200 caracteres, linguagem do produtor) por coluna qualitativa, ex.: `{"valor_forrageiro": "Atenção: ..."}`. É para um risco que a classe sozinha esconde (ex.: o fungo da festuca, que intoxica o gado, numa forragem "alta"). O `regua.py` não mexe nesta chave. Ver a regra 16.
 - `detalhe.depende_da_epoca`: `true` quando o mínimo e o máximo da faixa caem em classes diferentes. Na tela, mostre a classe **junto com a faixa** e o aviso "depende da época" (não só no detalhe).
+
+---
+
+Volta para o [`data/README.md`](../../README.md).
