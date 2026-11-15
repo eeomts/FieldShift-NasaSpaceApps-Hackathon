@@ -74,7 +74,7 @@ O Painel de Indicação de Riscos (https://mapa-indicadores.agricultura.gov.br/p
 | Milho 1ª safra, Guanambi/BA (2911709), Argiloso, Grupo I, 2025/2026, Port. 174 de 27/05/2025 (município fora da 2026/2027) | 31: 30; 32: 40 | 30 % 31–31; 40 % 32–32 |
 | Milheto, Passo Fundo/RS (4314100), Argiloso, Grupo I, SEM SAFRA, Port. 349 de 23/10/2020 (vira o ano) | 1–4: 20; 29–36: 20 | 20 % 29→4 (10-11 a 02-10) |
 
-Falta conferir no Painel, no navegador, pelo menos 2 dessas janelas (item aberto no ToDo).
+**Conferência no Painel (15/11/2026, no navegador)**: com os filtros safra 2026\2027, Sequeiro, clima "Não se aplica", Grupo II e AD4, o Painel mostrou para a soja de **Rio Verde/GO** dec1 = 20, dec27 = 40 e dec28 a dec36 = 20; e para a soja de **Passo Fundo/RS** com nível de manejo 1 (NM1) dec1 a dec3 = 30, dec28 a dec34 = 20 e dec35 a dec36 = 30. Os dois casos batem decêndio a decêndio com o `janelas.csv` (linhas 1 e 2 da tabela acima).
 
 ## Regras para o motor usar o ZARC (a implementar; tarefa no ToDo)
 
