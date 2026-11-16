@@ -5,7 +5,7 @@ Janelas oficiais de semeadura do Zoneamento Agrícola de Risco Climático (MAPA/
 | Arquivo | O que é |
 |---|---|
 | `mapa_culturas_zarc.csv` | `cultura_id` da base → nome exato no ZARC (`\|` separa a 1ª e a 2ª safra). Copiado à mão para a coluna `nome_zarc` de `catalogo/culturas.csv` (um teste confere que os dois batem). |
-| `janelas.csv` | Janelas das culturas da base, só **GO, RS e BA** (UFs dos pontos da demo). Em 15/11/2026: 363.514 janelas, 24,4 MB. |
+| `janelas.csv` | Janelas das culturas da base, só **GO, RS e BA** (UFs dos pontos da demo). Em 15/11/2026: 363.514 janelas, 24,4 MB. **Fica fora do Git**: gere com `scripts/preparar_zarc.py`. |
 
 A chave das janelas é `cultura_id` (mais `epoca` e `municipio_id`), não o nome do ZARC: `arroz` (sequeiro) e `arroz_irrigado` têm o mesmo nome "Arroz" e são separados pelo manejo.
 
@@ -61,7 +61,7 @@ Decêndios: 36 por ano, dias 1–10, 11–20 e 21–fim do mês (fevereiro até 
 
 Uma janela que atravessa o ano é uma linha só, com `inicio_decendio` > `fim_decendio` (ex.: 28 → 1 = de 10-01 a 01-10). Cada linha é um risco exato; a janela "até 30 %" é a união das linhas de 20 e 30.
 
-**Desvios da especificação da tarefa** (`ToDo/dataset/pessoa-2/05-script-zarc/TODO.md`), justificados: colunas `epoca` (sem ela, milho, feijão e sorgo de 1ª e 2ª safra se misturam) e `nivel_manejo` (a soja do RS da 2026/2027 tem quatro níveis); janela que vira o ano numa linha só; recorte por UF (o Brasil passa de 120 MB); safra mista por município (acima); tamanho de 24,4 MB, acima dos ~20 MB pedidos (aceito pelo usuário; o GitHub só avisa a partir de 50 MB).
+**Desvios da especificação da tarefa**, justificados: colunas `epoca` (sem ela, milho, feijão e sorgo de 1ª e 2ª safra se misturam) e `nivel_manejo` (a soja do RS da 2026/2027 tem quatro níveis); janela que vira o ano numa linha só; recorte por UF (o Brasil passa de 120 MB); safra mista por município (acima); tamanho de 24,4 MB, acima dos ~20 MB pedidos (aceito pelo usuário; o GitHub só avisa a partir de 50 MB).
 
 ## Conferência manual (15/11/2026)
 
@@ -95,7 +95,7 @@ O motor ainda não lê `janelas.csv`. Antes de ligar, seguir estas regras (propo
 - Safra mista por município (ver a lista acima). A 2026/2027 ainda não tem trigo em GO e na BA.
 - Na demo de Irecê (BA, 2914604, rotação milho + feijão) não há linha de sequeiro de milho 1ª, feijão nem feijão-caupi em nenhuma das duas safras; só sorgo granífero (1ª e 2ª), sorgo forrageiro, amendoim e mamona. Pela regra Z7(c), a demo dirá "o ZARC não indica".
 - Mandioca, milheto e o arroz irrigado tropical vêm de portarias de 2020 (sem safra); "Mandioca (aipim, macaxeira)" é o único ZARC de mandioca.
-- O ZARC é de sequeiro (salvo o arroz irrigado), municipal e simulado: ver `docs/NasaSpaceApps-FieldShift/v1/tools/ZARC.md`.
+- O ZARC é de sequeiro (salvo o arroz irrigado), municipal e simulado.
 
 ---
 

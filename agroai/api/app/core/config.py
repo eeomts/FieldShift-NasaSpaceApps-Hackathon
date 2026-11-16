@@ -9,7 +9,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
-    # Banco (produção: VPS 2.24.30.217:5433). Sem valor padrão para host e senha.
+    # Banco (produção: VPS; endereço só no .env). Sem valor padrão para host e senha.
     db_host: str
     db_port: int = 5433
     db_name: str = "agricultura"

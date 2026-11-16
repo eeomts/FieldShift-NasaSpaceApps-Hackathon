@@ -266,8 +266,7 @@ export function PrevisaoSemana({ previsao, imperial = false }: { previsao: Previ
       </ul>
       <Fonte>
         {t("Previsão", "Forecast")}:{" "}
-        <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" className="font-bold text-suave underline">Open-Meteo</a> ({previsao.licenca}) ·{" "}
-        {t("Histórico, solo e vegetação: NASA", "History, soil and vegetation: NASA")}
+        <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" className="font-bold text-suave underline">Open-Meteo</a> ({previsao.licenca})
       </Fonte>
     </div>
   );

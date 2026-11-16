@@ -7,7 +7,6 @@
 #       agroai/api/app/services/onboarding/perfil.py  → o que cada resposta alimenta (perfil, solo)
 #       agroai/web/src/onboarding/Passos.tsx          → telas
 # Se mudar um id ou valor aqui, mude também no schemas/onboarding.py (e vice-versa). Dono: Pessoa 3.
-# O que foi ajustado na versão revisada e por quê: data/onboarding/relatorio-revisao-questionario.md
 #
 # tipos: sim_nao_nao_sei | escolha | figuras | texto_livre | multipla | mapa | calendario | ano
 #        grade_sim_nao_nao_sei (várias perguntas sim/não/não sei numa tela, uma por linha)
@@ -157,12 +156,12 @@ perguntas:
       nome: { origem: busca_ou_digitado, opcional: true }
       pais:
         origem: calculado
-        como: "ponto dentro do contorno do país (código ISO 3166-1 alfa-2, ex.: BR, KE, US)"
-        fonte: "Natural Earth, Admin 0 Countries (domínio público)"
+        como: "geocodificação reversa do ponto (código ISO 3166-1 alfa-2, ex.: BR, US)"
+        fonte: "OpenStreetMap Nominatim, reverso (ODbL)"
       zona_climatica:
         origem: calculado
-        como: "classe Köppen-Geiger do pixel de 1 km (ex.: Aw, BSh, Cfa)"
-        fonte: "Beck et al. (2023), mapas Köppen-Geiger 1 km, período 1991-2020 (CC BY 4.0)"
+        como: "classe Köppen-Geiger calculada das normais mensais do ponto (ex.: Aw, BSh, Cfa)"
+        fonte: "Regras de Köppen-Geiger (Beck et al. 2023) aplicadas à climatologia do NASA POWER 1991-2020, célula de ~50 km (aproximação)"
       hemisferio:
         origem: calculado
         como: "lat < 0 → sul; lat ≥ 0 → norte (inverte as estações do ano)"
@@ -515,7 +514,7 @@ perguntas:
       pt: "Cor"
       en: "Color"
     tipo: figuras
-    # imagem: fotos de data/onboarding/fotos-solo/ (até o app trocar, ele mostra amostras de cor)
+    # imagem: fotos de agroai/web/public/fotos-solo/ (até o app trocar, ele mostra amostras de cor)
     opcoes:
       - { valor: escura,   imagem: cor_escura.jpg,   pt: "Preta ou marrom bem escura", en: "Black or very dark brown" }
       - { valor: marrom,   imagem: cor_marrom.jpg,   pt: "Marrom",                     en: "Brown" }

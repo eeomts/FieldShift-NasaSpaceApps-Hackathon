@@ -126,7 +126,7 @@ export function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; cultura
         </Secao>
 
         <Secao n={3} titulo={t("Retrato do solo", "Soil snapshot")}>
-          <Selo tom="ceu">{t("Informado por você · vamos cruzar com SoilGrids e NASA", "Told by you · we'll cross-check with SoilGrids and NASA")}</Selo>
+          <Selo tom="ceu">{t("Informado por você · vamos cruzar com o SoilGrids", "Told by you · we'll cross-check with SoilGrids")}</Selo>
           {temSolo ? (
             <div className="grid grid-cols-2 gap-2.5">
               {solo.figuras && (

@@ -13,6 +13,10 @@ Last updated: 2026-11-15
 | NASA POWER (website) | | https://power.larc.nasa.gov |
 | SRTM 30 m | Field slope and erosion score | https://www.earthdata.nasa.gov/data/instruments/srtm |
 | OpenTopoData (serves SRTM) | Elevation on a 3 x 3 grid | https://api.opentopodata.org/v1/srtm30m |
+| SMAP L4 (SPL4SMGP) | Dashboard only: surface and root-zone soil moisture vs. past years | https://nsidc.org/data/spl4smgp |
+| MODIS MOD13Q1 v061 | Dashboard only: NDVI over the last 12 months | https://lpdaac.usgs.gov/products/mod13q1v061/ |
+| GPM IMERG Late, daily v07 | Dashboard only: rain over the last 30 days | https://disc.gsfc.nasa.gov/datasets/GPM_3IMERGDL_07/summary |
+| NASA Earthdata (CMR + OPeNDAP, needs a token) | Finding and reading the SMAP, MODIS and IMERG pixel of the farm | https://cmr.earthdata.nasa.gov/search |
 
 ## 2. Data prepared by the team
 

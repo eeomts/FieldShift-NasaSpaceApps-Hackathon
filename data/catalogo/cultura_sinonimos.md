@@ -1,6 +1,6 @@
 # Sinônimos e nomes regionais das culturas (proposta)
 
-> Tarefa P3-02 (`ToDo/dataset/pessoa-3/02-sinonimos-culturas/`). Dono: Pessoa 3. Revisado em 15/11/2026 com o mapa de nomes do ZARC (`data/brasil/zarc/mapa_culturas_zarc.csv`), a base de culturas do Brasil (`data/catalogo/culturas.csv`) e o catálogo dos EUA (`data/catalogo/eua/culturas.csv`).
+> Revisado em 15/11/2026 com o mapa de nomes do ZARC (`data/brasil/zarc/mapa_culturas_zarc.csv`), a base de culturas do Brasil (`data/catalogo/culturas.csv`) e o catálogo dos EUA (`data/catalogo/eua/culturas.csv`).
 >
 > A fonte única dos nomes das culturas é o campo `nomes` de cada cultura em **`agroai/base/culturas.json`**, que é arquivo do app e só muda por PR, avisando o Pedro. Este documento lista o que já existe lá e **o que a proposta muda**.
 >

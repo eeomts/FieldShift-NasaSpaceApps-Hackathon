@@ -32,7 +32,7 @@ Umidade do solo é a quantidade de água que está dentro da terra. A fundura im
 
 Ter água na terra não quer dizer que a planta consegue usar toda ela. Uma parte fica tão presa nos grãozinhos de terra, principalmente na argila, que a raiz não consegue puxar. Por isso duas terras com a mesma umidade podem ser boas para a planta em uma e ruins na outra.
 
-O satélite SMAP mede a umidade da camada de cima e estima até cerca de 1 metro de fundura. O Field Shift não usa o SMAP nesta versão: a água das estratégias vem da chuva e do clima do NASA POWER, comparados com a água que cada cultura gasta.
+O satélite SMAP mede a umidade da camada de cima e estima até cerca de 1 metro de fundura. O painel (Dashboard) do Field Shift mostra a umidade do solo do SMAP, na superfície e na zona da raiz, e compara a de hoje com o mesmo dia de até 8 anos anteriores. O motor e o chat não usam esse número: a água das estratégias vem da chuva e do clima do NASA POWER, comparados com a água que cada cultura gasta.
 
 Como o produtor costuma dizer: terra molhada, terra seca, a terra está com água por baixo, umidade da terra, o chão segurou água.
 
@@ -58,13 +58,13 @@ NDVI é um número que os satélites calculam para mostrar quanto de planta verd
 
 O NDVI funciona porque a folha verde reflete muita luz invisível, o infravermelho, e absorve a luz vermelha. O satélite compara essas duas luzes e chega no número.
 
-Os satélites MODIS e VIIRS medem o NDVI e mostram a curva do ano: quando a lavoura sobe, quando chega ao máximo, quando é colhida e quando o campo fica sem verde. O Field Shift não usa o NDVI nesta versão: os meses com planta no campo vêm do calendário que o produtor informa.
+Satélites como o MODIS e o VIIRS medem o NDVI e mostram a curva do ano: quando a lavoura sobe, quando chega ao máximo, quando é colhida e quando o campo fica sem verde. O painel (Dashboard) do Field Shift mostra o NDVI do MODIS Terra dos últimos 365 dias; o VIIRS não é usado. O motor e o chat não usam o NDVI: os meses com planta no campo vêm do calendário que o produtor informa.
 
 O NDVI não diz qual é a planta, nem quanto ela vai produzir. Lavoura recém-nascida tem NDVI baixo e está tudo bem. E palhada no chão aparece com NDVI baixo, parecido com terra pelada, mesmo protegendo o solo. Por isso o NDVI só faz sentido junto com a época, a cultura e a conversa com o produtor.
 
 Como o produtor costuma dizer: lavoura verde, roça fechada, lavoura bonita, planta amarelando, campo verdinho.
 
-Fonte: NASA MODIS e VIIRS; Field Shift, glossário científico (índices de vegetação).
+Fonte: NASA MODIS (MOD13Q1); Field Shift, glossário científico (índices de vegetação).
 
 ## Palhada e cobertura verde
 
@@ -290,7 +290,7 @@ Reanálise é um jeito de reconstruir o clima do passado juntando um modelo de c
 
 O clima do NASA POWER vem de reanálise. Isso quer dizer que "veio da NASA" não significa que um satélite mediu a temperatura em cima da fazenda naquele dia: o valor é uma estimativa bem feita, que combina medições e física.
 
-A vantagem da reanálise é não ter buracos: todo dia tem dado, sem falha por nuvem. A desvantagem é que ela pode ter diferença em relação a uma estação local, principalmente na chuva. Por isso o Field Shift mostra a fonte e o período de cada número de chuva, e vale conferir com o que o produtor lembra. (A comparação com a chuva do GPM IMERG não é feita nesta versão.)
+A vantagem da reanálise é não ter buracos: todo dia tem dado, sem falha por nuvem. A desvantagem é que ela pode ter diferença em relação a uma estação local, principalmente na chuva. Por isso o Field Shift mostra a fonte e o período de cada número de chuva, e vale conferir com o que o produtor lembra. (O painel mostra também a chuva do GPM IMERG, vista por satélite, mas o motor e o chat não a comparam com a do NASA POWER.)
 
 Como o produtor costuma dizer: de onde vem esse dado?, isso foi medido?, é do satélite?, é estimativa?
 
@@ -300,7 +300,7 @@ Fonte: NASA POWER (MERRA-2); Field Shift, glossário científico (reanálise).
 
 Resolução é o tamanho do menor pedaço que um dado consegue mostrar. Todo dado de satélite ou modelo vem em quadradinhos, e cada quadradinho tem um só valor. Quanto menor o quadradinho, mais detalhe.
 
-No Field Shift, o relevo do SRTM tem quadradinhos de 30 metros; o mapa do solo, de 250 metros; o clima e a chuva do NASA POWER, de uns 50 km. (O verde da lavoura do MODIS, de 250 metros, a água do solo do SMAP, de 9 km, e a chuva do GPM IMERG, de 10 km, não são usados nesta versão.)
+No Field Shift, o relevo do SRTM tem quadradinhos de 30 metros; o mapa do solo, de 250 metros; o clima e a chuva do NASA POWER, de uns 50 km. (O painel mostra ainda o verde da lavoura do MODIS, de 250 metros, a água do solo do SMAP, de 9 km, e a chuva do GPM IMERG, de 10 km; o motor e o chat não usam esses três.)
 
 Um quadradinho de 50 km mostra a média da região, não o seu sítio. Ampliar a imagem não cria detalhe novo. O app sempre mostra a resolução de cada número e trata dado de quadradinho grande como contexto regional.
 

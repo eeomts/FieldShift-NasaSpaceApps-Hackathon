@@ -48,7 +48,7 @@ function Secao({ n, titulo, children, className }: { n: number; titulo: string; 
   );
 }
 
-export function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; culturas: CulturaBase[] }) {
+export function Resumo({ fazenda, culturas, doExemplo = false }: { fazenda: Fazenda | null; culturas: CulturaBase[]; doExemplo?: boolean }) {
   const { idioma, t } = useIdioma();
   if (!fazenda) return null;
   const r = fazenda.respostas;
@@ -77,6 +77,7 @@ export function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; cultura
           <span className="flex items-center gap-2 text-sm text-suave"><Pino size={16} className="shrink-0" /> {lugar}</span>
         )}
         <span className="text-sm text-suave">{t("Confira antes de seguir. Dá para voltar e mudar qualquer resposta.", "Check it before you go on. You can go back and change any answer.")}</span>
+        {doExemplo && <span className="self-start"><Selo tom="sol">{t("Exemplo de demonstração", "Demo example")}</Selo></span>}
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2 lg:items-start">
@@ -126,7 +127,7 @@ export function Resumo({ fazenda, culturas }: { fazenda: Fazenda | null; cultura
         </Secao>
 
         <Secao n={3} titulo={t("Retrato do solo", "Soil snapshot")}>
-          <Selo tom="ceu">{t("Informado por você · vamos cruzar com SoilGrids e NASA", "Told by you · we'll cross-check with SoilGrids and NASA")}</Selo>
+          <Selo tom="ceu">{t("Informado por você · vamos cruzar com o SoilGrids", "Told by you · we'll cross-check with SoilGrids")}</Selo>
           {temSolo ? (
             <div className="grid grid-cols-2 gap-2.5">
               {solo.figuras && (

@@ -1,4 +1,4 @@
-"""Testa que a instrução do agente diz quais fontes o app usa e quais ainda não."""
+"""Testa que a instrução do agente diz quais fontes o chat usa, quais só o painel mostra e quais o app ainda não usa."""
 from datetime import date
 from types import SimpleNamespace
 
@@ -8,11 +8,12 @@ from app.services.agente.prompt import montar_instrucao
 _USUARIO = SimpleNamespace(idioma="pt", fazenda=None)
 
 
-def _trechos(texto: str) -> tuple[str, str]:
+def _trechos(texto: str) -> dict[str, str]:
     inicio = texto.index("Dados que o AgroAI usa hoje:")
-    meio = texto.index("Ainda não usa:", inicio)
-    fim = texto.index("Se a base de conhecimento falar", meio)
-    return texto[inicio:meio], texto[meio:fim]
+    painel = texto.index("Mostrados só no painel", inicio)
+    nao = texto.index("Ainda não usa:", painel)
+    fim = texto.index("Se a base de conhecimento falar", nao)
+    return {"chat": texto[inicio:painel], "painel": texto[painel:nao], "nao": texto[nao:fim]}
 
 
 def test_regra_das_fontes_existe():
@@ -23,21 +24,41 @@ def test_regra_das_fontes_existe():
 
 
 def test_fontes_nas_listas_certas():
-    usadas, nao_usadas = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
-    assert any(f.usada for f in FONTES) and any(not f.usada for f in FONTES)
+    trechos = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
+    assert {f.uso for f in FONTES} == {"chat", "painel", "nao"}
     for f in FONTES:
-        assert (f.nome in usadas) == f.usada
-        assert (f.nome in nao_usadas) != f.usada
+        for uso, trecho in trechos.items():
+            assert (f"{f.nome} (" in trecho) == (f.uso == uso), (f.nome, uso)
 
 
-def test_imerg_esta_em_ainda_nao_usa():
-    usadas, nao_usadas = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
-    assert "GPM IMERG" in nao_usadas
-    assert "GPM IMERG" not in usadas
-    assert "NASA POWER" in usadas
+def test_satelites_do_painel_nao_aparecem_como_nao_usados():
+    trechos = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
+    for nome in ("GPM IMERG", "SMAP", "MODIS", "Open-Meteo"):
+        assert nome in trechos["painel"]
+        assert nome not in trechos["chat"] and nome not in trechos["nao"]
+    assert "NASA POWER" in trechos["chat"]
+
+
+def test_regra_da_previsao_aponta_para_o_painel():
+    texto = montar_instrucao(_USUARIO, date(2026, 1, 1))
+    regra = texto[texto.index("6. Você NÃO faz previsão"):texto.index("7. ")]
+    assert "painel" in regra and "Open-Meteo" in regra
 
 
 def test_soilgrids_esta_em_usa_hoje_com_o_que_entrega():
-    usadas, nao_usadas = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
-    assert "SoilGrids (solo por ponto: textura, matéria orgânica, pH, erodibilidade; mapa global de 250 m)" in usadas
-    assert "SoilGrids" not in nao_usadas
+    trechos = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
+    assert "SoilGrids (solo por ponto: textura, matéria orgânica, pH, erodibilidade; mapa global de 250 m)" in trechos["chat"]
+    assert "SoilGrids" not in trechos["nao"]
+
+
+def test_contagem_da_base_de_culturas_vem_dos_csvs():
+    import csv
+
+    from app.services.agente.fontes_status import fontes_usadas
+    from app.services.motor.catalogo import CSV_POR_PAIS
+
+    def linhas(pais: str) -> int:
+        with CSV_POR_PAIS[pais].open(encoding="utf-8", newline="") as f:
+            return sum(1 for _ in csv.DictReader(f))
+
+    assert f"parâmetros de {linhas('BR')} culturas no Brasil e de {linhas('US')} nos EUA, com fontes" in fontes_usadas()

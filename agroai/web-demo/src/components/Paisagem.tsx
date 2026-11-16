@@ -21,7 +21,7 @@ export function Paisagem({ className }: { className?: string }) {
         {t("Umidade do solo · SMAP", "Soil moisture · SMAP")}
       </div>
       <div className="absolute top-[42%] left-[7%] hidden -rotate-2 rounded-full bg-sol-claro px-3.5 py-2 text-[14px] font-bold text-sol-texto shadow-[0_10px_24px_-10px_rgba(29,43,34,0.35)] lg:block">
-        {t("Chuva da semana · GPM", "Rain this week · GPM")}
+        {t("Chuva do mês · GPM", "Rain this month · GPM")}
       </div>
 
       <div className="absolute -bottom-[40%] -left-[15%] h-[77%] w-[85%] rounded-[50%] bg-morro" />

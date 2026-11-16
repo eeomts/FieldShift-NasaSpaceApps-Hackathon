@@ -12,7 +12,7 @@ AgroAI
 
 ## High-Level Project Summary
 
-AgroAI is a mobile-first decision-support website, in English and Portuguese, that helps small and mid-size farmers in Brazil and the United States choose healthier crop rotations. The farmer answers a short questionnaire about the farm, the current crops, what they know about the soil and their own priorities (save water, improve the soil, prevent erosion, fewer pests, extra income, animal feed). AgroAI then combines NASA Earth observations (NASA POWER climate and SRTM slope) with soil data and a sourced crop catalog to compare the current rotation with the two best alternatives. For each strategy it explains why it was suggested, the evidence, benefits, risks, confidence and information gaps, exactly what the Field Shift challenge asks for. A chat assistant explains the results and the farm's climate in plain language and cites the source of every number. AgroAI supports, it does not decide: all scores come from transparent rules, the AI never computes or invents a number, and the final word belongs to the farmer and the local expert.
+AgroAI is a mobile-first decision-support website, in English and Portuguese, that helps small and mid-size farmers in Brazil and the United States choose healthier crop rotations. The farmer answers a short questionnaire about the farm, the current crops, what they know about the soil and their own priorities (save water, improve the soil, prevent erosion, fewer pests, extra income, animal feed). AgroAI then combines NASA Earth observations (NASA POWER climate and SRTM slope, plus SMAP soil moisture, MODIS NDVI and GPM IMERG rain on the dashboard) with soil data and a sourced crop catalog to compare the current rotation with the two best alternatives. For each strategy it explains why it was suggested, the evidence, benefits, risks, confidence and information gaps, exactly what the Field Shift challenge asks for. A chat assistant explains the results and the farm's climate in plain language and cites the source of every number. AgroAI supports, it does not decide: all scores come from transparent rules, the AI never computes or invents a number, and the final word belongs to the farmer and the local expert.
 
 ## Link to Project Demo
 
@@ -30,14 +30,14 @@ The repository README links to the live demo, which needs no password (sign in w
 
 **How it works.**
 1. *Questionnaire:* the farmer marks the farm on a map and answers about crops and planting months, soil observations (with reference photos), equipment, irrigation and up to 3 priorities. "I don't know" is always accepted.
-2. *Data collection:* from the location, the back-end reads NASA POWER (daily data and 1991-2020 normals), SRTM slope, SoilGrids soil properties and a 7-day forecast.
+2. *Data collection:* from the location, the back-end reads NASA POWER (daily data and 1991-2020 normals), SRTM slope, SoilGrids soil properties and a 7-day forecast. For the Dashboard it also reads recent SMAP soil moisture, MODIS NDVI and GPM IMERG rain from NASA Earthdata.
 3. *Soil portrait:* evidence fusion of lab results, field tests, the farmer's observations and SoilGrids, each with a confidence weight. When sources disagree, the app says so and trusts what the farmer sees.
 4. *Rotation engine:* generates candidates (fill the bare window, swap for a drought-tolerant crop, add a legume), removes infeasible ones (growing degree days, frost in flowering, equipment, excluded crops, and, in the US, cash crops outside their usual planting window from USDA Handbook 628) and scores each on 6 criteria from 0 to 1: water, soil, erosion, pests, income and animal feed. Water demand uses FAO-56 (ET0 from NASA POWER, ETc = Kc x ET0); erosion uses rainfall, SRTM slope and soil erodibility. The farmer's priorities weight the final score.
 5. *Results:* the current rotation and the 2 best alternatives, each with why, evidence, risks, confidence and gaps. The chat assistant explains them in plain language, with the source and period of each number.
 
 **Benefits.** Free NASA data becomes plain-language guidance; every recommendation is explainable and traceable to its source; the farmer's own knowledge counts; and it is built for the phone, in two languages.
 
-**What we hope to achieve.** Help farmers adopt rotations that keep the soil covered, reduce erosion and water stress and add income, while giving agronomists a transparent tool they can check and adapt. Next steps: official Brazilian planting windows (ZARC) in the engine, local market data, satellite data (SMAP, NDVI, GPM IMERG) in the analysis and the chat, and validation with extension services.
+**What we hope to achieve.** Help farmers adopt rotations that keep the soil covered, reduce erosion and water stress and add income, while giving agronomists a transparent tool they can check and adapt. Next steps: official Brazilian planting windows (ZARC) in the engine, local market data, the satellite data (SMAP, NDVI, GPM IMERG) inside the analysis and the chat, and validation with extension services.
 
 **Tools and languages.** Python (FastAPI, SQLAlchemy, Alembic, Pydantic, pytest), PostgreSQL with pgvector, TypeScript (React, Vite, Tailwind CSS, Leaflet), Docker, Google Gemini for language tasks only.
 
@@ -52,7 +52,11 @@ Yes. (1) The code was developed with AI assistance: the team used Claude Code (A
 - **NASA POWER** (daily point API and climatology, AG community: T2M, T2M_MAX, T2M_MIN, PRECTOTCORR, RH2M, ALLSKY_SFC_SW_DWN, WS2M): 1991-2020 rain and temperature normals, frost, heat, heavy-rain days, dry spells, growing degree days, and reference evapotranspiration (FAO-56, computed by AgroAI).
 - **SRTM 30 m**: field slope (Horn method), used in the erosion score.
 
-Not part of this version: SMAP soil moisture, MODIS/VIIRS NDVI and GPM IMERG rainfall. They are on the roadmap.
+- **SMAP L4** (SPL4SMGP v8): surface and root-zone soil moisture today, compared with the same day in up to 8 past years. Dashboard.
+- **MODIS MOD13Q1** v061: NDVI over the last 365 days (good-quality pixels only). Dashboard.
+- **GPM IMERG** Late, daily v07: rain over the last 30 days. Dashboard.
+
+SMAP, MODIS and IMERG are read live from NASA Earthdata (CMR + OPeNDAP) and shown on the Dashboard only; the rotation engine and the chat do not use them yet.
 
 Details: `docs/03-nasa-data.md`.
 
@@ -60,7 +64,9 @@ Details: `docs/03-nasa-data.md`.
 
 We did not use data from the Space Agency Partners. Other references:
 
-- **Data:** SoilGrids 2.0 (ISRIC, CC BY 4.0); Open-Meteo forecast (CC BY 4.0); OpenStreetMap Nominatim (ODbL); OpenTopoData (SRTM access); MAPA ZARC risk tables (Brazil); IBGE municipalities and SIDRA PAM table 5457; USDA NASS Quick Stats, Usual Planting and Harvesting Dates (Handbook 628) and Cropland Data Layer; US Census TIGERweb; FAO-56; crop parameters from Embrapa, FAO, IAPAR/IDR-Parana, USDA NRCS/ARS and university extension services.
+- **Data read by the app:** SoilGrids 2.0 (ISRIC, CC BY 4.0); Open-Meteo forecast (CC BY 4.0); OpenStreetMap Nominatim (ODbL); OpenTopoData (SRTM access).
+- **Used to build the crop catalog (cited per crop):** FAO-56; USDA NASS Usual Planting and Harvesting Dates (Handbook 628); MAPA ZARC ordinances; crop parameters from Embrapa, FAO, IAPAR/IDR-Parana, USDA NRCS/ARS and university extension services; USDA NASS Cropland Data Layer (to check the rotation of the US demo farms).
+- **Prepared, not yet read by the app:** MAPA ZARC risk tables (Brazil); IBGE municipalities and SIDRA PAM table 5457; USDA NASS Quick Stats; US Census TIGERweb.
 - **Map:** OpenStreetMap map tiles (© OpenStreetMap contributors, ODbL).
 - **Fonts:** Bricolage Grotesque and DM Sans (Google Fonts, SIL Open Font License 1.1).
 - **Images:** soil reference photos from Wikimedia Commons (CC0, public domain, CC BY, CC BY-SA), with authors and licenses listed in `docs/06-references.md`.

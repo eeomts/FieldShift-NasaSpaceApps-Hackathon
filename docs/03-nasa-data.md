@@ -10,10 +10,13 @@ Last updated: 2026-11-15
 |---|---|---|---|
 | NASA POWER | 30 years of local climate: rain, temperature, frost, heat, heavy rain, dry spells, and the inputs for evapotranspiration | Dashboard, rotation engine, chat | Working |
 | SRTM 30 m | Terrain slope of the field | Rotation engine (erosion score), chat | Working |
+| SMAP L4 (SPL4SMGP v8) | Surface and root-zone soil moisture today, compared with the same day in up to 8 past years | Dashboard only | Working (needs Earthdata token) |
+| MODIS MOD13Q1 v061 | NDVI, how green the field is, over the last 365 days (good-quality pixels only) | Dashboard only | Working (needs Earthdata token) |
+| GPM IMERG Late, daily v07 | Rain over the last 30 days | Dashboard only | Working (needs Earthdata token; otherwise NASA POWER rain) |
 
 **Status:** `Working` = used by the app today. Besides NASA data, the app uses **SoilGrids** (ISRIC) for soil properties and **Open-Meteo** for the 7-day forecast, because NASA does not publish forecasts.
 
-**Not part of this version:** soil moisture (SMAP L4), NDVI (MODIS, VIIRS, HLS) and satellite rain (GPM IMERG). The rotation analysis does not use them: water comes from NASA POWER rain and climate, and the months with a crop in the field come from the calendar the farmer gives. They are on the [roadmap](05-limitations-roadmap.md).
+**Satellite data is shown on the Dashboard only.** SMAP, MODIS and GPM IMERG are read live from NASA Earthdata (CMR search, then an OPeNDAP subset of the farm's pixel) and need an Earthdata token on the server. The rotation analysis and the chat do not use these numbers yet: water comes from NASA POWER rain and climate, and the months with a crop in the field come from the calendar the farmer gives. Using them in the analysis is on the [roadmap](05-limitations-roadmap.md). VIIRS and HLS are not used.
 
 ## NASA POWER
 

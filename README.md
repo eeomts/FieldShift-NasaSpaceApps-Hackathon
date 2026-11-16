@@ -17,7 +17,7 @@ Shifting temperatures, irregular rain, water shortages and declining soil health
 A mobile-first website, in English and Portuguese, for farmers in Brazil and the United States:
 
 1. **Short questionnaire** about the farm, the crops, what the farmer knows about the soil, and the farmer's priorities.
-2. **Dashboard** with the farm's climate history (NASA POWER), terrain slope (SRTM), a soil portrait (SoilGrids + the farmer's observations) and the forecast.
+2. **Dashboard** with the farm's climate history (NASA POWER), recent satellite readings (SMAP soil moisture, MODIS NDVI, GPM IMERG rain), terrain slope (SRTM), a soil portrait (SoilGrids + the farmer's observations) and the forecast.
 3. **Rotation comparison:** the current rotation vs. the 2 best alternatives, each with *why it was suggested, evidence, benefits, risks, confidence and information gaps*.
 4. **Chat assistant** that explains the comparison, the farm's climate and the crops in plain language, and cites the source and period of every number.
 
@@ -29,8 +29,11 @@ A mobile-first website, in English and Portuguese, for farmers in Brazil and the
 |---|---|
 | **NASA POWER** | 1991-2020 climate normals, frost, heat, heavy rain, dry spells, evapotranspiration (FAO-56) |
 | **SRTM 30 m** | Field slope for the erosion score |
+| **SMAP L4** (SPL4SMGP) | Dashboard: today's surface and root-zone soil moisture vs. the same day in past years |
+| **MODIS MOD13Q1** | Dashboard: NDVI (how green the field is) over the last 12 months |
+| **GPM IMERG** (Late, daily) | Dashboard: rain over the last 30 days |
 
-Also used: **SoilGrids** (soil properties) and **Open-Meteo** (7-day forecast, since NASA does not publish forecasts). Soil moisture (SMAP), NDVI (MODIS, VIIRS) and satellite rain (GPM IMERG) are **not part of this version**.
+Also used: **SoilGrids** (soil properties) and **Open-Meteo** (7-day forecast, since NASA does not publish forecasts). SMAP, MODIS and GPM IMERG are read live from NASA Earthdata (the server needs an Earthdata token) and are shown **on the Dashboard only**: the rotation engine and the chat do not use these numbers yet. Without the token, the rain card falls back to NASA POWER.
 
 Details in [NASA Data](docs/03-nasa-data.md). How the scores are built: [Methodology](docs/04-methodology.md).
 

@@ -20,7 +20,7 @@ AgroAI does not use data from the 2026 Space Agency Partners.
 | MAPA, ZARC risk tables 2025/2026 and 2026/2027 (Brazil) | Official planting windows (prepared, see roadmap) | Brazilian open government data |
 | IBGE, municipalities API and mesh v3 | Brazilian municipalities | Brazilian open government data |
 | IBGE SIDRA, Municipal Agricultural Production (PAM), table 5457 | Crop production per municipality (prepared) | Brazilian open government data |
-| USDA NASS, Usual Planting and Harvesting Dates (Handbook 628, 2010) | US cash-crop planting windows, applied by the engine | Public domain (US government) |
+| USDA NASS, Usual Planting and Harvesting Dates (Handbook 628, 2010) | US cash-crop planting windows, transcribed into the US crop catalog and applied by the engine | Public domain (US government) |
 | USDA NASS Quick Stats | US county crop production, 2016-2025 (prepared) | Public domain (US government) |
 | USDA NASS Cropland Data Layer (CropScape), 2020-2024 | Checking the rotation of the US demo farms | Public domain (US government) |
 | US Census Bureau TIGERweb | US counties | Public domain (US government) |

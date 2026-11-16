@@ -1,0 +1,2 @@
+# CSVs do catálogo são gerados por script em LF e um teste compara byte a byte
+data/catalogo/**/*.csv text eol=lf

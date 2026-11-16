@@ -1,8 +1,8 @@
 # data — dados preparados pelo time
 
-Volta para o [README principal](../README.md). As tarefas de cada pessoa, com o passo a passo, estão em [`ToDo/`](../ToDo/README.md).
+Volta para o [README principal](../README.md). As fontes de cada arquivo estão em [`FONTES.md`](FONTES.md).
 
-Aqui ficam os dados que o time prepara à mão ou baixa uma vez, antes de o app funcionar. O passo a passo de cada tarefa está no guia `docs/NasaSpaceApps-FieldShift/v1/application/dados/GUIA-PREPARACAO-DADOS.md`.
+Aqui ficam os dados que o time prepara à mão ou baixa uma vez, antes de o app funcionar.
 
 ## Fonte única do catálogo
 
@@ -22,8 +22,8 @@ Os dois `culturas.csv` usam **os mesmos ids** do `culturas.json` e não repetem 
 ## O que o motor lê hoje
 
 - **Lê:** o `culturas.csv` de cada país e o `catalogo/cultura_equipamentos.csv`; as malhas `brasil/municipios/municipios.geojson` e `eua/condados/condados.geojson` (para achar o município ou o condado da fazenda); os textos de `rag/*.md` (pelo chat).
-- **Não lê (dado preparado para depois):** a PAM (`brasil/pam/`), o NASS (`eua/nass/`) e as janelas do ZARC (`brasil/zarc/janelas.csv`).
-- **Renda:** hoje a nota de renda é a **contagem de culturas de venda** (tipo `comercial`) da rotação. Preço e produção da região não entram. A PAM e o NASS só vão entrar quando o motor passar a lê-los (nota datada na D-009, em `DECISOES.md`).
+- **Não lê (dado preparado para depois):** a PAM (`brasil/pam/`), o NASS (`eua/nass/`) e as janelas do ZARC (`brasil/zarc/janelas.csv`). O `janelas.csv` e o `producao_municipal.csv` ficam fora do Git (passam de 19 MB): gere com `scripts/preparar_zarc.py` e `scripts/baixar_pam.py`.
+- **Renda:** hoje a nota de renda é a **contagem de culturas de venda** (tipo `comercial`) da rotação. Preço e produção da região não entram. A PAM e o NASS só vão entrar quando o motor passar a lê-los.
 
 ## Divisão em 3 pessoas
 
@@ -45,7 +45,7 @@ As 17 culturas do Brasil (os mesmos `id` do `agroai/base/culturas.json`) **já t
 | Tarefa | Arquivo | Esforço |
 |---|---|---|
 | 4. Pontos da demo (decidir com o time e testar no SoilGrids) | `demo/pontos_demo.csv` | Baixo |
-| 5. ~~Pedido no AppEEARS (NDVI + SMAP dos pontos)~~ **descartada em 15/11/2026**: o projeto não vai mais usar o AppEEARS. `demo/appeears/` e `scripts/baixar_appeears.py` ficam só como histórico | `demo/appeears/` (histórico) | — |
+| 5. ~~Pedido no AppEEARS (NDVI + SMAP dos pontos)~~ **descartada em 15/11/2026**: o projeto não vai mais usar o AppEEARS. a pasta e o script saíram do repositório | — | — |
 | 6. ZARC: baixar a tábua de risco e mapear os nomes das culturas | bruto em `brutos/zarc/`; mapa em `brasil/zarc/mapa_culturas_zarc.csv`; janelas em `brasil/zarc/janelas.csv` (GO, RS e BA; `scripts/preparar_zarc.py`) | Médio |
 | 3. O que cada cultura exige de equipamento (ids do `agroai/base/equipamentos.json`) | `catalogo/cultura_equipamentos.csv` | Baixo |
 | Registro de tudo que baixar | `FONTES.md` | — |
@@ -58,9 +58,9 @@ As 17 culturas do Brasil (os mesmos `id` do `agroai/base/culturas.json`) **já t
 |---|---|---|
 | 8. Textos do RAG | `rag/*.md` (lista em `rag/README.md`) | Médio |
 | 2. Revisar e ampliar os sinônimos e nomes regionais das culturas | campo `nomes` do `agroai/base/culturas.json` | Baixo |
-| 10. 12 fotos de solo com créditos ✅ feito | `onboarding/fotos-solo/` + `CREDITOS.md` | Baixo |
+| 10. 12 fotos de solo com créditos ✅ feito | `agroai/web/public/fotos-solo/` + `CREDITOS.md` | Baixo |
 
-**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`, com o porquê de cada mudança em `onboarding/relatorio-revisao-questionario.md`. O `perguntas.yaml` é a especificação; as telas que o implementam estão em `agroai/web/src/onboarding/` (e na cópia de apresentação, `agroai/web-demo/src/onboarding/`).
+**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`. O `perguntas.yaml` é a especificação; as telas que o implementam estão em `agroai/web/src/onboarding/` (e na cópia de apresentação, `agroai/web-demo/src/onboarding/`).
 
 ## Estrutura
 
@@ -77,16 +77,15 @@ data/
 │   └── cultura_equipamentos.csv    # Pessoa 2
 ├── demo/
 │   ├── pontos_demo.csv             # Pessoa 2
-│   ├── appeears/                   # histórico: AppEEARS descartado em 15/11/2026 (tarefas.json + README com o aviso)
 │   └── pontos_demo_eua.csv         # Pessoa 2 (pontos dos EUA)
 ├── brasil/
 │   ├── municipios/                 # Pessoa 2 (malha do IBGE)
 │   ├── pam/
-│   │   ├── producao_municipal.csv  # Pessoa 1: produção por município × cultura × ano (PAM, 2016-2025), gerado por scripts/baixar_pam.py
+│   │   ├── producao_municipal.csv  # produção por município × cultura × ano (PAM, 2016-2025), gerado por scripts/baixar_pam.py (fora do Git)
 │   │   └── README.md               # origem, colunas, símbolos do SIDRA e conferência
 │   └── zarc/
 │       ├── mapa_culturas_zarc.csv  # Pessoa 2 (cultura_id → nome no ZARC)
-│       ├── janelas.csv             # janelas do ZARC (GO, RS e BA), gerado por scripts/preparar_zarc.py
+│       ├── janelas.csv             # janelas do ZARC (GO, RS e BA), gerado por scripts/preparar_zarc.py (fora do Git)
 │       └── README.md               # origem, safra por município, colunas e regras para o motor
 ├── eua/                            # Pessoa 2 (o mesmo papel do brasil/, ver abaixo)
 │   ├── condados/                   # condados.csv + condados.geojson (Censo, TIGERweb)
@@ -96,11 +95,8 @@ data/
 │       └── producao_condado.csv    # produção por condado (no lugar da PAM; precisa de NASS_API_KEY)
 ├── rag/                            # Pessoa 3 (textos .md)
 ├── onboarding/
-│   ├── perguntas.yaml              # especificação do questionário (23 perguntas)
-│   ├── relatorio-revisao-questionario.md
-│   ├── perguntas-antes-e-depois.md
-│   └── fotos-solo/                 # Pessoa 3 (+ CREDITOS.md)
-├── scripts/                        # downloads e preparação (PAM, ZARC, malhas, AppEEARS, NASS)
+│   └── perguntas.yaml              # especificação do questionário (23 perguntas; fotos em agroai/web/public/fotos-solo/)
+├── scripts/                        # downloads e preparação (PAM, ZARC, malhas, NASS)
 └── brutos/                         # downloads grandes: FORA do Git
 ```
 
@@ -127,7 +123,7 @@ Para gerar: `python data/scripts/baixar_condados_eua.py`, `python data/scripts/p
 
 ## AppEEARS: descartado em 15/11/2026
 
-O projeto **não vai mais usar o AppEEARS** (decisão do usuário, 15/11/2026; nota datada na D-009 do `DECISOES.md`). `demo/appeears/` (só o `tarefas.json` e o README) e `scripts/baixar_appeears.py` ficam apenas como histórico, sem apagar. Não existe `demo/appeears_eua/`, e não há dado do AppEEARS a registrar no `FONTES.md`.
+O projeto **não vai mais usar o AppEEARS** (decisão da equipe, 15/11/2026). `demo/appeears/` e `scripts/baixar_appeears.py` saíram do repositório. Não existe `demo/appeears_eua/`, e não há dado do AppEEARS a registrar no `FONTES.md`.
 
 ## Dependências entre as pessoas
 

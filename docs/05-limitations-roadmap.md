@@ -10,13 +10,13 @@ Last updated: 2026-11-15
 |---|---|
 | Sign-in and questionnaire (PT/EN) | Working |
 | Climate from NASA POWER (normals, frost, heat, heavy rain, dry spells, ET0) | Working |
-| Satellite data: SMAP soil moisture, MODIS/VIIRS NDVI, GPM IMERG rain | Not in this version: the analysis does not use them |
+| Satellite data: SMAP soil moisture, MODIS NDVI, GPM IMERG rain | Working on the Dashboard (needs Earthdata token); not yet used by the analysis or the chat |
 | Slope from SRTM | Working |
 | Soil portrait (SoilGrids + farmer's observations) | Working |
 | Rotation comparison: current + 2 alternatives, 6 criteria | Working (v1) |
 | Chat assistant with knowledge base | Working (cites NASA POWER; slope from SRTM appears through the rotation comparison) |
 | Official Brazilian planting windows (ZARC) | Partial: data prepared for 3 states, not yet read by the engine |
-| US usual planting dates (USDA Handbook 628) | Working: the engine applies them to US cash crops |
+| US usual planting dates (USDA NASS Handbook 628) | Working: transcribed into the US crop catalog and applied by the engine to US cash crops (the raw NASS file is not read) |
 | Market and income data (IBGE PAM, USDA NASS) | Partial: data prepared, not yet read by the engine |
 
 ## Known limitations
