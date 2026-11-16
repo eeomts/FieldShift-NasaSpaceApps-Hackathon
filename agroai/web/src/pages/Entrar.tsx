@@ -61,7 +61,7 @@ export function Entrar({ modo }: { modo: "login" | "cadastro" }) {
           <p className="m-0 text-[15px] leading-[1.45] text-suave lg:text-[17px]">
             {cadastro
               ? t("Usamos seus dados só para analisar a sua fazenda. Você pode apagar tudo quando quiser.", "We only use your data to analyze your farm. You can delete everything whenever you want.")
-              : t("Dados de satélite da NASA traduzidos para o seu campo, todo dia.", "NASA satellite data translated for your field, every day.")}
+              : t("Dados de satélite da NASA traduzidos para o seu campo.", "NASA satellite data translated for your field.")}
           </p>
         </div>
 

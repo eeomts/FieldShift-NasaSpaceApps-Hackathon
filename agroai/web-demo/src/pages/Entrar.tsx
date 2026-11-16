@@ -49,7 +49,7 @@ export function Entrar() {
             {t("Sua fazenda,", "Your farm,")}<br />{t("vista do espaço.", "seen from space.")}
           </h1>
           <p className="m-0 text-[15px] leading-[1.45] text-suave lg:text-[17px]">
-            {t("Dados de satélite da NASA traduzidos para o seu campo, todo dia.", "NASA satellite data translated for your field, every day.")}
+            {t("Dados de satélite da NASA traduzidos para o seu campo.", "NASA satellite data translated for your field.")}
           </p>
         </div>
 
