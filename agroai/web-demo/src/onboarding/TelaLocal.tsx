@@ -111,7 +111,7 @@ export function TelaLocal({ r, set, ctx }: TelaProps) {
                 value={consulta}
                 onChange={(e) => setConsulta(e.target.value)}
                 aria-label={t("Procurar cidade ou região", "Search town or area")}
-                placeholder={t("Ex.: Sorriso, Mato Grosso", "E.g.: Nakuru, Kenya")}
+                placeholder={t("Ex.: Sorriso, Mato Grosso", "E.g.: Ames, Iowa")}
                 className="min-w-0 flex-1 bg-transparent text-[15px] outline-none placeholder:text-suave/60"
               />
               {buscando && <Bolinhas />}
