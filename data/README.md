@@ -58,9 +58,9 @@ As 17 culturas do Brasil (os mesmos `id` do `agroai/base/culturas.json`) **já t
 |---|---|---|
 | 8. Textos do RAG | `rag/*.md` (lista em `rag/README.md`) | Médio |
 | 2. Revisar e ampliar os sinônimos e nomes regionais das culturas | campo `nomes` do `agroai/base/culturas.json` | Baixo |
-| 10. 12 fotos de solo com créditos ✅ feito | `onboarding/fotos-solo/` + `CREDITOS.md` | Baixo |
+| 10. 12 fotos de solo com créditos ✅ feito | `agroai/web/public/fotos-solo/` + `CREDITOS.md` | Baixo |
 
-**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`, com o porquê de cada mudança em `onboarding/relatorio-revisao-questionario.md`. O `perguntas.yaml` é a especificação; as telas que o implementam estão em `agroai/web/src/onboarding/` (e na cópia de apresentação, `agroai/web-demo/src/onboarding/`).
+**Questionário ✅ feito (15/11):** a revisão para escopo global (23 perguntas em 6 partes, regras por local, textos em PT e EN americano) está em `onboarding/perguntas.yaml`. O `perguntas.yaml` é a especificação; as telas que o implementam estão em `agroai/web/src/onboarding/` (e na cópia de apresentação, `agroai/web-demo/src/onboarding/`).
 
 ## Estrutura
 
@@ -95,11 +95,8 @@ data/
 │       └── producao_condado.csv    # produção por condado (no lugar da PAM; precisa de NASS_API_KEY)
 ├── rag/                            # Pessoa 3 (textos .md)
 ├── onboarding/
-│   ├── perguntas.yaml              # especificação do questionário (23 perguntas)
-│   ├── relatorio-revisao-questionario.md
-│   ├── perguntas-antes-e-depois.md
-│   └── fotos-solo/                 # Pessoa 3 (+ CREDITOS.md)
-├── scripts/                        # downloads e preparação (PAM, ZARC, malhas, AppEEARS, NASS)
+│   └── perguntas.yaml              # especificação do questionário (23 perguntas; fotos em agroai/web/public/fotos-solo/)
+├── scripts/                        # downloads e preparação (PAM, ZARC, malhas, NASS)
 └── brutos/                         # downloads grandes: FORA do Git
 ```
 

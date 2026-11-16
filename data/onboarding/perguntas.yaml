@@ -7,7 +7,6 @@
 #       agroai/api/app/services/onboarding/perfil.py  → o que cada resposta alimenta (perfil, solo)
 #       agroai/web/src/onboarding/Passos.tsx          → telas
 # Se mudar um id ou valor aqui, mude também no schemas/onboarding.py (e vice-versa). Dono: Pessoa 3.
-# O que foi ajustado na versão revisada e por quê: data/onboarding/relatorio-revisao-questionario.md
 #
 # tipos: sim_nao_nao_sei | escolha | figuras | texto_livre | multipla | mapa | calendario | ano
 #        grade_sim_nao_nao_sei (várias perguntas sim/não/não sei numa tela, uma por linha)
@@ -515,7 +514,7 @@ perguntas:
       pt: "Cor"
       en: "Color"
     tipo: figuras
-    # imagem: fotos de data/onboarding/fotos-solo/ (até o app trocar, ele mostra amostras de cor)
+    # imagem: fotos de agroai/web/public/fotos-solo/ (até o app trocar, ele mostra amostras de cor)
     opcoes:
       - { valor: escura,   imagem: cor_escura.jpg,   pt: "Preta ou marrom bem escura", en: "Black or very dark brown" }
       - { valor: marrom,   imagem: cor_marrom.jpg,   pt: "Marrom",                     en: "Brown" }

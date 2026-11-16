@@ -29,5 +29,12 @@ data/brasil/pam/producao_municipal.csv
 data/demo/appeears/
 data/scripts/baixar_appeears.py
 
+# Notas internas e cópia das fotos (as do app ficam em agroai/web/public/fotos-solo/)
+data/arquitetura-tratamento/
+data/onboarding/fotos-solo/
+data/onboarding/perguntas-antes-e-depois.md
+data/onboarding/relatorio-revisao-questionario.md
+data/.gitkeep
+
 # Cache de build do TypeScript
 *.tsbuildinfo
