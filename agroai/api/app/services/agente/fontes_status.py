@@ -1,6 +1,9 @@
 """Registro das fontes de dados que o app usa de fato; atualizar a cada integração nova."""
+from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Literal
+
+from app.services.motor.catalogo import catalogo_do_pais
 
 # chat: o assistente consulta; painel: só o Dashboard mostra (o chat não tem esses números); nao: o app ainda não usa
 Uso = Literal["chat", "painel", "nao"]
@@ -9,8 +12,17 @@ Uso = Literal["chat", "painel", "nao"]
 @dataclass(frozen=True)
 class FonteStatus:
     nome: str
-    para_que: str
+    para_que: str | Callable[[], str]  # função: o texto sai na hora de usar, não no import
     uso: Uso
+
+    @property
+    def descricao(self) -> str:
+        return self.para_que() if callable(self.para_que) else self.para_que
+
+
+def _base_de_culturas() -> str:
+    """Contagem vinda dos culturas.csv (BR e EUA), pelo leitor do motor."""
+    return f"parâmetros de {len(catalogo_do_pais('BR'))} culturas no Brasil e de {len(catalogo_do_pais('US'))} nos EUA, com fontes"
 
 
 FONTES: list[FonteStatus] = [
@@ -20,7 +32,7 @@ FONTES: list[FonteStatus] = [
         "a evapotranspiração (ET0) é calculada pelo AgroAI com o método FAO-56",
         "chat",
     ),
-    FonteStatus("base de culturas do AgroAI", "parâmetros de 17 culturas no Brasil e de 18 nos EUA, com fontes", "chat"),
+    FonteStatus("base de culturas do AgroAI", _base_de_culturas, "chat"),
     FonteStatus("textos da base de conhecimento do AgroAI", "explicações de conceitos", "chat"),
     FonteStatus("respostas do produtor no cadastro da fazenda", "ficha da fazenda", "chat"),
     FonteStatus("comparação de rotações do AgroAI", "notas de água, terra, erosão, pragas, renda e animais para a rotação atual e alternativas", "chat"),
@@ -43,7 +55,7 @@ FONTES: list[FonteStatus] = [
 
 
 def _lista(uso: Uso) -> str:
-    return "; ".join(f"{f.nome} ({f.para_que})" for f in FONTES if f.uso == uso)
+    return "; ".join(f"{f.nome} ({f.descricao})" for f in FONTES if f.uso == uso)
 
 
 def fontes_usadas() -> str:

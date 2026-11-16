@@ -49,3 +49,16 @@ def test_soilgrids_esta_em_usa_hoje_com_o_que_entrega():
     trechos = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
     assert "SoilGrids (solo por ponto: textura, matéria orgânica, pH, erodibilidade; mapa global de 250 m)" in trechos["chat"]
     assert "SoilGrids" not in trechos["nao"]
+
+
+def test_contagem_da_base_de_culturas_vem_dos_csvs():
+    import csv
+
+    from app.services.agente.fontes_status import fontes_usadas
+    from app.services.motor.catalogo import CSV_POR_PAIS
+
+    def linhas(pais: str) -> int:
+        with CSV_POR_PAIS[pais].open(encoding="utf-8", newline="") as f:
+            return sum(1 for _ in csv.DictReader(f))
+
+    assert f"parâmetros de {linhas('BR')} culturas no Brasil e de {linhas('US')} nos EUA, com fontes" in fontes_usadas()
