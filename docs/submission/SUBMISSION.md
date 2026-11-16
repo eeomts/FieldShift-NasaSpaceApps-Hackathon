@@ -20,7 +20,7 @@ AgroAI is a mobile-first decision-support website, in English and Portuguese, th
 
 ## Link to Final Project
 
-[TODO: public link to the GitHub repository]
+https://github.com/eeomts/FieldShift-NasaSpaceApps-Hackathon
 
 ## Detailed Project Description
 
@@ -62,7 +62,9 @@ Details: `docs/03-nasa-data.md`.
 
 We did not use data from the Space Agency Partners. Other references:
 
-- **Data:** SoilGrids 2.0 (ISRIC, CC BY 4.0); Open-Meteo forecast (CC BY 4.0); OpenStreetMap Nominatim (ODbL); OpenTopoData (SRTM access); MAPA ZARC risk tables (Brazil); IBGE municipalities and SIDRA PAM table 5457; USDA NASS Quick Stats, Usual Planting and Harvesting Dates (Handbook 628) and Cropland Data Layer; US Census TIGERweb; FAO-56; crop parameters from Embrapa, FAO, IAPAR/IDR-Parana, USDA NRCS/ARS and university extension services.
+- **Data read by the app:** SoilGrids 2.0 (ISRIC, CC BY 4.0); Open-Meteo forecast (CC BY 4.0); OpenStreetMap Nominatim (ODbL); OpenTopoData (SRTM access).
+- **Used to build the crop catalog (cited per crop):** FAO-56; USDA NASS Usual Planting and Harvesting Dates (Handbook 628); MAPA ZARC ordinances; crop parameters from Embrapa, FAO, IAPAR/IDR-Parana, USDA NRCS/ARS and university extension services; USDA NASS Cropland Data Layer (to check the rotation of the US demo farms).
+- **Prepared, not yet read by the app:** MAPA ZARC risk tables (Brazil); IBGE municipalities and SIDRA PAM table 5457; USDA NASS Quick Stats; US Census TIGERweb.
 - **Images:** soil reference photos from Wikimedia Commons (CC0, public domain, CC BY, CC BY-SA), with authors and licenses in `agroai/web/public/fotos-solo/CREDITOS.md`.
 - **Code libraries:** FastAPI, Uvicorn, SQLAlchemy, psycopg, Alembic, Pydantic, argon2-cffi, PyJWT, httpx, Shapely, pgvector, google-genai, pytest, React, React Router, Leaflet, React Leaflet, Vite, TypeScript, Tailwind CSS, PostgreSQL, Docker, Caddy.
 - **AI services:** Google Gemini, Claude Code.
