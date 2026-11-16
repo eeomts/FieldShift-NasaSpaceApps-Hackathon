@@ -193,8 +193,8 @@ export function Chat() {
 
   const primeiroNome = usuario?.nome?.split(" ")[0] ?? "";
   const saudacao = t(
-    `Oi${primeiroNome ? `, ${primeiroNome}` : ""}! Eu conheço o seu campo pelas suas respostas e pelos dados da NASA. Pergunte sobre clima, solo ou o que plantar.`,
-    `Hi${primeiroNome ? `, ${primeiroNome}` : ""}! I know your field from your answers and from NASA data. Ask about weather, soil or what to plant.`,
+    `Oi${primeiroNome ? `, ${primeiroNome}` : ""}! Eu conheço o seu campo pelas suas respostas e pelos dados da NASA e do SoilGrids. Pergunte sobre clima, solo ou o que plantar.`,
+    `Hi${primeiroNome ? `, ${primeiroNome}` : ""}! I know your field from your answers and from NASA and SoilGrids data. Ask about weather, soil or what to plant.`,
   );
   const semMensagens = !abrindo && mensagens.length === 0;
 
