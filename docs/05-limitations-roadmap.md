@@ -14,9 +14,9 @@ Last updated: 2026-11-15
 | Slope from SRTM | Working |
 | Soil portrait (SoilGrids + farmer's observations) | Working |
 | Rotation comparison: current + 2 alternatives, 6 criteria | Working (v1) |
-| Chat assistant with knowledge base | Working (cites NASA POWER and SRTM) |
+| Chat assistant with knowledge base | Working (cites NASA POWER; slope from SRTM appears through the rotation comparison) |
 | Official Brazilian planting windows (ZARC) | Partial: data prepared for 3 states, not yet read by the engine |
-| US usual planting dates (USDA NASS Handbook 628) | Working: transcribed into the US crop catalog (the raw NASS file is not read) |
+| US usual planting dates (USDA NASS Handbook 628) | Working: transcribed into the US crop catalog and applied by the engine to US cash crops (the raw NASS file is not read) |
 | Market and income data (IBGE PAM, USDA NASS) | Partial: data prepared, not yet read by the engine |
 
 ## Known limitations
@@ -24,13 +24,14 @@ Last updated: 2026-11-15
 - **Parameters to validate.** Some thresholds and weights in the engine are initial proposals, marked in the code, and need review by an agronomist.
 - **Resolution.** NASA POWER is about 50 km: it describes the region, not the single field, and a local summer storm may not show in full. SRTM (30 m) and SoilGrids (250 m) are closer to field scale. The farmer's own observations carry more weight than global models for the soil.
 - **No outcome data.** There is no dataset of real rotation results to calibrate the scores. The comparison is a structured, explainable estimate, not a yield prediction.
-- **Scenarios are sensitivity tests**, not forecasts.
+- **No forecasts and no "what if" runs in the chat.** The chat explains the current comparison and the climate history; it does not re-run the engine with changed inputs.
 - **Crop coverage.** 17 crops in Brazil and 18 in the US. Crops outside the catalog are not scored.
 
 ## Roadmap
 
-1. Engine v2: official planting windows (ZARC in Brazil, NASS in the US) and local market data in the "extra income" score.
-2. Satellite data (SMAP soil moisture, MODIS/VIIRS NDVI, GPM IMERG rain) in the analysis and in the chat.
-3. More crops and regional crop arrangements.
-4. Validation with agronomists and extension services in each region.
-5. Field-level layers: erosion-risk zones and water-stress hotspots on the map.
+1. Engine v2: official Brazilian planting windows (ZARC) and local market data in the "extra income" score.
+2. "What if" scenarios: re-run the engine with less rain, more heat or irrigation, as a sensitivity test, not a forecast.
+3. Satellite data (SMAP soil moisture, MODIS/VIIRS NDVI, GPM IMERG rain) in the analysis and in the chat.
+4. More crops and regional crop arrangements.
+5. Validation with agronomists and extension services in each region.
+6. Field-level layers: erosion-risk zones and water-stress hotspots on the map.
