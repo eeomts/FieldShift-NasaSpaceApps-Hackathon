@@ -28,11 +28,11 @@ Fonte: NASA POWER (temperatura máxima diária); base de culturas do Field Shift
 
 ## Veranico
 
-Veranico é uma sequência de dias sem chuva no meio da época das águas. O Field Shift conta como veranico um período de 10 dias ou mais seguidos com menos de 1 mm de chuva por dia, dentro da estação chuvosa do lugar. O app usa a chuva do NASA POWER, que enxerga quadrados de uns 50 km. Nesta versão não há outra fonte de chuva para conferir.
+Veranico é uma sequência de dias sem chuva no meio da época das águas. O Field Shift conta como veranico um período de 10 dias ou mais seguidos com menos de 1 mm de chuva por dia, dentro da estação chuvosa do lugar. O app usa a chuva do NASA POWER, que enxerga quadrados de uns 50 km. O painel (Dashboard) mostra também a chuva do GPM IMERG dos últimos 30 dias, mas o veranico do motor não usa esse número.
 
 O veranico importa porque a chuva do mês pode parecer boa no total e mesmo assim ter um buraco de duas semanas bem na fase em que a planta mais precisa de água. O app mostra em que meses o veranico costuma acontecer e quantas vezes aconteceu nos últimos anos. Isso ajuda a escolher culturas e datas de plantio que fujam desse período, ou culturas que aguentam melhor a seca.
 
-O veranico também depende do solo: em terra arenosa, poucos dias sem chuva já secam a zona das raízes; em terra argilosa, a reserva dura mais. Por isso vale olhar o veranico junto com a textura da terra. O app não usa a umidade do solo medida por satélite (SMAP L4) nesta versão.
+O veranico também depende do solo: em terra arenosa, poucos dias sem chuva já secam a zona das raízes; em terra argilosa, a reserva dura mais. Por isso vale olhar o veranico junto com a textura da terra. O painel mostra a umidade do solo medida por satélite (SMAP L4), mas o veranico não usa esse número.
 
 Como o produtor costuma dizer: veranico, estiagem no meio das águas, a chuva sumiu, parou de chover na hora errada, secou tudo em janeiro.
 
@@ -44,7 +44,7 @@ O indicador de chuva forte do Field Shift conta os dias em que choveu muito mais
 
 A chuva forte importa por dois motivos. Primeiro, ela pode encharcar a terra e prejudicar a lavoura. Segundo, e muito importante para o solo, ela arranca a terra quando o chão está sem cobertura. Por isso o app cruza a chuva forte com os meses em que o campo fica descoberto e com a inclinação do terreno.
 
-A chuva do Field Shift vem do NASA POWER, em quadrados de uns 50 km. Nesta versão o app não usa o GPM IMERG nem outra fonte para conferir. Uma pancada de verão bem localizada pode não aparecer inteira nesses quadrados, então o pluviômetro do produtor, quando existe, vale mais.
+A chuva do Field Shift vem do NASA POWER, em quadrados de uns 50 km. O painel (Dashboard) mostra a chuva do GPM IMERG dos últimos 30 dias, ou a do NASA POWER quando não há acesso a ele, mas o motor e o chat não usam o IMERG. Uma pancada de verão bem localizada pode não aparecer inteira nesses quadrados, então o pluviômetro do produtor, quando existe, vale mais.
 
 Como o produtor costuma dizer: toró, temporal, chuvarada, pancada, tromba d'água, a chuva levou tudo.
 
@@ -56,27 +56,27 @@ O déficit hídrico do Field Shift mostra quando a chuva não dá conta da água
 
 Quando a demanda passa da chuva por vários dias, a reserva do solo vai baixando. Se a reserva acaba, a planta passa sede. O app mostra o déficit por mês e destaca os meses em que a fase mais sensível da cultura cai num período de pouca água.
 
-O balanço de água do app é uma aproximação. Ele não sabe exatamente quanta água o solo do produtor guarda, quanto escorre na enxurrada ou quanto vem da irrigação. Por isso o resultado é chamado de "aproximação pelo clima", não de diagnóstico da raiz. O app não usa a umidade do solo medida por satélite (SMAP L4) nesta versão, então não tem como comparar a aproximação com uma medição.
+O balanço de água do app é uma aproximação. Ele não sabe exatamente quanta água o solo do produtor guarda, quanto escorre na enxurrada ou quanto vem da irrigação. Por isso o resultado é chamado de "aproximação pelo clima", não de diagnóstico da raiz. O painel mostra a umidade do solo medida por satélite (SMAP L4), mas o motor e o chat não usam esse número, então a aproximação não é comparada com uma medição.
 
 Como o produtor costuma dizer: falta d'água, seca, a terra não segura água, a chuva não dá, a lavoura passou sede.
 
 Fonte: NASA POWER; FAO-56 (evapotranspiração de referência e coeficiente de cultura); Field Shift, motor de análise.
 
-## Água nas raízes (não usado nesta versão)
+## Água nas raízes (só no painel)
 
-O indicador de água nas raízes mostraria se a umidade do solo, até cerca de 1 metro de fundura, está acima, dentro ou abaixo do normal para aquela época. O dado viria do SMAP L4 da NASA, que junta a medição do satélite na camada de cima do solo com um modelo que estima o que acontece mais embaixo, onde a raiz trabalha.
+A água nas raízes mostra se a umidade do solo, até cerca de 1 metro de fundura, está acima, dentro ou abaixo do normal para aquela época. O dado vem do SMAP L4 da NASA (produto SPL4SMGP, versão 8), que junta a medição do satélite na camada de cima do solo com um modelo que estima o que acontece mais embaixo, onde a raiz trabalha.
 
-O Field Shift não usa o SMAP L4 nesta versão: a umidade do solo ficou fora, e o app não mostra o indicador de água nas raízes. O que o app mostra de água é o balanço pelo clima (chuva contra evapotranspiração), que é uma aproximação. Se o produtor perguntar, diga que não usamos a umidade do solo por satélite nesta versão.
+O painel (Dashboard) do Field Shift mostra a umidade do solo do SMAP L4, na superfície e na zona da raiz, e compara a de hoje com o mesmo dia de até 8 anos anteriores. Isso precisa do token do Earthdata da NASA. A água nas raízes não é um indicador do motor: o motor e o chat não usam esse número. A água que o motor usa é o balanço pelo clima (chuva contra evapotranspiração, com o NASA POWER), que é uma aproximação. Se o produtor perguntar, diga que o número do satélite está só no painel e que o chat não tem esse valor para comentar.
 
 Para quem quiser saber o limite dessa fonte: a água nas raízes do SMAP é um valor regional, de quadrados de uns 9 km, e o solo do modelo é genérico. Estar "abaixo do normal" também não quer dizer que a planta está sofrendo: se a época já é seca, o normal já é pouco. Em mata fechada e na Amazônia o dado é menos confiável.
 
 Como o produtor costuma dizer: a terra está seca por baixo, umidade no pé da planta, a raiz não acha água, o chão secou fundo.
 
-Fonte: NASA SMAP L4 (umidade da zona das raízes), só como referência; Field Shift, motor de análise.
+Fonte: NASA SMAP L4 (SPL4SMGP, umidade da zona das raízes), mostrado só no painel; Field Shift, motor de análise.
 
 ## Meses de solo descoberto
 
-Os meses de solo descoberto mostram em que época do ano o campo fica sem planta verde por cima. O Field Shift não usa o NDVI nesta versão. O NDVI é um índice que os satélites MODIS e VIIRS calculam a cada 16 dias desde 2000 e que mede o quanto de planta verde existe no lugar, mas o app não o mede.
+Os meses de solo descoberto mostram em que época do ano o campo fica sem planta verde por cima. O NDVI é um índice que o satélite MODIS calcula a cada 16 dias desde 2000 e que mede o quanto de planta verde existe no lugar. O painel (Dashboard) do Field Shift mostra o NDVI do MODIS Terra (MOD13Q1) dos últimos 365 dias; o VIIRS não é usado. Mas o motor e o chat não usam o NDVI e não medem o solo descoberto por satélite.
 
 Os meses de solo descoberto vêm só do que o produtor contou no calendário: o que planta, de que mês a que mês e o que acontece depois da colheita. Os meses vazios aparecem destacados para ele confirmar.
 
