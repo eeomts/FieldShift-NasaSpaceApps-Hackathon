@@ -10,7 +10,7 @@ Last updated: 2026-11-15
 |---|---|
 | Sign-in and questionnaire (PT/EN) | Working |
 | Climate from NASA POWER (normals, frost, heat, heavy rain, dry spells, ET0) | Working |
-| Satellite data: SMAP soil moisture, MODIS/VIIRS NDVI, GPM IMERG rain | Not in this version: the analysis does not use them |
+| Satellite data: SMAP soil moisture, MODIS NDVI, GPM IMERG rain | Working on the Dashboard (needs Earthdata token); not yet used by the analysis or the chat |
 | Slope from SRTM | Working |
 | Soil portrait (SoilGrids + farmer's observations) | Working |
 | Rotation comparison: current + 2 alternatives, 6 criteria | Working (v1) |

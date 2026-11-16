@@ -11,7 +11,7 @@ Clima mudando, chuva irregular, falta de água e solo se desgastando tornam dif�
 Um site em português e inglês, pensado primeiro para o celular, para pequenos e médios produtores do Brasil e dos EUA. Nele o produtor:
 
 1. **Responde um questionário curto** sobre a fazenda: local, o que planta e quando, o que sabe do solo e suas prioridades.
-2. **Acompanha um painel (dashboard)** com o retrato do solo, o clima do local (NASA POWER), o relevo (SRTM), a previsão do tempo e a comparação da rotação atual com duas alternativas.
+2. **Acompanha um painel (dashboard)** com o retrato do solo, o clima do local (NASA POWER), a umidade do solo (SMAP), o verde da lavoura (NDVI do MODIS), a chuva recente (GPM IMERG), o relevo (SRTM), a previsão do tempo e a comparação da rotação atual com duas alternativas.
 3. **Conversa com a AgroAI**, um assistente que conhece a fazenda dele e explica os dados em linguagem simples, citando a fonte.
 
 > A ferramenta **apoia, não decide**. A palavra final é do produtor e do técnico local. Todo número tem fonte, e a IA nunca calcula nem inventa número.
@@ -22,7 +22,7 @@ Um site em português e inglês, pensado primeiro para o celular, para pequenos 
 |---|---|---|
 | 1 | Login e cadastro | Pronta |
 | 2 | Questionário do produtor (onboarding), em PT e EN | Pronta |
-| 3 | Dados da NASA: clima (NASA POWER), solo (SoilGrids), relevo (SRTM). Umidade do solo (SMAP) e NDVI ficaram fora desta versão | Pronta (solo em revisão) |
+| 3 | Dados: clima (NASA POWER), relevo (SRTM), solo (SoilGrids); no painel, umidade do solo (SMAP), NDVI (MODIS) e chuva recente (GPM IMERG), com token do Earthdata | Pronta (solo em revisão) |
 | 4 | Comparação de 3 estratégias de rotação (motor) | Pronta a v1; v2 em andamento |
 | 5 | Chat AgroAI com base de conhecimento (RAG) | Pronta |
 | — | Versão de apresentação (`agroai/web-demo`) | Pronta |
@@ -101,6 +101,9 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 
 | Você quer… | Leia |
 |---|---|
+| Umidade do solo hoje x anos anteriores (só no painel) | SMAP L4 (SPL4SMGP) |
+| Verde da lavoura nos últimos 12 meses (só no painel) | MODIS MOD13Q1 (NDVI) |
+| Chuva dos últimos 30 dias (só no painel) | GPM IMERG; sem o token do Earthdata, NASA POWER |
 | Entender o desafio | [Texto oficial](docs/NasaSpaceApps-FieldShift/v1/desafio-oficial-nasa-field-shift.md) e [`CONTEXTO-DESAFIO.md`](docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md) |
 | Saber o que já foi decidido | [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md) |
 | Saber em que pé está | [`ANDAMENTO.md`](docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md) |
@@ -120,7 +123,7 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 | Solo | SoilGrids |
 | Previsão do tempo | Open-Meteo |
 
-**Ficaram fora desta versão:** a umidade do solo (SMAP L4), o NDVI (MODIS, VIIRS e HLS) e a chuva de satélite (GPM IMERG) (ver D-009 em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md)). Os dados do IBGE PAM, do ZARC e do USDA NASS estão preparados em `data/`, mas o motor ainda não os lê. As demais fontes da D-009 (ERA5, GLDAS, FAO GAEZ, NASA Harvest, MapBiomas, INMET/CEMADEN) são plano: o app não as usa.
+SMAP, MODIS e GPM IMERG são lidos ao vivo do NASA Earthdata e precisam do token no servidor. Eles aparecem **só no painel**: o motor de rotação e o chat ainda não usam esses números. As janelas de semeadura dos EUA (USDA NASS, Handbook 628) estão transcritas no catálogo de culturas. Os dados do IBGE PAM, das tábuas do ZARC e do NASS Quick Stats são gerados pelos scripts de `data/scripts/`, mas o motor ainda não os lê. ERA5, GLDAS, FAO GAEZ, NASA Harvest, VIIRS, HLS, MapBiomas e INMET/CEMADEN não são usados.
 
 A previsão do tempo dos próximos dias vem da **Open-Meteo**, porque a NASA não publica previsão. Ela já está no app, mas ainda não foi registrada no `DECISOES.md` (ver "Pontos em aberto").
 

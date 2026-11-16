@@ -20,7 +20,7 @@ NASA has decades of free data about every field on Earth: rain, temperature, soi
 A mobile-first website, in **Portuguese and English**, where the farmer:
 
 1. **Answers a short questionnaire** about the farm: location, what is planted and when, what the farmer knows about the soil, available equipment, and the farmer's own priorities (save water, improve the soil, prevent erosion, fewer pests, extra income, animal feed).
-2. **Sees a dashboard** with the farm's climate history (NASA POWER), terrain slope (SRTM), a soil portrait (SoilGrids + the farmer's observations) and the weather forecast.
+2. **Sees a dashboard** with the farm's climate history (NASA POWER), recent satellite readings (SMAP soil moisture, MODIS NDVI, GPM IMERG rain), terrain slope (SRTM), a soil portrait (SoilGrids + the farmer's observations) and the weather forecast.
 3. **Compares three rotation strategies**, the current one plus the two best alternatives for the farmer's priorities. For each: why it was suggested, the evidence, benefits, risks, confidence and information gaps.
 4. **Talks to the AgroAI assistant**, a chat that knows the farm and answers "what if" questions in plain language, always citing the source of each number.
 
