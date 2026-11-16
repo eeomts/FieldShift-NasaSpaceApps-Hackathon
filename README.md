@@ -4,7 +4,7 @@
 
 Built for the **NASA Space Apps Challenge 2026**, challenge **Field Shift: Adapting Farms with NASA Data**.
 
-**Demo video:** [TODO: public link]  |  **Documentation:** [`docs/`](docs/README.md)  |  [Leia em portugues](README.pt-BR.md)
+**Demo video:** [youtu.be/Do6FTY6CYfc](https://youtu.be/Do6FTY6CYfc)  |  **Documentation:** [`docs/`](docs/README.md)  |  [Leia em portugues](README.pt-BR.md)
 
 ---
 
@@ -82,4 +82,4 @@ Full statement: [Use of AI](docs/07-ai-use.md).
 
 ## Team
 
-[TODO: team name and members]
+Yury Turatti, Pedro Barbosa, Augusto Aparecido, Arthur Miranda, Mateus Moreira and Guilherme Melo.

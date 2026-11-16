@@ -24,7 +24,7 @@ AgroAI uses **Google Gemini** (`google-genai` SDK) for three tasks:
 
 ## 3. AI-edited demo video
 
-- **The demo video was edited with AI tools** [TODO: name the tool(s)].
+- **The demo video was edited with AI tools:** Claude Opus 5.5 (Anthropic).
 - The video carries a **visible watermark** stating that AI was used in its production.
 - No AI-generated or AI-edited content uses NASA logos, flags or mission identifiers.
 - No images or videos show people under 18.

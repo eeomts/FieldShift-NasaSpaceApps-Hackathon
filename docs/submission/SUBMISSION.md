@@ -16,7 +16,7 @@ AgroAI is a mobile-first decision-support website, in English and Portuguese, th
 
 ## Link to Project Demo
 
-[TODO: public link to the 30-second video (YouTube or Google Drive, no login). If the narration is not in English, it must have English subtitles.]
+https://youtu.be/Do6FTY6CYfc
 
 ## Link to Final Project
 
@@ -43,7 +43,7 @@ Full documentation: `docs/README.md` in the repository.
 
 ## Use of Super Intelligence (SI)
 
-Yes. (1) The code was developed with AI assistance: the team used Claude Code (Anthropic) to help write and review code, tests, data scripts and documentation. The idea, product rules, data choices and methodology are the team's, and all code was reviewed and tested by the team. (2) The demo video was edited with AI tools [TODO: tool name] and carries a visible watermark. (3) In the product, Google Gemini reads the farmer's free-text answers, powers the chat assistant and creates embeddings for the knowledge-base search. It never computes or invents numbers: every number comes from NASA data, the crop catalog or a formula in code, and the prompt forbids the model from producing numbers on its own. No AI-generated content uses NASA branding. Details: `docs/07-ai-use.md`.
+Yes. (1) The code was developed with AI assistance: the team used Claude Code (Anthropic) to help write and review code, tests, data scripts and documentation. The idea, product rules, data choices and methodology are the team's, and all code was reviewed and tested by the team. (2) The demo video was edited with AI tools (Claude Opus 5.5, Anthropic) and carries a visible watermark. (3) In the product, Google Gemini reads the farmer's free-text answers, powers the chat assistant and creates embeddings for the knowledge-base search. It never computes or invents numbers: every number comes from NASA data, the crop catalog or a formula in code, and the prompt forbids the model from producing numbers on its own. No AI-generated content uses NASA branding. Details: `docs/07-ai-use.md`.
 
 ## NASA Data
 
