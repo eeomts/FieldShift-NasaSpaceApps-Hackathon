@@ -61,6 +61,8 @@ export function Onboarding() {
   const [tentativa, setTentativa] = useState(0);
   const [salvando, setSalvando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
+  // Demo: respostas vindas do exemplo (só nesta sessão da tela).
+  const [doExemplo, setDoExemplo] = useState(false);
   const rolagem = useRef<HTMLDivElement>(null);
 
   // Fazenda salva (retoma de onde parou).
@@ -73,14 +75,19 @@ export function Onboarding() {
         if (!vivo) return;
         setFazenda(f);
         // Conta sem respostas: já vem preenchido com o produtor de exemplo (demo).
-        setR(Object.keys(f.respostas ?? {}).length === 0 ? respostasExemplo(idioma) : f.respostas);
+        const vazio = Object.keys(f.respostas ?? {}).length === 0;
+        setDoExemplo(vazio);
+        setR(vazio ? respostasExemplo(idioma) : f.respostas);
         let p = f.onboarding_concluido ? 0 : Math.min(f.passo_atual, PASSO_RESUMO);
         while (p < PASSO_RESUMO && !telaVisivel(TELAS[p].id, f.respostas)) p++;
         setPasso(p);
       })
       .catch((e) => {
         if (!vivo) return;
-        if (e instanceof ErroApi && e.status === 404) setR(respostasExemplo(idioma));
+        if (e instanceof ErroApi && e.status === 404) {
+          setDoExemplo(true);
+          setR(respostasExemplo(idioma));
+        }
         else setFalhaInicial(textoErro(e));
       })
       .finally(() => vivo && setCarregando(false));
@@ -265,7 +272,7 @@ export function Onboarding() {
 
         <div ref={rolagem} className="flex-1 overflow-y-auto">
           <div className="mx-auto flex w-full max-w-[480px] flex-col gap-4 px-6 pt-4 pb-6 lg:max-w-[760px] lg:px-10 lg:pt-8 lg:pb-10">
-            {Atual ? <Atual key={tela!.id} r={r} set={set} ctx={ctx} /> : <Resumo fazenda={fazenda} culturas={culturas} />}
+            {Atual ? <Atual key={tela!.id} r={r} set={set} ctx={ctx} /> : <Resumo fazenda={fazenda} culturas={culturas} doExemplo={doExemplo} />}
             {erro && <Aviso>{erro}</Aviso>}
           </div>
         </div>
