@@ -39,6 +39,12 @@ def test_satelites_do_painel_nao_aparecem_como_nao_usados():
     assert "NASA POWER" in trechos["chat"]
 
 
+def test_regra_da_previsao_aponta_para_o_painel():
+    texto = montar_instrucao(_USUARIO, date(2026, 1, 1))
+    regra = texto[texto.index("6. Você NÃO faz previsão"):texto.index("7. ")]
+    assert "painel" in regra and "Open-Meteo" in regra
+
+
 def test_soilgrids_esta_em_usa_hoje_com_o_que_entrega():
     trechos = _trechos(montar_instrucao(_USUARIO, date(2026, 1, 1)))
     assert "SoilGrids (solo por ponto: textura, matéria orgânica, pH, erodibilidade; mapa global de 250 m)" in trechos["chat"]
