@@ -1,7 +1,7 @@
 # AgroAI: código
 
 Este é o código do app: login, questionário do produtor, Dashboard e a aba AgroAI (chat), em português e inglês.
-O que cada tela pergunta e por quê está em [`ONBOARDING.md`](../docs/NasaSpaceApps-FieldShift/v1/application/ONBOARDING.md). A visão geral do projeto está no [README principal](../README.md).
+As perguntas do questionário, com o porquê e a fonte de cada uma, estão em [`data/onboarding/perguntas.yaml`](../data/onboarding/perguntas.yaml). A visão geral do projeto está no [README principal](../README.md).
 
 | Pasta | O que é |
 |---|---|
@@ -140,7 +140,7 @@ Os testes cobrem:
 | PUT | `/fazenda` | Salva o questionário (parcial, ou com `concluir: true`). Com local novo, responde na hora com `status_processamento: "processando"` e busca o solo no SoilGrids em segundo plano (veja "Solo") |
 | GET | `/fazenda/estrategias` | Compara a rotação atual com as 2 melhores alternativas, na hora (a 1ª vez numa região baixa o NASA POWER, 10–30 s). Erros: 404 sem fazenda, 422 sem local / sem culturas da região / sem calendário, 503 se o NASA POWER falhar |
 | GET | `/fazenda/satelite` | Satélite no ponto da fazenda: umidade do solo (SMAP L4, comparada com o mesmo dia dos 8 anos anteriores), NDVI do último ano (MODIS MOD13Q1) e chuva diária dos últimos 30 dias (GPM IMERG; se a conta não tiver acesso à GES DISC, NASA POWER com aviso). Lê só os pixels do ponto pelo OPeNDAP; a 1ª vez numa região leva 10–15 s e depois fica em cache no dia. Cada parte que falhar vem em `faltas` com um código (`sem_token`, `nuvem`...); o front escreve o texto em PT ou EN. Erros: 404 sem fazenda, 422 sem local |
-| GET | `/fazenda/previsao` | Previsão dos próximos 7 dias no ponto da fazenda (Open-Meteo; decisão ainda não registrada no `DECISOES.md`): máxima, mínima, chuva, chance de chuva e código WMO. Sem chave; cache de 1 hora por ponto. A tela dá o crédito à Open-Meteo (CC BY 4.0). Erros: 404 sem fazenda, 422 sem local, 503 se a Open-Meteo falhar |
+| GET | `/fazenda/previsao` | Previsão dos próximos 7 dias no ponto da fazenda (Open-Meteo, porque a NASA não publica previsão): máxima, mínima, chuva, chance de chuva e código WMO. Sem chave; cache de 1 hora por ponto. A tela dá o crédito à Open-Meteo (CC BY 4.0). Erros: 404 sem fazenda, 422 sem local, 503 se a Open-Meteo falhar |
 | POST | `/onboarding/interpretar` | Texto livre → itens da base (perguntas 8, 26a e 26b). Aceita `hemisferio` (`N`/`S`) e `idioma` (`pt`/`en`) |
 | GET | `/culturas`, `/equipamentos` | Listas reserva (`?idioma=pt\|en`) |
 | GET | `/local/buscar?q=&idioma=` | Busca cidade ou região (OpenStreetMap / Nominatim), até 5 resultados. Falha → lista vazia |

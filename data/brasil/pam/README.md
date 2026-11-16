@@ -4,7 +4,7 @@ Produção Agrícola Municipal do IBGE (tabela 5457 do SIDRA), por município, c
 
 | Arquivo | O que é |
 |---|---|
-| `producao_municipal.csv` | Gerado por `scripts/baixar_pam.py` em 15/11/2026: 556.400 linhas (5.564 municípios × 10 culturas × 10 anos), 19,5 MB. |
+| `producao_municipal.csv` | Gerado por `scripts/baixar_pam.py` em 15/11/2026: 556.400 linhas (5.564 municípios × 10 culturas × 10 anos), 19,5 MB. **Fica fora do Git**: gere com o script. |
 
 ## Origem
 

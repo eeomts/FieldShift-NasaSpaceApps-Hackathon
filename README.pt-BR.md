@@ -1,6 +1,6 @@
 # Field Shift · AgroAI
 
-Projeto da equipe para o **NASA Space Apps Challenge 2026**, desafio **[Field Shift: Adapting Farms with NASA Data](docs/NasaSpaceApps-FieldShift/v1/desafio-oficial-nasa-field-shift.md)**.
+Projeto da equipe para o **NASA Space Apps Challenge 2026**, desafio **[Field Shift: Adapting Farms with NASA Data](https://www.spaceappschallenge.org/2026/challenges/adapting-farms-with-nasa-data/?tab=details)**.
 
 ## O problema
 
@@ -27,7 +27,7 @@ Um site em português e inglês, pensado primeiro para o celular, para pequenos 
 | 5 | Chat AgroAI com base de conhecimento (RAG) | Pronta |
 | — | Versão de apresentação (`agroai/web-demo`) | Pronta |
 
-O andamento detalhado, com PRs e pendências, fica em [`ANDAMENTO.md`](docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md).
+O que funciona, o que é parcial e o que vem depois está em [`docs/05-limitations-roadmap.md`](docs/05-limitations-roadmap.md).
 
 ## As duas interfaces
 
@@ -76,24 +76,7 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 │   ├── web-demo/                   # versão de apresentação (entrada só com o nome, Skip All)
 │   └── base/                       # culturas e equipamentos do questionário (fonte única)
 ├── data/                           # dados preparados pela equipe (catálogo, demo, RAG, Brasil, EUA)
-├── docs/NasaSpaceApps-FieldShift/v1/
-│   ├── desafio-oficial-nasa-field-shift.md   # texto oficial do desafio
-│   ├── context/                    # o problema e as decisões
-│   │   ├── DECISOES.md             # decisões da equipe (D-xxx) e perguntas em aberto (Q-xx)
-│   │   ├── CONTEXTO-DESAFIO.md     # requisitos, conceitos e indicadores
-│   │   └── BANCO_DE_DADOS_NASA.md  # datasets e ferramentas
-│   ├── application/                # o produto
-│   │   ├── ANDAMENTO.md            # o que está feito, pendente e bloqueado
-│   │   ├── site-contexto.md        # especificação do AgroAI (telas, chat, API, dados)
-│   │   ├── ONBOARDING.md           # questionário do primeiro acesso
-│   │   ├── DOR-DO-AGRICULTOR-E-CASO-DE-USO.md   # dores do produtor + caso da Dona Marta
-│   │   ├── architecture/           # coleta, integração de dados, motor, dashboard/chat, banco
-│   │   ├── dados/                  # guia de preparação dos dados
-│   │   └── prompts/                # casos de teste do chat
-│   ├── tools/                      # uma nota por fonte de dados + comparativos
-│   └── others/                     # análise de ferramentas existentes
-├── layout/                         # protótipo navegável (HTML e PDF): referência visual das telas
-├── ToDo/                           # tarefas de dados com dono, uma pasta por tarefa
+├── docs/                           # documentação da submissão (01 a 08, em inglês) e o texto do formulário
 └── .deploy/                        # Docker, Caddy e scripts para subir na VPS
 ```
 
@@ -101,18 +84,14 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 
 | Você quer… | Leia |
 |---|---|
-| Umidade do solo hoje x anos anteriores (só no painel) | SMAP L4 (SPL4SMGP) |
-| Verde da lavoura nos últimos 12 meses (só no painel) | MODIS MOD13Q1 (NDVI) |
-| Chuva dos últimos 30 dias (só no painel) | GPM IMERG; sem o token do Earthdata, NASA POWER |
-| Entender o desafio | [Texto oficial](docs/NasaSpaceApps-FieldShift/v1/desafio-oficial-nasa-field-shift.md) e [`CONTEXTO-DESAFIO.md`](docs/NasaSpaceApps-FieldShift/v1/context/CONTEXTO-DESAFIO.md) |
-| Saber o que já foi decidido | [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md) |
-| Saber em que pé está | [`ANDAMENTO.md`](docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md) |
-| Saber o que vamos construir | [`site-contexto.md`](docs/NasaSpaceApps-FieldShift/v1/application/site-contexto.md) e [`architecture/README.md`](docs/NasaSpaceApps-FieldShift/v1/application/architecture/README.md) |
+| Entender o desafio e a solução | [Texto oficial](https://www.spaceappschallenge.org/2026/challenges/adapting-farms-with-nasa-data/?tab=details) e [`docs/01-overview.md`](docs/01-overview.md) |
+| Saber como funciona | [`docs/02-how-it-works.md`](docs/02-how-it-works.md) e [`docs/04-methodology.md`](docs/04-methodology.md) |
+| Saber em que pé está | [`docs/05-limitations-roadmap.md`](docs/05-limitations-roadmap.md) |
 | Mexer no código | [`agroai/README.md`](agroai/README.md) |
 | Apresentar a demo | [`agroai/web-demo/README.md`](agroai/web-demo/README.md) |
 | Subir na VPS | [`.deploy/README.md`](.deploy/README.md) |
-| Ajudar com os dados | [`data/README.md`](data/README.md) e [`ToDo/README.md`](ToDo/README.md) |
-| Saber como acessar uma fonte | a nota da fonte em [`tools/`](docs/NasaSpaceApps-FieldShift/v1/tools/) |
+| Ajudar com os dados | [`data/README.md`](data/README.md) |
+| Saber de onde vem cada dado | [`docs/03-nasa-data.md`](docs/03-nasa-data.md), [`docs/06-references.md`](docs/06-references.md) e [`data/FONTES.md`](data/FONTES.md) |
 
 ## Dados usados nesta versão
 
@@ -122,10 +101,13 @@ Para subir com Docker (local ou na VPS), veja [`.deploy/README.md`](.deploy/READ
 | Relevo (declividade) | SRTM |
 | Solo | SoilGrids |
 | Previsão do tempo | Open-Meteo |
+| Umidade do solo hoje x anos anteriores (só no painel) | SMAP L4 (SPL4SMGP) |
+| Verde da lavoura nos últimos 12 meses (só no painel) | MODIS MOD13Q1 (NDVI) |
+| Chuva dos últimos 30 dias (só no painel) | GPM IMERG; sem o token do Earthdata, NASA POWER |
 
 SMAP, MODIS e GPM IMERG são lidos ao vivo do NASA Earthdata e precisam do token no servidor. Eles aparecem **só no painel**: o motor de rotação e o chat ainda não usam esses números. As janelas de semeadura dos EUA (USDA NASS, Handbook 628) estão transcritas no catálogo de culturas. Os dados do IBGE PAM, das tábuas do ZARC e do NASS Quick Stats são gerados pelos scripts de `data/scripts/`, mas o motor ainda não os lê. ERA5, GLDAS, FAO GAEZ, NASA Harvest, VIIRS, HLS, MapBiomas e INMET/CEMADEN não são usados.
 
-A previsão do tempo dos próximos dias vem da **Open-Meteo**, porque a NASA não publica previsão. Ela já está no app, mas ainda não foi registrada no `DECISOES.md` (ver "Pontos em aberto").
+A previsão do tempo dos próximos dias vem da **Open-Meteo**, porque a NASA não publica previsão.
 
 ## Stack
 
@@ -138,23 +120,11 @@ A previsão do tempo dos próximos dias vem da **Open-Meteo**, porque a NASA nã
 | IA (D-011) | Gemini: lê o texto livre do questionário e responde no chat, com embeddings para o RAG |
 | Deploy | Docker Compose + Caddy (`.deploy/`) |
 
-O visual segue o protótipo **Premium Playful** que está na pasta `layout/`: fundo creme, verde-folha, amarelo-sol, botões com "degrau" 3D, títulos em Bricolage Grotesque e texto em DM Sans.
-
-## Pontos em aberto
-
-Decisões que a equipe ainda precisa tomar ou registrar:
-
-- **Previsão do tempo:** registrar a Open-Meteo no `DECISOES.md` (única fonte fora da D-009).
-- **Numeração:** existem duas D-010 no `DECISOES.md`. Uma precisa ser renumerada.
-- **Tabelas antigas no banco:** o Postgres antigo da VPS (porta 5433) tem `propriedades` e `questionario_respostas`, que não são usadas pelo código. A produção não usa mais esse banco: é preciso decidir se ele sai.
-- **Demo:** confirmar as regiões e os pontos de exemplo (Q-01 a Q-03) e o usuário da demo (Q-02).
-
-A lista completa está em [`DECISOES.md`](docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md), seção 3, e as pendências do dia a dia em [`ANDAMENTO.md`](docs/NasaSpaceApps-FieldShift/v1/application/ANDAMENTO.md).
+O visual segue o estilo **Premium Playful**: fundo creme, verde-folha, amarelo-sol, botões com "degrau" 3D, títulos em Bricolage Grotesque e texto em DM Sans.
 
 ## Como contribuir
 
 - Trabalhe numa branch (`feat/...`, `fix/...`, `docs/...`, `data/...`) e abra um PR para a `main`.
 - **Nunca suba o `.env`** nem senhas. Use o `.env.example` como modelo.
 - Rode os testes da API antes de abrir o PR (veja "Testes" em [`agroai/README.md`](agroai/README.md)).
-- Decisões novas entram no `DECISOES.md` com número, status e motivo. Uma decisão que mudou não é apagada: ela é marcada como **Substituída**.
 - Itens marcados com **[verificar]** precisam ser confirmados na fonte oficial antes de virar código ou entrar no pitch.

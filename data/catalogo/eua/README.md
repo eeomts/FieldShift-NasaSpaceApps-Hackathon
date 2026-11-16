@@ -1,6 +1,6 @@
 # Catálogo de culturas dos EUA
 
-Parâmetros agronômicos das culturas para pontos nos EUA, no **mesmo formato** do catálogo do Brasil (`data/catalogo/culturas.csv`), para que o motor use as duas tabelas do mesmo jeito. Escopo aberto em 15/11/2026 (decisão D-013 em `docs/NasaSpaceApps-FieldShift/v1/context/DECISOES.md`).
+Parâmetros agronômicos das culturas para pontos nos EUA, no **mesmo formato** do catálogo do Brasil (`data/catalogo/culturas.csv`), para que o motor use as duas tabelas do mesmo jeito. Escopo aberto em 15/11/2026 (decisão D-013 da equipe).
 
 Quem constrói: o agente **`agroai-dataset-eua`** (`.claude/agents/agroai-dataset-eua.md`), chamado pelo coordenador em lotes. Tudo o que aprendemos no catálogo do Brasil está aqui e no agente.
 
@@ -26,7 +26,7 @@ A janela de semeadura dos grãos (`semeadura_inicio/fim`) é o "most active" (15
 
 ## Culturas e sistemas
 
-Os sistemas seguem os testes de chat do produtor americano (`docs/NasaSpaceApps-FieldShift/v1/application/prompts/examples/tests/TESTES_CHAT_SR_SMITH.md`). Uma linha representa **um sistema**: o mais comum na região de referência.
+Os sistemas seguem os testes de chat do produtor americano (Sr. Smith, Iowa). Uma linha representa **um sistema**: o mais comum na região de referência.
 
 | Prioridade | id | Cultura / sistema nos EUA | Região de referência |
 |---|---|---|---|

@@ -11,7 +11,7 @@ Saídas (sobrescritas a cada execução):
     data/brasil/municipios/municipios.geojson   polígonos em qualidade mínima, com municipio_id em properties
 
 O backend usa os dois para descobrir o município da fazenda pelo ponto no mapa, o que liga o
-produtor à PAM e ao ZARC. Detalhes em ToDo/dataset/pessoa-2/02-script-malha-municipal.
+produtor à PAM e ao ZARC.
 """
 import csv
 import json
