@@ -16,7 +16,7 @@ Last updated: 2026-11-15
 | Rotation comparison: current + 2 alternatives, 6 criteria | Working (v1) |
 | Chat assistant with knowledge base | Working (cites NASA POWER and SRTM) |
 | Official Brazilian planting windows (ZARC) | Partial: data prepared for 3 states, not yet read by the engine |
-| US usual planting dates (USDA NASS) | Partial: data prepared, not yet read by the engine |
+| US usual planting dates (USDA NASS Handbook 628) | Working: transcribed into the US crop catalog (the raw NASS file is not read) |
 | Market and income data (IBGE PAM, USDA NASS) | Partial: data prepared, not yet read by the engine |
 
 ## Known limitations

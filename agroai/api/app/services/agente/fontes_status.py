@@ -28,7 +28,8 @@ FONTES: list[FonteStatus] = [
     FonteStatus("SoilGrids", "solo por ponto: textura, matéria orgânica, pH, erodibilidade; mapa global de 250 m", "chat"),
     FonteStatus(
         "USDA NASS, datas de plantio (Handbook 628)",
-        "janela de semeadura das culturas de venda e das coberturas dos EUA; o motor só sugere uma cultura nos meses em que ela costuma ser semeada",
+        "janelas de semeadura dos EUA (NASS Agricultural Handbook 628) transcritas no catálogo de culturas (data/catalogo/eua/culturas.csv), não lidas ao vivo; "
+        "o motor só sugere uma cultura nos meses em que ela costuma ser semeada",
         "chat",
     ),
     FonteStatus("GPM IMERG", "chuva diária de satélite dos últimos 30 dias, ~10 km (se faltar, o painel usa a chuva diária do NASA POWER)", "painel"),
