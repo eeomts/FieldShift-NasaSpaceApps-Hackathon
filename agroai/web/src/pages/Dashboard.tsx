@@ -275,7 +275,7 @@ export function Dashboard() {
             {sat?.ndvi
               ? `${sat.ndvi.fonte} · ${sat.ndvi.resolucao} · ${t("a cada 16 dias", "every 16 days")} · ${t(`${sat.ndvi.serie.length} imagens sem nuvem`, `${sat.ndvi.serie.length} cloud-free images`)}`
               : itens.length
-                ? t("Fonte: suas respostas no questionário (sem dado de satélite agora)", "Source: your answers in the questionnaire (no satellite data right now)")
+                ? `${t("Fonte: suas respostas no questionário", "Source: your answers in the questionnaire")}${sat || satErro || !temPonto ? t(" (sem dado de satélite agora)", " (no satellite data right now)") : ""}`
                 : ""}
           </span>
         </div>
