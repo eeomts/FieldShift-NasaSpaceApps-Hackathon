@@ -45,6 +45,7 @@ services:
       JWT_EXPIRES_MIN: ${JWT_EXPIRES_MIN:-10080}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-}
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash}
+      EARTHDATA_TOKEN: ${EARTHDATA_TOKEN:-}
       CORS_ORIGINS: ${CORS_ORIGINS:-}
       CORS_ORIGIN_REGEX: ""
     extra_hosts:
