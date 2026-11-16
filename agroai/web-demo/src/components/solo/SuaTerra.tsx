@@ -7,6 +7,10 @@ import { Cartao, Selo, Texto } from "../ui";
 
 type T = (pt: string, en: string) => string;
 
+// Classes do K iguais às da API (motor/parametros.py): Mannigel et al. 2002, Acta Scientiarum 24(5).
+const K_LIMITE_BAIXA = 0.015;
+const K_LIMITE_MEDIA = 0.03;
+
 const rotulo = (t: T, a: AtributoSolo["atributo"]) =>
   ({ textura: t("Tipo de terra", "Soil type"), materia_organica: t("Matéria orgânica", "Organic matter"), acidez: t("Acidez", "Acidity") })[a];
 
@@ -123,7 +127,7 @@ function NumerosMapa({ s }: { s: SoloPonto }) {
       {s.k_usle != null && (
         <span className="text-[15px] text-suave">
           {t("K mostra quanto a terra se desmancha com a chuva", "K shows how much the soil washes away in the rain")}:{" "}
-          {s.k_usle < 0.02 ? t("baixo", "low") : s.k_usle < 0.035 ? t("médio", "medium") : t("alto", "high")}.
+          {s.k_usle < K_LIMITE_BAIXA ? t("baixo", "low") : s.k_usle < K_LIMITE_MEDIA ? t("médio", "medium") : t("alto", "high")}.
         </span>
       )}
       <span className="text-sm text-suave">{t("Fonte", "Source")}: {s.fonte} · {t("camada", "layer")} {s.camada}</span>
