@@ -14,4 +14,20 @@ __pycache__/
 # Chaves locais (NASS_API_KEY etc.); nunca no Git
 .env
 
-docs/NasaSpaceApps-FieldShift/v1/examples/
+# Material interno da equipe; fica só no disco, fora da submissão
+docs/NasaSpaceApps-FieldShift/
+layout/
+ToDo/
+video-30s-prompt.md
+.claude/
+
+# CSVs grandes que o app não lê; gerados por data/scripts/
+data/brasil/zarc/janelas.csv
+data/brasil/pam/producao_municipal.csv
+
+# AppEEARS descartado em 15/11/2026
+data/demo/appeears/
+data/scripts/baixar_appeears.py
+
+# Cache de build do TypeScript
+*.tsbuildinfo
