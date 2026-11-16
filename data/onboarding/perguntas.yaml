@@ -157,12 +157,12 @@ perguntas:
       nome: { origem: busca_ou_digitado, opcional: true }
       pais:
         origem: calculado
-        como: "ponto dentro do contorno do país (código ISO 3166-1 alfa-2, ex.: BR, KE, US)"
-        fonte: "Natural Earth, Admin 0 Countries (domínio público)"
+        como: "geocodificação reversa do ponto (código ISO 3166-1 alfa-2, ex.: BR, US)"
+        fonte: "OpenStreetMap Nominatim, reverso (ODbL)"
       zona_climatica:
         origem: calculado
-        como: "classe Köppen-Geiger do pixel de 1 km (ex.: Aw, BSh, Cfa)"
-        fonte: "Beck et al. (2023), mapas Köppen-Geiger 1 km, período 1991-2020 (CC BY 4.0)"
+        como: "classe Köppen-Geiger calculada das normais mensais do ponto (ex.: Aw, BSh, Cfa)"
+        fonte: "Regras de Köppen-Geiger (Beck et al. 2023) aplicadas à climatologia do NASA POWER 1991-2020, célula de ~50 km (aproximação)"
       hemisferio:
         origem: calculado
         como: "lat < 0 → sul; lat ≥ 0 → norte (inverte as estações do ano)"
