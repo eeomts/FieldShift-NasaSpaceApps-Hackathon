@@ -63,6 +63,7 @@ Optional key (Gemini) and tests: [Run Locally](docs/08-run-locally.md).
 | [Methodology](docs/04-methodology.md) | Rotation comparison and where every number comes from |
 | [Limitations and Roadmap](docs/05-limitations-roadmap.md) | What works, what is partial, what is next |
 | [References](docs/06-references.md) | Other data, libraries, images, licenses |
+| [Tools and Data Sources](TOOLS.md) | NASA data, team-prepared data and external services, with URLs |
 | [Use of AI](docs/07-ai-use.md) | AI in the product, in development and in media |
 | [Run Locally](docs/08-run-locally.md) | How to run the app on your computer |
 | [Demo Video](docs/09-demo-video.md) | The 30-second video and its AI disclosure |
